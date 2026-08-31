@@ -9,15 +9,14 @@
       "status": "READY",
       "owner": "Codex",
       "type": "infrastructure",
-      "goal": "Initialiser le repo local, refléter l'état réel du labo et publier les artefacts Guardian v11.15 exacts manquants.",
+      "goal": "Initialiser le repo local et remplacer cette file bootstrap par l'état réel du labo.",
       "required_actions": [
         "Créer/vérifier les chemins locaux du mandat",
         "Cloner/synchroniser yum4nity-code/guardian-research",
         "Lire l'état réel de D:\\MT5_Backtests et remplacer cette file bootstrap par la vraie file de recherche",
-        "Copier Guardian_D017_PropFirmAuto_v11_15.mq5 dans production/guardian/",
-        "Copier Guardian_v11_14_to_v11_15.diff dans production/guardian/",
-        "Vérifier les SHA256 contre production/manifests/Guardian_D017_v11_15.json",
-        "Commit/push puis marquer cet item terminé"
+        "Vérifier localement les SHA256 du source Guardian v11.15 et du preset contre production/manifests/Guardian_D017_v11_15.json",
+        "Contrôler les workers/processus réellement actifs avant tout nouveau lancement",
+        "Commit/push l'état réel puis marquer cet item terminé"
       ],
       "blocking": "Premier bootstrap Codex uniquement"
     }
