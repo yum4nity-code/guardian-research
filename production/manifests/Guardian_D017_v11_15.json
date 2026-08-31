@@ -31,13 +31,15 @@
   ],
   "github_source_present": true,
   "source_hash_verification": "PENDING_LOCAL_VERIFICATION",
-  "compile_status": "NOT_VERIFIED_IN_METAEDITOR",
-  "production_status": "SOURCE_PREPARED_AWAITING_USER_COMPILE_VALIDATION",
+  "compile_status": "COMPILED_OK_USER_CONFIRMED_2026-08-31",
+  "runtime_status": "RUNNING_USER_CONFIRMED_ON_EURUSD_M15_AND_GBPUSD_M15",
+  "production_status": "COMPILED_AND_RUNNING_PENDING_FULL_NON_REGRESSION_VALIDATION",
   "notes": [
     "Source is stored in production/guardian/Guardian_D017_PropFirmAuto_v11_15.mq5.",
     "Preset is stored in production/presets/FTMO_D017_v11_15_SAFE.set.",
-    "The expected SHA256 values above are authoritative and must be checked locally after clone/sync.",
-    "No v11.14-to-v11.15 diff is required for normal operation or bootstrap.",
-    "Do not mark this build deployed until MetaEditor compile and non-regression checks succeed."
+    "The expected SHA256 values above remain authoritative and should be checked locally after clone/sync.",
+    "User confirmed successful MetaEditor compilation and runtime on EURUSD M15 and GBPUSD M15 on 2026-08-31.",
+    "Full non-regression validation remains separate from successful compilation/runtime confirmation.",
+    "No v11.14-to-v11.15 diff is required for normal operation or bootstrap."
   ]
 }
