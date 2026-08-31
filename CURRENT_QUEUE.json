@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "updated_at": null,
+  "active_primary": null,
+  "items": [],
+  "allowed_status": [
+    "READY",
+    "RUNNING_MIMO",
+    "RUNNING_MT5",
+    "WAITING_RESULT",
+    "WAITING_CODEX",
+    "WAITING_CHATGPT",
+    "CANDIDATE",
+    "VALIDATED",
+    "REJECTED",
+    "BLOCKED"
+  ],
+  "notes": "Codex maintient cette file. GO prend en priorité le premier item READY le plus prioritaire, sauf urgence Guardian."
+}
