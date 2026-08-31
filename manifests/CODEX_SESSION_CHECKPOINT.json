@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "updated_at": null,
+  "source": "shared_last_known_state",
+  "active_primary": null,
+  "priorities": [],
+  "decisions_since_previous": [],
+  "running_mt5": [],
+  "running_mimo": [],
+  "completed_unintegrated": [],
+  "next_safe_action": "Bootstrap/reconcile against D:\\MT5_Backtests real state before launching anything.",
+  "dirty_or_unpushed_local_files": [],
+  "waiting_chatgpt": [],
+  "waiting_codex": [],
+  "notes": "GitHub mirror only. On Codex host, D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json is the interruption-recovery checkpoint and must be reconciled with real processes/files before any relaunch."
+}
