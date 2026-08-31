@@ -1,0 +1,22 @@
+{
+  "strategy_id": "S000",
+  "campaign_id": "S000-C00",
+  "status": "IDEA",
+  "hypothesis": "",
+  "markets": [],
+  "timeframes": [],
+  "code_path": "",
+  "code_commit": "",
+  "set_paths": [],
+  "data_period": {"from": "", "to": ""},
+  "cost_model": {"spread": "", "commission": "", "slippage": ""},
+  "trial_family": "",
+  "raw_trial_count": 0,
+  "effective_trial_count": null,
+  "oos_opened": false,
+  "results_paths": [],
+  "robustness_paths": [],
+  "known_limitations": [],
+  "codex_verdict": "",
+  "chatgpt_decision_requested": ""
+}
