@@ -6,13 +6,30 @@
 
 Cela signifie : **le quota Codex est revenu ; reprendre le labo maintenant de façon autonome**.
 
+### Cas prioritaire : premier bootstrap encore incomplet
+Si le checkpoint indique `BOOTSTRAP_IN_PROGRESS`, si aucun état `BOOTSTRAP_COMPLETE` n'existe encore, ou si la mission/répartition des rôles n'a pas encore été entièrement assimilée, **terminer le bootstrap est la première tâche du `GO`**.
+
+Dans ce cas, Codex doit :
+1. Synchroniser le repo GitHub.
+2. Lire/triager l'inbox pour connaître les urgences et changements, mais **ne pas lancer immédiatement les audits secondaires qu'elle contient**.
+3. Lire le checkpoint local `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` s'il existe, puis la copie GitHub.
+4. S'il n'existe aucun checkpoint local, créer immédiatement un checkpoint minimal `BOOTSTRAP_IN_PROGRESS` avec `no_new_jobs_launched=true` et `next_safe_action=inspect_real_machine_state`.
+5. Reprendre depuis `next_safe_action` et terminer la compréhension de la mission, des rôles, du repo, de la queue et de l'état réel du PC. **Ne pas recommencer depuis zéro ce qui est déjà vérifié et persisté.**
+6. Ne lancer aucune nouvelle campagne MT5, tâche MiMo, exploration ou modification de stratégie avant réconciliation complète.
+7. Une anomalie Guardian ne préempte ce bootstrap que si elle représente un risque actif immédiat sur une instance en cours. Dans ce cas, faire le minimum de sécurisation, checkpoint-er, puis reprendre le bootstrap.
+8. Déclarer et persister `BOOTSTRAP_COMPLETE` uniquement une fois mission/rôles assimilés, repo synchronisé, checkpoint durable, queue réconciliée, processus/workers/MiMo/MT5 réels inventoriés, chemins/outils principaux localisés et état production/candidats compris.
+9. Une fois `BOOTSTRAP_COMPLETE`, seulement alors passer aux notes/audits/queues ordinaires.
+
+Ce mode spécial évite qu'un premier réveil consomme toute une fenêtre Codex à traiter des tâches annexes avant même d'avoir fini de comprendre et reconstruire le fonctionnement du laboratoire.
+
+### GO normal après bootstrap terminé
 Codex doit, dans cet ordre :
 
 1. Synchroniser le repo GitHub.
 2. Lire `manifests/CODEX_INBOX_STATE.json` et toutes les notes ChatGPT non lues sous `handoff/chatgpt_to_codex/`. Une note `URGENT` Guardian prime sur l'exploration ; une note `ACTION_REQUISE` doit être reflétée dans `CURRENT_QUEUE.json` sans doublon ; une note `INFO` doit être assimilée sans forcément créer de tâche.
 3. Lire le checkpoint local `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` s'il existe, puis `manifests/CODEX_SESSION_CHECKPOINT.json` comme dernier état partagé. Appliquer `docs/INTERRUPTION_RECOVERY.md`.
-4. **Si aucun checkpoint local n'existe encore et que le bootstrap initial n'est pas terminé, créer immédiatement un checkpoint minimal `BOOTSTRAP_IN_PROGRESS` avant tout audit/inventaire long ou parallèle.** Il doit au minimum dire que le bootstrap est en cours, qu'aucun nouveau job ne doit être lancé avant réconciliation et que `next_safe_action=inspect_real_machine_state`.
-5. Lire `docs/RESEARCH_STATUS.md`, `docs/STRATEGY_DECISIONS.md`, `CURRENT_QUEUE.json`, le dernier `PLAN.md` actif et le dernier handoff pertinent.
+4. Lire `docs/RESEARCH_STATUS.md`, `docs/STRATEGY_DECISIONS.md`, `CURRENT_QUEUE.json`, le dernier `PLAN.md` actif et le dernier handoff pertinent.
+5. **Ne pas relire intégralement les protocoles statiques déjà assimilés à chaque `GO` s'ils n'ont pas changé.** Les rouvrir seulement s'ils ont changé depuis le dernier état connu ou si une ambiguïté opérationnelle l'exige.
 6. Vérifier les processus/workers MT5 réellement actifs, les tâches MiMo déjà lancées, les logs/statuts et les résultats présents. **Le réel prime sur le checkpoint et la queue s'ils sont anciens.** Ne jamais créer de doublon ni relancer depuis un simple statut.
 7. Récolter en priorité tous les résultats MiMo/MT5 terminés depuis la dernière session, les normaliser et mettre à jour checkpoint + `CURRENT_QUEUE.json`.
 8. Marquer dans `manifests/CODEX_INBOX_STATE.json` les notes ChatGPT effectivement lues/prises en compte afin de ne pas les retraiter au prochain `GO`.
@@ -26,13 +43,13 @@ Codex doit, dans cet ordre :
 16. Avant de terminer sa fenêtre, laisser au moins une charge longue utile à MiMo/MT5 si possible, puis mettre à jour checkpoint, `CURRENT_QUEUE.json`, `RESEARCH_STATUS.md` et `STRATEGY_DECISIONS.md` lorsque nécessaire.
 17. Si quelque chose nécessite ChatGPT (candidat Guardian, anomalie produit, audit méthodologique, question d'intégration), créer/mettre à jour le handoff du jour avec les chemins exacts et signaler `WAITING_CHATGPT` lorsque son action est requise. Sinon, ne pas produire de handoff vide.
 
-En résumé : **`GO` = inbox -> checkpoint minimal si nécessaire -> checkpoint courant -> état réel -> récolter -> décider -> persister -> agir -> synchroniser les jalons -> laisser une trace récupérable.**
+En résumé : **si bootstrap incomplet : reprendre le bootstrap -> comprendre/réconcilier -> persister `BOOTSTRAP_COMPLETE` -> seulement ensuite travailler. Si bootstrap complet : inbox -> checkpoint -> état réel -> récolter -> décider -> persister -> agir.**
 
 ## Si le quota tombe brutalement
 
 Le travail local et les workers ne sont pas supposés disparaître. Au prochain `GO`, Codex doit reprendre depuis le checkpoint local + l'état réel du PC, réconcilier, récolter et pousser ce qui n'avait pas pu être synchronisé.
 
-Si la coupure survient pendant le **premier bootstrap avant la création du premier checkpoint**, la reprise doit rester conservatrice : synchroniser, lire l'inbox, constater l'absence de checkpoint, créer immédiatement `BOOTSTRAP_IN_PROGRESS`, inspecter la machine réelle et ne lancer aucun nouveau travail avant réconciliation.
+Si la coupure survient pendant le premier bootstrap, le prochain `GO` reprend **d'abord ce bootstrap depuis le dernier `next_safe_action`**. Il ne doit ni recommencer intégralement les étapes déjà persistées ni se laisser détourner par les tâches secondaires accumulées entre-temps.
 
 Une décision importante restée uniquement dans la conversation de Codex et non écrite est considérée comme une erreur de procédure.
 
