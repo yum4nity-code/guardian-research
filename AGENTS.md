@@ -27,8 +27,8 @@ Au premier passage sur ce dépôt :
 - vérifier/créer les chemins locaux décrits dans le mandat ;
 - cloner/synchroniser `yum4nity-code/guardian-research` ;
 - initialiser `CURRENT_QUEUE.json` à partir de l'état réel de `D:\MT5_Backtests` ;
-- mirrorer dans `production/guardian/` le fichier local exact `Guardian_D017_PropFirmAuto_v11_15.mq5` si disponible ;
-- mirrorer le diff exact `Guardian_v11_14_to_v11_15.diff` ;
-- vérifier les SHA256 contre `production/manifests/Guardian_D017_v11_15.json` avant commit.
+- vérifier les workers/processus réellement actifs avant tout nouveau lancement ;
+- vérifier localement les SHA256 de `production/guardian/Guardian_D017_PropFirmAuto_v11_15.mq5` et `production/presets/FTMO_D017_v11_15_SAFE.set` contre `production/manifests/Guardian_D017_v11_15.json` ;
+- ne pas chercher ni créer un diff v11.14 -> v11.15 : il n'est pas requis pour le bootstrap ou le fonctionnement normal.
 
 Ne jamais remplacer une preuve réelle par une supposition ou un résumé non vérifié.
