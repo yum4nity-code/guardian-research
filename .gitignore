@@ -1,0 +1,25 @@
+# Local MT5 / research bulk
+*.ex5
+*.log
+*.tmp
+*.cache
+*.hcc
+*.hc
+*.fxt
+*.ticks
+*.tick
+*.zip
+*.7z
+*.rar
+
+# Large/raw local result dumps
+research/raw/
+**/RawResults/
+**/workers/
+**/Tester/cache/
+
+# OS/editor
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
