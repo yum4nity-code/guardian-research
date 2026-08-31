@@ -6,7 +6,8 @@
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_TIME_STOP_CONFIG_DIVERGENCE.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_16_MOMENTUM_PROD_PREPARED.md",
-    "handoff/chatgpt_to_codex/2026/08/31/D017_EXECUTABLE_PROVENANCE_MISMATCH.md"
+    "handoff/chatgpt_to_codex/2026/08/31/D017_EXECUTABLE_PROVENANCE_MISMATCH.md",
+    "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_16_MANUAL_BACKTEST_RESULTS.md"
   ],
   "reviewed_notes": [],
   "notes": "Codex lit ce fichier au début de chaque session/GO, traite toutes les notes ChatGPT non lues, puis les déplace de unread_notes vers reviewed_notes et met à jour last_checked_at/last_reviewed_commit lorsque possible."
