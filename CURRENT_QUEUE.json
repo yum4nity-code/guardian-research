@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-31T20:22:43Z",
-  "active_primary": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
+  "updated_at": "2026-08-31T22:27:00Z",
+  "active_primary": "AUTONOMY-RECOVERY-001",
   "items": [
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
       "priority": 1,
-      "status": "WAITING_CHATGPT",
-      "owner": "ChatGPT",
-      "type": "production_safety_audit",
-      "goal": "Reconcile the frozen SAFE preset with the observed v11.15 runtime and saved profile without silently editing production.",
-      "blocking": "Production integration belongs to ChatGPT/user; no MT5 restart or deployment by Codex."
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
+      "type": "production_safety_resolution",
+      "goal": "Consume ChatGPT resolution: v11.15 configuration divergence is confirmed and superseded by the self-contained v11.16 production direction; close/supersede this legacy item without patching or redeploying v11.15.",
+      "blocking": "No production deployment action required; preserve the no-.set invariant for future production versions."
     },
     {
       "id": "D017-V11-16-PROVENANCE-AUDIT",
@@ -46,5 +46,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "MiMo autonomy resumed with anti-duplicate recovery. The exact-feed MT5 control remains READY and was not launched."
+  "notes": "ChatGPT resolved the stale v11.15 production-safety wait and queued a supersession note for Codex. MiMo remains the active work; exact-feed MT5 control stays deferred."
 }
