@@ -1,12 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-31T20:22:43Z",
+  "updated_at": "2026-08-31T22:45:00Z",
   "source": "codex_bootstrap_reconciled",
   "active_primary": "AUTONOMY-RECOVERY-001",
   "priorities": [
     "AUTONOMY-RECOVERY-001",
     "D017-V11-16-PROVENANCE-AUDIT",
-    "D017-V11-16-EXACT-FEED-CONTROL"
+    "D017-V11-16-EXACT-FEED-CONTROL",
+    "DECISION-D021-HYPOTHESIS"
   ],
   "decisions_since_previous": [
     "Repository synchronized at ee5ad9914156cb66462ee321d40632a38d3714bf.",
@@ -14,23 +15,24 @@
     "Observed v11.15 runtime was not equivalent to SAFE because strategy time-stop executed.",
     "v11.16 is a new candidate pending provenance audit, not an exact D017 non-regression result.",
     "The manual USDJPY run crossed locked OOS and is quarantined from scientific decisions."
-    ,"ChatGPT resolution consumed: v11.15 is legacy/superseded by v11.16; future critical invariants must not depend on a .set."
+    ,"ChatGPT resolution consumed: v11.15 is legacy/superseded by v11.16; future critical invariants must not depend on a .set.",
+    "D021 MICRO-REV M1 accepted and preregistered for event-study cheap-fail only; no test launched."
   ],
   "running_mt5": [
     {"process": "D:\\MT5_FundedNext\\terminal64.exe", "role": "FundedNext terminal", "tester_active": false},
     {"process": "C:\\Program Files\\MetaTrader 5\\terminal64.exe", "role": "FTMO normal terminal", "tester_active": false}
   ],
   "running_mimo": [
-    {"orchestrator_pid": 9188, "worker_pid": 1820, "job": "MIMO-DEEP-WALKFORWARD-COUNTEREVIDENCE", "progress": 11, "heartbeat": "2026-08-31T21:44:02+01:00"}
+    {"orchestrator_pid": 9496, "worker_pid": 13388, "job": "MIMO-DEEP-WALKFORWARD-MULTITEST", "progress": 90, "heartbeat": "2026-08-31T23:43:35+01:00"}
   ],
   "completed_unintegrated": [
     "MANUAL-V11-16-RESULTS-001",
     "MIMO-DEEP-WALKFORWARD-PARTIAL-AND-TIMEOUTS"
   ],
-  "next_safe_action": "Monitor MiMo recovery and review completed output; keep the exact-feed MT5 control deferred unless its runtime cost is acceptable.",
+  "next_safe_action": "Harvest the active MiMo result, then run the fail-closed D021 data/cost/code audit without opening OOS; no EA or long MT5 test yet.",
   "dirty_or_unpushed_local_files": ["D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json"],
   "waiting_chatgpt": [],
-  "waiting_codex": ["D017-V11-16-PROVENANCE-AUDIT", "AUTONOMY-RECOVERY-001", "MANUAL-V11-16-RESULTS-001"],
+  "waiting_codex": ["D017-V11-16-PROVENANCE-AUDIT", "AUTONOMY-RECOVERY-001", "MANUAL-V11-16-RESULTS-001", "D021-MICRO-REV-M1-DATA-GATE"],
   "oos_integrity": {
     "locked_window": "2026-06-28/2026-08-28",
     "opened_by_codex": false,

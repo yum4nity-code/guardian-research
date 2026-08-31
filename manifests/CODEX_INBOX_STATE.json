@@ -1,17 +1,16 @@
 {
   "schema_version": 1,
-  "last_checked_at": "2026-08-31T22:33:05Z",
-  "last_reviewed_commit": "40f874cf561dafc261c55c3d13723bfcc956cb35",
-  "unread_notes": [
-    "handoff/chatgpt_to_codex/2026/08/31/D021_NEW_STRATEGY_HYPOTHESES_MICRO_REV.md"
-  ],
+  "last_checked_at": "2026-08-31T22:45:00Z",
+  "last_reviewed_commit": "ead110e145a65a540e4f4da0c3370f9ea73d3148",
+  "unread_notes": [],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_TIME_STOP_CONFIG_DIVERGENCE.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_16_MOMENTUM_PROD_PREPARED.md",
     "handoff/chatgpt_to_codex/2026/08/31/D017_EXECUTABLE_PROVENANCE_MISMATCH.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_16_MANUAL_BACKTEST_RESULTS.md",
-    "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_RUNTIME_DIVERGENCE_RESOLUTION.md"
+    "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_RUNTIME_DIVERGENCE_RESOLUTION.md",
+    "handoff/chatgpt_to_codex/2026/08/31/D021_NEW_STRATEGY_HYPOTHESES_MICRO_REV.md"
   ],
-  "notes": "New unread D021 note provides the preregisterable MICRO-REV M1 hypothesis and secondary research directions. Codex should consume it on the next inbox pass without duplicating the active MiMo job."
+  "notes": "Inbox clear. D021 MICRO-REV M1 was accepted as an independent cheap-fail hypothesis and preregistered without launching a test or opening OOS."
 }

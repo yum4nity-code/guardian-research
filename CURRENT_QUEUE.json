@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-31T23:26:00+01:00",
+  "updated_at": "2026-08-31T23:45:00+01:00",
   "active_primary": "AUTONOMY-RECOVERY-001",
   "items": [
     {
@@ -39,12 +39,12 @@
     {
       "id": "DECISION-D021-HYPOTHESIS",
       "priority": 5,
-      "status": "WAITING_CODEX",
+      "status": "READY",
       "owner": "Codex",
       "type": "scientific_decision",
-      "goal": "Preregister and cheap-fail the independent MICRO-REV M1 crypto hypothesis from the new ChatGPT handoff after harvesting the active MiMo job; keep OOS locked."
+      "goal": "D021 MICRO-REV M1 V0 is preregistered for a two-symbol BTCUSD_BT/ETHUSD_BT event-study cheap-fail. Run only after harvesting the active MiMo job and passing the data/cost execution gate; keep OOS locked."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "MiMo remains the active work. D021 is no longer blocked: ChatGPT supplied a preregisterable MICRO-REV M1 hypothesis plus secondary strategy directions. Exact-feed D017 control remains separate and deferred."
+  "notes": "MiMo remains the active work. D021 MICRO-REV M1 is preregistered but no EA or long MT5 test is authorized; the next permitted action is its fail-closed data/cost audit after the active MiMo job is harvested. Exact-feed D017 control remains separate and deferred."
 }

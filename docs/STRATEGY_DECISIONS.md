@@ -43,3 +43,13 @@ Chaque entree doit inclure : date, Strategy ID, Campaign ID, verdict, preuves pr
 - Limites: cette resolution traite la securite de configuration, pas la robustesse statistique de v11.16.
 - Source: `handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_RUNTIME_DIVERGENCE_RESOLUTION.md`, commit recu `40f874cf561dafc261c55c3d13723bfcc956cb35`.
 - Raison: ne pas patcher/redeployer v11.15. Pour v11.17+, aucun invariant strategique valide ne doit dependre d'un `.set`; les ecarts configurables doivent provoquer un demarrage fail-closed et etre journalises.
+
+## 2026-08-31 — D021 MICRO-REV M1 preregistration
+
+- Strategy ID: `D021-MICRO-REV-M1-V0`
+- Campaign ID: `D021-MICRO-REV-M1-CHEAP-FAIL`
+- Verdict: `PREREGISTERED / EVENT STUDY ONLY / NOT VALIDATED`
+- Preuves: mecanisme distinct de D017 (`shock -> exhaustion -> confirmation -> reversal`); RSI(7) gele par le handoff ChatGPT; historiques locaux valides trouves pour `BTCUSD_BT` et `ETHUSD_BT`, pas pour SOLUSD.
+- Limites: prior economique faible et risque eleve de selection adverse/couts; seulement deux actifs disponibles; aucun resultat n'a ete ouvert.
+- Source: `handoff/chatgpt_to_codex/2026/08/31/D021_NEW_STRATEGY_HYPOTHESES_MICRO_REV.md`, commit recu `ead110e145a65a540e4f4da0c3370f9ea73d3148`; protocole `research/campaigns/D021_MICRO_REV_M1_PREREGISTRATION.md`.
+- Raison: une event study stricte et peu couteuse peut falsifier le mecanisme avant tout EA ou backtest long. Les seuils, endpoints, couts stresses et portes sont geles; tout echec rejette V0 sans retuning.
