@@ -29,6 +29,8 @@ Appliquer `docs/INTERRUPTION_RECOVERY.md` avec la règle : **décider -> persist
 
 Avant une transition importante ou le lancement d'une opération longue/conséquente, mettre à jour le checkpoint local `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json`. Après un jalon à forte valeur, synchroniser les petits artefacts utiles sur GitHub sans attendre volontairement la fin du quota.
 
+**Cas spécial premier bootstrap :** si aucun `SESSION_CHECKPOINT.json` n'existe encore, ne pas attendre la fin de l'inventaire réel. Après synchronisation + lecture des protocoles + inbox, créer immédiatement un checkpoint minimal `BOOTSTRAP_IN_PROGRESS` avant les audits/inventaires longs, avec `no_new_jobs_launched=true` et `next_safe_action=inspect_real_machine_state`. L'enrichir ensuite à mesure que les preuves réelles arrivent.
+
 Au prochain réveil, ne jamais relancer depuis le checkpoint seul : vérifier d'abord processus, workers, MiMo, logs et résultats réels sur l'ensemble du PC. Le réel prime sur un statut ancien.
 
 ## Frontière recherche / production
@@ -53,7 +55,8 @@ Au premier passage sur ce dépôt :
 - vérifier/créer les chemins locaux décrits dans le mandat ;
 - cloner/synchroniser `yum4nity-code/guardian-research` ;
 - lire et traiter la boîte `manifests/CODEX_INBOX_STATE.json` ;
-- créer/réconcilier `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` avec l'état réel du labo ;
+- si aucun checkpoint local n'existe, créer **immédiatement** le checkpoint minimal `BOOTSTRAP_IN_PROGRESS` avant tout inventaire/audit long ;
+- inspecter ensuite l'état réel du projet et enrichir/réconcilier `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` ;
 - initialiser `CURRENT_QUEUE.json` à partir de l'état réel du projet ;
 - inspecter l'ensemble du PC si nécessaire pour localiser terminaux MT5, MetaEditor, MiMo, workers, processus, dépôts, logs et sorties ;
 - vérifier les workers/processus réellement actifs avant tout nouveau lancement ;
