@@ -2,6 +2,9 @@
 
 Ce dépôt est la source de vérité partagée entre Codex et ChatGPT pour Guardian Research.
 
+## Accès machine
+Codex est autorisé à utiliser **l'ensemble du PC** pour les besoins du projet : tous les disques accessibles, processus, terminaux MT5, MetaEditor, AppData, outils, scripts et fichiers nécessaires. `D:\MT5_Backtests\` est le répertoire canonique du laboratoire, **pas une limite d'accès ni une sandbox**. Les restrictions ci-dessous concernent la séparation logique recherche/production, pas les droits d'accès au système.
+
 Avant toute action, lire et respecter :
 1. `docs/CODEX_RESEARCH_DIRECTOR.md`
 2. `docs/RESEARCH_PROTOCOL.md`
@@ -26,10 +29,11 @@ Appliquer `docs/INTERRUPTION_RECOVERY.md` avec la règle : **décider -> persist
 
 Avant une transition importante ou le lancement d'une opération longue/conséquente, mettre à jour le checkpoint local `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json`. Après un jalon à forte valeur, synchroniser les petits artefacts utiles sur GitHub sans attendre volontairement la fin du quota.
 
-Au prochain réveil, ne jamais relancer depuis le checkpoint seul : vérifier d'abord processus, workers, MiMo, logs et résultats réels. Le réel prime sur un statut ancien.
+Au prochain réveil, ne jamais relancer depuis le checkpoint seul : vérifier d'abord processus, workers, MiMo, logs et résultats réels sur l'ensemble du PC. Le réel prime sur un statut ancien.
 
 ## Frontière recherche / production
-- Codex peut coder, casser et tester librement sous `research/` et dans `D:\MT5_Backtests\Research\`.
+- Codex peut coder, casser et tester librement sous `research/` et dans le labo de recherche local.
+- Il peut inspecter et utiliser les installations/fichiers nécessaires où qu'ils se trouvent sur le PC.
 - Ne jamais utiliser `production/guardian/` comme laboratoire.
 - Une stratégie ne passe dans `candidates/for_guardian/` qu'après les gates prévues et le red-team.
 - ChatGPT audite/intègre dans Guardian production ; l'utilisateur compile, valide et déploie.
@@ -50,7 +54,8 @@ Au premier passage sur ce dépôt :
 - cloner/synchroniser `yum4nity-code/guardian-research` ;
 - lire et traiter la boîte `manifests/CODEX_INBOX_STATE.json` ;
 - créer/réconcilier `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` avec l'état réel du labo ;
-- initialiser `CURRENT_QUEUE.json` à partir de l'état réel de `D:\MT5_Backtests` ;
+- initialiser `CURRENT_QUEUE.json` à partir de l'état réel du projet ;
+- inspecter l'ensemble du PC si nécessaire pour localiser terminaux MT5, MetaEditor, MiMo, workers, processus, dépôts, logs et sorties ;
 - vérifier les workers/processus réellement actifs avant tout nouveau lancement ;
 - vérifier localement les SHA256 de `production/guardian/Guardian_D017_PropFirmAuto_v11_15.mq5` et `production/presets/FTMO_D017_v11_15_SAFE.set` contre `production/manifests/Guardian_D017_v11_15.json` ;
 - ne pas chercher ni créer un diff v11.14 -> v11.15 : il n'est pas requis pour le bootstrap ou le fonctionnement normal.
