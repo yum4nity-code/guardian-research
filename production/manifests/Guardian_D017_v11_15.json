@@ -1,0 +1,42 @@
+{
+  "product": "Guardian",
+  "strategy": "D017",
+  "version": "11.15",
+  "created_date": "2026-08-31",
+  "source_filename": "Guardian_D017_PropFirmAuto_v11_15.mq5",
+  "preset_filename": "FTMO_D017_v11_15_SAFE.set",
+  "diff_filename": "Guardian_v11_14_to_v11_15.diff",
+  "sha256": {
+    "source": "bbcfae9426838eef655d5ac11eaf1530d872d117eb840f6c15ceb0c69843fe86",
+    "preset": "82d6d1ada0e6785382e5a0e9555480e85f2d16bd4106dfd9210dffee502486b3",
+    "diff": "ef5bc0ed1c3d7cf6379829497143d7d784deb19c4d4aa2d40ef448f075558e76"
+  },
+  "deployment_scope": {
+    "bootstrap_symbols": ["EURUSD", "GBPUSD"],
+    "strategy_mode": "MODE_PORTFOLIO_RANKED",
+    "enabled_strategy": "Momentum",
+    "strategy_time_stop": false,
+    "risk_per_trade_pct": 0.25,
+    "max_open_account_risk_pct": 1.0,
+    "max_account_positions": 3,
+    "max_symbol_positions": 1
+  },
+  "v11_15_changes": [
+    "account-wide Magic 0 manual Guardian with unique owner",
+    "250 ms manual monitoring timer independent of chart ticks",
+    "manual protection attempt from trade transaction with timer retry",
+    "3 s fail-close timeout when automatic protection remains impossible",
+    "manual ATR/risk/break-even use the actual position symbol",
+    "no automatic full-position broker TP for partial-TP manual management",
+    "one owner per symbol for auto position management",
+    "HUD/version diagnostics updated to v11.15"
+  ],
+  "compile_status": "NOT_VERIFIED_IN_METAEDITOR",
+  "production_status": "SOURCE_PREPARED_AWAITING_USER_COMPILE_VALIDATION",
+  "notes": [
+    "The preset is stored in production/presets/FTMO_D017_v11_15_SAFE.set.",
+    "The exact source hash above is authoritative.",
+    "Raw .mq5 still needs to be mirrored into production/guardian/ by a Git-capable local agent if the GitHub connector cannot upload the local file directly without transcription.",
+    "Do not mark this build deployed until MetaEditor compile and non-regression checks succeed."
+  ]
+}
