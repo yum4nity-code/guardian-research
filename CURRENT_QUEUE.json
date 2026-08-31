@@ -1,41 +1,50 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-31",
-  "active_primary": "BOOTSTRAP-GITHUB-001",
+  "updated_at": "2026-08-31T20:22:43Z",
+  "active_primary": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
   "items": [
     {
-      "id": "BOOTSTRAP-GITHUB-001",
+      "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
       "priority": 1,
+      "status": "WAITING_CHATGPT",
+      "owner": "ChatGPT",
+      "type": "production_safety_audit",
+      "goal": "Reconcile the frozen SAFE preset with the observed v11.15 runtime and saved profile without silently editing production.",
+      "blocking": "Production integration belongs to ChatGPT/user; no MT5 restart or deployment by Codex."
+    },
+    {
+      "id": "D017-V11-16-PROVENANCE-AUDIT",
+      "priority": 2,
       "status": "READY",
       "owner": "Codex",
-      "type": "infrastructure",
-      "goal": "Initialiser le repo local, réconcilier le checkpoint et remplacer cette file bootstrap par l'état réel du projet sur le PC.",
-      "required_actions": [
-        "Créer/vérifier les chemins locaux canoniques du mandat",
-        "Cloner/synchroniser yum4nity-code/guardian-research",
-        "Lire manifests/CODEX_INBOX_STATE.json et traiter les notes ChatGPT non lues",
-        "Créer/lire D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json et le réconcilier avec manifests/CODEX_SESSION_CHECKPOINT.json",
-        "Inspecter l'état réel du projet sur l'ensemble du PC : D:\\MT5_Backtests comme labo canonique, mais aussi processus, terminaux MT5, MetaEditor, MiMo, workers, logs, AppData, dépôts et sorties utiles ailleurs sur les disques accessibles",
-        "Récolter les résultats terminés et ne relancer aucun travail déjà actif ou déjà terminé",
-        "Remplacer cette file bootstrap par la vraie file de recherche à partir de l'état réel",
-        "Vérifier localement les SHA256 du source Guardian v11.15 et du preset contre production/manifests/Guardian_D017_v11_15.json",
-        "Mettre à jour le checkpoint avant toute nouvelle transition importante",
-        "Commit/push l'état réel puis marquer cet item terminé"
-      ],
-      "blocking": "Premier bootstrap Codex uniquement"
+      "type": "semantic_provenance_audit",
+      "goal": "Compare the historical v11.10 D017 implementation with candidate v11.16 without tuning or opening OOS."
+    },
+    {
+      "id": "AUTONOMY-RECOVERY-001",
+      "priority": 3,
+      "status": "READY",
+      "owner": "Codex",
+      "type": "infrastructure_reconciliation",
+      "goal": "Reconcile stale MiMo queue states and timeout results before any orchestrator restart."
+    },
+    {
+      "id": "MANUAL-V11-16-RESULTS-001",
+      "priority": 4,
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
+      "type": "result_harvest",
+      "goal": "Classify manual v11.16 tests; isolate USDJPY as OOS-contaminated and SOLUSD as incomplete."
+    },
+    {
+      "id": "DECISION-D021-HYPOTHESIS",
+      "priority": 5,
+      "status": "BLOCKED",
+      "owner": "Codex",
+      "type": "scientific_decision",
+      "goal": "Wait for an independent preregistered hypothesis and restore protocol integrity; do not use contaminated OOS evidence."
     }
   ],
-  "allowed_status": [
-    "READY",
-    "RUNNING_MIMO",
-    "RUNNING_MT5",
-    "WAITING_RESULT",
-    "WAITING_CODEX",
-    "WAITING_CHATGPT",
-    "CANDIDATE",
-    "VALIDATED",
-    "REJECTED",
-    "BLOCKED"
-  ],
-  "notes": "Codex maintient cette file à partir de l'état réel du projet. D:\\MT5_Backtests est le labo canonique, pas une limite d'accès. GO réconcilie inbox + checkpoint + état réel du PC avant toute relance."
+  "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
+  "notes": "Real queue after first Codex bootstrap. No MT5 or MiMo job was launched."
 }

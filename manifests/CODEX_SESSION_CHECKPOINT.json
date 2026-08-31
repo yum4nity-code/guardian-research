@@ -1,16 +1,36 @@
 {
   "schema_version": 1,
-  "updated_at": null,
-  "source": "shared_last_known_state",
-  "active_primary": null,
-  "priorities": [],
-  "decisions_since_previous": [],
-  "running_mt5": [],
+  "updated_at": "2026-08-31T20:22:43Z",
+  "source": "codex_bootstrap_reconciled",
+  "active_primary": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
+  "priorities": [
+    "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
+    "D017-V11-16-PROVENANCE-AUDIT",
+    "AUTONOMY-RECOVERY-001"
+  ],
+  "decisions_since_previous": [
+    "Repository synchronized at ee5ad9914156cb66462ee321d40632a38d3714bf.",
+    "Frozen v11.15 source and preset LF-normalized hashes match the manifest.",
+    "Observed v11.15 runtime was not equivalent to SAFE because strategy time-stop executed.",
+    "v11.16 is a new candidate pending provenance audit, not an exact D017 non-regression result.",
+    "The manual USDJPY run crossed locked OOS and is quarantined from scientific decisions."
+  ],
+  "running_mt5": [
+    {"process": "D:\\MT5_FundedNext\\terminal64.exe", "role": "FundedNext terminal", "tester_active": false},
+    {"process": "C:\\Program Files\\MetaTrader 5\\terminal64.exe", "role": "FTMO normal terminal", "tester_active": false}
+  ],
   "running_mimo": [],
-  "completed_unintegrated": [],
-  "next_safe_action": "Bootstrap/reconcile against D:\\MT5_Backtests real state before launching anything.",
-  "dirty_or_unpushed_local_files": [],
-  "waiting_chatgpt": [],
-  "waiting_codex": [],
-  "notes": "GitHub mirror only. On Codex host, D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json is the interruption-recovery checkpoint and must be reconciled with real processes/files before any relaunch."
+  "completed_unintegrated": [
+    "MANUAL-V11-16-RESULTS-001",
+    "MIMO-DEEP-WALKFORWARD-PARTIAL-AND-TIMEOUTS"
+  ],
+  "next_safe_action": "ChatGPT audits the urgent production divergence; Codex continues the read-only D017/v11.16 provenance audit.",
+  "dirty_or_unpushed_local_files": ["D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json"],
+  "waiting_chatgpt": ["GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE"],
+  "waiting_codex": ["D017-V11-16-PROVENANCE-AUDIT", "AUTONOMY-RECOVERY-001", "MANUAL-V11-16-RESULTS-001"],
+  "oos_integrity": {
+    "locked_window": "2026-06-28/2026-08-28",
+    "opened_by_codex": false,
+    "contamination": "Manual v11.16 USDJPY run used 2026-01-01/2026-08-30 and crossed the locked OOS. Result is quarantined and unusable for decisions."
+  }
 }
