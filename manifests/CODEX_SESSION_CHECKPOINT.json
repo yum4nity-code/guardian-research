@@ -2,11 +2,11 @@
   "schema_version": 1,
   "updated_at": "2026-08-31T20:22:43Z",
   "source": "codex_bootstrap_reconciled",
-  "active_primary": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
+  "active_primary": "AUTONOMY-RECOVERY-001",
   "priorities": [
-    "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
+    "AUTONOMY-RECOVERY-001",
     "D017-V11-16-PROVENANCE-AUDIT",
-    "AUTONOMY-RECOVERY-001"
+    "D017-V11-16-EXACT-FEED-CONTROL"
   ],
   "decisions_since_previous": [
     "Repository synchronized at ee5ad9914156cb66462ee321d40632a38d3714bf.",
@@ -14,6 +14,7 @@
     "Observed v11.15 runtime was not equivalent to SAFE because strategy time-stop executed.",
     "v11.16 is a new candidate pending provenance audit, not an exact D017 non-regression result.",
     "The manual USDJPY run crossed locked OOS and is quarantined from scientific decisions."
+    ,"ChatGPT resolution consumed: v11.15 is legacy/superseded by v11.16; future critical invariants must not depend on a .set."
   ],
   "running_mt5": [
     {"process": "D:\\MT5_FundedNext\\terminal64.exe", "role": "FundedNext terminal", "tester_active": false},
@@ -28,7 +29,7 @@
   ],
   "next_safe_action": "Monitor MiMo recovery and review completed output; keep the exact-feed MT5 control deferred unless its runtime cost is acceptable.",
   "dirty_or_unpushed_local_files": ["D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json"],
-  "waiting_chatgpt": ["GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE"],
+  "waiting_chatgpt": [],
   "waiting_codex": ["D017-V11-16-PROVENANCE-AUDIT", "AUTONOMY-RECOVERY-001", "MANUAL-V11-16-RESULTS-001"],
   "oos_integrity": {
     "locked_window": "2026-06-28/2026-08-28",

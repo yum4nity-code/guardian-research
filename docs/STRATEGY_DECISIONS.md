@@ -33,3 +33,13 @@ Chaque entree doit inclure : date, Strategy ID, Campaign ID, verdict, preuves pr
 - Limites: les deux resultats ne sont pas une non-regression empirique comparable; v11.16 ajoute des gardes PropFirm/ownership susceptibles de bloquer des entrees.
 - Source: `results/audits/D017_V11_16_PROVENANCE_AUDIT.md`; base commit `bed7a2537f636fcd27a4a12bf152c1749dad97dc`.
 - Raison: l'ecart 176 -> 191 trades est compatible avec une difference de flux et ne justifie aucune modification de strategie. Un controle unique sur les memes historiques `_BT` est preregistre.
+
+## 2026-08-31 — Cloture de la divergence v11.15
+
+- Strategy ID: `D017-GUARDIAN-V11-15`
+- Campaign ID: `GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE`
+- Verdict: `REJECTED AS LEGACY / SUPERSEDED BY V11.16`
+- Preuves: ChatGPT confirme une divergence d'inputs persistes, pas une derive du coeur Momentum. v11.16 compile les moteurs rejetes et le time-stop en invariants, avec CryptoSweep OFF et diagnostics OFF par defaut.
+- Limites: cette resolution traite la securite de configuration, pas la robustesse statistique de v11.16.
+- Source: `handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_RUNTIME_DIVERGENCE_RESOLUTION.md`, commit recu `40f874cf561dafc261c55c3d13723bfcc956cb35`.
+- Raison: ne pas patcher/redeployer v11.15. Pour v11.17+, aucun invariant strategique valide ne doit dependre d'un `.set`; les ecarts configurables doivent provoquer un demarrage fail-closed et etre journalises.

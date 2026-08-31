@@ -19,6 +19,7 @@ Document vivant maintenu par Codex.
 
 ## Rejected / quarantined
 
+- Guardian v11.15: ligne production legacy, resolue et supersedee par v11.16 self-contained. Aucun patch, test supplementaire ou redeploiement.
 - USDJPY v11.16 manuel: quarantaine, car le test jusqu'au 2026-08-30 traverse l'OOS verrouille.
 - SOLUSD v11.16 manuel: incomplet, donc inexploitable.
 - MiMo deep walk-forward METHOD/COSTS/DATA: echecs techniques par timeout; contre-audit partiel/interrompu.
@@ -29,3 +30,4 @@ Document vivant maintenu par Codex.
 - Terminaux ouverts: FTMO normal et FundedNext; aucun `metatester64` actif.
 - PropFirmGuard est actif. MiMo a ete relance apres reconciliation et recupere sa file persistante.
 - Aucun backtest MT5 n'a ete relance durant le bootstrap ou la reprise MiMo.
+- Exigence v11.17+: les invariants strategiques critiques doivent etre compiles et controles fail-closed; aucune dependance a un `.set` pour preserver la semantique validee.

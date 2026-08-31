@@ -6,11 +6,11 @@
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
       "priority": 1,
-      "status": "WAITING_CODEX",
+      "status": "REJECTED",
       "owner": "Codex",
-      "type": "production_safety_resolution",
-      "goal": "Consume ChatGPT resolution: v11.15 configuration divergence is confirmed and superseded by the self-contained v11.16 production direction; close/supersede this legacy item without patching or redeploying v11.15.",
-      "blocking": "No production deployment action required; preserve the no-.set invariant for future production versions."
+      "type": "legacy_production_line",
+      "goal": "Resolved and superseded by self-contained v11.16; v11.15 must not be patched, tested further or redeployed.",
+      "blocking": "Closed. Future production versions must compile critical strategy invariants into the EA and fail closed rather than depend on a .set."
     },
     {
       "id": "D017-V11-16-PROVENANCE-AUDIT",
