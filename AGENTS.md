@@ -8,14 +8,25 @@ Avant toute action, lire et respecter :
 3. `docs/GO_PROTOCOL.md`
 4. `docs/GITHUB_SYNC_POLICY.md`
 5. `docs/AGENT_COMMUNICATION.md`
-6. `manifests/CODEX_INBOX_STATE.json` puis toutes les notes ChatGPT non lues qu'il référence
-7. `CURRENT_QUEUE.json`
-8. `docs/RESEARCH_STATUS.md` et `docs/STRATEGY_DECISIONS.md`
+6. `docs/INTERRUPTION_RECOVERY.md`
+7. `manifests/CODEX_INBOX_STATE.json` puis toutes les notes ChatGPT non lues qu'il référence
+8. le checkpoint local `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` s'il existe, puis `manifests/CODEX_SESSION_CHECKPOINT.json`
+9. `CURRENT_QUEUE.json`
+10. `docs/RESEARCH_STATUS.md` et `docs/STRATEGY_DECISIONS.md`
 
 ## Commande GO
 Quand l'utilisateur dit simplement `GO` à Codex, cela signifie que le quota est revenu : reprendre le laboratoire immédiatement et de façon autonome selon `docs/GO_PROTOCOL.md`. Ne pas demander quoi faire si l'état du labo permet de le déterminer.
 
-Au début de chaque `GO`, traiter d'abord la boîte ChatGPT -> Codex : lire `manifests/CODEX_INBOX_STATE.json`, ouvrir toutes les notes non lues sous `handoff/chatgpt_to_codex/`, intégrer leur contenu à la décision de session, puis marquer les notes comme lues après prise en compte.
+Au début de chaque `GO`, traiter d'abord la boîte ChatGPT -> Codex, puis le checkpoint d'interruption, puis réconcilier ces informations avec l'état réel du PC avant toute relance.
+
+## Résistance aux coupures de quota
+Aucune décision importante ne doit rester uniquement dans le contexte conversationnel.
+
+Appliquer `docs/INTERRUPTION_RECOVERY.md` avec la règle : **décider -> persister -> agir**.
+
+Avant une transition importante ou le lancement d'une opération longue/conséquente, mettre à jour le checkpoint local `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json`. Après un jalon à forte valeur, synchroniser les petits artefacts utiles sur GitHub sans attendre volontairement la fin du quota.
+
+Au prochain réveil, ne jamais relancer depuis le checkpoint seul : vérifier d'abord processus, workers, MiMo, logs et résultats réels. Le réel prime sur un statut ancien.
 
 ## Frontière recherche / production
 - Codex peut coder, casser et tester librement sous `research/` et dans `D:\MT5_Backtests\Research\`.
@@ -38,6 +49,7 @@ Au premier passage sur ce dépôt :
 - vérifier/créer les chemins locaux décrits dans le mandat ;
 - cloner/synchroniser `yum4nity-code/guardian-research` ;
 - lire et traiter la boîte `manifests/CODEX_INBOX_STATE.json` ;
+- créer/réconcilier `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` avec l'état réel du labo ;
 - initialiser `CURRENT_QUEUE.json` à partir de l'état réel de `D:\MT5_Backtests` ;
 - vérifier les workers/processus réellement actifs avant tout nouveau lancement ;
 - vérifier localement les SHA256 de `production/guardian/Guardian_D017_PropFirmAuto_v11_15.mq5` et `production/presets/FTMO_D017_v11_15_SAFE.set` contre `production/manifests/Guardian_D017_v11_15.json` ;
