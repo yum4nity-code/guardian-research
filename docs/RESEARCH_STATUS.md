@@ -7,7 +7,7 @@ Document vivant maintenu par Codex.
 - `GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE` — `WAITING_CHATGPT`. Le preset SAFE fige `InpEnableStrategyTimeStop=false`, mais une fermeture live a ete observee par time-stop. Aucun changement silencieux de production n'est autorise.
 - `D017-V11-16-PROVENANCE-AUDIT` — `CANDIDATE`. Parite du coeur Momentum confirmee; la non-regression empirique n'etait pas comparable car les flux differaient.
 - `D017-V11-16-EXACT-FEED-CONTROL` — `READY`. Controle unique sur EURUSD_BT/GBPUSD_BT, parametres D017 geles, sans OOS.
-- `AUTONOMY-RECOVERY-001` — `READY`. Les statuts MiMo sont obsoletes; aucun processus MiMo/testeur n'est actif.
+- `AUTONOMY-RECOVERY-001` — `RUNNING_MIMO`. Orchestrateur PID 9188; worker `MIMO-DEEP-WALKFORWARD-COUNTEREVIDENCE` repris sans doublon. Le controle `_BT` long n'a pas ete lance.
 
 ## Candidates
 
@@ -27,5 +27,5 @@ Document vivant maintenu par Codex.
 
 - Depot synchronise: `ee5ad9914156cb66462ee321d40632a38d3714bf`.
 - Terminaux ouverts: FTMO normal et FundedNext; aucun `metatester64` actif.
-- PropFirmGuard est actif. Aucun orchestrateur MiMo actif.
-- Aucun job n'a ete relance durant le bootstrap.
+- PropFirmGuard est actif. MiMo a ete relance apres reconciliation et recupere sa file persistante.
+- Aucun backtest MT5 n'a ete relance durant le bootstrap ou la reprise MiMo.

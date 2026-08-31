@@ -31,10 +31,10 @@
     {
       "id": "AUTONOMY-RECOVERY-001",
       "priority": 4,
-      "status": "READY",
+      "status": "RUNNING_MIMO",
       "owner": "Codex",
       "type": "infrastructure_reconciliation",
-      "goal": "Reconcile stale MiMo queue states and timeout results before any orchestrator restart."
+      "goal": "Orchestrator recovered the orphan safely; MiMo is processing the persistent queue one job at a time."
     },
     {
       "id": "DECISION-D021-HYPOTHESIS",
@@ -46,5 +46,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "Real queue after first Codex bootstrap. No MT5 or MiMo job was launched."
+  "notes": "MiMo autonomy resumed with anti-duplicate recovery. The exact-feed MT5 control remains READY and was not launched."
 }

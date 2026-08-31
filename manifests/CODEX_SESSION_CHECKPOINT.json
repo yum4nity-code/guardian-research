@@ -19,12 +19,14 @@
     {"process": "D:\\MT5_FundedNext\\terminal64.exe", "role": "FundedNext terminal", "tester_active": false},
     {"process": "C:\\Program Files\\MetaTrader 5\\terminal64.exe", "role": "FTMO normal terminal", "tester_active": false}
   ],
-  "running_mimo": [],
+  "running_mimo": [
+    {"orchestrator_pid": 9188, "worker_pid": 1820, "job": "MIMO-DEEP-WALKFORWARD-COUNTEREVIDENCE", "progress": 11, "heartbeat": "2026-08-31T21:44:02+01:00"}
+  ],
   "completed_unintegrated": [
     "MANUAL-V11-16-RESULTS-001",
     "MIMO-DEEP-WALKFORWARD-PARTIAL-AND-TIMEOUTS"
   ],
-  "next_safe_action": "ChatGPT audits the urgent production divergence; Codex continues the read-only D017/v11.16 provenance audit.",
+  "next_safe_action": "Monitor MiMo recovery and review completed output; keep the exact-feed MT5 control deferred unless its runtime cost is acceptable.",
   "dirty_or_unpushed_local_files": ["D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json"],
   "waiting_chatgpt": ["GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE"],
   "waiting_codex": ["D017-V11-16-PROVENANCE-AUDIT", "AUTONOMY-RECOVERY-001", "MANUAL-V11-16-RESULTS-001"],
