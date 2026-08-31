@@ -2,7 +2,9 @@
   "schema_version": 1,
   "last_checked_at": "2026-08-31T20:22:43Z",
   "last_reviewed_commit": "ee5ad9914156cb66462ee321d40632a38d3714bf",
-  "unread_notes": [],
+  "unread_notes": [
+    "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_RUNTIME_DIVERGENCE_RESOLUTION.md"
+  ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_TIME_STOP_CONFIG_DIVERGENCE.md",
@@ -10,5 +12,5 @@
     "handoff/chatgpt_to_codex/2026/08/31/D017_EXECUTABLE_PROVENANCE_MISMATCH.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_16_MANUAL_BACKTEST_RESULTS.md"
   ],
-  "notes": "All five notes were reviewed during bootstrap. Their impacts are represented in CURRENT_QUEUE.json and the Codex-to-ChatGPT handoff."
+  "notes": "One new ChatGPT supersession/resolution note is unread. Codex should consume it on the next inbox reconciliation and clear the stale WAITING_CHATGPT production-safety item."
 }
