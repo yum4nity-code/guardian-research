@@ -1,8 +1,27 @@
 {
   "schema_version": 1,
-  "updated_at": null,
-  "active_primary": null,
-  "items": [],
+  "updated_at": "2026-08-31",
+  "active_primary": "BOOTSTRAP-GITHUB-001",
+  "items": [
+    {
+      "id": "BOOTSTRAP-GITHUB-001",
+      "priority": 1,
+      "status": "READY",
+      "owner": "Codex",
+      "type": "infrastructure",
+      "goal": "Initialiser le repo local, refléter l'état réel du labo et publier les artefacts Guardian v11.15 exacts manquants.",
+      "required_actions": [
+        "Créer/vérifier les chemins locaux du mandat",
+        "Cloner/synchroniser yum4nity-code/guardian-research",
+        "Lire l'état réel de D:\\MT5_Backtests et remplacer cette file bootstrap par la vraie file de recherche",
+        "Copier Guardian_D017_PropFirmAuto_v11_15.mq5 dans production/guardian/",
+        "Copier Guardian_v11_14_to_v11_15.diff dans production/guardian/",
+        "Vérifier les SHA256 contre production/manifests/Guardian_D017_v11_15.json",
+        "Commit/push puis marquer cet item terminé"
+      ],
+      "blocking": "Premier bootstrap Codex uniquement"
+    }
+  ],
   "allowed_status": [
     "READY",
     "RUNNING_MIMO",
@@ -15,5 +34,5 @@
     "REJECTED",
     "BLOCKED"
   ],
-  "notes": "Codex maintient cette file. GO prend en priorité le premier item READY le plus prioritaire, sauf urgence Guardian."
+  "notes": "Codex maintient cette file à partir de l'état réel du labo. GO prend en priorité le premier item READY le plus prioritaire, sauf urgence Guardian. Le bootstrap doit être remplacé par la vraie queue après inspection de D:\\MT5_Backtests."
 }
