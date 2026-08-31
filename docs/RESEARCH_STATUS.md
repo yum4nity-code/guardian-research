@@ -5,7 +5,8 @@ Document vivant maintenu par Codex.
 ## Active
 
 - `GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE` — `WAITING_CHATGPT`. Le preset SAFE fige `InpEnableStrategyTimeStop=false`, mais une fermeture live a ete observee par time-stop. Aucun changement silencieux de production n'est autorise.
-- `D017-V11-16-PROVENANCE-AUDIT` — `READY`. Audit semantique v11.10 historique contre v11.16, sans tuning et sans OOS.
+- `D017-V11-16-PROVENANCE-AUDIT` — `CANDIDATE`. Parite du coeur Momentum confirmee; la non-regression empirique n'etait pas comparable car les flux differaient.
+- `D017-V11-16-EXACT-FEED-CONTROL` — `READY`. Controle unique sur EURUSD_BT/GBPUSD_BT, parametres D017 geles, sans OOS.
 - `AUTONOMY-RECOVERY-001` — `READY`. Les statuts MiMo sont obsoletes; aucun processus MiMo/testeur n'est actif.
 
 ## Candidates

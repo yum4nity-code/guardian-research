@@ -15,26 +15,26 @@
     {
       "id": "D017-V11-16-PROVENANCE-AUDIT",
       "priority": 2,
-      "status": "READY",
+      "status": "CANDIDATE",
       "owner": "Codex",
       "type": "semantic_provenance_audit",
-      "goal": "Compare the historical v11.10 D017 implementation with candidate v11.16 without tuning or opening OOS."
+      "goal": "Semantic core parity confirmed; empirical non-regression remains non-comparable because the feeds differed."
+    },
+    {
+      "id": "D017-V11-16-EXACT-FEED-CONTROL",
+      "priority": 3,
+      "status": "READY",
+      "owner": "Codex",
+      "type": "technical_non_regression_control",
+      "goal": "Run v11.16 once on EURUSD_BT and GBPUSD_BT with the frozen D017 dates/settings; no tuning and no OOS."
     },
     {
       "id": "AUTONOMY-RECOVERY-001",
-      "priority": 3,
+      "priority": 4,
       "status": "READY",
       "owner": "Codex",
       "type": "infrastructure_reconciliation",
       "goal": "Reconcile stale MiMo queue states and timeout results before any orchestrator restart."
-    },
-    {
-      "id": "MANUAL-V11-16-RESULTS-001",
-      "priority": 4,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "result_harvest",
-      "goal": "Classify manual v11.16 tests; isolate USDJPY as OOS-contaminated and SOLUSD as incomplete."
     },
     {
       "id": "DECISION-D021-HYPOTHESIS",

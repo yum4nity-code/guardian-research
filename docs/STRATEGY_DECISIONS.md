@@ -23,3 +23,13 @@ Chaque entree doit inclure : date, Strategy ID, Campaign ID, verdict, preuves pr
 - Limites: pas de rapports structures recents pour les cryptos; SOLUSD incomplet; USDJPY traverse l'OOS verrouille et est exclu; aucune conclusion comparative propre n'est possible.
 - Source: candidat v11.16 LF SHA256 `6e5be9fdd58d7c6352011dd7afc758089d766f987629f06d7921d8f5f2e2ce69`, commit `ee5ad9914156cb66462ee321d40632a38d3714bf`.
 - Raison: les resultats ne demontrent ni parite semantique ni robustesse; aucune optimisation post hoc n'est autorisee.
+
+## 2026-08-31 — D017 / v11.16 provenance verdict
+
+- Strategy ID: `D017-GUARDIAN-V11-16-CANDIDATE`
+- Campaign ID: `D017-V11-16-PROVENANCE-AUDIT`
+- Verdict: `SEMANTIC_CORE_PARITY_CONFIRMED / EXACT_FEED_CONTROL_REQUIRED`
+- Preuves: le moteur Momentum, la session, le volume, le scoring, le ranking et la gestion AUTO sont identiques apres normalisation. D017 utilisait `EURUSD_BT` (17,040,615 ticks; 20,351 bars), alors que le test manuel v11.16 utilisait `EURUSD` FTMO-Demo (13,846,176 ticks; 20,638 bars).
+- Limites: les deux resultats ne sont pas une non-regression empirique comparable; v11.16 ajoute des gardes PropFirm/ownership susceptibles de bloquer des entrees.
+- Source: `results/audits/D017_V11_16_PROVENANCE_AUDIT.md`; base commit `bed7a2537f636fcd27a4a12bf152c1749dad97dc`.
+- Raison: l'ecart 176 -> 191 trades est compatible avec une difference de flux et ne justifie aucune modification de strategie. Un controle unique sur les memes historiques `_BT` est preregistre.
