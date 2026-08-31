@@ -9,13 +9,17 @@
       "status": "READY",
       "owner": "Codex",
       "type": "infrastructure",
-      "goal": "Initialiser le repo local et remplacer cette file bootstrap par l'état réel du labo.",
+      "goal": "Initialiser le repo local, réconcilier le checkpoint et remplacer cette file bootstrap par l'état réel du projet sur le PC.",
       "required_actions": [
-        "Créer/vérifier les chemins locaux du mandat",
+        "Créer/vérifier les chemins locaux canoniques du mandat",
         "Cloner/synchroniser yum4nity-code/guardian-research",
-        "Lire l'état réel de D:\\MT5_Backtests et remplacer cette file bootstrap par la vraie file de recherche",
+        "Lire manifests/CODEX_INBOX_STATE.json et traiter les notes ChatGPT non lues",
+        "Créer/lire D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json et le réconcilier avec manifests/CODEX_SESSION_CHECKPOINT.json",
+        "Inspecter l'état réel du projet sur l'ensemble du PC : D:\\MT5_Backtests comme labo canonique, mais aussi processus, terminaux MT5, MetaEditor, MiMo, workers, logs, AppData, dépôts et sorties utiles ailleurs sur les disques accessibles",
+        "Récolter les résultats terminés et ne relancer aucun travail déjà actif ou déjà terminé",
+        "Remplacer cette file bootstrap par la vraie file de recherche à partir de l'état réel",
         "Vérifier localement les SHA256 du source Guardian v11.15 et du preset contre production/manifests/Guardian_D017_v11_15.json",
-        "Contrôler les workers/processus réellement actifs avant tout nouveau lancement",
+        "Mettre à jour le checkpoint avant toute nouvelle transition importante",
         "Commit/push l'état réel puis marquer cet item terminé"
       ],
       "blocking": "Premier bootstrap Codex uniquement"
@@ -33,5 +37,5 @@
     "REJECTED",
     "BLOCKED"
   ],
-  "notes": "Codex maintient cette file à partir de l'état réel du labo. GO prend en priorité le premier item READY le plus prioritaire, sauf urgence Guardian. Le bootstrap doit être remplacé par la vraie queue après inspection de D:\\MT5_Backtests."
+  "notes": "Codex maintient cette file à partir de l'état réel du projet. D:\\MT5_Backtests est le labo canonique, pas une limite d'accès. GO réconcilie inbox + checkpoint + état réel du PC avant toute relance."
 }
