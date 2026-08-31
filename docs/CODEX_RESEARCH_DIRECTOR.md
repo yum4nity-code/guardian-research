@@ -32,9 +32,14 @@ Chemins GitHub à respecter :
 - Candidats pour Guardian : `candidates/for_guardian/`
 - Validées : `validated/`
 - Rejetées : `rejected/`
-- Handoff quotidien : `handoff/YYYY/MM/DD/`
+- Handoff Codex -> ChatGPT : `handoff/YYYY/MM/DD/`
+- Handoff ChatGPT -> Codex : `handoff/chatgpt_to_codex/YYYY/MM/DD/`
+- État inbox Codex : `manifests/CODEX_INBOX_STATE.json`
+- État inbox ChatGPT : `manifests/CHATGPT_INBOX_STATE.json`
 - Documentation : `docs/`
 - Manifests globaux : `manifests/`
+
+Le protocole de communication bidirectionnelle est défini dans `docs/AGENT_COMMUNICATION.md`.
 
 ## Règles de travail
 1. Ne jamais utiliser le Guardian de production comme laboratoire. Toute nouvelle logique est développée/testée sous `research/` ou dans le labo local.
@@ -49,15 +54,20 @@ Chemins GitHub à respecter :
 10. Ne pas modifier silencieusement `production/guardian/`. Toute proposition de modification produit doit passer par le handoff et être auditable par diff/commit.
 11. Maintenir `docs/RESEARCH_STATUS.md` et `docs/STRATEGY_DECISIONS.md` à jour après chaque décision importante.
 12. Avant la fin d'une fenêtre de travail Codex, laisser MiMo/MT5 avec un planning explicite de tâches longues afin que le calcul/recherche continue sans consommer inutilement du quota Codex.
+13. Au début de chaque session, lire `manifests/CODEX_INBOX_STATE.json` et toutes les notes ChatGPT non lues avant de sélectionner une nouvelle priorité. Une découverte déjà vérifiée par ChatGPT doit être intégrée au contexte de décision ; elle ne doit pas être ignorée parce qu'elle ne vient pas du labo local.
+14. Une note ChatGPT `INFO` est assimilée sans créer de tâche si aucune action n'est requise. Une note `ACTION_REQUISE` doit devenir ou mettre à jour un item approprié dans `CURRENT_QUEUE.json`. Une note `URGENT` liée à sécurité/exécution/régression Guardian prime sur l'exploration secondaire.
+15. Après prise en compte, mettre à jour `manifests/CODEX_INBOX_STATE.json` pour marquer la note comme lue et éviter le retraitement.
 
 ## Routine opérationnelle obligatoire
 
 ### A. Au début de chaque session Codex
-1. Lire d'abord `docs/RESEARCH_STATUS.md`, `docs/STRATEGY_DECISIONS.md`, le dernier dossier pertinent sous `handoff/`, puis les statuts/logs locaux des campagnes réellement actives sous `D:\MT5_Backtests`.
-2. Contrôler les processus/workers réellement actifs avant tout lancement. Ne jamais relancer une campagne déjà en cours et ne jamais créer de doublon parce qu'un statut est ancien.
-3. Vérifier les tâches MiMo déjà lancées ou planifiées et récupérer leurs sorties terminées avant d'inventer de nouvelles tâches.
-4. Définir au maximum trois priorités de session : une priorité principale et deux secondaires. Les écrire dans `D:\MT5_Backtests\Research\Campaigns\YYYY-MM-DD\PLAN.md`; pousser une version synthétique sous `research/campaigns/YYYY/MM/DD/PLAN.md` lorsque cela apporte une trace utile.
-5. S'assurer qu'au moins une tâche longue et utile peut continuer sans intervention Codex : MiMo, worker MT5 ou campagne de robustesse.
+1. Lire d'abord `manifests/CODEX_INBOX_STATE.json`, puis toutes les notes ChatGPT non lues référencées sous `handoff/chatgpt_to_codex/`. Appliquer `docs/AGENT_COMMUNICATION.md` : distinguer INFO / ACTION_REQUISE / URGENT, intégrer les découvertes et refléter les actions nécessaires dans la queue sans doublon.
+2. Lire `docs/RESEARCH_STATUS.md`, `docs/STRATEGY_DECISIONS.md`, le dernier dossier pertinent sous `handoff/`, puis les statuts/logs locaux des campagnes réellement actives sous `D:\MT5_Backtests`.
+3. Contrôler les processus/workers réellement actifs avant tout lancement. Ne jamais relancer une campagne déjà en cours et ne jamais créer de doublon parce qu'un statut est ancien.
+4. Vérifier les tâches MiMo déjà lancées ou planifiées et récupérer leurs sorties terminées avant d'inventer de nouvelles tâches.
+5. Marquer comme lues dans `manifests/CODEX_INBOX_STATE.json` les notes ChatGPT effectivement assimilées/prises en compte.
+6. Définir au maximum trois priorités de session : une priorité principale et deux secondaires. Les écrire dans `D:\MT5_Backtests\Research\Campaigns\YYYY-MM-DD\PLAN.md`; pousser une version synthétique sous `research/campaigns/YYYY/MM/DD/PLAN.md` lorsque cela apporte une trace utile.
+7. S'assurer qu'au moins une tâche longue et utile peut continuer sans intervention Codex : MiMo, worker MT5 ou campagne de robustesse.
 
 ### B. Boucle standard pour chaque hypothèse
 1. **Formuler** : écrire l'hypothèse économique/comportementale, le mécanisme attendu et les raisons pour lesquelles elle pourrait être robuste.
@@ -89,9 +99,10 @@ Chemins GitHub à respecter :
 ### E. Avant la fin de chaque fenêtre/session Codex
 1. Vérifier qu'aucun worker n'a été dupliqué et noter ce qui tourne encore réellement.
 2. Mettre à jour `docs/RESEARCH_STATUS.md` et, s'il y a eu une décision, `docs/STRATEGY_DECISIONS.md`.
-3. Commit/push GitHub uniquement des artefacts compacts et utiles : code, `.set`, manifests, synthèses, décisions et handoffs. Les gros ticks/logs restent sur `D:`.
-4. Laisser un `NEXT_ACTION.md` dans la campagne active ou le handoff si une action humaine/ChatGPT est nécessaire; sinon laisser MiMo/MT5 avec leur prochaine charge de travail explicite.
-5. Ne pas produire un handoff ChatGPT juste pour dire « rien à signaler ». Le handoff sert aux candidats, anomalies produit, décisions méthodologiques ou demandes d'audit.
+3. Vérifier que `manifests/CODEX_INBOX_STATE.json` reflète bien les notes ChatGPT lues pendant la session et qu'aucune `ACTION_REQUISE` n'a été perdue hors de `CURRENT_QUEUE.json`.
+4. Commit/push GitHub uniquement des artefacts compacts et utiles : code, `.set`, manifests, synthèses, décisions et handoffs. Les gros ticks/logs restent sur `D:`.
+5. Laisser un `NEXT_ACTION.md` dans la campagne active ou le handoff si une action humaine/ChatGPT est nécessaire; sinon laisser MiMo/MT5 avec leur prochaine charge de travail explicite.
+6. Ne pas produire un handoff ChatGPT juste pour dire « rien à signaler ». Le handoff sert aux candidats, anomalies produit, décisions méthodologiques ou demandes d'audit.
 
 ### F. Revue périodique du portefeuille de recherche
 Au moins une fois par semaine de travail effectif :
@@ -118,3 +129,5 @@ Au moins une fois par semaine de travail effectif :
 
 ## Objectif de productivité
 Réserver Codex aux tâches qui bénéficient de son accès au PC, de l'orchestration et du raisonnement de recherche. Déléguer à MiMo les traitements longs/répétitifs et aux workers MT5 l'exécution quantitative. Utiliser ChatGPT pour l'audit/intégration produit afin d'éviter de consommer le quota Codex sur des tâches duplicables.
+
+La communication entre les deux agents est persistante et bidirectionnelle : Codex doit lire ce que ChatGPT lui transmet via GitHub avant de décider, et ChatGPT doit transmettre à Codex toute découverte qui modifie utilement le travail du labo.
