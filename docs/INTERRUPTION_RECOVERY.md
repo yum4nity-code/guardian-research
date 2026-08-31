@@ -17,6 +17,27 @@ Une copie compacte GitHub peut être maintenue dans :
 
 Le fichier local est prioritaire pour la reprise après coupure ; la copie GitHub sert de dernier état partagé connu.
 
+## Cas spécial : premier bootstrap sans checkpoint existant
+Le premier bootstrap est lui-même vulnérable à une coupure de quota. Il ne faut donc pas attendre la fin de l'inventaire réel pour créer le premier checkpoint.
+
+Si `SESSION_CHECKPOINT.json` n'existe pas encore, Codex doit créer **immédiatement après la synchronisation GitHub + lecture des protocoles obligatoires + lecture de l'inbox** un checkpoint minimal `BOOTSTRAP_IN_PROGRESS`, avant de lancer les audits/inventaires parallèles.
+
+Ce checkpoint minimal peut contenir uniquement ce qui est déjà certain à cet instant :
+- `updated_at` ;
+- `phase: BOOTSTRAP_IN_PROGRESS` ;
+- repo synchronisé ou état de synchronisation ;
+- notes inbox lues/non encore persistées ;
+- `active_primary: BOOTSTRAP_GITHUB_RECONCILIATION` ;
+- audits prévus mais **pas encore supposés terminés** ;
+- `next_safe_action: inspect_real_machine_state` ;
+- `no_new_jobs_launched: true` tant que la réconciliation n'est pas terminée.
+
+Il est ensuite enrichi progressivement à mesure que l'inventaire réel apporte des preuves.
+
+But : même si le quota tombe 30 secondes après le démarrage du bootstrap, la session suivante sait que le bootstrap avait commencé, qu'aucun nouveau job n'était autorisé avant réconciliation, et quelle est la prochaine action sûre.
+
+Ne jamais inventer dans ce checkpoint un worker, résultat ou état qui n'a pas encore été vérifié.
+
 ## Quand checkpoint-er immédiatement
 Créer/mettre à jour le checkpoint AVANT ou IMMÉDIATEMENT APRÈS chacune de ces transitions, avant d'enchaîner :
 - choix/changement de priorité principale ;
@@ -59,19 +80,22 @@ Au début de chaque session/`GO` :
 1. synchroniser GitHub ;
 2. lire l'inbox ChatGPT -> Codex ;
 3. lire `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` s'il existe, puis `manifests/CODEX_SESSION_CHECKPOINT.json` comme dernier état partagé ;
-4. vérifier l'état réel **sur l'ensemble du PC** : processus, terminaux MT5, workers, MiMo, logs, répertoires de données, fichiers produits et éventuels dépôts/outils hors `D:` ;
-5. réconcilier : le réel prime sur un statut ancien ;
-6. récolter les résultats terminés ;
-7. mettre à jour checkpoint + `CURRENT_QUEUE.json` ;
-8. pousser l'état récupéré si GitHub était en retard ;
-9. seulement ensuite lancer une nouvelle action.
+4. si aucun checkpoint local n'existe encore et que le bootstrap n'est pas terminé, créer immédiatement le checkpoint minimal `BOOTSTRAP_IN_PROGRESS` avant les audits longs ;
+5. vérifier l'état réel **sur l'ensemble du PC** : processus, terminaux MT5, workers, MiMo, logs, répertoires de données, fichiers produits et éventuels dépôts/outils hors `D:` ;
+6. réconcilier : le réel prime sur un statut ancien ;
+7. récolter les résultats terminés ;
+8. mettre à jour checkpoint + `CURRENT_QUEUE.json` ;
+9. pousser l'état récupéré si GitHub était en retard ;
+10. seulement ensuite lancer une nouvelle action.
 
 Un checkpoint ne justifie jamais de relancer automatiquement un job : vérifier d'abord s'il tourne ou s'il a déjà terminé.
 
 ## Si le quota tombe avant le push
 Ce n'est pas une perte de projet si le checkpoint local a été écrit. Au prochain `GO`, Codex reconstruit l'état depuis le checkpoint + l'état réel du PC puis synchronise GitHub.
 
+Si le quota tombe pendant le **tout premier bootstrap avant même qu'un checkpoint ait pu être écrit**, la reprise reste conservatrice : synchroniser GitHub, relire l'inbox, constater l'absence de checkpoint, créer le checkpoint minimal `BOOTSTRAP_IN_PROGRESS`, vérifier la machine réelle, et **ne lancer aucun nouveau job avant réconciliation**.
+
 Le seul état considéré comme inacceptable est une décision importante restée uniquement dans le raisonnement/conversation et jamais persistée.
 
 ## Règle courte
-**Avant une transition importante : écrire. Avant une relance : vérifier. Après un jalon : synchroniser.**
+**Au premier bootstrap : checkpoint minimal avant inventaire. Ensuite : avant une transition importante, écrire. Avant une relance, vérifier. Après un jalon, synchroniser.**
