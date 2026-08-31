@@ -1,0 +1,39 @@
+; Guardian D017 v11.15 - FTMO Free Trial - frozen deployment inputs
+; Fresh preset: no v11.10 preset is used.
+InpEnablePropFirmAutoDetect=true
+InpPropFirmOverride=0
+InpPropProfileOverride=0
+InpEnablePropFirmRuntimeAlerts=true
+InpBlockAutoTradingOnUnknownPropProfile=true
+InpFundedNextEAUsageAuthorized=false
+InpPropFirmRuntimeScanSeconds=30
+InpBootstrapPortfolioCharts=true
+InpBootstrapPortfolioSymbols=EURUSD,GBPUSD
+InpInitialCapitalOverride=0.0
+InpFTMORuleSet=0
+InpRiskPerTradePct=0.25
+InpMinTradeRiskUSD=25.0
+InpScaleMinTradeRiskWithCapital=true
+InpMaxOpenAccountRiskPct=1.0
+InpMaxAccountPositions=3
+InpMaxSymbolPositions=1
+InpEnableSignalRanking=true
+InpQualityRiskAPlus=1.0
+InpAllowBreakout=false
+InpAllowPullback=false
+InpAllowSweep=false
+InpAllowMomentum=true
+InpCryptoSweepEnabled=false
+InpStrategyMode=3
+InpExportNewsCalendar=false
+InpEnableStrategyTimeStop=false
+InpEnableBlackBox=false
+InpEnableUnifiedLedger=false
+; v11.15 - Guardian manuel account-wide
+InpAdoptManualTrades=true
+InpEnableAccountWideManualGuardian=true
+InpManualGuardianTimerMs=250
+InpManualOwnerStaleSeconds=3
+InpManualProtectionFailCloseMs=3000
+InpAutoAddSLToManual=true
+InpAutoAddTPToManual=false
