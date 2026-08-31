@@ -2,6 +2,8 @@
 
 Le laboratoire doit rester reconstructible même si le quota Codex tombe sans avertissement, si une session est interrompue ou si un push GitHub n'a pas eu le temps de partir.
 
+Codex a accès à l'ensemble du PC. `D:\MT5_Backtests\` est le stockage canonique du labo, pas une frontière d'inspection : une reprise peut nécessiter de vérifier processus, terminaux MT5, MetaEditor, AppData, dépôts, scripts ou sorties situés ailleurs sur la machine.
+
 ## Principe : checkpoint avant transition
 Aucune décision importante ne doit exister uniquement dans le contexte conversationnel de Codex.
 
@@ -57,7 +59,7 @@ Au début de chaque session/`GO` :
 1. synchroniser GitHub ;
 2. lire l'inbox ChatGPT -> Codex ;
 3. lire `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` s'il existe, puis `manifests/CODEX_SESSION_CHECKPOINT.json` comme dernier état partagé ;
-4. vérifier l'état réel des processus/workers/MiMo et des fichiers avant de croire le checkpoint ;
+4. vérifier l'état réel **sur l'ensemble du PC** : processus, terminaux MT5, workers, MiMo, logs, répertoires de données, fichiers produits et éventuels dépôts/outils hors `D:` ;
 5. réconcilier : le réel prime sur un statut ancien ;
 6. récolter les résultats terminés ;
 7. mettre à jour checkpoint + `CURRENT_QUEUE.json` ;
@@ -67,7 +69,7 @@ Au début de chaque session/`GO` :
 Un checkpoint ne justifie jamais de relancer automatiquement un job : vérifier d'abord s'il tourne ou s'il a déjà terminé.
 
 ## Si le quota tombe avant le push
-Ce n'est pas une perte de projet si le checkpoint local a été écrit. Au prochain `GO`, Codex reconstruit l'état depuis le checkpoint + les processus/fichiers réels puis synchronise GitHub.
+Ce n'est pas une perte de projet si le checkpoint local a été écrit. Au prochain `GO`, Codex reconstruit l'état depuis le checkpoint + l'état réel du PC puis synchronise GitHub.
 
 Le seul état considéré comme inacceptable est une décision importante restée uniquement dans le raisonnement/conversation et jamais persistée.
 
