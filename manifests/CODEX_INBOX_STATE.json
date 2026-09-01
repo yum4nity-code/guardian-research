@@ -3,7 +3,8 @@
   "last_checked_at": "2026-09-01T08:02:53Z",
   "last_reviewed_commit": "5c0adb06961664dfb24a40e859fb3c11310810aa",
   "unread_notes": [
-    "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_2_CAPREF_SAFETY_FIX.md"
+    "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_2_CAPREF_SAFETY_FIX.md",
+    "handoff/chatgpt_to_codex/2026/09/01/D022_RELATIVE_VALUE_PAIR_REV_M15_PREREG.md"
   ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
@@ -16,5 +17,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "Updated CAPREF note now includes user runtime confirmation: v11.16.2 works coherently on FTMO Demo 100k and is present in D:\\MT5_Backtests\\ProductionCandidates. At next GO Codex should consume it, inspect real worker/import state, then resume the six-market pre-OOS campaign with v11.16.2 only; no long audit gate and no OOS."
+  "notes": "At next GO consume CAPREF runtime confirmation and D022 preregistration. Primary work remains the v11.16.2 six-market pre-OOS screen. D021 MICRO-REV remains READY; D022 RELATIVE-VALUE PAIR-REV M15 is a lower-priority independent cheap-fail with fixed V0 and no OOS/tuning."
 }
