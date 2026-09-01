@@ -3,6 +3,7 @@
   "last_checked_at": "2026-09-01T08:02:53Z",
   "last_reviewed_commit": "5c0adb06961664dfb24a40e859fb3c11310810aa",
   "unread_notes": [
+    "handoff/chatgpt_to_codex/2026/09/01/D017_SIX_MARKET_RESULT_SANITY_BLOCK.md",
     "handoff/chatgpt_to_codex/2026/09/01/FUNDEDNEXT_FREE_TRIAL_EA_OPTION_AWARE_FIX.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_2_CAPREF_SAFETY_FIX.md",
     "handoff/chatgpt_to_codex/2026/09/01/D022_RELATIVE_VALUE_PAIR_REV_M15_PREREG.md",
@@ -23,5 +24,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "NEXT GO IS IN QUOTA-CONSERVATION MODE. Read FUNDEDNEXT_FREE_TRIAL_EA_OPTION_AWARE_FIX.md first after harvesting existing worker/import results. Official FundedNext sources are already summarized there; do not waste quota on broad web research. Current Free Trial EA handling must become option-aware: active EA entitlement => authorize, absent/unknown entitlement => block/fail closed, without globally forcing FundedNext profile or changing FTMO behavior. One focused source/config pass, one compile, one runtime smoke. Preserve v11.16.2 research provenance; if code changes create a new production candidate version. After checkpoint/push, spend remaining quota only on already-preregistered unattended work: existing D017 workers first, then D021/D022/D023 one at a time. D024 stays blocked. No broad audits/refactors/reruns/tuning/OOS."
+  "notes": "URGENT CHEAP SANITY CHECK BEFORE ACCEPTING THE LOCAL D017 6-MARKET VERDICT: latest local status reports only 0-2 trades per market despite 100% report quality. This is implausible against the prior USDCAD frequency anchor (~155 trades) and may be a tester/config/gating mismatch. Read D017_SIX_MARKET_RESULT_SANITY_BLOCK.md first. Do NOT rerun all six. Inspect one representative USDCAD report/config+journal; rerun USDCAD once only if a concrete fault is found. Quota conservation remains mandatory. FundedNext v11.16.3 work appears locally completed per user screenshot but is not yet visible on GitHub; do not redo it, push/checkpoint local commits when possible. D024 stays blocked."
 }
