@@ -1,16 +1,15 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T08:31:00+01:00",
-  "active_primary": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
+  "updated_at": "2026-09-01T08:40:00+01:00",
+  "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
       "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
       "priority": 1,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
+      "status": "CANDIDATE",
+      "owner": "ChatGPT",
       "type": "critical_candidate_invariant",
-      "goal": "Build a distinct v11.16.1 RISKFIX candidate with a self-contained global auto-trade minimum risk of 0.25% of reference capital (25 USD on 10k, 250 USD on 100k), compile, self-test 10k/100k, publish hashes/diff and keep production unchanged.",
-      "blocking": "Six-market generalization and corrected-candidate validation remain blocked until compile/self-test and EURUSD/GBPUSD pre-OOS control are clean. OOS locked."
+      "goal": "ChatGPT repaired the source directly as Guardian_D017_PropFirmAuto_v11_16_1_RISKFIX.mq5. Minimum auto-trade risk is self-contained at 0.25% of reference capital: 25 USD on 10k and 250 USD on 100k. Codex build/audit work is cancelled."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -18,8 +17,7 @@
       "status": "REJECTED",
       "owner": "Codex",
       "type": "legacy_production_line",
-      "goal": "Resolved and superseded by self-contained v11.16; v11.15 must not be patched, tested further or redeployed.",
-      "blocking": "Closed. Future production versions must compile critical strategy invariants into the EA and fail closed rather than depend on a .set."
+      "goal": "Resolved and superseded; do not patch, test or redeploy v11.15."
     },
     {
       "id": "D017-V11-16-PROVENANCE-AUDIT",
@@ -27,25 +25,24 @@
       "status": "CANDIDATE",
       "owner": "Codex",
       "type": "semantic_provenance_audit",
-      "goal": "Semantic core parity confirmed for legacy v11.16; empirical results are not transferable to the corrected RISKFIX candidate because entry eligibility may change."
+      "goal": "Legacy v11.16 provenance remains historical context only."
     },
     {
       "id": "D017-V11-16-GENERALIZATION-PREOOS",
       "priority": 3,
-      "status": "BLOCKED",
+      "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "frozen_generalization_campaign",
-      "goal": "User-authorized frozen screen on AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD using the corrected RISKFIX candidate only; zero tuning, common pre-OOS period ending 2026-06-28, OOS locked.",
-      "blocking": "Wait for RISKFIX compile/self-test and clean EURUSD/GBPUSD corrected-candidate control."
+      "goal": "When the ChatGPT RISKFIX source is visible on the user PC: perform only the normal compile; if compile succeeds and startup shows RISK_FLOOR_SELFTEST PASS, launch AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD on idle MT5 workers. Zero tuning; common pre-OOS period ending 2026-06-28; OOS locked.",
+      "blocking": "Do not use the legacy v11.16 binary. No EURUSD/GBPUSD rerun gate before this six-market campaign."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
       "priority": 4,
-      "status": "BLOCKED",
+      "status": "READY",
       "owner": "Codex",
       "type": "technical_non_regression_control",
-      "goal": "After RISKFIX exists, run the corrected candidate once on EURUSD_BT and GBPUSD_BT with frozen D017 dates/settings; no tuning and no OOS. Do not spend this control on the legacy buggy v11.16 binary.",
-      "blocking": "RISKFIX candidate must compile and pass deterministic risk-floor self-test first."
+      "goal": "Optional/deferred; not a gate for the six-market RISKFIX campaign."
     },
     {
       "id": "AUTONOMY-RECOVERY-001",
@@ -53,7 +50,7 @@
       "status": "RUNNING_MIMO",
       "owner": "Codex",
       "type": "infrastructure_reconciliation",
-      "goal": "Orchestrator recovered the orphan safely; MiMo is processing the persistent queue one job at a time."
+      "goal": "MiMo continues independently; monitor without duplicate restart."
     },
     {
       "id": "DECISION-D021-HYPOTHESIS",
@@ -61,9 +58,9 @@
       "status": "READY",
       "owner": "Codex",
       "type": "scientific_decision",
-      "goal": "D021 MICRO-REV M1 V0 is preregistered for a two-symbol BTCUSD_BT/ETHUSD_BT event-study cheap-fail. Run only after harvesting the active MiMo job and passing the data/cost execution gate; keep OOS locked."
+      "goal": "D021 MICRO-REV M1 V0 remains preregistered; OOS locked."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "ChatGPT confirmed the minimum-risk invariant and authorized Codex to create a distinct v11.16.1 RISKFIX candidate. The floor is 0.25% of reference capital globally for auto-trades, including crypto; lower quality-scaled targets must be blocked, not rounded up. Legacy v11.16 results are retained but tagged LEGACY_RISK_FLOOR_BUG and are not transferable. Production/live remains unchanged; MiMo may continue; OOS stays closed."
+  "notes": "Previous lengthy Codex RISKFIX construction/self-test/hash/EURUSD-GBPUSD gate instructions are cancelled. ChatGPT repaired the source. Codex only compiles the supplied RISKFIX candidate and may then launch the authorized six-market pre-OOS workers."
 }
