@@ -8,7 +8,8 @@
     "handoff/chatgpt_to_codex/2026/09/01/D022_PAIR_REV_ENGINE_PREPARED.md",
     "handoff/chatgpt_to_codex/2026/09/01/D021_MICRO_REV_ENGINE_PREPARED.md",
     "handoff/chatgpt_to_codex/2026/09/01/D022_PAIR_REV_ENGINE_V2_OOS_FIX.md",
-    "handoff/chatgpt_to_codex/2026/09/01/D023_LONDON_ORB_M15_PREREG_AND_ENGINE.md"
+    "handoff/chatgpt_to_codex/2026/09/01/D023_LONDON_ORB_M15_PREREG_AND_ENGINE.md",
+    "handoff/chatgpt_to_codex/2026/09/01/D024_MULTI_STRATEGY_PORTFOLIO_CAP_PREREG.md"
   ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
@@ -21,5 +22,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "Consume D023_LONDON_ORB_M15_PREREG_AND_ENGINE.md at next GO. D023 engine is already implemented/tested by ChatGPT; do not rewrite or tune it. First priorities remain v11.16.2 campaign, D021 and corrected D022. When capacity permits and the D023 file is visible under automation, only hook up physically pre-OOS M15 OHLC+spread data for EURUSD/GBPUSD/USDJPY/XAUUSD and execute the frozen study once."
+  "notes": "At next GO consume CAPREF plus D021/D022/D023 implementation notes. D024 is also preregistered, but DO NOT spend current quota executing it: it is intentionally BLOCKED until at least two independently validated strategies have compatible logs. D024 freezes MAX1/MAX2/MAX3/MAX4 versus RISK_ONLY before outcomes exist, with final production selection requiring synchronized mark-to-market data. Primary remains v11.16.2 six-market pre-OOS."
 }
