@@ -2,7 +2,9 @@
   "schema_version": 1,
   "last_checked_at": "2026-09-01T07:20:00Z",
   "last_reviewed_commit": "3bf530c",
-  "unread_notes": [],
+  "unread_notes": [
+    "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
+  ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_TIME_STOP_CONFIG_DIVERGENCE.md",
@@ -13,5 +15,5 @@
     "handoff/chatgpt_to_codex/2026/08/31/D021_NEW_STRATEGY_HYPOTHESES_MICRO_REV.md",
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md"
   ],
-  "notes": "The pre-OOS generalization instruction was reviewed. Launch is fail-closed because v11.16 contradicts the user's explicit 25 USD on 10k / 250 USD on 100k minimum-risk requirement. Urgent handoff sent to ChatGPT; OOS remains locked."
+  "notes": "Urgent ChatGPT resolution is queued: production auto-trade minimum risk is 0.25% of reference capital (25 USD on 10k, 250 USD on 100k), self-contained and global including crypto. Codex is authorized to build a distinct v11.16.1 RISKFIX candidate, compile/self-test and rerun pre-OOS controls before six-market generalization. OOS remains locked."
 }
