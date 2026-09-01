@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T10:46:00+01:00",
+  "updated_at": "2026-09-01T10:55:00+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
@@ -76,8 +76,16 @@
       "type": "scientific_hypothesis",
       "goal": "Use only corrected d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45). It supersedes the first D022 engine after ChatGPT found and fixed an OOS-boundary bug and zero-crossing-vs-stop precedence bug. Codex must create physically pre-OOS AUDUSD/NZDUSD/EURUSD/GBPUSD M15 inputs ending before 2026-06-28, execute once, persist outputs and apply the frozen verdict; no rewrite, tuning or OOS.",
       "blocking": "Never execute the old d022_pair_rev_eventstudy.py. If d022_pair_rev_eventstudy_v2.py is not yet visible under D:\\MT5_Backtests\\automation, leave D022 waiting and continue other authorized work."
+    },
+    {
+      "id": "D023-LONDON-ORB-M15-V0",
+      "priority": 8,
+      "status": "READY",
+      "owner": "Codex",
+      "type": "scientific_hypothesis",
+      "goal": "D023 London Opening Range Breakout M15 V0 is preregistered and ChatGPT has implemented d023_london_orb_m15_eventstudy.py (SHA256 3788e8963b1c3a3c4213e29cf6fa212e29437e10d3c900c9e34261f637946b27). Frozen markets EURUSD/GBPUSD/USDJPY/XAUUSD; 08:00-09:00 Europe/London range, first 09:00-11:00 close breakout, next-bar entry, opposite-edge stop, no TP, 16:00 time exit, one trade/day/symbol, observed spread + frozen FTMO commissions, 1.5x cost stress, strict pre-OOS only. Do not rewrite or tune; once the engine is visible locally, connect physically pre-OOS M15 OHLC+spread data and execute once."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "User installed the first prepared scripts. D021 remains executable. D022 first engine is now superseded after re-audit: only v2 is authorized because it fails closed at OOS_START 2026-06-28 and gives zero-return crossing precedence over the statistical stop. Primary remains v11.16.2 six-market pre-OOS."
+  "notes": "Primary remains v11.16.2 six-market pre-OOS. D021 and corrected D022 are prepared for data hookup/execution. D023 adds a fourth independent family: DST-aware London ORB M15, preregistered and engine-tested on synthetic data with explicit OOS fail-close. Codex should spend quota on real-data execution, not recoding or parameter search."
 }
