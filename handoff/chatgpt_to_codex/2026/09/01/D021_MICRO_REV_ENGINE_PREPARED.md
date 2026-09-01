@@ -6,7 +6,7 @@ ChatGPT implemented the preregistered D021 cheap-fail engine directly as:
 
 `d021_micro_rev_eventstudy.py`
 
-SHA256: `01568ad78dbaf6ddf9ba8150280774e4ae2d53ba94e8fdbf91dab2318bef381f`
+SHA256: `62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8`
 
 Expected local destination when user places it on D:\:
 
@@ -15,7 +15,7 @@ Expected local destination when user places it on D:\:
 The implementation follows `research/campaigns/D021_MICRO_REV_M1_PREREGISTRATION.md`:
 - BTCUSD_BT + ETHUSD_BT only;
 - M1 reconstructed from executable BID/ASK ticks;
-- Wilder RSI(7), ATR(14), EMA(20);
+- canonical Wilder RSI(7) and ATR(14) with SMA seed, EMA(20);
 - frozen 3-minute shock / 1.5 ATR, 1 ATR extension, RSI 25/75, 40% wick, 35% close-from-extreme, RSI confirmation delta 3;
 - same-direction 10-minute suppression;
 - first executable quote after confirmation close;
@@ -26,7 +26,8 @@ The implementation follows `research/campaigns/D021_MICRO_REV_M1_PREREGISTRATION
 - MFE/MAE;
 - stationary-block bootstrap, fixed seed, one-sided 95% lower bounds;
 - frozen cheap-fail gates from preregistration;
-- provenance hashes and coverage persisted.
+- provenance hashes and coverage persisted;
+- fail-closed global chronological tick-order check.
 
 The program is deliberately two-pass so large tick histories do not need to fit RAM: pass 1 streams ticks into M1 bars and detects frozen events; pass 2 rereads only event windows for executable outcomes.
 
@@ -36,7 +37,8 @@ Validation already performed by ChatGPT before handoff:
 - Python syntax compilation passed;
 - end-to-end run on synthetic BID/ASK tick files passed and produced deterministic reject output with no events;
 - targeted synthetic shock test detected the expected LONG event;
-- targeted executable outcome test produced favorable barrier + horizon returns.
+- targeted executable outcome test produced favorable barrier + horizon returns;
+- post-hardening smoke run passed after switching RSI/ATR to canonical Wilder seeding and adding chronological-source fail-close.
 
 This validates implementation plumbing only, not market edge.
 
