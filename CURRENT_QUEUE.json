@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T11:34:00+01:00",
-  "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
+  "updated_at": "2026-09-01T11:37:00+01:00",
+  "active_primary": "FUNDEDNEXT-FREE-TRIAL-EA-OPTION-AWARE-FIX",
   "items": [
     {
       "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
@@ -17,11 +17,19 @@
       "status": "VALIDATED",
       "owner": "ChatGPT",
       "type": "critical_runtime_safety_fix",
-      "goal": "v11.16.2 CAPREF is the current candidate. User confirmed coherent runtime on the new FTMO Demo 100k after the 10k-reference/>90k-daily-margin bug was fixed. Candidate SHA256 7194e569eeb170358566228431b82c52bfeec5069b3fa10043345f5fb8c1c4c3."
+      "goal": "v11.16.2 CAPREF remains the current research/production baseline. User confirmed coherent runtime on FTMO Demo 100k after the 10k-reference/>90k-daily-margin bug was fixed. Candidate SHA256 7194e569eeb170358566228431b82c52bfeec5069b3fa10043345f5fb8c1c4c3."
+    },
+    {
+      "id": "FUNDEDNEXT-FREE-TRIAL-EA-OPTION-AWARE-FIX",
+      "priority": 2,
+      "status": "READY",
+      "owner": "Codex",
+      "type": "focused_runtime_compliance_fix",
+      "goal": "Fix FundedNext Free Trial handling so an account with the officially activated EA option is authorized while unconfirmed/non-EA Free Trials remain blocked. Current v11.16.2 blanket Free Trial deny plus PropFirmGuard ea_allowed baseline can block manual Guardian/SL management. Consume handoff FUNDEDNEXT_FREE_TRIAL_EA_OPTION_AWARE_FIX.md; inspect local profiles.json/rules.json/account mapping, make the minimum option-aware fix, preserve FTMO/other firms, compile once and perform one focused runtime smoke test. If source changes, create a new production candidate version instead of mutating v11.16.2 provenance."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
-      "priority": 1,
+      "priority": 10,
       "status": "REJECTED",
       "owner": "Codex",
       "type": "legacy_production_line",
@@ -29,11 +37,11 @@
     },
     {
       "id": "D017-V11-16-PROVENANCE-AUDIT",
-      "priority": 2,
+      "priority": 10,
       "status": "CANDIDATE",
       "owner": "Codex",
       "type": "semantic_provenance_audit",
-      "goal": "Legacy v11.16 provenance remains historical context only."
+      "goal": "Historical context only. DEFER while Codex quota is scarce; do not spend the remaining allowance on another broad provenance pass."
     },
     {
       "id": "D017-V11-16-GENERALIZATION-PREOOS",
@@ -41,49 +49,49 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "frozen_generalization_campaign",
-      "goal": "At next GO inspect real worker/import state, harvest completed imports, then launch/resume AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD with Guardian_D017_PropFirmAuto_v11_16_2_RISKFIX_CAPREF.mq5 only. Zero tuning; common pre-OOS period ending 2026-06-28; OOS locked.",
-      "blocking": "No safety blocker remains from CAPREF after user runtime confirmation. Avoid duplicate workers and never use v11.16.1 for strategy tests."
+      "goal": "At next GO inspect real worker/import state and HARVEST completed work first. Resume/launch AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD with Guardian_D017_PropFirmAuto_v11_16_2_RISKFIX_CAPREF.mq5 only where no duplicate exists. Zero tuning; common pre-OOS period ending 2026-06-28; OOS locked.",
+      "blocking": "No CAPREF blocker remains. Never redo imports or tests that are already complete/running. A later FundedNext production patch does not invalidate this frozen v11.16.2 research campaign."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
-      "priority": 4,
+      "priority": 10,
       "status": "READY",
       "owner": "Codex",
       "type": "technical_non_regression_control",
-      "goal": "Optional/deferred; not a gate for the six-market v11.16.2 campaign."
+      "goal": "Optional/deferred. Do not spend scarce current Codex quota on this unless a concrete feed discrepancy blocks a higher-priority result."
     },
     {
       "id": "AUTONOMY-RECOVERY-001",
-      "priority": 5,
+      "priority": 4,
       "status": "RUNNING_MIMO",
       "owner": "Codex",
       "type": "infrastructure_reconciliation",
-      "goal": "MiMo continues independently; monitor without duplicate restart."
+      "goal": "MiMo continues independently; only harvest/checkpoint healthy work, never duplicate-restart it."
     },
     {
       "id": "DECISION-D021-HYPOTHESIS",
-      "priority": 6,
+      "priority": 5,
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_decision",
-      "goal": "d021_micro_rev_eventstudy.py is physically installed by the user under D:\\MT5_Backtests\\automation\\ (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8). Do not rewrite it; create physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the emitted frozen verdict with no tuning/OOS."
+      "goal": "d021_micro_rev_eventstudy.py is installed under D:\\MT5_Backtests\\automation\\ (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8). Do not rewrite it. Create/reuse physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the frozen verdict with no tuning/OOS. Prefer unattended execution after higher-priority harvest/FundedNext fix."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
-      "priority": 7,
+      "priority": 6,
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_hypothesis",
-      "goal": "Use only corrected d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45). It supersedes the first D022 engine after ChatGPT found and fixed an OOS-boundary bug and zero-crossing-vs-stop precedence bug. Codex must create physically pre-OOS AUDUSD/NZDUSD/EURUSD/GBPUSD M15 inputs ending before 2026-06-28, execute once, persist outputs and apply the frozen verdict; no rewrite, tuning or OOS.",
-      "blocking": "Never execute the old d022_pair_rev_eventstudy.py. If d022_pair_rev_eventstudy_v2.py is not yet visible under D:\\MT5_Backtests\\automation, leave D022 waiting and continue other authorized work."
+      "goal": "Use only corrected d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45). Reuse/export physically pre-OOS AUDUSD/NZDUSD/EURUSD/GBPUSD M15 inputs and execute once; no rewrite, tuning or OOS.",
+      "blocking": "Never execute the old d022_pair_rev_eventstudy.py."
     },
     {
       "id": "D023-LONDON-ORB-M15-V0",
-      "priority": 8,
+      "priority": 7,
       "status": "READY",
       "owner": "Codex",
       "type": "scientific_hypothesis",
-      "goal": "D023 London Opening Range Breakout M15 V0 is preregistered and ChatGPT has implemented d023_london_orb_m15_eventstudy.py (SHA256 3788e8963b1c3a3c4213e29cf6fa212e29437e10d3c900c9e34261f637946b27). Frozen markets EURUSD/GBPUSD/USDJPY/XAUUSD; 08:00-09:00 Europe/London range, first 09:00-11:00 close breakout, next-bar entry, opposite-edge stop, no TP, 16:00 time exit, one trade/day/symbol, observed spread + frozen FTMO commissions, 1.5x cost stress, strict pre-OOS only. Do not rewrite or tune; once the engine is visible locally, connect physically pre-OOS M15 OHLC+spread data and execute once."
+      "goal": "D023 London ORB M15 V0 engine is already implemented as d023_london_orb_m15_eventstudy.py (SHA256 3788e8963b1c3a3c4213e29cf6fa212e29437e10d3c900c9e34261f637946b27). Do not rewrite/tune. Connect physically pre-OOS EURUSD/GBPUSD/USDJPY/XAUUSD M15 OHLC+spread data and execute once only when capacity remains."
     },
     {
       "id": "D024-MULTI-STRATEGY-POSITION-CAP-STUDY",
@@ -91,10 +99,10 @@
       "status": "BLOCKED",
       "owner": "ChatGPT/Codex",
       "type": "portfolio_policy_preregistration",
-      "goal": "Compare MAX1/MAX2/MAX3/MAX4 concurrent positions per symbol versus RISK_ONLY using exactly the same frozen strategy trades while holding account open-risk cap fixed at 1.00%. ChatGPT prepared D024A diagnostic engine d024a_multistrategy_overlap_diagnostic.py SHA256 92f12a9a22c4aa0a326dad9adb1b5c70465c4c03ec8022e3c17af9e5ddf88e84. D024A is diagnostic only; final D024B production selection requires synchronized mark-to-market/floating-equity data.",
-      "blocking": "Do not execute/select a cap until at least two independently validated strategies have compatible standardized logs. Do not use D024A alone for FTMO safety or production policy selection."
+      "goal": "Compare MAX1/MAX2/MAX3/MAX4 concurrent positions per symbol versus RISK_ONLY using identical frozen strategy trades with account open-risk cap fixed at 1.00%. D024A diagnostic engine SHA256 92f12a9a22c4aa0a326dad9adb1b5c70465c4c03ec8022e3c17af9e5ddf88e84. Final D024B requires synchronized mark-to-market/floating-equity data.",
+      "blocking": "Do not execute while Codex quota is scarce and prerequisites are unmet: at least two independently validated strategies with compatible standardized logs."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "Primary remains v11.16.2 six-market pre-OOS. D021/D022/D023 engines are prepared for real-data execution. D024 is now preregistered before multi-strategy outcomes exist: the historical 1/2/3/4 position-per-symbol question will be tested against risk-only rather than treated as doctrine. Do not spend current Codex quota on D024 until activation prerequisites are met."
+  "notes": "CODEX QUOTA CONSERVATION MODE. Next GO: (1) inspect and HARVEST real running/completed workers/imports first, no duplicates; (2) consume FUNDEDNEXT_FREE_TRIAL_EA_OPTION_AWARE_FIX.md and do the minimum option-aware FundedNext runtime fix with one compile + one smoke test; (3) checkpoint/push; (4) only then resume already-prepared unattended research, prioritizing existing D017 workers then D021/D022/D023 one at a time as capacity permits. No broad audits/refactors, no repeated historical reruns, no parameter searches, no OOS, and do not execute D024 yet. Preserve v11.16.2 research provenance even if a new production runtime version is created for FundedNext."
 }
