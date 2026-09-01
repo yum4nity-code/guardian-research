@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T10:55:00+01:00",
+  "updated_at": "2026-09-01T11:34:00+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
@@ -84,8 +84,17 @@
       "owner": "Codex",
       "type": "scientific_hypothesis",
       "goal": "D023 London Opening Range Breakout M15 V0 is preregistered and ChatGPT has implemented d023_london_orb_m15_eventstudy.py (SHA256 3788e8963b1c3a3c4213e29cf6fa212e29437e10d3c900c9e34261f637946b27). Frozen markets EURUSD/GBPUSD/USDJPY/XAUUSD; 08:00-09:00 Europe/London range, first 09:00-11:00 close breakout, next-bar entry, opposite-edge stop, no TP, 16:00 time exit, one trade/day/symbol, observed spread + frozen FTMO commissions, 1.5x cost stress, strict pre-OOS only. Do not rewrite or tune; once the engine is visible locally, connect physically pre-OOS M15 OHLC+spread data and execute once."
+    },
+    {
+      "id": "D024-MULTI-STRATEGY-POSITION-CAP-STUDY",
+      "priority": 9,
+      "status": "BLOCKED",
+      "owner": "ChatGPT/Codex",
+      "type": "portfolio_policy_preregistration",
+      "goal": "Compare MAX1/MAX2/MAX3/MAX4 concurrent positions per symbol versus RISK_ONLY using exactly the same frozen strategy trades while holding account open-risk cap fixed at 1.00%. ChatGPT prepared D024A diagnostic engine d024a_multistrategy_overlap_diagnostic.py SHA256 92f12a9a22c4aa0a326dad9adb1b5c70465c4c03ec8022e3c17af9e5ddf88e84. D024A is diagnostic only; final D024B production selection requires synchronized mark-to-market/floating-equity data.",
+      "blocking": "Do not execute/select a cap until at least two independently validated strategies have compatible standardized logs. Do not use D024A alone for FTMO safety or production policy selection."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "Primary remains v11.16.2 six-market pre-OOS. D021 and corrected D022 are prepared for data hookup/execution. D023 adds a fourth independent family: DST-aware London ORB M15, preregistered and engine-tested on synthetic data with explicit OOS fail-close. Codex should spend quota on real-data execution, not recoding or parameter search."
+  "notes": "Primary remains v11.16.2 six-market pre-OOS. D021/D022/D023 engines are prepared for real-data execution. D024 is now preregistered before multi-strategy outcomes exist: the historical 1/2/3/4 position-per-symbol question will be tested against risk-only rather than treated as doctrine. Do not spend current Codex quota on D024 until activation prerequisites are met."
 }
