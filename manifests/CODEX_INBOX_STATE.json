@@ -19,5 +19,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "At next GO consume CAPREF plus D021/D022 implementation notes. Primary remains v11.16.2 six-market pre-OOS. ChatGPT has already coded both D021 and D022 cheap-fail engines. Do not spend quota rewriting them: create/connect physically pre-OOS inputs, execute each frozen study when capacity is free, persist outputs, and apply emitted verdicts without tuning or OOS."
+  "notes": "User confirmed d021_micro_rev_eventstudy.py and d022_pair_rev_eventstudy.py are now directly installed in D:\\MT5_Backtests\\automation\\. At next GO consume the pending notes, inspect real workers/import state first, then spend quota on execution/data hookup rather than recoding or asking the user to move files. Primary remains v11.16.2 six-market pre-OOS; D021 and D022 are mechanically ready when capacity is free."
 }
