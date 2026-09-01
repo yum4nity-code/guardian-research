@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T09:36:00+01:00",
+  "updated_at": "2026-09-01T10:29:00+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
@@ -67,8 +67,16 @@
       "owner": "Codex",
       "type": "scientific_decision",
       "goal": "D021 MICRO-REV M1 V0 remains preregistered; OOS locked."
+    },
+    {
+      "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
+      "priority": 7,
+      "status": "READY",
+      "owner": "Codex",
+      "type": "scientific_hypothesis",
+      "goal": "Cheap-fail event study for market-neutral relative-value mean reversion on AUDUSD/NZDUSD and EURUSD/GBPUSD M15 using lagged 20-day OLS residual z-score, fixed thresholds, both-leg costs and pre-OOS data only. No EA or tuning before the preregistered event-study verdict."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "v11.16.2 CAPREF runtime is user-confirmed on FTMO Demo 100k and is present under D:\\MT5_Backtests\\ProductionCandidates. Next Codex GO should resume real work, not audit loops: inspect workers/imports, avoid duplicates, then execute the authorized six-market frozen pre-OOS screen with v11.16.2 only. D021 remains READY and MiMo may continue independently."
+  "notes": "v11.16.2 CAPREF runtime is user-confirmed on FTMO Demo 100k and is present under D:\\MT5_Backtests\\ProductionCandidates. Next Codex GO should resume the six-market pre-OOS screen with v11.16.2 only. D021 MICRO-REV remains READY. D022 RELATIVE-VALUE PAIR-REV M15 is now preregistered as the next independent cheap-fail: AUDUSD/NZDUSD and EURUSD/GBPUSD only, fixed V0, no tuning, no OOS."
 }
