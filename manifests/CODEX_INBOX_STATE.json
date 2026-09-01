@@ -15,5 +15,5 @@
     "handoff/chatgpt_to_codex/2026/08/31/D021_NEW_STRATEGY_HYPOTHESES_MICRO_REV.md",
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md"
   ],
-  "notes": "Urgent ChatGPT resolution is queued: production auto-trade minimum risk is 0.25% of reference capital (25 USD on 10k, 250 USD on 100k), self-contained and global including crypto. Codex is authorized to build a distinct v11.16.1 RISKFIX candidate, compile/self-test and rerun pre-OOS controls before six-market generalization. OOS remains locked."
+  "notes": "The unread minimum-risk note was superseded in place before Codex review. ChatGPT repaired the RISKFIX source directly. Codex must not spend time designing/repatching/rerunning an EURUSD-GBPUSD gate; once the supplied source is visible locally, compile normally and launch the authorized six-market pre-OOS worker campaign if RISK_FLOOR_SELFTEST PASS."
 }
