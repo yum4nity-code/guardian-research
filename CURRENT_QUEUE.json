@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T08:24:20+01:00",
+  "updated_at": "2026-09-01T08:31:00+01:00",
   "active_primary": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
   "items": [
     {
       "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
       "priority": 1,
-      "status": "WAITING_CHATGPT",
-      "owner": "ChatGPT",
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
       "type": "critical_candidate_invariant",
-      "goal": "Reconcile the user-required 25 USD floor on 10k and 250 USD on 100k with v11.16, which currently computes 2.50 USD and 25 USD respectively.",
-      "blocking": "No new v11.16 generalization run or deployment change until a new versioned candidate, tests and hashes are published. Existing v11.16 results remain separate."
+      "goal": "Build a distinct v11.16.1 RISKFIX candidate with a self-contained global auto-trade minimum risk of 0.25% of reference capital (25 USD on 10k, 250 USD on 100k), compile, self-test 10k/100k, publish hashes/diff and keep production unchanged.",
+      "blocking": "Six-market generalization and corrected-candidate validation remain blocked until compile/self-test and EURUSD/GBPUSD pre-OOS control are clean. OOS locked."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -27,7 +27,7 @@
       "status": "CANDIDATE",
       "owner": "Codex",
       "type": "semantic_provenance_audit",
-      "goal": "Semantic core parity confirmed; empirical non-regression remains non-comparable because the feeds differed."
+      "goal": "Semantic core parity confirmed for legacy v11.16; empirical results are not transferable to the corrected RISKFIX candidate because entry eligibility may change."
     },
     {
       "id": "D017-V11-16-GENERALIZATION-PREOOS",
@@ -35,15 +35,17 @@
       "status": "BLOCKED",
       "owner": "Codex",
       "type": "frozen_generalization_campaign",
-      "goal": "User-authorized frozen screen on AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD; blocked before launch by the confirmed v11.16 minimum-risk scaling divergence. No tuning and OOS locked."
+      "goal": "User-authorized frozen screen on AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD using the corrected RISKFIX candidate only; zero tuning, common pre-OOS period ending 2026-06-28, OOS locked.",
+      "blocking": "Wait for RISKFIX compile/self-test and clean EURUSD/GBPUSD corrected-candidate control."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
       "priority": 4,
-      "status": "READY",
+      "status": "BLOCKED",
       "owner": "Codex",
       "type": "technical_non_regression_control",
-      "goal": "Run v11.16 once on EURUSD_BT and GBPUSD_BT with the frozen D017 dates/settings; no tuning and no OOS."
+      "goal": "After RISKFIX exists, run the corrected candidate once on EURUSD_BT and GBPUSD_BT with frozen D017 dates/settings; no tuning and no OOS. Do not spend this control on the legacy buggy v11.16 binary.",
+      "blocking": "RISKFIX candidate must compile and pass deterministic risk-floor self-test first."
     },
     {
       "id": "AUTONOMY-RECOVERY-001",
@@ -63,5 +65,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "The six-market campaign is authorized but fail-closed before launch: v11.16 computes a 2.50 USD floor on 10k and 25 USD on 100k, contrary to the user's explicit 25/250 correction. ChatGPT must publish a new versioned candidate and tests before Codex resumes. MiMo may continue independently; OOS remains closed."
+  "notes": "ChatGPT confirmed the minimum-risk invariant and authorized Codex to create a distinct v11.16.1 RISKFIX candidate. The floor is 0.25% of reference capital globally for auto-trades, including crypto; lower quality-scaled targets must be blocked, not rounded up. Legacy v11.16 results are retained but tagged LEGACY_RISK_FLOOR_BUG and are not transferable. Production/live remains unchanged; MiMo may continue; OOS stays closed."
 }
