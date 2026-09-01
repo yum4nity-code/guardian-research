@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T10:35:00+01:00",
+  "updated_at": "2026-09-01T10:41:00+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
@@ -66,7 +66,7 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_decision",
-      "goal": "ChatGPT has implemented and hardened the preregistered D021 MICRO-REV M1 V0 engine as d021_micro_rev_eventstudy.py (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8), including canonical Wilder RSI/ATR, streaming two-pass large-tick processing, strict OOS fail-close, chronological-source fail-close, frozen executable-cost/barrier/bootstrap gates, and synthetic smoke/targeted-event tests. Codex should not rewrite it; only create physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the emitted frozen verdict with no tuning/OOS."
+      "goal": "d021_micro_rev_eventstudy.py is now physically installed by the user under D:\\MT5_Backtests\\automation\\ (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8). Do not rewrite it; create physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the emitted frozen verdict with no tuning/OOS."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
@@ -74,9 +74,9 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_hypothesis",
-      "goal": "ChatGPT has already implemented the frozen cheap-fail engine as d022_pair_rev_eventstudy.py (SHA256 f3e84a8ce27fe7a55a378882f7564dce7f0654ebf8fa5dbb83eaf6e040228486), syntax-tested and end-to-end self-tested on synthetic M15 data. When the file is visible on D:, Codex should only locate/export compatible pre-OOS M15 OHLC+spread data for AUDUSD/NZDUSD and EURUSD/GBPUSD and run it once; no strategy rewrite, tuning or OOS."
+      "goal": "d022_pair_rev_eventstudy.py is now physically installed by the user under D:\\MT5_Backtests\\automation\\ (SHA256 f3e84a8ce27fe7a55a378882f7564dce7f0654ebf8fa5dbb83eaf6e040228486). Do not rewrite it; only locate/export compatible pre-OOS M15 OHLC+spread data for AUDUSD/NZDUSD and EURUSD/GBPUSD and run it once; no strategy rewrite, tuning or OOS."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "v11.16.2 CAPREF remains the primary six-market campaign. ChatGPT has now implemented both new-strategy cheap-fail engines: D021 MICRO-REV M1 (hardened streaming tick engine) and D022 PAIR-REV M15. Codex quota should be spent on data hookup/execution/results, not recoding either hypothesis. OOS remains locked."
+  "notes": "User confirmed both prepared research scripts are now directly present in D:\\MT5_Backtests\\automation\\. Codex quota should be spent on real data hookup/execution/results, not file placement or recoding. Primary remains the v11.16.2 six-market pre-OOS campaign; D021 and D022 are ready for execution when capacity is free. OOS remains locked."
 }
