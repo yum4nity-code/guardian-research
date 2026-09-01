@@ -16,5 +16,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "Urgent v11.16.2 CAPREF runtime safety fix queued. v11.16.1 must not be used for strategy backtests or live runtime; import-only jobs may finish."
+  "notes": "Updated CAPREF note now includes user runtime confirmation: v11.16.2 works coherently on FTMO Demo 100k and is present in D:\\MT5_Backtests\\ProductionCandidates. At next GO Codex should consume it, inspect real worker/import state, then resume the six-market pre-OOS campaign with v11.16.2 only; no long audit gate and no OOS."
 }
