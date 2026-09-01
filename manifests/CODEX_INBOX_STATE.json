@@ -6,7 +6,8 @@
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_2_CAPREF_SAFETY_FIX.md",
     "handoff/chatgpt_to_codex/2026/09/01/D022_RELATIVE_VALUE_PAIR_REV_M15_PREREG.md",
     "handoff/chatgpt_to_codex/2026/09/01/D022_PAIR_REV_ENGINE_PREPARED.md",
-    "handoff/chatgpt_to_codex/2026/09/01/D021_MICRO_REV_ENGINE_PREPARED.md"
+    "handoff/chatgpt_to_codex/2026/09/01/D021_MICRO_REV_ENGINE_PREPARED.md",
+    "handoff/chatgpt_to_codex/2026/09/01/D022_PAIR_REV_ENGINE_V2_OOS_FIX.md"
   ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
@@ -19,5 +20,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "User confirmed d021_micro_rev_eventstudy.py and d022_pair_rev_eventstudy.py are now directly installed in D:\\MT5_Backtests\\automation\\. At next GO consume the pending notes, inspect real workers/import state first, then spend quota on execution/data hookup rather than recoding or asking the user to move files. Primary remains v11.16.2 six-market pre-OOS; D021 and D022 are mechanically ready when capacity is free."
+  "notes": "IMPORTANT: the installed first D022 script is superseded before any real-data execution. Consume D022_PAIR_REV_ENGINE_V2_OOS_FIX.md. Use only d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45); never run old d022_pair_rev_eventstudy.py. D021 remains ready. Primary remains v11.16.2 six-market pre-OOS."
 }
