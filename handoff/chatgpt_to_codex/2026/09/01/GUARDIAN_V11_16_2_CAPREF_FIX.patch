@@ -1,0 +1,152 @@
+--- a/candidates/for_guardian/Guardian_D017_PropFirmAuto_v11_16_1_RISKFIX.mq5
++++ b/candidates/for_guardian/Guardian_D017_PropFirmAuto_v11_16_2_CAPREF_FIXED.mq5
+@@ -1,11 +1,11 @@
+ //+------------------------------------------------------------------+
+-//|                  Guardian_D017_PropFirmAuto_v11_16_MOMENTUM_PROD.mq5                   |
++//|              Guardian_D017_PropFirmAuto_v11_16_2_CAPREF_FIXED.mq5              |
+ //|      Guardian FTMO multi-paires Forex/Crypto — version nettoyée   |
+ //|      Crypto desk limits | cooldown pertes | SL floor | Forex intact     |
+ //+------------------------------------------------------------------+
+ #property copyright "Copyright 2026, FTMO Guardian Institutional PRO"
+ #property link      "https://ftmo.com"
+-#property version   "11.161"
++#property version   "11.162"
+ #property strict
+ 
+ #include <Trade/Trade.mqh>
+@@ -234,10 +234,10 @@
+ input double            InpScoreAPlus               = 90.0;
+ input double            InpScoreA                   = 80.0;
+ input double            InpScoreB                   = 70.0;
+-input double            InpQualityRiskAPlus         = 1.00;
+-input double            InpQualityRiskA             = 0.75;
+-input double            InpQualityRiskB             = 0.50;
+-input double            InpQualityRiskC             = 0.25;
++input double            InpQualityRiskAPlus         = 1.00; // Legacy/diagnostic: ne scale plus le risque Momentum
++input double            InpQualityRiskA             = 0.75; // Legacy/diagnostic: ne scale plus le risque Momentum
++input double            InpQualityRiskB             = 0.50; // Legacy/diagnostic: ne scale plus le risque Momentum
++input double            InpQualityRiskC             = 0.25; // Legacy/diagnostic: ne scale plus le risque Momentum
+ input bool              InpAutoSetupTimeframe       = true; // profil marché par défaut
+ input ENUM_TIMEFRAMES   InpCryptoSetupTF            = PERIOD_M5;
+ input ENUM_TIMEFRAMES   InpClassicSetupTF           = PERIOD_M15;
+@@ -3087,6 +3087,40 @@
+    return MinTradeRiskUSDForCapital(g_detected_base_cap);
+   }
+ 
++// v11.16.2 CAPREF FIX: le grade A+/A/B/C reste un diagnostic/priorisateur pour Momentum.
++// Il ne doit plus reduire le risque d'un signal Momentum valide sous le plancher 0,25 %.
++// Les reductions de securite renvoyees par GetEffectiveRiskPercent() (drawdown / stop trading)
++// restent intactes et conservent la priorite.
++double ExecutionRiskFactorForEngine(const string engine_name,const double ranked_factor)
++  {
++   if(StringFind(engine_name,"Momentum")>=0) return 1.0;
++   return ranked_factor;
++  }
++
++bool MomentumRiskPolicySelfTest()
++  {
++   const double eps=0.0000001;
++   bool ok=(MathAbs(ExecutionRiskFactorForEngine("Momentum BUY",1.00)-1.0)<=eps &&
++            MathAbs(ExecutionRiskFactorForEngine("Momentum BUY",0.75)-1.0)<=eps &&
++            MathAbs(ExecutionRiskFactorForEngine("Momentum BUY",0.50)-1.0)<=eps &&
++            MathAbs(ExecutionRiskFactorForEngine("Momentum BUY",0.25)-1.0)<=eps &&
++            MathAbs(ExecutionRiskFactorForEngine("Momentum SELL",0.25)-1.0)<=eps);
++   PrintFormat("MOMENTUM_RISK_POLICY_SELFTEST %s | grade scaling diagnostic only | exec factor=1.00",ok?"PASS":"FAIL");
++   return ok;
++  }
++
++double RiskFloorSizingToleranceUSD(const string symbol,const double sl_points,const ENUM_ORDER_TYPE order_type)
++  {
++   // Le lot est toujours arrondi vers le bas pour ne jamais depasser le budget risque.
++   // On tolere donc au maximum l'ecart correspondant a UN pas de volume broker.
++   // Une reduction plus forte (marge/max lot/etc.) reste bloquee par le plancher.
++   double step_lot=SymbolInfoDouble(symbol,SYMBOL_VOLUME_STEP);
++   if(step_lot<=0.0) return 0.01;
++   double step_risk=0.0;
++   if(!CalculateLossAtLot(symbol,sl_points,order_type,step_lot,step_risk) || step_risk<=0.0) return 0.01;
++   return step_risk+0.01;
++  }
++
+ bool RiskFloorSelfTest()
+   {
+    const double v10k=MinTradeRiskUSDForCapital(10000.0);
+@@ -3151,11 +3185,12 @@
+      }
+ 
+    double risk_percent_base = GetEffectiveRiskPercent();
+-   double risk_factor = (InpEnableSignalRanking ? g_selected_signal_risk_factor : 1.0);
++   double ranked_risk_factor = (InpEnableSignalRanking ? g_selected_signal_risk_factor : 1.0);
++   double risk_factor = ExecutionRiskFactorForEngine(engine_name,ranked_risk_factor);
+    double risk_percent = risk_percent_base * risk_factor;
+    if(risk_percent <= 0.0)
+      {
+-      NotifyEvent("ORDER_BLOCKED_DRAWDOWN", StringFormat("%s | riskBase %.3f%% | factor %.2f | dailyLoss %.2f%%", engine_name, risk_percent_base, risk_factor, (g_detected_base_cap > 0.0 ? (g_snap.daily_loss / g_detected_base_cap) * 100.0 : 0.0)));
++      NotifyEvent("ORDER_BLOCKED_DRAWDOWN", StringFormat("%s | riskBase %.3f%% | execFactor %.2f | gradeFactor %.2f | dailyLoss %.2f%%", engine_name, risk_percent_base, risk_factor, ranked_risk_factor, (g_detected_base_cap > 0.0 ? (g_snap.daily_loss / g_detected_base_cap) * 100.0 : 0.0)));
+       ReleaseGlobalTradeLock();
+       return;
+      }
+@@ -3166,18 +3201,21 @@
+    double min_trade_risk = EffectiveMinTradeRiskUSD();
+    if(risk_usd_target + 1e-9 < min_trade_risk)
+      {
+-      NotifyEvent("ORDER_BLOCKED_MIN_TRADE_RISK", StringFormat("%s | targetRisk %.2f$ < minimum %.2f$ | risk %.3f%% | capital %.2f$ | facteur %.2f", engine_name, risk_usd_target, min_trade_risk, risk_percent, g_detected_base_cap, risk_factor));
++      NotifyEvent("ORDER_BLOCKED_MIN_TRADE_RISK", StringFormat("%s | targetRisk %.2f$ < minimum %.2f$ | risk %.3f%% | capital %.2f$ | execFactor %.2f | gradeFactor %.2f", engine_name, risk_usd_target, min_trade_risk, risk_percent, g_detected_base_cap, risk_factor, ranked_risk_factor));
+       ReleaseGlobalTradeLock();
+       return;
+      }
+    double actual_trade_risk_usd = 0.0;
+    bool actual_risk_ok = CalculateLossAtLot(_Symbol, sl_points, order_type, lots, actual_trade_risk_usd);
+-   if(actual_risk_ok && actual_trade_risk_usd + 1e-9 < min_trade_risk)
++   double sizing_tolerance_usd = RiskFloorSizingToleranceUSD(_Symbol,sl_points,order_type);
++   if(actual_risk_ok && actual_trade_risk_usd + sizing_tolerance_usd + 1e-9 < min_trade_risk)
+      {
+-      NotifyEvent("ORDER_BLOCKED_MIN_TRADE_RISK", StringFormat("%s | actualRisk %.2f$ < minimum %.2f$ | targetRisk %.2f$ | lots %.4f | SLdist %.5f", engine_name, actual_trade_risk_usd, min_trade_risk, risk_usd_target, lots, sl_dist));
++      NotifyEvent("ORDER_BLOCKED_MIN_TRADE_RISK", StringFormat("%s | actualRisk %.2f$ < minimum %.2f$ beyond 1-step tolerance %.2f$ | targetRisk %.2f$ | lots %.4f | SLdist %.5f", engine_name, actual_trade_risk_usd, min_trade_risk, sizing_tolerance_usd, risk_usd_target, lots, sl_dist));
+       ReleaseGlobalTradeLock();
+       return;
+      }
++   if(actual_risk_ok && actual_trade_risk_usd + 1e-9 < min_trade_risk)
++      NotifyEvent("RISK_FLOOR_QUANTIZED_ALLOW",StringFormat("%s | actualRisk %.2f$ | minimum %.2f$ | tolerance %.2f$ | lot-step rounding accepted",engine_name,actual_trade_risk_usd,min_trade_risk,sizing_tolerance_usd));
+    if(!actual_risk_ok) actual_trade_risk_usd = risk_usd_target;
+ 
+    if(lots <= 0.0)
+@@ -4074,7 +4112,8 @@
+       g_selected_signal_risk_factor=(InpEnableSignalRanking ? chosen.risk_factor : 1.0);
+       if(StringFind(chosen.engine,"Crypto Sweep")>=0 && InpRiskPerTradePct>0.0)
+          g_selected_signal_risk_factor=MathMin(g_selected_signal_risk_factor,InpCryptoSweepRiskPct/InpRiskPerTradePct);
+-      NotifyEvent("SIGNAL_RANKED",StringFormat("[%s/%s] %s | score %.1f | risk x%.2f | setupTF %s | macroTF %s | regime %s | ATRrel %.2f | %s",profile_name,GradeToString(chosen.grade),chosen.engine,chosen.score,g_selected_signal_risk_factor,EnumToString(setup_tf),EnumToString(macro_tf),MarketRegimeToString(g_market_regime),g_relative_atr_ratio,chosen.reason));
++      double execution_risk_factor=ExecutionRiskFactorForEngine(chosen.engine,g_selected_signal_risk_factor);
++      NotifyEvent("SIGNAL_RANKED",StringFormat("[%s/%s] %s | score %.1f | gradeRisk x%.2f | execRisk x%.2f | setupTF %s | macroTF %s | regime %s | ATRrel %.2f | %s",profile_name,GradeToString(chosen.grade),chosen.engine,chosen.score,g_selected_signal_risk_factor,execution_risk_factor,EnumToString(setup_tf),EnumToString(macro_tf),MarketRegimeToString(g_market_regime),g_relative_atr_ratio,chosen.reason));
+       ExecuteTrade(chosen.order_type,chosen.engine,StringFormat("[%s/%s] score %.1f | %s",profile_name,GradeToString(chosen.grade),chosen.score,chosen.reason),chosen.sl_dist);
+       g_selected_signal_risk_factor=1.0;
+      }
+@@ -4374,9 +4413,9 @@
+    g_ea_start_time = TimeCurrent();
+    ResolvePropFirmContext();
+    g_detected_base_cap = DetectInitialCapitalRobust();
+-   if(g_detected_base_cap<=0.0 || !RiskFloorSelfTest())
++   if(g_detected_base_cap<=0.0 || !RiskFloorSelfTest() || !MomentumRiskPolicySelfTest())
+      {
+-      Print("[ERREUR FATALE] RISK_FLOOR_SELFTEST_FAIL | capital/plancher invalide, auto-trading bloque.");
++      Print("[ERREUR FATALE] RISK_POLICY_SELFTEST_FAIL | capital/plancher/politique Momentum invalide, auto-trading bloque.");
+       return INIT_FAILED;
+      }
+    if(InpClassicSessionStartUTC<0.0 || InpClassicSessionStartUTC>=24.0 ||
+@@ -4438,7 +4477,7 @@
+    g_consecutive_losses = GetAccountConsecutiveLosses();
+    
+    PrintFormat("==================================================");
+-   PrintFormat(" Guardian D017 / PropFirmAuto v11.16.1 RISKFIX MOMENTUM PROD");
++   PrintFormat(" Guardian D017 / PropFirmAuto v11.16.2 CAPREF FIXED MOMENTUM PROD");
+    PrintFormat(" PROD PROFILE : D017 MOMENTUM ONLY | session 07-17 UTC | time-stop OFF | Breakout/Pullback/Sweep LOCKED OFF");
+    PrintFormat(" Capital Référence : %.0f $ | Mode : %s", g_detected_base_cap, EnumToString(InpStrategyMode));
+    PrintFormat(" Prop firm : %s | Profil : %s | News : %s",PropFirmName(g_prop_firm),PropProfileName(g_prop_profile),PropNewsPolicyName());
+@@ -4446,7 +4485,7 @@
+    PrintFormat(" Execution EA : %s | %s",(g_prop_execution_authorized ? "AUTORISEE" : "OBSERVATION UNIQUEMENT"),g_prop_execution_reason);
+    PrintFormat(" Seuil fermeture Guardian : %.2f%%", InpGuardianDailyStopPct);
+    PrintFormat(" Risque dynamique : %s | Exposition devise : SUPPRIMEE", (InpEnableDailyRiskScaling ? "ACTIF" : "INACTIF"));
+-   PrintFormat(" Profil marché : %s | Régime : %s | Ranking : %s", MarketClassToString(g_market_class), MarketRegimeToString(g_market_regime), (InpEnableSignalRanking ? "ON" : "OFF"));
++   PrintFormat(" Profil marché : %s | Régime : %s | Ranking : %s | Momentum grade->risk : OFF", MarketClassToString(g_market_class), MarketRegimeToString(g_market_regime), (InpEnableSignalRanking ? "ON" : "OFF"));
+    PrintFormat(" Setup TF : %s | Macro TF : %s | Crypto engine : %s", EnumToString(GetProfileSetupTF("PORTFOLIO")), EnumToString(GetProfileMacroTF()), (InpCryptoRegimeEngine ? "ON" : "OFF"));
+    PrintFormat(" Owners : symbole=%s | manuel account-wide=%s | chart=%I64d",(g_symbol_instance_owner?"OWNER":"STANDBY"),(g_manual_guard_owner?"OWNER":"STANDBY"),g_instance_chart_id);
+    PrintFormat(" Session classique UTC : %.2f -> %.2f",InpClassicSessionStartUTC,InpClassicSessionEndUTC);
