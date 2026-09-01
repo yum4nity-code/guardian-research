@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T10:41:00+01:00",
+  "updated_at": "2026-09-01T10:46:00+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
@@ -66,7 +66,7 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_decision",
-      "goal": "d021_micro_rev_eventstudy.py is now physically installed by the user under D:\\MT5_Backtests\\automation\\ (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8). Do not rewrite it; create physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the emitted frozen verdict with no tuning/OOS."
+      "goal": "d021_micro_rev_eventstudy.py is physically installed by the user under D:\\MT5_Backtests\\automation\\ (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8). Do not rewrite it; create physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the emitted frozen verdict with no tuning/OOS."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
@@ -74,9 +74,10 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_hypothesis",
-      "goal": "d022_pair_rev_eventstudy.py is now physically installed by the user under D:\\MT5_Backtests\\automation\\ (SHA256 f3e84a8ce27fe7a55a378882f7564dce7f0654ebf8fa5dbb83eaf6e040228486). Do not rewrite it; only locate/export compatible pre-OOS M15 OHLC+spread data for AUDUSD/NZDUSD and EURUSD/GBPUSD and run it once; no strategy rewrite, tuning or OOS."
+      "goal": "Use only corrected d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45). It supersedes the first D022 engine after ChatGPT found and fixed an OOS-boundary bug and zero-crossing-vs-stop precedence bug. Codex must create physically pre-OOS AUDUSD/NZDUSD/EURUSD/GBPUSD M15 inputs ending before 2026-06-28, execute once, persist outputs and apply the frozen verdict; no rewrite, tuning or OOS.",
+      "blocking": "Never execute the old d022_pair_rev_eventstudy.py. If d022_pair_rev_eventstudy_v2.py is not yet visible under D:\\MT5_Backtests\\automation, leave D022 waiting and continue other authorized work."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "User confirmed both prepared research scripts are now directly present in D:\\MT5_Backtests\\automation\\. Codex quota should be spent on real data hookup/execution/results, not file placement or recoding. Primary remains the v11.16.2 six-market pre-OOS campaign; D021 and D022 are ready for execution when capacity is free. OOS remains locked."
+  "notes": "User installed the first prepared scripts. D021 remains executable. D022 first engine is now superseded after re-audit: only v2 is authorized because it fails closed at OOS_START 2026-06-28 and gives zero-return crossing precedence over the statistical stop. Primary remains v11.16.2 six-market pre-OOS."
 }
