@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-31T23:45:00+01:00",
+  "updated_at": "2026-09-01T08:10:00+01:00",
   "active_primary": "AUTONOMY-RECOVERY-001",
   "items": [
     {
@@ -21,8 +21,16 @@
       "goal": "Semantic core parity confirmed; empirical non-regression remains non-comparable because the feeds differed."
     },
     {
-      "id": "D017-V11-16-EXACT-FEED-CONTROL",
+      "id": "D017-V11-16-GENERALIZATION-PREOOS",
       "priority": 3,
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
+      "type": "frozen_generalization_campaign",
+      "goal": "User-authorized immediate frozen v11.16 screen on AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD using idle MT5 workers if safely available; no tuning, common pre-OOS period ending 2026-06-28, OOS locked."
+    },
+    {
+      "id": "D017-V11-16-EXACT-FEED-CONTROL",
+      "priority": 4,
       "status": "READY",
       "owner": "Codex",
       "type": "technical_non_regression_control",
@@ -30,7 +38,7 @@
     },
     {
       "id": "AUTONOMY-RECOVERY-001",
-      "priority": 4,
+      "priority": 5,
       "status": "RUNNING_MIMO",
       "owner": "Codex",
       "type": "infrastructure_reconciliation",
@@ -38,7 +46,7 @@
     },
     {
       "id": "DECISION-D021-HYPOTHESIS",
-      "priority": 5,
+      "priority": 6,
       "status": "READY",
       "owner": "Codex",
       "type": "scientific_decision",
@@ -46,5 +54,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "MiMo remains the active work. D021 MICRO-REV M1 is preregistered but no EA or long MT5 test is authorized; the next permitted action is its fail-closed data/cost audit after the active MiMo job is harvested. Exact-feed D017 control remains separate and deferred."
+  "notes": "User authorized the v11.16 six-market frozen generalization campaign now. Codex may use idle MT5 workers in parallel with MiMo after reconciling real worker state and preregistering the campaign; no duplicate jobs, no tuning, no OOS."
 }
