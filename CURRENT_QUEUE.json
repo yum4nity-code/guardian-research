@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T09:29:00+01:00",
+  "updated_at": "2026-09-01T09:36:00+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
@@ -14,10 +14,10 @@
     {
       "id": "D017-V11-16-CAPREF-RUNTIME-DIVERGENCE",
       "priority": 1,
-      "status": "CANDIDATE",
+      "status": "VALIDATED",
       "owner": "ChatGPT",
       "type": "critical_runtime_safety_fix",
-      "goal": "v11.16.1 was superseded after a 100k live demo showed Capital Reference 10k and >90k daily remaining. ChatGPT produced Guardian_D017_PropFirmAuto_v11_16_2_RISKFIX_CAPREF.mq5, SHA256 7194e569eeb170358566228431b82c52bfeec5069b3fa10043345f5fb8c1c4c3."
+      "goal": "v11.16.2 CAPREF is the current candidate. User confirmed coherent runtime on the new FTMO Demo 100k after the 10k-reference/>90k-daily-margin bug was fixed. Candidate SHA256 7194e569eeb170358566228431b82c52bfeec5069b3fa10043345f5fb8c1c4c3."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -38,11 +38,11 @@
     {
       "id": "D017-V11-16-GENERALIZATION-PREOOS",
       "priority": 3,
-      "status": "BLOCKED",
+      "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "frozen_generalization_campaign",
-      "goal": "AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD on corrected v11.16.2 only; zero tuning; common pre-OOS period ending 2026-06-28; OOS locked.",
-      "blocking": "Import-only workers may finish, but no strategy backtest may start with v11.16.1. Resume after one normal compile of v11.16.2 and 100k startup sanity: detected capital 100000 and sane daily remaining."
+      "goal": "At next GO inspect real worker/import state, harvest completed imports, then launch/resume AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD with Guardian_D017_PropFirmAuto_v11_16_2_RISKFIX_CAPREF.mq5 only. Zero tuning; common pre-OOS period ending 2026-06-28; OOS locked.",
+      "blocking": "No safety blocker remains from CAPREF after user runtime confirmation. Avoid duplicate workers and never use v11.16.1 for strategy tests."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
@@ -70,5 +70,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "v11.16.1 RISKFIX is superseded for runtime. New v11.16.2 CAPREF fix ignores stale live capital overrides, excludes account-funding balance operations from daily-reference reconstruction and repairs an impossible same-day stored reference. No long audit gate; compile once, verify 100k sanity, then resume six-market workers."
+  "notes": "v11.16.2 CAPREF runtime is user-confirmed on FTMO Demo 100k and is present under D:\\MT5_Backtests\\ProductionCandidates. Next Codex GO should resume real work, not audit loops: inspect workers/imports, avoid duplicates, then execute the authorized six-market frozen pre-OOS screen with v11.16.2 only. D021 remains READY and MiMo may continue independently."
 }
