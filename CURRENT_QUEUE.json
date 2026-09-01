@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T09:02:53+01:00",
+  "updated_at": "2026-09-01T09:29:00+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
@@ -9,7 +9,15 @@
       "status": "VALIDATED",
       "owner": "ChatGPT",
       "type": "critical_candidate_invariant",
-      "goal": "ChatGPT repaired the source directly as Guardian_D017_PropFirmAuto_v11_16_1_RISKFIX.mq5. Minimum auto-trade risk is self-contained at 0.25% of reference capital: 25 USD on 10k and 250 USD on 100k. Codex build/audit work is cancelled."
+      "goal": "Minimum auto-trade risk remains self-contained at 0.25% of reference capital: 25 USD on 10k and 250 USD on 100k."
+    },
+    {
+      "id": "D017-V11-16-CAPREF-RUNTIME-DIVERGENCE",
+      "priority": 1,
+      "status": "CANDIDATE",
+      "owner": "ChatGPT",
+      "type": "critical_runtime_safety_fix",
+      "goal": "v11.16.1 was superseded after a 100k live demo showed Capital Reference 10k and >90k daily remaining. ChatGPT produced Guardian_D017_PropFirmAuto_v11_16_2_RISKFIX_CAPREF.mq5, SHA256 7194e569eeb170358566228431b82c52bfeec5069b3fa10043345f5fb8c1c4c3."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -30,11 +38,11 @@
     {
       "id": "D017-V11-16-GENERALIZATION-PREOOS",
       "priority": 3,
-      "status": "RUNNING_MT5",
+      "status": "BLOCKED",
       "owner": "Codex",
       "type": "frozen_generalization_campaign",
-      "goal": "When the ChatGPT RISKFIX source is visible on the user PC: perform only the normal compile; if compile succeeds and startup shows RISK_FLOOR_SELFTEST PASS, launch AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD on idle MT5 workers. Zero tuning; common pre-OOS period ending 2026-06-28; OOS locked.",
-      "blocking": "RISKFIX compile and runtime self-test passed. Pre-OOS import is running on three isolated workers; do not start duplicate imports or tests."
+      "goal": "AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD on corrected v11.16.2 only; zero tuning; common pre-OOS period ending 2026-06-28; OOS locked.",
+      "blocking": "Import-only workers may finish, but no strategy backtest may start with v11.16.1. Resume after one normal compile of v11.16.2 and 100k startup sanity: detected capital 100000 and sane daily remaining."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
@@ -42,7 +50,7 @@
       "status": "READY",
       "owner": "Codex",
       "type": "technical_non_regression_control",
-      "goal": "Optional/deferred; not a gate for the six-market RISKFIX campaign."
+      "goal": "Optional/deferred; not a gate for the six-market v11.16.2 campaign."
     },
     {
       "id": "AUTONOMY-RECOVERY-001",
@@ -62,5 +70,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "RISKFIX source hash matches ChatGPT, compile is 0/0 and runtime self-test passed at 10k=25 / 100k=250. Six-market campaign was preregistered before results; three isolated workers are importing two symbols each with timestamps >= 2026-06-28 mechanically excluded."
+  "notes": "v11.16.1 RISKFIX is superseded for runtime. New v11.16.2 CAPREF fix ignores stale live capital overrides, excludes account-funding balance operations from daily-reference reconstruction and repairs an impossible same-day stored reference. No long audit gate; compile once, verify 100k sanity, then resume six-market workers."
 }
