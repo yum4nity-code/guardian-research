@@ -66,7 +66,7 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_decision",
-      "goal": "ChatGPT has implemented the preregistered D021 MICRO-REV M1 V0 engine as d021_micro_rev_eventstudy.py (SHA256 01568ad78dbaf6ddf9ba8150280774e4ae2d53ba94e8fdbf91dab2318bef381f), syntax-tested and synthetic end-to-end/targeted-event tested. Codex should not rewrite it; only create physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the emitted frozen verdict with no tuning/OOS."
+      "goal": "ChatGPT has implemented and hardened the preregistered D021 MICRO-REV M1 V0 engine as d021_micro_rev_eventstudy.py (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8), including canonical Wilder RSI/ATR, streaming two-pass large-tick processing, strict OOS fail-close, chronological-source fail-close, frozen executable-cost/barrier/bootstrap gates, and synthetic smoke/targeted-event tests. Codex should not rewrite it; only create physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the emitted frozen verdict with no tuning/OOS."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
@@ -78,5 +78,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "v11.16.2 CAPREF remains the primary six-market campaign. ChatGPT has now implemented both new-strategy cheap-fail engines: D021 MICRO-REV M1 (streaming two-pass tick engine) and D022 PAIR-REV M15. Codex quota should be spent on data hookup/execution/results, not recoding either hypothesis. OOS remains locked."
+  "notes": "v11.16.2 CAPREF remains the primary six-market campaign. ChatGPT has now implemented both new-strategy cheap-fail engines: D021 MICRO-REV M1 (hardened streaming tick engine) and D022 PAIR-REV M15. Codex quota should be spent on data hookup/execution/results, not recoding either hypothesis. OOS remains locked."
 }
