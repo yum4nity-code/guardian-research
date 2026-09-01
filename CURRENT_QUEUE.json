@@ -1,8 +1,17 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T08:10:00+01:00",
-  "active_primary": "AUTONOMY-RECOVERY-001",
+  "updated_at": "2026-09-01T08:24:20+01:00",
+  "active_primary": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
   "items": [
+    {
+      "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
+      "priority": 1,
+      "status": "WAITING_CHATGPT",
+      "owner": "ChatGPT",
+      "type": "critical_candidate_invariant",
+      "goal": "Reconcile the user-required 25 USD floor on 10k and 250 USD on 100k with v11.16, which currently computes 2.50 USD and 25 USD respectively.",
+      "blocking": "No new v11.16 generalization run or deployment change until a new versioned candidate, tests and hashes are published. Existing v11.16 results remain separate."
+    },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
       "priority": 1,
@@ -23,10 +32,10 @@
     {
       "id": "D017-V11-16-GENERALIZATION-PREOOS",
       "priority": 3,
-      "status": "WAITING_CODEX",
+      "status": "BLOCKED",
       "owner": "Codex",
       "type": "frozen_generalization_campaign",
-      "goal": "User-authorized immediate frozen v11.16 screen on AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD using idle MT5 workers if safely available; no tuning, common pre-OOS period ending 2026-06-28, OOS locked."
+      "goal": "User-authorized frozen screen on AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD; blocked before launch by the confirmed v11.16 minimum-risk scaling divergence. No tuning and OOS locked."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
@@ -54,5 +63,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "User authorized the v11.16 six-market frozen generalization campaign now. Codex may use idle MT5 workers in parallel with MiMo after reconciling real worker state and preregistering the campaign; no duplicate jobs, no tuning, no OOS."
+  "notes": "The six-market campaign is authorized but fail-closed before launch: v11.16 computes a 2.50 USD floor on 10k and 25 USD on 100k, contrary to the user's explicit 25/250 correction. ChatGPT must publish a new versioned candidate and tests before Codex resumes. MiMo may continue independently; OOS remains closed."
 }

@@ -4,7 +4,8 @@ Document vivant maintenu par Codex.
 
 ## Active
 
-- `GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE` — `WAITING_CHATGPT`. Le preset SAFE fige `InpEnableStrategyTimeStop=false`, mais une fermeture live a ete observee par time-stop. Aucun changement silencieux de production n'est autorise.
+- `D017-V11-16-MIN-RISK-SCALING-DIVERGENCE` — `WAITING_CHATGPT`. La source canonique et la copie D0E v11.16 calculent un plancher de 2,50 USD sur 10k et 25 USD sur 100k, contrairement a la correction utilisateur explicite 25/250. La campagne six marches est bloquee avant tout resultat; aucun fichier production n'a ete modifie.
+- `GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE` — `REJECTED / SUPERSEDED`. La ligne v11.15 est close et remplacee par v11.16; elle ne doit plus etre patchee, testee ni redeployee.
 - `D017-V11-16-PROVENANCE-AUDIT` — `CANDIDATE`. Parite du coeur Momentum confirmee; la non-regression empirique n'etait pas comparable car les flux differaient.
 - `D017-V11-16-EXACT-FEED-CONTROL` — `READY`. Controle unique sur EURUSD_BT/GBPUSD_BT, parametres D017 geles, sans OOS.
 - `AUTONOMY-RECOVERY-001` — `RUNNING_MIMO`. Orchestrateur PID 9188; worker `MIMO-DEEP-WALKFORWARD-COUNTEREVIDENCE` repris sans doublon. Le controle `_BT` long n'a pas ete lance.

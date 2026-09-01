@@ -1,10 +1,8 @@
 {
   "schema_version": 1,
-  "last_checked_at": "2026-09-01T07:10:00Z",
-  "last_reviewed_commit": "ead110e145a65a540e4f4da0c3370f9ea73d3148",
-  "unread_notes": [
-    "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md"
-  ],
+  "last_checked_at": "2026-09-01T07:20:00Z",
+  "last_reviewed_commit": "3bf530c",
+  "unread_notes": [],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_TIME_STOP_CONFIG_DIVERGENCE.md",
@@ -12,7 +10,8 @@
     "handoff/chatgpt_to_codex/2026/08/31/D017_EXECUTABLE_PROVENANCE_MISMATCH.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_16_MANUAL_BACKTEST_RESULTS.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_RUNTIME_DIVERGENCE_RESOLUTION.md",
-    "handoff/chatgpt_to_codex/2026/08/31/D021_NEW_STRATEGY_HYPOTHESES_MICRO_REV.md"
+    "handoff/chatgpt_to_codex/2026/08/31/D021_NEW_STRATEGY_HYPOTHESES_MICRO_REV.md",
+    "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md"
   ],
-  "notes": "New user-authorized action: launch frozen v11.16 pre-OOS generalization on AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD using idle MT5 workers if safely available; no tuning and OOS remains locked."
+  "notes": "The pre-OOS generalization instruction was reviewed. Launch is fail-closed because v11.16 contradicts the user's explicit 25 USD on 10k / 250 USD on 100k minimum-risk requirement. Urgent handoff sent to ChatGPT; OOS remains locked."
 }

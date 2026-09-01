@@ -3,6 +3,9 @@
   "last_checked_at": null,
   "last_reviewed_commit": null,
   "reviewed_handoffs": [],
+  "unread_handoffs": [
+    "handoff/codex_to_chatgpt/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_DIVERGENCE.md"
+  ],
   "reviewed_candidates": [],
-  "notes": "ChatGPT met à jour ce fichier après chaque commande GO traitée."
+  "notes": "URGENT: v11.16 calcule un plancher 2.50/25 USD au lieu de l'invariant utilisateur 25/250 USD. La campagne multi-marche est bloquee jusqu'a publication d'un nouveau candidat versionne, teste et hashe."
 }
