@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T10:34:00+01:00",
+  "updated_at": "2026-09-01T10:35:00+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
@@ -63,10 +63,10 @@
     {
       "id": "DECISION-D021-HYPOTHESIS",
       "priority": 6,
-      "status": "READY",
+      "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_decision",
-      "goal": "D021 MICRO-REV M1 V0 remains preregistered; OOS locked."
+      "goal": "ChatGPT has implemented the preregistered D021 MICRO-REV M1 V0 engine as d021_micro_rev_eventstudy.py (SHA256 01568ad78dbaf6ddf9ba8150280774e4ae2d53ba94e8fdbf91dab2318bef381f), syntax-tested and synthetic end-to-end/targeted-event tested. Codex should not rewrite it; only create physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the emitted frozen verdict with no tuning/OOS."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
@@ -78,5 +78,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "v11.16.2 CAPREF runtime is user-confirmed on FTMO Demo 100k and is present under D:\\MT5_Backtests\\ProductionCandidates. Next Codex GO should resume the six-market pre-OOS screen with v11.16.2 only. D021 MICRO-REV remains READY. For D022, ChatGPT has already done the event-study implementation work; Codex should reuse the prepared script and spend quota only on data hookup/execution/results."
+  "notes": "v11.16.2 CAPREF remains the primary six-market campaign. ChatGPT has now implemented both new-strategy cheap-fail engines: D021 MICRO-REV M1 (streaming two-pass tick engine) and D022 PAIR-REV M15. Codex quota should be spent on data hookup/execution/results, not recoding either hypothesis. OOS remains locked."
 }
