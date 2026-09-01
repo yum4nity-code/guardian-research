@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T10:29:00+01:00",
+  "updated_at": "2026-09-01T10:34:00+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
@@ -71,12 +71,12 @@
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
       "priority": 7,
-      "status": "READY",
+      "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_hypothesis",
-      "goal": "Cheap-fail event study for market-neutral relative-value mean reversion on AUDUSD/NZDUSD and EURUSD/GBPUSD M15 using lagged 20-day OLS residual z-score, fixed thresholds, both-leg costs and pre-OOS data only. No EA or tuning before the preregistered event-study verdict."
+      "goal": "ChatGPT has already implemented the frozen cheap-fail engine as d022_pair_rev_eventstudy.py (SHA256 f3e84a8ce27fe7a55a378882f7564dce7f0654ebf8fa5dbb83eaf6e040228486), syntax-tested and end-to-end self-tested on synthetic M15 data. When the file is visible on D:, Codex should only locate/export compatible pre-OOS M15 OHLC+spread data for AUDUSD/NZDUSD and EURUSD/GBPUSD and run it once; no strategy rewrite, tuning or OOS."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "v11.16.2 CAPREF runtime is user-confirmed on FTMO Demo 100k and is present under D:\\MT5_Backtests\\ProductionCandidates. Next Codex GO should resume the six-market pre-OOS screen with v11.16.2 only. D021 MICRO-REV remains READY. D022 RELATIVE-VALUE PAIR-REV M15 is now preregistered as the next independent cheap-fail: AUDUSD/NZDUSD and EURUSD/GBPUSD only, fixed V0, no tuning, no OOS."
+  "notes": "v11.16.2 CAPREF runtime is user-confirmed on FTMO Demo 100k and is present under D:\\MT5_Backtests\\ProductionCandidates. Next Codex GO should resume the six-market pre-OOS screen with v11.16.2 only. D021 MICRO-REV remains READY. For D022, ChatGPT has already done the event-study implementation work; Codex should reuse the prepared script and spend quota only on data hookup/execution/results."
 }
