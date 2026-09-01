@@ -7,7 +7,8 @@
     "handoff/chatgpt_to_codex/2026/09/01/D022_RELATIVE_VALUE_PAIR_REV_M15_PREREG.md",
     "handoff/chatgpt_to_codex/2026/09/01/D022_PAIR_REV_ENGINE_PREPARED.md",
     "handoff/chatgpt_to_codex/2026/09/01/D021_MICRO_REV_ENGINE_PREPARED.md",
-    "handoff/chatgpt_to_codex/2026/09/01/D022_PAIR_REV_ENGINE_V2_OOS_FIX.md"
+    "handoff/chatgpt_to_codex/2026/09/01/D022_PAIR_REV_ENGINE_V2_OOS_FIX.md",
+    "handoff/chatgpt_to_codex/2026/09/01/D023_LONDON_ORB_M15_PREREG_AND_ENGINE.md"
   ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
@@ -20,5 +21,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "IMPORTANT: the installed first D022 script is superseded before any real-data execution. Consume D022_PAIR_REV_ENGINE_V2_OOS_FIX.md. Use only d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45); never run old d022_pair_rev_eventstudy.py. D021 remains ready. Primary remains v11.16.2 six-market pre-OOS."
+  "notes": "Consume D023_LONDON_ORB_M15_PREREG_AND_ENGINE.md at next GO. D023 engine is already implemented/tested by ChatGPT; do not rewrite or tune it. First priorities remain v11.16.2 campaign, D021 and corrected D022. When capacity permits and the D023 file is visible under automation, only hook up physically pre-OOS M15 OHLC+spread data for EURUSD/GBPUSD/USDJPY/XAUUSD and execute the frozen study once."
 }
