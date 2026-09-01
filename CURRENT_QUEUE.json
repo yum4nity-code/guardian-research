@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T08:40:00+01:00",
+  "updated_at": "2026-09-01T09:02:53+01:00",
   "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "items": [
     {
       "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
       "priority": 1,
-      "status": "CANDIDATE",
+      "status": "VALIDATED",
       "owner": "ChatGPT",
       "type": "critical_candidate_invariant",
       "goal": "ChatGPT repaired the source directly as Guardian_D017_PropFirmAuto_v11_16_1_RISKFIX.mq5. Minimum auto-trade risk is self-contained at 0.25% of reference capital: 25 USD on 10k and 250 USD on 100k. Codex build/audit work is cancelled."
@@ -30,11 +30,11 @@
     {
       "id": "D017-V11-16-GENERALIZATION-PREOOS",
       "priority": 3,
-      "status": "WAITING_CODEX",
+      "status": "RUNNING_MT5",
       "owner": "Codex",
       "type": "frozen_generalization_campaign",
       "goal": "When the ChatGPT RISKFIX source is visible on the user PC: perform only the normal compile; if compile succeeds and startup shows RISK_FLOOR_SELFTEST PASS, launch AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD on idle MT5 workers. Zero tuning; common pre-OOS period ending 2026-06-28; OOS locked.",
-      "blocking": "Do not use the legacy v11.16 binary. No EURUSD/GBPUSD rerun gate before this six-market campaign."
+      "blocking": "RISKFIX compile and runtime self-test passed. Pre-OOS import is running on three isolated workers; do not start duplicate imports or tests."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
@@ -62,5 +62,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "Previous lengthy Codex RISKFIX construction/self-test/hash/EURUSD-GBPUSD gate instructions are cancelled. ChatGPT repaired the source. Codex only compiles the supplied RISKFIX candidate and may then launch the authorized six-market pre-OOS workers."
+  "notes": "RISKFIX source hash matches ChatGPT, compile is 0/0 and runtime self-test passed at 10k=25 / 100k=250. Six-market campaign was preregistered before results; three isolated workers are importing two symbols each with timestamps >= 2026-06-28 mechanically excluded."
 }

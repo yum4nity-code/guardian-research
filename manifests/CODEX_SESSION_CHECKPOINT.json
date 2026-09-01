@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T07:24:20Z",
-  "source": "codex_go_v11_16_risk_floor_audit",
-  "active_primary": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
+  "updated_at": "2026-09-01T08:02:53Z",
+  "source": "codex_riskfix_validated_generalization_import_transition",
+  "active_primary": "D017-V11-16-GENERALIZATION-PREOOS",
   "priorities": [
-    "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
+    "D017-V11-16-GENERALIZATION-PREOOS",
     "AUTONOMY-RECOVERY-001",
     "D017-V11-16-PROVENANCE-AUDIT",
     "D017-V11-16-EXACT-FEED-CONTROL",
@@ -19,7 +19,9 @@
     ,"ChatGPT resolution consumed: v11.15 is legacy/superseded by v11.16; future critical invariants must not depend on a .set.",
     "D021 MICRO-REV M1 accepted and preregistered for event-study cheap-fail only; no test launched.",
     "v11.16 minimum-risk scaling diverges from the user-required 25 USD on 10k and 250 USD on 100k: current code computes 2.50/25 USD.",
-    "Six-market pre-OOS campaign blocked before import or testing; urgent versioned-candidate request handed to ChatGPT."
+    "Six-market pre-OOS campaign blocked before import or testing; urgent versioned-candidate request handed to ChatGPT.",
+    "ChatGPT RISKFIX source hash matched E44BF3D4...; compile 0 errors/0 warnings and runtime self-test passed at 10k=25 / 100k=250.",
+    "Six-market manifest and rejection gates frozen before results; isolated three-worker import authorized with hard cutoff before 2026-06-28."
   ],
   "running_mt5": [
     {"process": "D:\\MT5_FundedNext\\terminal64.exe", "role": "FundedNext terminal", "tester_active": false},
@@ -32,9 +34,9 @@
     "MANUAL-V11-16-RESULTS-001",
     "MIMO-DEEP-WALKFORWARD-PARTIAL-AND-TIMEOUTS"
   ],
-  "next_safe_action": "Wait for ChatGPT to publish a new versioned 25/250 candidate with unit tests and hashes. MiMo may continue independently; do not import or launch the six-market campaign yet.",
+  "next_safe_action": "Complete and validate three-worker pre-OOS import, then launch one frozen RISKFIX real-tick run per symbol without duplicates or tuning.",
   "dirty_or_unpushed_local_files": ["D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json"],
-  "waiting_chatgpt": ["D017-V11-16-MIN-RISK-SCALING-DIVERGENCE"],
+  "waiting_chatgpt": [],
   "waiting_codex": ["D017-V11-16-PROVENANCE-AUDIT", "AUTONOMY-RECOVERY-001", "MANUAL-V11-16-RESULTS-001", "D021-MICRO-REV-M1-DATA-GATE"],
   "oos_integrity": {
     "locked_window": "2026-06-28/2026-08-28",

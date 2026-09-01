@@ -4,7 +4,8 @@ Document vivant maintenu par Codex.
 
 ## Active
 
-- `D017-V11-16-MIN-RISK-SCALING-DIVERGENCE` — `WAITING_CHATGPT`. La source canonique et la copie D0E v11.16 calculent un plancher de 2,50 USD sur 10k et 25 USD sur 100k, contrairement a la correction utilisateur explicite 25/250. La campagne six marches est bloquee avant tout resultat; aucun fichier production n'a ete modifie.
+- `D017-V11-16-MIN-RISK-SCALING-DIVERGENCE` — `VALIDATED / RESOLVED`. La candidate v11.16.1 RISKFIX correspond au hash ChatGPT, compile sans erreur ni avertissement et son auto-test runtime confirme 25 USD sur 10k / 250 USD sur 100k.
+- `D017-V11-16-GENERALIZATION-PREOOS` — `RUNNING_MT5 / IMPORT`. Manifeste et criteres geles avant resultat; trois workers isoles importent AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF et XAUUSD en excluant tout timestamp a partir du 2026-06-28. Aucun tuning et OOS ferme.
 - `GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE` — `REJECTED / SUPERSEDED`. La ligne v11.15 est close et remplacee par v11.16; elle ne doit plus etre patchee, testee ni redeployee.
 - `D017-V11-16-PROVENANCE-AUDIT` — `CANDIDATE`. Parite du coeur Momentum confirmee; la non-regression empirique n'etait pas comparable car les flux differaient.
 - `D017-V11-16-EXACT-FEED-CONTROL` — `READY`. Controle unique sur EURUSD_BT/GBPUSD_BT, parametres D017 geles, sans OOS.

@@ -1,10 +1,8 @@
 {
   "schema_version": 1,
-  "last_checked_at": "2026-09-01T07:20:00Z",
-  "last_reviewed_commit": "3bf530c",
-  "unread_notes": [
-    "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
-  ],
+  "last_checked_at": "2026-09-01T08:02:53Z",
+  "last_reviewed_commit": "5c0adb06961664dfb24a40e859fb3c11310810aa",
+  "unread_notes": [],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_TIME_STOP_CONFIG_DIVERGENCE.md",
@@ -13,7 +11,8 @@
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_16_MANUAL_BACKTEST_RESULTS.md",
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_RUNTIME_DIVERGENCE_RESOLUTION.md",
     "handoff/chatgpt_to_codex/2026/08/31/D021_NEW_STRATEGY_HYPOTHESES_MICRO_REV.md",
-    "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md"
+    "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
+    "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "The unread minimum-risk note was superseded in place before Codex review. ChatGPT repaired the RISKFIX source directly. Codex must not spend time designing/repatching/rerunning an EURUSD-GBPUSD gate; once the supplied source is visible locally, compile normally and launch the authorized six-market pre-OOS worker campaign if RISK_FLOOR_SELFTEST PASS."
+  "notes": "RISKFIX resolution consumed. Source hash matched, compile passed 0/0 and runtime self-test logged 10k=25 / 100k=250. Campaign preregistered and import transition checkpointed; OOS remains locked."
 }

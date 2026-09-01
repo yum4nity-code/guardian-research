@@ -1,0 +1,64 @@
+{
+  "strategy_id": "D017-GUARDIAN-V11-16-1-RISKFIX",
+  "campaign_id": "D017-V11-16-1-GENERALIZATION-PREOOS",
+  "status": "PREREGISTERED_DATA_IMPORT_RUNNING",
+  "hypothesis": "The frozen D017 Momentum mechanism may generalize after realistic spread and commission costs beyond EURUSD and GBPUSD without symbol-specific tuning.",
+  "expert": {
+    "source_path": "D:\\MT5_Backtests\\Guardian_D017_PropFirmAuto_v11_16_1_RISKFIX.mq5",
+    "source_sha256": "E44BF3D4EAB8EFF9F5807B6D5A346C0D3F34C57D9FA29F8067EE8A870F983CB6",
+    "binary_sha256": "99F1798EFE3AF6A7CB90D36923CD134E0B60E4D5FBAA11F3D53D98789A82837D",
+    "internal_version": "11.161",
+    "compile_result": "0 errors, 0 warnings",
+    "runtime_gate": "RISK_FLOOR_SELFTEST PASS | 10k=25.00 | 100k=250.00 | current=25.00"
+  },
+  "markets": [
+    {"source": "AUDUSD", "custom": "AUDUSD_BT", "worker": "worker-01", "sha256": "E2C27A9FD28DF027CC3E5355D3F4238C74A35EC2A6335DE001D92715F2C8D281"},
+    {"source": "EURJPY", "custom": "EURJPY_BT", "worker": "worker-01", "sha256": "04F74603830E270FB48E5E39BA54CFD932174ABA557D90034862FBD3132A6024"},
+    {"source": "NZDUSD", "custom": "NZDUSD_BT", "worker": "worker-02", "sha256": "5455543D8DBC61224DC224E17A86C107ADB400552F42A25136D84086E11255AF"},
+    {"source": "USDCAD", "custom": "USDCAD_BT", "worker": "worker-02", "sha256": "C56BBD347EB5D5F4A0D1126A8DEBE6C464015B0CD1479397FA2D64786E15DFB2"},
+    {"source": "USDCHF", "custom": "USDCHF_BT", "worker": "worker-03", "sha256": "8B4E861AE7168C6AF4956F9BFD9BC07A3FCA9D906B0A9F969682BCF4C1C05C33"},
+    {"source": "XAUUSD", "custom": "XAUUSD_BT", "worker": "worker-03", "sha256": "285348EEF631E16EA51908154BC5D09A4C13EE8DA0519EC280303CDC3C9DA262"}
+  ],
+  "timeframes": ["M15", "H1 context"],
+  "data_period": {"from": "2025-08-28T00:00:00", "to_exclusive": "2026-06-28T00:00:00"},
+  "model": "Every tick based on real ticks (MT5 Model=4)",
+  "account": {"deposit": 10000, "currency": "USD", "leverage": "1:100"},
+  "cost_model": {
+    "spread": "historical bid/ask embedded in each imported tick",
+    "commission": "2.50 USD per lot per side for FX and XAU, applied/verified in post-test net-cost analysis where MT5 custom-symbol reports omit it",
+    "slippage": "no additional slippage; limitation reported separately",
+    "contract_specs": "read-only FundedNext demo symbol_info snapshot on 2026-09-01 before import"
+  },
+  "frozen_invariants": [
+    "Momentum only",
+    "Breakout/Pullback/Sweep disabled",
+    "strategy time-stop OFF",
+    "M15 setup and H1 context",
+    "classic session 07:00-17:00 UTC",
+    "minimum auto-trade risk 0.25% of reference capital; scaled signals below floor are blocked",
+    "all other v11.16.1 defaults unchanged"
+  ],
+  "screen_criteria_per_market": {
+    "data_quality": "100% real ticks and no timestamps at or after 2026-06-28",
+    "net_after_estimated_costs": "> 0 USD",
+    "profit_factor_gross": ">= 1.15",
+    "trade_count": ">= 70",
+    "max_equity_drawdown_pct": "<= 6%",
+    "estimated_costs_over_gross_profit": "<= 30%",
+    "positive_calendar_windows": ">= 6 of 10 anchored monthly windows when all windows are covered",
+    "ftmo_simulated_violation": "none"
+  },
+  "portfolio_gate": "No automatic OOS. After all six one-shot runs, assess PnL/return correlation, overlapping USD exposure and simultaneous drawdowns; freeze any OOS qualifiers before opening OOS.",
+  "trial_family": "one frozen generalization run per market",
+  "raw_trial_count": 6,
+  "effective_trial_count": null,
+  "oos_opened": false,
+  "protocol": "NO_TUNING / ONE_RUN_PER_SYMBOL / OOS_LOCKED",
+  "known_limitations": [
+    "Current FundedNext contract/swap snapshot is used; historical financing schedules may differ.",
+    "Cross-currency tick values can vary with conversion rates and must be verified in each tester report.",
+    "No extra slippage stress is included in the first screen."
+  ],
+  "codex_verdict": "PENDING",
+  "chatgpt_decision_requested": "NO"
+}
