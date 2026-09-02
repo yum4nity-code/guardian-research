@@ -1,0 +1,33 @@
+name: Reconstruct Guardian v11.16.11 baseline
+
+on:
+  push:
+    paths:
+      - 'production/guardian/_source_archive/v11_16_11/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  reconstruct:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Reconstruct and verify source
+        run: python scripts/reconstruct_guardian_v11_16_11.py
+      - name: Commit reconstructed baseline
+        run: |
+          git config user.name "guardian-baseline-bot"
+          git config user.email "guardian-baseline-bot@users.noreply.github.com"
+          git add production/guardian/Guardian_D017_PropFirmAuto_v11_16_11_STRATEGY_SWITCHES.mq5
+          if git diff --cached --quiet; then
+            echo "Baseline already current"
+            exit 0
+          fi
+          git commit -m "production: reconstruct exact Guardian v11.16.11 baseline"
+          git push
