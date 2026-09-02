@@ -4,6 +4,18 @@ Started: 2026-09-02
 
 Purpose: accumulate comparable Strategy Tester observations without optimizing between windows. Record exact metrics visible in screenshots, plus tentative hour/day/month patterns. Tentative patterns are NOT strategy decisions until they recur across independent windows/markets.
 
+## Current research phase — DATA ACCUMULATION FIRST
+
+As of 2026-09-02, freeze strategy rules while collecting more independent windows and markets. Do **not** optimize or retune during this phase.
+
+Priority of future investigation after enough data exists:
+1. RSI Sniper strategy robustness and reproducibility across markets/time windows.
+2. BUY1/BUY2 architecture and thresholds, especially whether BUY2 is structurally too late relative to the BUY1 stop and how often BUY2 arms/validates before SL.
+3. RSI exit/TP behavior and MFE before RSI50/TP1.
+4. Hour/day/regime patterns only if they recur independently; do not create filters from isolated screenshots.
+
+Momentum is primarily a control/reference engine for now. It has already shown strong usefulness on Forex and relative usefulness on crypto; it should not be the main optimization target during this collection phase. Still record Momentum metrics because they are useful as a comparator and for detecting code regressions or regime dependence.
+
 ## Period handling
 
 The MT5 **Backtest** summary screenshot does not display the exact `From` / `To` dates. The monthly histogram can identify active months, but exact boundaries are not guaranteed. Therefore:
@@ -88,6 +100,8 @@ Interpretation to test, not yet a final decision: on this EURUSD window RSI-only
 5. Record hour/weekday/month observations only as `tentative` until they recur in independent windows.
 6. Never create an hour/day filter from one profitable screenshot; require repeated out-of-sample evidence.
 7. Keep market-specific results separate before looking for cross-market patterns.
+8. During the current collection phase, do not alter BUY1/BUY2 thresholds or RSI rules between windows; accumulate evidence first.
+9. Use Momentum as a comparator/control and regression check rather than as the main optimization target unless new data overturns that assumption.
 
 ## Live technical observations relevant to backtest interpretation
 
