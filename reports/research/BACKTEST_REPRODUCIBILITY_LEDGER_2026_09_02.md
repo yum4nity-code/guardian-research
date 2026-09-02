@@ -34,7 +34,7 @@ All subsequent result screenshots are to be attributed to this exact 2026-06-01 
 ### BTCUSD — Jul/Aug 2026 inferred from month histogram
 
 | Version / mode | Net | PF | Equity DD | Trades | Win rate | Avg win | Avg loss | Notes |
-|---|---:|---:|---:|---:|---:|---:|---|
+|---|---:|---:|---:|---:|---:|---:|---:|---|
 | v11.16.11 combo baseline | +17,499.93 | 1.35 | 3.76% | 628 | 61.15% | +174.78 | -203.35 | 606 long / 22 short |
 | v11.16.11 RSI-only | +9,451.57 | 1.19 | 4.20% | 621 | 61.51% | +153.64 | -206.01 | all long |
 | v11.16.11 Momentum-only, PostShockBars=2 | +7,353.28 | 1.68 | 1.80% | 115 | 53.04% | +296.96 | -199.28 | 77 long / 38 short |
@@ -47,7 +47,7 @@ Tentative visual patterns from the latest BTC combo screenshot (not yet validate
 ### ETHUSD — Jul/Aug 2026 inferred from month histogram
 
 | Version / mode | Net | PF | Equity DD | Trades | Win rate | Avg win | Avg loss | Notes |
-|---|---:|---:|---:|---:|---:|---:|---|
+|---|---:|---:|---:|---:|---:|---:|---:|---|
 | older combo baseline | -5,848.76 | 0.87 | 8.31% | 614 | 63.36% | +100.70 | -200.10 | RSI-dominated; 612 long / 2 short |
 | v11.16.12 combo, consecutive-loss cooldown=0 | -5,827.80 | 0.87 | 8.29% | 615 | 63.09% | +100.77 | -197.92 | 613 long / 2 short; near-reproduction of old combo |
 
@@ -55,10 +55,24 @@ Initial reproducibility note: ETH combo is also almost unchanged after v11.16.12
 
 Tentative visual patterns from latest ETH screenshot (not yet validated): both July and August are negative; Wednesday appears stronger than several other weekdays; a large positive hour bucket appears around 20:00. Track only as hypotheses.
 
+### ETHUSD — exact 2026-06-01 → 2026-07-31 anchored batch
+
+Mode is **not visible on the Backtest summary screenshot**, so do not label this RSI-only/Momentum-only/combo without separate Inputs evidence. Presence of 22 shorts proves Momentum activity was enabled somewhere in the run; RSI participation cannot be inferred from the summary alone.
+
+| Net | Gross profit | Gross loss | PF | Equity DD | Trades | Win rate | Avg win | Avg loss | Long / short |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| -8,448.60 | +5,979.45 | -14,428.05 | 0.41 | 8.45% | 103 | 40.78% | +142.37 | -236.53 | 81 long / 22 short |
+
+Additional exact metrics: expected payoff -82.03; recovery factor -1.00; largest win +648.60; largest loss -394.74; short win rate 54.55%; long win rate 37.04%; maximum consecutive wins 9 (+1,470.55); maximum consecutive losses 11 (-2,718.22).
+
+Reproducibility interpretation: this June-July ETH window is dramatically worse than the prior Jul/Aug ETH window (PF 0.41 vs 0.87, win rate 40.78% vs 63.09%, net -8.45k vs -5.83k). This is evidence of substantial time-window sensitivity on ETH. It is not yet enough to identify which engine causes it because the engine mode is not visible in this screenshot.
+
+Tentative visual patterns from this ETH June-July screenshot (hypotheses only): Friday appears roughly break-even/slightly positive while Monday, Tuesday and Saturday are strongly loss-dominated; Wednesday is much less bad than Monday/Tuesday/Saturday. Around 02:00 appears relatively favorable while several buckets around 05:00, 11:00 and 15:00 look strongly loss-heavy. Do not create filters from these observations unless they recur in other independent windows/markets.
+
 ### EURUSD — Jul/Aug 2026 inferred from month histogram
 
 | Version / mode | Net | PF | Equity DD | Trades | Win rate | Avg win | Avg loss | Notes |
-|---|---:|---:|---:|---:|---:|---:|---|
+|---|---:|---:|---:|---:|---:|---:|---:|---|
 | v11.16.11 RSI-only | -4,705.33 | 0.74 | 4.89% | 260 | 58.85% | +85.83 | -166.70 | 260 long / 0 short |
 | v11.16.11 Momentum-only | +363.97 | 1.14 | 1.75% | 24 | 54.17% | +230.41 | -239.22 | 13 long / 11 short |
 | current combo screenshot | -3,780.20 | 0.80 | 4.58% | 262 | 58.78% | +95.29 | -170.88 | 254 long / 8 short; strongly RSI-dominated |
