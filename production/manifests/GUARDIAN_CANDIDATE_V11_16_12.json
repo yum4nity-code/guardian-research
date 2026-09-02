@@ -1,0 +1,19 @@
+{
+  "updated_utc": "2026-09-02T13:16:00Z",
+  "status": "CANDIDATE_PENDING_USER_COMPILE",
+  "guardian_version": "11.16.12",
+  "variant": "RSI_FILL_RECONCILE",
+  "base_version": "11.16.11",
+  "expected_source_path": "production/guardian/Guardian_D017_PropFirmAuto_v11_16_12_RSI_FILL_RECONCILE.mq5",
+  "source_sha256": "9307f5daf09c243b4997fb59f82a71e5baa85992a5f348fd3bf9e5f841b8122b",
+  "reason": "Fix RSI cycle orphaning when Buy() succeeds before ResultDeal/position visibility; reconcile true deal fill and recover missed RSI50/RSI70 latches.",
+  "strategy_changes": false,
+  "momentum_changes": false,
+  "rsi_signal_changes": false,
+  "requires": [
+    "MetaEditor compile 0 errors",
+    "live/test confirmation of RSI_FILL_RECONCILED",
+    "confirmation that recovered open RSI cycle executes missed TP1 when historical closed M1 reached RSI50"
+  ],
+  "notes": "production/guardian/GUARDIAN_V11_16_12_RSI_FILL_RECONCILE_NOTES.md"
+}
