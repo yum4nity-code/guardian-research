@@ -1,0 +1,25 @@
+{
+  "updated_utc": "2026-09-02T12:30:00Z",
+  "status": "LIVE_BASELINE_PENDING_SOURCE_MIRROR",
+  "guardian_version": "11.16.11",
+  "variant": "STRATEGY_SWITCHES",
+  "expected_source_path": "production/guardian/Guardian_D017_PropFirmAuto_v11_16_11_STRATEGY_SWITCHES.mq5",
+  "source_sha256": "d30ff21378331f972bea947a4c6c826b6f4a2547e58878947551199b9d01c495",
+  "source_size_bytes": 272765,
+  "source_lines": 5729,
+  "live_user_compilation": "USER_DEPLOYED",
+  "strategy_switches": {
+    "InpEnableMomentum": true,
+    "InpEnableRSISniper": true
+  },
+  "telegram": "REMOVED",
+  "max_volume_underrisk_min_usd": 50.0,
+  "docs": [
+    "docs/GUARDIAN_V11_16_5_TO_11_16_11_CHANGELOG.md",
+    "docs/RSI_SNIPER_IMPLEMENTED_ADDENDUM_2026_09_02.md",
+    "docs/RESEARCH_STATUS.md",
+    "docs/STRATEGY_DECISIONS.md"
+  ],
+  "source_mirror_handoff": "handoff/chatgpt_to_codex/2026/09/02/GUARDIAN_V11_16_11_SOURCE_MIRROR.md",
+  "warning": "Do not treat any older v11.16.x source as current production. Mirror the exact live v11.16.11 source only after SHA256 verification."
+}
