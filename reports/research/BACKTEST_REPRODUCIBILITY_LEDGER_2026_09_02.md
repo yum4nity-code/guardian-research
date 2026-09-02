@@ -37,7 +37,9 @@ For the next cross-market reproducibility series, use this common window until t
 - Leverage: **1:100**
 - Optimization: **Disabled**
 - Intended symbols in this batch include at least: **ETHUSD, BTCUSD, SOLUSD, EURUSD, USDCAD, GBPUSD**, plus other symbols the user may send under unchanged Settings.
-- Current testing convention: `InpConsecutiveLossCooldown = 0` unless a later Settings/Inputs screenshot shows otherwise.
+- Requested testing convention: `InpConsecutiveLossCooldown = 0` unless a later Settings/Inputs screenshot shows otherwise.
+
+Important contamination note discovered 2026-09-02: v11.16.12 does not fully honor `InpConsecutiveLossCooldown=0` for an already-persisted crypto cooldown. Its open guards still read `CRYPTO_CD` unconditionally, and tester initialization clears `COOLDOWN` but not `CRYPTO_CD`. Therefore any v11.16.12 run whose Journal contains `RSI_ORDER_BLOCKED ... CRYPTO_COOLDOWN` is **not a clean zero-cooldown run**, even if the input was 0. v11.16.13 candidate explicitly bypasses/clears both cooldown states when the setting is OFF.
 
 All subsequent result screenshots are to be attributed to this exact 2026-06-01 → 2026-07-31 window if the user has not indicated a settings change.
 
@@ -52,9 +54,23 @@ All subsequent result screenshots are to be attributed to this exact 2026-06-01 
 | v11.16.11 Momentum-only, PostShockBars=2 | +7,353.28 | 1.68 | 1.80% | 115 | 53.04% | +296.96 | -199.28 | 77 long / 38 short |
 | v11.16.12 combo, consecutive-loss cooldown=0 | +17,448.01 | 1.35 | 3.77% | 628 | 60.83% | +175.56 | -201.70 | 606 long / 22 short; near-reproduction of combo baseline |
 
-Initial reproducibility note: v11.16.12 + zero consecutive-loss cooldown reproduces v11.16.11 BTC combo closely (same 628 trades; net difference -51.92; PF essentially identical). This suggests the fill-reconcile patch and zero cooldown do not materially alter this historical BTC combo window.
+Initial reproducibility note: v11.16.12 + zero consecutive-loss cooldown reproduces v11.16.11 BTC combo closely (same 628 trades; net difference -51.92; PF essentially identical). This suggests the fill-reconcile patch and zero cooldown do not materially alter this historical BTC combo window. Caveat added later: v11.16.12 can retain a stale crypto cooldown global variable, so exact zero-cooldown purity depends on Journal evidence.
 
 Tentative visual patterns from the latest BTC combo screenshot (not yet validated): August appears materially stronger than July; some hour buckets differ strongly, with an especially strong profit bar around 05:00. Track recurrence before using as a filter.
+
+### BTCUSD — exact 2026-06-01 → 2026-07-31 — RSI-only confirmed by Journal
+
+The user confirmed the Journal contains only RSI Sniper entry activity; no Momentum entries are present. The run is therefore treated as **RSI-only**. However, Journal lines show `RSI_ORDER_BLOCKED ... CRYPTO_COOLDOWN`, so this particular v11.16.12 run is **contaminated by the stale crypto-cooldown bug** and must not be used as the final clean zero-cooldown baseline.
+
+| Net | Gross profit | Gross loss | PF | Equity DD | Trades | Win rate | Avg win | Avg loss | Long / short |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| +7,863.76 | +55,236.88 | -47,373.12 | 1.17 | 4.17% | 584 | 59.59% | +158.73 | -200.73 | 584 long / 0 short |
+
+Additional exact metrics: history quality 100%; bars 83,507; ticks 19,478,909; expected payoff +13.47; recovery factor 1.85; Sharpe 11.89; balance DD max 3,850.06 (3.79%); equity DD max 4,247.89 (4.17%); largest win +1,064.00; largest loss -257.20; maximum consecutive wins 10 (+738.80); maximum consecutive losses 13 (-2,407.23); total deals 995.
+
+Journal contamination examples on 2026-07-30: valid RSI recrosses at 21:19 and 21:39 were both blocked by `CRYPTO_COOLDOWN`, proving skipped RSI opportunities despite the requested zero-cooldown convention.
+
+Tentative comparison only: this contaminated June-July BTC RSI-only run remains close to the older Jul/Aug RSI-only result (+9,451.57, PF 1.19, DD 4.20%, 621 trades), but it should be rerun on v11.16.13 or an otherwise verified clean cooldown state before using the comparison for reproducibility conclusions.
 
 ### ETHUSD — Jul/Aug 2026 inferred from month histogram
 
@@ -63,7 +79,7 @@ Tentative visual patterns from the latest BTC combo screenshot (not yet validate
 | older combo baseline | -5,848.76 | 0.87 | 8.31% | 614 | 63.36% | +100.70 | -200.10 | RSI-dominated; 612 long / 2 short |
 | v11.16.12 combo, consecutive-loss cooldown=0 | -5,827.80 | 0.87 | 8.29% | 615 | 63.09% | +100.77 | -197.92 | 613 long / 2 short; near-reproduction of old combo |
 
-Initial reproducibility note: ETH combo is also almost unchanged after v11.16.12 + zero cooldown, strengthening the conclusion that the live asynchronous fill bug was not materially reshaping Strategy Tester history in this window.
+Initial reproducibility note: ETH combo is also almost unchanged after v11.16.12 + zero cooldown, strengthening the conclusion that the live asynchronous fill bug was not materially reshaping Strategy Tester history in this window. Caveat: v11.16.12 stale crypto cooldown contamination must be checked in the Journal before treating any crypto run as a clean zero-cooldown baseline.
 
 Tentative visual patterns from latest ETH screenshot (not yet validated): both July and August are negative; Wednesday appears stronger than several other weekdays; a large positive hour bucket appears around 20:00. Track only as hypotheses.
 
@@ -106,5 +122,5 @@ Interpretation to test, not yet a final decision: on this EURUSD window RSI-only
 ## Live technical observations relevant to backtest interpretation
 
 - v11.16.12 `RSI_FILL_RECONCILE` successfully reconciled an asynchronous USDCAD live fill: fallback 1.38900 -> true fill 1.38902, cycle retained, RSI management ACTIVE.
-- Consecutive-loss cooldown has been set to `0` for current testing. Historical BTC/ETH combo reruns so far are nearly unchanged versus the prior baseline.
+- v11.16.12 has a stale crypto cooldown persistence bug: `InpConsecutiveLossCooldown=0` stops creating new streak cooldowns but the open guards can still honor an old `CRYPTO_CD`; tester init also fails to clear that variable. v11.16.13 candidate fixes both paths.
 - BUY2-vs-SL remains an active structural research question: live USDCAD showed BUY2 armed, then SL before BUY2 execution.
