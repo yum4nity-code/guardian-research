@@ -53,3 +53,23 @@ Chaque entree doit inclure : date, Strategy ID, Campaign ID, verdict, preuves pr
 - Limites: prior economique faible et risque eleve de selection adverse/couts; seulement deux actifs disponibles; aucun resultat n'a ete ouvert.
 - Source: `handoff/chatgpt_to_codex/2026/08/31/D021_NEW_STRATEGY_HYPOTHESES_MICRO_REV.md`, commit recu `ead110e145a65a540e4f4da0c3370f9ea73d3148`; protocole `research/campaigns/D021_MICRO_REV_M1_PREREGISTRATION.md`.
 - Raison: une event study stricte et peu couteuse peut falsifier le mecanisme avant tout EA ou backtest long. Les seuils, endpoints, couts stresses et portes sont geles; tout echec rejette V0 sans retuning.
+
+## 2026-09-02 — Guardian v11.16.11 live baseline sync
+
+- Strategy ID: `D017-GUARDIAN-V11-16-11`
+- Campaign ID: `GUARDIAN-V11-16-5-TO-11-16-11-LIVE-INTEGRATION`
+- Verdict: `CURRENT LIVE BASELINE / TECHNICALLY STABILIZED / STRATEGIES STILL UNDER RESEARCH`
+- Preuves: BTC combo two-month control reproduit exactement apres les patches techniques: +17499.93 USD, PF 1.35, equity DD 3.76%, 628 trades. RSI-only meme fenetre: +9451.57 USD, PF 1.19, equity DD 4.20%, 621 trades. Live: under-risk max-volume valide (LNK ~32 USD bloque <50; SOL ~192 USD autorise), notifications lifecycle couleurs validees, BUY1 block reason rendu explicite.
+- Limites: RSI n'est pas valide cross-market; BUY2 vs structural SL reste une question ouverte; Momentum-only isolation et POST_SHOCK A/B encore en cours; le vrai fill peut encore utiliser un fallback Ask quand deal/position ne sont pas immediatement lisibles.
+- Source: `docs/GUARDIAN_V11_16_5_TO_11_16_11_CHANGELOG.md`; `docs/RSI_SNIPER_IMPLEMENTED_ADDENDUM_2026_09_02.md`; baseline locale SHA256 `d30ff21378331f972bea947a4c6c826b6f4a2547e58878947551199b9d01c495`.
+- Raison: geler clairement l'etat reel avant de poursuivre les tests d'isolation; ne pas laisser Codex repartir d'une spec RSI obsolete ou d'une baseline v11.16.4.
+
+## 2026-09-02 — Isolation engines / anti-curve-fitting plan
+
+- Strategy ID: `D017-MOMENTUM` + `RSI_SNIPER`
+- Campaign ID: `BTC-ENGINE-ISOLATION-2026-09-02`
+- Verdict: `PREREGISTERED SCREENING / RUNNING`
+- Preuves: switches strategy introduits en v11.16.11 pour produire RSI-only, Momentum-only et combo sans modifier le code. Baseline combo et RSI-only deja obtenus sur meme environnement.
+- Limites: les garde-fous Guardian partages peuvent rendre les resultats non additifs; `combo - RSI` ne mesure donc pas directement la contribution Momentum.
+- Source: `docs/GUARDIAN_V11_16_5_TO_11_16_11_CHANGELOG.md`.
+- Raison: tester seulement quelques variables structurellement justifiees avec valeurs larges. Momentum: POST_SHOCK 2 bars baseline puis 0; 1/4 seulement si effet materiel. RSI: trailing activation, oversold depth, puis BUY2/SL apres mesure. Pas de grille exhaustive ni de recherche de valeur magique.
