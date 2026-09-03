@@ -1,50 +1,89 @@
 # Hôtel / zone
 
-## Recherche actuelle — critères mis à jour
-- Destination : **Fira, Santorin**
+## Recherche actuelle — critères verrouillés
+- Destination : **Fira / Firostefani / proche Fira, Santorin**
 - 3 chambres séparées
 - 3 adultes
 - 3 nuits : **16 → 19 octobre 2026**
-- **Petit-déjeuner compris**
+- **Petit-déjeuner compris** dans la recherche Booking ; recontrôler qu'il est bien inclus dans le tarif final sélectionné
 - **Piscine**
-- **Hôtel** (plutôt qu'un hébergement sans services)
+- **Hôtel / appart-hôtel avec services**
 - **Ne voir que les établissements disponibles**
 - Comparer le **prix total du séjour**, pas le prix à la nuit
-- Priorité pratique : Fira / proche Fira afin de limiter taxis et dépendance à une voiture
+- Priorité pratique : limiter taxis et dépendance à une voiture
 
-### Lien Booking — recherche actuelle
-Le lien ci-dessous reprend les filtres du nouveau lien de Gwen et fixe explicitement les dates, 3 adultes et 3 chambres afin de ne pas dépendre de la session Booking :
+## Décision : Olive Tree Suites écarté
+**Olive Tree Suites sort de la sélection. Ne plus le proposer comme candidat hôtel** sauf demande explicite de Gwen. Les nouveaux critères piscine + petit-déjeuner priment.
 
+## Lien Booking — recherche actuelle
 https://www.booking.com/searchresults.fr.html?aid=304142&dest_id=-829275&dest_type=city&checkin=2026-10-16&checkout=2026-10-19&group_adults=3&group_children=0&no_rooms=3&nflt=ht_id%3D204%3Bmealplan%3D1%3Bhotelfacility%3D433%3Bsth%3D25%3Bhotelfacility%3D2%3Boos%3D1&sb_price_type=total&map=1
 
-Le paramètre `nflt` est conservé exactement depuis la recherche Booking fournie afin de préserver les filtres appliqués. Les critères visibles sur la capture sont notamment petit-déjeuner compris, piscine, hôtel et établissements disponibles.
+## Shortlist actuelle
+### Aelia Luxury Suites — Karterados
+- Prix repéré sur la capture Booking : **334 € total séjour**
+- Booking : ~9,0
+- Piscine, petit-déjeuner, parking
+- Environ 2 km de Fira
+- Très intéressant si priorité budget
+
+### Nomikos Villas — Firostefani
+- Prix repéré sur la capture Booking : **570 € total séjour**
+- Booking : ~8,9 ; emplacement ~9,9
+- Piscine, petit-déjeuner, vue caldeira
+- Option la plus typiquement “Santorin” de la shortlist
+
+### Gianna Suites — Fira
+- Booking : ~9,3 ; emplacement ~9,0
+- Piscine, petit-déjeuner continental
+- Environ 500 m / 10 min à pied de la place principale de Fira
+- Bon compromis central + calme
+
+### Kalisti Hotel & Suites — Fira
+- Booking : ~8,8 ; emplacement ~9,5
+- Deux piscines, petit-déjeuner
+- Plein centre de Fira ; bus/taxis à environ 200 m
+- Candidat très fort pour la praticité
+
+### Orama Hotel & Spa — Fira
+- Booking : ~9,3 ; emplacement ~9,6
+- Trois piscines, spa, très bon petit-déjeuner
+- Proche du centre
+- Candidat confort / qualité
+
+### Santorini Palace — Fira / Firostefani
+- Booking : ~9,4 ; emplacement ~9,5
+- Piscine, très bon petit-déjeuner
+- Très central, caldeira et restaurants accessibles à pied
+- À retenir si tarif correct pour 3 chambres
+
+### Erato Apartments — Firostefani
+- Booking : ~9,1
+- Piscine, petit-déjeuner continental
+- Environ 800 m à 1 km de Fira selon la référence utilisée
+- Option simple / bon rapport qualité-prix
+
+### El Greco Resort & Spa — sud de Fira
+- Booking : ~9,2
+- Six piscines, spa, très bon petit-déjeuner
+- À quelques minutes du centre de Fira
+- Très confortable ; un peu moins central que Kalisti
 
 ## Lecture budget
-Les prix affichés sur la carte Booking sont à lire comme **prix du séjour correspondant à la recherche**, et non comme prix journalier, lorsque Booking est en affichage total. Toujours contrôler le détail final avant paiement (taxes/frais et conditions d'annulation).
+Les prix visibles sur la carte Booking sont des **prix du séjour correspondant à la recherche** lorsque l'affichage est en prix total. Toujours contrôler le détail final avant paiement : 3 chambres séparées, petit-déjeuner inclus, taxes/frais, conditions d'annulation et éventuel Genius.
 
-Sur la capture du 3 septembre, des résultats apparaissent notamment autour de **334 €** et **570 €** pour 3 nuits / 3 adultes selon l'établissement et la configuration proposée. Ce sont des repères de recherche, pas encore des réservations.
+## Carte / points d'intérêt
+Toujours comparer les hôtels par rapport à :
+- **Santorini Airport (JTR)**
+- **Fira Bus Terminal**
+- **Idol Restaurant**
+- **Naoussa Restaurant**
+- **Esperisma**
 
-## Ancienne piste — Olive Tree Suites
-L'ancienne option Olive Tree Suites reste une référence de localisation à Fira, mais elle n'est plus le seul hôtel recherché.
+Les hôtels ne doivent jamais être placés approximativement sur une carte : utiliser une adresse, une fiche business ou des coordonnées recoupées.
 
-Ancien lien direct :
-https://www.booking.com/hotel/gr/olive-tree-suites.fr.html?checkin=2026-10-16&checkout=2026-10-19&group_adults=3&group_children=0&no_rooms=3&map=1&sb_price_type=total#map_opened
+## Arbitrage à présenter à Mag
+- **Le plus malin / pratique : Kalisti** si le prix reste raisonnable
+- **Le plus joli / Santorin : Nomikos**
+- **Le moins cher repéré : Aelia (334 €)**
 
-## Pourquoi Fira reste la zone de référence
-- Aéroport JTR proche
-- Centre, restaurants et commerces accessibles à pied
-- Gare routière pour Oia
-- Limite fortement le budget taxis
-- Permet de revenir facilement à l'hôtel pour se reposer
-
-## Prochaine sélection
-Pour chaque hôtel intéressant, comparer :
-1. **prix total réel pour les 3 chambres / 3 nuits** ;
-2. petit-déjeuner réellement inclus dans le tarif choisi ;
-3. piscine ouverte en octobre ;
-4. distance à pied du centre de Fira / gare routière ;
-5. escaliers et accessibilité ;
-6. conditions d'annulation ;
-7. distance depuis les trois restaurants anniversaire et depuis l'aéroport.
-
-Une fois 3 à 5 hôtels retenus, les placer sur une même carte avec : **JTR, Idol, Naoussa, Esperisma et la gare routière de Fira**, afin que Mag voie immédiatement les distances et l'intérêt de chaque emplacement.
+Le choix final reste à faire après comparaison des prix exacts pour les **3 chambres / 3 nuits**.
