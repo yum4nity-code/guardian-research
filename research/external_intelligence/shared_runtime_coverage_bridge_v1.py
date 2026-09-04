@@ -21,6 +21,9 @@ from collector_v1_healthfix import BybitCollectorHealthFixed
 from market_state_v1_coveragefix import MarketStateServiceCoverageFixed
 from mt5_common_bridge_v1 import default_common_files_dir, publish_once
 
+STATE_WRITE_RETRY_ATTEMPTS = 25
+STATE_WRITE_RETRY_DELAY_SECONDS = 0.01
+
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Guardian shared runtime coverage+bridge V1")
@@ -33,14 +36,63 @@ def parse_args() -> argparse.Namespace:
     return p.parse_args()
 
 
-async def run_bridge(source: Path, output: Path, stop_event: asyncio.Event, interval: float) -> None:
+async def run_state(
+    state: MarketStateServiceCoverageFixed,
+    stop_event: asyncio.Event,
+    io_lock: asyncio.Lock,
+) -> None:
+    """Publish coverage state without racing the bridge reader on Windows.
+
+    Python/Windows may reject os.replace() while another task has the target
+    snapshot open. The shared lock removes the in-process state-writer/bridge-
+    reader race; a short bounded retry also tolerates transient external access.
+    """
+    while not stop_event.is_set():
+        published = False
+        last_exc: PermissionError | None = None
+        retries_used = 0
+
+        for attempt in range(STATE_WRITE_RETRY_ATTEMPTS):
+            try:
+                async with io_lock:
+                    state.publish_once()
+                published = True
+                retries_used = attempt
+                break
+            except PermissionError as exc:
+                last_exc = exc
+                if attempt + 1 < STATE_WRITE_RETRY_ATTEMPTS:
+                    await asyncio.sleep(STATE_WRITE_RETRY_DELAY_SECONDS)
+
+        if not published and last_exc is not None:
+            print(f"[RUNTIME][STATE][REVIEW] persistent PermissionError after {STATE_WRITE_RETRY_ATTEMPTS} attempts: {last_exc}")
+        elif retries_used:
+            print(f"[RUNTIME][STATE][OK] replace_retries={retries_used}")
+
+        try:
+            await asyncio.wait_for(stop_event.wait(), timeout=state.interval_seconds)
+        except asyncio.TimeoutError:
+            pass
+
+
+async def run_bridge(
+    source: Path,
+    output: Path,
+    stop_event: asyncio.Event,
+    interval: float,
+    io_lock: asyncio.Lock,
+) -> None:
     last_generation: int | None = None
     while not stop_event.is_set():
         try:
-            result = publish_once(source, output)
+            async with io_lock:
+                result = publish_once(source, output)
             generation = int(result["generation_id"])
             if generation != last_generation:
-                print(f"[RUNTIME][BRIDGE][OK] generation={generation}")
+                suffix = ""
+                if result.get("replace_retries", 0):
+                    suffix = f" replace_retries={result['replace_retries']}"
+                print(f"[RUNTIME][BRIDGE][OK] generation={generation}{suffix}")
                 last_generation = generation
         except FileNotFoundError:
             pass
@@ -66,7 +118,8 @@ async def async_main(args: argparse.Namespace) -> int:
         snapshot_name="market_state_v1_coveragefix.json",
         interval_seconds=args.state_interval_seconds,
     )
-    bridge_stop = asyncio.Event()
+    runtime_stop = asyncio.Event()
+    io_lock = asyncio.Lock()
     source = data_dir / "market_state_v1_coveragefix.json"
     output = common_dir / "GuardianSharedIntelligence" / "market_state_v1.csv"
 
@@ -75,7 +128,7 @@ async def async_main(args: argparse.Namespace) -> int:
     def stop_all() -> None:
         collector.stop_event.set()
         state.stop_event.set()
-        bridge_stop.set()
+        runtime_stop.set()
 
     for sig in (signal.SIGINT, signal.SIGTERM):
         try:
@@ -88,11 +141,15 @@ async def async_main(args: argparse.Namespace) -> int:
     print(f"FILE_COMMON output={output}")
     print("ONE collector + ONE coverage-aware state engine + ONE bridge for all local MT5 terminals.")
     print("READ ONLY external intelligence. No order capability.")
+    print("Windows state/bridge publication is serialized to avoid transient file-sharing races.")
 
     tasks = [
         asyncio.create_task(collector.run(), name="collector"),
-        asyncio.create_task(state.run(), name="coverage_state"),
-        asyncio.create_task(run_bridge(source, output, bridge_stop, args.bridge_interval_seconds), name="bridge"),
+        asyncio.create_task(run_state(state, runtime_stop, io_lock), name="coverage_state"),
+        asyncio.create_task(
+            run_bridge(source, output, runtime_stop, args.bridge_interval_seconds, io_lock),
+            name="bridge",
+        ),
     ]
 
     try:
