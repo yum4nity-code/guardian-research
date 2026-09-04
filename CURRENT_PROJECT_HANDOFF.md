@@ -1,155 +1,98 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 13:38 Europe/Paris
-Status: ACTIVE / LIVE RESEARCH RUNNING / D025 V3 PORTABLE SERVER MATCH FIXED
+Last updated: 2026-09-04 13:55 Europe/Paris
+Status: ACTIVE / D025 LIVE OBSERVER RUNNING / FUNDEDNEXT BACKTEST V4 READY
 
-This file is the canonical fast-resume entry point for a fresh ChatGPT/Codex instance. It must stay current enough that the project can be resumed without relying on conversation history.
+This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
-## 1. Current live Guardian
+## 1. Live Guardian / Shared Intelligence
 
-- User-local name: **Guardian 17**.
-- Lineage: Guardian v11.17.x; current documented integration is the multi-venue Shared Intelligence observer branch (v11.17.06 candidate lineage).
-- Guardian is compiled and installed on FTMO Demo.
-- Shared Intelligence is strictly observational/read-only and has **NO TRADING EFFECT**.
-- Live MT5 evidence on 2026-09-04 showed:
-  - `[SHAREDINTEL][MV][OBSERVER] ready=YES`
-  - BTC Bybit/Binance = `OK/OK`, `both=YES`
-  - ETH Bybit/Binance = `OK/OK`, `both=YES`
-  - fresh generation ids advancing
-  - sub-second source ages in observed samples
-- Guardian production risk/compliance/RSI/Momentum must remain independent from external-intelligence availability.
+- Guardian 17 lineage = v11.17.x multi-venue Shared Intelligence observer.
+- Shared Intelligence is read-only and has NO trading effect.
+- Architecture: Bybit + Binance collectors -> venue-separated state -> FILE_COMMON bridge -> Guardian/research consumers.
+- Windows autostart task: `Guardian Shared Intelligence MultiVenue V1`.
+- Live-status mirror: branch `live-status`, file `LIVE_RESEARCH_STATUS.json`, ~15 min heartbeat plus significant-event refresh.
 
-## 2. Shared Intelligence runtime
+## 2. D025 LER observer
 
-Architecture:
+- Source: `research/ea/D025_LER_Observer_V0.mq5`.
+- MT5 version: `1.00`; research generation: V0.
+- No trading library / no order function.
+- BTCUSD + ETHUSD from one EA instance.
+- State machine: `IDLE -> LEVEL_WATCH -> SWEEP -> CASCADE -> EXHAUSTION -> RECLAIM -> RETEST/ACCEPTANCE -> VALID_SIGNAL`.
+- VALID_SIGNAL creates only a virtual trade; M1 then tracks MFE/MAE, +1R..+5R, virtual SL, horizons to 48h.
+- Locked rules: `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`; do not tune V0 thresholds post hoc.
 
-`Bybit collector + Binance collector -> venue-separated market state -> MT5 FILE_COMMON bridge -> Guardian/read-only research consumers`
+## 3. Exact FundedNext target
 
-The runtime is Windows-autostarted and supervised. Relevant files remain under `research/external_intelligence/`. The Windows task is `Guardian Shared Intelligence MultiVenue V1`. Collectors are read-only; no trading API rights are used.
+User-confirmed live MT5 target:
+- account: `14202634`
+- server: `FundedNext-Server 2`
+- mode: Hedge
+- company: FundedNext Ltd
 
-## 3. D025 — Liquidity Exhaustion Reclaim
+Resolved from the actual live window/process:
+- executable: `D:\MT5_FundedNext\terminal64.exe`
+- MT5 data path: `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\D943DED8A972BBD3A21ED90520AE6479`
 
-Research thesis and preregistration:
-- `research/campaigns/D025_LIQUIDITY_EXHAUSTION_RECLAIM_PREREGISTRATION.md`
+V1/V2/V3 history:
+- V1 chose another FundedNext installation; superseded.
+- V2 generic file/log discovery failed on Server 2; superseded for this target.
+- V3 correctly binds to the live window and exact data path, then builds a portable clone. It compiled the D025 harness with `0 errors, 0 warnings` and launched the isolated tester, but portable verification reported `account_seen=True, server_seen=False` because the portable logs do not expose the server label.
 
-Locked V0 mechanical rules:
-- `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`
-- thresholds were locked before D025 outcomes were inspected; do not tune them post hoc.
+## 4. Current FundedNext launcher: V4
 
-Current EA source:
-- `research/ea/D025_LER_Observer_V0.mq5`
-- MT5 `#property version`: **1.00**
-- research generation remains **V0**;
-- no trading library / order function;
-- monitors BTCUSD + ETHUSD from one EA;
-- state machine: `IDLE -> LEVEL_WATCH -> SWEEP -> CASCADE -> EXHAUSTION -> RECLAIM -> RETEST/ACCEPTANCE -> VALID_SIGNAL`;
-- `VALID_SIGNAL` creates only a virtual trade and tracks MFE/MAE and +1R..+5R / virtual SL for up to 48h.
+Use only:
+- `automation/run_d025_fundednext_backtest_v4.ps1`
+- `automation/RUN_D025_FUNDEDNEXT_BACKTEST_V4.cmd`
 
-D025 live forward outputs remain under `FILE_COMMON/GuardianResearch/D025/` and are mirrored compactly on branch `live-status`.
+V4 safety rule:
+- V3 first MUST bind the source to the exact running live window whose title contains BOTH account `14202634` and server `FundedNext-Server 2`.
+- The portable clone is then created from that exact verified data folder.
+- Portable verification requires the exact account `14202634`.
+- The server text is no longer required inside portable logs because FundedNext does not expose it there; server provenance comes from the exact live-window binding before cloning.
+- Live terminal / Guardian are not closed or commandeered.
+- `AllowLiveTrading=0`; D025 itself has no order functions.
 
-## 4. Live-status GitHub sync
+Default test:
+- BTCUSD + ETHUSD
+- host BTCUSD M1
+- `2025.01.01 -> 2026.06.28`
+- Model=4 real ticks
+- no optimization / no threshold search
 
-Compact live mirror remains installed and validated:
-- branch `live-status`;
-- single file `LIVE_RESEARCH_STATUS.json`;
-- ~15 minute heartbeat plus significant-event refresh;
-- current main branch is not flooded with live commits.
+Expected success line:
+`CONFIRMED TARGET: 14202634 / FundedNext-Server 2 (live-window provenance + portable account)`
 
-## 5. D025 automated FundedNext backtest — current state
+Then the script waits for `COMPLETE.txt`, analyzes results, and publishes compact outputs to branch `backtest-results` under `backtests/d025/<RUN_ID>/`. Large raw CSVs stay local with hashes in the manifest.
 
-Confirmed user target:
-- account **14202634**;
-- server **FundedNext-Server 2**;
-- mode **Hedge**;
-- company **FundedNext Ltd**.
+## 5. Scientific separation
 
-Current launcher:
-- `automation/run_d025_fundednext_backtest_v3.ps1`
-- `automation/RUN_D025_FUNDEDNEXT_BACKTEST_V3.cmd`
-- publisher/analyzer remain `publish_d025_backtest_results_v1.ps1` and `analyze_d025_backtest_v1.py`.
+D025 V0 signal transitions use MT5 Core only. Binance/Bybit data continues collecting independently but does not trigger V0. Later Crypto+ comparisons must join external data only with `available_at <= event_time`.
 
-Exact live target resolved successfully from the user's machine:
-- live title contained `14202634 - FundedNext-Server 2 - Hedge - FundedNext Ltd`;
-- executable `D:\MT5_FundedNext\terminal64.exe`;
-- MT5 data path `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\D943DED8A972BBD3A21ED90520AE6479`.
+Do not inject Shared Intelligence directly into live RSI or Momentum merely because the fields are available.
 
-The V3 repo-root temp-runner bug was fixed earlier by keeping the temporary patched V2 runner inside `automation/`.
-
-### Portable verification incident at 13:37
-
-Run `D025_FN2_CORE_20260904_133554` compiled successfully (`0 errors, 0 warnings`) and launched the isolated tester with:
-- account `14202634`;
-- expected server `FundedNext-Server 2`;
-- BTCUSD + ETHUSD;
-- `2025.01.01 -> 2026.06.28`;
-- real ticks;
-- live trading disabled.
-
-Portable verification then failed with:
-- `account_seen=True`
-- `server_seen=False`
-
-This indicates the portable clone recognized the correct account but the exact server string was not found verbatim in logs. FundedNext may persist equivalent server names with punctuation/spacing differences such as `FundedNext-Server2`.
-
-Fix committed on `main`:
-- V3 still requires **both account and server confirmation**;
-- server matching is now normalized by lowercasing and removing all non-alphanumeric characters;
-- verification checks both the portable terminal window title and the latest portable terminal logs;
-- examples like `FundedNext-Server 2` and `FundedNext-Server2` therefore compare equal;
-- no D025 signal rule, threshold, tester period, trading authority or risk logic changed.
-
-Next user action: `git pull` and rerun `automation/run_d025_fundednext_backtest_v3.ps1`. Trust the run only after `CONFIRMED TARGET: 14202634 / FundedNext-Server 2` appears and later the completion/analyze/publish sequence finishes.
-
-Portable behavior remains:
-- dedicated clone `D:\MT5_Backtests\Terminals\FundedNext_14202634_D025_BT`;
-- live FundedNext terminal and Guardian are untouched;
-- `AllowLiveTrading=0`;
-- output separated from forward-live D025 CSVs.
-
-Results publication target:
-- branch `backtest-results`;
-- path `backtests/d025/<RUN_ID>/`;
-- compact summary / manifest / event table only; large raw CSVs remain local with hashes recorded.
-
-## 6. Scientific separation
-
-D025 V0 currently uses **MT5 Core only** for signal-state transitions. Binance/Bybit continues collecting independently but does not trigger D025 V0. External observations may only be joined later with `available_at <= event_time`. Do not inject Shared Intelligence directly into live RSI or Momentum merely because the fields are available.
-
-## 7. Next safe actions
+## 6. Next action
 
 1. Keep the correct live FundedNext MT5 window open.
-2. `git pull`, then rerun `run_d025_fundednext_backtest_v3.ps1`.
-3. Trust the run only after `CONFIRMED TARGET: 14202634 / FundedNext-Server 2`.
-4. Completion requires later `COMPLETE.txt` / analysis / GitHub publish sequence; inspect branch `backtest-results`.
-5. Keep D025 Observer 1.00 running live in parallel.
-6. Compare backtest state-machine behavior with forward behavior before any strategy conclusion.
-7. After sufficient Core evidence, join timestamp-valid Binance/Bybit features for Crypto+ comparisons.
-8. Only after robustness/OOS/cost/red-team gates may anything become a Guardian trading candidate.
+2. `git pull`.
+3. Run `automation/run_d025_fundednext_backtest_v4.ps1`.
+4. Trust the run after the V4 confirmation line above.
+5. Completion requires `COMPLETE.txt` -> analyzer -> GitHub publish.
+6. Keep D025 Observer 1.00 running live in parallel.
 
-## 8. MT5 versioning rule
+## 7. Resume order for a fresh agent
 
-Use **1.00, 1.01, 1.02 ...** for this D025 EA lineage. Research labels such as V0/V1 may remain in filenames/descriptions but are not the MT5 `#property version`.
-
-## 9. User-operation style
-
-Provide complete copy/paste PowerShell/CMD blocks for local operations and only the necessary verification result.
-
-## 10. Resume instructions for a fresh agent
-
-Read, in this order:
-1. `CURRENT_PROJECT_HANDOFF.md`
+1. this file
 2. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
 3. branch `backtest-results` -> newest D025 result if present
-4. `research/results/D025_FUNDEDNEXT_V3_TARGETING_FIX_2026_09_04.md`
-5. `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`
-6. `research/ea/D025_LER_Observer_V0.mq5`
-7. latest Shared Intelligence / Guardian result files
-8. `CURRENT_QUEUE.json`
-9. `docs/RESEARCH_STATUS.md`
-10. `docs/STRATEGY_DECISIONS.md`
+4. locked D025 V0 rules
+5. current D025 EA source
+6. latest relevant Shared Intelligence / Guardian result files
+7. `CURRENT_QUEUE.json`
+8. `docs/RESEARCH_STATUS.md`
+9. `docs/STRATEGY_DECISIONS.md`
 
-Then verify actual live/local state before launching or modifying anything. Real process/log state overrides a stale written status.
+## 8. Continuity rule
 
-## 11. Continuity rule
-
-After every material milestone, update this file in the same work session. No important current state should exist only in ChatGPT/Codex conversation context.
+After every material milestone, update this handoff in the same work session. No important current state should exist only in conversation context.
