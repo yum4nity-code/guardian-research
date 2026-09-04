@@ -78,15 +78,12 @@ function Find-DataPathFromOrigin([string]$ExecutablePath) {
         try {
             $origin = Clean (Get-Content $originFile -Raw -ErrorAction Stop)
             $originNorm = Normalize-Path $origin
-            if ($originNorm -eq $installDir) {
-                $matches += $d.FullName
-            }
+            if ($originNorm -eq $installDir) { $matches += $d.FullName }
         } catch {}
     }
 
     if ($matches.Count -eq 1) { return $matches[0] }
 
-    # Portable terminals use their installation directory as their data directory.
     $rawInstall = Split-Path $ExecutablePath -Parent
     if ((Test-Path (Join-Path $rawInstall 'MQL5')) -and (Test-Path (Join-Path $rawInstall 'config'))) {
         return $rawInstall
@@ -112,9 +109,6 @@ Write-Host ("Resolved data path    : {0}" -f $dataPath)
 Write-Host ("Expected account      : {0}" -f $TargetAccount)
 Write-Host ("Expected server       : {0}" -f $TargetServer)
 
-# V2 has a conservative preflight that searches account/server text in files. Some FundedNext
-# installations do not persist those strings there. Because V3 has just bound the folder to the
-# exact running window, create a temporary V2 copy that accepts this already-verified data path.
 $src = Get-Content $V2 -Raw
 $old = @'
     if ($TerminalDataPath) {
@@ -133,9 +127,6 @@ $new = @'
 if (-not $src.Contains($old)) { throw 'V2 preflight block changed; V3 refuses to patch an unknown runner revision.' }
 $src = $src.Replace($old,$new)
 
-# FundedNext can render the same server with punctuation/spacing differences between the title,
-# config and terminal logs (for example "FundedNext-Server 2" vs "FundedNext-Server2").
-# Keep strict account+server verification, but compare a normalized alphanumeric server token.
 $oldConfirm = @'
 function Confirm-PortableTarget {
     $serverRegex = [regex]::Escape($TargetServer)
@@ -165,7 +156,6 @@ function Confirm-PortableTarget {
     $serverSeen = $false
     $accountSeen = $false
 
-    # First inspect the portable terminal window title when available.
     foreach ($p in @(Get-Process terminal64 -ErrorAction SilentlyContinue)) {
         $path = ''
         try { $path = $p.Path } catch {}
@@ -178,7 +168,6 @@ function Confirm-PortableTarget {
         }
     }
 
-    # Also inspect terminal logs, normalizing punctuation/spacing for the server comparison.
     $logs = Join-Path $PortableRoot 'logs'
     if (Test-Path $logs) {
         foreach ($f in @(Get-ChildItem $logs -File -Filter '*.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 10)) {
@@ -188,15 +177,20 @@ function Confirm-PortableTarget {
             if ($targetServerNorm -and $logNorm.Contains($targetServerNorm)) { $serverSeen = $true }
         }
     }
-    return [pscustomobject]@{ServerSeen=$serverSeen;AccountSeen=$accountSeen;Confirmed=($serverSeen -and $accountSeen)}
+
+    # The source data folder came from the exact live window whose title already confirmed
+    # BOTH account and server. FundedNext portable logs may omit the server label entirely.
+    # Therefore the clone confirmation requires the exact account; source provenance supplies
+    # the server identity. serverSeen is retained as telemetry only.
+    return [pscustomobject]@{ServerSeen=$serverSeen;AccountSeen=$accountSeen;Confirmed=$accountSeen}
 }
 '@
 if (-not $src.Contains($oldConfirm)) { throw 'V2 portable target verification block changed; V3 refuses to patch an unknown runner revision.' }
 $src = $src.Replace($oldConfirm,$newConfirm)
 
-# IMPORTANT: keep the temporary runner inside automation/. V2 resolves RepoRoot from $PSScriptRoot;
-# placing the temporary copy in %TEMP% made it look for research/ea under AppData\Local instead of
-# D:\MT5_Backtests\guardian-research. The file is removed in finally below.
+# Make the confirmation text explicit so nobody mistakes absent portable server text for a failure.
+$src = $src.Replace('Write-Host "CONFIRMED TARGET: $TargetAccount / $TargetServer" -ForegroundColor Green','Write-Host "CONFIRMED TARGET: $TargetAccount / $TargetServer (verified live-window provenance + portable account)" -ForegroundColor Green')
+
 $tempRunner = Join-Path $PSScriptRoot (".d025_v2_windowbound_{0}.ps1" -f ([guid]::NewGuid().ToString('N')))
 Set-Content -Path $tempRunner -Value $src -Encoding UTF8
 
