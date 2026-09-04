@@ -1,0 +1,151 @@
+﻿{
+    "schema":  1,
+    "generated_at_utc":  "2026-09-05T20:17:10.9947630Z",
+    "project":  "Guardian Research / D025 LER",
+    "source":  "LOCAL_MT5_FORWARD_OBSERVER",
+    "d025":  {
+                 "mt5_version":  "1.00",
+                 "research_generation":  "V0",
+                 "signals_are_virtual_only":  true,
+                 "event_count":  119,
+                 "virtual_trade_count_total":  0,
+                 "virtual_trades_open":  [
+
+                                         ],
+                 "last_event":  {
+                                    "utc":  "2026.09.05 05:28:52",
+                                    "event_id":  "",
+                                    "symbol":  "ETHUSD",
+                                    "level":  "H1_SWING_HIGH",
+                                    "side":  "SHORT",
+                                    "transition":  "LEVEL_WATCH"
+                                },
+                 "recent_events":  [
+                                       {
+                                           "utc":  "2026.09.02 19:00:00",
+                                           "event_id":  "D025_ETHUSD_PDL_1788372900_24",
+                                           "symbol":  "ETHUSD",
+                                           "level":  "PDL",
+                                           "side":  "LONG",
+                                           "transition":  "FAILED_NO_CASCADE_2BARS"
+                                       },
+                                       {
+                                           "utc":  "2026.09.02 19:00:00",
+                                           "event_id":  "D025_ETHUSD_H4_SWING_LOW_1788372900_25",
+                                           "symbol":  "ETHUSD",
+                                           "level":  "H4_SWING_LOW",
+                                           "side":  "LONG",
+                                           "transition":  "FAILED_NO_CASCADE_2BARS"
+                                       },
+                                       {
+                                           "utc":  "2026.09.02 22:00:00",
+                                           "event_id":  "",
+                                           "symbol":  "BTCUSD",
+                                           "level":  "H1_SWING_HIGH",
+                                           "side":  "SHORT",
+                                           "transition":  "LEVEL_WATCH"
+                                       },
+                                       {
+                                           "utc":  "2026.09.02 22:15:00",
+                                           "event_id":  "",
+                                           "symbol":  "ETHUSD",
+                                           "level":  "PWL",
+                                           "side":  "LONG",
+                                           "transition":  "LEVEL_WATCH"
+                                       },
+                                       {
+                                           "utc":  "2026.09.02 23:00:00",
+                                           "event_id":  "",
+                                           "symbol":  "ETHUSD",
+                                           "level":  "PDL",
+                                           "side":  "LONG",
+                                           "transition":  "LEVEL_WATCH"
+                                       },
+                                       {
+                                           "utc":  "2026.09.02 23:00:00",
+                                           "event_id":  "",
+                                           "symbol":  "ETHUSD",
+                                           "level":  "H4_SWING_LOW",
+                                           "side":  "LONG",
+                                           "transition":  "LEVEL_WATCH"
+                                       },
+                                       {
+                                           "utc":  "2026.09.04 18:59:59",
+                                           "event_id":  "",
+                                           "symbol":  "BTCUSD",
+                                           "level":  "H1_SWING_HIGH",
+                                           "side":  "SHORT",
+                                           "transition":  "LEVEL_WATCH"
+                                       },
+                                       {
+                                           "utc":  "2026.09.04 19:14:59",
+                                           "event_id":  "",
+                                           "symbol":  "ETHUSD",
+                                           "level":  "H1_SWING_HIGH",
+                                           "side":  "SHORT",
+                                           "transition":  "LEVEL_WATCH"
+                                       },
+                                       {
+                                           "utc":  "2026.09.05 05:11:16",
+                                           "event_id":  "",
+                                           "symbol":  "BTCUSD",
+                                           "level":  "H1_SWING_HIGH",
+                                           "side":  "SHORT",
+                                           "transition":  "LEVEL_WATCH"
+                                       },
+                                       {
+                                           "utc":  "2026.09.05 05:11:16",
+                                           "event_id":  "",
+                                           "symbol":  "ETHUSD",
+                                           "level":  "H1_SWING_HIGH",
+                                           "side":  "SHORT",
+                                           "transition":  "LEVEL_WATCH"
+                                       },
+                                       {
+                                           "utc":  "2026.09.05 05:28:52",
+                                           "event_id":  "",
+                                           "symbol":  "BTCUSD",
+                                           "level":  "H1_SWING_HIGH",
+                                           "side":  "SHORT",
+                                           "transition":  "LEVEL_WATCH"
+                                       },
+                                       {
+                                           "utc":  "2026.09.05 05:28:52",
+                                           "event_id":  "",
+                                           "symbol":  "ETHUSD",
+                                           "level":  "H1_SWING_HIGH",
+                                           "side":  "SHORT",
+                                           "transition":  "LEVEL_WATCH"
+                                       }
+                                   ],
+                 "recent_outcomes":  [
+
+                                     ]
+             },
+    "shared_intelligence":  {
+                                "scheduled_task":  {
+                                                       "state":  "Running",
+                                                       "last_run":  "2026-09-04T12:29:29.0000000+01:00",
+                                                       "last_result":  267009
+                                                   },
+                                "bridge":  [
+                                               {
+                                                   "symbol":  "BTCUSD",
+                                                   "generation_id":  "1788639431497",
+                                                   "bridge_schema_version":  "2",
+                                                   "bybit_status":  "OK",
+                                                   "binance_status":  "OK",
+                                                   "both_core_ok":  "1"
+                                               },
+                                               {
+                                                   "symbol":  "ETHUSD",
+                                                   "generation_id":  "1788639431497",
+                                                   "bridge_schema_version":  "2",
+                                                   "bybit_status":  "OK",
+                                                   "binance_status":  "OK",
+                                                   "both_core_ok":  "1"
+                                               }
+                                           ],
+                                "last_runtime_alert":  null
+                            }
+}
