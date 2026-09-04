@@ -79,9 +79,11 @@ function Score-Target([string]$DataPath) {
         if (-not (Test-Path $ld)) { continue }
         foreach ($f in @(Get-ChildItem $ld -File -Filter '*.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 30)) {
             $t = Tail $f.FullName 6000
-            if ($t -match $serverRegex) { $score += 300; $evidence += "server:$($f.Name)" }
-            if ($t -match $accountRegex) { $score += 300; $evidence += "account:$($f.Name)" }
-            if (($t -match $serverRegex) -and ($t -match $accountRegex)) { $score += 500 }
+            $serverHit = $t -match $serverRegex
+            $accountHit = $t -match $accountRegex
+            if ($serverHit) { $score += 300; $evidence += "server:$($f.Name)" }
+            if ($accountHit) { $score += 300; $evidence += "account:$($f.Name)" }
+            if ($serverHit -and $accountHit) { $score += 500 }
             if ($score -ge 1400) { break }
         }
     }
@@ -157,8 +159,9 @@ function Prepare-Portable([string]$DataPath,$Install) {
     if (Test-Path $sourceBases) {
         $serverDir = @(Get-ChildItem $sourceBases -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -like "*$TargetServer*" } | Select-Object -First 1)
         if ($serverDir.Count -gt 0) {
+            $serverSource = $serverDir[0].FullName
             $destServer = Join-Path (Join-Path $PortableRoot 'bases') $serverDir[0].Name
-            Robo $serverDir[0].FullName $destServer @('/XD',(Join-Path $serverDir[0].FullName 'history'),(Join-Path $serverDir[0].FullName 'ticks'))
+            Robo $serverSource $destServer @('/XD',(Join-Path $serverSource 'history'),(Join-Path $serverSource 'ticks'))
         }
     }
 
@@ -239,6 +242,22 @@ function Find-OutputDir {
     )
     foreach ($c in $cands) { if (Test-Path (Join-Path $c 'COMPLETE.txt')) { return $c } }
     return $null
+}
+
+function Confirm-PortableTarget {
+    $serverRegex = [regex]::Escape($TargetServer)
+    $accountRegex = [regex]::Escape($TargetAccount)
+    $serverSeen = $false
+    $accountSeen = $false
+    $logs = Join-Path $PortableRoot 'logs'
+    if (Test-Path $logs) {
+        foreach ($f in @(Get-ChildItem $logs -File -Filter '*.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 6)) {
+            $t = Tail $f.FullName 5000
+            if ($t -match $serverRegex) { $serverSeen = $true }
+            if ($t -match $accountRegex) { $accountSeen = $true }
+        }
+    }
+    return [pscustomobject]@{ServerSeen=$serverSeen;AccountSeen=$accountSeen;Confirmed=($serverSeen -and $accountSeen)}
 }
 
 if (-not (Test-Path $SourceEa)) { throw "Missing source EA: $SourceEa" }
@@ -325,23 +344,19 @@ Write-Host 'Model       : real ticks'
 Write-Host 'Live trading: DISABLED'
 $proc = Start-Process -FilePath $portableTerminal -ArgumentList "/portable /config:`"$ini`"" -PassThru
 
-Step '6/8 Verify correct portable target and wait for completion'
+Step '6/8 Verify exact portable target and wait for completion'
 $verifyDeadline=(Get-Date).AddMinutes(3)
-$confirmed=$false
-while ((Get-Date) -lt $verifyDeadline -and -not $confirmed) {
-    $logs = Join-Path $PortableRoot 'logs'
-    if (Test-Path $logs) {
-        foreach ($f in @(Get-ChildItem $logs -File -Filter '*.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 4)) {
-            $t=Tail $f.FullName 3000
-            if (($t -match [regex]::Escape($TargetServer)) -or ($t -match [regex]::Escape($TargetAccount))) { $confirmed=$true; break }
-        }
-    }
-    if (Find-OutputDir) { $confirmed=$true }
-    if (-not $confirmed) { Start-Sleep -Seconds 2 }
+$check=$null
+while ((Get-Date) -lt $verifyDeadline) {
+    $check=Confirm-PortableTarget
+    if ($check.Confirmed) { break }
+    Start-Sleep -Seconds 2
 }
-if (-not $confirmed) {
+if ($null -eq $check -or -not $check.Confirmed) {
     try { if (-not $proc.HasExited) { Stop-Process -Id $proc.Id -Force } } catch {}
-    throw "Portable clone did not confirm $TargetServer/account $TargetAccount within 3 minutes. Live terminal was untouched."
+    $s = if ($check) { $check.ServerSeen } else { $false }
+    $a = if ($check) { $check.AccountSeen } else { $false }
+    throw "Portable clone failed exact target confirmation. server_seen=$s account_seen=$a expected=$TargetAccount/$TargetServer. Live terminal was untouched."
 }
 Write-Host "CONFIRMED TARGET: $TargetAccount / $TargetServer" -ForegroundColor Green
 
@@ -360,32 +375,29 @@ while ($null -eq $outputDir) {
 }
 Write-Host (Get-Content (Join-Path $outputDir 'COMPLETE.txt') -Raw)
 
-Step '7/8 Copy and analyze results'
+Step '7/8 Copy, analyze and publish results'
 foreach ($name in @('events.csv','virtual_trades.csv','outcomes.csv','COMPLETE.txt')) {
     $src=Join-Path $outputDir $name
     if (Test-Path $src) { Copy-Item $src (Join-Path $RawLocal $name) -Force }
 }
 if (-not (Test-Path (Join-Path $RawLocal 'events.csv'))) { throw 'events.csv missing after completion.' }
 $terminalBuild=(Get-Item $portableTerminal).VersionInfo.FileVersion
-$pubArgs=@(
-    '-NoProfile','-ExecutionPolicy','Bypass','-File',$Publisher,
-    '-RunId',$RunId,
-    '-RawDir',$RawLocal,
-    '-PublishDir',$PublishLocal,
-    '-FromDate',$FromDate,
-    '-ToDate',$ToDate,
-    '-HostSymbol',$HostSymbol,
-    '-Symbol1',$Symbol1,
-    '-Symbol2',$Symbol2,
-    '-TerminalBuild',$terminalBuild,
-    '-TargetAccount',$TargetAccount,
-    '-TargetServer',$TargetServer,
-    '-GeneratedHarness',$mq5,
-    '-TesterConfig',$ini
-)
-if ($NoGitHubPush) { $pubArgs += '-NoGitHubPush' }
-$p=Start-Process -FilePath 'powershell.exe' -ArgumentList $pubArgs -Wait -PassThru -NoNewWindow
-if ($p.ExitCode -ne 0) { throw "Publisher failed with code $($p.ExitCode)." }
+& $Publisher `
+    -RunId $RunId `
+    -RawDir $RawLocal `
+    -PublishDir $PublishLocal `
+    -FromDate $FromDate `
+    -ToDate $ToDate `
+    -HostSymbol $HostSymbol `
+    -Symbol1 $Symbol1 `
+    -Symbol2 $Symbol2 `
+    -TerminalBuild $terminalBuild `
+    -TargetAccount $TargetAccount `
+    -TargetServer $TargetServer `
+    -GeneratedHarness $mq5 `
+    -TesterConfig $ini `
+    -NoGitHubPush:$NoGitHubPush
+if ($LASTEXITCODE -ne 0) { throw "Publisher failed with code $LASTEXITCODE." }
 
 Step '8/8 Complete'
 Write-Host 'D025 FUNDEDNEXT SERVER2 BACKTEST: COMPLETE' -ForegroundColor Green
