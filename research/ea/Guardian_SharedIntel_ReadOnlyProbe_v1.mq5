@@ -1,15 +1,20 @@
 #property strict
-#property version   "1.00"
+#property version   "1.01"
 #property description "Guardian Shared Intelligence read-only FILE_COMMON probe"
 
 input string InpSharedFile = "GuardianSharedIntelligence\\market_state_v1.csv";
 input int    InpPollMilliseconds = 250;
+input int    InpJournalEverySeconds = 30;
 
 #define FIELD_COUNT 33
 
-long   g_last_generation = -1;
-string g_terminal_id = "";
-string g_probe_file = "";
+long     g_last_generation = -1;
+string   g_terminal_id = "";
+string   g_probe_file = "";
+datetime g_last_journal_time = 0;
+datetime g_last_issue_time = 0;
+string   g_last_btc_status = "";
+string   g_last_eth_status = "";
 
 uint HashString32(const string value)
 {
@@ -21,6 +26,17 @@ uint HashString32(const string value)
       h *= 16777619;
    }
    return h;
+}
+
+bool ShouldPrintIssue()
+{
+   const datetime now = TimeLocal();
+   if(g_last_issue_time == 0 || (now - g_last_issue_time) >= 10)
+   {
+      g_last_issue_time = now;
+      return true;
+   }
+   return false;
 }
 
 bool ReadCsvRow(const int handle, string &row[])
@@ -47,7 +63,8 @@ bool ReadSharedState(long &generation,
                                ';');
    if(handle == INVALID_HANDLE)
    {
-      PrintFormat("[SHAREDINTEL][READ][WAIT] file=%s err=%d", InpSharedFile, GetLastError());
+      if(ShouldPrintIssue())
+         PrintFormat("[SHAREDINTEL][READ][WAIT] file=%s err=%d", InpSharedFile, GetLastError());
       return false;
    }
 
@@ -56,7 +73,8 @@ bool ReadSharedState(long &generation,
    FileClose(handle);
    if(!ok)
    {
-      Print("[SHAREDINTEL][READ][REVIEW] CSV incomplete");
+      if(ShouldPrintIssue())
+         Print("[SHAREDINTEL][READ][REVIEW] CSV incomplete");
       return false;
    }
 
@@ -64,7 +82,8 @@ bool ReadSharedState(long &generation,
    const long gen2 = (long)StringToInteger(row2[1]);
    if(gen1 <= 0 || gen1 != gen2)
    {
-      PrintFormat("[SHAREDINTEL][READ][REVIEW] incoherent generations %I64d / %I64d", gen1, gen2);
+      if(ShouldPrintIssue())
+         PrintFormat("[SHAREDINTEL][READ][REVIEW] incoherent generations %I64d / %I64d", gen1, gen2);
       return false;
    }
 
@@ -81,7 +100,8 @@ bool ReadSharedState(long &generation,
    }
    else
    {
-      PrintFormat("[SHAREDINTEL][READ][REVIEW] unexpected symbols %s / %s", row1[3], row2[3]);
+      if(ShouldPrintIssue())
+         PrintFormat("[SHAREDINTEL][READ][REVIEW] unexpected symbols %s / %s", row1[3], row2[3]);
       return false;
    }
 
@@ -103,7 +123,8 @@ void AppendProbeObservation(const long generation,
                           ';');
    if(h == INVALID_HANDLE)
    {
-      PrintFormat("[SHAREDINTEL][PROBE][REVIEW] cannot open probe file err=%d", GetLastError());
+      if(ShouldPrintIssue())
+         PrintFormat("[SHAREDINTEL][PROBE][REVIEW] cannot open probe file err=%d", GetLastError());
       return;
    }
 
@@ -160,11 +181,23 @@ void OnTimer()
    g_last_generation = generation;
    AppendProbeObservation(generation, btc_status, eth_status);
 
-   PrintFormat("[SHAREDINTEL][PROBE][OK] terminal_id=%s gen=%I64d BTC=%s spot=%.2f ETH=%s spot=%.2f",
-               g_terminal_id,
-               generation,
-               btc_status,
-               btc_spot,
-               eth_status,
-               eth_spot);
+   const datetime now = TimeLocal();
+   const bool status_changed = (btc_status != g_last_btc_status || eth_status != g_last_eth_status);
+   const bool periodic = (InpJournalEverySeconds > 0 &&
+                          (g_last_journal_time == 0 || (now - g_last_journal_time) >= InpJournalEverySeconds));
+
+   if(status_changed || periodic)
+   {
+      PrintFormat("[SHAREDINTEL][PROBE][OK] terminal_id=%s gen=%I64d BTC=%s spot=%.2f ETH=%s spot=%.2f",
+                  g_terminal_id,
+                  generation,
+                  btc_status,
+                  btc_spot,
+                  eth_status,
+                  eth_spot);
+      g_last_journal_time = now;
+   }
+
+   g_last_btc_status = btc_status;
+   g_last_eth_status = eth_status;
 }
