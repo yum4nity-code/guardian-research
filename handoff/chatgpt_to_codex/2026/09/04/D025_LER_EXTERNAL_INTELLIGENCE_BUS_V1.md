@@ -41,6 +41,7 @@ Construire `GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1` en branche/repertoire researc
    - source/provider;
    - timestamp source UTC;
    - timestamp reception UTC;
+   - `available_at` UTC, correspondant au moment ou l'information etait effectivement disponible pour le collecteur;
    - valeur;
    - unite;
    - age/staleness;
@@ -56,10 +57,11 @@ Construire `GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1` en branche/repertoire researc
 
 - 30+ minutes de collecte BTC+ETH sans duplication majeure;
 - timestamps UTC coherents;
+- source timestamp et availability timestamp distincts;
 - coupure/reconnexion testee;
 - staleness detectable;
 - fichier rejouable;
-- petit script de replay capable de livrer uniquement des observations dont `data_timestamp <= simulated_time`;
+- petit script de replay capable de livrer uniquement des observations dont `available_at <= simulated_time`; un timestamp source plus ancien ne suffit pas si la donnee n'etait pas encore arrivee au systeme;
 - schema/version documentes;
 - hash/commit du collecteur consignes;
 - limitations de chaque source explicites.
