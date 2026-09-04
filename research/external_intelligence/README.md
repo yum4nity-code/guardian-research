@@ -1,6 +1,6 @@
 # Guardian External Intelligence Bus — Research V1
 
-Status: research only. No live orders. No production dependency.
+Status: `IMPLEMENTED / OFFLINE TESTED / LIVE SMOKE PENDING`. No live orders. No production dependency.
 
 ## Goal
 
@@ -8,13 +8,25 @@ Provide Guardian research with timestamped, replayable external market observati
 
 V1 scope is intentionally small: BTC and ETH only.
 
-## Target observations
+## Current implementation
 
+Provider V1: Bybit public market data, no API key.
+
+Files:
+- `collector_v1.py` — public collector/recorder;
+- `replay_v1.py` — strict availability-gated replay;
+- `schema_v1.json` — canonical record schema;
+- `manifest_v1.json` — provider/source limitations;
+- `COLLECTOR_V1.md` — install/smoke instructions;
+- `tests/test_eib_v1.py` — offline normalization/replay tests.
+
+Target observations implemented:
 - spot last price;
 - perpetual last price;
 - open interest;
 - funding rate;
-- long/short liquidation events or normalized liquidation notional when a public source exposes them.
+- long/short liquidation events and explicit estimated liquidation notional;
+- health/staleness.
 
 ## Canonical record
 
@@ -28,17 +40,22 @@ This avoids a subtle lookahead bug where an exchange event has an old source tim
 
 ## V1 data flow
 
-`Public exchange/provider -> read-only collector -> normalized JSONL/Parquet -> health/staleness -> replay reader -> D025 research`
+`Bybit public -> read-only collector -> normalized daily JSONL -> health/staleness -> replay reader -> D025 research`
 
 Guardian production is not part of this chain yet.
 
 ## Provider policy
 
 - Prefer official public market-data endpoints/streams.
-- Adapter layer must isolate provider-specific field names and reconnect behavior.
+- Adapter/provider-specific logic must remain isolated from future strategy logic.
 - No API key with trading permission.
 - If a metric is not public/reliable from one source, mark the channel PARTIAL rather than fabricating/filling it.
 - Preserve source venue because spot/perpetual prices and liquidation semantics are venue-specific.
+- V1 is deliberately single-venue. Cross-venue aggregation comes only after V1 is proven.
+
+## Liquidation limitation
+
+Bybit `allLiquidation` reports size and bankruptcy price. V1 therefore records `liquidation_notional` as an estimate `size * bankruptcy_price` and labels the unit `USDT_est_bankruptcy_price`. It must never be represented as exchange-reported executed notional.
 
 ## Health policy
 
@@ -51,14 +68,21 @@ Each channel exposes one of:
 
 A stale/down Crypto+ input must disable only the feature that needs it. It must not disable Guardian Core, manual protection, risk or compliance.
 
-## Incremental gates
+## Validation status
 
-1. Schema and recorder.
-2. 30+ minute BTC/ETH smoke collection.
-3. Reconnect/deduplication test.
-4. Replay reader with strict `available_at` gate.
-5. Small sample + manifest + source limitations committed to GitHub.
-6. Only then: D025 LER observer/event study.
+Completed by ChatGPT:
+- Python syntax compile: PASS;
+- 4/4 offline unit tests: PASS;
+- strict `available_at` replay gate: PASS.
+
+Still required on the user's PC/Codex:
+1. 30+ minute BTC/ETH live smoke collection;
+2. reconnect/deduplication test;
+3. health/staleness transitions;
+4. replay against a real sample;
+5. compact sample + manifest/stats committed to GitHub.
+
+Only then: D025 LER observer/event study.
 
 ## Not allowed in V1
 
