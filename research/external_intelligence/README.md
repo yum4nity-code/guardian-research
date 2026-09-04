@@ -1,6 +1,6 @@
 # Guardian External Intelligence Bus — Research V1
 
-Status: `IMPLEMENTED / OFFLINE TESTED / LIVE SMOKE PENDING`. No live orders. No production dependency.
+Status: `IMPLEMENTED / OFFLINE TESTED / LIVE SMOKE IN PROGRESS`. No live orders. No production dependency.
 
 ## Goal
 
@@ -14,11 +14,16 @@ Provider V1: Bybit public market data, no API key.
 
 Files:
 - `collector_v1.py` — public collector/recorder;
+- `smoke_v1.py` — timed live smoke + quality summary;
+- `START_EIB_SMOKE_V1.cmd` — one-click Windows smoke launcher;
 - `replay_v1.py` — strict availability-gated replay;
 - `schema_v1.json` — canonical record schema;
 - `manifest_v1.json` — provider/source limitations;
-- `COLLECTOR_V1.md` — install/smoke instructions;
+- `COLLECTOR_V1.md` — install/smoke/storage instructions;
 - `tests/test_eib_v1.py` — offline normalization/replay tests.
+
+Product/reproducibility documentation:
+- `../../docs/GUARDIAN_PRODUCT_INSTALLATION_AND_DATA_LIFECYCLE.md` — machine bootstrap, Git clone/update, smoke launch, storage/retention policy, archive target, and future commercial-installer requirements.
 
 Target observations implemented:
 - spot last price;
@@ -57,6 +62,22 @@ Guardian production is not part of this chain yet.
 
 Bybit `allLiquidation` reports size and bankruptcy price. V1 therefore records `liquidation_notional` as an estimate `size * bankruptcy_price` and labels the unit `USDT_est_bankruptcy_price`. It must never be represented as exchange-reported executed notional.
 
+## Storage policy
+
+Current research behavior:
+
+- data are stored locally under `D:\MT5_Backtests\Research\ExternalIntelligence\` by default;
+- one JSONL file per UTC day;
+- no automatic deletion during D025 research.
+
+Target lifecycle after smoke validation:
+
+- current UTC day stays raw JSONL;
+- closed days become verified `.jsonl.gz` archives;
+- research retention remains manual/indefinite until the scientific value and disk rate are measured;
+- future commercial retention will be configurable, with a provisional 90-day default and longer lab mode;
+- raw deletion is allowed only after archive-integrity verification.
+
 ## Health policy
 
 Each channel exposes one of:
@@ -75,14 +96,17 @@ Completed by ChatGPT:
 - 4/4 offline unit tests: PASS;
 - strict `available_at` replay gate: PASS.
 
-Still required on the user's PC/Codex:
-1. 30+ minute BTC/ETH live smoke collection;
+Live smoke on the user's PC: started 2026-09-04, 35-minute run. Final summary still pending.
+
+Still required after the run:
+1. inspect smoke summary and actual disk rate;
 2. reconnect/deduplication test;
 3. health/staleness transitions;
-4. replay against a real sample;
-5. compact sample + manifest/stats committed to GitHub.
+4. replay against the real sample;
+5. compact sample + manifest/stats committed to GitHub;
+6. only then implement daily archive/retention automation.
 
-Only then: D025 LER observer/event study.
+Only after these gates: D025 LER observer/event study.
 
 ## Not allowed in V1
 
