@@ -47,6 +47,9 @@ CORE_STALE_MS = {
     "funding": 300_000,
 }
 
+REPLACE_RETRY_ATTEMPTS = 25
+REPLACE_RETRY_DELAY_SECONDS = 0.01
+
 
 def canonical_for_binance(source_symbol: str) -> str | None:
     source_symbol = str(source_symbol or "").upper()
@@ -54,6 +57,17 @@ def canonical_for_binance(source_symbol: str) -> str | None:
         if source_symbol == symbol:
             return canonical
     return None
+
+
+def _replace_with_retry(tmp: Path, dst: Path) -> None:
+    for attempt in range(REPLACE_RETRY_ATTEMPTS):
+        try:
+            os.replace(tmp, dst)
+            return
+        except PermissionError:
+            if attempt + 1 >= REPLACE_RETRY_ATTEMPTS:
+                raise
+            time.sleep(REPLACE_RETRY_DELAY_SECONDS)
 
 
 class BinanceJsonlRecorder:
@@ -103,7 +117,7 @@ class BinanceJsonlRecorder:
         payload = json.dumps(snapshot, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
         async with self._lock:
             tmp.write_text(payload, encoding="utf-8")
-            os.replace(tmp, dst)
+            _replace_with_retry(tmp, dst)
 
 
 @dataclass
