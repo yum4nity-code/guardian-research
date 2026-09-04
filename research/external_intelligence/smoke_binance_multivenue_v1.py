@@ -146,6 +146,17 @@ def validate_final_state(state: dict[str, Any]) -> list[str]:
     return failures
 
 
+async def _bounded_shutdown(tasks: list[asyncio.Task[Any]], timeout_seconds: float = 5.0) -> None:
+    """Stop a quiet provider reader without allowing the gate to hang forever."""
+    try:
+        await asyncio.wait_for(asyncio.gather(*tasks, return_exceptions=True), timeout=timeout_seconds)
+    except asyncio.TimeoutError:
+        for task in tasks:
+            if not task.done():
+                task.cancel()
+        await asyncio.gather(*tasks, return_exceptions=True)
+
+
 async def run_smoke(args: argparse.Namespace) -> int:
     data_dir: Path = args.data_dir
     data_dir.mkdir(parents=True, exist_ok=True)
@@ -173,7 +184,7 @@ async def run_smoke(args: argparse.Namespace) -> int:
         bybit.stop_event.set()
         binance.stop_event.set()
         state.stop_event.set()
-        await asyncio.gather(*tasks, return_exceptions=True)
+        await _bounded_shutdown(tasks)
 
     stop_ms = time.time_ns() // 1_000_000
     # One final deterministic state publication after both collectors have flushed.
