@@ -1,118 +1,146 @@
 # Guardian External Intelligence Bus — Research V1
 
-Status: `IMPLEMENTED / OFFLINE TESTED / LIVE SMOKE IN PROGRESS`. No live orders. No production dependency.
+Status: `LIVE SMOKE PASS / REAL REPLAY PASS / RECONNECT PASS / HEALTHFIX PASS / SHARED MARKET STATE IMPLEMENTED, LIVE SMOKE PENDING`.
+
+No live orders. No Guardian risk/compliance dependency on Internet.
 
 ## Goal
 
-Provide Guardian research with timestamped, replayable external market observations without giving any external API permission to trade and without making Guardian risk/protection depend on Internet availability.
+Provide Guardian with timestamped, replayable external market observations and one shared strategy-neutral market-state service per PC. External data may enrich strategies later, but Guardian protection, risk and prop-firm compliance must continue independently if this service is stale/down.
 
-V1 scope is intentionally small: BTC and ETH only.
+V1 scope: BTC and ETH only, Bybit public market data, no API key.
 
-## Current implementation
+## Validated raw EIB V1
 
-Provider V1: Bybit public market data, no API key.
+The user's real-PC gates passed on 2026-09-04:
 
-Files:
-- `collector_v1.py` — public collector/recorder;
-- `smoke_v1.py` — timed live smoke + quality summary;
-- `START_EIB_SMOKE_V1.cmd` — one-click Windows smoke launcher;
+- ~35-minute live smoke: PASS;
+- 4210 unique events, 0 duplicate IDs, 0 invalid JSON, 0 future-availability violations;
+- all core spot/perp/OI/funding channels present;
+- real replay: 0 records visible 1 ms before smoke start, 20 visible ~10 s after start;
+- deliberate Internet interruption/reconnect: PASS, with DOWN/PARTIAL/STALE transitions and recovery to BTC/ETH OK + liquidation websocket connected;
+- health-event spam hotfix: offline 3/3 tests PASS and live smoke PASS; aggregate health dropped from 36/symbol to 4/symbol over 3 minutes while core channels stayed complete.
+
+The raw collector/replay layer is therefore sufficiently validated for the next research layer. Rare liquidation replay exactly across a reconnect remains a later edge-case test, not a blocker for the shared-state prototype.
+
+## Current files
+
+Raw EIB:
+- `collector_v1.py` — original public collector/recorder;
+- `collector_v1_healthfix.py` — validated semantic-health hotfix used by the shared service;
+- `smoke_v1.py` — timed raw live smoke;
+- `smoke_healthfix_v1.py` — healthfix smoke;
 - `replay_v1.py` — strict availability-gated replay;
-- `schema_v1.json` — canonical record schema;
+- `schema_v1.json` — canonical observation schema;
 - `manifest_v1.json` — provider/source limitations;
-- `COLLECTOR_V1.md` — install/smoke/storage instructions;
-- `tests/test_eib_v1.py` — offline normalization/replay tests.
+- `tests/test_eib_v1.py` — normalization/replay tests;
+- `tests/test_healthfix_v1.py` — semantic-health tests.
 
-Product/reproducibility documentation:
-- `../../docs/GUARDIAN_PRODUCT_INSTALLATION_AND_DATA_LIFECYCLE.md` — machine bootstrap, Git clone/update, smoke launch, storage/retention policy, archive target, and future commercial-installer requirements.
+Shared Intelligence V1:
+- `market_state_v1.py` — strategy-neutral rolling feature engine + atomic shared snapshot writer;
+- `shared_service_v1.py` — one collector + one market-state engine per PC;
+- `smoke_shared_service_v1.py` — 3-minute live gate for the combined service;
+- `tests/test_market_state_v1.py` — availability/feature/atomic snapshot tests;
+- `START_SHARED_INTELLIGENCE_SMOKE_V1.cmd` — one-click live smoke;
+- `START_SHARED_INTELLIGENCE_V1.cmd` — continuous research service launcher.
 
-Target observations implemented:
+Product/reproducibility docs:
+- `../../docs/GUARDIAN_PRODUCT_INSTALLATION_AND_DATA_LIFECYCLE.md`;
+- `../../docs/GUARDIAN_SHARED_INTELLIGENCE_SERVICE_ARCHITECTURE.md`.
+
+## Raw observations
+
+Implemented:
 - spot last price;
 - perpetual last price;
 - open interest;
 - funding rate;
-- long/short liquidation events and explicit estimated liquidation notional;
+- long/short liquidation events;
+- estimated liquidation notional (`size * bankruptcy_price`, explicitly labelled estimate);
 - health/staleness.
 
-## Canonical record
-
-See `schema_v1.json`.
-
-The key replay rule is based on **availability time**, not merely exchange/source event time:
+Replay invariant:
 
 `available_at_ms <= simulated_time_ms`
 
-This avoids a subtle lookahead bug where an exchange event has an old source timestamp but was only received later by the collector.
+Source timestamp alone is never sufficient for historical visibility.
 
-## V1 data flow
+## Shared market state V1
 
-`Bybit public -> read-only collector -> normalized daily JSONL -> health/staleness -> replay reader -> D025 research`
+The first shared state deliberately contains neutral facts only. It does **not** output BUY/SELL or a strategy score.
 
-Guardian production is not part of this chain yet.
+For BTCUSD and ETHUSD it currently computes:
+- current spot/perpetual price;
+- current open interest;
+- current funding;
+- perp-vs-spot basis %;
+- spot returns over 1m / 5m / 15m / 1h;
+- perpetual returns over 1m / 5m / 15m / 1h;
+- perpetual-minus-spot return dislocation in percentage points;
+- open-interest changes over 1m / 5m / 15m / 1h;
+- long/short estimated liquidation notional over 1m / 5m / 15m / 1h;
+- net short-minus-long liquidation notional;
+- quality/status, source age and latest availability time.
 
-## Provider policy
+The live snapshot is written atomically to:
 
-- Prefer official public market-data endpoints/streams.
-- Adapter/provider-specific logic must remain isolated from future strategy logic.
-- No API key with trading permission.
-- If a metric is not public/reliable from one source, mark the channel PARTIAL rather than fabricating/filling it.
-- Preserve source venue because spot/perpetual prices and liquidation semantics are venue-specific.
-- V1 is deliberately single-venue. Cross-venue aggregation comes only after V1 is proven.
+`D:\MT5_Backtests\Research\ExternalIntelligence\market_state_v1.json`
 
-## Liquidation limitation
+It includes a monotonic `generation_id`. Multiple Guardian instances should later read this one compact file instead of each fetching/recomputing external data independently.
 
-Bybit `allLiquidation` reports size and bankruptcy price. V1 therefore records `liquidation_notional` as an estimate `size * bankruptcy_price` and labels the unit `USDT_est_bankruptcy_price`. It must never be represented as exchange-reported executed notional.
+If a historical window is not yet populated, the corresponding change/return remains `null`. V1 must not silently forward-fill missing history.
 
-## Storage policy
+## Data flow
 
-Current research behavior:
+Live:
 
-- data are stored locally under `D:\MT5_Backtests\Research\ExternalIntelligence\` by default;
-- one JSONL file per UTC day;
-- no automatic deletion during D025 research.
+`Bybit public -> one collector -> raw JSONL -> one market-state engine -> market_state_v1.json -> many Guardian consumers`
 
-Target lifecycle after smoke validation:
+Backtest target:
 
-- current UTC day stays raw JSONL;
-- closed days become verified `.jsonl.gz` archives;
-- research retention remains manual/indefinite until the scientific value and disk rate are measured;
-- future commercial retention will be configurable, with a provisional 90-day default and longer lab mode;
-- raw deletion is allowed only after archive-integrity verification.
+`immutable raw archive -> availability-gated replay -> deterministic derived feature stream -> many tester workers`
 
-## Health policy
+No live external service may be used as historical truth inside Strategy Tester.
 
-Each channel exposes one of:
+## Provider / safety policy
 
-- `OK` — current and parseable;
-- `STALE` — last valid observation exceeds its metric-specific age limit;
-- `PARTIAL` — provider is up but one or more expected metrics are unavailable/incomplete;
-- `DOWN` — channel unavailable.
+- public read-only market data only;
+- no trading credentials;
+- shared service cannot submit MT5 orders;
+- provider-specific logic stays isolated from strategy interpretation;
+- stale/down external state disables only dependent enrichment features;
+- Guardian Core/manual protection/risk/compliance remain independent;
+- no opaque global AI score;
+- no parameter tuning based on this first live smoke.
 
-A stale/down Crypto+ input must disable only the feature that needs it. It must not disable Guardian Core, manual protection, risk or compliance.
+## Immediate next gate
 
-## Validation status
+Run:
 
-Completed by ChatGPT:
-- Python syntax compile: PASS;
-- 4/4 offline unit tests: PASS;
-- strict `available_at` replay gate: PASS.
+```powershell
+cd D:\MT5_Backtests\guardian-research
+git pull
+cd .\research\external_intelligence
+.\.venv\Scripts\python.exe -m unittest discover -s tests -p "test_market_state_v1.py" -v
+.\START_SHARED_INTELLIGENCE_SMOKE_V1.cmd
+```
 
-Live smoke on the user's PC: started 2026-09-04, 35-minute run. Final summary still pending.
+Expected before any Guardian integration:
+- market-state tests PASS;
+- combined live smoke PASS;
+- `generation_id` advances;
+- BTC/ETH core state remains fresh/OK;
+- no future-availability violation;
+- underlying raw collector gate remains PASS.
 
-Still required after the run:
-1. inspect smoke summary and actual disk rate;
-2. reconnect/deduplication test;
-3. health/staleness transitions;
-4. replay against the real sample;
-5. compact sample + manifest/stats committed to GitHub;
-6. only then implement daily archive/retention automation.
+Only after that do we add a **read-only Guardian consumer/observer**, initially with no strategy behavior change.
 
-Only after these gates: D025 LER observer/event study.
+## Not allowed yet
 
-## Not allowed in V1
-
-- live trading;
+- live strategy decisions from external state;
 - changes to `production/guardian/`;
 - opaque scoring/ML;
 - threshold optimization;
 - future-data joins;
-- silent forward-fill of stale external data.
+- silent stale-data reuse;
+- live LER orders.
