@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "guardian-external-intelligence-bus-v1",
+  "title": "Guardian External Intelligence Bus Observation V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "canonical_symbol",
+    "venue",
+    "market_type",
+    "metric",
+    "source_ts_ms",
+    "received_ts_ms",
+    "available_at_ms",
+    "value",
+    "unit",
+    "quality"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "event_id": {"type": "string", "minLength": 1},
+    "canonical_symbol": {"type": "string", "enum": ["BTCUSD", "ETHUSD"]},
+    "venue": {"type": "string", "minLength": 1},
+    "market_type": {"type": "string", "enum": ["spot", "perpetual", "aggregate"]},
+    "metric": {
+      "type": "string",
+      "enum": [
+        "last_price",
+        "open_interest",
+        "funding_rate",
+        "liquidation_notional",
+        "liquidation_qty",
+        "health"
+      ]
+    },
+    "side": {"type": ["string", "null"], "enum": ["long", "short", null]},
+    "source_symbol": {"type": ["string", "null"]},
+    "source_ts_ms": {"type": "integer", "minimum": 0},
+    "received_ts_ms": {"type": "integer", "minimum": 0},
+    "available_at_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Earliest timestamp at which Guardian could actually have consumed this observation. Replay must enforce available_at_ms <= simulated_time_ms."
+    },
+    "value": {"type": ["number", "string", "null"]},
+    "unit": {"type": "string", "minLength": 1},
+    "price": {"type": ["number", "null"]},
+    "quantity": {"type": ["number", "null"]},
+    "sequence": {"type": ["string", "integer", "null"]},
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "age_ms", "stale_after_ms"],
+      "properties": {
+        "status": {"type": "string", "enum": ["OK", "STALE", "PARTIAL", "DOWN"]},
+        "age_ms": {"type": "integer", "minimum": 0},
+        "stale_after_ms": {"type": "integer", "minimum": 1},
+        "reason": {"type": ["string", "null"]}
+      }
+    },
+    "raw_ref": {"type": ["string", "null"], "description": "Optional local reference to raw payload/log; never required for strategy execution."}
+  }
+}
