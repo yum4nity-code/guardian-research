@@ -12,12 +12,14 @@ Document vivant maintenu par Codex.
 - `AUTONOMY-RECOVERY-001` — `RUNNING_MIMO`. Orchestrateur PID 9188; worker `MIMO-DEEP-WALKFORWARD-COUNTEREVIDENCE` repris sans doublon. Le controle `_BT` long n'a pas ete lance.
 - `GUARDIAN-V11-16-11-LIVE-RSI-MOMENTUM` — `LIVE_VALIDATION / RESEARCH`. Baseline utilisateur actuelle: v11.16.11 avec switches `InpEnableMomentum` / `InpEnableRSISniper`, RSI Sniper integre, notifications lifecycle, under-risk max-volume >=50 USD et diagnostics BUY1/BUY2 explicites. Voir `docs/GUARDIAN_V11_16_5_TO_11_16_11_CHANGELOG.md` et `docs/RSI_SNIPER_IMPLEMENTED_ADDENDUM_2026_09_02.md`.
 - `BTC-ENGINE-ISOLATION-2026-09-02` — `RUNNING_MANUAL_MT5`. Meme fenetre/ticks/depot que le baseline combo. Combo reproduit exactement +17499.93 USD / PF 1.35 / equity DD 3.76% / 628 trades. RSI-only: +9451.57 USD / PF 1.19 / equity DD 4.20% / 621 trades. Momentum-only baseline (`InpCryptoPostShockBars=2`) en cours.
+- `GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1` — `WAITING_CODEX / RESEARCH INFRA`. Nouvelle priorite utilisateur du 2026-09-04. Construire d'abord un collecteur/recorder externe lecture seule pour BTC/ETH (spot, perp, OI, liquidations, funding si disponible), avec timestamps UTC, provenance, staleness, reconnexion/deduplication et replay sans lookahead. Aucun ordre live et aucune mutation silencieuse de `production/guardian/`.
 
 ## Candidates
 
 - Guardian v11.16 Momentum PROD — candidat nouveau, non equivalent a une non-regression exacte D017 tant que la provenance n'est pas reconciliee.
 - `D021-MICRO-REV-M1-V0` — hypothese crypto independante preregistree pour event study cheap-fail sur `BTCUSD_BT` et `ETHUSD_BT`. Aucun EA ni backtest long autorise; execution seulement apres audit fail-closed des donnees/couts et recolte du job MiMo actif.
 - RSI Sniper integrated sleeve — candidate active, profitable on BTC isolated over current two-month research window, not yet validated cross-market. BUY2/SL architecture and exit distribution remain open research questions.
+- `D025-LIQUIDITY-EXHAUSTION-RECLAIM` — `PREREGISTERED / BLOCKED BEFORE OBSERVER`. Strategie mid-term distincte de RSI/Momentum : niveau objectif -> sweep/cascade -> exhaustion/impact marginal decroissant -> reclaim -> acceptance/retest. V0 doit rester observation/trade virtuel; sorties non fixees avant MFE/MAE. Crypto+ pourra utiliser le bus externe, mais LER Core doit rester autonome MT5.
 
 ## Validated
 
@@ -50,3 +52,11 @@ Document vivant maintenu par Codex.
 - Cout d'entree RSI a SL tres court: a mesurer comme spread + commission en % du risque; cas USDCAD 12.45 lots / SL ~2.2 pips avec drawdown immediat important.
 - Backtests: travailler principalement avec rapports synthetiques standardises; n'exiger des logs complets qu'en diagnostic cible. Ajouter plus tard un resume de Strategy Tester en fin de run.
 - Optimisation performance a faire sans changer les resultats: si Momentum OFF, court-circuiter les calculs strictement Momentum; si RSI OFF, court-circuiter les calculs strictement RSI.
+
+## Etat ChatGPT / architecture au 2026-09-04
+
+- D025 LER preregistre dans `research/campaigns/D025_LIQUIDITY_EXHAUSTION_RECLAIM_PREREGISTRATION.md`.
+- Premier gate volontairement limite a `GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1`: collecte/record/replay, pas de signal live.
+- Donnees externes visees: spot, perpetual, OI, liquidations et funding avec timestamps/provenance/age. Elles sont des observations, jamais des appels directs de trading.
+- Invariant backtest: aucune observation dont le timestamp est posterieur au temps simule.
+- Si flux externe indisponible/stale, Guardian Core et protections continuent; les features Crypto+ dependantes deviennent indisponibles plutot que d'utiliser une donnee ancienne silencieusement.
