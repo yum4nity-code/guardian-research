@@ -1,6 +1,6 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 Europe/Paris
+Last updated: 2026-09-04 13:00 Europe/Paris
 Status: ACTIVE / LIVE RESEARCH RUNNING
 
 This file is the canonical fast-resume entry point for a fresh ChatGPT/Codex instance. It must stay current enough that the project can be resumed without relying on conversation history.
@@ -74,7 +74,37 @@ D025 FILE_COMMON outputs:
 - `GuardianResearch/D025/d025_ler_v0_virtual_trades.csv`
 - `GuardianResearch/D025/d025_ler_v0_outcomes.csv`
 
-## 4. Scientific separation
+## 4. Live-status GitHub sync
+
+A compact live-state mirror is now installed and validated.
+
+Architecture:
+
+`MT5 local CSVs + Shared Intelligence runtime state -> local sync watcher -> GitHub branch live-status -> LIVE_RESEARCH_STATUS.json`
+
+Properties:
+- dedicated branch: `live-status`;
+- single compact file: `LIVE_RESEARCH_STATUS.json`;
+- `main` remains clean;
+- watcher runs automatically in background on Windows;
+- heartbeat target: every 15 minutes;
+- significant D025 changes / `VALID_SIGNAL` / runtime alert can trigger an earlier refresh;
+- generation ids are included for visibility but do not themselves trigger a push;
+- the live-status branch is rewritten/amended to avoid commit explosion.
+
+Validated GitHub read on 2026-09-04 after installation showed:
+- D025 MT5 version `1.00`, research generation `V0`;
+- `signals_are_virtual_only=true`;
+- 14 D025 event rows visible at that snapshot;
+- 0 virtual trades at that snapshot;
+- Shared Intelligence scheduled task `Running`;
+- BTC Bybit/Binance `OK/OK`, `both_core_ok=1`;
+- ETH Bybit/Binance `OK/OK`, `both_core_ok=1`;
+- no runtime alert.
+
+A fresh ChatGPT instance may therefore read the `live-status` branch to recover recent research state without asking the user to paste MT5 logs.
+
+## 5. Scientific separation
 
 D025 V0 currently uses **MT5 Core only** for signal-state transitions. Binance/Bybit continues collecting independently but does not trigger D025 V0.
 
@@ -89,7 +119,7 @@ External observations may only be joined if `available_at <= event_time`.
 
 Do not inject Shared Intelligence directly into live RSI or Momentum merely because the fields are available.
 
-## 5. Next safe actions
+## 6. Next safe actions
 
 Priority sequence:
 
@@ -99,19 +129,19 @@ Priority sequence:
 4. Only after sufficient Core observations, join timestamp-valid Binance/Bybit features for Crypto+ event-study comparisons.
 5. Only after robustness/OOS/cost/red-team gates may anything become a Guardian trading candidate.
 
-## 6. MT5 versioning rule
+## 7. MT5 versioning rule
 
 For this project, `#property version` must use a MetaEditor-compatible simple numeric version. Use **1.00, 1.01, 1.02 ...** for this D025 EA lineage rather than semantic/build strings such as `0.100`, `11.1706`, etc. Research labels such as V0/V1 may remain in filenames/descriptions but are not the MT5 `#property version`.
 
-## 7. User-operation style
+## 8. User-operation style
 
 The user is not expected to infer shell commands. For local operations, provide complete copy/paste PowerShell/CMD blocks and explain only the necessary verification result.
 
-## 8. Resume instructions for a fresh agent
+## 9. Resume instructions for a fresh agent
 
 Read, in this order:
 1. `CURRENT_PROJECT_HANDOFF.md` (this file)
-2. `LIVE_RESEARCH_STATUS.json` from GitHub branch **`live-status`** if available; this is the compact near-live state from the user's PC
+2. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
 3. `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`
 4. `research/ea/D025_LER_Observer_V0.mq5`
 5. latest relevant files under `research/results/` for Shared Intelligence / Guardian v11.17.x
@@ -121,31 +151,6 @@ Read, in this order:
 
 Then verify actual live/local state before launching or modifying anything. Real process/log state always overrides a stale written status.
 
-## 9. Continuity rule
+## 10. Continuity rule
 
 After every material milestone (new active version, user compile/deploy validation, gate pass/fail, change in architecture, new live research component, or change of next safe action), update this file in the same work session. No important current state should exist only in ChatGPT/Codex conversation context.
-
-## 10. Near-live GitHub status channel
-
-A dedicated GitHub branch **`live-status`** is reserved for a compact machine-generated file:
-- `LIVE_RESEARCH_STATUS.json`
-
-Purpose:
-- expose the latest D025 event, recent events, open virtual trades and recent outcomes;
-- expose the Shared Intelligence scheduled-task state and Bybit/Binance bridge health;
-- allow a fresh ChatGPT/Codex instance to understand current live research without requiring the local PC or conversation history.
-
-Low-churn policy:
-- the main branch is never used for periodic live telemetry;
-- the sync process checks local sources every ~20 seconds but only publishes on meaningful D025/health change or the 15-minute heartbeat;
-- the live-status branch rewrites/amends its status commit with force-with-lease rather than accumulating one commit every heartbeat;
-- raw CSVs and raw Binance/Bybit history remain local and are never mirrored continuously to GitHub.
-
-Implementation on `main`:
-- `automation/live_status_sync_v2.ps1`
-- `automation/install_live_status_sync_v2.ps1`
-
-Windows scheduled task after user installation:
-- `Guardian Live Research Status Sync`
-
-The local watcher uses a dedicated clone at `D:\MT5_Backtests\guardian-live-status` so it does not interfere with the user's working repository.
