@@ -1,6 +1,6 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 15:55 Europe/Paris
+Last updated: 2026-09-04 16:05 Europe/Paris
 Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 ENTRY QUALITY MIXED-NOT-REJECTED / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
@@ -112,6 +112,30 @@ Interpretation:
 - the run extends past the previous 2026-06-28 pre-OOS cutoff, so July must not be treated as untouched OOS for later D025 tuning.
 - highest-value missing measurement remains +0.5R first-touch.
 
+### Cross-asset June-July diagnostic
+
+Latest 2026-06-01 -> 2026-07-30 sessions isolated from appended CSVs:
+- BTCUSD 112 trades: +1R 50.00%, +2R 38.39%, +3R 22.32%, +4R 16.07%, +5R 13.39%.
+- ETHUSD 102 trades: +1R 52.94%, +2R 40.20%, +3R 28.43%, +4R 16.67%, +5R 11.76%.
+- EURUSD 55 trades: +1R 52.73%, +2R 23.64%, +3R 16.36%, +4R 7.27%, +5R 5.45%.
+- SOLUSD 65 trades: +1R 53.85%, +2R 36.92%, +3R 26.15%, +4R 20.00%, +5R 9.23%.
+- DOGEUSD 77 trades: +1R 46.75%, +2R 28.57%, +3R 15.58%, +4R 14.29%, +5R 12.99%.
+- LNKUSD 83 trades: +1R 43.37%, +2R 25.30%, +3R 18.07%, +4R 14.46%, +5R 10.84%.
+
+Simple resolved target-vs-SL fixed-TP EV before costs (diagnostic only):
+- BTC: +1R +0.018R; +2R +0.173R; +3R -0.029R.
+- ETH: +1R +0.091R; +2R +0.281R; +3R +0.303R.
+- EURUSD: +1R +0.115R; +2R -0.188R; +3R -0.250R.
+- SOL: +1R +0.077R; +2R +0.161R; +3R +0.153R.
+- DOGE and LNK: no positive simple fixed-TP EV in this sample.
+
+Notable path splits:
+- ETH RETEST: +1R 64.81%, +2R 50.00%, +3R 38.89%.
+- SOL ACCEPTANCE: +1R 58.06%, +2R 45.16%, +3R 29.03%.
+- EURUSD ACCEPTANCE preserves more continuation than RETEST after +1R; EURUSD overall decays sharply after +1R.
+
+Interpretation: ETH and SOL currently show the strongest cross-asset first-touch profile; BTC remains interesting; EURUSD looks more like an early-exit candidate; DOGE/LNK weak in aggregate. Do not tune production/path rules from this post-sample window. Full report: `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`, commit `3e0e3987c060287bab61ecb7275bcac84fb4e790`.
+
 ## 6. Scientific separation / next D025 step
 
 D025 V0 signal transitions use MT5 Core only. Binance/Bybit data collects independently. Later Crypto+ comparisons must join external data only with `available_at <= event_time`.
@@ -133,13 +157,13 @@ Live ETHUSD observation 2026-09-04: extreme bearish impulse followed by no obvio
 1. this file
 2. latest FundedNext request-budget audit / current Guardian 11.17.x source
 3. `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
-4. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-5. `docs/STRATEGY_DECISIONS.md`
-6. `research/ea/D025_LER_Trading_1_01.mq5`
-7. locked D025 V0 rules
-8. current observer source
-9. latest Shared Intelligence result files
-10. `CURRENT_QUEUE.json`
+4. `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`
+5. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
+6. `docs/STRATEGY_DECISIONS.md`
+7. `research/ea/D025_LER_Trading_1_01.mq5`
+8. locked D025 V0 rules
+9. current observer source
+10. latest Shared Intelligence result files / `CURRENT_QUEUE.json`
 
 ## 9. Continuity rule
 
