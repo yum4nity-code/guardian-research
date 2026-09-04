@@ -1,5 +1,5 @@
 #property strict
-#property version   "1.01"
+#property version   "1.02"
 #property description "Guardian Shared Intelligence read-only FILE_COMMON probe"
 
 input string InpSharedFile = "GuardianSharedIntelligence\\market_state_v1.csv";
@@ -11,6 +11,8 @@ input int    InpJournalEverySeconds = 30;
 long     g_last_generation = -1;
 string   g_terminal_id = "";
 string   g_probe_file = "";
+string   g_server = "";
+string   g_data_path = "";
 datetime g_last_journal_time = 0;
 datetime g_last_issue_time = 0;
 string   g_last_btc_status = "";
@@ -129,7 +131,7 @@ void AppendProbeObservation(const long generation,
    }
 
    if(FileSize(h) == 0)
-      FileWrite(h, "terminal_id", "observed_local_time", "generation_id", "btc_status", "eth_status");
+      FileWrite(h, "terminal_id", "observed_local_time", "generation_id", "btc_status", "eth_status", "server", "data_path");
 
    FileSeek(h, 0, SEEK_END);
    FileWrite(h,
@@ -137,23 +139,27 @@ void AppendProbeObservation(const long generation,
              TimeToString(TimeLocal(), TIME_DATE|TIME_SECONDS),
              IntegerToString(generation),
              btc_status,
-             eth_status);
+             eth_status,
+             g_server,
+             g_data_path);
    FileFlush(h);
    FileClose(h);
 }
 
 int OnInit()
 {
-   const string data_path = TerminalInfoString(TERMINAL_DATA_PATH);
-   const string server = AccountInfoString(ACCOUNT_SERVER);
-   const uint id_hash = HashString32(data_path + "|" + server);
+   g_data_path = TerminalInfoString(TERMINAL_DATA_PATH);
+   g_server = AccountInfoString(ACCOUNT_SERVER);
+   const uint id_hash = HashString32(g_data_path + "|" + g_server);
    g_terminal_id = StringFormat("T%08X", id_hash);
-   g_probe_file = StringFormat("GuardianSharedIntelligence\\probes\\probe_%s.csv", g_terminal_id);
+   // v102 suffix deliberately starts a fresh schema so old 5-column probe files
+   // cannot be mistaken for this identity-aware validation run.
+   g_probe_file = StringFormat("GuardianSharedIntelligence\\probes\\probe_%s_v102.csv", g_terminal_id);
 
    PrintFormat("[SHAREDINTEL][PROBE][START] terminal_id=%s server=%s data=%s common=%s",
                g_terminal_id,
-               server,
-               data_path,
+               g_server,
+               g_data_path,
                TerminalInfoString(TERMINAL_COMMONDATA_PATH));
    Print("[SHAREDINTEL][PROBE] READ ONLY: no CTrade, no OrderSend, no position modification.");
 
@@ -188,9 +194,10 @@ void OnTimer()
 
    if(status_changed || periodic)
    {
-      PrintFormat("[SHAREDINTEL][PROBE][OK] terminal_id=%s gen=%I64d BTC=%s spot=%.2f ETH=%s spot=%.2f",
+      PrintFormat("[SHAREDINTEL][PROBE][OK] terminal_id=%s gen=%I64d server=%s BTC=%s spot=%.2f ETH=%s spot=%.2f",
                   g_terminal_id,
                   generation,
+                  g_server,
                   btc_status,
                   btc_spot,
                   eth_status,
