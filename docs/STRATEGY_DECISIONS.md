@@ -83,3 +83,13 @@ Chaque entree doit inclure : date, Strategy ID, Campaign ID, verdict, preuves pr
 - Limites: aucun edge n'est encore demontre; aucun seuil, score, poids ni plan de sortie n'est valide. Les donnees externes peuvent etre indisponibles, stale ou incompletes; elles ne doivent jamais devenir une dependance des protections Guardian.
 - Source: `research/campaigns/D025_LIQUIDITY_EXHAUSTION_RECLAIM_PREREGISTRATION.md`; `handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md`; commits initiaux `c6c08363258f04e8079a165d584c8bbcf3cac8f5` et `c09410ffd92a9380f19072978d13c668dd20cf7a`.
 - Raison: construire d'abord une infrastructure read-only, horodatee, rejouable et sans lookahead permet de tester scientifiquement si OI/liquidations/spot-perp ajoutent un edge au LER Core. Aucun BUY/SELL LER n'est autorise avant event study, robustesse et red-team.
+
+## 2026-09-04 — EIB V1 implementation gate
+
+- Strategy ID: `D025-LIQUIDITY-EXHAUSTION-RECLAIM`
+- Campaign ID: `GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1`
+- Verdict: `IMPLEMENTED / OFFLINE TESTED / LIVE SMOKE REQUIRED`
+- Preuves: `collector_v1.py` collecte via Bybit public BTC/ETH spot, USDT perpetual, open interest, funding et `allLiquidation`; `replay_v1.py` impose le gate `available_at_ms <= simulated_time_ms`. `py_compile` passe; 4/4 tests unitaires offline passent (spot, perp/OI/funding, liquidation side/notional estime, anti-lookahead replay). Collector SHA256 `761329daa74cdb31dd80f136b0f37e1df759956e13e6ea0b3bc3c7bd6c73874e`; replay SHA256 `4a8b1ef7a80bbf2a898b996f5b86b38475ec88695a673591f49f3a158bb2b034`.
+- Limites: ChatGPT n'a pas valide 30 minutes de flux reel dans son environnement. V1 est mono-venue Bybit. Le notional liquidation est une estimation `size * bankruptcy_price`, pas un notional execute fourni par l'exchange. Aucun edge LER n'est encore mesure.
+- Source: `research/results/D025_EIB_V1_IMPLEMENTATION_REPORT.md`; commits collector `83bd4245b9de1a8c8893b3acf1f7867c07e6132e`, replay `1a27d6269912af1c16f65f2afa5b9027eae2d834`, tests `144d78199f4f701948247f1604adcab77f652f91`.
+- Raison: le code est suffisamment structure pour passer au smoke data reel. Codex doit tester la collecte/reconnexion/staleness/dedup/replay sur le PC avant toute integration de signal. Ne pas reecrire V1 ni coder LER live sans preuve concrete.
