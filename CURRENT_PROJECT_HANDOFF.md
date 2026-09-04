@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 14:44 Europe/Paris
-Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 TRADING 1.01 EXIT CONSTRUCTION FAILED / D025 ENTRY QUALITY UNRESOLVED / FUNDEDNEXT AUTOMATION SUSPENDED
+Last updated: 2026-09-04 14:49 Europe/Paris
+Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 48H EXIT CONSTRUCTION FAILED / D025 ENTRY QUALITY MIXED-NOT-REJECTED / FUNDEDNEXT AUTOMATION SUSPENDED
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
@@ -62,16 +62,44 @@ Source:
 - technically capable of live trading if attached to a chart; user explicitly does not want an artificial live block.
 
 Manual backtest results supplied by user, FundedNext, M1, 2025-01-01 -> 2026-06-28, initial deposit 10,000 USD:
-- BTCUSD: final balance 6,695.65 USD, net -3,304.35 USD. Detailed PF/DD/win-rate not captured.
-- ETHUSD: net -4,547.95 USD; PF 0.31; expected payoff -26.91; equity DD max 45.85% / 4,616.03 USD; 169 trades; 20 winners / 149 losers; win rate 11.83%; gross profit 2,001.43 vs gross loss -6,549.38; average win 100.07 vs average loss -42.81; Sharpe -5.00.
+- BTCUSD: final balance 6,695.65 USD, net -3,304.35 USD.
+- ETHUSD: net -4,547.95 USD; PF 0.31; equity DD max 45.85%; 169 trades; 20 winners / 149 losers; win rate 11.83%; Sharpe -5.00.
 
 Correct interpretation:
-- these runs prove that the specific tradable construction `structural SL + no TP + forced exit at 48h` is bad;
-- they do NOT establish that D025 entries are bad, because the exit rule was deliberately crude and can dominate realized P&L;
-- do not throw away the entry hypothesis on the basis of these account-level results;
-- entry quality must be evaluated independently with event-study metrics: MFE/MAE after entry, probability of reaching +0.5R/+1R/+2R/+3R before SL, time-to-MFE, excursion by horizon, and path/level-family splits;
-- only after that entry-quality study can D025 signal quality be accepted/rejected;
-- no threshold retuning is justified before this separation is done.
+- these runs reject only the specific construction `structural SL + no TP + forced exit at 48h`;
+- they do NOT reject D025 entry quality.
+
+### Entry-quality diagnostic from MT5 CSVs
+
+User supplied `trades`, `outcomes`, and `events` CSVs. 399 opened trades total: 230 BTCUSD, 169 ETHUSD.
+
+Using cumulative 48H hit timestamps and counting a +R hit only when it occurred before `stop_utc`:
+- BTCUSD: +1R before SL 102/230 = 44.35%; +2R 56/230 = 24.35%; +3R 30/230 = 13.04%; +4R 16/230 = 6.96%; +5R 10/230 = 4.35%.
+- ETHUSD: +1R before SL 60/169 = 35.50%; +2R 33/169 = 19.53%; +3R 23/169 = 13.61%; +4R 14/169 = 8.28%; +5R 10/169 = 5.92%.
+- No ambiguous same-M1 stop/+R cases were present.
+
+First-touch among resolved target-vs-SL cases:
+- BTC +1R: 46.36% target-first; +2R: 27.45%; +3R: 15.79%.
+- ETH +1R: 39.22% target-first; +2R: 23.40%; +3R: 17.29%.
+
+Validation-path split:
+- BTC ACCEPTANCE: +1R 54.69%, +2R 32.81%, +3R 17.19% before SL.
+- BTC RETEST: +1R 31.37%, +2R 13.73%, +3R 7.84%.
+- ETH ACCEPTANCE: +1R 28.74%, +2R 17.24%, +3R 11.49%.
+- ETH RETEST: +1R 42.68%, +2R 21.95%, +3R 15.85%.
+
+Important limitation: the EA keeps updating MFE/MAE after SL until 48h, so raw 48H MFE/MAE cannot be used as pre-stop excursion metrics. The timestamp first-touch analysis above is valid; raw post-stop MFE/MAE is not.
+
+Interpretation:
+- D025 entries are `MIXED / NOT REJECTED`.
+- A meaningful fraction of trades reaches +1R before SL, especially BTC.
+- The raw stream is still below simple one-shot breakeven thresholds for full-position TP=1R/SL=1R and for 2R/3R targets overall, before costs.
+- The data therefore justifies further exit/management study, not entry-threshold retuning.
+- Highest-value missing measurement: +0.5R first-touch.
+
+Full diagnostic committed at:
+`research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
+commit `8037b357e4c57619df828855bfe0736304238e94`.
 
 ## 6. Research note — missed post-shock reaction
 
@@ -91,18 +119,18 @@ Do not inject Shared Intelligence directly into live RSI or Momentum merely beca
 
 ## 8. Next safe action
 
-- Leave D025 Observer 1.00 running live if continued event collection is desired.
-- Do not repeat the same D025 Trading 1.01 account-level backtest unchanged; it already tells us the 48h/no-TP construction loses heavily.
-- Next D025 task is specifically entry-quality analysis, independent of the 48h exit: MFE/MAE, first-R thresholds before SL, time-to-hit, failure funnel, and level/path contribution.
-- If the entries show edge, then formulate and preregister an exit/management hypothesis separately rather than concluding from the arbitrary 48h close.
-- Keep the separate post-shock/exhaustion idea as its own hypothesis rather than morphing D025 thresholds.
+- Leave D025 Observer 1.00 running if continued event collection is desired.
+- Do not repeat the unchanged 48h/no-TP account-level test.
+- Keep entry thresholds frozen.
+- Next clean experiment: add +0.5R timestamp tracking and test only a very small preregistered set of exit constructions, e.g. full TP 0.5R, full TP 1R, and one partial-at-1R + runner policy. No broad optimization grid.
+- Separately investigate FundedNext live entry blocks: user reports Guardian often identifies excellent-looking entries but does not pass the final gate. Diagnose block reasons from concrete HUD/log evidence rather than loosening filters blindly.
 
 ## 9. Resume order for a fresh agent
 
 1. this file
-2. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-3. `docs/STRATEGY_DECISIONS.md`
-4. branch `backtest-results` -> newest D025 result if present
+2. `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
+3. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
+4. `docs/STRATEGY_DECISIONS.md`
 5. `research/ea/D025_LER_Trading_1_01.mq5`
 6. locked D025 V0 rules
 7. current observer source
