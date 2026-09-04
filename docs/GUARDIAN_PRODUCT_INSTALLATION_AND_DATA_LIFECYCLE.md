@@ -105,6 +105,22 @@ Raison: les timestamps de reception, trous de connexion, liquidations et transit
 
 La taille reelle journaliere sera mesuree sur le smoke puis sur plusieurs jours avant de figer une politique commerciale.
 
+### Mesure reelle V1 du 2026-09-04
+
+Smoke live BTC+ETH:
+- duree observee: ~35 minutes;
+- fichier JSONL: `1.991 MB`;
+- extrapolation brute au meme rythme: ~`81.9 MB/jour` non compresse;
+- ~`2.40 GB / 30 jours`;
+- ~`7.20 GB / 90 jours`;
+- ~`29.2 GB / an`.
+
+Ces chiffres sont une extrapolation brute de V1 et ne constituent pas encore une taille produit definitive.
+
+Le smoke a aussi revele un bruit de stockage: les enregistrements `health` ont ete produits toutes les ~5 secondes (420 par symbole en 35 minutes), alors que la cible logique est changement d'etat + heartbeat beaucoup plus rare. Leur suppression/reduction devrait faire baisser le volume; l'effet exact devra etre mesure apres correction plutot que suppose.
+
+La compression gzip n'est pas encore mesuree sur ce dataset reel. Toute estimation de gain de compression reste donc provisoire jusqu'a un test empirique sur fichier ferme.
+
 ## 6. Politique d'archivage cible
 
 Decision d'architecture retenue pour la prochaine brique, a implementer apres validation du smoke V1:
@@ -139,7 +155,7 @@ Politique provisoire a valider apres mesure reelle:
 - nettoyage uniquement des archives deja validees, jamais du fichier actif;
 - alerte explicite si l'espace disque devient faible.
 
-Aucune valeur commerciale definitive ne doit etre figee avant d'avoir mesure le volume reel et les fenetres statistiques requises par LER/Crypto+.
+Aucune valeur commerciale definitive ne doit etre figee avant d'avoir mesure le volume reel, le taux gzip reel et les fenetres statistiques requises par LER/Crypto+.
 
 ## 8. Separation runtime / archive
 
