@@ -93,3 +93,13 @@ Chaque entree doit inclure : date, Strategy ID, Campaign ID, verdict, preuves pr
 - Limites: ChatGPT n'a pas valide 30 minutes de flux reel dans son environnement. V1 est mono-venue Bybit. Le notional liquidation est une estimation `size * bankruptcy_price`, pas un notional execute fourni par l'exchange. Aucun edge LER n'est encore mesure.
 - Source: `research/results/D025_EIB_V1_IMPLEMENTATION_REPORT.md`; commits collector `83bd4245b9de1a8c8893b3acf1f7867c07e6132e`, replay `1a27d6269912af1c16f65f2afa5b9027eae2d834`, tests `144d78199f4f701948247f1604adcab77f652f91`.
 - Raison: le code est suffisamment structure pour passer au smoke data reel. Codex doit tester la collecte/reconnexion/staleness/dedup/replay sur le PC avant toute integration de signal. Ne pas reecrire V1 ni coder LER live sans preuve concrete.
+
+## 2026-09-04 — D025 Trading 1.01 manual BTC/ETH backtest
+
+- Strategy ID: `D025-LIQUIDITY-EXHAUSTION-RECLAIM`
+- Campaign ID: `D025-LER-V0-MANUAL-MT5-TRADE-CONSTRUCTION`
+- Verdict: `CURRENT TRADE CONSTRUCTION REJECTED / KEEP EVENT-STUDY ONLY`
+- Preuves: manual FundedNext Strategy Tester, M1, 2025-01-01 -> 2026-06-28, initial deposit 10,000 USD, locked V0 signal chain, structural SL, no TP, forced 48h exit, 0.50% risk. BTCUSD finished at 6,695.65 USD (-3,304.35 USD; detailed report not captured). ETHUSD report: net -4,547.95 USD, PF 0.31, expected payoff -26.91, equity DD max 45.85% (4,616.03), 169 trades, 20 winners / 149 losers, win rate 11.83%, gross profit 2,001.43 vs gross loss -6,549.38, average win 100.07 vs average loss -42.81, Sharpe -5.00.
+- Limites: BTC detailed PF/DD/win-rate were not captured in the supplied output. The 48h no-TP exit is a deliberately simple research construction, so these runs reject this tradable V0 construction, not every conceivable future exit policy or the existence of useful event-study information around sweeps. No threshold retuning is justified from these results.
+- Source: `research/ea/D025_LER_Trading_1_01.mq5`; user manual MT5 reports on 2026-09-04; source commit creating Trading 1.01 `2fb02f7b0be451e7160604ec8f75701e74a56585`.
+- Raison: both BTC and ETH lose heavily under the same frozen construction, and ETH's 11.83% hit rate is far below what its average win/loss ratio would require. Do not optimize V0 thresholds post hoc. Continue only as diagnostic/event study (funnel, MFE/MAE, failure reasons, level families) or formulate a genuinely new preregistered hypothesis.
