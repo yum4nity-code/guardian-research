@@ -1,6 +1,6 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 12:43 Europe/Paris
+Last updated: 2026-09-04 Europe/Paris
 Status: ACTIVE / LIVE RESEARCH RUNNING
 
 This file is the canonical fast-resume entry point for a fresh ChatGPT/Codex instance. It must stay current enough that the project can be resumed without relying on conversation history.
@@ -111,15 +111,41 @@ The user is not expected to infer shell commands. For local operations, provide 
 
 Read, in this order:
 1. `CURRENT_PROJECT_HANDOFF.md` (this file)
-2. `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`
-3. `research/ea/D025_LER_Observer_V0.mq5`
-4. latest relevant files under `research/results/` for Shared Intelligence / Guardian v11.17.x
-5. `CURRENT_QUEUE.json`
-6. `docs/RESEARCH_STATUS.md`
-7. `docs/STRATEGY_DECISIONS.md`
+2. `LIVE_RESEARCH_STATUS.json` from GitHub branch **`live-status`** if available; this is the compact near-live state from the user's PC
+3. `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`
+4. `research/ea/D025_LER_Observer_V0.mq5`
+5. latest relevant files under `research/results/` for Shared Intelligence / Guardian v11.17.x
+6. `CURRENT_QUEUE.json`
+7. `docs/RESEARCH_STATUS.md`
+8. `docs/STRATEGY_DECISIONS.md`
 
 Then verify actual live/local state before launching or modifying anything. Real process/log state always overrides a stale written status.
 
 ## 9. Continuity rule
 
 After every material milestone (new active version, user compile/deploy validation, gate pass/fail, change in architecture, new live research component, or change of next safe action), update this file in the same work session. No important current state should exist only in ChatGPT/Codex conversation context.
+
+## 10. Near-live GitHub status channel
+
+A dedicated GitHub branch **`live-status`** is reserved for a compact machine-generated file:
+- `LIVE_RESEARCH_STATUS.json`
+
+Purpose:
+- expose the latest D025 event, recent events, open virtual trades and recent outcomes;
+- expose the Shared Intelligence scheduled-task state and Bybit/Binance bridge health;
+- allow a fresh ChatGPT/Codex instance to understand current live research without requiring the local PC or conversation history.
+
+Low-churn policy:
+- the main branch is never used for periodic live telemetry;
+- the sync process checks local sources every ~20 seconds but only publishes on meaningful D025/health change or the 15-minute heartbeat;
+- the live-status branch rewrites/amends its status commit with force-with-lease rather than accumulating one commit every heartbeat;
+- raw CSVs and raw Binance/Bybit history remain local and are never mirrored continuously to GitHub.
+
+Implementation on `main`:
+- `automation/live_status_sync_v2.ps1`
+- `automation/install_live_status_sync_v2.ps1`
+
+Windows scheduled task after user installation:
+- `Guardian Live Research Status Sync`
+
+The local watcher uses a dedicated clone at `D:\MT5_Backtests\guardian-live-status` so it does not interfere with the user's working repository.
