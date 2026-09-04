@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 16:05 Europe/Paris
-Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 ENTRY QUALITY MIXED-NOT-REJECTED / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
+Last updated: 2026-09-04 17:10 Europe/Paris
+Status: ACTIVE / D025 ENTRY QUALITY BRANCH-DEPENDENT / 2025 REPLICATION ANALYZED / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
@@ -81,90 +81,98 @@ Correct interpretation: reject only `structural SL + no TP + forced exit at 48h`
 - BTCUSD: +1R 102/230 = 44.35%; +2R 56/230 = 24.35%; +3R 30/230 = 13.04%; +4R 16/230 = 6.96%; +5R 10/230 = 4.35%.
 - ETHUSD: +1R 60/169 = 35.50%; +2R 33/169 = 19.53%; +3R 23/169 = 13.61%; +4R 14/169 = 8.28%; +5R 10/169 = 5.92%.
 
-Path split long run:
-- BTC ACCEPTANCE: +1R 54.69%, +2R 32.81%, +3R 17.19%.
-- BTC RETEST: +1R 31.37%, +2R 13.73%, +3R 7.84%.
-- ETH ACCEPTANCE: +1R 28.74%, +2R 17.24%, +3R 11.49%.
-- ETH RETEST: +1R 42.68%, +2R 21.95%, +3R 15.85%.
+Full diagnostic: `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`.
 
-Raw 48h MFE/MAE is contaminated after SL because the EA continues observation; first-touch timestamps are the valid metric.
+### June-July 2026 cross-asset diagnostic
 
-Full diagnostic: `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md` commit `8037b357e4c57619df828855bfe0736304238e94`.
-
-### Same-period June-July 2026 cross-check (FTMO tester)
-
-User ran D025 Trading 1.01 on the same roughly 2026-06-01 -> 2026-07-30 window for BTC and ETH, initial deposit 100,000 USD.
-
-BTCUSD:
-- MT5 report: net +3,473.31 USD; PF 1.08; equity DD max 13.40%; 112 trades.
-- First-touch before SL: +1R 56/112 = 50.00%; +2R 43/112 = 38.39%; +3R 25/112 = 22.32%; +4R 18/112 = 16.07%; +5R 15/112 = 13.39%.
-- ACCEPTANCE vs RETEST nearly identical at +1R (50% each); +2R 39.66% vs 37.04%; +3R 22.41% vs 22.22%.
-
-ETHUSD:
-- MT5 report screenshot: net +452.25 USD; PF 1.01; equity DD max 16.39%; 102 trades; 23 profit trades / 79 loss trades.
-- First-touch before SL: +1R 54/102 = 52.94%; +2R 41/102 = 40.20%; +3R 29/102 = 28.43%; +4R 17/102 = 16.67%; +5R 12/102 = 11.76%.
-- ACCEPTANCE (48): +1R 39.58%; +2R 29.17%; +3R 16.67%.
-- RETEST (54): +1R 64.81%; +2R 50.00%; +3R 38.89%.
-
-Interpretation:
-- this second window strengthens the case that D025 entries contain useful information even though the arbitrary 48h/no-TP management can obscure it;
-- ETH RETEST again outperforms ETH ACCEPTANCE directionally, consistent with the earlier long-run split, but do NOT tune entry thresholds/path rules from this observation yet;
-- the run extends past the previous 2026-06-28 pre-OOS cutoff, so July must not be treated as untouched OOS for later D025 tuning.
-- highest-value missing measurement remains +0.5R first-touch.
-
-### Cross-asset June-July diagnostic
-
-Latest 2026-06-01 -> 2026-07-30 sessions isolated from appended CSVs:
-- BTCUSD 112 trades: +1R 50.00%, +2R 38.39%, +3R 22.32%, +4R 16.07%, +5R 13.39%.
-- ETHUSD 102 trades: +1R 52.94%, +2R 40.20%, +3R 28.43%, +4R 16.67%, +5R 11.76%.
-- EURUSD 55 trades: +1R 52.73%, +2R 23.64%, +3R 16.36%, +4R 7.27%, +5R 5.45%.
-- SOLUSD 65 trades: +1R 53.85%, +2R 36.92%, +3R 26.15%, +4R 20.00%, +5R 9.23%.
-- DOGEUSD 77 trades: +1R 46.75%, +2R 28.57%, +3R 15.58%, +4R 14.29%, +5R 12.99%.
-- LNKUSD 83 trades: +1R 43.37%, +2R 25.30%, +3R 18.07%, +4R 14.46%, +5R 10.84%.
-
-Simple resolved target-vs-SL fixed-TP EV before costs (diagnostic only):
-- BTC: +1R +0.018R; +2R +0.173R; +3R -0.029R.
-- ETH: +1R +0.091R; +2R +0.281R; +3R +0.303R.
-- EURUSD: +1R +0.115R; +2R -0.188R; +3R -0.250R.
-- SOL: +1R +0.077R; +2R +0.161R; +3R +0.153R.
-- DOGE and LNK: no positive simple fixed-TP EV in this sample.
+Latest-window first-touch highlights:
+- BTCUSD 112 trades: +1R 50.00%, +2R 38.39%, +3R 22.32%.
+- ETHUSD 102 trades: +1R 52.94%, +2R 40.20%, +3R 28.43%.
+- EURUSD 55 trades: +1R 52.73%, +2R 23.64%, +3R 16.36%.
+- SOLUSD 65 trades: +1R 53.85%, +2R 36.92%, +3R 26.15%.
+- DOGE/LNK weak in aggregate.
 
 Notable path splits:
 - ETH RETEST: +1R 64.81%, +2R 50.00%, +3R 38.89%.
 - SOL ACCEPTANCE: +1R 58.06%, +2R 45.16%, +3R 29.03%.
-- EURUSD ACCEPTANCE preserves more continuation than RETEST after +1R; EURUSD overall decays sharply after +1R.
 
-Interpretation: ETH and SOL currently show the strongest cross-asset first-touch profile; BTC remains interesting; EURUSD looks more like an early-exit candidate; DOGE/LNK weak in aggregate. Do not tune production/path rules from this post-sample window. Full report: `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`, commit `3e0e3987c060287bab61ecb7275bcac84fb4e790`.
+Full report: `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`.
 
-## 6. Scientific separation / next D025 step
+## 6. 2024 full-year replication
 
-D025 V0 signal transitions use MT5 Core only. Binance/Bybit data collects independently. Later Crypto+ comparisons must join external data only with `available_at <= event_time`.
+User supplied full-year 2024 sessions for BTC, ETH, GBPUSD, USDJPY and XAUUSD: 2,530 trades total.
 
-Do not inject Shared Intelligence directly into live RSI/Momentum merely because fields are available.
+Global 2024 fixed-TP behavior was weak/near-flat, but branch splits were informative:
+- ETH RETEST EV2 about +0.084R while ACCEPTANCE was negative.
+- GBP RETEST EV2 about +0.084R, but this path result did not persist in 2025.
+- XAU RETEST EV2 about +0.158R, but this also failed replication in 2025.
+- BTC SHORT showed a modest early edge.
+- USDJPY global continuation was weak.
 
-Next clean D025 experiment:
+## 7. 2025 replication — NEW MATERIAL MILESTONE
+
+New sessions isolated from appended `(7)` CSVs by comparison with prior `(6)` files, avoiding double-counting older overlapping BTC/ETH runs:
+- BTCUSD 503 trades, full 2025
+- ETHUSD 557 trades, full 2025
+- GBPUSD 360 trades, full 2025
+- USDJPY 424 trades, full 2025
+- XAUUSD 399 trades, full 2025
+- SOLUSD 330 trades, 2025-04-29 -> 2025-12-30 only
+
+Total new 2025 trades: 2,573.
+
+2025 global first-touch / resolved fixed-TP EV before costs:
+- BTC: +1R 52.29%, +2R 30.82%, +3R 21.27%; EV1 +0.063R, EV2 -0.004R, EV3 -0.038R.
+- ETH: +1R 51.17%, +2R 30.52%, +3R 21.54%; EV1 +0.050R, EV2 -0.004R, EV3 -0.014R.
+- GBP: +1R 51.67%, +2R 29.17%, +3R 17.50%; EV1 +0.107R, EV2 +0.033R, EV3 -0.134R.
+- SOL: +1R 48.79%, +2R 32.73%, +3R 24.55%; EV1 -0.006R, EV2 +0.019R, EV3 +0.042R.
+- USDJPY: EV1 -0.027R, EV2 -0.055R, EV3 -0.114R.
+- XAU: EV1 -0.100R, EV2 -0.220R, EV3 -0.260R.
+
+Replication verdicts:
+- **ETH RETEST is the strongest recurring D025 branch**: EV2 positive in 2024 (+0.084R), 2025 (+0.109R), and Jun-Jul 2026 (+0.588R). Pooled 2024-2026: 704 RETEST trades; resolved +2R hit probability 37.78%; EV2 +0.133R before costs.
+- **BTC SHORT has a recurring early edge**: pooled 2024-2026 625 trades; EV1 +0.096R, EV2 +0.067R, EV3 negative.
+- **GBP SHORT has a recurring early edge**: pooled 421 trades; EV1 +0.121R, EV2 +0.072R, EV3 ~flat/negative. GBP path leadership flips between 2024 and 2025, so do not promote ACCEPTANCE/RETEST as a GBP rule.
+- **SOL SHORT is promising but less mature**: 2025 EV2 +0.196R / EV3 +0.235R; Jun-Jul 2026 also strong. No 2024 sample and 2025 starts late April.
+- **USDJPY 2026 strength is not robust backward**: 2024/2025 global EV2 negative.
+- **XAU RETEST 2024 failed replication**: 2025 RETEST EV2 negative; do not promote XAU path rule.
+
+Across the five full-year common markets BTC/ETH/GBP/USDJPY/XAU, 2024+2025 gives 4,773 trades. Universal D025 is approximately flat at 1R (EV +0.011R before costs) and negative at 2R (-0.032R) / 3R (-0.106R). Therefore there is no universal fixed-TP edge across all markets; edge is branch/regime dependent.
+
+Full report: `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`, commit `e30334bf44fb1551943c151a640da4487fe1c8cd`.
+
+## 8. Scientific separation / next D025 step
+
+Enough data now exists to stop indiscriminate symbol collection and move to a preregistered management/branch-validation stage.
+
+Do NOT change D025 V0 entry thresholds or structural SL. Current CSVs cannot reconstruct partial-at-1R + move-to-BE + runner exactly because they do not record a post-+1R return to entry before later targets.
+
+Next clean EA/research step:
 - add +0.5R timestamp tracking;
-- keep entry thresholds frozen;
-- test only a tiny preregistered exit set (e.g. full TP 0.5R, full TP 1R, one partial-at-1R + runner);
-- no broad optimization grid.
+- add post-+1R BE-touch timing/state;
+- test only a tiny preregistered exit set: full TP +1R, full TP +2R, and one fixed partial-at-1R + BE remainder + runner/trail construction;
+- keep one frozen trailing rule; no broad grid optimization;
+- validate the recurring branches (ETH RETEST, BTC SHORT, GBP SHORT, SOL SHORT) without changing entry thresholds.
 
-## 7. Research note — missed post-shock reaction
+D025 V0 signal transitions remain MT5 Core only. Binance/Bybit data collects independently. Later Crypto+ comparisons must join external data only with `available_at <= event_time`.
+
+## 9. Research note — missed post-shock reaction
 
 Live ETHUSD observation 2026-09-04: extreme bearish impulse followed by no obvious Guardian reaction/trade. Keep as a separate later post-shock/exhaustion/mean-reversion research hypothesis. Do not silently loosen Momentum/RSI filters.
 
-## 8. Resume order
+## 10. Resume order
 
 1. this file
-2. latest FundedNext request-budget audit / current Guardian 11.17.x source
-3. `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
-4. `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`
-5. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-6. `docs/STRATEGY_DECISIONS.md`
-7. `research/ea/D025_LER_Trading_1_01.mq5`
-8. locked D025 V0 rules
-9. current observer source
-10. latest Shared Intelligence result files / `CURRENT_QUEUE.json`
+2. `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`
+3. latest FundedNext request-budget audit / current Guardian 11.17.x source
+4. `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
+5. `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`
+6. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
+7. `docs/STRATEGY_DECISIONS.md`
+8. `research/ea/D025_LER_Trading_1_01.mq5`
+9. locked D025 V0 rules
+10. current observer source
 
-## 9. Continuity rule
+## 11. Continuity rule
 
 After every material milestone, update this handoff in the same work session. No important current state should exist only in conversation context.
