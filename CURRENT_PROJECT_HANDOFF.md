@@ -1,11 +1,53 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 20:35 Europe/Paris
-Status: ACTIVE / D025 1.03 CRYPTO POPULATION MECHANISM IDENTIFIED: TICK-VOLUME COLLAPSE BLOCKS CASCADE / UNDERLYING TESTER-DATA PROVENANCE STILL TO CONFIRM / SHARED INTELLIGENCE LIVE READ-ONLY / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
+Last updated: 2026-09-04 19:55 Europe/Paris
+Status: ACTIVE / AUTONOMOUS WORK DIRECTIVE: D026 PRICE-ONLY DESIGN+CODE + D025 XAU/FOREX EXPLOITATION / D025 CRYPTO VOLUME DATA QUARANTINED / FUNDEDNEXT LIVE AUTO OFF PENDING REQUEST-BUDGET FIX
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
 Historical chronology, planning and work-time ledger: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
+
+## 0. CURRENT USER DIRECTIVE — DO NOT LOSE THIS
+
+User explicitly authorized autonomous work on TWO parallel research tracks and does not want to be interrupted for micro-decisions:
+
+### Track A — D026 Price-Only Exhaustion/Reclaim
+Goal: create a new crypto-capable strategy that does NOT depend on broker tick volume, while keeping the useful structural idea behind D025.
+
+Assistant may autonomously:
+- design and freeze D026 rules BEFORE looking at D026 results;
+- code a virtual/diagnostic EA;
+- static-audit it;
+- document methodology and acceptance criteria;
+- prepare the BTC/ETH backtest protocol;
+- continue until the only remaining dependency is the user's manual MT5 test launch.
+
+Do NOT ask the user to make small design choices unless genuinely unavoidable. The user should only be needed when a manual MT5 run becomes indispensable.
+
+Scientific constraints:
+- no D025 threshold retuning disguised as D026;
+- no broker tick-volume dependency;
+- prioritize price structure, ATR-normalized range/body/progress, sweep, exhaustion, reclaim/retest;
+- rules frozen pre-result;
+- no broad parameter optimization;
+- large edge required, not crumbs;
+- later costs/stress tests mandatory before production.
+
+### Track B — D025 XAU / Forex exploitation
+Goal: extract the maximum scientifically defensible value from existing D025 XAU/Forex datasets without asking user for unnecessary reruns.
+
+Assistant may autonomously:
+- re-open prior CSVs from conversation/library;
+- isolate sessions/symbol/year/path/side;
+- compare 2024 vs 2025 and available 2026 diagnostics;
+- evaluate fixed TP and path branches from already-recorded first-touch data;
+- identify robust/rejected branches;
+- document results and decisions in GitHub;
+- avoid pretending spread/commission/slippage are already included where they are not.
+
+Current priority non-crypto markets: XAUUSD, GBPUSD, USDJPY, EURUSD where available.
+
+The user said, effectively: write all of this in the handoff and work until these two tracks are pushed as far as possible. Respect that continuity even if model/conversation limits force a new instance.
 
 ## 1. Live Guardian / Shared Intelligence
 
@@ -39,24 +81,27 @@ User-confirmed MT5 target:
 
 FundedNext automation wrappers V1/V2/V3/V4 are SUSPENDED. Do not ask the user to debug launcher/shell wrappers. Normal manual MT5 Strategy Tester workflow is the preferred path.
 
-## 4. FundedNext server-request anomaly — HIGH PRIORITY
+## 4. FundedNext server-request anomaly — HIGH PRIORITY OPERATIONS ISSUE
 
 Live observation 2026-09-04:
 - FundedNext HUD reached about `5629/2000 (281.4%) | HARD LIMIT | PROTECTION ONLY`.
 - FTMO Guardian had only about `32/2000 (1.6%) | NORMAL` after long runtime.
 
-Known mechanism capable of runaway:
-- Guardian counter is account/day scoped and increments before CTrade send, so rejected attempts still count locally.
-- `SRP_EMERGENCY` and `SRP_PROTECTION` bypass hard budget by design.
-- strongest static suspect: repeated `RSI_BE_RETRY` / common-stop protection work evaluated tick-by-tick while unapplied.
+Exact live lineage source found in Library:
+- `Guardian_D017_PropFirmAuto_v11_17_04_MANUAL_PROTECTION_HOTFIX_PLAN80_RUNNER20.mq5`.
 
-This proves a runaway-capable path, not that every one of 5629 attempts reached FundedNext.
+Confirmed runaway-capable path:
+- after TP1, if BE NET is not applied, `RSIManageCycleTick()` calls `RSI_BE_RETRY` again whenever the condition remains true;
+- `RSI_BE_RETRY` uses `SRP_PROTECTION`;
+- `SRP_PROTECTION` bypasses the hard request budget by design.
 
 Operational rule:
 - FundedNext Algo Trading remains OFF until bounded retry/backoff/dedup patch is built and validated.
 - Shared Intelligence may remain ON.
 - Do not reset the counter merely to clear HUD.
-- Audit all `SRP_PROTECTION` retry loops; preserve true emergency protection bypass.
+- True emergency protection must retain priority; routine BE retries must not behave as unlimited emergency traffic.
+
+A v11.17.07 patch is a separate high-priority operational track, but the current user directive explicitly prioritizes autonomous D026 + D025 XAU/Forex research while no manual input is needed.
 
 ## 5. FundedNext Quick Strike — corrected requirement
 
@@ -79,170 +124,136 @@ GitHub issue: #2.
 
 Source: `research/ea/D025_LER_Trading_1_01.mq5`.
 
-Long BTC/ETH test with market entry, structural SL, no TP, forced 48h exit lost badly. Correct conclusion:
-- REJECT that exit construction.
-- Do NOT reject D025 entry from that P/L alone.
-
 Original full-year 1.01 sessions directly re-opened from prior conversation uploads:
 - BTC 2024 = 614 unique trades; BTC 2025 = 503.
 - ETH 2024 = 615; ETH 2025 = 557.
 - XAU 2024 = 450; XAU 2025 = 399.
 - USDJPY 2024 = 442; USDJPY 2025 = 424.
-- No duplicate event IDs in those full-year sessions.
+- GBP 2024 = 409; GBP 2025 = 360.
+- SOL 2025 partial-year = 330.
 
 Earlier branch diagnostics before costs:
-- ETH RETEST repeatedly positive in the original 1.01 population.
+- ETH RETEST repeatedly positive in original 1.01 population.
 - BTC SHORT modest recurring early edge.
 - GBP SHORT recurring early edge.
 - SOL SHORT promising but less mature.
 - XAU RETEST 2024 did not replicate in 2025.
 - USDJPY 2026 strength did not robustly replicate backward.
+- universal D025 fixed TP is not accepted.
 
-Universal D025 fixed TP is not accepted.
+## 7. D025 1.02 / 1.03 crypto data diagnosis — CURRENT CORRECTION
 
-## 7. D025 1.02 Path Diagnostic — historical instrumentation / causal diagnosis superseded
+1.02 real-order low BTC/ETH population was initially blamed mainly on order/min-lot/margin selection. 1.03 virtual disproved that as the main cause.
 
-Source: `research/ea/D025_LER_Trading_1_02_PathDiagnostic.mq5`.
-
-Added +0.5R, +1R..+5R, first return to entry after +1R and same-M1 path ambiguity.
-
-The 0.05% real-order combined 2024-2025 sessions produced much smaller BTC/ETH populations than the original 1.01 separate-year sessions.
-
-Previous interpretation that lot minimum/account/margin/order execution was the main cause is **SUPERSEDED**. 1.03 virtual shows the low signal population persists with zero orders.
-
-Keep `research/results/D025_1_02_005PCT_RERUN_DIAGNOSTIC_2026_09_04.md` only as historical evidence; do not reuse its old causal conclusion.
-
-## 8. D025 1.03 Virtual Path Diagnostic — CURRENT MILESTONE
-
-Canonical source is now committed:
-- `research/ea/D025_LER_VirtualPath_1_03.mq5`
-- creation commit `0a54a018b3b5bfcfcd8fbbac7c7bbee1bbb4d664`
-
-Characteristics:
-- no CTrade;
-- no orders or positions;
-- no lot sizing, margin, equity or execution-success dependency;
-- locked V0 signal chain;
-- structural stop only as virtual reference;
-- +0.5R, +1R..+5R, stop, BE-after-1R, 48h path;
-- overlapping virtual trades allowed;
-- same-M1 ambiguity explicit.
-
-User supplied cumulative 1.03 CSVs containing five complete 2024-2025 sessions: BTCUSD, ETHUSD, DOGUSD, XAUUSD, USDJPY.
-
-1.03 trade counts:
-- BTC 499 = 298 in 2024 + 201 in 2025.
+1.03 virtual current combined 2024-2025 counts:
+- BTC 499 = 298 + 201.
 - ETH 553 = 358 + 195.
 - DOG 595 = 302 + 293.
 - XAU 798 = 432 + 366.
 - USDJPY 793 = 401 + 392.
 
-Zero `VALID_SIGNAL_REJECTED_BAD_RISK`; zero `VALID_SIGNAL_REJECTED_NO_SLOT`. Every VALID_SIGNAL became a virtual trade.
+No BAD_RISK/NO_SLOT virtual rejections.
 
-Comparison:
-- BTC 1.03 499 vs 1.02 real-order 490 vs original 1.01 separate-year total 1,117.
-- ETH 553 vs 544 vs 1,172.
-- XAU 798 vs 798 vs 849.
-- USDJPY 793 vs 791 vs 866.
+Mechanism identified:
+- crypto historical relative tick volume collapses toward ~1.0 in large blocks;
+- frozen CASCADE condition `rel_tick_volume >=1.25` then cannot fire;
+- BTC Aug 2024: 117 sweeps, median relvol ~0.999, max 1.243, zero CASCADE, zero signal;
+- ETH Aug/Sep 2024 similarly nearly dead;
+- XAU control does not show the same collapse and recovers ~94% of old population.
 
-### Mechanism now identified: historical crypto tick-volume collapse
+Strategy Tester screenshot showed `Every tick`. A controlled BTC rerun with `Every tick based on real ticks` was then supplied by user.
 
-D025 CASCADE requires relative M15 tick volume >=1.25. Current 1.03 event data shows large BTC/ETH historical segments where relative tick volume collapses to ~1.0 and becomes nearly flat, mechanically preventing CASCADE.
+IMPORTANT NEW RESULT:
+- BTC real-ticks control produced the SAME 499-trade cumulative population / same data content apart from session identity as the earlier run;
+- therefore switching MT5 modelling mode does **not** solve the D025 crypto data problem;
+- hypothesis `Every tick vs real ticks` as primary cause is REJECTED;
+- remaining issue is historical feed/tick-volume provenance/availability from FundedNext/MT5 history, not D025 order execution and not simply tester model selection.
 
-BTC 2024:
-- Jul median relvol ~1.290, 65/120 sweeps >=1.25, 61 CASCADEs.
-- **Aug median ~0.999, max 1.243, 0/117 >=1.25, 0 CASCADEs, 0 signals.**
-- Sep median ~0.995, only 16/126 >=1.25, 12 CASCADEs, 4 signals.
-- Oct median ~1.896, 105/134 >=1.25, 89 CASCADEs, 43 signals.
+D025 crypto historical results that depend on this relative-volume gate are QUARANTINED until a trustworthy volume source/provenance exists. Do not lower 1.25 to compensate.
 
-ETH 2024:
-- Jul median ~1.499, 73/119 >=1.25, 63 CASCADEs.
-- **Aug median ~1.043, only 4/121 >=1.25, 2 CASCADEs, 2 signals.**
-- **Sep median ~1.031, only 1/117 >=1.25, 3 CASCADEs, 1 signal.**
-- Oct median ~1.406, 70/131 >=1.25, 61 CASCADEs, 25 signals.
+## 8. D025 XAU/Forex — ACTIVE AUTONOMOUS RESEARCH TRACK
 
-Original 1.01 had 52 BTC trades in Aug 2024 + 51 in Sep, and 47 ETH + 48 respectively, proving the old runs saw materially different usable volume/bar provenance.
+Use existing datasets first. Do not request reruns merely for convenience.
 
-2025 current 1.03 makes the issue even clearer: from Aug-Dec BTC/ETH median relative volume stays near 1.00 and very few sweeps exceed 1.25.
+Known 2024 first-touch EV (pre-cost):
+- GBP n409: EV1 about -0.010R, EV2 +0.025R, EV3 -0.064R; RETEST better than ACCEPTANCE; GBP SHORT observationally better.
+- USDJPY n442: EV1 +0.019R, EV2 -0.084R, EV3 -0.136R; RETEST better than ACCEPTANCE; LONG observationally better.
+- XAU n450: EV1 +0.007R, EV2 -0.055R, EV3 -0.152R; XAU RETEST 2024 was strong (EV1 ~+0.090, EV2 ~+0.158, EV3 ~+0.042), but side LONG also looked better.
 
-XAU control does NOT collapse the same way in Aug-Sep 2024 and recovers ~94% of prior signal count. USDJPY is also much closer.
+Known 2025 replication (pre-cost):
+- GBP n360: EV1 +0.107R, EV2 +0.033R, EV3 -0.134R.
+- USDJPY n424: EV1 -0.027R, EV2 -0.055R, EV3 -0.114R.
+- XAU n399: EV1 -0.100R, EV2 -0.220R, EV3 -0.260R.
+- XAU RETEST did NOT replicate; do not promote.
+- GBP SHORT pooled 2024+2025+small 2026 had recurring early edge around EV1 +0.121R, EV2 +0.072R, EV3 around flat/negative; path leadership flips by year, so path-specific GBP rule is not validated.
+- USDJPY 2026 strength failed backward replication; do not promote universal USDJPY branch.
 
-**Immediate missing-signal mechanism: PROVEN — collapsed/synthetic historical tick volume blocks frozen CASCADE filter.**
+Autonomous task now: reopen actual CSVs, quantify confidence/sample consistency, isolate side/path/year and produce a final XAU/Forex verdict report. Require large margin; no crumbs.
 
-**Underlying reason the old and current histories differ: NOT YET PROVEN.** Candidate categories: tester modeling mode, historical feed/cache/data availability, terminal/broker provenance. Frequent old-vs-new BTC 2024 signal timing offsets of +60min and 0min support a provenance/configuration difference.
+## 9. D026 Price-Only Exhaustion/Reclaim — ACTIVE AUTONOMOUS DESIGN TRACK
 
-Do NOT change the 1.25 threshold to compensate for bad/synthetic history.
+D026 is NEW. It is not a patch to D025 and must receive its own rules lock before any D026 result is inspected.
 
-Full report: `research/results/D025_1_03_VIRTUAL_PATH_DIAGNOSTIC_2026_09_04.md`, updated commit `501776124b59e6fd1b17d0b44bce1cca387d4ab3`.
+Design intent:
+- preserve structural concept: liquidity sweep -> directional displacement -> measurable exhaustion -> reclaim -> confirmation/retest;
+- remove broker tick-volume completely;
+- use only reproducible OHLC/time/ATR-derived quantities available from MT5 price history;
+- crypto-first BTC/ETH applicability, but portable to other venues/brokers;
+- no dependency on Binance/Bybit for baseline D026; external data can later be a separate Crypto+ layer.
 
-## 9. Current 1.03 outcome observations — PRELIMINARY ONLY
+The assistant is authorized to decide the initial frozen thresholds using documented/structural reasoning, not retrospective result optimization, then code a virtual logger and prepare BTC/ETH tests.
 
-Resolved fixed-TP EV, before spread/commission/slippage, in the current 1.03 population:
-- BTC global: EV0.5 +0.007R; EV1 +0.046R; EV2 -0.002R; EV3 -0.125R.
-- ETH global: -0.039R; -0.053R; -0.090R; -0.100R.
-- DOG global: -0.115R; -0.106R; -0.170R; -0.272R.
-- XAU global: +0.021R; -0.011R; -0.068R; -0.148R.
-- USDJPY global: -0.029R; -0.036R; -0.043R; -0.137R.
+Only when D026 source is frozen/audited and manual tester execution is genuinely needed should the user be asked to run BTC/ETH and return events/trades/outcomes.
 
-Interesting but not promotable while crypto data provenance is unresolved:
-- BTC SHORT pooled current 1.03: n=256, EV1 ~+0.174R, EV2 ~+0.192R; 2024 very strong, 2025 much weaker.
-- XAU RETEST pooled: EV1 ~+0.104R, EV2 ~+0.077R; weaker in 2025.
-- DOG SHORT pooled: EV1 ~+0.076R, EV2 ~+0.068R.
-- ETH RETEST current 1.03 does not confirm the original 1.01 finding.
-
-Runner path among +1R winners, non-ambiguous cases: +2R before BE roughly 47-53% across tested symbols. No production management rule is authorized from this alone.
-
-## 10. D025 management research standard
+## 10. D025/D026 management research standard
 
 User requirement: **do not settle for crumbs**.
 
-Current diagnostics remain before full trading costs. Spread, commission and slippage are not yet fully included in the R-EV figures.
+Pre-cost EV is not production EV. Spread, commission, slippage and stress-cost tests must later be applied.
 
 Acceptance philosophy:
-- tiny pre-cost edge is not enough;
-- seek a broad, repeated structural advantage across years/branches;
-- then apply realistic spread + commission + slippage;
-- stress costs upward before production consideration;
-- no curve fitting, no retrospective entry-threshold tuning.
+- broad pre-cost advantage should preferably be >= ~+0.15R/trade and ideally ~+0.20R+ before considering production work;
+- consistency across years/regimes/branches matters more than one pooled good number;
+- small sample branches must not be promoted;
+- no curve fitting / no broad parameter sweep;
+- same-M1 ordering ambiguity must remain explicit in path diagnostics.
 
-## 11. Immediate D025 next step — NO BROAD RERUNS
+## 11. Shared Intelligence relation
 
-Do NOT ask the user to run GBP/EUR/other broad 1.03 batches yet.
+Current D025 Core and future baseline D026 do NOT use Binance/Bybit data for entry/SL/exit.
 
-The strategy code no longer needs a broad rerun to explain the count difference. The next diagnostic is only to identify **why the current tester/history supplies flattened crypto tick volume** compared with the old 1.01 runs.
+External Intelligence is a later optional Crypto+ layer:
+- spot/perp;
+- OI;
+- funding;
+- liquidations;
+- basis/dislocation;
+- Binance/Bybit agreement/divergence;
+- quality/staleness.
 
-Simplest next evidence: current Strategy Tester **Settings** showing modeling mode + date range. No shell commands. If modeling mode does not explain it, investigate historical feed/cache/server provenance next.
+Any later event study must join strictly with `available_at <= event_time`.
 
-## 12. Shared Intelligence relation to D025
-
-Current D025 Core does NOT use Binance/Bybit data for entry, SL or exit.
-
-External Intelligence is a later Crypto+ research layer only: spot/perp, OI, funding, liquidations, basis/dislocation, Binance/Bybit agreement/divergence, quality/staleness.
-
-Future comparison must be `D025 Core` vs `D025 Core + external state`, joined strictly with `available_at <= event_time`.
-
-Current collector has already produced thousands of raw observations and continues building forward BTC/ETH history. Do not use current live snapshot as historical truth in Strategy Tester.
-
-## 13. Project planning / work-time ledger
+## 12. Project planning / work-time ledger
 
 Canonical living file: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 
-It reconstructs Guardian history back to mid-August 2026 and distinguishes confirmed activity spans, minimum observed time and unknown historical duration. Going forward track human active time separately from unattended backtest/collector runtime.
+Update it after material D025/D026 milestones. Track human active time separately from unattended MT5/collector runtime.
 
-## 14. Resume order
+## 13. Resume order
 
 1. `CURRENT_PROJECT_HANDOFF.md`
 2. `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`
-3. `research/results/D025_1_03_VIRTUAL_PATH_DIAGNOSTIC_2026_09_04.md`
-4. `research/ea/D025_LER_VirtualPath_1_03.mq5`
-5. current 1.03 virtual CSVs
-6. original 1.01 full-year CSV sessions from conversation files
-7. `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`
-8. latest FundedNext request-budget audit / current Guardian v11.17.x source
-9. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-10. `docs/STRATEGY_DECISIONS.md`
-11. locked D025 V0 rules
+3. D026 rules-lock / source / audit created after this directive
+4. D025 XAU/Forex final exploitation report created after this directive
+5. `research/results/D025_1_03_VIRTUAL_PATH_DIAGNOSTIC_2026_09_04.md`
+6. `research/ea/D025_LER_VirtualPath_1_03.mq5`
+7. current 1.03 virtual CSVs
+8. original 1.01/1.02 CSV sessions from conversation/library
+9. latest FundedNext request-budget audit / current Guardian source
+10. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
+11. `docs/STRATEGY_DECISIONS.md`
+12. locked D025 V0 rules
 
-## 15. Continuity rule
+## 14. Continuity rule
 
-After every material milestone, update this handoff in the same work session. Keep the planning/time ledger current as well. No important state should exist only in conversation context.
+After every material milestone, update this handoff in the same work session. Keep planning/time ledger current. No important state should exist only in conversation context. If context/model limits interrupt the work, the next instance must continue the D026 + D025 XAU/Forex autonomous directive rather than asking the user to restate it.
