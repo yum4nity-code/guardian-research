@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 13:56 Europe/Paris
-Status: ACTIVE / D025 LIVE OBSERVER RUNNING / FUNDEDNEXT BACKTEST V4 STABLE
+Last updated: 2026-09-04 13:58 Europe/Paris
+Status: ACTIVE / D025 LIVE OBSERVER RUNNING / FUNDEDNEXT AUTOMATION SUSPENDED
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
@@ -37,38 +37,24 @@ Resolved from the actual live window/process:
 
 Launcher history:
 - V1 chose another FundedNext installation; superseded.
-- V2 generic file/log discovery failed on Server 2; not used directly for this target.
-- V3 correctly binds to the exact live window and data path, then builds the portable clone. It compiled the D025 harness with `0 errors, 0 warnings` and launched the isolated tester.
-- Portable logs confirmed `account_seen=True` but did not expose a usable server label (`server_seen=False`).
-- V4 initially tried to self-patch V3 and failed after V3 changed (`V2 portable target verification block changed`). This brittle self-patching layer has now been removed.
+- V2 generic file/log discovery failed on Server 2.
+- V3 correctly bound the exact live window/data path and compiled the harness with `0 errors, 0 warnings`, but portable verification remained unreliable because server text was absent from portable logs.
+- V4 introduced another delegation/self-patching failure and still did not produce a user-verified running backtest.
 
-## 4. Current FundedNext launcher: V4 stable
+## 4. FundedNext automation status: SUSPENDED
 
-Use only:
-- `automation/run_d025_fundednext_backtest_v4.ps1`
-- `automation/RUN_D025_FUNDEDNEXT_BACKTEST_V4.cmd`
+Do NOT ask the user to run V1/V2/V3/V4 again.
 
-Current implementation:
-- V4 is now a thin stable delegate to V3; it no longer edits V3 or V2 source text itself.
-- V3 first MUST bind the source to the exact running live window whose title contains BOTH account `14202634` and server `FundedNext-Server 2`.
-- V3 maps that exact process to the MT5 data folder via `origin.txt`.
-- The portable clone is created from that verified source.
-- Portable verification now requires exact account `14202634`; `serverSeen` remains telemetry only because FundedNext portable logs may omit the server label.
-- Server identity is supplied by the earlier exact live-window provenance check, which already required both account and server.
-- Live terminal / Guardian are not closed or commandeered.
-- `AllowLiveTrading=0`; D025 itself has no order functions.
+The user can launch MT5 backtests manually and originally wanted automation only to save time. The automation attempt instead cost time, so it is suspended until it can be validated independently before any new command is given to the user.
 
-Default test:
-- BTCUSD + ETHUSD
-- host BTCUSD M1
-- `2025.01.01 -> 2026.06.28`
-- Model=4 real ticks
-- no optimization / no threshold search
+Operational rule for future agents:
+- Never give the user a local PowerShell/CMD command for this project merely because the code looks plausible.
+- Do not ask the user to serve as the debugger for unverified launcher iterations.
+- If a new automation is proposed, first reduce it to a simple architecture, inspect the exact current files, perform every validation available from the assistant side, and clearly state any part that cannot be independently verified on the user's Windows/MT5 environment.
+- If end-to-end validation on the real environment is not possible, prefer manual MT5 steps that the user already knows over presenting an unverified command as ready.
+- The user may manually run D025 backtests; assistant should focus on preparing the correct EA/configuration and analyzing results rather than repeatedly relaunching fragile wrappers.
 
-Expected success line:
-`CONFIRMED TARGET: 14202634 / FundedNext-Server 2 (verified live-window provenance + portable account)`
-
-Then the script waits for `COMPLETE.txt`, analyzes results, and publishes compact outputs to branch `backtest-results` under `backtests/d025/<RUN_ID>/`. Large raw CSVs stay local with hashes in the manifest.
+Do not claim that any V1-V4 FundedNext run completed successfully. No trusted `COMPLETE.txt` / published D025 backtest result has yet been verified from these launcher attempts.
 
 ## 5. Scientific separation
 
@@ -76,14 +62,12 @@ D025 V0 signal transitions use MT5 Core only. Binance/Bybit data continues colle
 
 Do not inject Shared Intelligence directly into live RSI or Momentum merely because the fields are available.
 
-## 6. Next action
+## 6. Next safe action
 
-1. Keep the correct live FundedNext MT5 window open.
-2. `git pull`.
-3. Run `automation/run_d025_fundednext_backtest_v4.ps1`.
-4. Trust the run after the V4/V3 confirmation line above.
-5. Completion requires `COMPLETE.txt` -> analyzer -> GitHub publish.
-6. Keep D025 Observer 1.00 running live in parallel.
+- Leave D025 Observer 1.00 running live.
+- For historical D025 testing, use the user's normal manual MT5 Strategy Tester workflow unless/until a launcher has been independently validated.
+- When the user provides tester outputs/CSV results, analyze them and publish clean research conclusions/results to GitHub.
+- Do not alter locked V0 thresholds based on the first results.
 
 ## 7. Resume order for a fresh agent
 
