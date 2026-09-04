@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 13:20 Europe/Paris
-Status: ACTIVE / LIVE RESEARCH RUNNING / D025 BACKTEST AUTOMATION READY
+Last updated: 2026-09-04 13:18 Europe/Paris
+Status: ACTIVE / LIVE RESEARCH RUNNING / D025 BACKTEST V2 READY
 
 This file is the canonical fast-resume entry point for a fresh ChatGPT/Codex instance. It must stay current enough that the project can be resumed without relying on conversation history.
 
@@ -104,36 +104,47 @@ Validated GitHub read on 2026-09-04 after installation showed:
 
 A fresh ChatGPT instance may therefore read the `live-status` branch to recover recent research state without asking the user to paste MT5 logs.
 
-## 5. D025 automated FundedNext backtest
+## 5. D025 automated FundedNext backtest — exact target correction
 
-Automation is now prepared on `main`:
-- `automation/run_d025_fundednext_backtest_v1.ps1`
+### Important incident / supersession
+
+The first launcher `run_d025_fundednext_backtest_v1.ps1` is **superseded and must not be used** for this user target. It selected a different FundedNext installation (`FundedNext-Server 3`) because V1 ranked generic FundedNext evidence. Also, invoking `/config` on an already-running terminal did not reliably start the requested Strategy Tester configuration.
+
+The exact user-confirmed target from the MT5 title bar on 2026-09-04 is:
+- account: **14202634**;
+- server: **FundedNext-Server 2**;
+- account mode: **Hedge**;
+- company: **FundedNext Ltd**.
+
+### V2 automation
+
+Use only:
+- `automation/run_d025_fundednext_backtest_v2.ps1`
+- `automation/RUN_D025_FUNDEDNEXT_BACKTEST_V2.cmd`
+- `automation/publish_d025_backtest_results_v1.ps1`
 - `automation/analyze_d025_backtest_v1.py`
-- `automation/RUN_D025_FUNDEDNEXT_BACKTEST_V1.cmd`
 
-Default run:
-- auto-detect the MT5 terminal/data folder with strongest FundedNext evidence;
-- compile a generated **backtest-only** D025 harness derived from `D025_LER_Observer_V0.mq5`;
-- preserve all locked V0 thresholds;
-- isolate tester CSVs under `FILE_COMMON/GuardianResearch/D025/Backtests/<RUN_ID>/` so live forward CSVs are never mixed with tester data;
-- test BTCUSD + ETHUSD from one multi-symbol EA;
-- host chart BTCUSD M1;
-- period `2025.01.01 -> 2026.06.28` by default;
-- Strategy Tester `Model=4` = Every tick based on real ticks;
-- `AllowLiveTrading=0`, no order functions in D025, `ShutdownTerminal=0`;
-- no optimization / no threshold search;
-- wait for an EA-written `COMPLETE.txt` sentinel rather than closing the FundedNext terminal;
-- analyze funnel, failures, MFE/MAE, R-hit timing, BTC/ETH and level breakdowns automatically.
+V2 behavior:
+- requires exact `FundedNext-Server 2` evidence and targets account `14202634` by default;
+- persists the resolved data folder to `D:\MT5_Backtests\Research\D025\fundednext_target_14202634.json` for deterministic reuse;
+- copies the FundedNext program binaries and saved account configuration into a dedicated portable test clone at `D:\MT5_Backtests\Terminals\FundedNext_14202634_D025_BT`;
+- launches the test clone with `/portable`, so the live account terminal and live Guardian are not closed or commandeered;
+- uses an isolated generated D025 backtest harness derived from `D025_LER_Observer_V0.mq5` without changing locked V0 thresholds;
+- tests BTCUSD + ETHUSD, host BTCUSD M1, `Model=4` real ticks, default `2025.01.01 -> 2026.06.28`;
+- `AllowLiveTrading=0`; D025 itself contains no order functions;
+- verifies target-server/account evidence in the portable clone before accepting the run as started;
+- stops with an error instead of waiting for hours if target confirmation fails;
+- portable tester may shut itself down when the run completes because it is not the user's live terminal.
 
 Results publication:
 - dedicated GitHub branch: `backtest-results`;
 - one finite commit per completed run;
 - path: `backtests/d025/<RUN_ID>/`;
-- always publish `SUMMARY.md`, `summary.json`, `manifest.json`;
-- publish `events_compact.csv` only if <= 5 MB;
-- large raw CSVs remain local under `D:\MT5_Backtests\Research\D025\Backtests\<RUN_ID>\raw\`, with SHA256 and byte sizes recorded in the manifest.
+- publish `SUMMARY.md`, `summary.json`, `manifest.json`, and `events_compact.csv` when small enough;
+- large raw CSVs remain local under `D:\MT5_Backtests\Research\D025\Backtests\<RUN_ID>\raw\` with hashes recorded in the manifest;
+- manifest records exact FundedNext account/server target and `isolated_portable_clone=true`.
 
-The `backtest-results` branch contains `BACKTEST_RESULTS_README.md`. A fresh agent must inspect the newest D025 run there after the user launches the automation.
+The `backtest-results` branch contains `BACKTEST_RESULTS_README.md`. A fresh agent must inspect the newest D025 run there after the user launches V2.
 
 ## 6. Scientific separation
 
@@ -154,11 +165,13 @@ Do not inject Shared Intelligence directly into live RSI or Momentum merely beca
 
 Priority sequence:
 
-1. Run the first D025 FundedNext Core backtest with the automation above and inspect the automatically published summary; do not alter locked thresholds from the result.
-2. Keep D025 Observer 1.00 running live in parallel and accumulate genuine forward M15 state transitions.
-3. Compare backtest state-machine behavior with forward behavior for obvious implementation/replay artifacts before making any strategy conclusion.
-4. After sufficient Core evidence, join timestamp-valid Binance/Bybit features for Crypto+ event-study comparisons.
-5. Only after robustness/OOS/cost/red-team gates may anything become a Guardian trading candidate.
+1. Do **not** reuse V1. Pull `main` and run `run_d025_fundednext_backtest_v2.ps1` targeting account 14202634 / FundedNext-Server 2.
+2. Confirm V2 prints `CONFIRMED TARGET: 14202634 / FundedNext-Server 2` before trusting the run.
+3. Inspect the automatically published summary on `backtest-results`; do not alter locked thresholds from the result.
+4. Keep D025 Observer 1.00 running live in parallel and accumulate genuine forward M15 state transitions.
+5. Compare backtest state-machine behavior with forward behavior for obvious implementation/replay artifacts before making any strategy conclusion.
+6. After sufficient Core evidence, join timestamp-valid Binance/Bybit features for Crypto+ event-study comparisons.
+7. Only after robustness/OOS/cost/red-team gates may anything become a Guardian trading candidate.
 
 ## 8. MT5 versioning rule
 
