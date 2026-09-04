@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-04T05:58:00+01:00",
-  "active_primary": "FUNDEDNEXT-FREE-TRIAL-EA-OPTION-AWARE-FIX",
+  "updated_at": "2026-09-04T07:18:43+02:00",
+  "active_primary": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
   "items": [
     {
       "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
@@ -33,8 +33,8 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "research_infrastructure",
-      "goal": "Build the first read-only external market-data collector/recorder for BTC and ETH: spot, perpetual, open interest, liquidations and funding when available; UTC timestamps, source provenance, staleness/health, reconnect/deduplication and a no-lookahead replay path. Research only; no production Guardian changes and no live orders.",
-      "blocking": "Consume handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md. Complete and checkpoint only the data-infrastructure gate before any LER signal engine."
+      "goal": "Collector/replay V1 is already implemented on GitHub. Do NOT rewrite it before evidence. Sync research/external_intelligence/, install aiohttp locally, run a 30+ minute BTC/ETH Bybit public-data smoke, test reconnect/staleness/deduplication, validate real JSONL replay with strict available_at_ms gate, then push compact sample/metrics/manifest evidence.",
+      "blocking": "Consume updated handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md and research/results/D025_EIB_V1_IMPLEMENTATION_REPORT.md. No Guardian production integration and no LER signal engine until the live data gate passes."
     },
     {
       "id": "D025-LIQUIDITY-EXHAUSTION-RECLAIM",
@@ -122,5 +122,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "Existing safety/research work remains valid. New user priority 2026-09-04: progress D025 incrementally. First complete GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1 only; no live LER trading, no hidden production mutation, no lookahead, no parameter search. Preserve and harvest any already-running healthy jobs before starting new heavy work."
+  "notes": "User priority 2026-09-04: progress D025 incrementally. EIB V1 code is already committed and offline-tested by ChatGPT; Codex must smoke-test it on the real PC/network, not rewrite it. No live LER trading, no hidden production mutation, no lookahead, no parameter search. Preserve and harvest any already-running healthy jobs before starting heavy work."
 }
