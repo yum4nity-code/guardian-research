@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 18:50 Europe/Paris
-Status: ACTIVE / D025 1.03 VIRTUAL PATH RERUNS STARTING / SHARED INTELLIGENCE LIVE READ-ONLY / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
+Last updated: 2026-09-04 19:25 Europe/Paris
+Status: ACTIVE / D025 1.03 VIRTUAL POPULATION MISMATCH UNDER INVESTIGATION / SHARED INTELLIGENCE LIVE READ-ONLY / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
@@ -74,7 +74,7 @@ Requirement:
 
 GitHub issue: #2.
 
-## 6. D025 Trading 1.01 — what it proved
+## 6. D025 Trading 1.01 — baseline findings
 
 Source: `research/ea/D025_LER_Trading_1_01.mq5`.
 
@@ -82,99 +82,136 @@ Long BTC/ETH test with market entry, structural SL, no TP, forced 48h exit lost 
 - REJECT that exit construction.
 - Do NOT reject D025 entry from that P/L alone.
 
-First-touch and later cross-asset work showed D025 has no universal fixed-TP edge across all markets. Branch/regime separation matters.
+Original full-year 1.01 sessions directly re-opened from prior conversation uploads:
+- BTC 2024 = 614 unique trades; BTC 2025 = 503.
+- ETH 2024 = 615; ETH 2025 = 557.
+- XAU 2024 = 450; XAU 2025 = 399.
+- USDJPY 2024 = 442; USDJPY 2025 = 424.
+- No duplicate event IDs in those full-year sessions.
 
-Recurring observations before costs:
-- ETH RETEST = strongest repeatedly positive branch; pooled +2R EV around +0.133R before costs.
-- BTC SHORT = modest recurring early edge; around +0.096R at 1R pooled.
-- GBP SHORT = recurring early edge; around +0.121R at 1R pooled.
-- SOL SHORT = promising and larger in available sample, but less mature / no 2024 sample and current FundedNext symbol availability is uncertain.
+Earlier branch diagnostics before costs:
+- ETH RETEST repeatedly positive in the original 1.01 population.
+- BTC SHORT modest recurring early edge.
+- GBP SHORT recurring early edge.
+- SOL SHORT promising but less mature.
 - XAU RETEST 2024 did not replicate in 2025.
 - USDJPY 2026 strength did not robustly replicate backward.
 
 Universal D025 fixed TP is not accepted.
 
-## 7. D025 1.02 Path Diagnostic — instrumentation valid, real-order sample biased
+## 7. D025 1.02 Path Diagnostic — instrumentation valid, earlier causal diagnosis corrected
 
 Source: `research/ea/D025_LER_Trading_1_02_PathDiagnostic.mq5`.
 
-Added observational path fields:
-- first +0.5R;
+Added:
+- +0.5R first touch;
 - +1R..+5R;
-- first return to entry after +1R (`be_after1_utc`);
-- same-M1 BE/target ambiguity flag.
+- first return to entry after +1R;
+- same-M1 BE/target ambiguity.
 
-A 0.05% real-order rerun did NOT remove crypto selection bias:
-- BTC population only about 44% of prior expected 2024+2025 signal population.
-- ETH only about 46%.
-- GBP/USDJPY/XAU were around 91–94% controls.
+The 0.05% real-order combined 2024-2025 sessions produced much smaller BTC/ETH populations than the original 1.01 separate-year sessions.
 
-Conclusion:
-- 1.02 instrumentation is useful.
-- Real-order path sampling is NOT scientifically clean for BTC/ETH because lot minimum/account/margin/execution state can filter signals.
-- Do not ask for more BTC/ETH real-order 0.05 reruns.
+PREVIOUS INTERPRETATION was that lot minimum/account/margin/order execution was the main cause. **That interpretation is now superseded.** 1.03 virtual results show the low signal population persists even with no orders at all.
 
-Report: `research/results/D025_1_02_005PCT_RERUN_DIAGNOSTIC_2026_09_04.md`.
+Keep report `research/results/D025_1_02_005PCT_RERUN_DIAGNOSTIC_2026_09_04.md` as historical evidence, but do not reuse its causal conclusion without the 1.03 correction.
 
-## 8. D025 1.03 Virtual Path Diagnostic — CURRENT TEST EA
+## 8. D025 1.03 Virtual Path Diagnostic — CURRENT MILESTONE
 
-Current user-facing source created in conversation: `D025_LER_VirtualPath_1_03.mq5`.
+User-facing source: `D025_LER_VirtualPath_1_03.mq5`.
 
-Purpose:
-- keep the locked V0 signal chain and structural stop;
-- remove ALL actual CTrade/order dependence;
-- no lot sizing, no margin, no account equity dependency, no live P/L effect;
-- create a virtual record for every VALID_SIGNAL;
-- virtual entry = modeled market side at signal (Ask long / Bid short);
-- track structural stop, +0.5R, +1R..+5R, BE-after-1R and 48h path;
+Characteristics:
+- no CTrade;
+- no orders or positions;
+- no lot sizing, margin, equity or execution-success dependency;
+- locked V0 signal chain;
+- structural stop only as virtual reference;
+- +0.5R, +1R..+5R, stop, BE-after-1R, 48h path;
 - overlapping virtual trades allowed;
-- same-M1 ordering ambiguity must remain explicit.
+- same-M1 ambiguity explicit.
 
-User has compiled/started using this manually; do not claim MetaEditor compile on behalf of assistant beyond user-confirmed successful use/output.
+User supplied cumulative 1.03 CSVs containing five 2024-2025 sessions:
+- BTCUSD
+- ETHUSD
+- DOGUSD
+- XAUUSD
+- USDJPY
 
-### Current rerun request
+1.03 trade counts:
+- BTC 499 = 298 in 2024 + 201 in 2025.
+- ETH 553 = 358 + 195.
+- DOG 595 = 302 + 293.
+- XAU 798 = 432 + 366.
+- USDJPY 793 = 401 + 392.
 
-Run 2024-01-01 -> 2025-12-31 with default inputs `48 / 1 / true`.
+There were ZERO `VALID_SIGNAL_REJECTED_BAD_RISK` and ZERO `VALID_SIGNAL_REJECTED_NO_SLOT` events. Every VALID_SIGNAL became a virtual trade.
 
-Priority:
-1. BTCUSD
-2. ETHUSD
-3. XAUUSD
-4. GBPUSD
-5. USDJPY
-6. EURUSD
+Comparison:
+- BTC 1.03 499 vs 1.02 real-order 490 vs original 1.01 separate-year total 1,117.
+- ETH 553 vs 544 vs 1,172.
+- XAU 798 vs 798 vs 849.
+- USDJPY 793 vs 791 vs 866.
 
-SOL is optional only if the symbol is available again on FundedNext. User currently cannot find SOL there.
+### Scientific conclusion
 
-For each symbol collect ALL THREE CSVs:
-- events
-- trades
-- outcomes
+The main BTC/ETH population discrepancy is **UPSTREAM OF ORDER EXECUTION**. Real-order/min-volume/margin/account state cannot be the main explanation.
 
-First validation: BTC/ETH virtual signal population must recover the missing sample versus 1.02 real-order runs. If counts remain unexpectedly low, inspect signal/session logic before requesting broad reruns.
+Static comparison of the signal-state code around the 1.01/1.02/1.03 transition shows no intended D025 rule change before trade creation.
 
-## 9. D025 management research standard
+Direct old-vs-new signal matching also reveals frequent ~60-minute timestamp displacement in 2024 for BTC/ETH/USDJPY, while XAU is much more stable. This is a provenance/test-clock/configuration clue, not yet a proven cause.
 
-Do not optimize dozens of exits.
+Possible categories to reconcile:
+- Strategy Tester model/settings difference;
+- historical feed/cache/history difference;
+- tester-time / `TimeGMT()` behavior;
+- symbol-history/data-generation provenance.
 
-Current conceptual candidates remain narrow:
-- full TP +1R;
-- full TP +2R;
-- partial around +1R then BE/runner path observation.
+Do NOT tune entry rules to repair the mismatch.
 
-But the user has explicitly set a higher bar: **do not settle for crumbs**.
+Full report: `research/results/D025_1_03_VIRTUAL_PATH_DIAGNOSTIC_2026_09_04.md`, commit `eb0ffdb81c715484239d0d2652c81eb58b7908e0`.
 
-Interpret current pre-cost EV as signal-quality diagnostics only. Spread, commission and slippage are NOT yet fully applied to those R-EV figures.
+## 9. Current 1.03 outcome observations — PRELIMINARY ONLY
+
+Resolved fixed-TP EV, before spread/commission/slippage, in the current 1.03 population:
+- BTC global: EV0.5 +0.007R; EV1 +0.046R; EV2 -0.002R; EV3 -0.125R.
+- ETH global: -0.039R; -0.053R; -0.090R; -0.100R.
+- DOG global: -0.115R; -0.106R; -0.170R; -0.272R.
+- XAU global: +0.021R; -0.011R; -0.068R; -0.148R.
+- USDJPY global: -0.029R; -0.036R; -0.043R; -0.137R.
+
+Interesting but not promotable until population provenance is resolved:
+- BTC SHORT pooled current 1.03: n=256, EV1 ~+0.174R, EV2 ~+0.192R; however 2024 is very strong and 2025 much weaker.
+- XAU RETEST pooled: EV1 ~+0.104R, EV2 ~+0.077R; weaker in 2025.
+- DOG SHORT pooled: EV1 ~+0.076R, EV2 ~+0.068R.
+- ETH RETEST current 1.03 is not strong enough to confirm the original 1.01 finding.
+
+Runner path among +1R winners, non-ambiguous cases: +2R before BE is roughly 47-53% across the tested symbols. No production management rule is authorized from this alone.
+
+## 10. D025 management research standard
+
+User requirement: **do not settle for crumbs**.
+
+Current diagnostics remain before full trading costs. Spread, commission and slippage are not yet fully included in the R-EV figures.
 
 Acceptance philosophy:
 - tiny pre-cost edge is not enough;
 - seek a broad, repeated structural advantage across years/branches;
 - then apply realistic spread + commission + slippage;
-- stress costs upward before production consideration.
+- stress costs upward before production consideration;
+- no curve fitting, no retrospective entry-threshold tuning.
 
-Do not curve-fit entry thresholds or invent retrospective filters.
+## 11. Immediate D025 next step — PAUSE BROAD RERUNS
 
-## 10. Shared Intelligence relation to D025
+Do NOT ask the user to run GBP/EUR/other broad 1.03 batches yet.
+
+First reconcile one controlled BTC comparison:
+- original 1.01 BTC full-year 2024 = 614 signals;
+- 1.03 current BTC 2024 slice = 298 signals.
+
+The goal is not to optimize strategy. It is to explain why materially the same locked signal engine produced different populations.
+
+Only after this is understood should more 1.03 symbol runs be requested.
+
+## 12. Shared Intelligence relation to D025
 
 Current D025 Core does NOT use Binance/Bybit data for entry, SL or exit.
 
@@ -191,33 +228,26 @@ Future comparison must be `D025 Core` vs `D025 Core + external state`, joined st
 
 Current collector has already produced thousands of raw observations and continues building forward BTC/ETH history. Do not use current live snapshot as historical truth in Strategy Tester.
 
-## 11. Project planning / work-time ledger
+## 13. Project planning / work-time ledger
 
-New canonical living file:
+Canonical living file:
 - `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`
 
-It reconstructs Guardian history back to the initial manual-trade-manager conversations in mid-August 2026, including pre-GitHub work. Historical hours are labelled as confirmed activity spans/minimums/unknown when precise active time cannot be justified.
+It reconstructs Guardian history back to mid-August 2026 and distinguishes confirmed activity spans, minimum observed time and unknown historical duration. Going forward track human active time separately from unattended backtest/collector runtime.
 
-From now on maintain:
-- session start/end;
-- human active time;
-- unattended backtest/collector runtime separately;
-- done/decision/rejected/next items.
-
-## 12. Resume order
+## 14. Resume order
 
 1. `CURRENT_PROJECT_HANDOFF.md`
 2. `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`
-3. current D025 1.03 virtual-path source/output
-4. `research/results/D025_1_02_005PCT_RERUN_DIAGNOSTIC_2026_09_04.md`
-5. `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`
-6. latest FundedNext request-budget audit / current Guardian v11.17.x source
-7. `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
-8. `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`
-9. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-10. `docs/STRATEGY_DECISIONS.md`
-11. locked D025 V0 rules
+3. `research/results/D025_1_03_VIRTUAL_PATH_DIAGNOSTIC_2026_09_04.md`
+4. current 1.03 virtual CSVs/source
+5. original 1.01 full-year CSV sessions from conversation files
+6. `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`
+7. latest FundedNext request-budget audit / current Guardian v11.17.x source
+8. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
+9. `docs/STRATEGY_DECISIONS.md`
+10. locked D025 V0 rules
 
-## 13. Continuity rule
+## 15. Continuity rule
 
 After every material milestone, update this handoff in the same work session. Keep the planning/time ledger current as well. No important state should exist only in conversation context.
