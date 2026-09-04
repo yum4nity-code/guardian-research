@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 14:40 Europe/Paris
-Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 TRADING 1.01 BACKTESTED AND REJECTED AS CURRENT TRADE CONSTRUCTION / FUNDEDNEXT AUTOMATION SUSPENDED
+Last updated: 2026-09-04 14:44 Europe/Paris
+Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 TRADING 1.01 EXIT CONSTRUCTION FAILED / D025 ENTRY QUALITY UNRESOLVED / FUNDEDNEXT AUTOMATION SUSPENDED
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
@@ -65,12 +65,13 @@ Manual backtest results supplied by user, FundedNext, M1, 2025-01-01 -> 2026-06-
 - BTCUSD: final balance 6,695.65 USD, net -3,304.35 USD. Detailed PF/DD/win-rate not captured.
 - ETHUSD: net -4,547.95 USD; PF 0.31; expected payoff -26.91; equity DD max 45.85% / 4,616.03 USD; 169 trades; 20 winners / 149 losers; win rate 11.83%; gross profit 2,001.43 vs gross loss -6,549.38; average win 100.07 vs average loss -42.81; Sharpe -5.00.
 
-Decision:
-- current tradable D025 V0 construction is REJECTED;
-- do not retune thresholds post hoc;
-- do not interpret this as proof that every possible future exit policy is invalid;
-- keep D025 only as event-study/diagnostic work unless a genuinely new preregistered hypothesis is formulated.
-- strategy decision recorded in `docs/STRATEGY_DECISIONS.md`.
+Correct interpretation:
+- these runs prove that the specific tradable construction `structural SL + no TP + forced exit at 48h` is bad;
+- they do NOT establish that D025 entries are bad, because the exit rule was deliberately crude and can dominate realized P&L;
+- do not throw away the entry hypothesis on the basis of these account-level results;
+- entry quality must be evaluated independently with event-study metrics: MFE/MAE after entry, probability of reaching +0.5R/+1R/+2R/+3R before SL, time-to-MFE, excursion by horizon, and path/level-family splits;
+- only after that entry-quality study can D025 signal quality be accepted/rejected;
+- no threshold retuning is justified before this separation is done.
 
 ## 6. Research note — missed post-shock reaction
 
@@ -90,9 +91,10 @@ Do not inject Shared Intelligence directly into live RSI or Momentum merely beca
 
 ## 8. Next safe action
 
-- Leave D025 Observer 1.00 running live only if continued event collection is desired.
-- Do not spend more manual tester time on D025 Trading 1.01 unchanged: BTC and ETH already fail strongly.
-- Next useful D025 work is diagnostic: funnel counts, failure reasons, MFE/MAE, level-family contribution, and whether any subset shows a preregisterable mechanism worth a new campaign.
+- Leave D025 Observer 1.00 running live if continued event collection is desired.
+- Do not repeat the same D025 Trading 1.01 account-level backtest unchanged; it already tells us the 48h/no-TP construction loses heavily.
+- Next D025 task is specifically entry-quality analysis, independent of the 48h exit: MFE/MAE, first-R thresholds before SL, time-to-hit, failure funnel, and level/path contribution.
+- If the entries show edge, then formulate and preregister an exit/management hypothesis separately rather than concluding from the arbitrary 48h close.
 - Keep the separate post-shock/exhaustion idea as its own hypothesis rather than morphing D025 thresholds.
 
 ## 9. Resume order for a fresh agent
