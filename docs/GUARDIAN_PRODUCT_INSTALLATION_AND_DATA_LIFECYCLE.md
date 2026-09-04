@@ -199,3 +199,16 @@ Cible commerciale:
 L'utilisateur final ne devrait pas avoir a installer Git, taper `git pull`, creer un venv Python ou connaitre les chemins internes.
 
 Cette distinction laboratoire/produit doit etre conservee dans les decisions futures.
+
+## 11. Stockage externe vs GitHub
+
+Decision: **GitHub n'est pas le stockage principal des archives EIB de marche.**
+
+- Le depot Git normal reste reserve au code, schemas, manifests, hashes, petits samples et resultats de recherche compacts.
+- Les archives quotidiennes `.jsonl.gz` doivent etre stockees sur un disque externe, NAS ou stockage objet/cloud dedie lorsqu'elles deviennent volumineuses.
+- GitHub standard limite les fichiers individuels a 100 MiB; au-dela il faut Git LFS.
+- Git LFS peut techniquement stocker de gros fichiers, mais il ajoute quotas de stockage/bande passante et couts potentiels. Il convient plutot a quelques datasets geles de reference qu'a un flux continu d'archives quotidiennes.
+- Pour la reproductibilite, GitHub doit conserver pour chaque dataset important: nom logique, periode UTC, taille, SHA256, schema version, source/provider, emplacement externe logique et eventuellement un petit sample.
+- Une archive EIB ne doit jamais etre ajoutee au Git normal si sa presence ferait grossir inutilement l'historique du depot.
+
+Cas autorise pour Git LFS: dataset de validation fige, explicitement selectionne, de taille bornee, utile a une regression/reproduction precise. Ce n'est pas le chemin par defaut du flux live.
