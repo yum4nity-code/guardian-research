@@ -1,6 +1,6 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 14:08 Europe/Paris
+Last updated: 2026-09-04 14:18 Europe/Paris
 Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 TRADING 1.01 CREATED / FUNDEDNEXT AUTOMATION SUSPENDED
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
@@ -79,13 +79,23 @@ Validation status:
 - source has been created and committed on GitHub;
 - it has NOT yet been compiled in the user's MetaEditor environment, so do not claim compile success until the user reports it.
 
-## 6. Scientific separation
+## 6. Research note — missed post-shock reaction
+
+User observation from live ETHUSD M1 on 2026-09-04: after a very large bearish impulse, Guardian showed no obvious post-move reaction/trade. The screenshot also showed regime/pre-shock diagnostics and an extension block, so this may be an intentional consequence of current filters rather than a bug.
+
+Keep as a later research question, not an immediate live-rule change:
+- study whether a distinct post-shock / exhaustion / mean-reversion setup should activate after extreme one-way crypto moves;
+- quantify the move first (ATR extension, velocity, volume/tick-volume shock, liquidation/OI/funding context where available), then measure forward returns and adverse excursion;
+- compare this candidate separately against D025 rather than silently loosening Momentum/RSI/Guardian filters;
+- no implementation until backtested and independently validated.
+
+## 7. Scientific separation
 
 D025 V0 signal transitions use MT5 Core only. Binance/Bybit data continues collecting independently but does not trigger V0. Later Crypto+ comparisons must join external data only with `available_at <= event_time`.
 
 Do not inject Shared Intelligence directly into live RSI or Momentum merely because the fields are available.
 
-## 7. Next safe action
+## 8. Next safe action
 
 - Leave D025 Observer 1.00 running live.
 - For historical D025 testing, use `D025_LER_Trading_1_01.mq5` through the user's normal manual MT5 workflow.
@@ -93,7 +103,7 @@ Do not inject Shared Intelligence directly into live RSI or Momentum merely beca
 - When the user provides compile output or tester output, inspect it directly and fix only concrete errors.
 - Do not alter locked V0 thresholds based on first results.
 
-## 8. Resume order for a fresh agent
+## 9. Resume order for a fresh agent
 
 1. this file
 2. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
@@ -106,6 +116,6 @@ Do not inject Shared Intelligence directly into live RSI or Momentum merely beca
 9. `docs/RESEARCH_STATUS.md`
 10. `docs/STRATEGY_DECISIONS.md`
 
-## 9. Continuity rule
+## 10. Continuity rule
 
 After every material milestone, update this handoff in the same work session. No important current state should exist only in conversation context.
