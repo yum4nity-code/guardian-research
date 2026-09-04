@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 13:34 Europe/Paris
-Status: ACTIVE / LIVE RESEARCH RUNNING / D025 BACKTEST V3 REPO-ROOT FIXED
+Last updated: 2026-09-04 13:36 Europe/Paris
+Status: ACTIVE / LIVE RESEARCH RUNNING / D025 V3 ISOLATED TESTER LAUNCHED
 
 This file is the canonical fast-resume entry point for a fresh ChatGPT/Codex instance. It must stay current enough that the project can be resumed without relying on conversation history.
 
@@ -104,71 +104,66 @@ Validated GitHub read on 2026-09-04 after installation showed:
 
 A fresh ChatGPT instance may therefore read the `live-status` branch to recover recent research state without asking the user to paste MT5 logs.
 
-## 5. D025 automated FundedNext backtest — exact target correction
+## 5. D025 automated FundedNext backtest — current state
 
-### Confirmed target
+Confirmed user target:
+- account **14202634**;
+- server **FundedNext-Server 2**;
+- mode **Hedge**;
+- company **FundedNext Ltd**.
 
-The user-confirmed live MT5 target is:
-- account: **14202634**;
-- server: **FundedNext-Server 2**;
-- account mode: **Hedge**;
-- company: **FundedNext Ltd**.
+Superseded launchers:
+- V1 selected another FundedNext installation and is superseded.
+- V2 folder discovery failed on the real Server 2 installation because broker/account strings were not persisted where expected.
 
-### Superseded launchers
-
-- V1 is superseded: it selected another FundedNext installation (`FundedNext-Server 3`) because it ranked generic FundedNext evidence.
-- V2 portable isolation is conceptually correct, but its initial folder-discovery preflight failed on the user's real Server 2 installation because literal account/server strings were not persisted where V2 searched (`bases` / recent logs).
-
-### Current launcher: V3
-
-Use:
+Current launcher:
 - `automation/run_d025_fundednext_backtest_v3.ps1`
 - `automation/RUN_D025_FUNDEDNEXT_BACKTEST_V3.cmd`
 - `automation/publish_d025_backtest_results_v1.ps1`
 - `automation/analyze_d025_backtest_v1.py`
 
-V3 targeting behavior:
-- requires the correct live MT5 window to be open;
-- identifies the running `terminal64.exe` whose visible title contains **both** account `14202634` and server `FundedNext-Server 2`;
-- resolves that exact process executable path;
-- maps the executable to the correct MT5 data folder through `origin.txt` instead of guessing from broker strings in logs;
-- refuses if zero or multiple running windows match;
-- then delegates to the isolated portable V2 workflow with the already window-verified data path;
-- the portable clone still must independently confirm the expected account/server in its own logs before the backtest is trusted.
+V3 targeting:
+- binds to the live MT5 window whose title contains both account and server;
+- maps that process to the exact MT5 data path through `origin.txt`;
+- then creates a separate portable clone for the test;
+- live FundedNext terminal / Guardian are not closed or commandeered.
 
-### 2026-09-04 13:33 live launch evidence and fix
-
-The user's V3 run successfully resolved the correct live target:
+Resolved exact live target from the user's machine:
 - PID `15104`;
 - title contained `14202634 - FundedNext-Server 2 - Hedge - FundedNext Ltd`;
 - executable `D:\MT5_FundedNext\terminal64.exe`;
-- resolved MT5 data path `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\D943DED8A972BBD3A21ED90520AE6479`.
+- MT5 data path `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\D943DED8A972BBD3A21ED90520AE6479`.
 
-The run then failed before cloning because V3 wrote its temporary patched V2 runner into `%TEMP%`. V2 derives `$RepoRoot` from `$PSScriptRoot`, so the temporary copy incorrectly searched for the source EA under `C:\Users\armor\AppData\Local\research\ea\...` instead of the repository.
+Earlier V3 temp-runner repo-root bug was fixed on `main`: temporary patched V2 runner is now written inside `automation/`, so the D025 source resolves from the repository correctly.
 
-Fix committed on `main`:
-- V3 now writes the temporary V2 copy **inside `automation/`**, so `$PSScriptRoot` and `$RepoRoot` resolve to `D:\MT5_Backtests\guardian-research` correctly;
-- the temporary file is still removed in `finally` after the run;
-- no trading logic or D025 thresholds changed.
+### 2026-09-04 13:36 user-verified launch
 
-Portable backtest behavior remains:
-- dedicated clone: `D:\MT5_Backtests\Terminals\FundedNext_14202634_D025_BT`;
-- live FundedNext terminal and live Guardian are not closed or commandeered;
-- isolated generated D025 harness preserves all locked V0 thresholds;
+The rerun progressed successfully beyond compilation and entered the isolated tester workflow. Screenshot evidence showed:
+- harness compile: `0 errors, 0 warnings`;
+- step `5/8 Launch isolated Strategy Tester` reached;
+- run id: `D025_FN2_CORE_20260904_133554`;
+- account: `14202634`;
+- server: `FundedNext-Server 2`;
+- period: `2025.01.01 -> 2026.06.28`;
+- symbols: `BTCUSD + ETHUSD`;
+- model: `real ticks`;
+- live trading: `DISABLED`;
+- script entered `6/8 Verify exact portable target and wait for completion`.
+
+At this snapshot the script had **not yet printed** `CONFIRMED TARGET` and had **not yet completed** the backtest. Do not claim completion until either the exact portable-target confirmation appears and later `COMPLETE.txt` / GitHub results are produced, or an error is reported.
+
+Portable behavior:
+- dedicated clone `D:\MT5_Backtests\Terminals\FundedNext_14202634_D025_BT`;
+- isolated D025 harness preserves all locked V0 thresholds;
 - BTCUSD + ETHUSD, host BTCUSD M1, `Model=4` real ticks;
 - default period `2025.01.01 -> 2026.06.28`;
 - `AllowLiveTrading=0`; D025 contains no order functions;
 - tester output is separated from forward-live D025 CSVs.
 
-Targeting fix documentation:
-- `research/results/D025_FUNDEDNEXT_V3_TARGETING_FIX_2026_09_04.md`.
-
-Results publication:
-- dedicated GitHub branch: `backtest-results`;
-- one finite commit per completed run;
-- path: `backtests/d025/<RUN_ID>/`;
-- publish `SUMMARY.md`, `summary.json`, `manifest.json`, and `events_compact.csv` when small enough;
-- large raw CSVs remain local under `D:\MT5_Backtests\Research\D025\Backtests\<RUN_ID>\raw\` with hashes recorded in the manifest.
+Results publication target:
+- branch `backtest-results`;
+- path `backtests/d025/<RUN_ID>/`;
+- compact summary / manifest / event table only; large raw CSVs remain local with hashes recorded.
 
 ## 6. Scientific separation
 
@@ -187,20 +182,18 @@ Do not inject Shared Intelligence directly into live RSI or Momentum merely beca
 
 ## 7. Next safe actions
 
-Priority sequence:
-
-1. Keep the correct live MT5 window open, `git pull`, and rerun `run_d025_fundednext_backtest_v3.ps1` after commit `848d295997c008502c0fbc99190d588b5378cc23` or later.
-2. Confirm V3 again resolves the live window; next expected progress is `2/8 Prepare isolated portable FundedNext Server2 clone`, not a `Missing source EA` error.
-3. Confirm later `CONFIRMED TARGET: 14202634 / FundedNext-Server 2` from the portable clone.
-4. Inspect the automatically published summary on `backtest-results`; do not alter locked thresholds from the result.
-5. Keep D025 Observer 1.00 running live in parallel and accumulate genuine forward M15 state transitions.
-6. Compare backtest state-machine behavior with forward behavior for obvious implementation/replay artifacts before making any strategy conclusion.
-7. After sufficient Core evidence, join timestamp-valid Binance/Bybit features for Crypto+ event-study comparisons.
+1. Leave the current V3 PowerShell run alone while it verifies the portable target and executes the backtest.
+2. Trust the run only after `CONFIRMED TARGET: 14202634 / FundedNext-Server 2` appears.
+3. Completion requires the later `COMPLETE.txt` / analysis / GitHub publish sequence; inspect `backtest-results` after completion.
+4. If V3 errors before confirmation/completion, preserve the error lines and fix the launcher; do not manually alter D025 thresholds.
+5. Keep D025 Observer 1.00 running live in parallel.
+6. Compare backtest state-machine behavior with forward behavior before any strategy conclusion.
+7. After sufficient Core evidence, join timestamp-valid Binance/Bybit features for Crypto+ comparisons.
 8. Only after robustness/OOS/cost/red-team gates may anything become a Guardian trading candidate.
 
 ## 8. MT5 versioning rule
 
-For this project, `#property version` must use a MetaEditor-compatible simple numeric version. Use **1.00, 1.01, 1.02 ...** for this D025 EA lineage rather than semantic/build strings such as `0.100`, `11.1706`, etc. Research labels such as V0/V1 may remain in filenames/descriptions but are not the MT5 `#property version`.
+For this project, `#property version` must use a MetaEditor-compatible simple numeric version. Use **1.00, 1.01, 1.02 ...** for this D025 EA lineage rather than semantic/build strings. Research labels such as V0/V1 may remain in filenames/descriptions but are not the MT5 `#property version`.
 
 ## 9. User-operation style
 
@@ -209,18 +202,18 @@ The user is not expected to infer shell commands. For local operations, provide 
 ## 10. Resume instructions for a fresh agent
 
 Read, in this order:
-1. `CURRENT_PROJECT_HANDOFF.md` (this file)
+1. `CURRENT_PROJECT_HANDOFF.md`
 2. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-3. branch `backtest-results` -> newest `backtests/d025/<RUN_ID>/SUMMARY.md` and `summary.json` if any run exists
+3. branch `backtest-results` -> newest D025 result if present
 4. `research/results/D025_FUNDEDNEXT_V3_TARGETING_FIX_2026_09_04.md`
 5. `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`
 6. `research/ea/D025_LER_Observer_V0.mq5`
-7. latest relevant files under `research/results/` for Shared Intelligence / Guardian v11.17.x
+7. latest Shared Intelligence / Guardian result files
 8. `CURRENT_QUEUE.json`
 9. `docs/RESEARCH_STATUS.md`
 10. `docs/STRATEGY_DECISIONS.md`
 
-Then verify actual live/local state before launching or modifying anything. Real process/log state always overrides a stale written status.
+Then verify actual live/local state before launching or modifying anything. Real process/log state overrides a stale written status.
 
 ## 11. Continuity rule
 
