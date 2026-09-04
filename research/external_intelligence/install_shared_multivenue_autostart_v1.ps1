@@ -50,7 +50,7 @@ foreach ($required in @($Runner, $PythonExe, $RuntimeScript)) {
 
 $userId = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $quotedRunner = '"' + $Runner + '"'
-$arguments = "-NoProfile -NonInteractive -ExecutionPolicy Bypass -File $quotedRunner"
+$arguments = "-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File $quotedRunner"
 
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument $arguments -WorkingDirectory $PSScriptRoot
 $trigger = New-ScheduledTaskTrigger -AtLogOn -User $userId -RandomDelay (New-TimeSpan -Seconds 30)
@@ -67,10 +67,10 @@ $task = New-ScheduledTask `
     -Trigger $trigger `
     -Principal $principal `
     -Settings $settings `
-    -Description "Guardian read-only Bybit+Binance Shared Intelligence. Starts 0-30s after Windows logon; one instance only."
+    -Description "Guardian read-only Bybit+Binance Shared Intelligence. Starts hidden 0-30s after Windows logon; one instance only."
 
 Register-ScheduledTask -TaskName $TaskName -InputObject $task -Force | Out-Null
-Write-Host "[Guardian] Autostart installed. It will start automatically after Windows logon."
+Write-Host "[Guardian] Autostart installed. It will start automatically in background after Windows logon."
 
 $existingRuntime = Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object {
     $_.ProcessId -ne $PID -and $_.CommandLine -like "*shared_runtime_multivenue_bridge_v1.py*"
