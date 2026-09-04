@@ -65,7 +65,7 @@ Donnees cibles V1 :
 - funding;
 - provenance/source;
 - timestamp source;
-- timestamp reception;
+- timestamp reception/availability;
 - age de la donnee et indicateur de qualite/staleness.
 
 Les donnees externes ne doivent jamais appeler directement une fonction de trading. Elles alimentent uniquement des observations normalisees consommees par une strategie.
@@ -75,7 +75,7 @@ Les donnees externes ne doivent jamais appeler directement une fonction de tradi
 1. Guardian production ne doit jamais dependre du bus externe pour ses fonctions de protection/risk/compliance.
 2. Si le flux externe tombe, le Core MT5 continue de fonctionner.
 3. Une feature Crypto+ qui exige une donnee absente/stale devient indisponible; aucune valeur ancienne ne doit etre reutilisee silencieusement.
-4. Chaque echantillon externe doit etre horodate et rejouable; en backtest, invariant obligatoire : `data_timestamp <= simulation_timestamp`.
+4. Chaque echantillon externe doit etre horodate et rejouable. En backtest, l'invariant anti-lookahead porte sur le moment ou l'information etait effectivement disponible pour le systeme : `available_at_timestamp <= simulation_timestamp`. Un `source_timestamp` anterieur ne suffit pas si la donnee n'a ete recue que plus tard.
 5. Pas de `WebRequest()` dans le coeur de decision si cela empeche la reproductibilite Strategy Tester; privilegier un collecteur/recorder local et un cache/fichier rejouable.
 6. Les API externes sont lecture seule pour le projet; aucun token donnant le droit de trader n'est requis ni accepte.
 
@@ -101,6 +101,7 @@ Construire uniquement le collecteur/recorder et le schema de donnees. Aucun ordr
 
 Gate de sortie :
 - timestamps coherents UTC;
+- source timestamp et availability timestamp distincts;
 - reprise apres coupure;
 - deduplication;
 - staleness mesurable;
