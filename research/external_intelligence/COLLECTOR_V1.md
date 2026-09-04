@@ -26,10 +26,51 @@ Official docs used for V1:
 - https://bybit-exchange.github.io/docs/v5/websocket/public/all-liquidation
 - https://bybit-exchange.github.io/docs/v5/ws/connect
 
-## Windows installation
+## Bootstrap Windows depuis une machine sans Git
+
+Installer Git avec PowerShell:
 
 ```powershell
-cd D:\MT5_Backtests\Research\ExternalIntelligence
+winget install --id Git.Git -e --source winget
+```
+
+Fermer/reouvrir PowerShell puis verifier:
+
+```powershell
+git --version
+```
+
+Cloner le depot prive:
+
+```powershell
+cd D:\MT5_Backtests
+git clone https://github.com/yum4nity-code/guardian-research.git guardian-research
+```
+
+Sur une machine deja clonee, mettre a jour la copie locale:
+
+```powershell
+cd D:\MT5_Backtests\guardian-research
+git pull
+```
+
+## Smoke Windows recommande
+
+Le moyen le plus simple est le lanceur:
+
+```powershell
+cd D:\MT5_Backtests\guardian-research\research\external_intelligence
+.\START_EIB_SMOKE_V1.cmd
+```
+
+Il cree/verifie un `.venv`, installe `aiohttp`, lance un smoke BTC+ETH de 35 minutes et produit le resume final.
+
+## Installation manuelle Python
+
+Si le lanceur n'est pas utilise:
+
+```powershell
+cd D:\MT5_Backtests\guardian-research\research\external_intelligence
 py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe collector_v1.py
@@ -44,6 +85,25 @@ and current health:
 `D:\MT5_Backtests\Research\ExternalIntelligence\health.json`
 
 Override the destination with `--data-dir` or `GUARDIAN_EIB_DATA_DIR`.
+
+## Stockage / retention actuelle
+
+Les donnees sont stockees **sur le PC local** dans le dossier de sortie. V1 n'efface actuellement aucun fichier automatiquement.
+
+Pendant la recherche D025, cette absence de suppression automatique est volontaire: les timestamps de reception, trous de connexion et liquidations ne sont pas parfaitement reconstructibles a posteriori.
+
+Politique cible apres validation du smoke:
+
+- fichier du jour UTC actif en `.jsonl`;
+- jours clos archives en `.jsonl.gz` apres verification d'integrite;
+- suppression du raw uniquement apres validation de l'archive;
+- recherche: retention indefinie/manuelle jusqu'a decision scientifique;
+- futur produit: retention configurable, valeur provisoire envisagee 90 jours, mode labo 365 jours/illimite;
+- ne jamais supprimer silencieusement le fichier actif ni une archive non verifiee.
+
+Le volume reel doit etre mesure avant de figer les durees commerciales.
+
+Voir `../../docs/GUARDIAN_PRODUCT_INSTALLATION_AND_DATA_LIFECYCLE.md` pour la procedure reproductible complete et les exigences du futur produit.
 
 ## Smoke gate
 
