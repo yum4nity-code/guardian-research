@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 13:58 Europe/Paris
-Status: ACTIVE / D025 LIVE OBSERVER RUNNING / FUNDEDNEXT AUTOMATION SUSPENDED
+Last updated: 2026-09-04 14:08 Europe/Paris
+Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 TRADING 1.01 CREATED / FUNDEDNEXT AUTOMATION SUSPENDED
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
@@ -50,37 +50,62 @@ The user can launch MT5 backtests manually and originally wanted automation only
 Operational rule for future agents:
 - Never give the user a local PowerShell/CMD command for this project merely because the code looks plausible.
 - Do not ask the user to serve as the debugger for unverified launcher iterations.
-- If a new automation is proposed, first reduce it to a simple architecture, inspect the exact current files, perform every validation available from the assistant side, and clearly state any part that cannot be independently verified on the user's Windows/MT5 environment.
-- If end-to-end validation on the real environment is not possible, prefer manual MT5 steps that the user already knows over presenting an unverified command as ready.
-- The user may manually run D025 backtests; assistant should focus on preparing the correct EA/configuration and analyzing results rather than repeatedly relaunching fragile wrappers.
+- If end-to-end validation on the real environment is not possible, prefer the user's normal manual MT5 workflow.
 
-Do not claim that any V1-V4 FundedNext run completed successfully. No trusted `COMPLETE.txt` / published D025 backtest result has yet been verified from these launcher attempts.
+## 5. D025 Trading 1.01 — manual Strategy Tester EA
 
-## 5. Scientific separation
+Created on main:
+- `research/ea/D025_LER_Trading_1_01.mq5`
+- MT5 version `1.01`.
+
+Purpose:
+- produce normal MT5 trades/equity/PF/DD in the user's manual Strategy Tester runs;
+- one symbol per run, selected directly in Strategy Tester via `_Symbol` (e.g. BTCUSD run, then ETHUSD run);
+- no hidden second symbol and no multi-symbol ambiguity in the report.
+
+Trading logic:
+- preserves the current D025 V0 state-machine thresholds and sequence;
+- market entry only on `VALID_SIGNAL` after RETEST or ACCEPTANCE;
+- structural SL = worst sweep extreme +/- `0.10 * H1 ATR`, same structural rule as V0;
+- no TP;
+- forced close after `InpMaxHoldHours`, default 48h;
+- risk sizing by account equity and actual stop distance, default `InpRiskPercent=0.50`;
+- default magic `25090401`;
+- keeps dedicated D025 trading CSV logs for events, trades and MFE/MAE/+1R..+5R outcomes.
+
+Important: this EA is technically capable of trading if attached to a live chart. The user explicitly does not want artificial live-trading blocks; operational separation is simply to use it in Strategy Tester and not attach it live.
+
+Validation status:
+- source has been created and committed on GitHub;
+- it has NOT yet been compiled in the user's MetaEditor environment, so do not claim compile success until the user reports it.
+
+## 6. Scientific separation
 
 D025 V0 signal transitions use MT5 Core only. Binance/Bybit data continues collecting independently but does not trigger V0. Later Crypto+ comparisons must join external data only with `available_at <= event_time`.
 
 Do not inject Shared Intelligence directly into live RSI or Momentum merely because the fields are available.
 
-## 6. Next safe action
+## 7. Next safe action
 
 - Leave D025 Observer 1.00 running live.
-- For historical D025 testing, use the user's normal manual MT5 Strategy Tester workflow unless/until a launcher has been independently validated.
-- When the user provides tester outputs/CSV results, analyze them and publish clean research conclusions/results to GitHub.
-- Do not alter locked V0 thresholds based on the first results.
+- For historical D025 testing, use `D025_LER_Trading_1_01.mq5` through the user's normal manual MT5 workflow.
+- Run BTCUSD and ETHUSD separately first; analyze each independently before any combined portfolio interpretation.
+- When the user provides compile output or tester output, inspect it directly and fix only concrete errors.
+- Do not alter locked V0 thresholds based on first results.
 
-## 7. Resume order for a fresh agent
+## 8. Resume order for a fresh agent
 
 1. this file
 2. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
 3. branch `backtest-results` -> newest D025 result if present
-4. locked D025 V0 rules
-5. current D025 EA source
-6. latest relevant Shared Intelligence / Guardian result files
-7. `CURRENT_QUEUE.json`
-8. `docs/RESEARCH_STATUS.md`
-9. `docs/STRATEGY_DECISIONS.md`
+4. `research/ea/D025_LER_Trading_1_01.mq5`
+5. locked D025 V0 rules
+6. current observer source
+7. latest relevant Shared Intelligence / Guardian result files
+8. `CURRENT_QUEUE.json`
+9. `docs/RESEARCH_STATUS.md`
+10. `docs/STRATEGY_DECISIONS.md`
 
-## 8. Continuity rule
+## 9. Continuity rule
 
 After every material milestone, update this handoff in the same work session. No important current state should exist only in conversation context.
