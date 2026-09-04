@@ -1,210 +1,223 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 17:25 Europe/Paris
-Status: ACTIVE / D025 PATH-DIAGNOSTIC 1.02 CREATED / 2025 REPLICATION ANALYZED / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
+Last updated: 2026-09-04 18:50 Europe/Paris
+Status: ACTIVE / D025 1.03 VIRTUAL PATH RERUNS STARTING / SHARED INTELLIGENCE LIVE READ-ONLY / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
+
+Historical chronology, planning and work-time ledger: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 
 ## 1. Live Guardian / Shared Intelligence
 
 - Guardian 17 lineage = v11.17.x multi-venue Shared Intelligence observer.
-- Shared Intelligence is read-only and has NO trading effect.
-- Architecture: Bybit + Binance collectors -> venue-separated state -> FILE_COMMON bridge -> Guardian/research consumers.
+- Shared Intelligence is READ-ONLY and has NO direct trading effect.
+- Architecture: Binance + Bybit collectors -> venue-separated state -> FILE_COMMON bridge -> Guardian/research consumers.
 - Windows autostart task: `Guardian Shared Intelligence MultiVenue V1`.
 - Live-status mirror: branch `live-status`, file `LIVE_RESEARCH_STATUS.json`.
+- BTCUSD + ETHUSD are the current external-intelligence scope.
+- Aspirator/Shared Intelligence is unrelated to Guardian server-request counts and may stay running.
 
-## 2. D025 LER observer
+## 2. D025 LER Core
 
-- Source: `research/ea/D025_LER_Observer_V0.mq5`.
-- MT5 version: `1.00`; research generation: V0.
-- No trading library / no order function.
-- BTCUSD + ETHUSD from one EA instance.
+- D025 = Liquidity Exhaustion Reclaim.
+- Original observer source: `research/ea/D025_LER_Observer_V0.mq5`.
+- V0 entry rules are LOCKED: `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`.
 - State machine: `IDLE -> LEVEL_WATCH -> SWEEP -> CASCADE -> EXHAUSTION -> RECLAIM -> RETEST/ACCEPTANCE -> VALID_SIGNAL`.
-- VALID_SIGNAL creates only a virtual trade; M1 then tracks MFE/MAE, +1R..+5R, virtual SL, horizons to 48h.
-- Locked rules: `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`; do not tune V0 thresholds post hoc.
+- Do NOT tune V0 thresholds post hoc.
+- Structural SL remains part of the definition of R and must not be tightened merely to improve backtest output.
 
 ## 3. Exact FundedNext target
 
-User-confirmed live MT5 target:
-- account: `14202634`
-- server: `FundedNext-Server 2`
-- mode: Hedge
-- company: FundedNext Ltd
-- executable: `D:\MT5_FundedNext\terminal64.exe`
-- MT5 data path: `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\D943DED8A972BBD3A21ED90520AE6479`
+User-confirmed MT5 target:
+- account `14202634`
+- server `FundedNext-Server 2`
+- Hedge
+- company FundedNext Ltd
+- executable `D:\MT5_FundedNext\terminal64.exe`
+- data path `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\D943DED8A972BBD3A21ED90520AE6479`
 
-FundedNext automation V1/V2/V3/V4 remains SUSPENDED. Never ask the user to retry those wrappers or debug unverified shell commands. Prefer normal manual MT5 workflow.
+FundedNext automation wrappers V1/V2/V3/V4 are SUSPENDED. Do not ask the user to debug launcher/shell wrappers. Normal manual MT5 Strategy Tester workflow is the preferred path.
 
 ## 4. FundedNext server-request anomaly — HIGH PRIORITY
 
-Live user observation 2026-09-04:
+Live observation 2026-09-04:
 - FundedNext HUD reached about `5629/2000 (281.4%) | HARD LIMIT | PROTECTION ONLY`.
-- FTMO live Guardian had been running since morning and showed only `32/2000 (1.6%) | NORMAL`.
-- Therefore thousands of requests are not normal Guardian baseline behavior and are specific to the FundedNext account/runtime episode.
+- FTMO Guardian had only about `32/2000 (1.6%) | NORMAL` after long runtime.
 
-Static audit of current Guardian request-budget code:
-- counter is account/day scoped via MT5 Global Variables;
-- it counts Guardian-side CTrade attempts plus deduplicated observed Magic-0 manual entries; it is NOT the prop firm's proprietary server counter;
-- attempts are reserved/incremented before send, so broker-rejected attempts still increase Guardian's counter;
-- `SRP_EMERGENCY` and `SRP_PROTECTION` are intentionally allowed beyond the 2000 hard budget;
-- this makes repeated protection retries capable of driving the counter far above 2000;
-- strongest identified structural suspect: `RSI_BE_RETRY` is evaluated tick-by-tick while BE remains unapplied, and uses `SRP_PROTECTION`; `RSIApplyCommonStop` can issue one PositionModify per RSI leg per retry.
+Known mechanism capable of runaway:
+- Guardian counter is account/day scoped and increments before CTrade send, so rejected attempts still count locally.
+- `SRP_EMERGENCY` and `SRP_PROTECTION` bypass hard budget by design.
+- strongest static suspect: repeated `RSI_BE_RETRY` / common-stop protection work evaluated tick-by-tick while unapplied.
 
-Important: this proves a mechanism capable of runaway counting/requests, but does NOT prove all 5629 were actually received by FundedNext nor that every excess request came from RSI_BE_RETRY.
+This proves a runaway-capable path, not that every one of 5629 attempts reached FundedNext.
 
-Operational state:
-- FundedNext live Algo Trading should stay OFF until retry/backoff/dedup patch is made and validated.
-- Shared Intelligence collector can stay ON; it is unrelated/read-only.
-- Do NOT reset the live request counter merely to clear the HUD.
-- Needed patch: bounded retry cadence/backoff for non-emergency protection operations, especially RSI_BE_RETRY; emergency close must remain able to pass.
+Operational rule:
+- FundedNext Algo Trading remains OFF until bounded retry/backoff/dedup patch is built and validated.
+- Shared Intelligence may remain ON.
+- Do not reset the counter merely to clear HUD.
+- Audit all `SRP_PROTECTION` retry loops; preserve true emergency protection bypass.
 
-## 5. D025 Trading 1.01 — manual Strategy Tester EA
+## 5. FundedNext Quick Strike — corrected requirement
 
-Source:
-- `research/ea/D025_LER_Trading_1_01.mq5`
-- MT5 version `1.01`.
-- one symbol per run via `_Symbol`.
-- locked V0 signal chain, market entry on VALID_SIGNAL, structural SL, no TP, 48h forced exit, default 0.50% equity risk.
+User correction 2026-09-04:
+- Guardian does NOT auto-close a manual position when initial SL placement fails.
+- Guardian currently makes one SL placement attempt; if it fails, the user places the SL manually.
 
-### Long pre-OOS-style run supplied by user
+Therefore keep two issues separate:
+1. SL-placement failure/retry safety.
+2. Quick Strike exposure from any Guardian-managed profitable closure inside 30 seconds.
 
-FundedNext, M1, 2025-01-01 -> 2026-06-28, initial deposit 10,000 USD:
-- BTCUSD: final balance 6,695.65 USD, net -3,304.35 USD.
-- ETHUSD: net -4,547.95 USD; PF 0.31; equity DD max 45.85%; 169 trades; 20 winners / 149 losers; win rate 11.83%; Sharpe -5.00.
+Requirement:
+- log entry time, elapsed seconds, venue, reason and P/L sign for Guardian-managed <30s exits;
+- evaluate FundedNext-specific early BE/SL handling only if risk-neutral;
+- never intentionally leave an unsafe trade open just to pass 30 seconds.
 
-Correct interpretation: reject only `structural SL + no TP + forced exit at 48h`; do NOT reject D025 entries.
+GitHub issue: #2.
 
-### Entry-quality diagnostic from long-run CSVs
+## 6. D025 Trading 1.01 — what it proved
 
-399 opened trades total: 230 BTCUSD, 169 ETHUSD. Count a +R hit only when its first timestamp is before `stop_utc`.
+Source: `research/ea/D025_LER_Trading_1_01.mq5`.
 
-- BTCUSD: +1R 102/230 = 44.35%; +2R 56/230 = 24.35%; +3R 30/230 = 13.04%; +4R 16/230 = 6.96%; +5R 10/230 = 4.35%.
-- ETHUSD: +1R 60/169 = 35.50%; +2R 33/169 = 19.53%; +3R 23/169 = 13.61%; +4R 14/169 = 8.28%; +5R 10/169 = 5.92%.
+Long BTC/ETH test with market entry, structural SL, no TP, forced 48h exit lost badly. Correct conclusion:
+- REJECT that exit construction.
+- Do NOT reject D025 entry from that P/L alone.
 
-Full diagnostic: `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`.
+First-touch and later cross-asset work showed D025 has no universal fixed-TP edge across all markets. Branch/regime separation matters.
 
-### June-July 2026 cross-asset diagnostic
+Recurring observations before costs:
+- ETH RETEST = strongest repeatedly positive branch; pooled +2R EV around +0.133R before costs.
+- BTC SHORT = modest recurring early edge; around +0.096R at 1R pooled.
+- GBP SHORT = recurring early edge; around +0.121R at 1R pooled.
+- SOL SHORT = promising and larger in available sample, but less mature / no 2024 sample and current FundedNext symbol availability is uncertain.
+- XAU RETEST 2024 did not replicate in 2025.
+- USDJPY 2026 strength did not robustly replicate backward.
 
-Latest-window first-touch highlights:
-- BTCUSD 112 trades: +1R 50.00%, +2R 38.39%, +3R 22.32%.
-- ETHUSD 102 trades: +1R 52.94%, +2R 40.20%, +3R 28.43%.
-- EURUSD 55 trades: +1R 52.73%, +2R 23.64%, +3R 16.36%.
-- SOLUSD 65 trades: +1R 53.85%, +2R 36.92%, +3R 26.15%.
-- DOGE/LNK weak in aggregate.
+Universal D025 fixed TP is not accepted.
 
-Notable path splits:
-- ETH RETEST: +1R 64.81%, +2R 50.00%, +3R 38.89%.
-- SOL ACCEPTANCE: +1R 58.06%, +2R 45.16%, +3R 29.03%.
+## 7. D025 1.02 Path Diagnostic — instrumentation valid, real-order sample biased
 
-Full report: `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`.
+Source: `research/ea/D025_LER_Trading_1_02_PathDiagnostic.mq5`.
 
-## 6. 2024 full-year replication
+Added observational path fields:
+- first +0.5R;
+- +1R..+5R;
+- first return to entry after +1R (`be_after1_utc`);
+- same-M1 BE/target ambiguity flag.
 
-User supplied full-year 2024 sessions for BTC, ETH, GBPUSD, USDJPY and XAUUSD: 2,530 trades total.
+A 0.05% real-order rerun did NOT remove crypto selection bias:
+- BTC population only about 44% of prior expected 2024+2025 signal population.
+- ETH only about 46%.
+- GBP/USDJPY/XAU were around 91–94% controls.
 
-Global 2024 fixed-TP behavior was weak/near-flat, but branch splits were informative:
-- ETH RETEST EV2 about +0.084R while ACCEPTANCE was negative.
-- GBP RETEST EV2 about +0.084R, but this path result did not persist in 2025.
-- XAU RETEST EV2 about +0.158R, but this also failed replication in 2025.
-- BTC SHORT showed a modest early edge.
-- USDJPY global continuation was weak.
+Conclusion:
+- 1.02 instrumentation is useful.
+- Real-order path sampling is NOT scientifically clean for BTC/ETH because lot minimum/account/margin/execution state can filter signals.
+- Do not ask for more BTC/ETH real-order 0.05 reruns.
 
-## 7. 2025 replication — MATERIAL MILESTONE
+Report: `research/results/D025_1_02_005PCT_RERUN_DIAGNOSTIC_2026_09_04.md`.
 
-New sessions isolated from appended `(7)` CSVs by comparison with prior `(6)` files, avoiding double-counting older overlapping BTC/ETH runs:
-- BTCUSD 503 trades, full 2025
-- ETHUSD 557 trades, full 2025
-- GBPUSD 360 trades, full 2025
-- USDJPY 424 trades, full 2025
-- XAUUSD 399 trades, full 2025
-- SOLUSD 330 trades, 2025-04-29 -> 2025-12-30 only
+## 8. D025 1.03 Virtual Path Diagnostic — CURRENT TEST EA
 
-Total new 2025 trades: 2,573.
+Current user-facing source created in conversation: `D025_LER_VirtualPath_1_03.mq5`.
 
-2025 global first-touch / resolved fixed-TP EV before costs:
-- BTC: +1R 52.29%, +2R 30.82%, +3R 21.27%; EV1 +0.063R, EV2 -0.004R, EV3 -0.038R.
-- ETH: +1R 51.17%, +2R 30.52%, +3R 21.54%; EV1 +0.050R, EV2 -0.004R, EV3 -0.014R.
-- GBP: +1R 51.67%, +2R 29.17%, +3R 17.50%; EV1 +0.107R, EV2 +0.033R, EV3 -0.134R.
-- SOL: +1R 48.79%, +2R 32.73%, +3R 24.55%; EV1 -0.006R, EV2 +0.019R, EV3 +0.042R.
-- USDJPY: EV1 -0.027R, EV2 -0.055R, EV3 -0.114R.
-- XAU: EV1 -0.100R, EV2 -0.220R, EV3 -0.260R.
+Purpose:
+- keep the locked V0 signal chain and structural stop;
+- remove ALL actual CTrade/order dependence;
+- no lot sizing, no margin, no account equity dependency, no live P/L effect;
+- create a virtual record for every VALID_SIGNAL;
+- virtual entry = modeled market side at signal (Ask long / Bid short);
+- track structural stop, +0.5R, +1R..+5R, BE-after-1R and 48h path;
+- overlapping virtual trades allowed;
+- same-M1 ordering ambiguity must remain explicit.
 
-Replication verdicts:
-- **ETH RETEST is the strongest recurring D025 branch**: EV2 positive in 2024 (+0.084R), 2025 (+0.109R), and Jun-Jul 2026 (+0.588R). Pooled 2024-2026: 704 RETEST trades; resolved +2R hit probability 37.78%; EV2 +0.133R before costs.
-- **BTC SHORT has a recurring early edge**: pooled 2024-2026 625 trades; EV1 +0.096R, EV2 +0.067R, EV3 negative.
-- **GBP SHORT has a recurring early edge**: pooled 421 trades; EV1 +0.121R, EV2 +0.072R, EV3 ~flat/negative. GBP path leadership flips between 2024 and 2025, so do not promote ACCEPTANCE/RETEST as a GBP rule.
-- **SOL SHORT is promising but less mature**: 2025 EV2 +0.196R / EV3 +0.235R; Jun-Jul 2026 also strong. No 2024 sample and 2025 starts late April.
-- **USDJPY 2026 strength is not robust backward**: 2024/2025 global EV2 negative.
-- **XAU RETEST 2024 failed replication**: 2025 RETEST EV2 negative; do not promote XAU path rule.
+User has compiled/started using this manually; do not claim MetaEditor compile on behalf of assistant beyond user-confirmed successful use/output.
 
-Across the five full-year common markets BTC/ETH/GBP/USDJPY/XAU, 2024+2025 gives 4,773 trades. Universal D025 is approximately flat at 1R (EV +0.011R before costs) and negative at 2R (-0.032R) / 3R (-0.106R). Therefore there is no universal fixed-TP edge across all markets; edge is branch/regime dependent.
+### Current rerun request
 
-Full report: `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`, commit `e30334bf44fb1551943c151a640da4487fe1c8cd`.
+Run 2024-01-01 -> 2025-12-31 with default inputs `48 / 1 / true`.
 
-## 8. D025 Trading 1.02 Path Diagnostic — CREATED
+Priority:
+1. BTCUSD
+2. ETHUSD
+3. XAUUSD
+4. GBPUSD
+5. USDJPY
+6. EURUSD
 
-New source:
-- `research/ea/D025_LER_Trading_1_02_PathDiagnostic.mq5`
-- MT5 version `1.02`.
-- creation commit `76f3451337017d8324680b8c5baef884dfd489da`.
+SOL is optional only if the symbol is available again on FundedNext. User currently cannot find SOL there.
 
-Purpose: measure exit path without changing the locked D025 V0 entries or structural SL.
+For each symbol collect ALL THREE CSVs:
+- events
+- trades
+- outcomes
 
-1.02 keeps actual trade handling identical in principle to 1.01: market entry on VALID_SIGNAL, structural SL, no executed TP, forced time exit. It only adds observational fields and uses separately versioned CSV filenames `d025_ler_trading_1_02_*`.
+First validation: BTC/ETH virtual signal population must recover the missing sample versus 1.02 real-order runs. If counts remain unexpectedly low, inspect signal/session logic before requesting broad reruns.
 
-New path fields:
-- `hit05_utc`: first +0.5R touch;
-- existing `hit1_utc`..`hit5_utc`;
-- `be_after1_utc`: first touch of original entry after +1R has become available;
-- `be_after1_ambiguous_same_m1`: M1-ordering ambiguity when +1R / a higher target and BE occur in the same M1 bar;
-- existing original-stop ambiguity remains separately logged.
+## 9. D025 management research standard
 
-The code was statically inspected after creation for the intended version/schema/path logic. **No MetaEditor compile has been claimed yet.** User should compile manually before reruns.
+Do not optimize dozens of exits.
 
-Frozen management comparison after reruns:
-1. full TP +1R;
-2. full TP +2R;
-3. 40% partial at +1R, 60% remainder to BE, then runner observation.
+Current conceptual candidates remain narrow:
+- full TP +1R;
+- full TP +2R;
+- partial around +1R then BE/runner path observation.
 
-Do not optimize a trail yet. First measure how often the +1R remainder returns to BE before +2R/+3R; only then preregister one trail rule if the runner distribution justifies it.
+But the user has explicitly set a higher bar: **do not settle for crumbs**.
 
-Focused rerun matrix: 9 primary reruns, not every prior symbol:
-- ETHUSD 2024 + 2025;
-- BTCUSD 2024 + 2025;
-- GBPUSD 2024 + 2025;
-- SOLUSD available 2025 sample;
-- XAUUSD 2024 + 2025 as negative/control market.
+Interpret current pre-cost EV as signal-quality diagnostics only. Spread, commission and slippage are NOT yet fully applied to those R-EV figures.
 
-Full plan: `research/results/D025_PATH_DIAGNOSTIC_V1_02_PLAN_2026_09_04.md`, commit `6c638709c712dd58f57f18d2b86d08b3d53f7efd`.
+Acceptance philosophy:
+- tiny pre-cost edge is not enough;
+- seek a broad, repeated structural advantage across years/branches;
+- then apply realistic spread + commission + slippage;
+- stress costs upward before production consideration.
 
-## 9. Scientific separation / next D025 step
+Do not curve-fit entry thresholds or invent retrospective filters.
 
-Enough data exists to stop indiscriminate symbol collection and move to the preregistered management/branch-validation stage.
+## 10. Shared Intelligence relation to D025
 
-Do NOT change D025 V0 entry thresholds or structural SL.
+Current D025 Core does NOT use Binance/Bybit data for entry, SL or exit.
 
-After 1.02 compile confirmation and focused reruns, evaluate the recurring branches (ETH RETEST, BTC SHORT, GBP SHORT, SOL SHORT) using the three frozen management constructions above, reporting same-M1 ambiguous cases separately.
+External Intelligence is a later Crypto+ research layer only:
+- spot/perp;
+- OI;
+- funding;
+- liquidations;
+- basis/dislocation;
+- Binance/Bybit agreement/divergence;
+- quality/staleness.
 
-D025 V0 signal transitions remain MT5 Core only. Binance/Bybit data collects independently. Later Crypto+ comparisons must join external data only with `available_at <= event_time`.
+Future comparison must be `D025 Core` vs `D025 Core + external state`, joined strictly with `available_at <= event_time`.
 
-## 10. Research note — missed post-shock reaction
+Current collector has already produced thousands of raw observations and continues building forward BTC/ETH history. Do not use current live snapshot as historical truth in Strategy Tester.
 
-Live ETHUSD observation 2026-09-04: extreme bearish impulse followed by no obvious Guardian reaction/trade. Keep as a separate later post-shock/exhaustion/mean-reversion research hypothesis. Do not silently loosen Momentum/RSI filters.
+## 11. Project planning / work-time ledger
 
-## 11. Resume order
+New canonical living file:
+- `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`
 
-1. this file
-2. `research/ea/D025_LER_Trading_1_02_PathDiagnostic.mq5`
-3. `research/results/D025_PATH_DIAGNOSTIC_V1_02_PLAN_2026_09_04.md`
-4. `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`
-5. latest FundedNext request-budget audit / current Guardian 11.17.x source
-6. `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
-7. `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`
-8. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-9. `docs/STRATEGY_DECISIONS.md`
-10. locked D025 V0 rules
-11. current observer source
+It reconstructs Guardian history back to the initial manual-trade-manager conversations in mid-August 2026, including pre-GitHub work. Historical hours are labelled as confirmed activity spans/minimums/unknown when precise active time cannot be justified.
 
-## 12. Continuity rule
+From now on maintain:
+- session start/end;
+- human active time;
+- unattended backtest/collector runtime separately;
+- done/decision/rejected/next items.
 
-After every material milestone, update this handoff in the same work session. No important current state should exist only in conversation context.
+## 12. Resume order
+
+1. `CURRENT_PROJECT_HANDOFF.md`
+2. `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`
+3. current D025 1.03 virtual-path source/output
+4. `research/results/D025_1_02_005PCT_RERUN_DIAGNOSTIC_2026_09_04.md`
+5. `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`
+6. latest FundedNext request-budget audit / current Guardian v11.17.x source
+7. `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
+8. `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`
+9. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
+10. `docs/STRATEGY_DECISIONS.md`
+11. locked D025 V0 rules
+
+## 13. Continuity rule
+
+After every material milestone, update this handoff in the same work session. Keep the planning/time ledger current as well. No important state should exist only in conversation context.
