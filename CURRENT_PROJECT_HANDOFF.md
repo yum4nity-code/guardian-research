@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 14:18 Europe/Paris
-Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 TRADING 1.01 CREATED / FUNDEDNEXT AUTOMATION SUSPENDED
+Last updated: 2026-09-04 14:40 Europe/Paris
+Status: ACTIVE / D025 LIVE OBSERVER RUNNING / D025 TRADING 1.01 BACKTESTED AND REJECTED AS CURRENT TRADE CONSTRUCTION / FUNDEDNEXT AUTOMATION SUSPENDED
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
@@ -54,30 +54,23 @@ Operational rule for future agents:
 
 ## 5. D025 Trading 1.01 — manual Strategy Tester EA
 
-Created on main:
+Source:
 - `research/ea/D025_LER_Trading_1_01.mq5`
 - MT5 version `1.01`.
+- one symbol per run via `_Symbol`.
+- locked V0 signal chain, market entry on VALID_SIGNAL, structural SL, no TP, 48h forced exit, default 0.50% equity risk.
+- technically capable of live trading if attached to a chart; user explicitly does not want an artificial live block.
 
-Purpose:
-- produce normal MT5 trades/equity/PF/DD in the user's manual Strategy Tester runs;
-- one symbol per run, selected directly in Strategy Tester via `_Symbol` (e.g. BTCUSD run, then ETHUSD run);
-- no hidden second symbol and no multi-symbol ambiguity in the report.
+Manual backtest results supplied by user, FundedNext, M1, 2025-01-01 -> 2026-06-28, initial deposit 10,000 USD:
+- BTCUSD: final balance 6,695.65 USD, net -3,304.35 USD. Detailed PF/DD/win-rate not captured.
+- ETHUSD: net -4,547.95 USD; PF 0.31; expected payoff -26.91; equity DD max 45.85% / 4,616.03 USD; 169 trades; 20 winners / 149 losers; win rate 11.83%; gross profit 2,001.43 vs gross loss -6,549.38; average win 100.07 vs average loss -42.81; Sharpe -5.00.
 
-Trading logic:
-- preserves the current D025 V0 state-machine thresholds and sequence;
-- market entry only on `VALID_SIGNAL` after RETEST or ACCEPTANCE;
-- structural SL = worst sweep extreme +/- `0.10 * H1 ATR`, same structural rule as V0;
-- no TP;
-- forced close after `InpMaxHoldHours`, default 48h;
-- risk sizing by account equity and actual stop distance, default `InpRiskPercent=0.50`;
-- default magic `25090401`;
-- keeps dedicated D025 trading CSV logs for events, trades and MFE/MAE/+1R..+5R outcomes.
-
-Important: this EA is technically capable of trading if attached to a live chart. The user explicitly does not want artificial live-trading blocks; operational separation is simply to use it in Strategy Tester and not attach it live.
-
-Validation status:
-- source has been created and committed on GitHub;
-- it has NOT yet been compiled in the user's MetaEditor environment, so do not claim compile success until the user reports it.
+Decision:
+- current tradable D025 V0 construction is REJECTED;
+- do not retune thresholds post hoc;
+- do not interpret this as proof that every possible future exit policy is invalid;
+- keep D025 only as event-study/diagnostic work unless a genuinely new preregistered hypothesis is formulated.
+- strategy decision recorded in `docs/STRATEGY_DECISIONS.md`.
 
 ## 6. Research note — missed post-shock reaction
 
@@ -97,24 +90,23 @@ Do not inject Shared Intelligence directly into live RSI or Momentum merely beca
 
 ## 8. Next safe action
 
-- Leave D025 Observer 1.00 running live.
-- For historical D025 testing, use `D025_LER_Trading_1_01.mq5` through the user's normal manual MT5 workflow.
-- Run BTCUSD and ETHUSD separately first; analyze each independently before any combined portfolio interpretation.
-- When the user provides compile output or tester output, inspect it directly and fix only concrete errors.
-- Do not alter locked V0 thresholds based on first results.
+- Leave D025 Observer 1.00 running live only if continued event collection is desired.
+- Do not spend more manual tester time on D025 Trading 1.01 unchanged: BTC and ETH already fail strongly.
+- Next useful D025 work is diagnostic: funnel counts, failure reasons, MFE/MAE, level-family contribution, and whether any subset shows a preregisterable mechanism worth a new campaign.
+- Keep the separate post-shock/exhaustion idea as its own hypothesis rather than morphing D025 thresholds.
 
 ## 9. Resume order for a fresh agent
 
 1. this file
 2. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-3. branch `backtest-results` -> newest D025 result if present
-4. `research/ea/D025_LER_Trading_1_01.mq5`
-5. locked D025 V0 rules
-6. current observer source
-7. latest relevant Shared Intelligence / Guardian result files
-8. `CURRENT_QUEUE.json`
-9. `docs/RESEARCH_STATUS.md`
-10. `docs/STRATEGY_DECISIONS.md`
+3. `docs/STRATEGY_DECISIONS.md`
+4. branch `backtest-results` -> newest D025 result if present
+5. `research/ea/D025_LER_Trading_1_01.mq5`
+6. locked D025 V0 rules
+7. current observer source
+8. latest relevant Shared Intelligence / Guardian result files
+9. `CURRENT_QUEUE.json`
+10. `docs/RESEARCH_STATUS.md`
 
 ## 10. Continuity rule
 
