@@ -1,5 +1,5 @@
 #property strict
-#property version   "0.100"
+#property version   "1.00"
 #property description "D025 LER V0 research observer - NO LIVE ORDERS"
 
 // D025 Liquidity Exhaustion Reclaim V0
