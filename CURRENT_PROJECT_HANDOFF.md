@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 13:55 Europe/Paris
-Status: ACTIVE / D025 LIVE OBSERVER RUNNING / FUNDEDNEXT BACKTEST V4 READY
+Last updated: 2026-09-04 13:56 Europe/Paris
+Status: ACTIVE / D025 LIVE OBSERVER RUNNING / FUNDEDNEXT BACKTEST V4 STABLE
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
@@ -35,22 +35,26 @@ Resolved from the actual live window/process:
 - executable: `D:\MT5_FundedNext\terminal64.exe`
 - MT5 data path: `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\D943DED8A972BBD3A21ED90520AE6479`
 
-V1/V2/V3 history:
+Launcher history:
 - V1 chose another FundedNext installation; superseded.
-- V2 generic file/log discovery failed on Server 2; superseded for this target.
-- V3 correctly binds to the live window and exact data path, then builds a portable clone. It compiled the D025 harness with `0 errors, 0 warnings` and launched the isolated tester, but portable verification reported `account_seen=True, server_seen=False` because the portable logs do not expose the server label.
+- V2 generic file/log discovery failed on Server 2; not used directly for this target.
+- V3 correctly binds to the exact live window and data path, then builds the portable clone. It compiled the D025 harness with `0 errors, 0 warnings` and launched the isolated tester.
+- Portable logs confirmed `account_seen=True` but did not expose a usable server label (`server_seen=False`).
+- V4 initially tried to self-patch V3 and failed after V3 changed (`V2 portable target verification block changed`). This brittle self-patching layer has now been removed.
 
-## 4. Current FundedNext launcher: V4
+## 4. Current FundedNext launcher: V4 stable
 
 Use only:
 - `automation/run_d025_fundednext_backtest_v4.ps1`
 - `automation/RUN_D025_FUNDEDNEXT_BACKTEST_V4.cmd`
 
-V4 safety rule:
+Current implementation:
+- V4 is now a thin stable delegate to V3; it no longer edits V3 or V2 source text itself.
 - V3 first MUST bind the source to the exact running live window whose title contains BOTH account `14202634` and server `FundedNext-Server 2`.
-- The portable clone is then created from that exact verified data folder.
-- Portable verification requires the exact account `14202634`.
-- The server text is no longer required inside portable logs because FundedNext does not expose it there; server provenance comes from the exact live-window binding before cloning.
+- V3 maps that exact process to the MT5 data folder via `origin.txt`.
+- The portable clone is created from that verified source.
+- Portable verification now requires exact account `14202634`; `serverSeen` remains telemetry only because FundedNext portable logs may omit the server label.
+- Server identity is supplied by the earlier exact live-window provenance check, which already required both account and server.
 - Live terminal / Guardian are not closed or commandeered.
 - `AllowLiveTrading=0`; D025 itself has no order functions.
 
@@ -62,7 +66,7 @@ Default test:
 - no optimization / no threshold search
 
 Expected success line:
-`CONFIRMED TARGET: 14202634 / FundedNext-Server 2 (live-window provenance + portable account)`
+`CONFIRMED TARGET: 14202634 / FundedNext-Server 2 (verified live-window provenance + portable account)`
 
 Then the script waits for `COMPLETE.txt`, analyzes results, and publishes compact outputs to branch `backtest-results` under `backtests/d025/<RUN_ID>/`. Large raw CSVs stay local with hashes in the manifest.
 
@@ -77,7 +81,7 @@ Do not inject Shared Intelligence directly into live RSI or Momentum merely beca
 1. Keep the correct live FundedNext MT5 window open.
 2. `git pull`.
 3. Run `automation/run_d025_fundednext_backtest_v4.ps1`.
-4. Trust the run after the V4 confirmation line above.
+4. Trust the run after the V4/V3 confirmation line above.
 5. Completion requires `COMPLETE.txt` -> analyzer -> GitHub publish.
 6. Keep D025 Observer 1.00 running live in parallel.
 
