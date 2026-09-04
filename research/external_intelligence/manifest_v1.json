@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "component": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
+  "status": "RESEARCH_ONLY",
+  "provider_v1": "BYBIT_PUBLIC",
+  "canonical_symbols": ["BTCUSD", "ETHUSD"],
+  "source_symbols": ["BTCUSDT", "ETHUSDT"],
+  "metrics": [
+    "spot.last_price",
+    "perpetual.last_price",
+    "perpetual.open_interest",
+    "perpetual.funding_rate",
+    "perpetual.liquidation_qty",
+    "perpetual.liquidation_notional_estimate"
+  ],
+  "transport": {
+    "rest": "https://api.bybit.com/v5/market/tickers",
+    "websocket": "wss://stream.bybit.com/v5/public/linear",
+    "liquidation_topics": ["allLiquidation.BTCUSDT", "allLiquidation.ETHUSDT"]
+  },
+  "security": {
+    "api_key_required": false,
+    "trading_permission": false,
+    "trading_endpoints_called": false
+  },
+  "replay_invariant": "available_at_ms <= simulated_time_ms",
+  "limitations": [
+    "V1 is single-venue (Bybit); cross-venue aggregation is intentionally deferred.",
+    "Liquidation notional is estimated as size * bankruptcy price because the public allLiquidation feed reports bankruptcy price, not executed notional.",
+    "Absence of liquidation events is meaningful only while the liquidation websocket health is connected/OK.",
+    "Funding is a current context variable; settled funding history is not ingested in the live V1 loop.",
+    "The collector has no right to trade and is not yet consumed by Guardian production."
+  ]
+}
