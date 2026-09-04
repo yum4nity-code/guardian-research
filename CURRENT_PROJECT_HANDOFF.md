@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 17:10 Europe/Paris
-Status: ACTIVE / D025 ENTRY QUALITY BRANCH-DEPENDENT / 2025 REPLICATION ANALYZED / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
+Last updated: 2026-09-04 17:25 Europe/Paris
+Status: ACTIVE / D025 PATH-DIAGNOSTIC 1.02 CREATED / 2025 REPLICATION ANALYZED / FUNDEDNEXT LIVE AUTO SUSPENDED PENDING REQUEST-BUDGET FIX
 
 This is the canonical fast-resume file for a fresh ChatGPT/Codex instance. Read it first, then verify actual live/local state before changing anything.
 
@@ -109,7 +109,7 @@ Global 2024 fixed-TP behavior was weak/near-flat, but branch splits were informa
 - BTC SHORT showed a modest early edge.
 - USDJPY global continuation was weak.
 
-## 7. 2025 replication — NEW MATERIAL MILESTONE
+## 7. 2025 replication — MATERIAL MILESTONE
 
 New sessions isolated from appended `(7)` CSVs by comparison with prior `(6)` files, avoiding double-counting older overlapping BTC/ETH runs:
 - BTCUSD 503 trades, full 2025
@@ -141,38 +141,70 @@ Across the five full-year common markets BTC/ETH/GBP/USDJPY/XAU, 2024+2025 gives
 
 Full report: `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`, commit `e30334bf44fb1551943c151a640da4487fe1c8cd`.
 
-## 8. Scientific separation / next D025 step
+## 8. D025 Trading 1.02 Path Diagnostic — CREATED
 
-Enough data now exists to stop indiscriminate symbol collection and move to a preregistered management/branch-validation stage.
+New source:
+- `research/ea/D025_LER_Trading_1_02_PathDiagnostic.mq5`
+- MT5 version `1.02`.
+- creation commit `76f3451337017d8324680b8c5baef884dfd489da`.
 
-Do NOT change D025 V0 entry thresholds or structural SL. Current CSVs cannot reconstruct partial-at-1R + move-to-BE + runner exactly because they do not record a post-+1R return to entry before later targets.
+Purpose: measure exit path without changing the locked D025 V0 entries or structural SL.
 
-Next clean EA/research step:
-- add +0.5R timestamp tracking;
-- add post-+1R BE-touch timing/state;
-- test only a tiny preregistered exit set: full TP +1R, full TP +2R, and one fixed partial-at-1R + BE remainder + runner/trail construction;
-- keep one frozen trailing rule; no broad grid optimization;
-- validate the recurring branches (ETH RETEST, BTC SHORT, GBP SHORT, SOL SHORT) without changing entry thresholds.
+1.02 keeps actual trade handling identical in principle to 1.01: market entry on VALID_SIGNAL, structural SL, no executed TP, forced time exit. It only adds observational fields and uses separately versioned CSV filenames `d025_ler_trading_1_02_*`.
+
+New path fields:
+- `hit05_utc`: first +0.5R touch;
+- existing `hit1_utc`..`hit5_utc`;
+- `be_after1_utc`: first touch of original entry after +1R has become available;
+- `be_after1_ambiguous_same_m1`: M1-ordering ambiguity when +1R / a higher target and BE occur in the same M1 bar;
+- existing original-stop ambiguity remains separately logged.
+
+The code was statically inspected after creation for the intended version/schema/path logic. **No MetaEditor compile has been claimed yet.** User should compile manually before reruns.
+
+Frozen management comparison after reruns:
+1. full TP +1R;
+2. full TP +2R;
+3. 40% partial at +1R, 60% remainder to BE, then runner observation.
+
+Do not optimize a trail yet. First measure how often the +1R remainder returns to BE before +2R/+3R; only then preregister one trail rule if the runner distribution justifies it.
+
+Focused rerun matrix: 9 primary reruns, not every prior symbol:
+- ETHUSD 2024 + 2025;
+- BTCUSD 2024 + 2025;
+- GBPUSD 2024 + 2025;
+- SOLUSD available 2025 sample;
+- XAUUSD 2024 + 2025 as negative/control market.
+
+Full plan: `research/results/D025_PATH_DIAGNOSTIC_V1_02_PLAN_2026_09_04.md`, commit `6c638709c712dd58f57f18d2b86d08b3d53f7efd`.
+
+## 9. Scientific separation / next D025 step
+
+Enough data exists to stop indiscriminate symbol collection and move to the preregistered management/branch-validation stage.
+
+Do NOT change D025 V0 entry thresholds or structural SL.
+
+After 1.02 compile confirmation and focused reruns, evaluate the recurring branches (ETH RETEST, BTC SHORT, GBP SHORT, SOL SHORT) using the three frozen management constructions above, reporting same-M1 ambiguous cases separately.
 
 D025 V0 signal transitions remain MT5 Core only. Binance/Bybit data collects independently. Later Crypto+ comparisons must join external data only with `available_at <= event_time`.
 
-## 9. Research note — missed post-shock reaction
+## 10. Research note — missed post-shock reaction
 
 Live ETHUSD observation 2026-09-04: extreme bearish impulse followed by no obvious Guardian reaction/trade. Keep as a separate later post-shock/exhaustion/mean-reversion research hypothesis. Do not silently loosen Momentum/RSI filters.
 
-## 10. Resume order
+## 11. Resume order
 
 1. this file
-2. `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`
-3. latest FundedNext request-budget audit / current Guardian 11.17.x source
-4. `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
-5. `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`
-6. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-7. `docs/STRATEGY_DECISIONS.md`
-8. `research/ea/D025_LER_Trading_1_01.mq5`
-9. locked D025 V0 rules
-10. current observer source
+2. `research/ea/D025_LER_Trading_1_02_PathDiagnostic.mq5`
+3. `research/results/D025_PATH_DIAGNOSTIC_V1_02_PLAN_2026_09_04.md`
+4. `research/results/D025_2025_REPLICATION_DIAGNOSTIC_2026_09_04.md`
+5. latest FundedNext request-budget audit / current Guardian 11.17.x source
+6. `research/results/D025_ENTRY_QUALITY_DIAGNOSTIC_2026_09_04.md`
+7. `research/results/D025_CROSS_ASSET_FIRST_TOUCH_DIAGNOSTIC_2026_09_04.md`
+8. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
+9. `docs/STRATEGY_DECISIONS.md`
+10. locked D025 V0 rules
+11. current observer source
 
-## 11. Continuity rule
+## 12. Continuity rule
 
 After every material milestone, update this handoff in the same work session. No important current state should exist only in conversation context.
