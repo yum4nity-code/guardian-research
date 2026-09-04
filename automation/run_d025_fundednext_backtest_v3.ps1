@@ -133,6 +133,67 @@ $new = @'
 if (-not $src.Contains($old)) { throw 'V2 preflight block changed; V3 refuses to patch an unknown runner revision.' }
 $src = $src.Replace($old,$new)
 
+# FundedNext can render the same server with punctuation/spacing differences between the title,
+# config and terminal logs (for example "FundedNext-Server 2" vs "FundedNext-Server2").
+# Keep strict account+server verification, but compare a normalized alphanumeric server token.
+$oldConfirm = @'
+function Confirm-PortableTarget {
+    $serverRegex = [regex]::Escape($TargetServer)
+    $accountRegex = [regex]::Escape($TargetAccount)
+    $serverSeen = $false
+    $accountSeen = $false
+    $logs = Join-Path $PortableRoot 'logs'
+    if (Test-Path $logs) {
+        foreach ($f in @(Get-ChildItem $logs -File -Filter '*.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 6)) {
+            $t = Tail $f.FullName 5000
+            if ($t -match $serverRegex) { $serverSeen = $true }
+            if ($t -match $accountRegex) { $accountSeen = $true }
+        }
+    }
+    return [pscustomobject]@{ServerSeen=$serverSeen;AccountSeen=$accountSeen;Confirmed=($serverSeen -and $accountSeen)}
+}
+'@
+$newConfirm = @'
+function Normalize-ServerToken([string]$Text) {
+    if ($null -eq $Text) { return '' }
+    return (($Text.ToLowerInvariant()) -replace '[^a-z0-9]','')
+}
+
+function Confirm-PortableTarget {
+    $targetServerNorm = Normalize-ServerToken $TargetServer
+    $accountRegex = [regex]::Escape($TargetAccount)
+    $serverSeen = $false
+    $accountSeen = $false
+
+    # First inspect the portable terminal window title when available.
+    foreach ($p in @(Get-Process terminal64 -ErrorAction SilentlyContinue)) {
+        $path = ''
+        try { $path = $p.Path } catch {}
+        if ($path -and $path.StartsWith($PortableRoot,[System.StringComparison]::OrdinalIgnoreCase)) {
+            $title = ''
+            try { $title = $p.MainWindowTitle } catch {}
+            if ($title -match $accountRegex) { $accountSeen = $true }
+            $titleNorm = Normalize-ServerToken $title
+            if ($targetServerNorm -and $titleNorm.Contains($targetServerNorm)) { $serverSeen = $true }
+        }
+    }
+
+    # Also inspect terminal logs, normalizing punctuation/spacing for the server comparison.
+    $logs = Join-Path $PortableRoot 'logs'
+    if (Test-Path $logs) {
+        foreach ($f in @(Get-ChildItem $logs -File -Filter '*.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 10)) {
+            $t = Tail $f.FullName 7000
+            if ($t -match $accountRegex) { $accountSeen = $true }
+            $logNorm = Normalize-ServerToken $t
+            if ($targetServerNorm -and $logNorm.Contains($targetServerNorm)) { $serverSeen = $true }
+        }
+    }
+    return [pscustomobject]@{ServerSeen=$serverSeen;AccountSeen=$accountSeen;Confirmed=($serverSeen -and $accountSeen)}
+}
+'@
+if (-not $src.Contains($oldConfirm)) { throw 'V2 portable target verification block changed; V3 refuses to patch an unknown runner revision.' }
+$src = $src.Replace($oldConfirm,$newConfirm)
+
 # IMPORTANT: keep the temporary runner inside automation/. V2 resolves RepoRoot from $PSScriptRoot;
 # placing the temporary copy in %TEMP% made it look for research/ea under AppData\Local instead of
 # D:\MT5_Backtests\guardian-research. The file is removed in finally below.
