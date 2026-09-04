@@ -2,6 +2,10 @@
 
 Dépôt privé de coordination entre Codex, MiMo/MT5 et ChatGPT pour la recherche, la validation et l'intégration des stratégies Guardian.
 
+## Reprise rapide
+
+**Toujours commencer par `CURRENT_PROJECT_HANDOFF.md`.** Il contient l'état courant validé, les composants live, la version active et la prochaine action sûre. Il doit être mis à jour après chaque jalon matériel afin qu'une nouvelle instance puisse reprendre sans dépendre de l'historique de conversation.
+
 ## Principe
 
 - `D:\MT5_Backtests` reste le laboratoire local et conserve les gros historiques, ticks, clones MT5 et sorties volumineuses.
@@ -11,4 +15,4 @@ Dépôt privé de coordination entre Codex, MiMo/MT5 et ChatGPT pour la recherch
 - `candidates/for_guardian/` contient uniquement les stratégies ayant franchi les gates de validation.
 - `handoff/YYYY/MM/DD/` est l'interface formelle Codex -> ChatGPT.
 
-Voir `docs/CODEX_RESEARCH_DIRECTOR.md` et `docs/RESEARCH_PROTOCOL.md`.
+Voir `CURRENT_PROJECT_HANDOFF.md`, `docs/CODEX_RESEARCH_DIRECTOR.md` et `docs/RESEARCH_PROTOCOL.md`.
