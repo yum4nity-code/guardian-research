@@ -3,7 +3,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$MutexName = "Global\GuardianSharedMultiVenueRuntimeV1"
+$MutexName = "GuardianSharedMultiVenueRuntimeV1"
 $BaseDir = $PSScriptRoot
 $PythonExe = Join-Path $BaseDir ".venv\Scripts\python.exe"
 $RuntimeScript = Join-Path $BaseDir "shared_runtime_multivenue_bridge_v1.py"
