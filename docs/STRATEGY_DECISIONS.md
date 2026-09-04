@@ -73,3 +73,13 @@ Chaque entree doit inclure : date, Strategy ID, Campaign ID, verdict, preuves pr
 - Limites: les garde-fous Guardian partages peuvent rendre les resultats non additifs; `combo - RSI` ne mesure donc pas directement la contribution Momentum.
 - Source: `docs/GUARDIAN_V11_16_5_TO_11_16_11_CHANGELOG.md`.
 - Raison: tester seulement quelques variables structurellement justifiees avec valeurs larges. Momentum: POST_SHOCK 2 bars baseline puis 0; 1/4 seulement si effet materiel. RSI: trailing activation, oversold depth, puis BUY2/SL apres mesure. Pas de grille exhaustive ni de recherche de valeur magique.
+
+## 2026-09-04 — D025 Liquidity Exhaustion Reclaim + External Intelligence Bus
+
+- Strategy ID: `D025-LIQUIDITY-EXHAUSTION-RECLAIM`
+- Campaign ID: `D025-LER-PREREG / GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1`
+- Verdict: `PREREGISTERED / BUILD DATA INFRA FIRST / NO LIVE TRADING`
+- Preuves: hypothese economique distincte des moteurs existants : niveau objectif preexistant -> sweep/cascade -> pression extreme -> impact marginal decroissant/exhaustion -> reclaim -> acceptance/retest. Les donnees externes envisagees pour crypto sont spot, perpetual, open interest, liquidations et funding, avec provenance et timestamps. Le Guardian live actuel ne possede pas encore cette couche externe.
+- Limites: aucun edge n'est encore demontre; aucun seuil, score, poids ni plan de sortie n'est valide. Les donnees externes peuvent etre indisponibles, stale ou incompletes; elles ne doivent jamais devenir une dependance des protections Guardian.
+- Source: `research/campaigns/D025_LIQUIDITY_EXHAUSTION_RECLAIM_PREREGISTRATION.md`; `handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md`; commits initiaux `c6c08363258f04e8079a165d584c8bbcf3cac8f5` et `c09410ffd92a9380f19072978d13c668dd20cf7a`.
+- Raison: construire d'abord une infrastructure read-only, horodatee, rejouable et sans lookahead permet de tester scientifiquement si OI/liquidations/spot-perp ajoutent un edge au LER Core. Aucun BUY/SELL LER n'est autorise avant event study, robustesse et red-team.
