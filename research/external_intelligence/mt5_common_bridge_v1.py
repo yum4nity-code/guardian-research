@@ -20,6 +20,13 @@ DEFAULT_SOURCE_NAME = "market_state_v1_coveragefix.json"
 DEFAULT_SUBDIR = "GuardianSharedIntelligence"
 DEFAULT_OUTPUT_NAME = "market_state_v1.csv"
 
+# Windows may briefly reject os.replace() while an MT5 reader has the destination
+# file open. The reader keeps each handle only for a very short interval, so a
+# bounded retry preserves atomic publication without turning a harmless sharing
+# collision into a dropped generation or noisy REVIEW event.
+REPLACE_RETRY_ATTEMPTS = 25
+REPLACE_RETRY_DELAY_SECONDS = 0.01
+
 FIELDS = [
     "bridge_schema_version", "generation_id", "computed_at_ms", "symbol", "status", "core_age_ms",
     "spot_last", "perp_last", "open_interest", "funding_rate", "basis_pct",
@@ -113,7 +120,24 @@ def flatten_snapshot(snapshot: dict[str, Any]) -> list[dict[str, str]]:
     return rows
 
 
-def write_atomic_csv(path: Path, rows: list[dict[str, str]]) -> None:
+def _replace_with_retry(tmp: Path, path: Path) -> int:
+    """Atomically replace path, retrying only transient access collisions.
+
+    Returns the number of retries used. Any persistent error still propagates so
+    the runtime can surface it as REVIEW instead of silently degrading.
+    """
+    for attempt in range(REPLACE_RETRY_ATTEMPTS):
+        try:
+            os.replace(tmp, path)
+            return attempt
+        except PermissionError:
+            if attempt + 1 >= REPLACE_RETRY_ATTEMPTS:
+                raise
+            time.sleep(REPLACE_RETRY_DELAY_SECONDS)
+    raise RuntimeError("unreachable replace retry state")
+
+
+def write_atomic_csv(path: Path, rows: list[dict[str, str]]) -> int:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.name + ".tmp")
     with tmp.open("w", encoding="ascii", newline="") as f:
@@ -128,7 +152,7 @@ def write_atomic_csv(path: Path, rows: list[dict[str, str]]) -> None:
         writer.writerows(rows)
         f.flush()
         os.fsync(f.fileno())
-    os.replace(tmp, path)
+    return _replace_with_retry(tmp, path)
 
 
 def publish_once(source_path: Path, output_path: Path) -> dict[str, Any]:
@@ -140,12 +164,13 @@ def publish_once(source_path: Path, output_path: Path) -> dict[str, Any]:
     rows = flatten_snapshot(snapshot)
     if any(not row["generation_id"] for row in rows):
         raise ValueError("missing generation_id")
-    write_atomic_csv(output_path, rows)
+    replace_retries = write_atomic_csv(output_path, rows)
     return {
         "generation_id": int(snapshot["generation_id"]),
         "computed_at_ms": int(snapshot["computed_at_ms"]),
         "rows": len(rows),
         "output": str(output_path),
+        "replace_retries": replace_retries,
     }
 
 
@@ -177,7 +202,10 @@ def main() -> int:
             result = publish_once(source, output)
             generation = result["generation_id"]
             if generation != last_generation:
-                print(f"[BRIDGE][OK] generation={generation} rows={result['rows']}")
+                suffix = ""
+                if result.get("replace_retries", 0):
+                    suffix = f" replace_retries={result['replace_retries']}"
+                print(f"[BRIDGE][OK] generation={generation} rows={result['rows']}{suffix}")
                 last_generation = generation
         except FileNotFoundError:
             print(f"[BRIDGE][WAIT] source missing: {source}")
