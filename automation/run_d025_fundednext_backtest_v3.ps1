@@ -132,7 +132,11 @@ $new = @'
 '@
 if (-not $src.Contains($old)) { throw 'V2 preflight block changed; V3 refuses to patch an unknown runner revision.' }
 $src = $src.Replace($old,$new)
-$tempRunner = Join-Path $env:TEMP ("guardian_d025_v2_windowbound_{0}.ps1" -f ([guid]::NewGuid().ToString('N')))
+
+# IMPORTANT: keep the temporary runner inside automation/. V2 resolves RepoRoot from $PSScriptRoot;
+# placing the temporary copy in %TEMP% made it look for research/ea under AppData\Local instead of
+# D:\MT5_Backtests\guardian-research. The file is removed in finally below.
+$tempRunner = Join-Path $PSScriptRoot (".d025_v2_windowbound_{0}.ps1" -f ([guid]::NewGuid().ToString('N')))
 Set-Content -Path $tempRunner -Value $src -Encoding UTF8
 
 try {
