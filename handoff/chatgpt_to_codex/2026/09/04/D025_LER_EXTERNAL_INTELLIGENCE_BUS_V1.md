@@ -24,6 +24,8 @@ Fichiers :
 - `research/external_intelligence/requirements.txt`
 - `research/external_intelligence/COLLECTOR_V1.md`
 - `research/external_intelligence/tests/test_eib_v1.py`
+- `research/external_intelligence/smoke_v1.py`
+- `research/external_intelligence/START_EIB_SMOKE_V1.cmd`
 
 Provider V1 : Bybit public, sans cle API.
 
@@ -37,16 +39,13 @@ Donnees collectees pour BTCUSDT/ETHUSDT :
 
 Le notional liquidation est explicitement une estimation `size * bankruptcy_price`, car le flux public Bybit fournit le bankruptcy price et non un notional execute officiel.
 
-Hashes LF locaux ChatGPT :
-- `collector_v1.py` SHA256 `761329daa74cdb31dd80f136b0f37e1df759956e13e6ea0b3bc3c7bd6c73874e`
-- `replay_v1.py` SHA256 `4a8b1ef7a80bbf2a898b996f5b86b38475ec88695a673591f49f3a158bb2b034`
-- `tests/test_eib_v1.py` SHA256 `d1f65cb2b08f73a6e6b06c5cc131372520e4534984102dd58bd237d501083948`
-
 Commits principaux :
 - collector : `83bd4245b9de1a8c8893b3acf1f7867c07e6132e`
 - replay : `1a27d6269912af1c16f65f2afa5b9027eae2d834`
 - manifest : `8718bfaca7da256a09b73bbf1d38a27ad2ffd321`
 - tests : `144d78199f4f701948247f1604adcab77f652f91`
+- timed smoke runner : `e75cb71490aa471f517137b06d85ddf5e1e0b1ed`
+- Windows one-click launcher : `732ecf3e10860a627b65155c6811ba55d2c9f839`
 
 Validation deja faite par ChatGPT hors reseau :
 - `python -m py_compile collector_v1.py replay_v1.py` : OK;
@@ -68,12 +67,29 @@ Le jalon "code du collecteur" est atteint. Le prochain gate est **validation liv
 
 Le bus reste strictement read-only et Guardian production n'en depend pas.
 
+## LANCEMENT SMOKE 35 MIN
+
+Apres synchronisation du repo, le smoke peut etre lance sans autre code avec :
+
+`research\external_intelligence\START_EIB_SMOKE_V1.cmd`
+
+Le lanceur :
+- cree un `.venv` local s'il n'existe pas;
+- installe/verifie `aiohttp` via `requirements.txt`;
+- lance BTC+ETH pendant 35 minutes;
+- ecrit dans `D:\MT5_Backtests\Research\ExternalIntelligence`;
+- produit `health.json`, le JSONL quotidien et un `smoke_summary_<timestamp>.json`;
+- affiche `PASS` ou `REVIEW` en fin de run.
+
+Le runner verifie au minimum : canaux core presents, zero duplicate event_id dans la fenetre, JSON valide et aucune violation d'availability future. Un compteur de liquidations a zero n'est pas a lui seul un echec si le websocket est sain pendant une periode calme.
+
 ## ACTION_CODEX
 
 1. Synchroniser le repo; ne pas reecrire V1 sans bug concret.
-2. Installer/executer le collecteur sous `D:\MT5_Backtests\Research\ExternalIntelligence\` selon `COLLECTOR_V1.md`.
-3. Faire un smoke reel de 30+ minutes BTC+ETH.
-4. Pendant le smoke, verifier :
+2. Lancer `research\external_intelligence\START_EIB_SMOKE_V1.cmd` sur le PC utilisateur.
+3. Ne pas lancer un second collecteur si un smoke est deja actif.
+4. Laisser le smoke aller jusqu'au resume final 35 min.
+5. Pendant/apres le smoke, verifier :
    - spot/perp continuent d'arriver;
    - OI/funding parseables;
    - websocket liquidation connecte meme si zero evenement;
@@ -82,10 +98,10 @@ Le bus reste strictement read-only et Guardian production n'en depend pas.
    - reconnexion apres coupure reseau;
    - pas de duplicate liquidation event_id apres reconnect;
    - source_ts / received_ts / available_at coherents.
-5. Executer les tests offline dans l'environnement local.
-6. Tester `replay_v1.py` sur le JSONL produit et prouver qu'aucune observation n'est livree avant `available_at_ms`.
-7. Produire un petit sample anonymise/compact + manifest de smoke + stats de compte par metric, taille fichier, taux de duplication, latence source->receive, trous/staleness.
-8. Commit/push les preuves compactes et mettre la queue/status a jour.
+6. Executer les tests offline dans l'environnement local.
+7. Tester `replay_v1.py` sur le JSONL produit et prouver qu'aucune observation n'est livree avant `available_at_ms`.
+8. Produire un petit sample anonymise/compact + manifest de smoke + stats de compte par metric, taille fichier, taux de duplication, latence source->receive, trous/staleness.
+9. Commit/push les preuves compactes et mettre la queue/status a jour.
 
 ### Gates avant etape suivante
 
