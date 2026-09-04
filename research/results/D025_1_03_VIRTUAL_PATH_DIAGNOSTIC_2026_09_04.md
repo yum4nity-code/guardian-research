@@ -33,8 +33,6 @@ The earlier explanation that BTC/ETH were mainly missing because of real-order e
 
 Removing the entire trading layer changed BTC from 490 -> 499 and ETH from 544 -> 553 only. XAU and USDJPY were virtually unchanged. Therefore the major BTC/ETH population discrepancy exists **upstream of order execution**.
 
-Do NOT request more broad 1.03 reruns until the population discrepancy is reconciled.
-
 ## 2. Comparison against the original 1.01 sessions
 
 The original user-supplied 1.01 CSVs were re-opened directly from prior conversation uploads, not reconstructed from summary text.
@@ -51,19 +49,53 @@ Original full-year sessions:
 
 No duplicate event IDs were found in those full-year 1.01 sessions, so the larger counts are not explained by duplicate rows inside a session.
 
-Exact signal-time matching shows that many current 1.03 signals correspond to old 1.01 signals, but not all. In 2024, BTC/ETH/USDJPY also show a frequent ~60-minute timestamp displacement relative to old records, while XAU is much more stable. This is a strong provenance/test-clock/configuration clue, but it does not by itself explain the missing population.
+Exact signal-time matching shows that many current 1.03 signals correspond to old 1.01 signals. For BTC 2024, among current signals matched on side/path/level within three hours, the dominant timing offsets were **+60 minutes (98 matches)** and **0 minutes (88 matches)**. Entry prices on those matches are close, so these are largely the same economic moves with different bar/time provenance rather than unrelated signals.
 
-The signal-state code between 1.01/1.02 and 1.03 was statically compared around the state machine and remains materially the same before the order/virtual-trade creation boundary. Therefore the next investigation should focus on **tester/data/provenance differences** before changing D025 rules.
+The signal-state code between 1.01/1.02 and 1.03 remains materially the same before the order/virtual-trade creation boundary.
 
-Candidates to verify, without assuming one is the cause:
-- Strategy Tester modeling/configuration differences between the original 1.01 separate-year runs and the current combined 2024-2025 runs;
-- historical data/feed/cache differences, especially crypto;
-- tester-time / `TimeGMT()` behavior and timestamp mapping;
-- any symbol-history coverage or data-generation difference between the runs.
+## 3. Immediate mechanism identified: crypto tick-volume collapse blocks CASCADE
 
-Do not tune D025 entry thresholds to compensate for this discrepancy.
+D025 V0 requires relative M15 tick volume `>= 1.25` for the CASCADE transition. The 1.03 event file shows that the missing crypto population is created primarily because the historical `tick_volume` series becomes abnormally flat around its rolling mean in large date blocks.
 
-## 3. Preliminary 1.03 path diagnostics — NOT YET A PRODUCTION SAMPLE
+### BTCUSD 2024
+
+- July: 120 sweeps; median relative tick volume 1.290; 65 sweeps >=1.25; 61 CASCADE events.
+- **August: 117 sweeps; median 0.999; max only 1.243; zero sweeps >=1.25; zero CASCADE events; zero valid signals.**
+- September: 126 sweeps; median 0.995; only 16 sweeps >=1.25; 12 CASCADE events; only 4 valid signals.
+- October: relative volume normalizes again; median 1.896; 105 sweeps >=1.25; 89 CASCADE events; 43 valid signals.
+
+The original 1.01 BTC 2024 sample nevertheless had **52 trades in August and 51 in September**. Therefore the old and current runs did not see equivalent usable tick-volume history for those months.
+
+### ETHUSD 2024
+
+- July: 119 sweeps; median relative volume 1.499; 73 >=1.25; 63 CASCADE events.
+- **August: 121 sweeps; median 1.043; only 4 >=1.25; 2 CASCADE events; 2 valid signals.**
+- **September: 117 sweeps; median 1.031; only 1 >=1.25; 3 CASCADE events; 1 valid signal.**
+- October: median 1.406; 70 >=1.25; 61 CASCADE events; 25 valid signals.
+
+Original 1.01 ETH 2024 had **47 trades in August and 48 in September**.
+
+### BTCUSD / ETHUSD 2025
+
+The same data-quality pattern becomes even clearer from August 2025 onward.
+
+BTC median relative tick volume by month Aug-Dec is approximately `1.002 / 1.003 / 1.004 / 1.002 / 1.001`. Sweeps >=1.25 fall to only `11 / 10 / 2 / 3 / 5` despite roughly 96-135 sweeps per month.
+
+ETH median relative tick volume Aug-Dec is approximately `1.025 / 1.033 / 1.023 / 1.022 / 1.053`. Sweeps >=1.25 fall to `4 / 7 / 1 / 0 / 9`.
+
+That behavior is inconsistent with a healthy high-frequency tick-volume series and mechanically disables a large fraction of D025 crypto CASCADE transitions.
+
+### Control markets
+
+XAUUSD does not show the same collapse in Aug-Sep 2024: median relative tick volume remains about 1.35 in August and 1.62 in September, with many sweeps above 1.25. This matches the fact that XAU 1.03 recovers about 94% of the old 1.01 signal population. USDJPY is also much closer to its prior population.
+
+### Scientific conclusion
+
+The **mechanism** behind the missing BTC/ETH signals is now identified: **historical relative tick volume collapses toward 1.0, so the frozen CASCADE relative-volume gate cannot fire.**
+
+The remaining unresolved question is **why the old 1.01 and current 1.03 runs receive different tick-volume/bar provenance**. Plausible causes include Strategy Tester modeling mode, historical feed/cache/data availability, or terminal/broker provenance. The 60-minute timing shifts support a provenance/configuration difference. Do not change the D025 threshold to compensate for bad/synthetic history.
+
+## 4. Preliminary 1.03 path diagnostics — NOT YET A PRODUCTION SAMPLE
 
 Method: target hit counts only if the first target timestamp precedes original `stop_utc`; exact same-M1 target/stop ties are not forced into an arbitrary ordering. Fixed-TP EV is resolved target-vs-stop only and remains **before spread, commission and slippage**.
 
@@ -77,11 +109,11 @@ Method: target hit counts only if the first target timestamp precedes original `
 
 `*` Among +1R winners with non-ambiguous BE-after-1 path; probability is resolved +2R-before-BE vs BE-before-+2R.
 
-These aggregate results contain no large universal edge and should **not** supersede the earlier 1.01 branch findings until the population mismatch is resolved.
+These aggregate results contain no large universal edge and should **not** supersede the earlier 1.01 branch findings until the population/data mismatch is resolved.
 
-## 4. Interesting branch observations inside the current 1.03 population
+## 5. Interesting branch observations inside the current 1.03 population
 
-These are exploratory only because the population provenance problem is unresolved.
+These are exploratory only because the crypto population provenance problem is unresolved.
 
 Pooled 2024-2025 current 1.03:
 - BTC SHORT: n=256, EV1 about +0.174R, EV2 about +0.192R, EV3 about +0.028R.
@@ -94,19 +126,19 @@ Year split warns against premature promotion:
 - ETH RETEST is positive in current 2024 but negative in current 2025.
 - XAU RETEST is positive in current 2024 but weaker/negative at 2R in current 2025.
 
-This reinforces the user's requirement: **do not accept crumbs and do not promote a regime-specific branch merely because a pooled number looks attractive**.
-
-## 5. Decision
+## 6. Decision
 
 - 1.03 virtual path instrumentation: **VALID**.
 - Real-order/min-volume hypothesis as main cause of BTC/ETH low count: **REJECTED / INCOMPLETE**.
+- Immediate missing-signal mechanism: **IDENTIFIED — collapsed/synthetic relative tick-volume history blocks CASCADE**.
+- Underlying provenance/configuration cause of that volume collapse: **NOT YET PROVEN**.
 - Current 1.03 BTC/ETH population equivalence to old 1.01: **NOT VALIDATED**.
-- Additional broad reruns: **PAUSE** until tester/data/provenance mismatch is understood.
+- Additional broad reruns: **PAUSE** until tester model/history provenance is confirmed.
 - D025 V0 entry thresholds: **FROZEN**.
 - Cost modeling: still pending; no production decision until spread + commission + slippage and stress-cost tests are applied to a reconciled signal population.
 
-## 6. Next action
+## 7. Next action
 
-Reconcile one controlled BTC comparison first: original 1.01 full-year 2024 configuration/data provenance vs 1.03 full-year 2024 under the exact same tester model/settings/history environment. The objective is not another strategy result; it is to explain why one locked signal engine produced 614 vs 298 valid trades.
+Do not rerun the strategy broadly. First verify the Strategy Tester modeling/history provenance of the current 1.03 run versus the original 1.01 runs, with special attention to whether the current run is using actual real-tick history or a synthetic/limited volume series.
 
-Only after that discrepancy is explained should GBP/EUR/other 1.03 reruns be requested.
+A single screenshot/readout of the current Strategy Tester **Settings** (modeling mode and date range) is sufficient for the next diagnostic step; no shell commands are required.
