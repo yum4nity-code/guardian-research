@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Resolve-Path (Join-Path $PSScriptRoot '..\..')
-$source = Join-Path $repoRoot 'ea\Guardian_SharedIntel_ReadOnlyProbe_v1.mq5'
+$source = Join-Path $repoRoot 'research\ea\Guardian_SharedIntel_ReadOnlyProbe_v1.mq5'
 if (-not (Test-Path $source)) {
     throw "Probe source not found: $source"
 }
