@@ -7,18 +7,21 @@ Codex est autorisé à utiliser **l'ensemble du PC** pour les besoins du projet 
 
 ### Lecture des protocoles
 Au **premier bootstrap**, lire intégralement et comprendre :
-1. `docs/CODEX_RESEARCH_DIRECTOR.md`
-2. `docs/RESEARCH_PROTOCOL.md`
-3. `docs/GO_PROTOCOL.md`
-4. `docs/GITHUB_SYNC_POLICY.md`
-5. `docs/AGENT_COMMUNICATION.md`
-6. `docs/INTERRUPTION_RECOVERY.md`
-7. `manifests/CODEX_INBOX_STATE.json` puis les notes ChatGPT non lues qu'il référence
-8. le checkpoint local `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` s'il existe, puis `manifests/CODEX_SESSION_CHECKPOINT.json`
-9. `CURRENT_QUEUE.json`
-10. `docs/RESEARCH_STATUS.md` et `docs/STRATEGY_DECISIONS.md`
+1. `CURRENT_PROJECT_HANDOFF.md`
+2. `docs/CODEX_RESEARCH_DIRECTOR.md`
+3. `docs/RESEARCH_PROTOCOL.md`
+4. `docs/GO_PROTOCOL.md`
+5. `docs/GITHUB_SYNC_POLICY.md`
+6. `docs/AGENT_COMMUNICATION.md`
+7. `docs/INTERRUPTION_RECOVERY.md`
+8. `manifests/CODEX_INBOX_STATE.json` puis les notes ChatGPT non lues qu'il référence
+9. le checkpoint local `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` s'il existe, puis `manifests/CODEX_SESSION_CHECKPOINT.json`
+10. `CURRENT_QUEUE.json`
+11. `docs/RESEARCH_STATUS.md` et `docs/STRATEGY_DECISIONS.md`
 
-Après bootstrap terminé, ne pas relire intégralement les six protocoles statiques à chaque `GO` s'ils n'ont pas changé. Le `GO` normal doit privilégier les fichiers dynamiques : inbox, checkpoint, queue, statut, décisions, plan/handoff actifs et état réel du PC. Rouvrir un protocole statique seulement s'il a changé, si le checkpoint indique qu'il n'a jamais été assimilé, ou si une ambiguïté opérationnelle l'exige.
+`CURRENT_PROJECT_HANDOFF.md` est le point d'entrée canonique de reprise rapide. Il doit refléter la version active, les composants réellement live, les gates récemment validés, les contraintes de sécurité/science et la prochaine action sûre.
+
+Après bootstrap terminé, ne pas relire intégralement les six protocoles statiques à chaque `GO` s'ils n'ont pas changé. Le `GO` normal doit privilégier les fichiers dynamiques : `CURRENT_PROJECT_HANDOFF.md`, inbox, checkpoint, queue, statut, décisions, plan/handoff actifs et état réel du PC. Rouvrir un protocole statique seulement s'il a changé, si le checkpoint indique qu'il n'a jamais été assimilé, ou si une ambiguïté opérationnelle l'exige.
 
 ## Commande GO
 Quand l'utilisateur dit simplement `GO` à Codex, cela signifie que le quota est revenu : reprendre le laboratoire immédiatement et de façon autonome selon `docs/GO_PROTOCOL.md`. Ne pas demander quoi faire si l'état du labo permet de le déterminer.
@@ -41,6 +44,8 @@ Aucune décision importante ne doit rester uniquement dans le contexte conversat
 Appliquer `docs/INTERRUPTION_RECOVERY.md` avec la règle : **décider -> persister -> agir**.
 
 Avant une transition importante ou le lancement d'une opération longue/conséquente, mettre à jour le checkpoint local `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json`. Après un jalon à forte valeur, synchroniser les petits artefacts utiles sur GitHub sans attendre volontairement la fin du quota.
+
+**Règle de continuité conversationnelle :** après tout jalon matériel — nouvelle version active, compilation/déploiement validé par l'utilisateur, gate PASS/FAIL, changement d'architecture, nouveau composant live, changement de prochaine action sûre — mettre à jour `CURRENT_PROJECT_HANDOFF.md` dans la même session. Aucun état courant important ne doit exister uniquement dans une conversation ChatGPT/Codex.
 
 **Cas spécial premier bootstrap :** si aucun `SESSION_CHECKPOINT.json` n'existe encore, ne pas attendre la fin de l'inventaire réel. Après synchronisation + lecture des protocoles + inbox, créer immédiatement un checkpoint minimal `BOOTSTRAP_IN_PROGRESS` avant les audits/inventaires longs, avec `no_new_jobs_launched=true` et `next_safe_action=inspect_real_machine_state`. L'enrichir ensuite à mesure que les preuves réelles arrivent.
 
@@ -67,10 +72,11 @@ Respecter `docs/GITHUB_SYNC_POLICY.md`. MiMo peut préparer les synthèses, mani
 Au premier passage sur ce dépôt :
 - vérifier/créer les chemins locaux décrits dans le mandat ;
 - cloner/synchroniser `yum4nity-code/guardian-research` ;
+- lire d'abord `CURRENT_PROJECT_HANDOFF.md` pour récupérer l'état courant ;
 - lire et **trier** la boîte `manifests/CODEX_INBOX_STATE.json` sans laisser les audits secondaires interrompre la compréhension initiale de la mission ;
 - si aucun checkpoint local n'existe, créer **immédiatement** le checkpoint minimal `BOOTSTRAP_IN_PROGRESS` avant tout inventaire/audit long ;
 - inspecter ensuite l'état réel du projet et enrichir/réconcilier `D:\MT5_Backtests\Research\SESSION_CHECKPOINT.json` ;
-- initialiser `CURRENT_QUEUE.json` à partir de l'état réel du projet ;
+- initialiser/réconcilier `CURRENT_QUEUE.json` à partir de l'état réel du projet ;
 - inspecter l'ensemble du PC si nécessaire pour localiser terminaux MT5, MetaEditor, MiMo, workers, processus, dépôts, logs et sorties ;
 - vérifier les workers/processus réellement actifs avant tout nouveau lancement ;
 - vérifier localement les SHA256 de `production/guardian/Guardian_D017_PropFirmAuto_v11_15.mq5` et `production/presets/FTMO_D017_v11_15_SAFE.set` contre `production/manifests/Guardian_D017_v11_15.json` ;
