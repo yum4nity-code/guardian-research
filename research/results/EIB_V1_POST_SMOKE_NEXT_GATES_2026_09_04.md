@@ -1,7 +1,7 @@
 # EIB V1 — post-smoke next gates
 
 Date: 2026-09-04
-Status: LIVE SMOKE PASS / REPLAY + RECONNECT PENDING
+Status: LIVE SMOKE PASS / REAL REPLAY PASS / RECONNECT PENDING
 
 ## Live smoke evidence
 
@@ -17,9 +17,18 @@ The first real BTC/ETH smoke completed for ~35 minutes with gate PASS:
 
 This validates basic live collection. It does **not** yet validate reconnect behavior or long-run retention.
 
+## Real replay evidence
+
+Real captured JSONL was replay-tested with the strict availability-time gate:
+
+- `--until-ms 1788500321048` (1 ms before smoke start) -> `0` visible lines;
+- `--until-ms 1788500331049` (~10 s after smoke start) -> `20` visible lines.
+
+Verdict: **PASS**. The replay did not expose any observation before its recorded `available_at_ms` on this real sample. This is evidence for the anti-lookahead invariant on live-captured data, not only on offline unit tests.
+
 ## Immediate next gates
 
-1. Real replay test on the captured JSONL using strict `available_at_ms` gating.
+1. ~~Real replay test on the captured JSONL using strict `available_at_ms` gating.~~ **PASS**
 2. Short manual network interruption/reconnect test.
 3. Verify collector resumes appending, does not truncate, and produces no duplicate event IDs.
 4. Verify PARTIAL/STALE/DOWN transitions are observable during interruption and recovery returns to OK.
