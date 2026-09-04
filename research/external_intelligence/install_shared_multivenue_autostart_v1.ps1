@@ -72,9 +72,20 @@ $task = New-ScheduledTask `
 Register-ScheduledTask -TaskName $TaskName -InputObject $task -Force | Out-Null
 Write-Host "[Guardian] Autostart installed. It will start automatically after Windows logon."
 
+$existingRuntime = Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object {
+    $_.ProcessId -ne $PID -and $_.CommandLine -like "*shared_runtime_multivenue_bridge_v1.py*"
+} | Select-Object -First 1
+
 if (-not $NoStart) {
-    Start-ScheduledTask -TaskName $TaskName
-    Start-Sleep -Seconds 2
+    if ($null -ne $existingRuntime) {
+        Write-Host ("[Guardian] Existing manual runtime detected (PID={0})." -f $existingRuntime.ProcessId)
+        Write-Host "[Guardian] To avoid duplicate collectors, the scheduled task is installed but is NOT started now."
+        Write-Host "[Guardian] It will take over automatically at the next Windows logon."
+    }
+    else {
+        Start-ScheduledTask -TaskName $TaskName
+        Start-Sleep -Seconds 2
+    }
 }
 
 exit (Show-Status)
