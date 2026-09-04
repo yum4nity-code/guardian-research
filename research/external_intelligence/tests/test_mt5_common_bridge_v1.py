@@ -5,8 +5,9 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
-from mt5_common_bridge_v1 import FIELDS, flatten_snapshot, publish_once
+from mt5_common_bridge_v1 import FIELDS, _replace_with_retry, flatten_snapshot, publish_once
 
 
 class MT5CommonBridgeTests(unittest.TestCase):
@@ -62,11 +63,30 @@ class MT5CommonBridgeTests(unittest.TestCase):
             src.write_text(json.dumps(self._snapshot()), encoding="utf-8")
             result = publish_once(src, out)
             self.assertEqual(result["generation_id"], 123456)
+            self.assertEqual(result["replace_retries"], 0)
             with out.open("r", encoding="ascii", newline="") as f:
                 rows = list(csv.DictReader(f, delimiter=";"))
             self.assertEqual(list(rows[0].keys()), FIELDS)
             self.assertEqual([r["symbol"] for r in rows], ["BTCUSD", "ETHUSD"])
             self.assertEqual(rows[0]["generation_id"], rows[1]["generation_id"])
+
+    def test_replace_retries_transient_permission_error(self):
+        tmp = Path("tmp.csv")
+        out = Path("market_state_v1.csv")
+        calls = {"n": 0}
+
+        def fake_replace(_src, _dst):
+            calls["n"] += 1
+            if calls["n"] <= 2:
+                raise PermissionError("sharing violation")
+
+        with mock.patch("mt5_common_bridge_v1.os.replace", side_effect=fake_replace), mock.patch(
+            "mt5_common_bridge_v1.time.sleep", return_value=None
+        ):
+            retries = _replace_with_retry(tmp, out)
+
+        self.assertEqual(retries, 2)
+        self.assertEqual(calls["n"], 3)
 
 
 if __name__ == "__main__":
