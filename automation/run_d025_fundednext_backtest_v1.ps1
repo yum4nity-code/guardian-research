@@ -43,6 +43,11 @@ function Read-TailText([string]$Path, [int]$Lines = 2500) {
     catch { return '' }
 }
 
+function Clean-Origin([string]$Text) {
+    if ($null -eq $Text) { return '' }
+    return (($Text -replace "`0", '').Trim())
+}
+
 function Find-FundedNextTerminalData {
     param([string]$Explicit)
     if ($Explicit) {
@@ -62,21 +67,34 @@ function Find-FundedNextTerminalData {
         $originPath = Join-Path $dir.FullName 'origin.txt'
         $origin = ''
         if (Test-Path $originPath) {
-            try { $origin = (Get-Content $originPath -Raw -ErrorAction Stop).Trim([char]0," `t`r`n") } catch {}
-            if ($origin -match '(?i)funded\s*next|fundednext') { $score += 100; $evidence += 'origin' }
+            try { $origin = Clean-Origin (Get-Content $originPath -Raw -ErrorAction Stop) } catch {}
+            if ($origin -match '(?i)funded\s*next|fundednext') { $score += 200; $evidence += 'origin' }
         }
-        $logDirs = @((Join-Path $dir.FullName 'logs'), (Join-Path $dir.FullName 'MQL5\Logs'))
-        foreach ($ld in $logDirs) {
-            if (-not (Test-Path $ld)) { continue }
-            foreach ($lf in @(Get-ChildItem $ld -File -Filter '*.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 10)) {
-                $text = Read-TailText $lf.FullName 3000
+
+        $terminalLogs = Join-Path $dir.FullName 'logs'
+        if (Test-Path $terminalLogs) {
+            foreach ($lf in @(Get-ChildItem $terminalLogs -File -Filter '*.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 12)) {
+                $text = Read-TailText $lf.FullName 4000
                 if ($text -match '(?i)funded\s*next|fundednext') {
-                    $score += 25
-                    $evidence += $lf.Name
+                    $score += 100
+                    $evidence += "terminal:$($lf.Name)"
                     break
                 }
             }
         }
+
+        $mqlLogs = Join-Path $dir.FullName 'MQL5\Logs'
+        if (Test-Path $mqlLogs) {
+            foreach ($lf in @(Get-ChildItem $mqlLogs -File -Filter '*.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 8)) {
+                $text = Read-TailText $lf.FullName 2500
+                if ($text -match '(?i)funded\s*next|fundednext') {
+                    $score += 10
+                    $evidence += "mql:$($lf.Name)"
+                    break
+                }
+            }
+        }
+
         if ($score -gt 0) {
             $candidates += [pscustomobject]@{ DataPath=$dir.FullName; Score=$score; Origin=$origin; Evidence=($evidence -join ',') }
         }
@@ -86,14 +104,14 @@ function Find-FundedNextTerminalData {
     }
     $picked = $candidates | Sort-Object Score -Descending | Select-Object -First 1
     Write-Host ("FundedNext terminal selected: {0}" -f $picked.DataPath)
-    Write-Host ("Detection evidence: {0}" -f $picked.Evidence)
+    Write-Host ("Detection score/evidence: {0} / {1}" -f $picked.Score,$picked.Evidence)
     return $picked.DataPath
 }
 
 function Resolve-TerminalInstall([string]$DataPath) {
     $originPath = Join-Path $DataPath 'origin.txt'
     if (-not (Test-Path $originPath)) { throw "origin.txt missing in $DataPath" }
-    $origin = (Get-Content $originPath -Raw).Trim([char]0," `t`r`n")
+    $origin = Clean-Origin (Get-Content $originPath -Raw)
     if (Test-Path $origin -PathType Leaf) { $origin = Split-Path $origin -Parent }
     $terminal = Join-Path $origin 'terminal64.exe'
     $editor = Join-Path $origin 'metaeditor64.exe'
@@ -144,7 +162,7 @@ void EnsureCommonFolder()
     $src = $src.Replace('g_symbols[s].last_m1_closed_open = 0;', 'g_symbols[s].last_m1_closed_open = iTime(g_symbols[s].symbol, PERIOD_M1, 1);')
     $src = $src.Replace('g_session_id = StringFormat("D025V0_%I64d_%I64d", (long)TimeGMT(), (long)GetTickCount64());', "g_session_id = StringFormat(`"BT_${runEsc}_%I64d`", (long)GetTickCount64());")
 
-    # Backtests are tick-driven for speed. The state rules still consume CLOSED M15 bars and CLOSED M1 outcome bars.
+    # Backtests are tick-driven for speed. State rules still consume only CLOSED M15 bars and CLOSED M1 outcome bars.
     $src = [regex]::Replace($src, 'EventSetTimer\(MathMax\(1,InpTimerSeconds\)\);', '// Backtest harness: timer disabled; OnTick drives multi-symbol closed-bar processing.', 1)
     $onTick = @"
 void OnTick()
@@ -168,6 +186,7 @@ void OnTick()
       {
          FileWrite(done_h, "run_id=$runEsc");
          FileWrite(done_h, "completed_utc=" + TimeToString(TimeGMT(), TIME_DATE|TIME_SECONDS));
+         FileWrite(done_h, "deinit_reason=" + IntegerToString(reason));
          FileWrite(done_h, "active_virtual_trades_at_end=" + IntegerToString(active_count));
          FileClose(done_h);
       }
@@ -222,12 +241,16 @@ Write-Host ("Generated: {0}" -f $generatedMq5)
 Write-Step '3/7 Compile with FundedNext MetaEditor'
 $compileLog = Join-Path $WorkLocal 'compile.log'
 $compileArgs = "/compile:`"$generatedMq5`" /log:`"$compileLog`""
-$cp = Start-Process -FilePath $install.MetaEditor -ArgumentList $compileArgs -PassThru -Wait
-Start-Sleep -Seconds 2
-if (-not (Test-Path $generatedEx5)) {
-    $logText = if (Test-Path $compileLog) { Get-Content $compileLog -Raw } else { '(no compile log)' }
-    throw "Compilation did not produce EX5.`n$logText"
+Start-Process -FilePath $install.MetaEditor -ArgumentList $compileArgs | Out-Null
+$compileDeadline = (Get-Date).AddSeconds(90)
+while (-not (Test-Path $generatedEx5)) {
+    if ((Get-Date) -gt $compileDeadline) {
+        $logText = if (Test-Path $compileLog) { Get-Content $compileLog -Raw } else { '(no compile log)' }
+        throw "Compilation did not produce EX5 within 90 seconds.`n$logText"
+    }
+    Start-Sleep -Milliseconds 500
 }
+Start-Sleep -Seconds 1
 if (Test-Path $compileLog) {
     $compileText = Get-Content $compileLog -Raw
     Write-Host ($compileText.Trim())
@@ -271,12 +294,13 @@ Write-Host 'Safety: AllowLiveTrading=0; ShutdownTerminal=0'
 Start-Process -FilePath $install.Terminal -ArgumentList "/config:`"$ini`"" | Out-Null
 
 Write-Step '5/7 Wait for tester completion'
-$deadline = (Get-Date).AddMinutes($TimeoutMinutes)
+$startedAt = Get-Date
+$deadline = $startedAt.AddMinutes($TimeoutMinutes)
 $lastMessage = Get-Date
 while (-not (Test-Path $sentinel)) {
     if ((Get-Date) -gt $deadline) { throw "Backtest timeout after $TimeoutMinutes minutes. Run preserved locally: $RunId" }
     if (((Get-Date) - $lastMessage).TotalSeconds -ge 30) {
-        $elapsed = [math]::Round(((Get-Date) - $deadline.AddMinutes(-$TimeoutMinutes)).TotalMinutes,1)
+        $elapsed = [math]::Round(((Get-Date) - $startedAt).TotalMinutes,1)
         Write-Host ("Backtest running... elapsed {0} min" -f $elapsed)
         $lastMessage = Get-Date
     }
