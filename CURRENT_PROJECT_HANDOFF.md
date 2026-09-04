@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 13:33 Europe/Paris
-Status: ACTIVE / LIVE RESEARCH RUNNING / D025 BACKTEST V3 READY
+Last updated: 2026-09-04 13:34 Europe/Paris
+Status: ACTIVE / LIVE RESEARCH RUNNING / D025 BACKTEST V3 REPO-ROOT FIXED
 
 This file is the canonical fast-resume entry point for a fresh ChatGPT/Codex instance. It must stay current enough that the project can be resumed without relying on conversation history.
 
@@ -136,6 +136,21 @@ V3 targeting behavior:
 - then delegates to the isolated portable V2 workflow with the already window-verified data path;
 - the portable clone still must independently confirm the expected account/server in its own logs before the backtest is trusted.
 
+### 2026-09-04 13:33 live launch evidence and fix
+
+The user's V3 run successfully resolved the correct live target:
+- PID `15104`;
+- title contained `14202634 - FundedNext-Server 2 - Hedge - FundedNext Ltd`;
+- executable `D:\MT5_FundedNext\terminal64.exe`;
+- resolved MT5 data path `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\D943DED8A972BBD3A21ED90520AE6479`.
+
+The run then failed before cloning because V3 wrote its temporary patched V2 runner into `%TEMP%`. V2 derives `$RepoRoot` from `$PSScriptRoot`, so the temporary copy incorrectly searched for the source EA under `C:\Users\armor\AppData\Local\research\ea\...` instead of the repository.
+
+Fix committed on `main`:
+- V3 now writes the temporary V2 copy **inside `automation/`**, so `$PSScriptRoot` and `$RepoRoot` resolve to `D:\MT5_Backtests\guardian-research` correctly;
+- the temporary file is still removed in `finally` after the run;
+- no trading logic or D025 thresholds changed.
+
 Portable backtest behavior remains:
 - dedicated clone: `D:\MT5_Backtests\Terminals\FundedNext_14202634_D025_BT`;
 - live FundedNext terminal and live Guardian are not closed or commandeered;
@@ -174,13 +189,14 @@ Do not inject Shared Intelligence directly into live RSI or Momentum merely beca
 
 Priority sequence:
 
-1. Keep the correct live MT5 window open and run `run_d025_fundednext_backtest_v3.ps1`.
-2. Confirm V3 prints the matched live window and resolved data path, then later `CONFIRMED TARGET: 14202634 / FundedNext-Server 2` from the portable clone.
-3. Inspect the automatically published summary on `backtest-results`; do not alter locked thresholds from the result.
-4. Keep D025 Observer 1.00 running live in parallel and accumulate genuine forward M15 state transitions.
-5. Compare backtest state-machine behavior with forward behavior for obvious implementation/replay artifacts before making any strategy conclusion.
-6. After sufficient Core evidence, join timestamp-valid Binance/Bybit features for Crypto+ event-study comparisons.
-7. Only after robustness/OOS/cost/red-team gates may anything become a Guardian trading candidate.
+1. Keep the correct live MT5 window open, `git pull`, and rerun `run_d025_fundednext_backtest_v3.ps1` after commit `848d295997c008502c0fbc99190d588b5378cc23` or later.
+2. Confirm V3 again resolves the live window; next expected progress is `2/8 Prepare isolated portable FundedNext Server2 clone`, not a `Missing source EA` error.
+3. Confirm later `CONFIRMED TARGET: 14202634 / FundedNext-Server 2` from the portable clone.
+4. Inspect the automatically published summary on `backtest-results`; do not alter locked thresholds from the result.
+5. Keep D025 Observer 1.00 running live in parallel and accumulate genuine forward M15 state transitions.
+6. Compare backtest state-machine behavior with forward behavior for obvious implementation/replay artifacts before making any strategy conclusion.
+7. After sufficient Core evidence, join timestamp-valid Binance/Bybit features for Crypto+ event-study comparisons.
+8. Only after robustness/OOS/cost/red-team gates may anything become a Guardian trading candidate.
 
 ## 8. MT5 versioning rule
 
