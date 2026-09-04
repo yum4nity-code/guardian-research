@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-01T11:37:00+01:00",
+  "updated_at": "2026-09-04T05:58:00+01:00",
   "active_primary": "FUNDEDNEXT-FREE-TRIAL-EA-OPTION-AWARE-FIX",
   "items": [
     {
@@ -26,6 +26,24 @@
       "owner": "Codex",
       "type": "focused_runtime_compliance_fix",
       "goal": "Fix FundedNext Free Trial handling so an account with the officially activated EA option is authorized while unconfirmed/non-EA Free Trials remain blocked. Current v11.16.2 blanket Free Trial deny plus PropFirmGuard ea_allowed baseline can block manual Guardian/SL management. Consume handoff FUNDEDNEXT_FREE_TRIAL_EA_OPTION_AWARE_FIX.md; inspect local profiles.json/rules.json/account mapping, make the minimum option-aware fix, preserve FTMO/other firms, compile once and perform one focused runtime smoke test. If source changes, create a new production candidate version instead of mutating v11.16.2 provenance."
+    },
+    {
+      "id": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
+      "priority": 2,
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
+      "type": "research_infrastructure",
+      "goal": "Build the first read-only external market-data collector/recorder for BTC and ETH: spot, perpetual, open interest, liquidations and funding when available; UTC timestamps, source provenance, staleness/health, reconnect/deduplication and a no-lookahead replay path. Research only; no production Guardian changes and no live orders.",
+      "blocking": "Consume handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md. Complete and checkpoint only the data-infrastructure gate before any LER signal engine."
+    },
+    {
+      "id": "D025-LIQUIDITY-EXHAUSTION-RECLAIM",
+      "priority": 5,
+      "status": "BLOCKED",
+      "owner": "ChatGPT/Codex",
+      "type": "scientific_hypothesis",
+      "goal": "Research a mid-term Liquidity Exhaustion Reclaim sleeve: objective level -> sweep/cascade -> declining marginal price impact -> reclaim -> acceptance/retest. First implementation must be observation/virtual-trade only; exits are derived later from preregistered MFE/MAE distributions.",
+      "blocking": "External Intelligence Bus V1 must first pass recorder/replay gates. Crypto+ variables are optional enrichments and must never become an Internet dependency for Guardian core. No live D025 orders before event study, robustness and red-team."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -104,5 +122,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "CODEX QUOTA CONSERVATION MODE. Next GO: (1) inspect and HARVEST real running/completed workers/imports first, no duplicates; (2) consume FUNDEDNEXT_FREE_TRIAL_EA_OPTION_AWARE_FIX.md and do the minimum option-aware FundedNext runtime fix with one compile + one smoke test; (3) checkpoint/push; (4) only then resume already-prepared unattended research, prioritizing existing D017 workers then D021/D022/D023 one at a time as capacity permits. No broad audits/refactors, no repeated historical reruns, no parameter searches, no OOS, and do not execute D024 yet. Preserve v11.16.2 research provenance even if a new production runtime version is created for FundedNext."
+  "notes": "Existing safety/research work remains valid. New user priority 2026-09-04: progress D025 incrementally. First complete GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1 only; no live LER trading, no hidden production mutation, no lookahead, no parameter search. Preserve and harvest any already-running healthy jobs before starting new heavy work."
 }
