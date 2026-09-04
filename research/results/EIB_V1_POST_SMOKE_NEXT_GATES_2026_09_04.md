@@ -1,7 +1,7 @@
 # EIB V1 — post-smoke next gates
 
 Date: 2026-09-04
-Status: LIVE SMOKE PASS / REAL REPLAY PASS / RECONNECT PASS / HEALTH-SPAM FIX OFFLINE TEST PASS / LIVE MINI-SMOKE PENDING
+Status: LIVE SMOKE PASS / REAL REPLAY PASS / RECONNECT PASS / HEALTH-SPAM FIX PASS / MARKET_STATE NEXT
 
 ## Live smoke evidence
 
@@ -45,18 +45,26 @@ Verdict: **PASS** for interruption detection, stale/partial visibility, automati
 
 Caveat: no liquidation event occurred during this short reconnect window, so duplicate/replay behavior for a liquidation emitted exactly around reconnect remains a rare-case test to revisit later. Do not claim that specific edge case is proven by this run.
 
-## Health-spam fix offline evidence
+## Health-record spam hotfix evidence
 
-Focused unit tests for the isolated health-signature hotfix were executed on the user PC:
-
+Offline unit test:
 - `test_ok_age_is_ignored` -> PASS;
 - `test_stale_age_is_ignored_but_state_change_is_not` -> PASS;
 - `test_ws_transition_is_preserved` -> PASS;
-- total: `Ran 3 tests in 0.003s` -> `OK`.
+- `Ran 3 tests ... OK`.
 
-This validates the intended normalization logic offline: changing age values alone no longer create a new semantic health state, while genuine OK/STALE and websocket connectivity transitions remain distinguishable.
+Live three-minute healthfix smoke:
+- gate: `PASS`;
+- 296 unique events;
+- 0 duplicate event IDs;
+- 0 invalid JSON lines;
+- 0 future-availability violations;
+- no missing core channels;
+- every core BTC/ETH market channel: 36 records;
+- aggregate health: 4 records per symbol instead of 36 in the old 3-minute behavior;
+- quality counts: `DOWN=2`, `OK=294`.
 
-The hotfix is not yet accepted into the main collector until the short live mini-smoke confirms reduced persisted health-event volume without losing real state changes.
+Verdict: **PASS**. The hotfix preserves fast live `health.json` snapshots while persisting health history only on semantic state changes plus heartbeat cadence. The dynamic age field no longer creates a persisted health event every poll.
 
 ## Immediate next gates
 
@@ -64,10 +72,10 @@ The hotfix is not yet accepted into the main collector until the short live mini
 2. ~~Short manual network interruption/reconnect test.~~ **PASS**
 3. ~~Verify collector resumes appending, does not truncate, and produces no duplicate event IDs in the observed run.~~ **PASS**
 4. ~~Verify PARTIAL/STALE/DOWN transitions are observable during interruption and recovery returns to OK.~~ **PASS**
-5. ~~Focused offline tests for health-record spam hotfix.~~ **PASS**
-6. Run a short live smoke with the isolated healthfix and verify health-record count drops sharply while core channels remain healthy.
-7. After live healthfix PASS, integrate/promote the fix into the main collector and remeasure raw/gzip storage.
-8. Prototype `market_state_v1` for the shared per-PC intelligence service.
+5. ~~Fix health-record spam and validate offline/live.~~ **PASS**
+6. Promote the validated healthfix as the active collector path without changing the raw EIB schema.
+7. Prototype `market_state_v1` for the shared per-PC intelligence service.
+8. Validate multi-consumer reads before any RSI/Momentum/LER rule changes.
 
 ## Shared intelligence prototype gate
 
