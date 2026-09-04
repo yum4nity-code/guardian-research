@@ -85,7 +85,7 @@ def build_cross_venue_symbol(bybit: dict[str, Any], binance: dict[str, Any]) -> 
             "bybit_short_observed": {},
             "binance_short_observed": {},
             "semantics": (
-                "Do not interpret as exhaustive cross-venue liquidation volume. "
+                "Liquidation observations are not exhaustive cross-venue liquidation volume. "
                 "Binance forceOrder is a sampled snapshot feed (latest force order per symbol per 1000ms); "
                 "Bybit and Binance liquidation notionals therefore remain venue-specific observed measures."
             ),
