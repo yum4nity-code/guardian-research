@@ -1,0 +1,1 @@
+V3 is the current FundedNext D025 launcher when targeting account 14202634 / FundedNext-Server 2. It binds the source data folder from the exact running MT5 window title before creating the isolated portable tester clone. Use V3 instead of V1/V2 for this account.
