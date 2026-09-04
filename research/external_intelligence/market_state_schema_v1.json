@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "guardian-market-state-v1",
+  "title": "Guardian Shared Market State V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "engine",
+    "generation_id",
+    "computed_at_ms",
+    "computed_at_utc",
+    "health_snapshot_age_ms",
+    "symbols"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "engine": {"const": "guardian-market-state-v1"},
+    "generation_id": {"type": "integer", "minimum": 0},
+    "computed_at_ms": {"type": "integer", "minimum": 0},
+    "computed_at_utc": {"type": "string", "minLength": 1},
+    "health_snapshot_age_ms": {"type": ["integer", "null"], "minimum": 0},
+    "symbols": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["BTCUSD", "ETHUSD"],
+      "properties": {
+        "BTCUSD": {"$ref": "#/$defs/symbolState"},
+        "ETHUSD": {"$ref": "#/$defs/symbolState"}
+      }
+    }
+  },
+  "$defs": {
+    "windowMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["1m", "5m", "15m", "1h"],
+      "properties": {
+        "1m": {"type": ["number", "null"]},
+        "5m": {"type": ["number", "null"]},
+        "15m": {"type": ["number", "null"]},
+        "1h": {"type": ["number", "null"]}
+      }
+    },
+    "symbolState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["quality", "raw", "returns_pct", "open_interest_change_pct", "liquidation_notional_usdt_est"],
+      "properties": {
+        "quality": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reason", "core_age_ms", "latest_available_at_ms"],
+          "properties": {
+            "status": {"type": "string", "enum": ["OK", "STALE", "PARTIAL", "DOWN"]},
+            "reason": {"type": ["string", "null"]},
+            "core_age_ms": {"type": ["integer", "null"], "minimum": 0},
+            "latest_available_at_ms": {"type": ["integer", "null"], "minimum": 0}
+          }
+        },
+        "raw": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["spot_last", "perp_last", "open_interest", "funding_rate", "basis_pct"],
+          "properties": {
+            "spot_last": {"type": ["number", "null"]},
+            "perp_last": {"type": ["number", "null"]},
+            "open_interest": {"type": ["number", "null"]},
+            "funding_rate": {"type": ["number", "null"]},
+            "basis_pct": {"type": ["number", "null"]}
+          }
+        },
+        "returns_pct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["spot", "perpetual", "perp_minus_spot_pp"],
+          "properties": {
+            "spot": {"$ref": "#/$defs/windowMap"},
+            "perpetual": {"$ref": "#/$defs/windowMap"},
+            "perp_minus_spot_pp": {"$ref": "#/$defs/windowMap"}
+          }
+        },
+        "open_interest_change_pct": {"$ref": "#/$defs/windowMap"},
+        "liquidation_notional_usdt_est": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["long", "short", "net_short_minus_long"],
+          "properties": {
+            "long": {"$ref": "#/$defs/windowMap"},
+            "short": {"$ref": "#/$defs/windowMap"},
+            "net_short_minus_long": {"$ref": "#/$defs/windowMap"}
+          }
+        }
+      }
+    }
+  }
+}
