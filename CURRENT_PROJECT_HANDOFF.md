@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 13:00 Europe/Paris
-Status: ACTIVE / LIVE RESEARCH RUNNING
+Last updated: 2026-09-04 13:20 Europe/Paris
+Status: ACTIVE / LIVE RESEARCH RUNNING / D025 BACKTEST AUTOMATION READY
 
 This file is the canonical fast-resume entry point for a fresh ChatGPT/Codex instance. It must stay current enough that the project can be resumed without relying on conversation history.
 
@@ -76,7 +76,7 @@ D025 FILE_COMMON outputs:
 
 ## 4. Live-status GitHub sync
 
-A compact live-state mirror is now installed and validated.
+A compact live-state mirror is installed and validated.
 
 Architecture:
 
@@ -104,7 +104,38 @@ Validated GitHub read on 2026-09-04 after installation showed:
 
 A fresh ChatGPT instance may therefore read the `live-status` branch to recover recent research state without asking the user to paste MT5 logs.
 
-## 5. Scientific separation
+## 5. D025 automated FundedNext backtest
+
+Automation is now prepared on `main`:
+- `automation/run_d025_fundednext_backtest_v1.ps1`
+- `automation/analyze_d025_backtest_v1.py`
+- `automation/RUN_D025_FUNDEDNEXT_BACKTEST_V1.cmd`
+
+Default run:
+- auto-detect the MT5 terminal/data folder with strongest FundedNext evidence;
+- compile a generated **backtest-only** D025 harness derived from `D025_LER_Observer_V0.mq5`;
+- preserve all locked V0 thresholds;
+- isolate tester CSVs under `FILE_COMMON/GuardianResearch/D025/Backtests/<RUN_ID>/` so live forward CSVs are never mixed with tester data;
+- test BTCUSD + ETHUSD from one multi-symbol EA;
+- host chart BTCUSD M1;
+- period `2025.01.01 -> 2026.06.28` by default;
+- Strategy Tester `Model=4` = Every tick based on real ticks;
+- `AllowLiveTrading=0`, no order functions in D025, `ShutdownTerminal=0`;
+- no optimization / no threshold search;
+- wait for an EA-written `COMPLETE.txt` sentinel rather than closing the FundedNext terminal;
+- analyze funnel, failures, MFE/MAE, R-hit timing, BTC/ETH and level breakdowns automatically.
+
+Results publication:
+- dedicated GitHub branch: `backtest-results`;
+- one finite commit per completed run;
+- path: `backtests/d025/<RUN_ID>/`;
+- always publish `SUMMARY.md`, `summary.json`, `manifest.json`;
+- publish `events_compact.csv` only if <= 5 MB;
+- large raw CSVs remain local under `D:\MT5_Backtests\Research\D025\Backtests\<RUN_ID>\raw\`, with SHA256 and byte sizes recorded in the manifest.
+
+The `backtest-results` branch contains `BACKTEST_RESULTS_README.md`. A fresh agent must inspect the newest D025 run there after the user launches the automation.
+
+## 6. Scientific separation
 
 D025 V0 currently uses **MT5 Core only** for signal-state transitions. Binance/Bybit continues collecting independently but does not trigger D025 V0.
 
@@ -119,38 +150,39 @@ External observations may only be joined if `available_at <= event_time`.
 
 Do not inject Shared Intelligence directly into live RSI or Momentum merely because the fields are available.
 
-## 6. Next safe actions
+## 7. Next safe actions
 
 Priority sequence:
 
-1. Let D025 Observer 1.00 run continuously and accumulate genuine M15 state transitions.
-2. Verify that SWEEP sequences correctly fail or progress to CASCADE/EXHAUSTION/RECLAIM/VALID_SIGNAL; do not alter locked thresholds based on early outcomes.
-3. Build the automated D025 analysis layer that reads the three CSVs and produces counts, funnel conversion, MFE/MAE, R-hit timing, failure reasons, ambiguity counts and per-symbol/per-level breakdowns.
-4. Only after sufficient Core observations, join timestamp-valid Binance/Bybit features for Crypto+ event-study comparisons.
+1. Run the first D025 FundedNext Core backtest with the automation above and inspect the automatically published summary; do not alter locked thresholds from the result.
+2. Keep D025 Observer 1.00 running live in parallel and accumulate genuine forward M15 state transitions.
+3. Compare backtest state-machine behavior with forward behavior for obvious implementation/replay artifacts before making any strategy conclusion.
+4. After sufficient Core evidence, join timestamp-valid Binance/Bybit features for Crypto+ event-study comparisons.
 5. Only after robustness/OOS/cost/red-team gates may anything become a Guardian trading candidate.
 
-## 7. MT5 versioning rule
+## 8. MT5 versioning rule
 
 For this project, `#property version` must use a MetaEditor-compatible simple numeric version. Use **1.00, 1.01, 1.02 ...** for this D025 EA lineage rather than semantic/build strings such as `0.100`, `11.1706`, etc. Research labels such as V0/V1 may remain in filenames/descriptions but are not the MT5 `#property version`.
 
-## 8. User-operation style
+## 9. User-operation style
 
 The user is not expected to infer shell commands. For local operations, provide complete copy/paste PowerShell/CMD blocks and explain only the necessary verification result.
 
-## 9. Resume instructions for a fresh agent
+## 10. Resume instructions for a fresh agent
 
 Read, in this order:
 1. `CURRENT_PROJECT_HANDOFF.md` (this file)
 2. branch `live-status` -> `LIVE_RESEARCH_STATUS.json`
-3. `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`
-4. `research/ea/D025_LER_Observer_V0.mq5`
-5. latest relevant files under `research/results/` for Shared Intelligence / Guardian v11.17.x
-6. `CURRENT_QUEUE.json`
-7. `docs/RESEARCH_STATUS.md`
-8. `docs/STRATEGY_DECISIONS.md`
+3. branch `backtest-results` -> newest `backtests/d025/<RUN_ID>/SUMMARY.md` and `summary.json` if any run exists
+4. `research/campaigns/D025_LER_V0_RULES_LOCK_2026_09_04.md`
+5. `research/ea/D025_LER_Observer_V0.mq5`
+6. latest relevant files under `research/results/` for Shared Intelligence / Guardian v11.17.x
+7. `CURRENT_QUEUE.json`
+8. `docs/RESEARCH_STATUS.md`
+9. `docs/STRATEGY_DECISIONS.md`
 
 Then verify actual live/local state before launching or modifying anything. Real process/log state always overrides a stale written status.
 
-## 10. Continuity rule
+## 11. Continuity rule
 
-After every material milestone (new active version, user compile/deploy validation, gate pass/fail, change in architecture, new live research component, or change of next safe action), update this file in the same work session. No important current state should exist only in ChatGPT/Codex conversation context.
+After every material milestone (new active version, user compile/deploy validation, gate pass/fail, change in architecture, new live research component, change of backtest state, or change of next safe action), update this file in the same work session. No important current state should exist only in ChatGPT/Codex conversation context.
