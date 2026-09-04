@@ -6,8 +6,8 @@ echo ============================================================
 echo GUARDIAN SHARED MULTI-VENUE RUNTIME V1
 echo ============================================================
 echo BYBIT + BINANCE / READ ONLY / NO TRADING EFFECT
-echo Leave this window open while Guardian consumes Shared Intel.
-echo Ctrl+C to stop.
+echo Singleton supervisor enabled: duplicate starts are ignored.
+echo Ctrl+C to stop a manually launched supervisor.
 echo.
 
 if not exist ".venv\Scripts\python.exe" (
@@ -16,9 +16,9 @@ if not exist ".venv\Scripts\python.exe" (
   exit /b 2
 )
 
-".venv\Scripts\python.exe" shared_runtime_multivenue_bridge_v1.py --data-dir "D:\MT5_Backtests\Research\ExternalIntelligence"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0run_shared_multivenue_autostart_v1.ps1"
 set RC=%ERRORLEVEL%
 echo.
-echo [Guardian] Shared multi-venue runtime stopped. code=%RC%
+echo [Guardian] Shared multi-venue supervisor stopped. code=%RC%
 pause
 exit /b %RC%
