@@ -70,7 +70,7 @@ The original 1.01 BTC 2024 sample nevertheless had **52 trades in August and 51 
 
 - July: 119 sweeps; median relative volume 1.499; 73 >=1.25; 63 CASCADE events.
 - **August: 121 sweeps; median 1.043; only 4 >=1.25; 2 CASCADE events; 2 valid signals.**
-- **September: 117 sweeps; median 1.031; only 1 >=1.25; 3 CASCADE events; 1 valid signal.**
+- **September: 117 sweeps; median 1.031; only 1 >=1.25; 3 CASCADE events; 1 valid signals.**
 - October: median 1.406; 70 >=1.25; 61 CASCADE events; 25 valid signals.
 
 Original 1.01 ETH 2024 had **47 trades in August and 48 in September**.
@@ -89,13 +89,24 @@ That behavior is inconsistent with a healthy high-frequency tick-volume series a
 
 XAUUSD does not show the same collapse in Aug-Sep 2024: median relative tick volume remains about 1.35 in August and 1.62 in September, with many sweeps above 1.25. This matches the fact that XAU 1.03 recovers about 94% of the old 1.01 signal population. USDJPY is also much closer to its prior population.
 
-### Scientific conclusion
+## 4. Strategy Tester setting confirmed from user screenshot
 
-The **mechanism** behind the missing BTC/ETH signals is now identified: **historical relative tick volume collapses toward 1.0, so the frozen CASCADE relative-volume gate cannot fire.**
+At 2026-09-04 19:48 Europe/Paris, the user showed the FundedNext Strategy Tester Settings for `D025_LER_VirtualPath_1_03.ex5`.
 
-The remaining unresolved question is **why the old 1.01 and current 1.03 runs receive different tick-volume/bar provenance**. Plausible causes include Strategy Tester modeling mode, historical feed/cache/data availability, or terminal/broker provenance. The 60-minute timing shifts support a provenance/configuration difference. Do not change the D025 threshold to compensate for bad/synthetic history.
+Confirmed settings:
+- timeframe M1;
+- date range 2024-01-01 -> 2025-12-31;
+- Forward = No;
+- Delays = Zero latency, ideal execution;
+- **Modelling = `Every tick`**.
 
-## 4. Preliminary 1.03 path diagnostics — NOT YET A PRODUCTION SAMPLE
+Crucially, the screenshot does **not** show `Every tick based on real ticks`.
+
+In MT5, `Every tick` is the generated/modelled tick mode; `Every tick based on real ticks` is the high-fidelity mode that uses recorded real-tick history when available. Because D025's CASCADE filter explicitly depends on M15 `tick_volume`, this is now the leading explanation for the flattened/synthetic crypto relative-volume blocks observed in 1.03.
+
+This does not yet prove what model was used by the old 1.01 runs, so the provenance question is not fully closed. It does, however, identify a clean controlled next test.
+
+## 5. Preliminary 1.03 path diagnostics — NOT YET A PRODUCTION SAMPLE
 
 Method: target hit counts only if the first target timestamp precedes original `stop_utc`; exact same-M1 target/stop ties are not forced into an arbitrary ordering. Fixed-TP EV is resolved target-vs-stop only and remains **before spread, commission and slippage**.
 
@@ -111,7 +122,7 @@ Method: target hit counts only if the first target timestamp precedes original `
 
 These aggregate results contain no large universal edge and should **not** supersede the earlier 1.01 branch findings until the population/data mismatch is resolved.
 
-## 5. Interesting branch observations inside the current 1.03 population
+## 6. Interesting branch observations inside the current 1.03 population
 
 These are exploratory only because the crypto population provenance problem is unresolved.
 
@@ -126,19 +137,26 @@ Year split warns against premature promotion:
 - ETH RETEST is positive in current 2024 but negative in current 2025.
 - XAU RETEST is positive in current 2024 but weaker/negative at 2R in current 2025.
 
-## 6. Decision
+## 7. Decision
 
 - 1.03 virtual path instrumentation: **VALID**.
 - Real-order/min-volume hypothesis as main cause of BTC/ETH low count: **REJECTED / INCOMPLETE**.
 - Immediate missing-signal mechanism: **IDENTIFIED — collapsed/synthetic relative tick-volume history blocks CASCADE**.
-- Underlying provenance/configuration cause of that volume collapse: **NOT YET PROVEN**.
+- Current tester mode for these 1.03 runs: **CONFIRMED `Every tick`, not real-ticks mode**.
+- Leading underlying cause: generated/modelled tick-volume provenance; **needs one real-ticks control run to confirm causality**.
 - Current 1.03 BTC/ETH population equivalence to old 1.01: **NOT VALIDATED**.
-- Additional broad reruns: **PAUSE** until tester model/history provenance is confirmed.
 - D025 V0 entry thresholds: **FROZEN**.
 - Cost modeling: still pending; no production decision until spread + commission + slippage and stress-cost tests are applied to a reconciled signal population.
 
-## 7. Next action
+## 8. Next action — ONE CONTROL RUN ONLY
 
-Do not rerun the strategy broadly. First verify the Strategy Tester modeling/history provenance of the current 1.03 run versus the original 1.01 runs, with special attention to whether the current run is using actual real-tick history or a synthetic/limited volume series.
+Run **BTCUSD only**, 2024-01-01 -> 2024-12-31, with the same 1.03 EA and inputs, but switch `Modelling` from `Every tick` to **`Every tick based on real ticks`**.
 
-A single screenshot/readout of the current Strategy Tester **Settings** (modeling mode and date range) is sufficient for the next diagnostic step; no shell commands are required.
+Do not run ETH/GBP/EUR/etc yet.
+
+For that single control run, collect:
+- events;
+- trades;
+- outcomes.
+
+Key success check: August/September BTC relative-volume activity and total 2024 signal count. If real ticks restore substantial CASCADE activity and move the signal population toward the original 614, the provenance cause is confirmed. If not, investigate FundedNext historical feed/server availability next.
