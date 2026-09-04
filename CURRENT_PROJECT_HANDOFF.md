@@ -1,310 +1,235 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 20:25 Europe/Paris
-Status: ACTIVE / D025 XAU-FOREX EXPLOITATION COMPLETE / D026 V0 PREP COMPLETE, WAITING ONLY FOR USER MT5 COMPILE + BTC/ETH RUNS / D025 CRYPTO VOLUME DATA QUARANTINED / FUNDEDNEXT LIVE AUTO OFF PENDING REQUEST-BUDGET FIX
+Last updated: 2026-09-04 20:53 Europe/Paris
+Status: ACTIVE / D026 FIRST DATA RECEIVED BUT V0 1.00 IMPLEMENTATION NON-CONFORMANT TO PRE-RESULT LOCK / V0 1.01 CONFORMANCE FIX COMMITTED / CORRECTED BTC+ETH RERUN NEEDED / D025 XAU-FOREX COMPLETE / D025 CRYPTO VOLUME DATA QUARANTINED / FUNDEDNEXT LIVE AUTO OFF PENDING REQUEST-BUDGET FIX
 
 This is the canonical fast-resume file. A fresh ChatGPT/Codex instance must read this first. Historical chronology/time ledger: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 
 ## 0. USER DIRECTIVE / CONTINUITY
 
-The user explicitly authorized autonomous work and does NOT want interruptions for micro-decisions. Continue independently until a manual MT5 action is genuinely necessary.
+The user explicitly authorized autonomous work and does NOT want interruptions for micro-decisions. Continue independently until a manual MT5 action is genuinely necessary. Do not ask the user to restate prior project context after conversation/model limits.
 
-The two authorized research tracks were:
-1. D026 price-only strategy design/code/audit until MT5 backtests are the only blocker.
-2. D025 XAU/Forex exploitation using existing datasets, without unnecessary reruns.
-
-Both have now been pushed as far as possible without the user's MT5 terminal.
-
-Do not ask the user to restate this after context/model limits.
+Current research philosophy:
+- no curve fitting;
+- no post-hoc threshold changes disguised as fixes;
+- do not settle for crumbs;
+- prefer materially large recurring pre-cost edge (roughly >= +0.15R/trade, ideally +0.20R+) before production work;
+- costs/stress must later be applied;
+- manual MT5 Strategy Tester is the preferred execution path; do not ask the user to debug shell wrappers.
 
 ---
 
 # 1. D026 PRICE EXHAUSTION RECLAIM — CURRENT PRIMARY RESEARCH TRACK
 
-D026 is a NEW strategy, not a retuned D025. Its baseline deliberately has no broker tick-volume dependency and no Binance/Bybit dependency.
+D026 is a NEW strategy, not a retuned D025. Baseline is price/time/ATR only: no broker tick volume and no Binance/Bybit dependency.
 
-## Rules lock — DONE BEFORE RESULTS
+## 1.1 Frozen V0 rules — LOCKED BEFORE ANY D026 RESULT
 
 File:
 - `research/campaigns/D026_PRICE_EXHAUSTION_RECLAIM_V0_RULES_LOCK_2026_09_04.md`
 - creation commit `1137ffbe669504b1aa6b518480b94598f98e3f0c`
 
-Frozen V0 architecture:
-- objective levels: PDH/PDL/PWH/PWL + latest confirmed H1/H4 swing highs/lows;
-- H1 ATR(14);
-- M15 state machine;
-- M1 path measurement;
-- no round numbers;
-- no volume/OI/funding/liquidation/RSI/EMA/session/symbol-specific gate.
+Core state machine:
+`IDLE -> WATCH -> SWEEP -> DISPLACEMENT -> EXHAUSTION -> RECLAIM -> RETEST/ACCEPTANCE -> VALID_SIGNAL`
 
 Frozen thresholds:
-- watch distance `0.50 x H1 ATR`;
-- fresh sweep `0.10 x H1 ATR`;
-- structural SL buffer `0.10 x H1 ATR` beyond worst sequence extreme;
-- displacement range >= `1.25 x` mean previous 20 closed M15 ranges;
-- directional body >= `0.20 x H1 ATR`;
-- body/range efficiency >= `0.55`;
-- LONG-reclaim bearish displacement close in bottom 30% of bar;
-- SHORT-reclaim bullish displacement close in top 30%;
-- exhaustion within next 3 M15: extra outward progress <= `0.20 x displacement range` AND current range <= `0.80 x displacement range`;
-- reclaim within next 4 M15;
-- validation within next 4 M15 by RETEST within `0.15 ATR` or ACCEPTANCE = two consecutive reclaimed-side closes;
-- cooldown 4h.
+- watch 0.50 x H1 ATR(14)
+- fresh sweep 0.10 x H1 ATR
+- structural stop buffer 0.10 x H1 ATR beyond worst sequence extreme
+- displacement M15 range >=1.25 x previous-20 mean range
+- directional body >=0.20 x H1 ATR
+- body/range efficiency >=0.55
+- bearish LONG-reclaim displacement closes in bottom 30%; bullish SHORT-reclaim in top 30%
+- displacement may be sweep bar or next 2 CLOSED M15 bars
+- exhaustion next 3 CLOSED M15: extra outward progress <=0.20 x displacement range AND current range <=0.80 x displacement range
+- reclaim next 4 CLOSED M15
+- RETEST relevant extreme within +/-0.15 H1 ATR around level and close on reclaimed side, or ACCEPTANCE = two consecutive reclaimed-side closes
+- validation next 4 CLOSED M15 after reclaim
+- cooldown 4h
 
-State machine:
-`IDLE -> WATCH -> SWEEP -> DISPLACEMENT -> EXHAUSTION -> RECLAIM -> RETEST/ACCEPTANCE -> VALID_SIGNAL`.
+Explicit exclusions: tick/real volume, OI, funding, liquidations, RSI/EMA/MACD, session filters, symbol-specific thresholds, long/short asymmetry, post-hoc regime switches.
 
-Virtual entry = validating CLOSED M15 close. 1R = abs(entry - structural SL). Same-M1 ordering ambiguity must never be guessed.
-
-## D026 diagnostic EA — DONE
+## 1.2 Original diagnostic implementation V0 1.00
 
 File:
 - `research/ea/D026_PriceExhaustionReclaim_Virtual_V0_1_00.mq5`
-- creation commit `d4e55b0a61a152158a6de20e24b356eb3c0cdc23`
+- commit `d4e55b0a61a152158a6de20e24b356eb3c0cdc23`
 
-Characteristics:
-- pure virtual observer;
-- no CTrade include;
-- no order/position calls;
-- no balance/margin/lot dependency;
-- no tick_volume or real_volume dependency;
-- output folder: `FILE_COMMON\GuardianResearch\D026\`;
-- outputs: `d026_per_virtual_v0_events.csv`, `...trades.csv`, `...outcomes.csv`;
-- tracks +0.5R, +1R..+5R, original SL, BE-after-1R, MFE/MAE, 1/4/8/24/48h, ambiguity flags.
+User successfully compiled/ran it (proven by the produced CSVs). Pure virtual observer: no CTrade/orders/positions/balance/margin/lot/tick-volume dependency.
 
-Inputs only:
-- `InpMaxHoldHours = 48`
-- `InpTimerSeconds = 1`
-- `InpVerbose = true`
-
-Static audit:
-- local source 678 lines;
-- SHA-256 `653fe5ed9ecaf6419aa7bebf7ba6bd49939b0947ced19b0ba06919b75d9aa2da`;
-- bracket/brace/parenthesis balance OK;
-- executable scan: tick_volume=0, real_volume=0, AccountInfoDouble=0, OrderSend=0, PositionOpen/Modify/Close=0, Trade.mqh include=0.
-
-IMPORTANT: static audit only. Do NOT claim successful MetaEditor compile until user confirms it.
-
-## Predeclared analyzer — DONE BEFORE D026 RESULTS
-
-File:
+Predeclared analyzer created before results:
 - `research/analysis/analyze_d026_per_v0.py`
 - commit `7495d3edc7d3ef6cd3c1b61c660299f72cd4760a`
 
-Analyzer is intentionally narrow:
-- integrity/session counts;
-- fixed +1R/+2R/+3R first-touch EV;
-- year/side/path splits;
-- Wilson-style uncertainty;
-- one predeclared management family only: 40% at +1R, remaining 60% at BE, runner to +2R or +3R;
-- same-M1 ambiguous paths excluded.
+Analyzer scope only: integrity/counts, fixed +1R/+2R/+3R first-touch EV, year/side/path splits, Wilson-style uncertainty, and one 40%@+1R + 60% BE runner family to +2R/+3R. No threshold optimizer.
 
-No threshold optimizer is authorized for V0.
+## 1.3 FIRST USER DATA RECEIVED — FIVE MARKETS
 
-## Static audit + exact test protocol
+User supplied cumulative V0 1.00 files:
+- `d026_per_virtual_v0_events.csv`
+- `d026_per_virtual_v0_trades.csv`
+- `d026_per_virtual_v0_outcomes.csv`
+
+Sessions 2024-01-01 -> 2025-12-31:
+- BTCUSD 560 signals = 283 in 2024 + 277 in 2025
+- ETHUSD 618 = 332 + 286
+- DOGUSD 525 = 269 + 256
+- LNKUSD 562 = 264 + 298
+- XAUUSD 649 = 357 + 292
+- total 2,914 signals
+- events 66,241 rows
+- outcomes 14,555 rows
+
+Integrity is good:
+- zero `VALID_SIGNAL_REJECTED_BAD_RISK`
+- zero `VALID_SIGNAL_REJECTED_NO_SLOT`
+- valid-signal transition counts equal trade counts for every symbol
+- every trade has outcome rows
+- only a handful of final 48h snapshots are absent at the end-of-test boundary.
+
+Descriptive predeclared overall EV from V0 1.00 (PRE-COST, BUT NOT VALID FOR FINAL STRATEGY VERDICT BECAUSE OF IMPLEMENTATION DEFECT BELOW):
+- BTC: EV1 +0.011R, EV2 -0.117R, EV3 -0.176R
+- ETH: -0.009R, -0.058R, -0.138R
+- DOG: -0.004R, +0.077R, -0.040R
+- LNK: -0.037R, -0.042R, -0.048R
+- XAU: -0.007R, -0.009R, -0.101R
+
+40%@1R + BE runner is near-zero/negative overall: BTC -0.050/-0.098 to 2R/3R; ETH +0.008/-0.034; DOG +0.023/-0.041; LNK -0.012/-0.024; XAU -0.041/-0.109.
+
+Most side/path effects flip by year. One descriptive LNK SHORT +3R hint repeats positive in 2024 (~+0.115R) and 2025 (~+0.200R), pooled ~+0.164R, but DO NOT promote it because the population is contaminated by the implementation defect and it was discovered after viewing the sample.
+
+Full first-run report:
+- `research/results/D026_V0_FIRST_RUN_CONFORMANCE_FINDING_2026_09_04.md`
+- commit `aedad0ab87319c141414b4b38964d2e74d2b5a5b`
+
+## 1.4 CRITICAL IMPLEMENTATION CONFORMANCE DEFECT FOUND AFTER FIRST DATA
+
+The pre-result rules lock remains unchanged. A static re-read of V0 1.00 exposed implementation errors:
+
+A. State deadlines are off by one because the code evaluates the transition before checking `bars_in_state > N`:
+- DISPLACEMENT can occur on a third subsequent M15 bar instead of only next 2;
+- EXHAUSTION can occur on a fourth instead of next 3;
+- RECLAIM can occur on a fifth instead of next 4;
+- VALIDATION can occur on a fifth instead of next 4.
+
+B. RETEST proximity is too permissive:
+- old LONG test `low <= level + 0.15ATR` accepts arbitrarily deep lows;
+- old SHORT test `high >= level - 0.15ATR` accepts arbitrarily high highs;
+- frozen wording requires the relevant extreme itself within +/-0.15 ATR of level.
+
+Scientific consequence: V0 1.00 first-run data are a valid smoke/instrumentation dataset, but **NOT a valid final D026 strategy sample**. Do not issue a production/rejection verdict from it and do not retune thresholds from it.
+
+## 1.5 V0 1.01 CONFORMANCE FIX — COMMITTED, RULES UNCHANGED
 
 File:
-- `research/results/D026_V0_STATIC_AUDIT_AND_TEST_PROTOCOL_2026_09_04.md`
-- commit `037baf2118c7426700687512c81a8e1df2403075`
+- `research/ea/D026_PriceExhaustionReclaim_Virtual_V0_1_01_CONFORMANCEFIX.mq5`
+- commit `d0c15e2f901a73f51d09cd08394b3371e625b5c8`
 
-### ONLY USER ACTION NOW NEEDED FOR D026
+Implementation-only wrapper. It includes V0 1.00 and replaces only:
+- exact 2/3/4/4 closed-M15 state windows;
+- RETEST as true +/-0.15 ATR relevant-extreme band;
+- corrected timer path calling the conformant state machine.
 
-When convenient:
-1. compile `D026_PriceExhaustionReclaim_Virtual_V0_1_00.mq5` manually in MetaEditor;
-2. run BTCUSD M1, 2024-01-01 -> 2025-12-31, inputs `48 / 1 / true`;
-3. run ETHUSD same settings;
-4. send cumulative `events + trades + outcomes` after both.
+No frozen threshold changed. Keep the wrapper in the same MetaEditor folder as V0 1.00 so the include resolves.
 
-`Every tick` is sufficient for D026 V0 because its entry logic uses closed M15 OHLC/ATR and path logic uses closed M1 high/low. Do NOT require real-tick mode.
+### ONLY USER ACTION CURRENTLY NEEDED FOR D026
 
-Do not request broader markets before BTC/ETH first verdict.
+Compile/run **V0 1.01 CONFORMANCEFIX**, not V0 1.00.
 
-Acceptance bar remains high: tiny positive EV is insufficient; seek preferably >= ~+0.15R pre-cost and ideally ~+0.20R+ on a branch that repeats across years, then apply spread/commission/slippage and stress costs.
+First corrected pass only:
+1. BTCUSD, tester M1, 2024-01-01 -> 2025-12-31, Every tick, inputs `48 / 1 / true`.
+2. ETHUSD, same settings.
+
+Do NOT rerun DOG/LNK/XAU yet. The logger uses the same cumulative D026 CSV filenames, but sessions are unique; downstream analysis must isolate the NEW corrected BTC/ETH sessions from the five old V0 1.00 sessions.
+
+If corrected BTC/ETH remain broadly flat/negative, reject D026 V0 rather than tuning it. If a large recurring branch survives both years, then design the next clean prospective validation.
 
 ---
 
-# 2. D025 XAU / FOREX EXPLOITATION — COMPLETE FOR CURRENT FROZEN ENTRY
+# 2. D025 XAU / FOREX EXPLOITATION — COMPLETE
 
 Final report:
 - `research/results/D025_XAU_FOREX_FINAL_EXPLOITATION_2026_09_04.md`
 - commit `e4cc482df9a29fcf6acf10d5c3d4ebc30b2716ad`
 
-Actual 1.01 / 1.02 / 1.03 CSVs were re-opened; no new broad reruns were requested.
+Final decisions:
+- XAU broad D025: REJECT
+- USDJPY broad: REJECT
+- GBP broad: REJECT; GBP SHORT +1R only WATCHLIST (~+0.12R original pre-cost, weaker in newer population)
+- EUR broad: REJECT; EUR SHORT +2R PRIMARY WATCHLIST (~+0.14R pooled pre-cost, uncertainty/cost margin too weak)
+- 40%@1R + BE runner non-crypto: REJECT
 
-## Final decisions
-
-### XAUUSD
-- 2024 overall nearly flat at +1R and negative beyond;
-- 2025 clearly negative;
-- 2024 RETEST and LONG effects fail 2025 replication;
-- 1.02 n=798 remains negative overall;
-- 40%@+1R + BE runner negative.
-
-Decision: **REJECT D025 XAU production branch**.
-
-### USDJPY
-- 2024/2025 broad results flat-negative;
-- Jun-Jul 2026 strength does not replicate backwards;
-- 1.02 n=791 remains negative overall;
-- partial+BE runner negative.
-
-Decision: **REJECT broad D025 USDJPY production branch**.
-
-### GBPUSD
-Recurring original 1.01 SHORT early-target hint:
-- 2024 SHORT EV1 ~+0.070R;
-- 2025 SHORT EV1 ~+0.183R;
-- Jun-Jul26 SHORT EV1 ~+0.118R;
-- pooled original n421, EV1 ~+0.121R pre-cost.
-
-But newer 1.02 GBP SHORT weakens materially: EV1 ~+0.050R, EV2 negative. Path leadership flips by year.
-
-Decision: **GBP SHORT +1R = WATCHLIST ONLY, not production**. Broad GBP rejected.
-
-### EURUSD
-Strongest surviving non-crypto D025 watchlist hypothesis:
-- 1.02 2024 SHORT EV2 ~+0.146R;
-- 1.02 2025 SHORT EV2 ~+0.122R;
-- pooled 2024-25 SHORT EV2 ~+0.136R pre-cost;
-- tiny Jun-Jul26 SHORT sample supportive but insufficient.
-
-Uncertainty remains large and monthly stability is weak. Costs are not deducted.
-
-Decision: **EUR SHORT +2R = PRIMARY WATCHLIST ONLY, not production**.
-
-### Partial +1R / BE runner
-1.02 resolved EV for 40%@+1R + 60% BE runner:
-- XAU -> +2R: ~-0.053R; -> +3R: ~-0.128R
-- GBP: ~+0.017R / -0.012R
-- USDJPY: ~-0.034R / -0.082R
-- EUR: ~+0.047R / -0.020R
-
-Decision: **REJECT this D025 non-crypto management rule**.
-
-## D025 XAU/Forex conclusion
-
-No branch meets the user's required large-edge standard. Do not spend more time optimizing exits on the same frozen population to manufacture a prettier result.
-
-Prospective watchlist only:
-1. EURUSD SHORT -> +2R.
-2. GBPUSD SHORT -> +1R.
-
-No further broad D025 XAU/Forex reruns are needed at this stage.
+No branch meets the user's required large-edge standard. Do not spend more time optimizing the same frozen D025 XAU/Forex population.
 
 ---
 
 # 3. D025 CRYPTO DATA ISSUE — QUARANTINED
 
-D025 V0 locked source/rules remain unchanged.
+D025 CASCADE uses M15 relative tick volume >=1.25 vs prior-20 mean.
 
-Critical D025 CASCADE gate = M15 relative tick volume >=1.25 vs prior-20 mean.
+Current 1.03 virtual populations: BTC 499, ETH 553, DOG 595, XAU 798, USDJPY 793. Original 1.01 BTC/ETH totals were 1,117 / 1,172.
 
-Current 1.03 virtual combined populations:
-- BTC 499 = 298 in 2024 + 201 in 2025;
-- ETH 553 = 358 + 195;
-- DOG 595;
-- XAU 798;
-- USDJPY 793.
+Mechanism proven: historical BTC/ETH tick-volume collapses toward ~1.0 in large blocks, mechanically disabling CASCADE. BTC Aug 2024 example: 117 sweeps, median relvol ~0.999, max 1.243, zero CASCADE, zero signals.
 
-Original 1.01 separate-year totals were much larger for BTC/ETH:
-- BTC 1117;
-- ETH 1172.
+One controlled BTC `Every tick based on real ticks` rerun was effectively identical to the prior `Every tick` data, so tester modelling mode is not the primary cause. Remaining issue is FundedNext/MT5 historical feed/tick-volume provenance/availability.
 
-Real-order/min-lot/margin hypothesis was falsified because virtual 1.03 still had the same low crypto signal population.
-
-Mechanism identified:
-- large historical BTC/ETH periods show relative tick volume collapsing near 1.0;
-- frozen 1.25 CASCADE gate then mechanically cannot fire;
-- e.g. BTC Aug 2024: 117 sweeps, median relvol ~0.999, max 1.243, zero CASCADE, zero signals.
-
-User performed one controlled BTC rerun with `Every tick based on real ticks`. Result was effectively identical to prior `Every tick` data apart from session identity.
-
-Therefore:
-- `Every tick` vs `real ticks` is NOT the primary cause;
-- remaining issue = FundedNext/MT5 historical tick-volume/feed provenance/availability;
-- D025 crypto historical volume-dependent conclusions are QUARANTINED;
-- do NOT lower the 1.25 threshold to compensate for bad/synthetic history.
-
-D026 exists specifically to test a clean price-only alternative without waiting for this issue.
+D025 crypto volume-dependent historical conclusions remain QUARANTINED. Do not lower 1.25 to compensate.
 
 ---
 
 # 4. SHARED INTELLIGENCE
 
-Binance + Bybit Shared Intelligence remains READ-ONLY and has no current trading effect.
-
-Architecture:
-Binance + Bybit collectors -> venue-separated state -> FILE_COMMON -> Guardian/research consumers.
-
-Current external-intelligence scope BTC + ETH. Keep collector running.
-
-Baseline D026 must NOT use this data. Later Crypto+ studies may compare D026 Core vs D026 + external features using strict `available_at <= event_time` anti-lookahead joins.
+Binance + Bybit Shared Intelligence remains READ-ONLY and has no current trading effect. Keep collector running. Baseline D026 must not use it. Later Crypto+ event studies may join with strict `available_at <= event_time`.
 
 ---
 
-# 5. FUNDEDNEXT LIVE GUARDIAN REQUEST BUG — STILL HIGH PRIORITY, NOT YET PATCHED
+# 5. FUNDEDNEXT LIVE GUARDIAN REQUEST BUG — HIGH PRIORITY OPERATIONS ISSUE
 
-FundedNext HUD observed about `5629/2000` while FTMO was ~32/2000.
+FundedNext HUD observed ~5629/2000 vs FTMO ~32/2000.
 
-Exact live lineage source found in Library:
+Exact live lineage source in Library:
 `Guardian_D017_PropFirmAuto_v11_17_04_MANUAL_PROTECTION_HOTFIX_PLAN80_RUNNER20.mq5`.
 
 Confirmed runaway-capable mechanism:
 - after RSI TP1, failed BE NET application leaves `g_rsi_be_push_done=false`;
-- `RSIManageCycleTick()` retries `RSI_BE_RETRY` while condition remains true;
+- `RSIManageCycleTick()` retries `RSI_BE_RETRY` while pending;
 - retry uses `SRP_PROTECTION`;
 - `SRP_PROTECTION` bypasses request hard limit by design.
 
-Broader `SRP_PROTECTION` audit must cover manual SL/BE, Momentum BE and other protection loops before patching only one callsite.
+FundedNext Algo Trading stays OFF until bounded/deduplicated/backoff patch is built and validated. True emergency safety may retain priority; routine deferred BE must not behave as unlimited emergency traffic.
 
-Operational rule:
-- FundedNext Algo Trading stays OFF until bounded/deduplicated/backoff fix is built and validated;
-- true emergency safety may keep priority;
-- routine BE retries must not have unlimited hard-limit bypass.
+Potential v11.17.07 direction: initial protective attempt preserved; routine retries deduped/backed off (e.g. 5s -> 15s -> 60s -> 5m), retcode-aware, profit-protection priority where safety is not worsened; audit all `SRP_PROTECTION` retry loops.
 
-Potential v11.17.07 concept already agreed in principle:
-- initial protective attempt preserved;
-- routine deferred BE retries use bounded/dedup/backoff cadence such as 5s -> 15s -> 60s -> 5min;
-- retry priority should be profit-protection rather than unlimited emergency protection where safety is not worsened.
-
-Do NOT claim this patch is already finished. It is not yet committed.
+Do NOT claim patch is finished yet.
 
 ---
 
-# 6. FUNDEDNEXT QUICK STRIKE — USER-CORRECTED REQUIREMENT
+# 6. FUNDEDNEXT QUICK STRIKE — CORRECTED REQUIREMENT
 
-User-confirmed behavior:
-- Guardian does NOT auto-close a manual position simply because initial SL placement fails;
-- current behavior: one SL-placement attempt, then user manually places SL if it failed.
+Guardian does NOT auto-close a manual position simply because initial SL placement fails. Current behavior: one SL placement attempt; if it fails the user manually places SL.
 
-Separate concern:
-- Guardian-managed profitable exits inside 30 seconds can create Quick Strike exposure.
-
-Future patch must:
-- log entry time, elapsed seconds, reason, venue and P/L sign for Guardian-managed <30s exits;
-- never intentionally leave unsafe risk open merely to cross 30 seconds;
-- integrate any retry logic with request-budget safeguards.
-
-GitHub issue #2 contains the corrected requirement.
+Quick Strike is separate: log Guardian-managed profitable <30s exits with entry time, elapsed seconds, venue, reason and P/L sign. Never leave an unsafe trade open merely to cross 30 seconds. GitHub issue #2 contains corrected requirement.
 
 ---
 
-# 7. NEXT RESUME ORDER
+# 7. RESUME ORDER
 
 1. `CURRENT_PROJECT_HANDOFF.md`
-2. `research/results/D026_V0_STATIC_AUDIT_AND_TEST_PROTOCOL_2026_09_04.md`
+2. `research/results/D026_V0_FIRST_RUN_CONFORMANCE_FINDING_2026_09_04.md`
 3. `research/campaigns/D026_PRICE_EXHAUSTION_RECLAIM_V0_RULES_LOCK_2026_09_04.md`
-4. `research/ea/D026_PriceExhaustionReclaim_Virtual_V0_1_00.mq5`
-5. `research/analysis/analyze_d026_per_v0.py`
-6. `research/results/D025_XAU_FOREX_FINAL_EXPLOITATION_2026_09_04.md`
-7. `research/results/D025_1_03_VIRTUAL_PATH_DIAGNOSTIC_2026_09_04.md`
-8. latest Guardian request-budget audit + exact current Guardian source
-9. `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`
-10. `docs/STRATEGY_DECISIONS.md`
+4. `research/ea/D026_PriceExhaustionReclaim_Virtual_V0_1_01_CONFORMANCEFIX.mq5`
+5. original `research/ea/D026_PriceExhaustionReclaim_Virtual_V0_1_00.mq5`
+6. `research/analysis/analyze_d026_per_v0.py`
+7. first-run D026 cumulative CSVs (five old V0 1.00 sessions) and then isolate new corrected BTC/ETH sessions
+8. `research/results/D025_XAU_FOREX_FINAL_EXPLOITATION_2026_09_04.md`
+9. D025 1.03 volume-provenance report
+10. latest Guardian request-budget audit/current Guardian source
+11. `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`
+12. `docs/STRATEGY_DECISIONS.md`
 
 ## Immediate dependency
 
-Research is now blocked only by the user's manual MT5 action for D026: compile the V0 EA and run BTCUSD + ETHUSD 2024-2025. Do not ask for anything else first unless compile errors occur.
+The next scientifically necessary user action is only the corrected D026 V0 1.01 BTC+ETH MT5 run. Do not ask for DOG/LNK/XAU reruns first.
 
 ## Continuity rule
 
