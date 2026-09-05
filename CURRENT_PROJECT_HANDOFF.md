@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-05 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030 CLOSED REJECTED / D029 CLOSED REJECTED / D033 CLOSED REJECTED / D034 GOLD ARM CLOSED REJECTED, OIL UNTESTED-UNAVAILABLE / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030+D029+D033 CLOSED REJECTED / D034 GOLD CLOSED REJECTED, OIL UNAVAILABLE / D035 BINANCE->FUNDEDNEXT CRYPTO LEAD-LAG PREREGISTERED+EXPORTER PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
@@ -62,33 +62,49 @@ Preregistration: `research/campaigns/D034_GOLD_OIL_INTRADAY_ABNORMAL_RETURN_MOME
 Prepared scanner: `D034_GoldOil_AbnormalReturn_Momentum_FeatureLab_v1_00.mq5`, SHA-256 `842ca596a017229c27857030589c0f5b432e52313364f7f7a27c73890da138fe`.
 Classification: `ADAPTATION_CAUSAL_CFD_TRANSFER`.
 
-Frozen rule: prior252 D1 mean +/-2sd abnormal threshold; GOLD positive timing >=17:00 and negative >=19:00 server clock; enter in anomaly direction; one trade/day; no SL/TP; exit last executable quote same server day; spread embedded; signal window 2024-01-01 through 2026-06-30.
-
-Returned XAUUSD run:
-- all 83 events clean;
-- pooled mean executable **+1.8925 bps/event**;
-- median +8.4451 bps;
-- win 57.83%;
-- LONG n=37 mean +9.6399 bps, win 67.57%;
-- SHORT n=46 mean -4.3390 bps;
-- 2024 mean -1.4951 bps;
-- 2025 mean -4.1560 bps;
-- 2026 through June mean +13.9691 bps;
-- month-cluster bootstrap 95% approximately **[-7.95, +12.62] bps/event**;
-- largest positive-event concentration ~9.60%;
-- frozen GOLD gate **3/7 -> REJECT**.
-
-Interpretation: weak positive pooled/median behavior exists, but economically too small, bootstrap crosses zero, shorts are negative, and year stability fails. LONG-only is also below the +15 bps gate and was not preregistered as a separate strategy. Do not rescue with timing, k, lookback, direction, RSI/SMA filters, or invented SL/TP on the same 2024-2026 sample.
+Returned XAUUSD run: 83 clean events, pooled mean executable +1.8925 bps/event, median +8.4451 bps, win 57.83%; LONG +9.6399 bps, SHORT -4.3390 bps; 2024 and 2025 negative, 2026 through June +13.9691 bps; month-cluster bootstrap approximately [-7.95,+12.62] bps/event; frozen GOLD gate 3/7 -> REJECT.
 
 OIL is **untested**, not failed, because the target FundedNext account exposes no suitable WTI/USOIL/XTI symbol.
 
-Canonical GOLD result: `research/results/D034_XAUUSD_ABNORMAL_RETURN_STRAT1_VERDICT_2026_09_05.md`, commit `f59d2a4cabb231c6ee50178df4e347646056dd22`.
+# D035 — Binance BTC/ETH deleveraging -> FundedNext crypto CFD lead-lag — PREPARED
+User selected this cross-venue exotic hypothesis and explicitly discarded the other exotic candidates.
+
+Canonical preregistration:
+`research/campaigns/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_LEADLAG_PREREGISTRATION_2026_09_05.md`
+Commit: `050506aff39a321195a70ec79ed0008a2b736d7d`.
+
+Prepared MT5 exporter:
+`research/ea/D035_CFD_M1_Exporter_v1_01.mq5`
+Commit: `0e8f923d1ae7529af7999f9b6e37970133e0fb19`.
+User-delivered/local SHA-256: `2bd349d44845cbe726c154c5f419e2ec36763700dd245f2da6964bcb05342a96`.
+Static QA: balanced syntax delimiters, 19 header fields = 19 data fields, header flush + periodic flush. MetaEditor compile not claimed.
+
+Prepared historical analyzer delivered in the ChatGPT session:
+`D035_Binance_Deleveraging_LeadLag_v1_00.py`
+SHA-256: `fa22fa6a7fe735436b381ef2ec7a58f7aed8e71d526e2b679073a6981dfad133`.
+Python syntax compile PASS; synthetic core smoke PASS, including recovery of an injected UTC+2 MT5 server offset. Full behavior is frozen in the preregistration and D035 handoff if the conversation artifact is unavailable to another agent.
+
+Handoff:
+`handoff/chatgpt_to_codex/2026/09/05/D035_BINANCE_DELEVERAGING_LEADLAG_PREPARED.md`
+Commit: `84a42fd284cd0b4ae9ad0299379884bf856ddf09`.
+
+Frozen source event: BTCUSDT/ETHUSDT USD-M, 5m return and 5m `sum_open_interest` change both negative and <= their strictly-prior rolling 30d 10th percentiles; 30m source cooldown; BTC/ETH events within 5m merged.
+
+Development = 2024-01-01..2025-12-31 UTC with warm-up from 2023-11-01. Reserved confirmation = 2026-01-01..2026-06-30 and must remain untouched unless all development gates pass and a fresh confirmation preregistration exists.
+
+Target measurement: all crypto CFDs available on the target FundedNext account, BTCUSD mandatory for mechanical server->UTC alignment. Primary cross-asset executable SHORT horizon +15m using BID entry / ASK exit; +1/+5/+30/+60/+120m frozen diagnostics. No Guardian/SL/TP/R.
+
+Development requires all 8 frozen gates, including >=80 merged source events, >=2 non-source targets with >=40 events, >=+15bps pooled executable +15m, >=+10bps event-control differential, positive day-cluster bootstrap lower bound, positive +30m persistence, positive BTC-only and ETH-only source branches, <=35% positive-month concentration.
+
+Do not rescue a failed D035 with percentile/horizon/target mining, direction inversion, liquidation/funding/basis/RSI/ATR filters or source-specific thresholds on the inspected 2024-2025 sample.
 
 ## Immediate execution order
-1. Do not spend more time rescuing D030/D029/D033/D034 on already-inspected samples.
-2. Keep D032 Doji as a sparse confirmed-entry sleeve, not sole challenge engine.
-3. Select the next independent, reasonably active documented family rather than another parameter variant of rejected breakout/momentum/reversal work.
-4. Pure Guardian Core v12.01 compile/smoke remains independently required before live replacement.
+1. Run D035 exporter in Strategy Tester **M1 / 1 minute OHLC**, 2023-11-01 through 2025-12-31, on **BTCUSD plus every crypto CFD available on the target FundedNext account**. No inputs.
+2. Collect/zip every generated `D035_CFD_M1_*.csv`.
+3. Run the frozen D035 analyzer in development mode only; do not use `--confirm`.
+4. Archive the development verdict and update this handoff the same session.
+5. Keep D032 Doji as a sparse confirmed-entry sleeve; do not rescue D030/D029/D033/D034 on inspected samples.
+6. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
 Daily ledger rule: every Europe/Paris day with material Guardian work must be recorded in `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` before session end/handoff.
