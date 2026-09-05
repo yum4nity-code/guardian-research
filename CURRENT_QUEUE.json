@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-04T07:18:43+02:00",
-  "active_primary": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
+  "updated_at": "2026-09-05T07:14:00+01:00",
+  "active_primary": "D023-LONDON-ORB-M15-V0",
   "items": [
     {
       "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
@@ -29,12 +29,11 @@
     },
     {
       "id": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
-      "priority": 2,
-      "status": "WAITING_CODEX",
+      "priority": 8,
+      "status": "VALIDATED",
       "owner": "Codex",
       "type": "research_infrastructure",
-      "goal": "Collector/replay V1 is already implemented on GitHub. Do NOT rewrite it before evidence. Sync research/external_intelligence/, install aiohttp locally, run a 30+ minute BTC/ETH Bybit public-data smoke, test reconnect/staleness/deduplication, validate real JSONL replay with strict available_at_ms gate, then push compact sample/metrics/manifest evidence.",
-      "blocking": "Consume updated handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md and research/results/D025_EIB_V1_IMPLEMENTATION_REPORT.md. No Guardian production integration and no LER signal engine until the live data gate passes."
+      "goal": "Shared Bybit+Binance collection, venue-separated market state and MT5 FILE_COMMON bridge have passed live runtime gates. Preserve as read-only research infrastructure; do not turn it into a BUY/SELL score without event-study evidence."
     },
     {
       "id": "D025-LIQUIDITY-EXHAUSTION-RECLAIM",
@@ -42,8 +41,8 @@
       "status": "BLOCKED",
       "owner": "ChatGPT/Codex",
       "type": "scientific_hypothesis",
-      "goal": "Research a mid-term Liquidity Exhaustion Reclaim sleeve: objective level -> sweep/cascade -> declining marginal price impact -> reclaim -> acceptance/retest. First implementation must be observation/virtual-trade only; exits are derived later from preregistered MFE/MAE distributions.",
-      "blocking": "External Intelligence Bus V1 must first pass recorder/replay gates. Crypto+ variables are optional enrichments and must never become an Internet dependency for Guardian core. No live D025 orders before event study, robustness and red-team."
+      "goal": "Research a mid-term Liquidity Exhaustion Reclaim sleeve using external-intelligence variables only after enough timestamped live archive exists for leakage-safe event studies.",
+      "blocking": "Current external archive is too young for long-history validation. Continue accumulation; no live D025 orders and no retrospective threshold fitting."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -63,12 +62,12 @@
     },
     {
       "id": "D017-V11-16-GENERALIZATION-PREOOS",
-      "priority": 3,
+      "priority": 10,
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "frozen_generalization_campaign",
-      "goal": "At next GO inspect real worker/import state and HARVEST completed work first. Resume/launch AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF and XAUUSD with Guardian_D017_PropFirmAuto_v11_16_2_RISKFIX_CAPREF.mq5 only where no duplicate exists. Zero tuning; common pre-OOS period ending 2026-06-28; OOS locked.",
-      "blocking": "No CAPREF blocker remains. Never redo imports or tests that are already complete/running. A later FundedNext production patch does not invalidate this frozen v11.16.2 research campaign."
+      "goal": "Legacy queued campaign. Do not prioritize over D023/D021/D022 after the 2024-2025 long-history Momentum campaign rejected broad BTC/ETH/XAU/EUR/GBP/JPY under the large-edge standard.",
+      "blocking": "Historical continuity only unless a specific unresolved market becomes decision-critical."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
@@ -88,28 +87,28 @@
     },
     {
       "id": "DECISION-D021-HYPOTHESIS",
-      "priority": 5,
+      "priority": 2,
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_decision",
-      "goal": "d021_micro_rev_eventstudy.py is installed under D:\\MT5_Backtests\\automation\\ (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8). Do not rewrite it. Create/reuse physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the frozen verdict with no tuning/OOS. Prefer unattended execution after higher-priority harvest/FundedNext fix."
+      "goal": "d021_micro_rev_eventstudy.py is installed under D:\\MT5_Backtests\\automation\\ (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8). Do not rewrite it. Create/reuse physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the frozen verdict with no tuning/OOS. Run after D023 unless D023 data is unavailable."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
-      "priority": 6,
+      "priority": 3,
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "scientific_hypothesis",
       "goal": "Use only corrected d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45). Reuse/export physically pre-OOS AUDUSD/NZDUSD/EURUSD/GBPUSD M15 inputs and execute once; no rewrite, tuning or OOS.",
-      "blocking": "Never execute the old d022_pair_rev_eventstudy.py."
+      "blocking": "Never execute the old d022_pair_rev_eventstudy.py. Symbol availability may defer this behind D023/D021."
     },
     {
       "id": "D023-LONDON-ORB-M15-V0",
-      "priority": 7,
+      "priority": 1,
       "status": "READY",
       "owner": "Codex",
       "type": "scientific_hypothesis",
-      "goal": "D023 London ORB M15 V0 engine is already implemented as d023_london_orb_m15_eventstudy.py (SHA256 3788e8963b1c3a3c4213e29cf6fa212e29437e10d3c900c9e34261f637946b27). Do not rewrite/tune. Connect physically pre-OOS EURUSD/GBPUSD/USDJPY/XAUUSD M15 OHLC+spread data and execute once only when capacity remains."
+      "goal": "PRIMARY NEXT RESEARCH TEST. Execute the already preregistered classic London ORB M15 V0 exactly once on EURUSD/GBPUSD/USDJPY/XAUUSD. Engine: d023_london_orb_m15_eventstudy.py, SHA256 3788e8963b1c3a3c4213e29cf6fa212e29437e10d3c900c9e34261f637946b27. Use physically pre-OOS M15 OHLC+spread data, no RSI/EMA/ATR/news/day filter, no tuning, no OOS. Apply frozen cheap-fail verdict exactly."
     },
     {
       "id": "D024-MULTI-STRATEGY-POSITION-CAP-STUDY",
@@ -118,9 +117,9 @@
       "owner": "ChatGPT/Codex",
       "type": "portfolio_policy_preregistration",
       "goal": "Compare MAX1/MAX2/MAX3/MAX4 concurrent positions per symbol versus RISK_ONLY using identical frozen strategy trades with account open-risk cap fixed at 1.00%. D024A diagnostic engine SHA256 92f12a9a22c4aa0a326dad9adb1b5c70465c4c03ec8022e3c17af9e5ddf88e84. Final D024B requires synchronized mark-to-market/floating-equity data.",
-      "blocking": "Do not execute while Codex quota is scarce and prerequisites are unmet: at least two independently validated strategies with compatible standardized logs."
+      "blocking": "Do not execute until at least two independently validated strategies exist."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "User priority 2026-09-04: progress D025 incrementally. EIB V1 code is already committed and offline-tested by ChatGPT; Codex must smoke-test it on the real PC/network, not rewrite it. No live LER trading, no hidden production mutation, no lookahead, no parameter search. Preserve and harvest any already-running healthy jobs before starting heavy work."
+  "notes": "2026-09-05 research pivot: legacy RSI raw entry rejected across BTC/ETH/XAU/EUR; D017 broad Momentum rejected across BTC/ETH/XAU/EUR/GBP/JPY. Stop trying to rescue those raw entries by post-hoc tuning. Next execute already-preregistered documented families in order: D023 London ORB M15 first, D021 crypto micro-reversal second, D022 pair-reversion third if symbols/data are available. Shared Intelligence stays running/archiving for future leakage-safe crypto event studies."
 }
