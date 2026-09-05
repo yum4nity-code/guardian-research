@@ -1,21 +1,21 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-05 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI STAR CORE ENTRY CONFIRMED / RSI<30 FILTER FAILED / D032-E3 RECLAIM-HIGH ENTRY-TIMING TEST PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI STAR CORE ENTRY CONFIRMED / D032-E2 RSI<30 FAILED / D032-E3 RECLAIM-HIGH ENTRY FIX REJECTED / ENTRY-RISK MANAGEMENT STILL UNSOLVED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Read this first. Historical chronology/time ledger: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 Canonical research rules: `docs/RESEARCH_PROTOCOL.md`.
 
 ## Research standard
 - No curve fitting or post-hoc threshold edits disguised as fixes.
-- Target a materially large recurring edge, roughly >= +0.15R/trade and ideally +0.20R+, before production.
+- Target materially large recurring edge, roughly >= +0.15R/trade and ideally +0.20R+, before production.
 - Guardian is execution/protection infrastructure, not alpha.
 - Setup-first: establish entry information first, then management, then Guardian/prop-firm integration.
 - Preserve `EXACT_REPLICATION`, `CLOSE_REPLICATION`, `ADAPTATION` labels.
 - Ex-post anomalies may spawn fresh preregistered tests but are not retroactive validation.
 - With a natural/source risk, export R, MFE_R, MAE_R and first-touch ordering.
 - CFD transfer requires reproduction on target CFD feed with executable bid/ask and costs.
-- Scanner QA after D032 v1.00 bug: verify header/data column counts, array declarations/index bounds, immediate header flush, and runtime output QA before delivery.
+- Scanner QA after D032 v1.00 bug: verify header/data column counts, array/index bounds, immediate header flush, and runtime output QA before delivery.
 
 ## Pure Guardian Core v12.01
 Guardian is a strategy-neutral Lego chassis. RSI and Momentum strategy logic are physically removed from the candidate.
@@ -82,7 +82,7 @@ Conclusion: Doji is not a universal crypto effect. Primary core remains BTC/ETH/
 - 1.5R post-24h trail looked better PRE2024 (~+0.109R incremental) but was diagnostic only and is not validated.
 - Immediate-entry path diagnostics show many future winners travel deeply negative before +24h. -1R is clearly too tight. A -3.5R catastrophe-stop clue looked less destructive but makes stop-normalized expectancy much less attractive.
 
-Key interpretation: D032 has confirmed directional information, but **entry localization remains the main unresolved problem**.
+Key interpretation: D032 has confirmed directional information, but **entry localization / risk management remains the main unresolved problem**.
 
 ## D032-E1 RSI(14) M15 diagnostic PRE2024
 Result: `research/results/D032_E1_RSI14_M15_DIAGNOSTIC_PRE2024_2026_09_05.md`
@@ -104,45 +104,43 @@ Core POST2024:
 
 Decision lock: **discard RSI<30 as an entry filter; do not tune neighboring RSI thresholds on the same data.**
 
-# D032-E3 — reclaim of Doji high entry-timing diagnostic — PREPARED
+## D032-E3 reclaim-high delayed entry — REJECT
 Preregistration: `research/campaigns/D032_E3_DOJI_RECLAIM_HIGH_ENTRY_DIAGNOSTIC_PREREGISTRATION_2026_09_05.md`
 Preregistration commit: `d3c5bbfb80e1bcc231207b7c1215419fc2c55b43`
-Handoff: `handoff/chatgpt_to_codex/2026/09/05/D032_E3_DOJI_RECLAIM_HIGH_ENTRY_DIAGNOSTIC_PREPARED.md`
-Handoff commit: `c303c61c34d218bc25cebd30fad0a2dd390f6861`
+Result: `research/results/D032_E3_RECLAIM_HIGH_POST2024_EARLY_REJECTION_2026_09_05.md`
+Result commit: `50887f08479b0be9733d3a1de15369a87a3d67f0`
 
-Delivered scanner: `D032_E3_DojiStar_ReclaimHigh_EntryDiagnostic_v1_00.mq5`
-SHA-256: `5984207c00b196bdac02c652f6e0ad7240eed955ddb55787f0d726167b935d23`
-Not MetaEditor-compiled by ChatGPT.
+Frozen rule: wait up to 6h after the Doji for first `BID >= closed Doji high`, then enter at contemporaneous ASK; compare against immediate ASK entry at the same original +24h endpoint.
 
-Frozen primary delayed-entry candidate:
-- underlying Doji signal unchanged;
-- baseline = first ASK after signal close;
-- delayed confirmation = first observed tick with `BID >= closed Doji H1 high`;
-- trigger window = 6 hours from signal_end;
-- fill = contemporaneous ASK, never synthetic fill at Doji high;
-- no SL/TP/trailing;
-- exit for both baseline and delayed entry = exact BID at **original signal_end +24h**;
-- candidate records reclaim delay, MFE_R/MAE_R from delayed fill, paired delta versus baseline, feed gaps, PRE2024/POST2024 epoch.
+User supplied POST2024 runs (2024-01-01 through 2026-06-24) on BTC/ETH/DOG plus LNK/XRP diagnostics.
 
-Why 6h: frozen before results and already one of the source diagnostic horizons; no same-sample retuning to 1h/3h/12h.
+Core clean reclaim-triggered n=59:
+- BTC 23, ETH 25, DOG 11;
+- pooled reclaim mean +0.679R, median +50.09 bps, win rate 64.4%;
+- all 3 core symbols positive raw reclaim mean R;
+- concentration fine: largest positive event ~8.5% of total positive reclaim R.
 
-Advancement gate for core BTC/ETH/DOG:
-1. >=40 clean reclaim-triggered trades pooled;
-2. mean reclaim +24h > +0.15R/trade;
-3. median reclaim +24h bps >0;
-4. at least 2/3 core symbols positive mean reclaim +24h R;
-5. paired median reclaim MAE_R improves by at least 0.25R versus immediate baseline;
-6. no single event >60% of total positive pooled reclaim R.
+But the timing rule makes execution materially worse versus immediate entry:
+- mean paired reclaim-minus-baseline delta = **-0.391R/event**;
+- median paired delta = **-0.349R/event**;
+- BTC delta -0.387R, ETH -0.366R, DOG -0.458R.
 
-This is entry-timing development, not independent validation. Data after the bounded D032 historical window remain reserved for later forward checking if E3 survives.
+Most importantly, the intended MAE improvement fails in the opposite direction:
+- paired immediate-entry median MAE = **-1.017R**;
+- reclaim-entry median MAE = **-1.364R**;
+- change = **-0.347R**, i.e. about 0.35R MORE adverse instead of >=0.25R less adverse;
+- median MAE worsens on BTC, ETH and DOG individually.
+
+Decision: **reject reclaim-high as the entry-localization fix.** Do not retune the same sample to 1h/3h/12h windows or nearby trigger levels. Positive raw reclaim return is inherited from the underlying Doji edge; the delayed trigger itself destroys entry quality.
+
+PRE2024 E3 rescue runs are not required: POST2024 already fails the candidate's central mechanism on all three core markets, so cheap-fail and move on.
 
 ## Immediate execution order
-1. Compile `D032_E3_DojiStar_ReclaimHigh_EntryDiagnostic_v1_00.mq5`.
-2. Run BTCUSD, ETHUSD, DOGUSD on M1 + `1 minute OHLC`, tester interval covering 2018-07-01 through at least 2026-06-27. No input changes.
-3. Return `ENTRY_EVENTS.csv`, `SUMMARY.csv`, `RUN_INFO.csv` for each run. LNK/XRP optional transport only.
-4. Evaluate PRE2024, POST2024 and pooled core strictly against the frozen E3 gate. Do not retune reclaim windows/levels on the same sample.
-5. If E3 passes, freeze it and use later untouched/future data for validation before adding SL/runner logic.
-6. Continue independent higher-frequency strategy research in parallel; D032 remains too sparse to be the sole prop-challenge engine.
-7. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
+1. Keep the underlying D032 Doji directional edge as confirmed, but do not deploy it yet.
+2. Stop RSI-threshold work and reclaim-high timing work on the same historical data.
+3. For D032, next work must be structurally different: either an execution concept capable of entering LOWER rather than higher after the Doji, or immediate entry with separately frozen risk management. Do not just widen the stop without measuring stop-normalized expectancy.
+4. Continue independent higher-frequency strategy research in parallel; D032 remains too sparse to be the sole prop-challenge engine.
+5. D033 commodity setup work remains the next independent family unless replaced by a better documented higher-frequency candidate.
+6. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
