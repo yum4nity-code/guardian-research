@@ -6,6 +6,13 @@ Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CO
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 
+## MANDATORY DAILY HOUSEKEEPING — applies to every AI/agent
+Every Europe/Paris calendar day with material Guardian work **must** receive an entry/update in `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` before the agent ends the session or hands off. This applies to ChatGPT, Codex and any future AI. Do not defer it on the assumption that another agent will do it.
+
+Record the work actually done, material decisions/rejections, next safe action, and conservative human-time evidence. If exact active time is not provable, use the ledger's `CONFIRMED SPAN` / `MINIMUM OBSERVED` / `NOT QUANTIFIED` semantics. Unattended backtests/collectors/workers are not human work time. At resume, check whether today's entry exists; if material work has happened and the entry is absent/incomplete, fix it before closing the session.
+
+This requirement is also repeated in root `AGENTS.md` and `README.md` so a fresh agent cannot reasonably miss it.
+
 ## Research standard
 - No curve fitting or post-hoc rescues disguised as validation.
 - Target materially large recurring edge, roughly >= +0.15R/trade and ideally +0.20R+, before production when a natural stop/R exists.
@@ -84,3 +91,4 @@ Canonical GOLD result: `research/results/D034_XAUUSD_ABNORMAL_RETURN_STRAT1_VERD
 4. Pure Guardian Core v12.01 compile/smoke remains independently required before live replacement.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
+Daily ledger rule: every Europe/Paris day with material Guardian work must be recorded in `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` before session end/handoff.
