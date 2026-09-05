@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-05 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI STAR CORE ENTRY CONFIRMED / D032 MANAGEMENT NOT YET SOLVED / D032-E1 RSI DIAGNOSTIC COMPLETE / D032-E2 RSI<30 POST2024 VALIDATION PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI STAR CORE ENTRY CONFIRMED / D032 MANAGEMENT AND ENTRY LOCATION NOT YET SOLVED / D032-E1 RSI DIAGNOSTIC COMPLETE / D032-E2 RSI<30 FILTER FAILED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Read this first. Historical chronology/time ledger: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 Canonical research rules: `docs/RESEARCH_PROTOCOL.md`.
@@ -103,50 +103,34 @@ Purpose: record RSI(14) M15 without filtering, to see whether oversold context e
 
 Primary clean core remains n=79. There is no monotonic continuous RSI relationship: RSI correlations versus +24h R/bps, MAE and MFE are near zero.
 
-However the standard oversold subset RSI<30, which was discussed before opening the E1 results, is interesting:
-- core n=10/79;
-- mean +24h ~+448 bps;
-- median ~+180 bps;
-- mean ~+2.02R;
-- win rate 70%.
+The standard oversold subset RSI<30 looked attractive on PRE2024 but was highly outlier-sensitive and did not clearly improve MAE. This led to preregistered POST2024 validation rather than threshold tuning.
 
-This is highly outlier-sensitive: removing the largest event drops mean to ~+0.50R; removing the top two leaves roughly flat/negative in R.
-
-Critically, RSI<30 does NOT clearly solve entry excursion. Future winners with RSI<30 did not have a clearly better MAE than other winners. Treat RSI<30 as a possible high-conviction subset, not as proof of a tighter stop.
-
-Exploratory fresh-M15 RSI<30 means were positive on all five supplied CFDs (BTC/ETH/DOG/LNK/XRP), but counts were tiny and LNK/XRP remain non-core.
-
-Frequency warning: PRE2024 core RSI<30 retained only ~13% of clean Doji events. Even if validated it is too sparse to be the sole challenge engine.
-
-# D032-E2 — frozen RSI<30 POST2024 conditional validation
+# D032-E2 — RSI(14) M15 <30 POST2024 conditional validation — FAIL
 Preregistration: `research/campaigns/D032_E2_RSI14_M15_LT30_POST2024_VALIDATION_PREREGISTRATION_2026_09_05.md`
-Commit: `19d32093cd804005852f7d6df4633d5001a45a2f`
-Handoff: `handoff/chatgpt_to_codex/2026/09/05/D032_E2_RSI14_M15_LT30_POST2024_PREPARED.md`
+Preregistration commit: `19d32093cd804005852f7d6df4633d5001a45a2f`
+Result: `research/results/D032_E2_RSI14_M15_LT30_POST2024_VERDICT_2026_09_05.md`
+Result commit: `635ebddb73237cd4451fc99aaf7e669e000ab45a`
 
-Frozen before POST2024 RSI values are inspected:
-- window 2024-01-01 through 2026-06-25 23:00;
-- RSI(14) M15 PRICE_CLOSE;
-- last fully closed M15 candle;
-- primary freshness requires M15 bar open exactly signal_end - 15 min;
-- primary condition RSI <30.0000 exactly;
-- every Doji is still recorded, with freshness/pass flags;
-- no alternate 20/25/35/40 threshold may replace <30 after results are opened;
-- primary core BTC/ETH/DOG;
-- secondary frozen transport LNK/LINK and XRP;
-- endpoint +24h, MFE/MAE retained;
-- no orders / Guardian OFF.
+Frozen primary core BTC/ETH/DOG POST2024:
+- 77 clean Doji events;
+- only 5 clean fresh-M15 RSI<30 events, below the preregistered minimum 8;
+- pooled RSI<30 mean +176.21 bps, median +112.41 bps, mean +1.359R, win rate 60%;
+- BTC n=2 +3.882R mean, ETH n=2 +0.158R, DOG n=1 -1.282R;
+- one BTC event at +6.879R contributes ~82.5% of total positive pooled RSI<30 R, violating the <=60% concentration gate;
+- contemporaneous unfiltered clean-core mean = ~+0.731R.
 
-Delivered scanner: `D032_E2_DojiStar_RSI14M15_LT30_POST2024_v1_00.mq5`
-SHA-256: `e5ed150c209369202b2561a09e444f7abe7fdf6e9706eff8d363c160761cb768`
-Not MetaEditor-compiled by ChatGPT.
+Preregistered gate fails on sample size and concentration. Under the interpretation lock: **discard RSI<30 as an entry filter and do not tune neighboring RSI thresholds on POST2024.**
+
+MAE also does not improve: RSI<30 winners median pre24 MAE ~-1.38R versus ~-0.84R for all contemporaneous clean-core winners. Therefore RSI<30 does not solve the stop-distance / entry-localization problem.
+
+Transport diagnostics do not rescue it: LNK n=3 mean -0.023R; XRP n=2 mean ~+0.004R with very poor MAE.
 
 ## Immediate execution order
-1. Compile D032-E2 scanner.
-2. Run M1 + `1 minute OHLC` over a tester interval covering at least 2024-01-01 through 2026-06-27 on BTCUSD, ETHUSD, DOGUSD; LNKUSD and XRPUSD are recommended secondary transport runs.
-3. Return RSI_EVENTS.csv, SUMMARY.csv and RUN_INFO.csv for each run. Do not change the frozen RSI threshold.
-4. Decide E2 strictly from preregistered core criteria. Do not tune neighboring RSI levels on POST2024.
-5. In parallel, continue the independent higher-frequency strategy search; D032/RSI is too sparse to be the only prop-challenge engine.
-6. D033 commodity setup work remains the next independent family unless replaced by a better documented high-frequency candidate.
-7. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
+1. Keep D032 underlying Doji entry edge as confirmed, but do not deploy it yet.
+2. Stop RSI-threshold work on this dataset. No 25/29/30/32/35 mining.
+3. Next D032 research question is execution timing / entry localization while freezing the Doji signal itself; avoid solving this merely by widening the stop.
+4. In parallel, continue the independent higher-frequency strategy search because D032 remains too sparse to be the sole prop-challenge engine.
+5. D033 commodity setup work remains the next independent family unless a better documented high-frequency candidate is selected.
+6. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
