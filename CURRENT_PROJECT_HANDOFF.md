@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-05 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030 ALANAZI H4 ENGULFING CLOSE-REPLICATION PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030 BROAD FX REJECTED / D030-C1 ETH H4 TRANSPORT CONFIRMATION PREREGISTERED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
@@ -15,7 +15,7 @@ Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 - Ex-post symbol/direction anomalies are discovery only and require a new preregistered test.
 - With a source/natural risk, preserve R, MFE_R, MAE_R and first-touch ordering.
 - CFD transfer requires target-feed executable BID/ASK/cost handling.
-- Scanner QA after the D032 v1.00 failure: verify output-column counts/index bounds, immediate header flush and runtime output QA before delivery.
+- Scanner QA after D032 v1.00: verify output columns/index bounds, immediate header flush, and runtime output QA before delivery.
 
 ## Pure Guardian Core v12.01
 Guardian is a strategy-neutral Lego chassis. RSI and Momentum strategy logic are physically removed.
@@ -28,116 +28,95 @@ Template: `GuardianCore/Guardian_StrategyModule_TEMPLATE_v1.mqh`
 Status remains STATIC PASS only. MetaEditor compile/smoke gates are required before replacing the older live lineage. FundedNext Algo Trading remains OFF.
 
 ## Frozen/rejected research
-- RSI legacy v11.16.11 raw edge: rejected.
+- RSI legacy v11.16.11: rejected.
 - D017 Momentum broad: rejected.
 - D022 pair reversion M15: rejected.
 - D023 London ORB M15 broad: rejected; USDJPY anomaly discovery-only.
-- D025/D026 broad exploitation: rejected/quarantined as documented.
+- D025/D026 broad exploitation: rejected/quarantined.
 - D027 NR7 broad: rejected.
 - D028 session momentum: rejected.
 - D031 FX Piercing/Dark Cloud D1 broad: not validated.
 
-Do not recycle these as supposedly new strategy ideas without genuinely new evidence.
-
 # D032 — Crypto H1 Bullish Doji Star
 Research basis: Moser & Brauneis (2026), IREF 108, 105158, DOI `10.1016/j.iref.2026.105158`.
 
-Frozen underlying signal:
-- Bullish Doji Star H1, TA-Lib-default numerical definition reimplemented;
-- strict 144-hour SMA downtrend;
-- original executable LONG at first ASK after signal;
-- source normalization `1R = 2 * sample stdev(previous 24 H1 returns)`;
-- source reference horizon = original signal +24h.
+Frozen underlying signal: Bullish Doji Star H1; strict 144h SMA downtrend; executable LONG first ASK after signal; `1R=2*sample stdev(previous 24 H1 returns)`; source horizon original signal +24h.
 
 ## D032-C1 confirmation — PASS
 Canonical result: `research/results/D032_C1_DOJI_STAR_H1_CORE_CONFIRMATION_VERDICT_2026_09_05.md`
 Commit: `c0ef788f5e16cdb6a402cef9a0e29fa05e7691f2`
 
-Core BTC+ETH+DOG PRE2024:
-- clean n=79;
-- mean executable +24h = +133.52 bps/event;
-- median +93.43 bps;
-- win rate 64.56%;
-- mean +0.588R/event;
-- same-trend control ~+32.13 bps;
-- Doji-control differential ~+101.38 bps;
-- month-block bootstrap lower bound >0;
-- preregistered entry gate passed 7/7.
+PRE2024 core BTC+ETH+DOG clean n=79; mean +133.52bps; median +93.43bps; win 64.56%; mean +0.588R; same-trend control ~+32.13bps; bootstrap lower >0; primary gate 7/7 PASS.
 
-Interpretation: **ENTRY EDGE CONFIRMED ON PRE-2024 BAR CONFIRMATION / BUILD MANAGEMENT**, not production-ready. Historical real ticks were unavailable; old intervals use M1 + `1 minute OHLC`.
+Interpretation: ENTRY EDGE CONFIRMED ON PRE2024 BAR CONFIRMATION / BUILD MANAGEMENT, not production-ready. LINK/XRP transports failed; ADA exploratory negative.
 
-Transport LINK/XRP failed; ADA exploratory also negative. Doji is market-dependent, core remains BTC/ETH/DOG.
+## D032 management / entry attempts
+- -1R/+3R/24h management failed confirmation (~+0.118R, bootstrap lower <0).
+- Post24 1R runner added ~+0.0045R -> reject.
+- 1.5R post24 trail looked better but remains unvalidated.
+- RSI(14) M15 continuous diagnostic: no useful monotonic relationship.
+- RSI<30 POST2024 failed sample-size/concentration and did not improve MAE. Result commit `635ebddb73237cd4451fc99aaf7e669e000ab45a`.
+- 6h reclaim-high delayed entry worsened both paired return and MAE. Result commit `50887f08479b0be9733d3a1de15369a87a3d67f0`.
 
-## D032 management / entry-location attempts
-- Source-derived -1R/+3R/24h management failed confirmation (~+0.118R pooled, bootstrap lower <0).
-- D032-M1 post24 1R runner added essentially nothing (~+0.0045R incremental) -> reject.
-- Diagnostic 1.5R post24 trail looked better (~+0.109R) but is unvalidated.
-- Immediate-entry winners often travel deeply adverse; a very wide catastrophe stop destroys much of stop-normalized expectancy.
-- D032-E1 RSI(14) M15 diagnostic showed no monotonic relationship.
-- D032-E2 RSI<30 POST2024 failed sample-size/concentration gates and did not improve MAE. Result commit `635ebddb73237cd4451fc99aaf7e669e000ab45a`.
-- D032-E3 6h reclaim-high delayed entry failed the central mechanism: pooled paired delta about -0.391R and median MAE worsened from about -1.02R to -1.36R. Result commit `50887f08479b0be9733d3a1de15369a87a3d67f0`.
+Keep D032 as a sparse directional sleeve candidate; management/entry localization remains unresolved. Do not keep mining RSI/reclaim thresholds on the same data.
 
-Conclusion: underlying Doji directional information remains real enough to retain as a sparse sleeve candidate, but entry/risk management is unresolved. Do not deploy yet and do not keep mining RSI/reclaim thresholds on the same data.
-
-# D030 — Alanazi FX H4 Bullish/Bearish Engulfing — PREPARED
+# D030 — Alanazi H4 full-wick Engulfing
 Primary source: Ahmed S. Alanazi (2020), *The European Journal of Finance* 26(15), 1484–1505, DOI `10.1080/1351847X.2020.1748679`.
 
-Preregistration: `research/campaigns/D030_FX_ENGULFING_H4_ALANAZI_CLOSE_REPLICATION_PREREGISTRATION_2026_09_05.md`
+Scanner: `D030_FX_Engulfing_H4_Alanazi_CloseReplication_v1_01.mq5`
+SHA-256: `e7748717273afcd4d4477bee5de97ae9ab590c30953ebc546ad71a3f0a7ebb6e`
 Preregistration commit: `93fd6808ca10d8303078b9f559bd88de0d7c7a0c`
-Prepared handoff: `handoff/chatgpt_to_codex/2026/09/05/D030_FX_ENGULFING_H4_ALANAZI_PREPARED.md`
-Prepared handoff commit: `9c106e2e2b17a386933bcf3fe6b2a1da6102913c`
 
-The full article methodology was recovered before user testing. Important source facts:
-- pattern is a **full-candle/wick engulf**, not merely body engulf;
-- bullish Eq.5: CC bullish, PC bearish, CC high > PC high, CC low < PC low, CC close > PC open;
-- bearish Eq.6 is the mirror;
-- no trend filter: the paper deliberately treats every occurrence as a reversal;
-- next H4 candle open entry: ASK long / BID short;
-- stop = exactly 5 pips beyond CC low/high;
-- target = exactly 1:1;
-- spread and rollover were material in the source;
-- paper H4 OOS sample 2015–2018 had 3,047 major-pair trades; seven-major portfolio positive in aggregate.
+Frozen source-like rules: H4 full-wick engulfing, no trend filter, next-H4 executable entry, stop 5 pips beyond engulfing candle extreme, TP 1:1, spread embedded, Guardian OFF. Historical swap not included in first-pass summary.
 
-Classification remains `CLOSE_REPLICATION_CFD_TRANSFER` because our target is FundedNext CFD, historical real ticks are absent on old intervals, H4 midpoint quote bars are reconstructed from tester BID/ASK ticks, and exact historical rollover is not reconstructed in the first pass.
+## D030 primary seven-major FX result — REJECT
+Canonical result: `research/results/D030_ALANAZI_H4_TARGET_CFD_FIRST_VERDICT_2026_09_05.md`
+Result commit: `8eadf40481b9609120b17e8c4bd582c93267e67e`
+Frozen signal cutoff <=2026-08-31.
 
-Delivered scanner:
-- `D030_FX_Engulfing_H4_Alanazi_CloseReplication_v1_01.mq5`
-- SHA-256 `e7748717273afcd4d4477bee5de97ae9ab590c30953ebc546ad71a3f0a7ebb6e`
-- virtual only / no orders / Guardian OFF
-- M1 tester + `1 minute OHLC`, internally constructs H4 BID/ASK quote bars and source-like midpoint OHLC.
+Seven-major pooled:
+- n=2,136 completed trades
+- mean executable R = -0.0348/trade
+- fixed-size total = -2,797.3 pips, -1.31 pips/trade
+- only USDJPY (+0.0237R) and USDCHF (+0.0593R) positive
+- month-block bootstrap 95% approx [-0.0823,+0.0162]
 
-An internal draft v1.00 was discarded before delivery after the full paper was recovered; do not use it. v1.01 implements the recovered 5-pip / 1:1 / full-wick source rule.
+Broad FX core fails decisively. Do not rescue same sample with trend/RSI/RR/direction tuning.
 
-Static QA v1.01:
-- braces/parentheses/brackets balanced;
-- no risky local struct reference aliases;
-- EVENTS header/row = 39 data columns;
-- SUMMARY header/row = 20;
-- immediate header flush + runtime FileSize header QA.
+## User-added D030 transports
+These are ADAPTATION / transport diagnostics and do not rescue the FX replication.
 
-ChatGPT has NOT MetaEditor-compiled the scanner.
+- ETHUSD: strongest discovery anomaly. Frozen-window n=225, mean +0.1605R, win 57.33%; LONG +0.1243R, SHORT +0.1991R; yearly means 2024 +0.3260, 2025 +0.0670, 2026 +0.1271; month-block bootstrap 95% approx [+0.0370,+0.2819]. No-gap sensitivity remains positive. This is discovery only because symbol was examined outside the frozen primary FX core.
+- BTCUSD: n=218, +0.0524R; bootstrap crosses zero -> do not promote.
+- XAUUSD: n=288, +0.0372R overall -> fail. LONG-only +0.1708R versus SHORT -0.0946R is a post-hoc watchlist clue only.
+- DOGUSD -0.0859R; LNKUSD -0.0214R; XRPUSD -0.0129R -> no promotion.
+- EURJPY +0.0621R; USDCNH -0.0527R -> no promotion.
 
-## D030 frozen target-CFD gate
-Primary seven majors: EURUSD, GBPUSD, USDJPY, USDCHF, USDCAD, AUDUSD, NZDUSD.
-Frozen signal window: 2024-01-01 through 2026-08-31 23:59; tester may run later to resolve late signals.
+### ETH cost caveat
+D030 embeds spread but not historical swap. Discovery run reports current ETH swap mode points, long=-385, short=-385, triple-rollover day=5. Mean holding ~24.95h, median ~9.86h, ~28% >=24h. A rough current-spec rollover stress materially reduces the apparent +0.1605R edge, so ETH is not production-ready even if the signal is interesting.
 
-Advance only if pooled core satisfies:
-1. >=300 resolved clean trades;
-2. mean executable risk-normalized result > +0.15R/trade after embedded spread;
+## D030-C1 ETH transport confirmation — PREREGISTERED
+Preregistration: `research/campaigns/D030_C1_ETHUSD_H4_ENGULFING_TRANSPORT_CONFIRMATION_PREREGISTRATION_2026_09_05.md`
+Commit: `495ceda0ab53857ce768cf391c49489a067017dc`
+
+Untouched window: 2019-01-01 through 2023-12-31. Exact D030 v1.01 signal/stop/target rules; no tuning. ETH only.
+
+Frozen primary gate:
+1. >=250 completed eligible trades;
+2. mean executable R >+0.15R/trade;
 3. month-block bootstrap 95% lower bound >0;
-4. >=4/7 majors positive mean executable R;
-5. fixed-size pip result after spread >0;
-6. no one pair >40% of positive pooled executable R.
+4. LONG and SHORT mean R both >0;
+5. 2019-2021 and 2022-2023 means both >0;
+6. no single event >10% of total positive R.
 
-If fixed-size pips look source-like but risk-normalized R fails, classify it academically interesting but reject it as a Guardian/prop-challenge engine in this form. No same-sample trend/RSI/stop/target rescue.
+A PASS remains pre-swap only and must undergo a separately frozen rollover stress before production consideration.
 
 ## Immediate execution order
-1. Compile `D030_FX_Engulfing_H4_Alanazi_CloseReplication_v1_01.mq5` in MetaEditor.
-2. Run the seven majors on M1 / `1 minute OHLC`, tester start 2024-01-01 and end at least 2026-09-05, no input changes.
-3. Return `EVENTS.csv`, `SUMMARY.csv`, `RUN_INFO.csv` from each run. Analyze event rows using the frozen signal cutoff <= 2026-08-31.
-4. Decide D030 strictly from preregistered pooled gates; pair anomalies are discovery only.
-5. Keep D032 as a sparse confirmed-entry research sleeve, but do not spend the whole project forcing its management.
-6. Continue an independent higher-frequency engine search in parallel if D030 is too weak or too slow.
-7. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
+1. For D030-C1, run existing v1.01 scanner on ETHUSD, M1 / `1 minute OHLC`, tester covering 2019-01-01 through at least 2024-01-02; no input changes. Eligibility by signal timestamp <=2023-12-31.
+2. Return ETH `EVENTS.csv`, `SUMMARY.csv`, `RUN_INFO.csv`; decide strictly from preregistered C1 gate.
+3. Do not pursue broad D030 FX V0 further.
+4. XAU LONG-only remains a clue, not validation; do not optimize on the seen 2024-2026 sample.
+5. Continue independent higher-frequency strategy research because both D032 and D030-ETH are too sparse/uncertain to be the sole challenge engine.
+6. Pure Guardian Core v12.01 compile/smoke remains independently required before live replacement.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
