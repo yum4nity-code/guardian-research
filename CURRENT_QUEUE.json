@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-05T07:14:00+01:00",
+  "updated_at": "2026-09-05T07:25:00+01:00",
   "active_primary": "D023-LONDON-ORB-M15-V0",
   "items": [
     {
@@ -17,7 +17,7 @@
       "status": "VALIDATED",
       "owner": "ChatGPT",
       "type": "critical_runtime_safety_fix",
-      "goal": "v11.16.2 CAPREF remains the current research/production baseline. User confirmed coherent runtime on FTMO Demo 100k after the 10k-reference/>90k-daily-margin bug was fixed. Candidate SHA256 7194e569eeb170358566228431b82c52bfeec5069b3fa10043345f5fb8c1c4c3."
+      "goal": "v11.16.2 CAPREF remains the current research/production baseline. User confirmed coherent runtime on FTMO Demo 100k after the 10k-reference/>90k-daily-margin bug was fixed."
     },
     {
       "id": "FUNDEDNEXT-FREE-TRIAL-EA-OPTION-AWARE-FIX",
@@ -25,7 +25,7 @@
       "status": "READY",
       "owner": "Codex",
       "type": "focused_runtime_compliance_fix",
-      "goal": "Fix FundedNext Free Trial handling so an account with the officially activated EA option is authorized while unconfirmed/non-EA Free Trials remain blocked. Current v11.16.2 blanket Free Trial deny plus PropFirmGuard ea_allowed baseline can block manual Guardian/SL management. Consume handoff FUNDEDNEXT_FREE_TRIAL_EA_OPTION_AWARE_FIX.md; inspect local profiles.json/rules.json/account mapping, make the minimum option-aware fix, preserve FTMO/other firms, compile once and perform one focused runtime smoke test. If source changes, create a new production candidate version instead of mutating v11.16.2 provenance."
+      "goal": "Keep as a focused runtime/compliance fix. Do not mix with strategy research or mutate validated research semantics."
     },
     {
       "id": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
@@ -33,16 +33,106 @@
       "status": "VALIDATED",
       "owner": "Codex",
       "type": "research_infrastructure",
-      "goal": "Shared Bybit+Binance collection, venue-separated market state and MT5 FILE_COMMON bridge have passed live runtime gates. Preserve as read-only research infrastructure; do not turn it into a BUY/SELL score without event-study evidence."
+      "goal": "Shared Bybit+Binance collection, venue-separated market state and MT5 FILE_COMMON bridge have passed live runtime gates. Preserve as read-only research infrastructure and continue timestamped archive accumulation."
     },
     {
       "id": "D025-LIQUIDITY-EXHAUSTION-RECLAIM",
-      "priority": 5,
+      "priority": 8,
       "status": "BLOCKED",
       "owner": "ChatGPT/Codex",
       "type": "scientific_hypothesis",
-      "goal": "Research a mid-term Liquidity Exhaustion Reclaim sleeve using external-intelligence variables only after enough timestamped live archive exists for leakage-safe event studies.",
-      "blocking": "Current external archive is too young for long-history validation. Continue accumulation; no live D025 orders and no retrospective threshold fitting."
+      "goal": "Future crypto event study using external-intelligence variables only after enough timestamped live archive exists for leakage-safe validation.",
+      "blocking": "Archive is currently too young for long-history validation. No retrospective threshold fitting."
+    },
+    {
+      "id": "D023-LONDON-ORB-M15-V0",
+      "priority": 1,
+      "status": "READY",
+      "owner": "Codex",
+      "type": "scientific_hypothesis",
+      "goal": "PRIMARY NEXT RESEARCH TEST. Execute the preregistered London ORB M15 V0 exactly once on EURUSD/GBPUSD/USDJPY/XAUUSD. Engine SHA256 3788e8963b1c3a3c4213e29cf6fa212e29437e10d3c900c9e34261f637946b27. No tuning, no OOS."
+    },
+    {
+      "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
+      "priority": 2,
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
+      "type": "scientific_hypothesis",
+      "goal": "SECOND evidence-based family. Use only corrected d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45). Execute AUDUSD/NZDUSD and EURUSD/GBPUSD once if all four symbols/data are accessible; no tuning/OOS.",
+      "blocking": "If AUDUSD or NZDUSD is unavailable on the current broker, defer rather than substitute pairs post-hoc."
+    },
+    {
+      "id": "D027-NR7-CONTRACTION-BREAKOUT-V0",
+      "priority": 3,
+      "status": "READY",
+      "owner": "ChatGPT/Codex",
+      "type": "scientific_hypothesis",
+      "goal": "THIRD evidence-based family. Run frozen NR7 prior-day contraction breakout on EURUSD/GBPUSD/USDJPY/XAUUSD using research/campaigns/D027_NR7_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_05.md and research/analysis/analyze_d027_d028_price_action_v1.py. No filters or parameter search."
+    },
+    {
+      "id": "D028-INTRADAY-SESSION-MOMENTUM-V0",
+      "priority": 4,
+      "status": "READY",
+      "owner": "ChatGPT/Codex",
+      "type": "scientific_hypothesis",
+      "goal": "FOURTH evidence-based family. Test frozen London 08:00-08:30 direction -> 16:30-17:00 same-direction return on EURUSD/GBPUSD/USDJPY/XAUUSD using the shared D027/D028 engine. Include costs and 1.5x stress; no threshold search."
+    },
+    {
+      "id": "D029-CLASSIC-TSMOM-BENCHMARK-V0",
+      "priority": 5,
+      "status": "READY",
+      "owner": "ChatGPT/Codex",
+      "type": "scientific_benchmark",
+      "goal": "FIFTH optional benchmark. Test literature-style 252-day time-series momentum separately from D017. Strong external evidence but lower challenge frequency, so do after the four primary intraday/relative-value tests."
+    },
+    {
+      "id": "DECISION-D021-HYPOTHESIS",
+      "priority": 6,
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
+      "type": "scientific_decision",
+      "goal": "Keep D021 MICRO-REV available but behind the stronger externally grounded slate. Existing engine must not be rewritten or tuned."
+    },
+    {
+      "id": "AUTONOMY-RECOVERY-001",
+      "priority": 7,
+      "status": "RUNNING_MIMO",
+      "owner": "Codex",
+      "type": "infrastructure_reconciliation",
+      "goal": "MiMo continues independently; harvest/checkpoint healthy work and never duplicate-restart it."
+    },
+    {
+      "id": "D024-MULTI-STRATEGY-POSITION-CAP-STUDY",
+      "priority": 9,
+      "status": "BLOCKED",
+      "owner": "ChatGPT/Codex",
+      "type": "portfolio_policy_preregistration",
+      "goal": "Compare portfolio concurrency policies only after at least two independently validated strategies exist.",
+      "blocking": "No validated strategy pair yet."
+    },
+    {
+      "id": "D017-V11-16-GENERALIZATION-PREOOS",
+      "priority": 10,
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
+      "type": "legacy_campaign",
+      "goal": "Defer. Broad D017 Momentum has now failed the 2024-2025 large-edge standard across the available major markets."
+    },
+    {
+      "id": "D017-V11-16-PROVENANCE-AUDIT",
+      "priority": 10,
+      "status": "CANDIDATE",
+      "owner": "Codex",
+      "type": "semantic_provenance_audit",
+      "goal": "Historical/deferred unless a concrete discrepancy blocks a higher-priority experiment."
+    },
+    {
+      "id": "D017-V11-16-EXACT-FEED-CONTROL",
+      "priority": 10,
+      "status": "READY",
+      "owner": "Codex",
+      "type": "technical_non_regression_control",
+      "goal": "Optional/deferred unless a feed discrepancy blocks a higher-priority result."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -51,75 +141,8 @@
       "owner": "Codex",
       "type": "legacy_production_line",
       "goal": "Resolved and superseded; do not patch, test or redeploy v11.15."
-    },
-    {
-      "id": "D017-V11-16-PROVENANCE-AUDIT",
-      "priority": 10,
-      "status": "CANDIDATE",
-      "owner": "Codex",
-      "type": "semantic_provenance_audit",
-      "goal": "Historical context only. DEFER while Codex quota is scarce; do not spend the remaining allowance on another broad provenance pass."
-    },
-    {
-      "id": "D017-V11-16-GENERALIZATION-PREOOS",
-      "priority": 10,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "frozen_generalization_campaign",
-      "goal": "Legacy queued campaign. Do not prioritize over D023/D021/D022 after the 2024-2025 long-history Momentum campaign rejected broad BTC/ETH/XAU/EUR/GBP/JPY under the large-edge standard.",
-      "blocking": "Historical continuity only unless a specific unresolved market becomes decision-critical."
-    },
-    {
-      "id": "D017-V11-16-EXACT-FEED-CONTROL",
-      "priority": 10,
-      "status": "READY",
-      "owner": "Codex",
-      "type": "technical_non_regression_control",
-      "goal": "Optional/deferred. Do not spend scarce current Codex quota on this unless a concrete feed discrepancy blocks a higher-priority result."
-    },
-    {
-      "id": "AUTONOMY-RECOVERY-001",
-      "priority": 4,
-      "status": "RUNNING_MIMO",
-      "owner": "Codex",
-      "type": "infrastructure_reconciliation",
-      "goal": "MiMo continues independently; only harvest/checkpoint healthy work, never duplicate-restart it."
-    },
-    {
-      "id": "DECISION-D021-HYPOTHESIS",
-      "priority": 2,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "scientific_decision",
-      "goal": "d021_micro_rev_eventstudy.py is installed under D:\\MT5_Backtests\\automation\\ (SHA256 62bb57dc54126190e68afdff2659e948ae87f9a8595228e9986449eec53821c8). Do not rewrite it. Create/reuse physically pre-OOS BTCUSD_BT/ETHUSD_BT tick inputs, execute once, persist outputs and apply the frozen verdict with no tuning/OOS. Run after D023 unless D023 data is unavailable."
-    },
-    {
-      "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
-      "priority": 3,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "scientific_hypothesis",
-      "goal": "Use only corrected d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45). Reuse/export physically pre-OOS AUDUSD/NZDUSD/EURUSD/GBPUSD M15 inputs and execute once; no rewrite, tuning or OOS.",
-      "blocking": "Never execute the old d022_pair_rev_eventstudy.py. Symbol availability may defer this behind D023/D021."
-    },
-    {
-      "id": "D023-LONDON-ORB-M15-V0",
-      "priority": 1,
-      "status": "READY",
-      "owner": "Codex",
-      "type": "scientific_hypothesis",
-      "goal": "PRIMARY NEXT RESEARCH TEST. Execute the already preregistered classic London ORB M15 V0 exactly once on EURUSD/GBPUSD/USDJPY/XAUUSD. Engine: d023_london_orb_m15_eventstudy.py, SHA256 3788e8963b1c3a3c4213e29cf6fa212e29437e10d3c900c9e34261f637946b27. Use physically pre-OOS M15 OHLC+spread data, no RSI/EMA/ATR/news/day filter, no tuning, no OOS. Apply frozen cheap-fail verdict exactly."
-    },
-    {
-      "id": "D024-MULTI-STRATEGY-POSITION-CAP-STUDY",
-      "priority": 9,
-      "status": "BLOCKED",
-      "owner": "ChatGPT/Codex",
-      "type": "portfolio_policy_preregistration",
-      "goal": "Compare MAX1/MAX2/MAX3/MAX4 concurrent positions per symbol versus RISK_ONLY using identical frozen strategy trades with account open-risk cap fixed at 1.00%. D024A diagnostic engine SHA256 92f12a9a22c4aa0a326dad9adb1b5c70465c4c03ec8022e3c17af9e5ddf88e84. Final D024B requires synchronized mark-to-market/floating-equity data.",
-      "blocking": "Do not execute until at least two independently validated strategies exist."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-05 research pivot: legacy RSI raw entry rejected across BTC/ETH/XAU/EUR; D017 broad Momentum rejected across BTC/ETH/XAU/EUR/GBP/JPY. Stop trying to rescue those raw entries by post-hoc tuning. Next execute already-preregistered documented families in order: D023 London ORB M15 first, D021 crypto micro-reversal second, D022 pair-reversion third if symbols/data are available. Shared Intelligence stays running/archiving for future leakage-safe crypto event studies."
+  "notes": "2026-09-05 evidence-first reset. Target four independent V0 strategy families today: D023 ORB, D022 pair reversion if symbols exist, D027 NR7 contraction breakout, D028 intraday session momentum. D029 classic TSMOM is optional benchmark. D021 is deprioritized, not deleted. No RSI/D017/D025/D026 rescue tuning. See research/results/STRATEGY_RESEARCH_SLATE_2026_09_05.md."
 }
