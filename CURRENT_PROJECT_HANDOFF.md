@@ -1,235 +1,173 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-04 20:53 Europe/Paris
-Status: ACTIVE / D026 FIRST DATA RECEIVED BUT V0 1.00 IMPLEMENTATION NON-CONFORMANT TO PRE-RESULT LOCK / V0 1.01 CONFORMANCE FIX COMMITTED / CORRECTED BTC+ETH RERUN NEEDED / D025 XAU-FOREX COMPLETE / D025 CRYPTO VOLUME DATA QUARANTINED / FUNDEDNEXT LIVE AUTO OFF PENDING REQUEST-BUDGET FIX
+Last updated: 2026-09-05 06:30 Europe/Paris
+Status: ACTIVE / D026 V0 REJECTED / D017 MOMENTUM LONG-HISTORY BROAD ENGINE FAILS LARGE-EDGE STANDARD / BTC SELL MOMENTUM WATCHLIST ONLY / RSI LEGACY LONG-HISTORY RUN IN PROGRESS / FUNDEDNEXT LIVE AUTO OFF PENDING REQUEST-BUDGET FIX
 
 This is the canonical fast-resume file. A fresh ChatGPT/Codex instance must read this first. Historical chronology/time ledger: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 
-## 0. USER DIRECTIVE / CONTINUITY
+## 0. USER DIRECTIVE / RESEARCH STANDARD
 
-The user explicitly authorized autonomous work and does NOT want interruptions for micro-decisions. Continue independently until a manual MT5 action is genuinely necessary. Do not ask the user to restate prior project context after conversation/model limits.
-
-Current research philosophy:
-- no curve fitting;
-- no post-hoc threshold changes disguised as fixes;
-- do not settle for crumbs;
-- prefer materially large recurring pre-cost edge (roughly >= +0.15R/trade, ideally +0.20R+) before production work;
-- costs/stress must later be applied;
-- manual MT5 Strategy Tester is the preferred execution path; do not ask the user to debug shell wrappers.
+- Continue autonomously when possible; interrupt only for genuinely necessary manual MT5 actions.
+- Manual MT5 Strategy Tester is preferred; do not ask the user to debug shell wrappers.
+- No curve fitting / no post-hoc threshold edits disguised as fixes.
+- User does not want crumbs: prefer recurring pre-cost edge around >= +0.15R/trade, ideally +0.20R+, before cost/stress work.
+- If an engine fails long-history validation, reject it rather than preserving it because of attractive short-window screenshots.
 
 ---
 
-# 1. D026 PRICE EXHAUSTION RECLAIM — CURRENT PRIMARY RESEARCH TRACK
+# 1. D026 PRICE EXHAUSTION RECLAIM — REJECTED
 
-D026 is a NEW strategy, not a retuned D025. Baseline is price/time/ATR only: no broker tick volume and no Binance/Bybit dependency.
+Rules were locked before results. Initial V0 1.00 had implementation conformance defects; standalone corrected 1.02 was run on BTC+ETH and produced the same first-touch population for those histories.
 
-## 1.1 Frozen V0 rules — LOCKED BEFORE ANY D026 RESULT
+Final corrected report:
+- `research/results/D026_V0_CORRECTED_FINAL_DIAGNOSTIC_2026_09_04.md`
+- commit `e664026b1cda9317ba632cff13613fec87d22683`
 
-File:
-- `research/campaigns/D026_PRICE_EXHAUSTION_RECLAIM_V0_RULES_LOCK_2026_09_04.md`
-- creation commit `1137ffbe669504b1aa6b518480b94598f98e3f0c`
+Corrected BTC+ETH combined:
+- +1R ~ +0.001R
+- +2R ~ -0.086R
+- +3R ~ -0.156R
+- predeclared 40%@1R + BE runner also negative/near-zero
 
-Core state machine:
-`IDLE -> WATCH -> SWEEP -> DISPLACEMENT -> EXHAUSTION -> RECLAIM -> RETEST/ACCEPTANCE -> VALID_SIGNAL`
-
-Frozen thresholds:
-- watch 0.50 x H1 ATR(14)
-- fresh sweep 0.10 x H1 ATR
-- structural stop buffer 0.10 x H1 ATR beyond worst sequence extreme
-- displacement M15 range >=1.25 x previous-20 mean range
-- directional body >=0.20 x H1 ATR
-- body/range efficiency >=0.55
-- bearish LONG-reclaim displacement closes in bottom 30%; bullish SHORT-reclaim in top 30%
-- displacement may be sweep bar or next 2 CLOSED M15 bars
-- exhaustion next 3 CLOSED M15: extra outward progress <=0.20 x displacement range AND current range <=0.80 x displacement range
-- reclaim next 4 CLOSED M15
-- RETEST relevant extreme within +/-0.15 H1 ATR around level and close on reclaimed side, or ACCEPTANCE = two consecutive reclaimed-side closes
-- validation next 4 CLOSED M15 after reclaim
-- cooldown 4h
-
-Explicit exclusions: tick/real volume, OI, funding, liquidations, RSI/EMA/MACD, session filters, symbol-specific thresholds, long/short asymmetry, post-hoc regime switches.
-
-## 1.2 Original diagnostic implementation V0 1.00
-
-File:
-- `research/ea/D026_PriceExhaustionReclaim_Virtual_V0_1_00.mq5`
-- commit `d4e55b0a61a152158a6de20e24b356eb3c0cdc23`
-
-User successfully compiled/ran it (proven by the produced CSVs). Pure virtual observer: no CTrade/orders/positions/balance/margin/lot/tick-volume dependency.
-
-Predeclared analyzer created before results:
-- `research/analysis/analyze_d026_per_v0.py`
-- commit `7495d3edc7d3ef6cd3c1b61c660299f72cd4760a`
-
-Analyzer scope only: integrity/counts, fixed +1R/+2R/+3R first-touch EV, year/side/path splits, Wilson-style uncertainty, and one 40%@+1R + 60% BE runner family to +2R/+3R. No threshold optimizer.
-
-## 1.3 FIRST USER DATA RECEIVED — FIVE MARKETS
-
-User supplied cumulative V0 1.00 files:
-- `d026_per_virtual_v0_events.csv`
-- `d026_per_virtual_v0_trades.csv`
-- `d026_per_virtual_v0_outcomes.csv`
-
-Sessions 2024-01-01 -> 2025-12-31:
-- BTCUSD 560 signals = 283 in 2024 + 277 in 2025
-- ETHUSD 618 = 332 + 286
-- DOGUSD 525 = 269 + 256
-- LNKUSD 562 = 264 + 298
-- XAUUSD 649 = 357 + 292
-- total 2,914 signals
-- events 66,241 rows
-- outcomes 14,555 rows
-
-Integrity is good:
-- zero `VALID_SIGNAL_REJECTED_BAD_RISK`
-- zero `VALID_SIGNAL_REJECTED_NO_SLOT`
-- valid-signal transition counts equal trade counts for every symbol
-- every trade has outcome rows
-- only a handful of final 48h snapshots are absent at the end-of-test boundary.
-
-Descriptive predeclared overall EV from V0 1.00 (PRE-COST, BUT NOT VALID FOR FINAL STRATEGY VERDICT BECAUSE OF IMPLEMENTATION DEFECT BELOW):
-- BTC: EV1 +0.011R, EV2 -0.117R, EV3 -0.176R
-- ETH: -0.009R, -0.058R, -0.138R
-- DOG: -0.004R, +0.077R, -0.040R
-- LNK: -0.037R, -0.042R, -0.048R
-- XAU: -0.007R, -0.009R, -0.101R
-
-40%@1R + BE runner is near-zero/negative overall: BTC -0.050/-0.098 to 2R/3R; ETH +0.008/-0.034; DOG +0.023/-0.041; LNK -0.012/-0.024; XAU -0.041/-0.109.
-
-Most side/path effects flip by year. One descriptive LNK SHORT +3R hint repeats positive in 2024 (~+0.115R) and 2025 (~+0.200R), pooled ~+0.164R, but DO NOT promote it because the population is contaminated by the implementation defect and it was discovered after viewing the sample.
-
-Full first-run report:
-- `research/results/D026_V0_FIRST_RUN_CONFORMANCE_FINDING_2026_09_04.md`
-- commit `aedad0ab87319c141414b4b38964d2e74d2b5a5b`
-
-## 1.4 CRITICAL IMPLEMENTATION CONFORMANCE DEFECT FOUND AFTER FIRST DATA
-
-The pre-result rules lock remains unchanged. A static re-read of V0 1.00 exposed implementation errors:
-
-A. State deadlines are off by one because the code evaluates the transition before checking `bars_in_state > N`:
-- DISPLACEMENT can occur on a third subsequent M15 bar instead of only next 2;
-- EXHAUSTION can occur on a fourth instead of next 3;
-- RECLAIM can occur on a fifth instead of next 4;
-- VALIDATION can occur on a fifth instead of next 4.
-
-B. RETEST proximity is too permissive:
-- old LONG test `low <= level + 0.15ATR` accepts arbitrarily deep lows;
-- old SHORT test `high >= level - 0.15ATR` accepts arbitrarily high highs;
-- frozen wording requires the relevant extreme itself within +/-0.15 ATR of level.
-
-Scientific consequence: V0 1.00 first-run data are a valid smoke/instrumentation dataset, but **NOT a valid final D026 strategy sample**. Do not issue a production/rejection verdict from it and do not retune thresholds from it.
-
-## 1.5 V0 1.01 CONFORMANCE FIX — COMMITTED, RULES UNCHANGED
-
-File:
-- `research/ea/D026_PriceExhaustionReclaim_Virtual_V0_1_01_CONFORMANCEFIX.mq5`
-- commit `d0c15e2f901a73f51d09cd08394b3371e625b5c8`
-
-Implementation-only wrapper. It includes V0 1.00 and replaces only:
-- exact 2/3/4/4 closed-M15 state windows;
-- RETEST as true +/-0.15 ATR relevant-extreme band;
-- corrected timer path calling the conformant state machine.
-
-No frozen threshold changed. Keep the wrapper in the same MetaEditor folder as V0 1.00 so the include resolves.
-
-### ONLY USER ACTION CURRENTLY NEEDED FOR D026
-
-Compile/run **V0 1.01 CONFORMANCEFIX**, not V0 1.00.
-
-First corrected pass only:
-1. BTCUSD, tester M1, 2024-01-01 -> 2025-12-31, Every tick, inputs `48 / 1 / true`.
-2. ETHUSD, same settings.
-
-Do NOT rerun DOG/LNK/XAU yet. The logger uses the same cumulative D026 CSV filenames, but sessions are unique; downstream analysis must isolate the NEW corrected BTC/ETH sessions from the five old V0 1.00 sessions.
-
-If corrected BTC/ETH remain broadly flat/negative, reject D026 V0 rather than tuning it. If a large recurring branch survives both years, then design the next clean prospective validation.
+Decision: **D026 V0 FAILS large-edge standard. Do not retune.**
 
 ---
 
-# 2. D025 XAU / FOREX EXPLOITATION — COMPLETE
+# 2. D017 MOMENTUM LONG-HISTORY VALIDATION — FIRST VERDICT COMPLETE
 
-Final report:
-- `research/results/D025_XAU_FOREX_FINAL_EXPLOITATION_2026_09_04.md`
-- commit `e4cc482df9a29fcf6acf10d5c3d4ebc30b2716ad`
+Motivation: short-window BTC Momentum-only baseline on 2026-09-02 was spectacular (+$7,353, PF 1.68, DD 1.80%, 115 trades). User requested a lightweight virtual observer over 2024-2025 to determine whether this was a durable signal edge or a favorable regime/Guardian-selection effect.
 
-Final decisions:
-- XAU broad D025: REJECT
-- USDJPY broad: REJECT
-- GBP broad: REJECT; GBP SHORT +1R only WATCHLIST (~+0.12R original pre-cost, weaker in newer population)
-- EUR broad: REJECT; EUR SHORT +2R PRIMARY WATCHLIST (~+0.14R pooled pre-cost, uncertainty/cost margin too weak)
-- 40%@1R + BE runner non-crypto: REJECT
+Rules lock:
+- `research/campaigns/D017_MOMENTUM_LONG_HISTORY_DIAGNOSTIC_LOCK_2026_09_04.md`
 
-No branch meets the user's required large-edge standard. Do not spend more time optimizing the same frozen D025 XAU/Forex population.
+Diagnostic EA:
+- `research/ea/D017_Momentum_VirtualDiagnostic_1_01_STATIC_CONFORMANCE.mq5`
+- pure virtual; no CTrade/orders/account/margin/tick-volume dependency
+- BTC/ETH signal core copied from D017 v11.16 production
+
+Full result report:
+- `research/results/D017_MOMENTUM_LONG_HISTORY_FIRST_VERDICT_2026_09_05.md`
+- commit `97d17b7f0a925571d66efd13f8d79f500a02f866`
+
+Received CSVs contain duplicate runs. Use one canonical session per symbol:
+- BTCUSD n=1,710 = 991 (2024) + 719 (2025)
+- ETHUSD n=1,144 = 727 (2024) + 417 (2025)
+- duplicate BTC sessions are content-identical; duplicate ETH sessions yield identical first-touch metrics (five late-2025 signal timestamps differ by seconds only)
+
+Broad fixed first-touch EV:
+- BTC: EV1 -0.015R / EV1.25 -0.001R / EV1.5 +0.013R / EV2 +0.029R / EV2.5 +0.063R / EV3 +0.074R
+- ETH: EV1 -0.008R / EV1.25 -0.006R / EV1.5 +0.004R / EV2 -0.018R / EV2.5 -0.033R / EV3 -0.031R
+- BTC+ETH combined: EV1 -0.012R / EV2 +0.011R / EV2.5 +0.025R / EV3 +0.032R
+
+Year stability:
+- BTC 2024 improves toward larger targets (EV3 +0.118R) but 2025 collapses to near zero (EV3 +0.014R)
+- ETH 2024 near flat/slightly positive; 2025 clearly negative (EV3 -0.167R)
+
+Predeclared BUY/SELL split:
+- **BTC SELL is the only recurring clue**
+  - 2024 n=359: EV2 +0.111R / EV2.5 +0.150R / EV3 +0.170R
+  - 2025 n=402: EV2 +0.053R / EV2.5 +0.114R / EV3 +0.085R
+  - pooled n=761: EV2 +0.080R / EV2.5 +0.131R / EV3 +0.125R
+  - Wilson-style pooled EV interval: +2.5R about +0.018..+0.251R; +3R about +0.002..+0.258R
+- BTC BUY not attractive; 2025 clearly negative
+- ETH has no recurring useful side branch
+
+Predeclared BE diagnostics:
+- BTC overall BE@1.25 -> 3R ~ +0.054R
+- ETH overall BE@1.25 -> 3R ~ -0.043R
+- BTC SELL pooled BE@1 -> 3R ~ +0.135R; BE@1.25 -> 3R ~ +0.123R
+- descriptive 25%@2R / BE1.25 / runner3 BTC SELL: ~+0.109R, almost identical year-by-year (~+0.112R 2024, +0.106R 2025)
+
+Decision:
+- **Broad D017 Momentum FAILS large-edge standard on BTC/ETH.**
+- Do NOT keep broad engine merely because short-window P/L was exceptional.
+- **BTC SELL Momentum remains WATCHLIST/HYPOTHESIS ONLY** because it repeats positive across both years, but pooled ~+0.13R is below user threshold and before full costs.
+- No threshold retuning. If ever followed up, use a prospectively locked BTC SELL-only or exact-native-manager test, not a threshold sweep.
 
 ---
 
-# 3. D025 CRYPTO DATA ISSUE — QUARANTINED
+# 3. RSI SNIPER LEGACY v11.16.11 LONG-HISTORY — RUNNING NOW
 
-D025 CASCADE uses M15 relative tick volume >=1.25 vs prior-20 mean.
+Purpose: validate the RSI lineage associated with the same spectacular 2026-09-02 BTC isolation baseline (RSI-only +$9,451, PF 1.19, 621 trades) over 2024-2025.
 
-Current 1.03 virtual populations: BTC 499, ETH 553, DOG 595, XAU 798, USDJPY 793. Original 1.01 BTC/ETH totals were 1,117 / 1,172.
+Rules lock:
+- `research/campaigns/RSI_SNIPER_11_16_11_LONG_HISTORY_DIAGNOSTIC_LOCK_2026_09_04.md`
 
-Mechanism proven: historical BTC/ETH tick-volume collapses toward ~1.0 in large blocks, mechanically disabling CASCADE. BTC Aug 2024 example: 117 sweeps, median relvol ~0.999, max 1.243, zero CASCADE, zero signals.
+Campaign protocol / audit:
+- `research/campaigns/D017_RSI_LONG_HISTORY_CAMPAIGN_PROTOCOL_2026_09_04.md`
+- `research/results/D017_RSI_LONG_HISTORY_STATIC_AUDIT_2026_09_04.md`
 
-One controlled BTC `Every tick based on real ticks` rerun was effectively identical to the prior `Every tick` data, so tester modelling mode is not the primary cause. Remaining issue is FundedNext/MT5 historical feed/tick-volume provenance/availability.
+Original diagnostic 1.01 had a file-output flaw: folders/files were only opened when logging an event and FileOpen failure was silent. User ran BTC+ETH but no RSI CSV files existed anywhere (confirmed by recursive PowerShell search).
 
-D025 crypto volume-dependent historical conclusions remain QUARANTINED. Do not lower 1.25 to compensate.
+Corrected user-facing build:
+- `RSI_Sniper_EntryPathDiagnostic_v11_16_11_1_02_FILEBOOTSTRAP.mq5`
+- creates `FILE_COMMON\GuardianResearch\RSILegacy111611\` and all 3 CSV headers immediately at OnInit
+- logs exact physical path / fails loudly if bootstrap cannot create files
+
+User has launched the corrected RSI runs. Wait for cumulative trio:
+- `rsi_111611_virtual_events.csv`
+- `rsi_111611_virtual_trades.csv`
+- `rsi_111611_virtual_outcomes.csv`
+
+First analysis must remain predeclared only:
+- integrity/counts
+- 2024 vs 2025
+- BUY1 vs BUY2
+- fixed +0.5/+1/+1.25/+1.5/+2/+2.5/+3R
+- BE@1 -> 2/3R
+- BE@1.25 -> 2/3R
+- RSI50/70 before structural stop
+- exclude same-M1 ambiguities
+- no threshold optimizer
+
+If legacy RSI survives strongly, next experiment is a separate current v11.17 diagnostic because live recross/cost-aware/SL semantics changed materially. Do not assume legacy survival validates current RSI.
 
 ---
 
-# 4. SHARED INTELLIGENCE
+# 4. D025 STATUS
 
-Binance + Bybit Shared Intelligence remains READ-ONLY and has no current trading effect. Keep collector running. Baseline D026 must not use it. Later Crypto+ event studies may join with strict `available_at <= event_time`.
+D025 XAU/Forex final exploitation is complete:
+- report `research/results/D025_XAU_FOREX_FINAL_EXPLOITATION_2026_09_04.md`
+- XAU broad reject; USDJPY broad reject
+- EURUSD SHORT -> +2R and GBPUSD SHORT -> +1R remain only prospective watchlist clues; neither meets large-edge standard
+
+D025 crypto volume-dependent historical results remain QUARANTINED because FundedNext historical M15 tick-volume provenance is inconsistent. Do not lower the frozen 1.25 relative-volume threshold to compensate.
 
 ---
 
-# 5. FUNDEDNEXT LIVE GUARDIAN REQUEST BUG — HIGH PRIORITY OPERATIONS ISSUE
+# 5. SHARED INTELLIGENCE
 
-FundedNext HUD observed ~5629/2000 vs FTMO ~32/2000.
+Binance + Bybit Shared Intelligence remains READ-ONLY and has no current trading effect. Keep collector running. Future Crypto+ studies must use strict `available_at <= event_time` joins.
+
+---
+
+# 6. FUNDEDNEXT LIVE GUARDIAN REQUEST BUG — HIGH PRIORITY OPERATIONS ISSUE
+
+FundedNext HUD observed ~5629/2000 requests vs FTMO ~32/2000.
 
 Exact live lineage source in Library:
-`Guardian_D017_PropFirmAuto_v11_17_04_MANUAL_PROTECTION_HOTFIX_PLAN80_RUNNER20.mq5`.
+`Guardian_D017_PropFirmAuto_v11_17_04_MANUAL_PROTECTION_HOTFIX_PLAN80_RUNNER20.mq5`
 
-Confirmed runaway-capable mechanism:
-- after RSI TP1, failed BE NET application leaves `g_rsi_be_push_done=false`;
-- `RSIManageCycleTick()` retries `RSI_BE_RETRY` while pending;
-- retry uses `SRP_PROTECTION`;
-- `SRP_PROTECTION` bypasses request hard limit by design.
+Known runaway-capable mechanism:
+- RSI TP1 completes but BE NET can fail
+- pending BE is retried every management tick
+- retry uses unlimited `SRP_PROTECTION`
+- request counter increments before send
 
-FundedNext Algo Trading stays OFF until bounded/deduplicated/backoff patch is built and validated. True emergency safety may retain priority; routine deferred BE must not behave as unlimited emergency traffic.
+FundedNext Algo Trading remains OFF until bounded/deduplicated/backoff fix is implemented and audited. Do not claim v11.17.07 exists yet.
 
-Potential v11.17.07 direction: initial protective attempt preserved; routine retries deduped/backed off (e.g. 5s -> 15s -> 60s -> 5m), retcode-aware, profit-protection priority where safety is not worsened; audit all `SRP_PROTECTION` retry loops.
+Manual SL behavior correction: Guardian makes ONE initial SL placement attempt; if it fails, user manually places SL. Do not claim auto-close.
 
-Do NOT claim patch is finished yet.
-
----
-
-# 6. FUNDEDNEXT QUICK STRIKE — CORRECTED REQUIREMENT
-
-Guardian does NOT auto-close a manual position simply because initial SL placement fails. Current behavior: one SL placement attempt; if it fails the user manually places SL.
-
-Quick Strike is separate: log Guardian-managed profitable <30s exits with entry time, elapsed seconds, venue, reason and P/L sign. Never leave an unsafe trade open merely to cross 30 seconds. GitHub issue #2 contains corrected requirement.
+Quick Strike remains separate: profitable Guardian-managed <30s exits must be logged/understood, but never weaken safety merely to exceed 30s.
 
 ---
 
-# 7. RESUME ORDER
+# 7. IMMEDIATE NEXT STEP
 
-1. `CURRENT_PROJECT_HANDOFF.md`
-2. `research/results/D026_V0_FIRST_RUN_CONFORMANCE_FINDING_2026_09_04.md`
-3. `research/campaigns/D026_PRICE_EXHAUSTION_RECLAIM_V0_RULES_LOCK_2026_09_04.md`
-4. `research/ea/D026_PriceExhaustionReclaim_Virtual_V0_1_01_CONFORMANCEFIX.mq5`
-5. original `research/ea/D026_PriceExhaustionReclaim_Virtual_V0_1_00.mq5`
-6. `research/analysis/analyze_d026_per_v0.py`
-7. first-run D026 cumulative CSVs (five old V0 1.00 sessions) and then isolate new corrected BTC/ETH sessions
-8. `research/results/D025_XAU_FOREX_FINAL_EXPLOITATION_2026_09_04.md`
-9. D025 1.03 volume-provenance report
-10. latest Guardian request-budget audit/current Guardian source
-11. `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`
-12. `docs/STRATEGY_DECISIONS.md`
-
-## Immediate dependency
-
-The next scientifically necessary user action is only the corrected D026 V0 1.01 BTC+ETH MT5 run. Do not ask for DOG/LNK/XAU reruns first.
+Wait for corrected RSI BTC+ETH cumulative CSV trio, analyze it immediately using the frozen protocol, then decide:
+- if RSI strong and recurring -> current-RSI follow-up;
+- if RSI weak -> reject legacy RSI and return to genuinely new strategy families;
+- compare final RSI result against D017 broad failure and BTC SELL-only watchlist clue.
 
 ## Continuity rule
 
