@@ -17,5 +17,27 @@ IDEA -> RESEARCH -> PROTOTYPE -> BACKTEST -> ROBUSTNESS -> STAT VALIDATION -> RE
 - Tester coûts réalistes et stressés, autres périodes, perturbations de paramètres et dépendance aux meilleurs jours/trades.
 - Une stratégie rejetée ne revient en recherche que sur nouvelle hypothèse explicitement documentée.
 
+## Fidélité à l'évidence externe — exigence obligatoire
+- Ne plus employer « stratégie prouvée » pour une simple famille documentée puis librement adaptée.
+- Avant de lancer une nouvelle campagne, classer explicitement la stratégie comme :
+  1. `EXACT_REPLICATION` : règles opérationnelles récupérées avec suffisamment de précision pour reproduire l'étude d'origine ;
+  2. `CLOSE_REPLICATION` : même mécanisme, classe d'actifs et horizon proches, avec divergences mineures documentées ;
+  3. `ADAPTATION` : transfert vers un autre marché, horizon, session, stop, sortie ou convention d'exécution.
+- Priorité désormais à `EXACT_REPLICATION`, puis `CLOSE_REPLICATION`. Une `ADAPTATION` reste testable, mais ne doit jamais être présentée comme une stratégie déjà démontrée sur nos marchés.
+- Avant chaque nouveau D0xx, documenter précisément : source primaire, univers de l'étude, période, timeframe/horizon, règle d'entrée, règle de sortie, stop éventuel, sizing/normalisation, coûts et toute convention manquante.
+- Si une règle essentielle de l'article manque (entrée, sortie, stop, session, filtre, sizing), ne pas l'inventer et ne pas coder la campagne comme réplication. Chercher la méthodologie exacte ou reclasser explicitement en `ADAPTATION`.
+- Préférer les études dont l'actif, le timeframe et le mécanisme sont aussi proches que possible de FTMO/FundedNext FX, métaux ou crypto réellement disponibles.
+- Une anomalie trouvée ex post sur un seul symbole, un seul sens ou une seule période n'est pas une validation. Elle peut uniquement générer une nouvelle hypothèse pré-enregistrée sur données intactes.
+
+## Diagnostics obligatoires des moteurs de recherche
+- Les diagnostics ne doivent pas se limiter au PnL final de la règle publiée. Ils doivent permettre de distinguer « mauvaise entrée » de « bonne entrée, mauvaise sortie ».
+- Pour toute stratégie possédant un stop initial naturel, chaque pseudo-trade doit exporter au minimum : `initial_risk`, `MFE_R`, `MAE_R`, `exit_R`, ainsi que les indicateurs de franchissement de `0.5R`, `1R`, `1.5R`, `2R`, `2.5R` et `3R` avant la sortie/stop.
+- Les synthèses doivent donner, par symbole, année, sens et agrégé, le pourcentage de trades ayant touché chacun de ces niveaux R.
+- Quand c'est techniquement possible, enregistrer aussi l'ordre des événements (ex. `touch_1R_before_stop`, `touch_2R_before_1R_retrace`) afin d'évaluer les sorties sans modifier rétroactivement l'entrée.
+- Pour une stratégie sans stop naturel, ne pas inventer un R artificiel. Exporter à la place `MFE`, `MAE`, excursion favorable/adverse normalisée (ATR, volatilité ou bps selon le protocole) et les extrema atteints pendant la fenêtre de détention.
+- Les CSV doivent conserver suffisamment d'information pour une analyse postérieure sans nécessiter un rerun uniquement pour calculer MFE/MAE ou les taux de franchissement R.
+- Les coûts réalistes et stressés restent séparés de la qualité brute de l'entrée : fournir brut, coûts, net et stress de coûts.
+- Les diagnostics de type London/NR7/ORB/TSMOM futurs doivent produire des CSV auditables dans `FILE_COMMON` et, si zéro trade ou problème de données, un diagnostic explicite plutôt qu'un fichier silencieusement vide.
+
 ## Données
 Les gros historiques, ticks, clones MT5 et sorties massives restent localement sous `D:\MT5_Backtests`. GitHub reçoit le code, les `.set`, les manifests, les synthèses CSV/JSON, les décisions et les handoffs nécessaires à l'audit.
