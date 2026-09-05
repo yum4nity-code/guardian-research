@@ -1,0 +1,33 @@
+--- D035_Binance_Deleveraging_LeadLag_v1_00.py
++++ D035_Binance_Deleveraging_LeadLag_v1_01.py
+@@ -1,6 +1,7 @@
+ #!/usr/bin/env python3
+ """
+ D035 — Binance BTC/ETH deleveraging shock -> FundedNext crypto CFD lead-lag.
++Analyzer v1.01: pandas datetime-resolution merge compatibility fix.
+ 
+ Research-only event study. No orders.
+ 
+@@ -307,8 +308,21 @@
+ 
+     m = metrics[["sum_open_interest"]].copy()
+     m.index.name = "ts"
+-    m = m.reset_index().sort_values("ts")
++    m = m.reset_index()
+     left = pd.DataFrame({"ts": x.index})
++
++    # pandas 2.x can preserve different datetime resolutions depending on the
++    # Binance archive path (for example datetime64[ms, UTC] for klines and
++    # datetime64[us, UTC] for metrics). merge_asof requires identical dtypes.
++    # Normalize BOTH join keys explicitly to nanoseconds before sorting/merge.
++    # This is a representation-only compatibility fix; timestamps and strategy
++    # logic are unchanged.
++    common_dtype = "datetime64[ns, UTC]"
++    left["ts"] = pd.to_datetime(left["ts"], utc=True, errors="raise").astype(common_dtype)
++    m["ts"] = pd.to_datetime(m["ts"], utc=True, errors="raise").astype(common_dtype)
++    left = left.sort_values("ts")
++    m = m.sort_values("ts")
++
+     snapped = pd.merge_asof(
+         left,
+         m,
