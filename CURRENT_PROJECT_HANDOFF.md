@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-05 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030 CLOSED REJECTED / D029 CLOSED REJECTED / D033 CORRECTED M2 CLOSED REJECTED / D034 GOLD-OIL ABNORMAL-RETURN MOMENTUM PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030 CLOSED REJECTED / D029 CLOSED REJECTED / D033 CLOSED REJECTED / D034 GOLD ARM CLOSED REJECTED, OIL UNTESTED-UNAVAILABLE / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
@@ -34,7 +34,8 @@ Status remains STATIC PASS only; MetaEditor compile/smoke required before live r
 - D031 FX Piercing/Dark Cloud D1 broad: not validated.
 - D030 Alanazi H4 Engulfing: seven-major FX rejected; ETH discovery failed untouched 2019-2023 confirmation. Canonical ETH result `research/results/D030_C1_ETHUSD_H4_ENGULFING_PRE2024_CONFIRMATION_VERDICT_2026_09_05.md`, commit `28ce836c22edc9c19309c9194e93e3f04e9863ea`.
 - D029 Moskowitz/Ooi/Pedersen TSMOM 12M/1M: full 8-market gate rejected. Canonical result `research/results/D029_TSMOM_12M1M_FULL_PRIMARY_VERDICT_2018_2023_2026_09_05.md`, commit `1613b46caa1be8ac9002778fcd58f4dd23f16fcc`.
-- D033 Ben Omrane & Van Oppens EURUSD M5 DT/DB M2: corrected v1.01 exact arm rejected 0/7 gates. Canonical result `research/results/D033_V1_01_CORRECTED_M2_VERDICT_2026_09_05.md`, commit `3579b31e95bf30053cbabbb6ba997510d715f7b9`.
+- D033 Ben Omrane & Van Oppens EURUSD M5 DT/DB M2: corrected v1.01 arm rejected 0/7 gates. Canonical result `research/results/D033_V1_01_CORRECTED_M2_VERDICT_2026_09_05.md`, commit `3579b31e95bf30053cbabbb6ba997510d715f7b9`.
+- D034 Caporale/Plastun abnormal-return Strategy 1 GOLD arm: rejected 3/7 gates. OIL could not be run because no WTI/USOIL/XTI symbol is available on the target account. Canonical GOLD result `research/results/D034_XAUUSD_ABNORMAL_RETURN_STRAT1_VERDICT_2026_09_05.md`, commit `f59d2a4cabb231c6ee50178df4e347646056dd22`.
 
 # D032 — Crypto H1 Bullish Doji Star
 Research basis: Moser & Brauneis (2026), DOI `10.1016/j.iref.2026.105158`.
@@ -47,55 +48,39 @@ Core BTC+ETH+DOG PRE2024: n=79, mean +133.52 bps, median +93.43 bps, win 64.56%,
 
 Not production-ready. Management/entry-localization attempts -1R/+3R/24h, post24 1R runner, RSI<30 and 6h reclaim-high did not solve the problem. Keep as sparse research sleeve only.
 
-# D033 — EURUSD M5 Double Top / Double Bottom, Ben Omrane & Van Oppens M2 — CLOSED REJECTED
-Primary source: Ben Omrane & Van Oppens (2006), *Empirical Economics* 30(4), 947–971, DOI `10.1007/s00181-005-0007-8`.
-
-Corrected v1.01 EURUSD 2024-2026 clean run: n=125, mean -0.817458R, median -1.415525R, mean executable -0.987138 bps, win 24%; DT and DB both negative; month-block bootstrap entirely negative; frozen gate 0/7 -> REJECT. Do not rescue with equality/session/RSI/TP-SL retuning.
-
-Canonical result: `research/results/D033_V1_01_CORRECTED_M2_VERDICT_2026_09_05.md`, commit `3579b31e95bf30053cbabbb6ba997510d715f7b9`.
-
-# D034 — Gold/Oil intraday abnormal-return momentum — PREPARED
+# D034 — Gold/Oil intraday abnormal-return momentum — GOLD CLOSED REJECTED / OIL UNTESTED
 Primary source: Caporale & Plastun (2021), *Financial Markets and Portfolio Management* 35, 353–368, DOI `10.1007/s11408-021-00380-w`.
 
-Preregistration: `research/campaigns/D034_GOLD_OIL_INTRADAY_ABNORMAL_RETURN_MOMENTUM_PREREGISTRATION_2026_09_05.md`
-Commit: `3e3166bf08f03bf958de573f98250f98697dc9d6`.
+Preregistration: `research/campaigns/D034_GOLD_OIL_INTRADAY_ABNORMAL_RETURN_MOMENTUM_PREREGISTRATION_2026_09_05.md`, commit `3e3166bf08f03bf958de573f98250f98697dc9d6`.
+Prepared scanner: `D034_GoldOil_AbnormalReturn_Momentum_FeatureLab_v1_00.mq5`, SHA-256 `842ca596a017229c27857030589c0f5b432e52313364f7f7a27c73890da138fe`.
+Classification: `ADAPTATION_CAUSAL_CFD_TRANSFER`.
 
-Prepared handoff: `handoff/chatgpt_to_codex/2026/09/05/D034_GOLD_OIL_ABNORMAL_RETURN_MOMENTUM_PREPARED.md`
-Commit: `cbcc562de4e33070407d11febaee19d2342a6cea`.
+Frozen rule: prior252 D1 mean +/-2sd abnormal threshold; GOLD positive timing >=17:00 and negative >=19:00 server clock; enter in anomaly direction; one trade/day; no SL/TP; exit last executable quote same server day; spread embedded; signal window 2024-01-01 through 2026-06-30.
 
-Delivered scanner:
-- `D034_GoldOil_AbnormalReturn_Momentum_FeatureLab_v1_00.mq5`
-- SHA-256 `842ca596a017229c27857030589c0f5b432e52313364f7f7a27c73890da138fe`
-- Guardian OFF / no orders / not MetaEditor-compiled by ChatGPT.
+Returned XAUUSD run:
+- all 83 events clean;
+- pooled mean executable **+1.8925 bps/event**;
+- median +8.4451 bps;
+- win 57.83%;
+- LONG n=37 mean +9.6399 bps, win 67.57%;
+- SHORT n=46 mean -4.3390 bps;
+- 2024 mean -1.4951 bps;
+- 2025 mean -4.1560 bps;
+- 2026 through June mean +13.9691 bps;
+- month-cluster bootstrap 95% approximately **[-7.95, +12.62] bps/event**;
+- largest positive-event concentration ~9.60%;
+- frozen GOLD gate **3/7 -> REJECT**.
 
-Classification is deliberately `ADAPTATION_CAUSAL_CFD_TRANSFER`, not exact replication. The article specifies dynamic abnormal-return thresholding with `k=2` and source timing parameters, but does not expose a sufficiently explicit causal live-trading lookback `n` for exact transfer. D034 freezes prior 252 completed D1 open-to-close returns before testing; no future data.
+Interpretation: weak positive pooled/median behavior exists, but economically too small, bootstrap crosses zero, shorts are negative, and year stability fails. LONG-only is also below the +15 bps gate and was not preregistered as a separate strategy. Do not rescue with timing, k, lookback, direction, RSI/SMA filters, or invented SL/TP on the same 2024-2026 sample.
 
-Frozen D034 rule:
-- XAU/GOLD and WTI/USOIL/XTI only;
-- upper abnormal threshold = prior252 mean + 2sd; lower = mean - 2sd;
-- current-day cumulative return uses current midpoint versus first midpoint quote of broker/server calendar day;
-- GOLD source timing applied to server clock: positive >=17:00, negative >=19:00;
-- OIL: positive >=16:00, negative >=19:00;
-- first threshold crossing after timing enters in anomaly direction;
-- max one trade/day;
-- no SL/TP/trailing;
-- close at last observed executable quote of same server calendar day;
-- spread embedded;
-- signal days 2024-01-01 through 2026-06-30.
+OIL is **untested**, not failed, because the target FundedNext account exposes no suitable WTI/USOIL/XTI symbol.
 
-Because source Strategy 1 has no natural stop, D034 does NOT invent R. Primary outcome is executable bps/percent. Passive diagnostics only: Z60/Z120/Z252, reconstructed RSI14 H1, ATR14 H1/D1, 1h/4h/8h/24h returns, prior-day return, current-day range, D1 SMA20/50/200 distances, MFE/MAE.
-
-Frozen per-market advancement gate: >=40 clean resolved events; mean executable >+15 bps/event; median >0; month-block bootstrap lower >0; both directions positive when n>=10 each; >=2 positive calendar years; no event >20% of positive pooled bps. No same-sample timing/k/lookback/RSI/stop rescue.
-
-Static QA before delivery: braces/parens/brackets balanced; EVENTS header/row 49/49; SUMMARY 12/12; immediate header flush + runtime FileSize QA.
+Canonical GOLD result: `research/results/D034_XAUUSD_ABNORMAL_RETURN_STRAT1_VERDICT_2026_09_05.md`, commit `f59d2a4cabb231c6ee50178df4e347646056dd22`.
 
 ## Immediate execution order
-1. Compile `D034_GoldOil_AbnormalReturn_Momentum_FeatureLab_v1_00.mq5`.
-2. Run XAUUSD (or GOLD symbol) and the available WTI/USOIL/XTI symbol separately.
-3. Tester M1 / `1 minute OHLC`; start about 2022-11-01 or earlier, end at least 2026-07-02; no input changes.
-4. Return EVENTS/SUMMARY/RUN_INFO from each market and decide strictly from the preregistered gate.
-5. If D034 fails, close it and move to another independent family rather than mining timing or feature thresholds.
-6. Keep D032 as sparse confirmed-entry sleeve, not sole challenge engine.
-7. Pure Guardian Core v12.01 compile/smoke remains independently required before live replacement.
+1. Do not spend more time rescuing D030/D029/D033/D034 on already-inspected samples.
+2. Keep D032 Doji as a sparse confirmed-entry sleeve, not sole challenge engine.
+3. Select the next independent, reasonably active documented family rather than another parameter variant of rejected breakout/momentum/reversal work.
+4. Pure Guardian Core v12.01 compile/smoke remains independently required before live replacement.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
