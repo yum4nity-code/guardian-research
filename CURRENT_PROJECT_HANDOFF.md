@@ -1,19 +1,19 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-05 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030 FX REJECTED / D030-C1 ETH TRANSPORT CONFIRMATION FAILED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030 FX+ETH CLOSED REJECTED / D029 TSMOM 12M1M FEATURE-LAB PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 
 ## Research standard
 - No curve fitting or post-hoc rescues disguised as validation.
-- Target materially large recurring edge, roughly >= +0.15R/trade and ideally +0.20R+, before production.
+- Target materially large recurring edge, roughly >= +0.15R/trade and ideally +0.20R+, before production when a natural stop/R exists.
+- When a source has no natural stop, do not invent R post-hoc; validate the source metric first, then freeze a separate risk-management study.
 - Guardian is execution/protection infrastructure, not alpha.
 - Setup-first: entry evidence -> management -> robustness/costs -> Guardian/prop-firm integration.
 - Preserve `EXACT_REPLICATION`, `CLOSE_REPLICATION`, `ADAPTATION` labels.
 - Ex-post symbol/direction anomalies are discovery only and require a new preregistered test.
-- With a source/natural risk, preserve R, MFE_R, MAE_R and first-touch ordering.
 - CFD transfer requires target-feed executable BID/ASK/cost handling.
 - Scanner QA after D032 v1.00: verify output-column counts/index bounds, immediate header flush and runtime output QA before delivery.
 
@@ -60,6 +60,7 @@ Core BTC+ETH+DOG PRE2024:
 - win rate 64.56%;
 - mean +0.588R/event;
 - same-trend control ~+32.13 bps;
+- Doji-control differential ~+101.38 bps;
 - month-block bootstrap lower bound >0;
 - preregistered entry gate passed 7/7.
 
@@ -76,55 +77,67 @@ Management/entry localization attempts:
 
 Conclusion: keep Doji as sparse research sleeve; do not deploy. Entry/risk management unresolved.
 
-# D030 — Alanazi H4 Bullish/Bearish Engulfing
+# D030 — Alanazi H4 Bullish/Bearish Engulfing — CLOSED REJECTED
 Primary source: Alanazi (2020), *European Journal of Finance* 26(15), 1484–1505, DOI `10.1080/1351847X.2020.1748679`.
 
-Recovered source rule:
-- full-wick engulf, not body-only;
-- no trend filter;
-- next H4 executable open entry;
-- stop exactly 5 pips beyond engulfing candle extreme;
-- target exactly 1:1;
-- spread embedded via BID/ASK in scanner;
-- historical swap not reconstructed.
+Recovered exact-form close-replication rule: full-wick engulf, no trend filter, next-H4 executable entry, stop 5 pips beyond engulfing-candle extreme, target 1:1.
 
-Scanner: `D030_FX_Engulfing_H4_Alanazi_CloseReplication_v1_01.mq5`
-Classification: `CLOSE_REPLICATION_CFD_TRANSFER`.
+Seven-major FX pooled test failed. User-added ETH 2024-2026 discovery looked positive but preregistered untouched 2019-2023 confirmation failed: n=321, mean +0.039619R, bootstrap crossed zero, LONG negative, early half negative. Cleaner no-gap subset ~+0.01268R. Do not rescue/tune same sample.
 
-## D030 seven-major FX test — REJECT
-Primary seven-major pooled result failed the project gate: about 2,136 trades, mean around -0.035R/trade, fixed-size pip result negative, only 2/7 pairs positive. Do not rescue with same-sample trend/RSI/RR tuning.
+Canonical ETH confirmation result:
+`research/results/D030_C1_ETHUSD_H4_ENGULFING_PRE2024_CONFIRMATION_VERDICT_2026_09_05.md`
+Commit `28ce836c22edc9c19309c9194e93e3f04e9863ea`.
 
-User-added diagnostics showed ETHUSD 2024-2026 at about +0.161R/trade with positive bootstrap lower bound, while BTC/XAU/DOG/LNK/XRP did not meet the primary edge standard. ETH therefore spawned a separately preregistered untouched PRE2024 confirmation.
+# D029 — Moskowitz/Ooi/Pedersen TSMOM 12M/1M + feature lab — PREPARED
+Primary source: Moskowitz, Ooi & Pedersen (2012), *Journal of Financial Economics* 104, 228–250, DOI `10.1016/j.jfineco.2011.11.003`.
 
-## D030-C1 ETHUSD PRE2024 transport confirmation — FAIL
-Preregistration: `research/campaigns/D030_C1_ETHUSD_H4_ENGULFING_TRANSPORT_CONFIRMATION_PREREGISTRATION_2026_09_05.md`
-Prereg commit: `495ceda0ab53857ce768cf391c49489a067017dc`
-Result: `research/results/D030_C1_ETHUSD_H4_ENGULFING_PRE2024_CONFIRMATION_VERDICT_2026_09_05.md`
-Result commit: `28ce836c22edc9c19309c9194e93e3f04e9863ea`
+Preregistration:
+`research/campaigns/D029_TSMOM_12M1M_FEATURELAB_PREREGISTRATION_2026_09_05.md`
+Commit `1572fa66121ebecb557459eaad7593fa8af5c46e`.
 
-PRE2024 ETH 2019-2023 unchanged-rule result:
-- completed n=321;
-- win rate 50.779%;
-- mean executable result **+0.039619R/trade**;
-- total scanner pip result -57,603;
-- LONG n=136 mean **-0.025722R**;
-- SHORT n=185 mean **+0.087654R**;
-- 2019-2021 mean **-0.002493R**;
-- 2022-2023 mean **+0.074753R**;
-- month-block bootstrap 95% interval approx **[-0.0845R, +0.1676R]**;
-- largest positive event only ~2.86% of total positive R.
+Prepared handoff:
+`handoff/chatgpt_to_codex/2026/09/05/D029_TSMOM_12M1M_FEATURELAB_PREPARED.md`
+Commit `d4c79d27b3d2ef39384d5a479f638800fd1ade9b`.
 
-Frozen gate: sample-size and concentration pass; +0.15R mean, bootstrap lower>0, both-directions-positive and both-halves-positive all fail. **2/6 gates pass => REJECT ETH transport confirmation.**
+Delivered scanner:
+- `D029_TSMOM_12M1M_FeatureLab_v1_00.mq5`
+- SHA-256 `9f8538606f22689acc55cb22dffd135e6f723aab0dd25ede5a89563644d1429a`
+- Guardian OFF / no orders.
 
-Data-quality diagnostic: 51/321 events had post-entry feed-gap flags. No-gap subset n=270 mean only ~+0.01268R, so cleaner data do not rescue the result. Historical swap stress is unnecessary because the pre-swap confirmation already fails.
+Frozen source-like rule:
+- monthly signal;
+- sign of own prior 12 completed calendar-month CFD return;
+- LONG positive / SHORT negative;
+- hold one calendar month;
+- first executable quote entry/exit;
+- spread embedded;
+- EWMA ex-ante daily volatility with `delta=60/61`, annualization 261;
+- source-like multiplier `0.40/exante_vol`;
+- historical swap/commission not reconstructed in first pass.
 
-Decision lock: do not tune ETH trend, direction, RR, candle size, sessions or stop distance on the same PRE2024 confirmation data.
+Frozen development signal window: **2018-01-01 through 2023-12-31**. 2024-2026 is reserved for validation if development is interesting.
+
+Primary recommended source-like CFD universe:
+EURUSD, GBPUSD, USDJPY, USDCHF, USDCAD, AUDUSD, NZDUSD, XAUUSD.
+Crypto BTCUSD/ETHUSD/DOGUSD are secondary adaptation diagnostics only.
+
+Feature lab fields are logged but NEVER filter signals in D029: RSI14 D1/H4, ATR14 D1/H4, 5/20/60/120/252d returns, RV20/RV60, SMA20/50/200 distances, z20, 252d range position, previous-month range, MFE/MAE.
+
+Static QA before delivery:
+- 729 lines;
+- braces/parens/brackets balanced;
+- EVENTS header/row = 40 data columns;
+- SUMMARY header/row = 15;
+- direct FileWrite headers + immediate flush + runtime FileSize QA;
+- MetaEditor compilation NOT claimed by ChatGPT.
 
 ## Immediate execution order
-1. D030/ETH confirmation is closed and rejected in exact form.
-2. Keep D032 Doji as confirmed-entry research sleeve but do not force more same-family threshold mining.
-3. Move to the next independent documented candidate rather than rescuing D030.
-4. Prefer a candidate with enough event frequency for prop-challenge use.
-5. Pure Guardian Core v12.01 compile/smoke remains independently required before live replacement.
+1. Compile `D029_TSMOM_12M1M_FeatureLab_v1_00.mq5`.
+2. First batch: EURUSD, GBPUSD, USDJPY, USDCHF, USDCAD, AUDUSD, NZDUSD, XAUUSD. BTCUSD/ETHUSD/DOGUSD optional secondary diagnostics.
+3. Tester: M1 / `1 minute OHLC`; start preferably 2017-01-01 or earliest available history to warm up the 12m signal/EWMA; run through at least 2024-01-02. Signal eligibility is hard-locked to 2018-2023.
+4. Return `EVENTS.csv`, `SUMMARY.csv`, `RUN_INFO.csv` for each symbol.
+5. Evaluate source-like transfer first. Do not mine RSI/SMA/ATR thresholds on 2018-2023; feature relationships can only spawn a separately frozen 2024-2026 validation.
+6. Keep D032 Doji as sparse confirmed-entry sleeve but do not force more same-family threshold mining.
+7. Pure Guardian Core v12.01 compile/smoke remains independently required before live replacement.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
