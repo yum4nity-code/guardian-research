@@ -1,145 +1,152 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-05 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 CANDIDATE PREPARED / SETUP-FIRST RESEARCH PHASE / D022+D023+D027+D028 V0 REJECTED / D031 FX BROAD NON-VALIDATED / D032 CRYPTO FIRST CFD SCAN COMPLETE WITH DOJI STAR DISCOVERY CANDIDATE / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI STAR CORE ENTRY CONFIRMED / D032 MANAGEMENT NOT YET SOLVED / D032-E1 RSI DIAGNOSTIC COMPLETE / D032-E2 RSI<30 POST2024 VALIDATION PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Read this first. Historical chronology/time ledger: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
 Canonical research rules: `docs/RESEARCH_PROTOCOL.md`.
 
 ## Research standard
 - No curve fitting or post-hoc threshold edits disguised as fixes.
-- User wants materially large recurring pre-cost edge, roughly >= +0.15R/trade and ideally +0.20R+, before production work.
-- Guardian is protection/execution infrastructure, not assumed alpha.
-- Prefer documented strategy families/setups, frozen V0 definitions, multi-period/multi-market validation and cheap-fail before production integration.
-- Distinguish `EXACT_REPLICATION`, `CLOSE_REPLICATION` and `ADAPTATION`. A documented family transferred to another market/timeframe/session is not to be called « proven » on our universe.
-- Priority to exact/close replications whose asset class, horizon and operational rules are recoverable from primary literature. If entry/exit/stop/session/sizing rules are missing, do not invent them and still call the result a replication.
-- Ex-post symbol/direction anomalies are discovery only; they can spawn a fresh preregistered confirmation experiment on untouched data, never retroactive validation.
-- Diagnostics must preserve entry quality information. With a natural/source-defined initial risk, export `initial_risk`, `MFE_R`, `MAE_R`, and touches of 0.5R/1R/1.5R/2R/2.5R/3R. Without a natural stop, export MFE/MAE and normalized excursion instead of inventing R.
-- Future CSVs must contain enough path information that MFE/MAE and R-touch frequencies can be analyzed later without rerunning merely to recover these diagnostics. Zero-trade/data failures must be explicit, not silent empty CSVs.
-- Setup-first workflow: cheap scanner first (Guardian OFF) to test whether an entry/setup contains information; management design only after entry evidence; Guardian/FTMO full-chassis backtest only after standalone edge is strong enough to justify the expensive run.
-- CFD transfer rule: spot/futures/exchange evidence is hypothesis evidence only. No edge is considered transferred until reproduced on the target CFD feed with executable bid/ask/cost handling.
-- Control requirement: where feasible, setup scans should include a matched/comparable non-setup baseline so a pretty MFE curve is not confused with ordinary market drift/trend.
-- Output contract: one Strategy Tester run = one recognizable subfolder under `FILE_COMMON\GuardianResearch\SETUP_SCANS\<EXPERIMENT>\<SYMBOL>\<RUN_TAG>\` with events, summary and run-info files.
-- New implementation QA rule after D032 v1.00 failure: before delivery, verify output-column count/index bounds and ensure CSV headers are physically written/flushed; do not rely only on brace/parenthesis structural checks.
-- New first-touch rule: summary R-touch rates must distinguish `ever touched within window` from `target touched before -1R`. Production/research decisions use first-touch ordering when a stop exists.
+- Target a materially large recurring edge, roughly >= +0.15R/trade and ideally +0.20R+, before production.
+- Guardian is execution/protection infrastructure, not alpha.
+- Setup-first: establish entry information first, then management, then Guardian/prop-firm integration.
+- Preserve exact/close/adaptation labels.
+- Ex-post anomalies may spawn fresh preregistered tests but are not retroactive validation.
+- With a natural/source risk, export R, MFE_R, MAE_R and first-touch ordering.
+- CFD transfer requires reproduction on target CFD feed with executable bid/ask and costs.
+- Future scanner QA after D032 v1.00 bug: header/data column counts, array bounds, immediate header flush, runtime output QA; structural brace checks alone are insufficient.
 
-## Pure Guardian Core v12.01 candidate
-User decision: Guardian becomes a strategy-neutral Lego chassis. RSI and Momentum are physically removed even though RSI had inherited manual-management duties; manual management will be redesigned separately.
+## Pure Guardian Core v12.01
+Guardian is now a strategy-neutral Lego chassis. RSI and Momentum strategy logic are physically removed from the candidate.
 
-Static report: `research/results/GUARDIAN_CORE_V12_01_STATIC_AUDIT_2026_09_05.md`.
-Codex handoff: `handoff/chatgpt_to_codex/2026/09/05/GUARDIAN_CORE_V12_01_CANDIDATE_PREPARED.md`.
+Candidate: `Guardian_Core_Base_v12_01_CANDIDATE.mq5`
+SHA-256: `6a74d4187e04a02f9924c48ef34a1f0eb946da0f64d66a4839701154d6ad1176`
+Strategy socket: `GuardianCore/Guardian_StrategyRegistry_v1.mqh`
+Template: `GuardianCore/Guardian_StrategyModule_TEMPLATE_v1.mqh`
 
-Candidate:
-- `Guardian_Core_Base_v12_01_CANDIDATE.mq5`
-- SHA-256 `6a74d4187e04a02f9924c48ef34a1f0eb946da0f64d66a4839701154d6ad1176`
-- `GuardianCore/Guardian_StrategyRegistry_v1.mqh` — empty strategy socket
-- `GuardianCore/Guardian_StrategyModule_TEMPLATE_v1.mqh` — module template
+Status remains STATIC PASS only. MetaEditor compile/smoke gates are still required before replacing the older live lineage. FundedNext Algo Trading remains OFF.
 
-Important: candidate is **STATIC PASS only**. MetaEditor compilation and MT5 smokes are not claimed yet; do not replace live Guardian before those gates.
+## Frozen/rejected research
+- RSI legacy v11.16.11 raw entry edge: rejected.
+- D017 Momentum broad: rejected.
+- D022 pair reversion M15: rejected.
+- D023 London ORB M15 broad: rejected; USDJPY anomaly discovery-only.
+- D025/D026 broad exploitation: rejected/quarantined as previously documented.
+- D027 NR7 broad: rejected.
+- D028 session momentum: rejected.
+- D031 FX Piercing/Dark Cloud D1 broad: not validated.
 
-Core keeps only generic services: prop-firm/profile/runtime rules, Prague/server day boundaries, drawdown/risk, costs, request budget, news/rollover/weekend/emergency protection, neutral manual initial-SL safety, optional market-feature bus, Shared Intelligence reader, generic strategy intent/execution API.
+Do not recycle these as supposedly new strategy ideas without new evidence.
 
-Manual semantic lock: Magic-0 position without SL => at most ONE initial broker SL placement attempt. Failure => alert/log + user sets SL. Never auto-close solely because this placement failed. No RSI TP/BE/trailing/runner logic remains.
-
-Strategy modules must submit entries through `GuardianSubmitIntent()` and may only modify/partially close positions carrying their own Guardian-generated magic. No strategy module should call `CTrade` directly.
-
-## Rejected / frozen old strategy evidence
-### RSI legacy v11.16.11
-Raw entry edge rejected across BTC, ETH, XAU and EUR. No RSI threshold tuning.
-
-### D017 Momentum
-Broad BTC/ETH and available XAU/EUR/GBP/USDJPY populations fail the large-edge standard. Weak clues remain watchlist-only.
-
-### D025 / D026
-D026 corrected V0 rejected. D025 broad XAU/Forex exploitation rejected; crypto volume-dependent branch remains quarantined because historical FundedNext tick-volume provenance is inconsistent.
-
-## 2026-09-05 evidence-based batch verdicts
-### D023 London ORB M15 — REJECT_V0
-Official four-market EURUSD/GBPUSD/USDJPY/XAUUSD pool essentially flat before costs. USDJPY remains a discovery anomaly/watchlist clue only.
-
-### D022 Relative-Value Pair Reversion M15 — REJECT_V0
-AUDUSD/NZDUSD and EURUSD/GBPUSD aggregate negative, PF ~0.93 and only ~22.5% zero-return exits versus >=60% gate. Positive subsets failed stability/concentration/direction requirements.
-
-### D027 NR7 Contraction Breakout — REJECT broad V0
-Broad multi-market edge did not pass. AUDUSD SHORT NR7 and USDCAD LONG NR7 are discovery clues only.
-
-### D028 Intraday Session Momentum — REJECT_V0
-Official four-market V0 failed and ten-market extension was worse. GBPUSD SHORT remains discovery-only.
-
-Important interpretation: these failures do NOT show that the cited academic families are fake. Most D022/D023/D027/D028 implementations were adaptations or falsification transfers rather than exact replications.
-
-## Setup-first research phase
-The user has already tested very many classic breakout/pullback/momentum/sweep ideas. The project should not keep presenting familiar family names as novelty. The objective is to extract more information from entry setups by measuring path/excursion before designing exits.
-
-### D031 FX Piercing Line / Dark Cloud Cover D1 — BROAD NOT VALIDATED
-Scanner used source-based stop/R and exported MFE/MAE plus 0.5R..3R touches. Broad FX result did not establish a production-level universal edge and showed strong period dependence. Some symbol-level clues (notably EURUSD/USDCAD in the first scan) are discovery-only and cannot be retroactively selected as validation. The main success of D031 is methodological: the excursion scanner reveals entry behavior that old final-PnL-only tests could hide.
-
-### D032 Crypto H1 Reversal Trio — FIRST CFD SCAN COMPLETE
-Preregistration: `research/campaigns/D032_CRYPTO_H1_REVERSAL_TRIO_PREREGISTRATION_2026_09_05.md`.
-First verdict: `research/results/D032_CRYPTO_H1_REVERSAL_TRIO_FIRST_CFD_VERDICT_2026_09_05.md`.
-
+# D032 — Crypto H1 Bullish Doji Star
 Research basis: Moser & Brauneis (2026), IREF 108, 105158, DOI 10.1016/j.iref.2026.105158.
 
-Frozen first CFD campaign:
-- BTC CFD
-- ETH CFD
-- DOGE CFD
+Frozen entry:
+- Bullish Doji Star H1, TA-Lib-default numerical definition reimplemented;
+- strict 144-hour SMA downtrend, `MA[t-6] > ... > MA[t]`;
+- executable LONG at first ASK after signal;
+- source risk normalization `1R = 2 * sample stdev(previous 24 H1 returns)`;
+- source/primary reference horizon = +24h.
 
-Additional user-supplied LNK/XRP runs are transport diagnostics only and do not alter the frozen-core verdict.
+## D032 discovery 2024-2026
+Core BTC/ETH/DOG discovery showed a strong Doji candidate. Inverted Hammer and Hanging Man were buried.
 
-Selected patterns, TA-Lib default definitions:
-- Bullish Doji Star
-- Bullish Inverted Hammer
-- Bearish Hanging Man
+Discovery clean core Doji n=77, mean executable +24h about +111.6 bps, mean about +0.726R. This was discovery only and led to preregistered C1 confirmation.
 
-Source horizons preserved: 1/2/3/6/9/12/15/18/24h.
-Source-defined diagnostic risk: `1R = 2 * sigma(previous 24 H1 returns)`.
-Trend interpretation frozen before results: 144-hour SMA (six days of H1 observations), strict monotonic `MA[t-6]..MA[t]`.
+## D032-C1 pre-2024 core confirmation — PASS
+Canonical result: `research/results/D032_C1_DOJI_STAR_H1_CORE_CONFIRMATION_VERDICT_2026_09_05.md`
+Commit: `c0ef788f5e16cdb6a402cef9a0e29fa05e7691f2`
 
-#### D032 implementation note
-`v1.00` had an output-only header-index bug (`headers[58]`/`headers[59]` on a 58-element array) causing immediate runtime failure and BOM-only CSVs. `v1.01` fixed only that output defect; research/signal logic remained unchanged. The failed v1.00 batch contains no evidence.
+Historical real ticks were unavailable, so pre-2024 runs used M1 + `1 minute OHLC`. This is acceptable as supporting confirmation of the +24h endpoint, but not authoritative for exact intraminute first-touch management.
 
-The v1.01 event rows are usable, but its built-in `SUMMARY.csv` has two interpretation/accounting limitations:
-1. 24h return sums omit missing horizons but the divisor still includes all completed events, so recompute means from event rows with valid horizons.
-2. Built-in hit rates mean `ever touched within 24h`; they can include a target reached after a prior -1R breach. First-touch probabilities must be reconstructed from event timestamps.
-No rerun is required for the completed v1.01 batch because event-level rows preserve the needed data.
+Core BTC+ETH+DOG:
+- clean n=79;
+- mean executable +24h = +133.52 bps/event;
+- median = +93.43 bps;
+- win rate = 64.56%;
+- mean source-risk-normalized +24h = +0.588R/event;
+- same-trend control mean ~+32.13 bps;
+- Doji-control differential ~+101.38 bps;
+- month-block bootstrap lower bound remained >0;
+- preregistered primary gate passed 7/7.
 
-#### D032 frozen-core corrected result
-For clean rows (`feed_gap=0`, `missing_horizons=0`, valid 24h executable result), 380 / 508 frozen-core pattern events remain.
+Interpretation: ENTRY EDGE CONFIRMED ON PRE-2024 BAR CONFIRMATION / BUILD MANAGEMENT. Not yet a production strategy.
 
-**Bullish Doji Star = strong discovery candidate, not yet validated.**
-- clean n = 77 (BTC 32 / ETH 30 / DOG 15)
-- executable 24h mean = +111.6 bps; median = +79.7 bps; win rate = 61.0%
-- source-close 24h mean = +127.6 bps
-- executable 24h mean expressed in source-defined risk = +0.726R/event
-- BTC mean +50.7 bps; ETH +159.4; DOG +145.8
-- pooled yearly executable mean: 2024 +92.0 bps, 2025 +132.7, 2026 pre-OOS +72.9
-- broad same-trend control differential at 24h about +138.7 bps/event
-- response curve strengthens toward the source 24h horizon rather than depending on one isolated hour
-- correct target-before-stop rates: 0.5R 64.9%, 1R 48.1%, 1.5R 35.1%, 2R 32.5%, 2.5R 27.3%, 3R 23.4%
-- seen-sample 3R stop/target/24h-timeout diagnostic expectancy ~+0.318R/event, but 3R selection is post-hoc discovery only and cannot be called validated
-- month-block bootstrap 24h executable mean lower bound remains positive (~+24.7 bps), while the 3R-management bootstrap lower bound is slightly negative (~-0.014R)
+## D032 transport
+- LINK/LNK pre-2024 transport: FAIL, mean ~-118.7 bps, -0.690R.
+- XRP pre-2024 transport: FAIL, mean ~-200.1 bps, -0.535R.
+- ADA was unregistered exploratory diagnostic and also negative.
 
-**Bullish Inverted Hammer = no broad recurring edge.** Clean core n=74; weak 24h mean, negative median, negative mean in R, severe 2024->2025/2026 sign deterioration. Do not rescue/tune.
+Conclusion: Doji is not a universal crypto effect. Core remains BTC/ETH/DOG.
 
-**Bearish Hanging Man = weak/inconsistent.** Clean core n=229; small raw 24h mean, negative mean in R, ETH negative, fixed-target first-touch diagnostics not attractive. Do not promote.
+## Management work
+The originally frozen `-1R / +3R / 24h` management failed confirmation: pooled core ~+0.118R and bootstrap lower bound <0. Do not adopt it.
 
-Approximately one quarter of frozen-core pattern events intersect CFD feed gaps/missing exact horizons. Treat this as meaningful CFD-transfer evidence, not a nuisance to silently interpolate away.
+D032-M1 tested a post-24h runner concept on PRE2024:
+- +24h negative/flat => close;
+- +24h positive => BE floor + 1R trail to +48h.
 
-Decision: promote Doji Star Bullish to a **new preregistered confirmation / management-design experiment**. Do not choose the observed best TP/horizon and validate it on the same 2024-2026 sample.
+Primary 1R runner added essentially nothing pooled (~+0.0045R incremental) and is rejected.
 
-## Shared Intelligence / external data
-Binance+Bybit multi-venue collection and MT5 bridge passed runtime plumbing gates. Predictive edge is NOT yet proven. Any historical use must enforce `available_at <= event_time`.
+A 1.5R post-24h trail was only a diagnostic and looked better PRE2024 (~+0.109R incremental pooled), but is not validated.
 
-## Current live Guardian / FundedNext
-The currently deployed/live lineage is still older than pure v12.01 and contains the known server-request hyperactivity mechanism tied to failed RSI BE retries. FundedNext Algo Trading remains OFF until a safe compiled/live-approved replacement exists. Do not claim v12.01 fixes production until compile/smoke gates pass.
+Pre24 path diagnostics showed that many future winners travel deeply negative before the +24h payoff. A -1R stop was clearly too tight. A -3.5R catastrophe-stop clue looked less destructive, but this is not yet validated and, when risk is normalized to such a wide stop, the apparent edge becomes much less spectacular.
+
+Key interpretation: the Doji has confirmed directional information, but the exact immediate entry price may be poor. Management/entry-location remains unresolved.
+
+# D032-E1 — RSI(14) M15 diagnostic PRE2024
+Result: `research/results/D032_E1_RSI14_M15_DIAGNOSTIC_PRE2024_2026_09_05.md`
+Commit: `6a312ff1bc9232c8b029282301211c3d858f0145`
+
+Purpose: record RSI(14) M15 without filtering, to see whether oversold context explains entry quality.
+
+Primary clean core remains n=79. There is no monotonic continuous RSI relationship: RSI correlations versus +24h R/bps, MAE and MFE are near zero.
+
+However the standard oversold subset RSI<30, which was discussed before opening the E1 results, is interesting:
+- core n=10/79;
+- mean +24h ~+448 bps;
+- median ~+180 bps;
+- mean ~+2.02R;
+- win rate 70%.
+
+This is highly outlier-sensitive: removing the largest event drops mean to ~+0.50R; removing the top two leaves roughly flat/negative in R.
+
+Critically, RSI<30 does NOT clearly solve entry excursion. Future winners with RSI<30 did not have a clearly better MAE than other winners. Treat RSI<30 as a possible high-conviction subset, not as proof of a tighter stop.
+
+Exploratory fresh-M15 RSI<30 means were positive on all five supplied CFDs (BTC/ETH/DOG/LNK/XRP), but counts were tiny and LNK/XRP remain non-core.
+
+Frequency warning: PRE2024 core RSI<30 retained only ~13% of clean Doji events. Even if validated it is too sparse to be the sole challenge engine.
+
+# D032-E2 — frozen RSI<30 POST2024 conditional validation
+Preregistration: `research/campaigns/D032_E2_RSI14_M15_LT30_POST2024_VALIDATION_PREREGISTRATION_2026_09_05.md`
+Commit: `19d32093cd804005852f7d6df4633d5001a45a2f`
+Handoff: `handoff/chatgpt_to_codex/2026/09/05/D032_E2_RSI14_M15_LT30_POST2024_PREPARED.md`
+
+Frozen before POST2024 RSI values are inspected:
+- window 2024-01-01 through 2026-06-25 23:00;
+- RSI(14) M15 PRICE_CLOSE;
+- last fully closed M15 candle;
+- primary freshness requires M15 bar open exactly signal_end - 15 min;
+- primary condition RSI <30.0000 exactly;
+- every Doji is still recorded, with freshness/pass flags;
+- no alternate 20/25/35/40 threshold may replace <30 after results are opened;
+- primary core BTC/ETH/DOG;
+- secondary frozen transport LNK/LINK and XRP;
+- endpoint +24h, MFE/MAE retained;
+- no orders / Guardian OFF.
+
+Delivered scanner: `D032_E2_DojiStar_RSI14M15_LT30_POST2024_v1_00.mq5`
+SHA-256: `e5ed150c209369202b2561a09e444f7abe7fdf6e9706eff8d363c160761cb768`
+Not MetaEditor-compiled by ChatGPT.
 
 ## Immediate execution order
-1. Freeze a new Doji-Star confirmation experiment before inspecting any new confirmation outcomes. Preserve the original 24h source horizon as the primary confirmation target; any 3R/management rule is secondary discovery and must be separately frozen.
-2. Use untouched/future data if available. Do not reuse the seen 2024-2026 core sample as confirmation evidence.
-3. Correct future scanner summaries so valid-horizon denominators and target-before-stop ordering are native, not reconstructed offline.
-4. If Doji Star confirmation survives on BTC/ETH/DOGE CFD with costs, design a standalone management experiment; only then proceed to expensive Guardian/FTMO drawdown/non-regression testing.
-5. D033 commodities setup scan remains next independent setup family after the Doji confirmation is frozen.
-6. Pure Guardian Core v12.01 compile/smoke work remains independently required before live replacement.
+1. Compile D032-E2 scanner.
+2. Run M1 + `1 minute OHLC` over a tester interval covering at least 2024-01-01 through 2026-06-27 on BTCUSD, ETHUSD, DOGUSD; LNKUSD and XRPUSD are recommended secondary transport runs.
+3. Return RSI_EVENTS.csv, SUMMARY.csv and RUN_INFO.csv for each run. Do not change the frozen RSI threshold.
+4. Decide E2 strictly from preregistered core criteria. Do not tune neighboring RSI levels on POST2024.
+5. In parallel, continue the independent higher-frequency strategy search; D032/RSI is too sparse to be the only prop-challenge engine.
+6. D033 commodity setup work remains the next independent family unless replaced by a better documented high-frequency candidate.
+7. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
