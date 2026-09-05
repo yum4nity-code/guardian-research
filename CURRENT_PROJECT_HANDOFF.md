@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-05 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030 FX+ETH CLOSED REJECTED / D029 TSMOM CLOSED REJECTED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030 FX+ETH CLOSED REJECTED / D029 TSMOM CLOSED REJECTED / D033 EURUSD M5 DOUBLE TOP-BOTTOM M2 PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
@@ -62,40 +62,52 @@ Canonical ETH confirmation result: `research/results/D030_C1_ETHUSD_H4_ENGULFING
 # D029 — Moskowitz/Ooi/Pedersen TSMOM 12M/1M — CLOSED REJECTED
 Primary source: Moskowitz, Ooi & Pedersen (2012), *Journal of Financial Economics* 104, 228–250, DOI `10.1016/j.jfineco.2011.11.003`.
 
-Preregistration: `research/campaigns/D029_TSMOM_12M1M_FEATURELAB_PREREGISTRATION_2026_09_05.md`, commit `1572fa66121ebecb557459eaad7593fa8af5c46e`.
-Scanner: `D029_TSMOM_12M1M_FeatureLab_v1_00.mq5`, SHA-256 `9f8538606f22689acc55cb22dffd135e6f723aab0dd25ede5a89563644d1429a`.
-
-Frozen source-like rule: monthly sign of prior 12 completed calendar-month CFD return; LONG positive / SHORT negative; hold one month; executable entry/exit; spread embedded; EWMA ex-ante volatility `delta=60/61`, annualization 261; source-like multiplier `0.40/exante_vol`; historical swap/commission not reconstructed.
-
-Frozen 2018-2023 primary universe: EURUSD, GBPUSD, USDJPY, USDCHF, USDCAD, AUDUSD, NZDUSD, XAUUSD. XAU history supplied only from 2021 in this scanner.
-
 Canonical full result: `research/results/D029_TSMOM_12M1M_FULL_PRIMARY_VERDICT_2018_2023_2026_09_05.md`
 Result commit: `1613b46caa1be8ac9002778fcd58f4dd23f16fcc`
 
-Full primary pool:
-- n=540 resolved monthly events;
-- pooled mean executable directional return **-6.93 bps/event**;
-- pooled mean source-scaled return **+0.0075%/month/event**, essentially flat;
-- month-block bootstrap 95% interval roughly **[-1.7%, +1.75%]** monthly, lower bound far below zero;
-- 5/8 markets positive source-scaled mean;
-- 2018-2020 pooled mean +0.315%, 2021-2023 pooled mean **-0.262%**;
-- no positive-market concentration breach.
+Full primary pool: n=540, pooled mean executable -6.93 bps/event, pooled mean source-scaled +0.0075%/month/event, month-block bootstrap roughly [-1.7%, +1.75%], 2021-2023 pooled mean negative. Frozen gate 4/7 -> **REJECT**. No same-sample RSI/ATR/SMA/lookback rescue.
 
-New missing-market runs:
-- USDCAD n=72, mean executable -16.57 bps, source-scaled -0.643%/month;
-- XAUUSD n=36 (2021-2023 only), mean executable -94.58 bps, source-scaled -2.341%/month.
+# D033 — EURUSD M5 Double Top / Double Bottom, source M2 — PREPARED
+Primary source: Ben Omrane & Van Oppens (2006), *Empirical Economics* 30(4), 947–971, DOI `10.1007/s00181-005-0007-8`.
 
-Frozen gate: 4/7 pass, 3/7 fail -> **REJECT**. Fails executable mean >0, bootstrap lower >0, and both temporal halves positive. Do not tune 12M/1M with RSI/ATR/SMA/lookback/holding filters on the same 2018-2023 sample.
+Preregistration: `research/campaigns/D033_EURUSD_M5_DOUBLE_TOP_BOTTOM_M2_FEATURELAB_PREREGISTRATION_2026_09_05.md`
+Preregistration commit: `1980970f343aa9d9536fea058b9dbab09b1337a1`
+Prepared handoff: `handoff/chatgpt_to_codex/2026/09/05/D033_EURUSD_M5_DOUBLE_TOP_BOTTOM_M2_PREPARED.md`
+Prepared handoff commit: `71ac4f7374f84e2cbb532586e39a4cf004e8f55e`
 
-Crypto secondary adaptations from D029 remain discovery-only: BTC and ETH looked better than FX but their block-bootstrap lower bounds crossed zero; DOG was negative. Any crypto continuation requires separately preregistered 2024-2026 validation and is unlikely to solve challenge-frequency needs because the strategy is monthly.
+Delivered scanner:
+- `D033_EURUSD_M5_DoubleTopBottom_M2_FeatureLab_v1_00.mq5`
+- SHA-256 `4ad46396f14a71e2b1f30f63bd089cdf9d4a043568d80a068fb99199fc4d647c`
+- Guardian OFF / no orders / not MetaEditor-compiled by ChatGPT.
 
-Feature-lab warning: D1 diagnostics were mostly usable; on several older-feed segments H4 RSI/ATR fields were contaminated/duplicated with D1. H4 diagnostics never affected TSMOM signals. Future feature labs should reconstruct higher-timeframe bars internally or add explicit timeframe QA.
+Frozen primary arm:
+- EURUSD only;
+- five-minute midpoint bars reconstructed internally from tester BID/ASK;
+- 36-observation rolling window;
+- source M2 extrema method: high curve maxima, low curve minima;
+- Gaussian Nadaraya-Watson smoothing with Silverman bandwidth x0.20;
+- projected extrema +/-1 observation and alternating sequence;
+- source DT/DB quantitative definitions, exact equal-extrema equation with one MT5 point numerical tolerance only;
+- source final journal pre-trend condition >=2/3*h;
+- DT SHORT / DB LONG at pattern completion;
+- source TP 0.50h, SL 0.20h, timeout `tf+(tf-td)`;
+- executable BID/ASK spread embedded.
+
+Development signal window: 2024-01-01 through 2026-06-30 23:59. Pre-2024 remains reserved for confirmation.
+
+Passive feature lab only: internally computed RSI14 M5/M15/H1, ATR14 M5, 15m/1h/4h/24h returns, SMA20/50/200 distances, RV/ranges, time-of-day, pattern geometry, MFE/MAE. Features never filter v1.00.
+
+Frozen advancement gate on clean M2 DT+DB EURUSD: >=250 resolved; mean >+0.15R; median R >0; month-block bootstrap lower >0; DT and DB both positive; >=2 of 2024/2025/2026 positive; no single event >10% of positive pooled R.
+
+Static QA before delivery: braces/parens/brackets balanced; EVENTS header/row 61/61 columns; SUMMARY 14 columns; immediate header flush + runtime FileSize QA. If event count is unexpectedly near zero, audit implementation/data precision first; do not silently widen source equality tolerance after results.
 
 ## Immediate execution order
-1. D029 and D030 are closed; do not spend more same-sample cycles rescuing them.
-2. Keep D032 Doji as a sparse confirmed-entry research sleeve, but management remains unresolved and it cannot be the sole challenge engine.
-3. Resume the independent documented-strategy pipeline with priority on materially higher-frequency candidates and enough expected trade count for prop challenges.
-4. Any new scanner should continue logging useful context features without letting them silently become post-hoc filters.
-5. Pure Guardian Core v12.01 compile/smoke remains independently required before live replacement.
+1. Compile `D033_EURUSD_M5_DoubleTopBottom_M2_FeatureLab_v1_00.mq5`.
+2. Run **EURUSD only** first: M1 / `1 minute OHLC`, tester start around 2023-12-15, end at least 2026-07-03; no input changes.
+3. Return `EVENTS.csv`, `SUMMARY.csv`, `RUN_INFO.csv`.
+4. Decide D033 strictly against the frozen M2 gate. Do not mine the passive feature fields on 2024-2026.
+5. If D033 passes, freeze exact rule and confirm on untouched pre-2024 history before any Guardian integration.
+6. Keep D032 Doji as sparse confirmed-entry sleeve, not sole challenge engine.
+7. Pure Guardian Core v12.01 compile/smoke remains independently required before live replacement.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
