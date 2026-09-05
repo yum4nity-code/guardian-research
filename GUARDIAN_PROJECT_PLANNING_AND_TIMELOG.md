@@ -1,6 +1,6 @@
 # Guardian — Project Planning & Time Log
 
-Last reconstructed: 2026-09-04 Europe/Paris
+Last reconstructed: 2026-09-05 Europe/Paris
 Status: LIVING FILE — update during each material Guardian work session
 
 ## Purpose
@@ -264,6 +264,34 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Repository commit activity visible from ~08:54Z to ~17:33Z, i.e. roughly 09:54 -> 18:33 Europe/Paris on the current UTC+1 day.
 - `CONFIRMED REPO ACTIVITY SPAN: ~8h39`, plus user conversation immediately around/after that window. This span includes automation/test waiting and is not equivalent to 8h39 uninterrupted keyboard time.
 
+## 2026-09-05 — evidence-first strategy marathon / pure core / D035 lead-lag preparation
+
+**Work / decisions**
+- Strategy-neutral Pure Guardian Core v12.01 static candidate prepared and handed off; production/live replacement still requires MetaEditor compile/smoke.
+- Broad research slate executed with setup-first and preregistration discipline. Distinct families worked today included RSI legacy, D017 Momentum, D022 pair reversion, D023 London ORB, D027 NR7, D028 session momentum, D031 Piercing/Dark Cloud, D032 crypto reversal/Doji, D030 H4 engulfing, D029 TSMOM, D033 Double Top/Bottom and D034 abnormal-return Gold/Oil.
+- RSI, broad Momentum, D022, D023, D027, D028, D030, D029, corrected D033 and D034 GOLD failed their applicable broad/frozen gates. OIL remains untested because unavailable on the target account. D031 remains non-validated rather than production evidence.
+- D032 Bullish Doji Star H1 produced the one confirmed entry signal of the day on untouched PRE2024 BTC+ETH+DOG data, but all tested management/localization variants remain unsolved; retain only as a sparse research sleeve.
+- Scanner QA rules were tightened after implementation defects: column-count/index QA, immediate flush, runtime output checks and source-algorithm conformance review before asking the user to spend time on reruns.
+- D029 full eight-market TSMOM gate closed rejected; no RSI/SMA/ATR rescue mining.
+- D033 corrected M2 Double Top/Bottom EURUSD M5 closed rejected 0/7 gates.
+- D034 XAU abnormal-return Strategy 1 closed rejected 3/7; long-only clue remained below the preregistered economic gate and was not rescued.
+- User requested exotic approaches and selected only the cross-venue crypto leverage idea. D035 was preregistered: Binance BTC/ETH downside price+OI deleveraging shocks -> delayed FundedNext crypto CFD response.
+- D035 freezes 2024-2025 development and reserves 2026-H1 untouched confirmation; source shock uses strictly-prior 30d 10th-percentile price/OI thresholds, 30m cooldown, +15m primary executable short response and matched prior control. Same-sample rescue mining is forbidden.
+- D035 MT5 M1 quote exporter v1.01 prepared and committed; Python historical Binance Vision analyzer prepared, syntax-checked and synthetic-smoke-tested, including server->UTC clock calibration.
+- Daily time-log maintenance was made an explicit mandatory rule for ChatGPT, Codex and future agents in `AGENTS.md`, `README.md` and `CURRENT_PROJECT_HANDOFF.md`.
+
+**Time evidence**
+- Earliest clearly attributable 2026-09-05 repository research commits are around 05:38Z (~07:38 Europe/Paris); Guardian work continued through this entry at approximately 20:36 Europe/Paris.
+- `CONFIRMED ACTIVITY SPAN: ~07:38 -> 20:36 Europe/Paris` — includes breaks, backtest waiting and unattended compute; it is **not** a claim of ~13h active keyboard work.
+- `Human active total: NOT QUANTIFIED` from available evidence; do not manufacture a precise duration.
+- Unattended Strategy Tester / collector / analysis runtime: excluded from human time.
+
+**Next**
+- User runs D035 exporter on BTCUSD plus every crypto CFD available on the target FundedNext account, Strategy Tester M1 / 1 minute OHLC, 2023-11-01 through 2025-12-31.
+- Collect all `D035_CFD_M1_*.csv`, run frozen D035 development analyzer without `--confirm`, archive verdict and update handoff.
+- Keep D032 Doji as sparse research only; do not rescue rejected families on inspected samples.
+- Pure Guardian Core v12.01 compile/smoke remains a separate prerequisite before any live replacement.
+
 ---
 
 # Current planning / backlog
@@ -298,9 +326,8 @@ From 2026-09-04 onward, time should be logged more precisely.
 
 - Keep Binance + Bybit collector running read-only.
 - Continue accumulating BTC/ETH external history: spot/perp, OI, funding, liquidations, basis/dislocation and quality.
-- Do not feed it into D025 Core yet.
-- Later run strict `D025 Core` vs `D025 Core + External Intelligence` event study with `available_at <= event_time`.
-- Seek historical 2024/2025 external data if a scientifically clean backfill becomes practical; otherwise use accumulated forward data.
+- D035 is now the frozen historical cross-venue lead-lag campaign; do not feed its development findings into Guardian before independent confirmation.
+- Preserve `available_at <= event_time` for any forward EIB study.
 
 ## P1 — Guardian production continuity
 
