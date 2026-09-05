@@ -2,6 +2,22 @@
 
 Ce dépôt est la source de vérité partagée entre Codex et ChatGPT pour Guardian Research.
 
+## Obligation quotidienne — journal de travail
+
+Cette règle est **obligatoire pour Codex, ChatGPT et toute future IA/agent travaillant sur ce dépôt**.
+
+Pour chaque date Europe/Paris où un travail matériel Guardian a lieu, `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` doit être vérifié puis mis à jour **avant la fin de la session ou le passage de relais**. Ne jamais supposer qu'une autre IA le fera plus tard.
+
+Minimum attendu pour la date :
+- travail réellement effectué ;
+- décisions, rejets ou jalons importants ;
+- prochaine action sûre ;
+- temps humain documenté de façon conservatrice.
+
+Si la durée active exacte n'est pas prouvable, utiliser `CONFIRMED SPAN`, `MINIMUM OBSERVED` ou `NOT QUANTIFIED` au lieu d'inventer une durée. Les backtests, collectors, workers ou calculs tournant seuls ne comptent pas comme temps humain et doivent être notés séparément si utile.
+
+À chaque reprise : vérifier si la date courante possède déjà une entrée. Si du travail matériel a déjà eu lieu et qu'elle manque ou est incomplète, la compléter avant de clôturer la session. Une session qui produit des résultats, du code, une décision PASS/FAIL, une modification d'architecture ou un handoff sans mettre à jour le journal quotidien est **incomplète**.
+
 ## Accès machine
 Codex est autorisé à utiliser **l'ensemble du PC** pour les besoins du projet : tous les disques accessibles, processus, terminaux MT5, MetaEditor, AppData, outils, scripts et fichiers nécessaires. `D:\MT5_Backtests\` est le répertoire canonique du laboratoire, **pas une limite d'accès ni une sandbox**. Les restrictions ci-dessous concernent la séparation logique recherche/production, pas les droits d'accès au système.
 
