@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "strategy_family": "Williams-inspired previous-day range volatility breakout",
-  "status": "COMPILE_PENDING",
+  "status": "READY_DEV",
   "hypothesis": "Can a simple previous-day-range volatility expansion rule produce a positive, broad, cost-robust intraday edge across the Guardian/FundedNext six-market universe without indicator filters or post-hoc tuning?",
   "preregistration": {
     "path": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
@@ -29,6 +29,7 @@
       "v1.01 local proof: compile 0/0 and USDJPY TEST_PASS_INTEGRITY; first six-symbol batch then stopped before any XAUUSD trade because XAUUSD 2024-01-02 produced FINAL_INVALID_PRICE at broker-day setup",
       "v1.02 engineering-only clarification: finite positive previous D1 prices with High==Low produce SKIP_NO_REFERENCE_RANGE for that current broker day instead of a fatal invalid-price event; all genuine invalid prices remain fatal and exact D1 setup values are logged",
       "v1.02 source identity was independently reported by GitHub CI as 5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9 before canonicalization",
+      "v1.02 local proof: compile 0 errors / 0 warnings, XAUUSD development TEST_PASS_INTEGRITY with 406 opened=closed=CSV rows and zero invalid-price/risk/PnL counters",
       "source_sha256 identifies UTF-8 text normalized to LF so Windows CRLF checkout does not alter scientific source identity; byte-for-byte SHA is still required for local source to MT5 deployment"
     ]
   },
@@ -87,7 +88,7 @@
       "from": "2024-01-02",
       "to": "2025-12-31",
       "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
-      "status": "LOCKED_PENDING_COMPILE",
+      "status": "READY",
       "gates": {
         "aggregate_n_min": 800,
         "each_symbol_n_min": 80,
@@ -127,8 +128,32 @@
     "invalid_run_is_not_strategy_reject": true
   },
   "results": {
-    "compile": null,
-    "single_symbol_integrity_proof": null,
+    "compile": {
+      "status": "COMPILE_PASS",
+      "observed_from_user_terminal_output": true,
+      "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+      "source_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+      "ex5_sha256": "2f794061c37993c4c1cd75aeb9c4f767703fa78715c1bcde84d03d626b4acb2e",
+      "errors": 0,
+      "warnings": 0
+    },
+    "single_symbol_integrity_proof": {
+      "status": "TEST_PASS_INTEGRITY",
+      "observed_from_user_terminal_output": true,
+      "stage": "development",
+      "symbol": "XAUUSD",
+      "tester_model": 0,
+      "trades": 406,
+      "trades_opened": 406,
+      "trades_closed": 406,
+      "invalid_price": 0,
+      "invalid_risk": 0,
+      "pnl_calc_failures": 0,
+      "final_status": "FINAL",
+      "stats_sha256": "226c36e7f015ec655a41772a2352ba58dee3b5b4f9d278534ab397305fa3501a",
+      "trades_sha256": "9b29f0120c94fc3f887d51645047c3b5496299215187f0c2d6841abace37985f",
+      "note": "Engineering integrity proof only; the six-symbol DEV batch must restart from scratch for the scientific result."
+    },
     "engineering_history": {
       "v1_01": {
         "compile": {
