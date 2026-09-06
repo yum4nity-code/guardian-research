@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-06T22:30:00+02:00",
+  "authoritative": true,
+  "repository": {
+    "name": "yum4nity-code/guardian-research",
+    "migration_branch": "refactor/guardian-research-runner-v1",
+    "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
+  },
+  "migration": {
+    "status": "PHASE_0_ACTIVE",
+    "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
+    "legacy_behavior_preserved": true,
+    "codex_required": false
+  },
+  "research": {
+    "active_experiment": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
+    "status": "ENGINEERING_FIX_IN_PROGRESS",
+    "strategy_family": "Williams-inspired previous-day range volatility breakout",
+    "timeframe": "M15",
+    "preregistration": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
+    "execution_deviation": "research/campaigns/D037_EXECUTION_DEVIATION_NO_SMOKE_2026_09_06.md",
+    "canonical_sources_currently_in_repo": [
+      "research/strategies/d037/D037_WilliamsPrevDayRangeBreakout_M15_v1_00_FUNDEDNEXT_DIRECT_20260906.mq5",
+      "research/strategies/d037/D037_Williams_M15_v1_00.mq5"
+    ],
+    "temporary_builder": "automation/Build_D037_v101_20260906.ps1",
+    "known_engineering_issue": "The current v1.01 path is produced by textual patching from v1.00. The refactor will replace this with a complete versioned repository source before the generic runner treats it as canonical.",
+    "next_action": "Create and validate a complete D037 v1.01 repository source, then use it as the first migration specimen for the generic runner.",
+    "closed_experiments": {
+      "D017": "REJECTED_ALPHA_FAMILY",
+      "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
+      "D036": "REJECTED_V0"
+    }
+  },
+  "production": {
+    "guardian_core": {
+      "baseline": "v12.01",
+      "status": "COMPILE_VALIDATED_BASELINE",
+      "reference_note": "production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md",
+      "change_during_research_refactor": false
+    },
+    "legacy_manifest_warning": "production/manifests/GUARDIAN_CURRENT.json is older than the v12.01 baseline and is not authoritative during this migration."
+  },
+  "transport": {
+    "target": "AUTOSYNC_V3",
+    "standard": "automation/AUTOSYNC_PC_GITHUB_ENGINEERING_STANDARD_20260906.md",
+    "runtime_installed_version": "UNKNOWN_FROM_GITHUB_ONLY",
+    "legacy_scripts_preserved_until_v3_e2e_pass": true
+  },
+  "runner": {
+    "target": "GUARDIAN_RESEARCH_RUNNER_V1",
+    "status": "NOT_IMPLEMENTED",
+    "path": "research/runner/",
+    "principle": "one manifest + one complete strategy source; deterministic compile/smoke/dev/score pipeline"
+  },
+  "non_guardian_projects": {
+    "maman_70_santorin": {
+      "preserve": true,
+      "current_path": "projects/maman-70-santorin",
+      "target_path": "archive/non_guardian_projects/maman-70-santorin",
+      "content_changes_allowed_during_move": false
+    }
+  },
+  "compatibility_state": {
+    "START_HERE_NEXT_AI.md": "STALE_LEGACY_ENTRYPOINT_PENDING_PHASE_1",
+    "CURRENT_QUEUE.json": "STALE_LEGACY_QUEUE_PENDING_PHASE_1",
+    "handoff": "HISTORICAL_CONTEXT_PENDING_ARCHIVE_REORGANIZATION"
+  }
+}
