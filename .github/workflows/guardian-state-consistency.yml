@@ -30,6 +30,7 @@ jobs:
           research/runner/score.py
           research/runner/guardian_research.py
           research/runner/bootstrap_windows.py
+          research/runner/source_hash.py
           research/runner/test_state_tools.py
           research/runner/test_runner_contract.py
 
@@ -59,6 +60,9 @@ jobs:
 
       - name: Exercise runner planning without MT5
         run: python research/runner/guardian_research.py plan D037
+
+      - name: Report D037 v1.02 candidate source identity
+        run: python research/runner/source_hash.py research/strategies/d037/D037_Williams_M15_v1_02.mq5
 
       - name: Run regression tests
         run: |
