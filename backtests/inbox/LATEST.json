@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-06T17:49:43.1807228Z",
-    "run_id":  "20260906_174916_D036_GBPUSD_9a80a17d0f56",
-    "path":  "backtests/inbox/2026/09/06/20260906_174916_D036_GBPUSD_9a80a17d0f56",
-    "fingerprint":  "9a80a17d0f56421c063951f081ec27e991d568520ad97124aa7aa1a3475b11d9",
+    "synced_at_utc":  "2026-09-06T19:43:34.5254770Z",
+    "run_id":  "20260906_194305_D037_BTCUSD_37e684c18111",
+    "path":  "backtests/inbox/2026/09/06/20260906_194305_D037_BTCUSD_37e684c18111",
+    "fingerprint":  "37e684c18111e524a0149ff4eaff581eab663ec0039f24e85278f142bf6e609e",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D036_V102_DEV_2024_2025_GBPUSD_STATS.csv",
-                  "D036_V102_DEV_2024_2025_GBPUSD_TRADES.csv",
+                  "D037_V100_DEV_2024_2025_BTCUSD_STATS.csv",
+                  "D037_V100_DEV_2024_2025_BTCUSD_TRADES.csv",
                   "sync_manifest.json"
               ]
 }
