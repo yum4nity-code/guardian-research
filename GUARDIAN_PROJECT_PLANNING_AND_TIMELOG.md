@@ -292,44 +292,52 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Keep D032 Doji as sparse research only; do not rescue rejected families on inspected samples.
 - Pure Guardian Core v12.01 compile/smoke remains a separate prerequisite before any live replacement.
 
-## 2026-09-06 — D035 verdict, cross-strategy autopsy, E1 close, META-A1 pivot
+## 2026-09-06 — D035 verdict, cross-strategy autopsy, E1 close, META-A1 Momentum preparation
 
 **Work / decisions**
 - User returned the complete `D35 OUTPUT.zip` from the frozen D035 2024-2025 development run.
 - D035 data quality was strong: 5,558 merged BTC/ETH source events, 38,622 target-event rows, nine FundedNext crypto CFDs, complete loaded Binance metrics/1m archive QA, and 114/114 server->UTC calibration weeks usable with mean correlation ~0.996.
 - Frozen D035 primary gate closed **REJECT 4/8**: pooled executable SHORT +15m -25.448 bps; event-control differential +5.179 bps; bootstrap differential [+3.033,+7.385] bps; pooled executable +30m -25.438 bps; BTC-only differential -3.281 bps vs ETH-only +3.283 bps.
-- Post-hoc audit found that the superficially strong `BTCUSD+ETHUSD` subgroup in the original output leaked future information if interpreted from the first source timestamp. A causal E1 was preregistered with the signal moved to the later/second shock and XLMUSD frozen as primary.
-- Cross-strategy edge-decay autopsy completed. Main conclusion: short-window profitability vs long-history decay is explained by a mixture of regime dependence, raw-signal vs exact-native manager/account-state selection mismatch, multiple testing, CFD cost drag and data provenance. D032 remains the proof that the stricter protocol can still confirm a large edge.
-- Blind new-family scanning was paused after E1. META-A1 exact edge attribution was chosen as the next research task: L0 raw signal -> L1 exact native manager -> L2 strategy-local selection -> L3 Guardian/account-state selection -> cost drag.
-- Source recovery check found the exact v11.16.11 baseline used for the 2026-09-02 BTC engine-isolation backtests is still not present at the expected GitHub production path. Required identity remains `Guardian_D017_PropFirmAuto_v11_16_11_STRATEGY_SWITCHES.mq5`, 272765 bytes, 5729 lines, SHA256 `d30ff21378331f972bea947a4c6c826b6f4a2547e58878947551199b9d01c495`. User-supplied v11.16.1 and later v11.16.19 are not substitutes for exact attribution.
-- User returned `D35 CASUAL.zip`. D035-E1 causal run completed with 973 dual events. Primary XLMUSD n=870: mean executable SHORT +15m **+6.705 bps**, median **0.000 bps**, event-control differential **+13.490 bps**, raw bootstrap **[+1.996,+11.549] bps**, differential bootstrap **[+8.793,+18.302] bps**, +30m **+3.697 bps**, 2024 **+4.104 bps**, 2025 **+9.935 bps**.
-- Frozen E1 advancement gate closed **6/8 -> E1_DO_NOT_ADVANCE**. It failed the required mean executable +15m >=15bps and median +15m >0 gates. 2026-H1 remains untouched and must not be opened for D035-C1.
-- ETHUSD (~+14.999bps mean executable +15m) and BTCUSD (~+10.359bps) looked better as diagnostics, but they were not the frozen E1 primary target and therefore cannot be promoted post hoc into a 2026 confirmation.
-- Canonical E1 result archived at `research/results/D035_E1_CAUSAL_DUAL_SOURCE_VERDICT_2026_09_06.md`.
+- Post-hoc audit found that the superficially strong `BTCUSD+ETHUSD` subgroup leaked future information if interpreted from the first source timestamp. A causal E1 was preregistered with the signal moved to the later/second shock and XLMUSD frozen as primary.
+- User returned `D35 CASUAL.zip`. D035-E1 completed with 973 causal dual events. XLMUSD primary n=870: mean executable +15m **+6.705bps**, median **0.000bps**, event-control differential **+13.490bps**, raw bootstrap **[+1.996,+11.549]**, differential bootstrap **[+8.793,+18.302]**, +30m **+3.697bps**, 2024 **+4.104bps**, 2025 **+9.935bps**.
+- Frozen E1 gate closed **6/8 -> E1_DO_NOT_ADVANCE** because mean executable +15m failed >=15bps and median was not >0. ETH/BTC diagnostics looked better but were not the frozen primary and were not promoted. 2026-H1 remains untouched. D035 family closed for immediate development.
+- Cross-strategy edge-decay autopsy completed. Main conclusion: short-window profitability versus long-history decay reflects a mixture of regime dependence, raw-signal vs managed-system/account-state mismatch, multiple testing, CFD cost drag and data provenance. D032 remains proof that the stricter protocol can confirm a large edge.
+- Blind new-family scanning paused. META-A1 attribution became the next priority.
+- User explicitly designated the uploaded **v11.16.19** as the correct/authoritative Momentum engine and instructed not to waste time hunting v11.16.11. This overrides the previous v11.16.11 source blocker for META-A1 Momentum.
+- Authoritative Momentum source frozen as `Guardian_D017_PropFirmAuto_v11_16_19_RSI_RUNNER10_REQUEST_BUDGET_DOGE_UNDERRISK.mq5`, size 314914 bytes, logical 6512 lines, SHA256 `423ebb293cfc77a44b6e95278a8e269944a52b2089d34667ba7a1bf38fa29677`.
+- Compared this monolithic source with Pure Guardian Core v12.01. Decision: do **not** transplant Momentum into the clean Core yet. First attribute the source engine in-place; migrate only a surviving engine afterward through the Core strategy socket.
+- META-A1 Momentum v1.00 prepared from v11.16.19 with Momentum thresholds unchanged and RSI disabled for the experiment. It logs L0 raw structural candidates, L2 source-filtered candidates, L3 actual execution/account-state outcomes, execution block reasons, and diagnostic shadow management. Shadow results are explicitly non-authoritative counterfactuals; L3 actual broker/tester path remains authoritative.
+- Source Momentum management remains TP1 2.00R / 25%, BE 1.25R, trailing 1.75 ATR.
+- META-A1 static QA completed: source identity checked; lexical brace balance PASS; duplicate key-definition checks PASS; diff audit limited to intended instrumentation/harness hooks; Python analyzer `py_compile` PASS; synthetic analyzer smoke PASS. **No MetaEditor compiler was available here, so MQL5 compile remains required before testing.**
+- Delivered pack `META_A1_Momentum_Attribution_Pack_v1_00.zip`, SHA256 `71f5c9a09e61fdc4db1229d6fb48156ae9595ba9a00e4400129b6684d054e73d`.
+- META-A1 methodology locked at `research/campaigns/META_A1_MOMENTUM_ATTRIBUTION_LOCK_2026_09_06.md`.
 
 **Time evidence**
-- Guardian activity is confirmed from approximately 06:53 Europe/Paris through the early-morning session and later result review.
-- `MINIMUM OBSERVED: >= 0h30`; exact human active total remains `NOT QUANTIFIED`. D035/E1 unattended compute is excluded from human time.
+- Guardian activity is confirmed from approximately 06:53 Europe/Paris through at least the 07:57 META-A1 decision/preparation session.
+- `CONFIRMED ACTIVITY SPAN: ~06:53 -> >=07:57 Europe/Paris`. This span includes waiting/interruptions and is not a claim of continuous keyboard work.
+- `Human active total: NOT QUANTIFIED`. D035/E1 unattended compute is excluded from human time.
 
 **Next**
-- Close D035/D035-E1 for immediate development; keep 2026-H1 untouched.
-- Recover/mirror the exact v11.16.11 baseline source before PC cleanup or META-A1 implementation.
-- Build META-A1 exact-native RSI/Momentum attribution on BTCUSD 2024-2025, with no threshold changes.
-- Keep blind D036/D037-style strategy-family scanning paused.
-- Keep D032 Doji as sparse confirmed entry evidence and FundedNext live auto OFF pending Guardian request-budget/core validation work.
+- Compile `META_A1_Momentum_Attribution_v1_00.mq5` in MetaEditor. Any compiler error blocks testing.
+- Mandatory non-regression first: original v11.16.19 versus META-A1 on identical BTCUSD settings/model, recommended 2026-07-01..2026-07-31, `Every tick based on real ticks`, Momentum ON / RSI OFF. Real trade count and material P/L/trade behavior must match.
+- Only after non-regression PASS run BTCUSD 2024-01-01..2025-12-31 and return the four META-A1 FILE_COMMON CSVs.
+- If full BTC system fails long history, stop before broadening. If it survives, freeze the surviving mechanism, then modularize Momentum into Guardian Core v12.01.
+- Keep blind D036/D037 family scanning paused and FundedNext live auto OFF pending request-budget/core validation.
 
 ---
 
 # Current planning / backlog
 
-## P0 — META-A1 exact edge attribution
+## P0 — META-A1 Momentum attribution
 
-- Recover exact `Guardian_D017_PropFirmAuto_v11_16_11_STRATEGY_SWITCHES.mq5` by the frozen SHA256 before implementation.
-- First market: BTCUSD 2024-2025.
-- Separate L0 raw signal, L1 exact native management, L2 strategy-local filters/cooldowns, L3 Guardian/account-state selection, then explicit BID/ASK + commission/slippage cost drag.
-- Preserve original RSI/Momentum rules exactly; no threshold tuning.
-- Produce year, direction, frequency, PF/EV and contribution/lift attribution at each layer.
-- If the full reconstructed system does not survive BTC over the long window, stop before broadening.
+- Authoritative source is v11.16.19 SHA256 `423ebb293cfc77a44b6e95278a8e269944a52b2089d34667ba7a1bf38fa29677`; do not resume v11.16.11 hunting for this Momentum task unless the user changes the decision.
+- Compile META-A1 v1.00 first.
+- Non-regression gate before long testing: original v11.16.19 vs instrumented META-A1 on same BTCUSD month/model/settings, Momentum ON, RSI OFF.
+- Then BTCUSD 2024-2025 only, with no threshold tuning.
+- Attribute L0 raw signal -> L2 strategy-local selection -> L3 actual Guardian/account-state/execution/management plus cost drag. Treat shadow management as diagnostic, not exact broker execution.
+- Produce year/direction/frequency/PF/EV and contribution/lift attribution at each layer.
+- If the full reconstructed BTC system does not survive, stop before broadening.
+- Only after a surviving engine is frozen may it be modularized into Pure Guardian Core v12.01.
 
 ## P0 — FundedNext request-budget fix
 
