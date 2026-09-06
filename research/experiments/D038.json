@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "strategy_family": "NR7 volatility contraction breakout",
+  "status": "COMPILE_PENDING",
+  "hypothesis": "Can a strict NR7 daily volatility-contraction setup followed by a next-session executable-price breakout produce a positive, broad, cost-robust intraday edge across the Guardian/FundedNext six-market universe while capturing native Trade Path telemetry?",
+  "preregistration": {
+    "path": "research/campaigns/D038_NR7_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
+    "git_blob_sha": "64d3d53d96054f64163940fe61c5d938c6ff3160",
+    "frozen_before_result_inspection": true,
+    "execution_deviations": []
+  },
+  "source": {
+    "canonical_path": "research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5",
+    "source_sha256": "e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8",
+    "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+    "git_blob_sha": "b0e2e9222970281de47fec9d36377698b6aed5d7",
+    "version": "1.00",
+    "complete_repository_source": true,
+    "strategy_semantics_frozen": true,
+    "engineering_lineage": [
+      "D038 v1.00 is the first complete repository source for the preregistered NR7 V0 experiment",
+      "D038 uses executable MT5 tester ticks for entry, stop, EOD exit and Trade Path observation",
+      "D038 captures native MFE/MAE, R milestones, timing, adverse-before-favorable and post-milestone giveback telemetry",
+      "stage dates are controlled by frozen tester FromDate/ToDate ranges; the EA strategy semantics are identical across smoke, development and confirmation",
+      "source identity was independently reported by GitHub CI as e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8 before local compilation"
+    ]
+  },
+  "execution": {
+    "timeframe": "M15",
+    "reference_timeframes": ["D1"],
+    "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+    "account_currency": "USD",
+    "prop_firm_profile": "FUNDEDNEXT"
+  },
+  "runner_contract": {
+    "expert_relative_path": "GuardianResearch\\D038_NR7_TickPath_M15_v1_00",
+    "default_stage": "smoke",
+    "stage_selection": "EA_DEFAULT_ONLY",
+    "tester_model_reference": 0,
+    "tester_model_fast_candidate": null,
+    "output": {
+      "location": "FILE_COMMON",
+      "stats_template": "D038_V100_{stage_token}_{symbol_clean}_STATS.csv",
+      "trades_template": "D038_V100_{stage_token}_{symbol_clean}_TRADES.csv",
+      "stage_tokens": {
+        "smoke": "RUN",
+        "development": "RUN",
+        "confirmation": "RUN"
+      }
+    }
+  },
+  "cost_model": {
+    "name": "D038_FUNDEDNEXT_FROZEN_V0",
+    "spread_source": "tester executable bid/ask ticks",
+    "commission_stress_multiplier": 1.5,
+    "forex": "USD 5 per lot per side",
+    "metals": "0.0016% x lot x contract size x side execution price per side",
+    "crypto": "0.04% x lot x contract size x side execution price per side"
+  },
+  "stages": {
+    "smoke": {
+      "stage_name": "D038_SMOKE_NOV2023",
+      "from": "2023-11-01",
+      "to": "2023-11-30",
+      "symbols": ["USDJPY", "XAUUSD", "BTCUSD"],
+      "status": "LOCKED_PENDING_COMPILE",
+      "gates": {
+        "compile_errors": 0,
+        "compile_warnings": 0,
+        "lifecycle_clean": true,
+        "opened_equals_closed_equals_trade_rows_equals_path_rows": true,
+        "invalid_price_risk_pnl_path_events": 0,
+        "trade_path_fields_present_and_parseable": true,
+        "deterministic_stats_trades_output": true,
+        "science_role": "ENGINEERING_ONLY_NO_ALPHA_VERDICT"
+      },
+      "result_paths": []
+    },
+    "development": {
+      "stage_name": "D038_DEV_2024_2025",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+      "status": "LOCKED",
+      "gates": {
+        "aggregate_n_min": 480,
+        "each_symbol_n_min": 50,
+        "aggregate_mean_net_r_min": 0.05,
+        "aggregate_pf_min": 1.10,
+        "positive_symbols_min": 4,
+        "aggregate_2024_positive": true,
+        "aggregate_2025_positive": true,
+        "aggregate_positive_at_commission_stress": true,
+        "max_positive_symbol_contribution_share": 0.60,
+        "integrity_events_max": 0,
+        "failure_verdict": "REJECT_V0"
+      },
+      "result_paths": []
+    },
+    "confirmation": {
+      "stage_name": "D038_CONFIRM_2026_H1",
+      "from": "2026-01-02",
+      "to": "2026-06-30",
+      "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+      "status": "UNOPENED",
+      "gates": {
+        "aggregate_n_min": 120,
+        "aggregate_mean_net_r_strictly_positive": true,
+        "aggregate_pf_min": 1.08,
+        "positive_symbols_min": 3,
+        "aggregate_positive_at_commission_stress": true,
+        "integrity_events_max": 0,
+        "failure_verdict": "UNCONFIRMED"
+      },
+      "result_paths": []
+    }
+  },
+  "decision_policy": {
+    "no_posthoc_rescue": true,
+    "confirmation_locked_until_dev_pass": true,
+    "invalid_run_is_not_strategy_reject": true
+  },
+  "results": {
+    "compile": null,
+    "smoke": null,
+    "development": null,
+    "rich_analytics": null,
+    "confirmation": null,
+    "final_verdict": null
+  }
+}
