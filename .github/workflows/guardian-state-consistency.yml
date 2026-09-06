@@ -1,0 +1,26 @@
+name: Guardian state consistency
+
+on:
+  push:
+    branches:
+      - main
+      - refactor/guardian-research-runner-v1
+  pull_request:
+
+jobs:
+  state-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate authoritative state and generated views
+        run: python research/runner/state_tools.py validate
+
+      - name: Run state regression tests
+        run: python research/runner/test_state_tools.py
