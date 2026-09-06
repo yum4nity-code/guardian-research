@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "smoke",
+  "period": "2023-11-01..2023-11-30",
+  "status": "SMOKE_PASS_ENGINEERING",
+  "science_role": "ENGINEERING_ONLY_NO_ALPHA_VERDICT",
+  "batch": {
+    "status": "BATCH_PASS_INTEGRITY",
+    "batch_path_local": "D:\\MT5_Backtests\\guardian-runner\\batches\\D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0\\smoke\\20260906T224209Z\\batch.json",
+    "tester_model": 0,
+    "source_sha256": "e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8",
+    "ex5_sha256": "32ecb804a722bf6d7c2959baecf0002a365abe1ef796e2e52397de0aa55422bd",
+    "aggregate_trades": 14,
+    "symbols": {
+      "USDJPY": {
+        "trades": 6,
+        "stats_sha256": "8e28b783e8b17e7469660f92ce0c47814787d09df0b87318741f4c7fb3eb2cb4",
+        "trades_sha256": "272608775cd14d44a6b3e56336582bbd375c3cec45e1aa41f3324b59425fa67f"
+      },
+      "XAUUSD": {
+        "trades": 4,
+        "stats_sha256": "58347819c9a8c7b0cb905bf60c37713d6a35de9fd56b672f1ff54ea7803b2433",
+        "trades_sha256": "d9fe01b54c0429accf6bdf47b1003ee6232e7c21b11a1a3a4a4c1ef2d9a969e9"
+      },
+      "BTCUSD": {
+        "trades": 4,
+        "stats_sha256": "1196ed80028a49bb83d172759be45dd2534e8fe6cf64f6dee97042665080fe24",
+        "trades_sha256": "3edaccb4d8d7ffe2a92b59a5320ba1884929863518192d51e2ca1604f6afdb8b"
+      }
+    },
+    "integrity": {
+      "all_final": true,
+      "opened_equals_closed_equals_rows": true,
+      "invalid_price": 0,
+      "invalid_risk": 0,
+      "pnl_calc_failures": 0
+    }
+  },
+  "trade_path": {
+    "status": "PASS_ALL_THREE_SYMBOLS",
+    "required_columns": 36,
+    "path_calc_failures": 0,
+    "path_ambiguous_rows": 0,
+    "symbols": {
+      "USDJPY": {"trades": 6, "path_rows": 6, "reached_counts": {"0.5R": 3, "1R": 1, "2R": 0, "3R": 0, "5R": 0}},
+      "XAUUSD": {"trades": 4, "path_rows": 4, "reached_counts": {"0.5R": 4, "1R": 1, "2R": 0, "3R": 0, "5R": 0}},
+      "BTCUSD": {"trades": 4, "path_rows": 4, "reached_counts": {"0.5R": 3, "1R": 2, "2R": 0, "3R": 0, "5R": 0}}
+    }
+  },
+  "decision": "Engineering smoke passed. Development may open with identical frozen D038 v1.00 strategy semantics. Smoke profitability is not inspected or used as an alpha gate.",
+  "autosync_used": false
+}
