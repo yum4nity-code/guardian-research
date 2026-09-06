@@ -15,7 +15,7 @@ Read only what is needed, in this order:
 
 - Experiment: **D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0**
 - State: **REJECTED**
-- Next action: **On the MT5 research PC, pull the latest branch and run exactly `py -3 .\research\runner\guardian_research.py finalize D037 --stage development`. This must not launch MT5. Require FINALIZE_PASS, rich analytics over the validated 2,377 DEV trades, a compact result bundle, and an isolated publish to the backtest-results branch (or an idempotent already-present no-op) with a local publish receipt. D037 remains REJECT_V0. After this proof, select and preregister D038 with native Trade Path telemetry.**
+- Next action: **D037 is closed as REJECT_V0 with rich analytics and compact validated results published to backtest-results. Select and preregister D038. D038 and later harnesses must implement research/runner/TRADE_PATH_DATASET_SPEC.md natively so MFE, MAE, R milestones and timing become reusable research data without post-hoc reconstruction.**
 
 ## Operational truths
 
@@ -23,7 +23,7 @@ Read only what is needed, in this order:
 - Guardian Core baseline: **v12.01** — do not modify during this research refactor.
 - Legacy AutoSync: **UNTRUSTED_NEVER_RELIABLY_WORKED** — reference only, never fallback.
 - AutoSync target: **AUTOSYNC_V3_FROM_SCRATCH**.
-- Closed experiments: D017=REJECTED_ALPHA_FAMILY, D023=REJECTED_UNTOUCHED_CONFIRMATION, D036=REJECTED_V0.
+- Closed experiments: D017=REJECTED_ALPHA_FAMILY, D023=REJECTED_UNTOUCHED_CONFIRMATION, D036=REJECTED_V0, D037=REJECTED_V0.
 
 If this file ever disagrees with `GUARDIAN_STATE.json`, the state file wins and this file must be regenerated with:
 
