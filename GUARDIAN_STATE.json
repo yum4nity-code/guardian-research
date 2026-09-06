@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T22:30:00+02:00",
+  "updated_at": "2026-09-06T22:35:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,14 +8,16 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_0_ACTIVE",
+    "status": "PHASE_0_COMPLETE_PHASE_1_READY",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
-    "codex_required": false
+    "codex_required": false,
+    "next_phase": "PHASE_1_ONE_SOURCE_OF_TRUTH"
   },
   "research": {
     "active_experiment": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
-    "status": "ENGINEERING_FIX_IN_PROGRESS",
+    "experiment_manifest": "research/experiments/D037.json",
+    "status": "SOURCE_PENDING_V101_COMPLETE_REPOSITORY_ARTIFACT",
     "strategy_family": "Williams-inspired previous-day range volatility breakout",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
@@ -50,16 +52,18 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "NOT_IMPLEMENTED",
+    "status": "CONTRACT_AND_MANIFEST_SCHEMA_DEFINED",
     "path": "research/runner/",
+    "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "principle": "one manifest + one complete strategy source; deterministic compile/smoke/dev/score pipeline"
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
       "preserve": true,
-      "current_path": "projects/maman-70-santorin",
-      "target_path": "archive/non_guardian_projects/maman-70-santorin",
-      "content_changes_allowed_during_move": false
+      "current_path": "archive/non_guardian_projects/maman-70-santorin",
+      "moved_from": "projects/maman-70-santorin",
+      "content_changes_during_move": false,
+      "readme_blob_sha_verified": "3243204697b9708affe55799eafefd1db3cdb27f"
     }
   },
   "compatibility_state": {
