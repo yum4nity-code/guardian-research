@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-06 Europe/Paris
-Status: **ACTIVE / D023 P0 / V1.08 HARNESS STATIC-AUDITED / AUTOSYNC V1.02 STATIC-AUDITED / LOCAL RECOVERY+COMPILE+SMOKE PENDING / FULL 2023 BLOCKED**
+Status: **ACTIVE / D023 REJECTED ON UNTOUCHED 2023 / AUTOSYNC V1.04 RUNTIME-VALIDATED / NEXT INDEPENDENT P0 TO SELECT**
 
 ## Canonical entrypoint
 
@@ -14,21 +14,37 @@ Read first:
 
 The Sep-6 restart handoff supersedes older execution-order text in historical handoffs.
 
-## Current P0 — D023 USDJPY London ORB
+## Latest material milestone — D023 untouched 2023 confirmation
 
-D023 is the current primary research candidate.
+D023 USDJPY London ORB has now completed its preregistered untouched 2023 confirmation and **FAILED materially**.
 
-FundedNext/DST-aware inspected 2024-2026 conformance remains:
+Published AutoSync run:
 
-- n = 482;
-- mean net about +0.0915R/trade;
-- cumulative about +44.10R;
-- net PF about 1.176;
-- positive 2024, 2025 and 2026 H1, but weakening through time.
+`backtests/inbox/2026/09/06/20260906_151852_D023_V108_USDJPY_c6c4489100ff`
 
-This is **CANDIDATE evidence, not validation**.
+Result artifact:
 
-Frozen strategy semantics remain unchanged:
+`research/results/D023_USDJPY_2023_UNTOUCHED_CONFIRMATION_RESULT_2026_09_06.md`
+
+Frozen gates scored:
+
+- n >= 150: **PASS — 195**
+- mean net R > 0: **FAIL — -0.198176 R/trade**
+- net PF >= 1.10: **FAIL — 0.708428**
+- 5-day moving-block bootstrap lower 5% bound of zero-filled weekday daily mean net R > 0: **FAIL — -0.268783 R/day**
+- result remains positive at 1.5x commission: **FAIL — -44.512458 R total / -0.228269 R/trade**
+
+Baseline total net R: **-38.644330 R**.
+
+Verdict: **REJECT / UNCONFIRMED — 1/5 gates passed.**
+
+This is not a borderline miss. D023 was positive in inspected FundedNext/DST-aware 2024-2026 evidence but materially negative in untouched 2023, so treat the frozen strategy as regime-unstable / non-confirmed. Per preregistration: do not remove SHORT, do not add day/direction/EMA/RSI/ATR/news rescue filters, and do not tune on 2023.
+
+D023 is closed as the current P0 alpha candidate. Preserve for evidence only.
+
+## D023 lineage / harness
+
+Frozen strategy semantics used for the failed confirmation:
 
 - USDJPY M15;
 - London OR 08:00-09:00, exactly four M15 bars;
@@ -37,130 +53,64 @@ Frozen strategy semantics remain unchanged:
 - stop opposite OR edge;
 - maximum one trade/day;
 - exit at stop or close of the M15 bar finishing 16:00 London;
-- no EMA/RSI/ATR/day/news/direction rescue filters.
+- no EMA/RSI/ATR/day/news/direction filters.
 
-Do not remove SHORT because LONG looked stronger on inspected data.
-
-## Untouched 2023 confirmation gates — frozen
-
-All are required for CONFIRM:
-
-- n >= 150;
-- mean net R > 0;
-- net PF >= 1.10;
-- 5-day moving-block bootstrap lower 5% bound of zero-filled weekday daily mean net R > 0;
-- total/mean result remains positive under 1.5x commission.
-
-Do not alter these after seeing 2023.
-
-## Active D023 harness — v1.08
-
-Source:
+Active confirmation harness source:
 
 `research/strategies/d023/D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5`
 
-SHA256:
-
-`10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4`
-
-Source commit:
+Canonical Git source commit:
 
 `b0fb0bc6b557aea5c58cd56a041856a3a0bccd7b`
 
-Static audit:
+Git source SHA256 recorded at creation:
 
-`research/results/D023_V108_2023_HARNESS_STATIC_AUDIT_2026_09_06.md`
+`10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4`
 
-### Provenance resolved
+The user compiled v1.08 successfully in the FundedNext MetaEditor and ran the preregistered smoke before the full confirmation. Smoke 2023-03-13..2023-03-31 validated deterministic outputs and the expected UK DST transition behavior.
 
-The exact historical local v1.07 source was recovered from the user's ChatGPT Library. SHA256:
+## GitHub AutoSync — v1.04 runtime validated
 
-`34ce816eef241c662d6b9fa3be3caea62bc67a25d034bf6cb86e9c67903fff01`
+Installed watcher:
 
-This exactly matches the SHA recorded in the restart handoff. Its broken path literal and stale v1.06 log labels are confirmed defects in the actual warned-about v1.07.
+`automation/Guardian_Backtest_CSV_AutoSync_v1_04_D023_NATIVEGITFIX_PUBLICSAFE.ps1`
 
-v1.08 changes harness/observability only. Static comparison against exact v1.07 found the calendar/DST/cost/state section, `WriteTrade`, and complete `OnTick` strategy path byte-identical.
+Commit introducing v1.04:
 
-v1.08 is **not yet real-MetaEditor compile validated**.
+`4dc8b740a387faa98a5666e684674cdb7350652e`
 
-## D023 output recovery / GitHub AutoSync — current P0 engineering path
+Runtime proof now exists:
 
-At takeover, GitHub branch `backtest-results` existed but was still at commit:
+- Windows Startup installation succeeded;
+- v1.04 shut down old v1.02/v1.03 watcher state during installation;
+- D023 smoke auto-published successfully to `backtest-results`;
+- untouched full-2023 run auto-published successfully to `backtest-results`;
+- source/version/symbol/timeframe and row-count checks passed;
+- `trades_closed == csv_trade_rows == published_trades_rows`;
+- Windows username path was redacted in published STATS;
+- GitHub push commit was produced by `Guardian Backtest Bot` without user running `-Once` after the backtest.
 
-`4d4a300c00d882dc66a497689284b0cc2827e165` — `Document automated backtest results branch` — 2026-09-04.
+Important implementation history:
 
-`backtests/inbox/LATEST.json` did not exist. Therefore no D023 AutoSync output was recoverable from GitHub at takeover time.
+- v1.02 failed because the PowerShell function parameter `$Args` collided with automatic `$args` and produced empty Git invocations.
+- v1.03 fixed `GitArgs` but Windows PowerShell promoted normal Git stderr such as `From https://...` to terminating errors under `$ErrorActionPreference='Stop'`.
+- v1.04 isolates Git with `System.Diagnostics/Start-Process` style stdout/stderr handling and trusts the native process exit code.
 
-The generic watcher v1.01 was statically audited and found insufficient for D023 P0:
+Normal operation now: user runs the relevant MT5 backtest; watcher stays resident and auto-publishes finalized D023 CSV pairs. No per-backtest PowerShell command is required. Windows reboot + session-login autostart is configured; actual reboot-cycle proof has not yet been explicitly observed in-chat.
 
-- a Git/push exception can terminate the watcher;
-- D023 STATS contains exact local output paths, including normal `C:\Users\...` paths;
-- v1.01 can reject STATS in the per-file PUBLICSAFE filter but later re-add that same STATS through a TRADES-triggered companion group without rerunning the safety check.
+## Next safe action
 
-New P0 watcher:
+Do **not** rerun, rescue or tune D023.
 
-`automation/Guardian_Backtest_CSV_AutoSync_v1_02_D023_RESILIENT_PUBLICSAFE.ps1`
+Select/reconcile the next preregistered independent strategy family from `CURRENT_QUEUE.json` / current research slate, preserving the evidence-first rule:
 
-Source commit:
+1. independent documented hypothesis;
+2. frozen rules before untouched confirmation;
+3. cheap smoke/output validation first;
+4. one untouched confirmation;
+5. no post-hoc rescue on failed held-out data.
 
-`2021c4f57c83e4990e443596c19ed02b90ad1ffd`
-
-Static audit:
-
-`research/results/D023_AUTOSYNC_V102_STATIC_AUDIT_2026_09_06.md`
-
-Local-action handoff:
-
-`handoff/chatgpt_to_codex/2026/09/06/D023_AUTOSYNC_V102_INSTALL_RECOVER_AND_SMOKE_REQUEST_2026_09_06.md`
-
-v1.02 is intentionally D023-only for the P0 recovery path. It:
-
-- watches the exact v1.08 STATS/TRADES pair in MT5 `FILE_COMMON`;
-- first tries to recover already-existing finalized outputs before any rerun;
-- requires ordered `INIT -> READY -> FINAL`;
-- requires exact v1.08 source/version, USDJPY, PERIOD_M15;
-- requires `trades_closed == csv_trade_rows == physical TRADES rows`;
-- verifies source hashes are stable across validation;
-- redacts local Windows username paths from the GitHub STATS snapshot;
-- records source and published SHA256 values in `sync_manifest.json`;
-- uses deterministic run identity to avoid duplicate run folders after crash/restart;
-- retries Git failures and keeps the watcher alive across per-cycle errors;
-- writes local health status to `D:\MT5_Backtests\guardian-d023-csv-sync-v102-health.json`.
-
-Important: v1.02 is **static-audited only** in ChatGPT because this environment has no Windows PowerShell/MT5 runtime. Local runtime proof is still required.
-
-## Next safe action — mandatory
-
-Codex/local must do this in order:
-
-1. sync repo;
-2. inspect whether finalized local v1.08 STATS/TRADES already exist in `%APPDATA%\MetaQuotes\Terminal\Common\Files`;
-3. if they exist, run AutoSync v1.02 `-Once`, validate/publish them, and **do not rerun the smoke merely to recreate output**;
-4. if they do not exist, verify v1.08 SHA256 exactly;
-5. real compile in the relevant FundedNext MetaEditor;
-6. require **0 errors / 0 warnings**;
-7. run only USDJPY M15 Every tick smoke `2023-03-13` through `2023-03-31`;
-8. directly inspect local `D023_V108_USDJPY_2023_STATS.csv` and `D023_V108_USDJPY_2023_TRADES.csv`;
-9. require STATS `INIT -> READY -> FINAL`, nonzero counters as expected and `csv_trade_rows == trades_closed`;
-10. manually verify at least three ORB sessions;
-11. verify DST behavior on both sides of the 2023-03-26 UK transition;
-12. verify the same validated pair is present under `backtest-results/backtests/inbox/...` with a manifest and no unredacted Windows username path;
-13. return compile evidence + local hashes + GitHub run path + smoke outputs for audit.
-
-Expected smoke clock behavior:
-
-- weekdays 2023-03-13 through 2023-03-24: FundedNext UTC+3, London UTC+0, server-London = 3h;
-- from Monday 2023-03-27: FundedNext UTC+3, London UTC+1, server-London = 2h.
-
-Inherited output convention: a `TIME_1600` exit uses the close price of the 15:45-16:00 London bar, but CSV `exit_time_*` records that M15 bar's opening timestamp (15:45). Do not misread this as an economic 15:45 exit.
-
-### Hard block
-
-**Do NOT run full `2023-01-02` through `2023-12-29` yet.**
-
-If compile or smoke fails, create a new uniquely named harness version and change harness/observability only. Do not touch ORB semantics.
-
-Only after compile 0/0 + smoke PASS + direct CSV/manual clock validation + AutoSync publication proof may the untouched full 2023 confirmation be run exactly once.
+Do not let the separate FundedNext request/retry compliance issue become an excuse to mix alpha and infrastructure research.
 
 ## D17 Momentum
 
@@ -184,7 +134,7 @@ Keep Core stable during strategy research. Strategies integrate through the regi
 
 FundedNext request/retry hyperactivity is a separate runtime/compliance problem.
 
-FundedNext AUTO remains OFF until request budgeting, deduplication, retry/backoff behavior and safety are bounded and verified. Do not mix this runtime issue into D023 alpha conclusions.
+FundedNext AUTO remains OFF until request budgeting, deduplication, retry/backoff behavior and safety are bounded and verified. Do not mix this runtime issue into alpha conclusions.
 
 ## Communication / persistence
 
@@ -195,6 +145,6 @@ After every material milestone:
 - update `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` for the Europe/Paris workday;
 - persist local-action requests through the ChatGPT/Codex handoff + inbox mechanism when needed.
 
-For D023 run results report concisely:
+For confirmation results report concisely:
 
 **VERDICT — N — expectancy — PF — stability/cost issue — next action**
