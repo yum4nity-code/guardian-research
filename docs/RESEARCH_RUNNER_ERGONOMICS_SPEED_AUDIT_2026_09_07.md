@@ -27,6 +27,7 @@ Before this audit, six new strategies would require repeating compile/batch/path
 
 Applied change:
 - added `research/runner/campaign.py`;
+- exposed it through the unified `guardian_research.py campaign ...` interface;
 - campaign runs several frozen experiments sequentially in one unattended pass;
 - each experiment compiles independently;
 - each symbol batch remains sequential;
@@ -39,7 +40,7 @@ Applied change:
 Example future smoke command once D039..D045 are executable:
 
 ```powershell
-py -3 .\research\runner\campaign.py D039 D040 D041 D042 D043 D044 D045 --stage smoke
+py -3 .\research\runner\guardian_research.py campaign D039 D040 D041 D042 D043 D044 D045 --stage smoke --no-finalize
 ```
 
 This is deliberately sequential, not parallel.
@@ -56,7 +57,7 @@ Applied change:
 
 Expected benefit: smaller Git commits, faster `latest` inspection, less repository bloat.
 
-### 3. Legacy Backtest Bot is still publishing duplicate inbox commits — ACTION REQUIRED ON LOCAL PC
+### 3. Legacy Backtest Bot is still publishing duplicate inbox commits — SAFE INSPECTION ADDED
 
 During D038 the branch still received commits authored by `Guardian Backtest Bot` with messages like `Auto-sync validated D038 CSV ...`, while the new runner also published its own clean events.
 
@@ -66,7 +67,13 @@ Conclusion:
 - it must not be used as fallback;
 - it should be identified and disabled on the Windows PC before a large unattended multi-strategy campaign.
 
-Remote GitHub work cannot safely unregister an unknown local scheduled task/process. Do not guess which Windows task to delete. The cleanup should inspect actual scheduled tasks/process command lines first, then disable only the legacy watcher that owns the `Guardian Backtest Bot` commits.
+Applied safety change:
+- added `research/runner/Inspect-LegacyResultTransport.ps1`;
+- it is read-only;
+- it lists matching scheduled tasks and running process command lines;
+- it never stops/disables/deletes anything.
+
+Use it first, identify the task/process that actually owns commits authored as `Guardian Backtest Bot <guardian-backtest@local>`, then disable only that legacy component. Do not guess based on a task name containing `Guardian`.
 
 ### 4. Stage lifecycle still requires manifest state transitions — ACCEPTED FOR NOW
 
@@ -138,7 +145,7 @@ For one new strategy:
 7. development campaign can automatically score/rich-score/publish;
 8. confirmation is never opened automatically from a failed DEV verdict.
 
-For multiple ready strategies, prefer one `campaign.py` command rather than seven manual command sequences.
+For multiple ready strategies, prefer the unified `guardian_research.py campaign ...` command rather than repeated manual command sequences.
 
 ## Anti-sprawl decision
 
