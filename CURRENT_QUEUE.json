@@ -2,7 +2,7 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-06T23:12:00+02:00",
+  "updated_at": "2026-09-06T23:18:00+02:00",
   "active_primary": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "items": [
     {
@@ -11,13 +11,13 @@
       "status": "READY_DEV",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "Run exactly one USDJPY development test with reference tester model 0. Require the trusted compile receipt/EX5, fresh FILE_COMMON outputs, and a clean lifecycle/integrity verdict. Do not launch the six-symbol DEV batch until this single-symbol proof passes.",
+      "goal": "Run the sequential six-symbol D037 development batch with reference tester model 0. Stop immediately on any engineering/integrity failure. If the batch passes integrity, score the frozen DEV gates; any gate failure means REJECT_V0 with no rescue tuning.",
       "manifest": "research/experiments/D037.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "END_TO_END_CODE_IMPLEMENTED_BOOTSTRAP_COMPILE_PASS_SINGLE_TEST_PENDING",
+      "status": "BOOTSTRAP_COMPILE_SINGLE_TEST_PASS_DEV_BATCH_PENDING",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
       "goal": "one manifest + one complete strategy source; deterministic compile/test/batch/score pipeline"
