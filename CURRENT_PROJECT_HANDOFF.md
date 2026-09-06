@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-05 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D030+D029+D033 CLOSED REJECTED / D034 GOLD CLOSED REJECTED, OIL UNAVAILABLE / D035 BINANCE->FUNDEDNEXT CRYPTO LEAD-LAG PREREGISTERED+EXPORTER PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Last updated: 2026-09-06 Europe/Paris
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D029+D030+D033+D034 GOLD+D035 PRIMARY CLOSED REJECTED / D035-E1 CAUSAL DUAL-SOURCE FOLLOW-UP OPTIONAL / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
@@ -11,7 +11,7 @@ Every Europe/Paris calendar day with material Guardian work **must** receive an 
 
 Record the work actually done, material decisions/rejections, next safe action, and conservative human-time evidence. If exact active time is not provable, use the ledger's `CONFIRMED SPAN` / `MINIMUM OBSERVED` / `NOT QUANTIFIED` semantics. Unattended backtests/collectors/workers are not human work time. At resume, check whether today's entry exists; if material work has happened and the entry is absent/incomplete, fix it before closing the session.
 
-This requirement is also repeated in root `AGENTS.md` and `README.md` so a fresh agent cannot reasonably miss it.
+This requirement is also repeated in root `AGENTS.md` and `README.md`.
 
 ## Research standard
 - No curve fitting or post-hoc rescues disguised as validation.
@@ -39,72 +39,68 @@ Status remains STATIC PASS only; MetaEditor compile/smoke required before live r
 - D027 NR7 broad: rejected.
 - D028 session momentum: rejected.
 - D031 FX Piercing/Dark Cloud D1 broad: not validated.
-- D030 Alanazi H4 Engulfing: seven-major FX rejected; ETH discovery failed untouched 2019-2023 confirmation. Canonical ETH result `research/results/D030_C1_ETHUSD_H4_ENGULFING_PRE2024_CONFIRMATION_VERDICT_2026_09_05.md`, commit `28ce836c22edc9c19309c9194e93e3f04e9863ea`.
-- D029 Moskowitz/Ooi/Pedersen TSMOM 12M/1M: full 8-market gate rejected. Canonical result `research/results/D029_TSMOM_12M1M_FULL_PRIMARY_VERDICT_2018_2023_2026_09_05.md`, commit `1613b46caa1be8ac9002778fcd58f4dd23f16fcc`.
-- D033 Ben Omrane & Van Oppens EURUSD M5 DT/DB M2: corrected v1.01 arm rejected 0/7 gates. Canonical result `research/results/D033_V1_01_CORRECTED_M2_VERDICT_2026_09_05.md`, commit `3579b31e95bf30053cbabbb6ba997510d715f7b9`.
-- D034 Caporale/Plastun abnormal-return Strategy 1 GOLD arm: rejected 3/7 gates. OIL could not be run because no WTI/USOIL/XTI symbol is available on the target account. Canonical GOLD result `research/results/D034_XAUUSD_ABNORMAL_RETURN_STRAT1_VERDICT_2026_09_05.md`, commit `f59d2a4cabb231c6ee50178df4e347646056dd22`.
+- D030 Alanazi H4 Engulfing: seven-major FX rejected; ETH discovery failed untouched 2019-2023 confirmation. Canonical ETH result `research/results/D030_C1_ETHUSD_H4_ENGULFING_PRE2024_CONFIRMATION_VERDICT_2026_09_05.md`.
+- D029 Moskowitz/Ooi/Pedersen TSMOM 12M/1M: full 8-market gate rejected. Canonical result `research/results/D029_TSMOM_12M1M_FULL_PRIMARY_VERDICT_2018_2023_2026_09_05.md`.
+- D033 Ben Omrane & Van Oppens EURUSD M5 DT/DB M2: corrected v1.01 arm rejected 0/7 gates. Canonical result `research/results/D033_V1_01_CORRECTED_M2_VERDICT_2026_09_05.md`.
+- D034 Caporale/Plastun abnormal-return Strategy 1 GOLD arm: rejected 3/7 gates. OIL untested because unavailable. Canonical result `research/results/D034_XAUUSD_ABNORMAL_RETURN_STRAT1_VERDICT_2026_09_05.md`.
+- D035 Binance BTC/ETH deleveraging -> FundedNext crypto CFD lead-lag primary development: rejected 4/8 gates. Canonical result `research/results/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_DISCOVERY_VERDICT_2026_09_06.md`, commit `436068e04ed5a9538cae79b8305417e08c79d3f3`.
 
 # D032 — Crypto H1 Bullish Doji Star
 Research basis: Moser & Brauneis (2026), DOI `10.1016/j.iref.2026.105158`.
 
 Frozen underlying signal: Bullish Doji Star H1, strict 144h SMA downtrend, executable LONG first ASK after signal, `1R = 2*sd(previous 24 H1 returns)`, source reference +24h.
 
-D032-C1 PRE2024 confirmation: **PASS**. Canonical result `research/results/D032_C1_DOJI_STAR_H1_CORE_CONFIRMATION_VERDICT_2026_09_05.md`, commit `c0ef788f5e16cdb6a402cef9a0e29fa05e7691f2`.
+D032-C1 PRE2024 confirmation: **PASS**. Canonical result `research/results/D032_C1_DOJI_STAR_H1_CORE_CONFIRMATION_VERDICT_2026_09_05.md`.
 
 Core BTC+ETH+DOG PRE2024: n=79, mean +133.52 bps, median +93.43 bps, win 64.56%, mean +0.588R, same-trend control ~+32.13 bps, Doji-control differential ~+101.38 bps, bootstrap lower >0, gate 7/7 PASS.
 
 Not production-ready. Management/entry-localization attempts -1R/+3R/24h, post24 1R runner, RSI<30 and 6h reclaim-high did not solve the problem. Keep as sparse research sleeve only.
 
-# D034 — Gold/Oil intraday abnormal-return momentum — GOLD CLOSED REJECTED / OIL UNTESTED
-Primary source: Caporale & Plastun (2021), *Financial Markets and Portfolio Management* 35, 353–368, DOI `10.1007/s11408-021-00380-w`.
+# D035 — Binance BTC/ETH deleveraging -> FundedNext crypto CFD lead-lag — PRIMARY CLOSED REJECTED
+Canonical preregistration: `research/campaigns/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_LEADLAG_PREREGISTRATION_2026_09_05.md`.
+Canonical result: `research/results/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_DISCOVERY_VERDICT_2026_09_06.md`.
 
-Preregistration: `research/campaigns/D034_GOLD_OIL_INTRADAY_ABNORMAL_RETURN_MOMENTUM_PREREGISTRATION_2026_09_05.md`, commit `3e3166bf08f03bf958de573f98250f98697dc9d6`.
-Prepared scanner: `D034_GoldOil_AbnormalReturn_Momentum_FeatureLab_v1_00.mq5`, SHA-256 `842ca596a017229c27857030589c0f5b432e52313364f7f7a27c73890da138fe`.
-Classification: `ADAPTATION_CAUSAL_CFD_TRANSFER`.
+Development remained 2024-01-01..2025-12-31; 2026-H1 remains untouched.
 
-Returned XAUUSD run: 83 clean events, pooled mean executable +1.8925 bps/event, median +8.4451 bps, win 57.83%; LONG +9.6399 bps, SHORT -4.3390 bps; 2024 and 2025 negative, 2026 through June +13.9691 bps; month-cluster bootstrap approximately [-7.95,+12.62] bps/event; frozen GOLD gate 3/7 -> REJECT.
+Returned pack quality:
+- 5,558 merged BTC/ETH source events;
+- 38,622 target-event rows;
+- 9 eligible FundedNext crypto CFDs: ADAUSD, BTCUSD, DOGUSD, ETHUSD, LNKUSD, LTCUSD, XLMUSD, XMRUSD, XRPUSD;
+- Binance daily metrics complete for both BTC and ETH; no missing days/duplicate rows in returned QA;
+- BTC/ETH 1m archive coverage complete for the loaded period;
+- server->UTC alignment 114/114 weeks usable, mean weekly correlation ~0.996.
 
-OIL is **untested**, not failed, because the target FundedNext account exposes no suitable WTI/USOIL/XTI symbol.
+Frozen D035 gate:
+- G1 event count PASS;
+- G2 target count PASS;
+- G3 pooled executable +15m FAIL: **-25.448 bps**;
+- G4 event-control differential +15m FAIL: **+5.179 bps** vs +10 bps requirement;
+- G5 day-cluster bootstrap lower >0 PASS: **[+3.033,+7.385] bps**;
+- G6 pooled executable +30m FAIL: **-25.438 bps**;
+- G7 BTC-only and ETH-only branches both positive FAIL: BTC-only **-3.281 bps**, ETH-only **+3.283 bps**;
+- G8 month concentration PASS: max ~8.08%.
 
-# D035 — Binance BTC/ETH deleveraging -> FundedNext crypto CFD lead-lag — PREPARED
-User selected this cross-venue exotic hypothesis and explicitly discarded the other exotic candidates.
+Final: **4/8 -> DISCOVERY_REJECT**. There is a small statistically detectable timing effect, but it is not economically large enough after executable FundedNext spreads in the broad CFD pool. BTCUSD and ETHUSD individually remain positive at +15m (~+5.86/+5.43 bps) but below the preregistered +15 bps hurdle.
 
-Canonical preregistration:
-`research/campaigns/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_LEADLAG_PREREGISTRATION_2026_09_05.md`
-Commit: `050506aff39a321195a70ec79ed0008a2b736d7d`.
+## D035 dual-source post-hoc warning / possible E1
+The returned development rows labelled `BTCUSD+ETHUSD` look superficially much stronger, but **must not be treated as causal evidence from the current output**. The v1.01 merge routine keeps `event_time_utc` from the first source shock while adding the second source to the label if it occurs within five minutes. Filtering on the dual-source label at that first timestamp therefore uses future information.
 
-Prepared MT5 exporter:
-`research/ea/D035_CFD_M1_Exporter_v1_01.mq5`
-Commit: `0e8f923d1ae7529af7999f9b6e37970133e0fb19`.
-User-delivered/local SHA-256: `2bd349d44845cbe726c154c5f419e2ec36763700dd245f2da6964bcb05342a96`.
-Static QA: balanced syntax delimiters, 19 header fields = 19 data fields, header flush + periodic flush. MetaEditor compile not claimed.
+If this family is pursued once more, create a clearly separate **D035-E1 exploratory diagnostic** on the already inspected 2024-2025 sample:
+- same frozen BTC/ETH shock definitions and per-source cooldown;
+- require both source shocks within five minutes;
+- signal timestamp = **later/second** qualifying source shock;
+- no threshold/horizon/target rescue mining;
+- 2026-H1 remains untouched;
+- only a large causal E1 result can justify a fresh D035-C1 preregistration before opening 2026-H1.
 
-Prepared historical analyzer delivered in the ChatGPT session:
-`D035_Binance_Deleveraging_LeadLag_v1_00.py`
-SHA-256: `fa22fa6a7fe735436b381ef2ec7a58f7aed8e71d526e2b679073a6981dfad133`.
-Python syntax compile PASS; synthetic core smoke PASS, including recovery of an injected UTC+2 MT5 server offset. Full behavior is frozen in the preregistration and D035 handoff if the conversation artifact is unavailable to another agent.
-
-Handoff:
-`handoff/chatgpt_to_codex/2026/09/05/D035_BINANCE_DELEVERAGING_LEADLAG_PREPARED.md`
-Commit: `84a42fd284cd0b4ae9ad0299379884bf856ddf09`.
-
-Frozen source event: BTCUSDT/ETHUSDT USD-M, 5m return and 5m `sum_open_interest` change both negative and <= their strictly-prior rolling 30d 10th percentiles; 30m source cooldown; BTC/ETH events within 5m merged.
-
-Development = 2024-01-01..2025-12-31 UTC with warm-up from 2023-11-01. Reserved confirmation = 2026-01-01..2026-06-30 and must remain untouched unless all development gates pass and a fresh confirmation preregistration exists.
-
-Target measurement: all crypto CFDs available on the target FundedNext account, BTCUSD mandatory for mechanical server->UTC alignment. Primary cross-asset executable SHORT horizon +15m using BID entry / ASK exit; +1/+5/+30/+60/+120m frozen diagnostics. No Guardian/SL/TP/R.
-
-Development requires all 8 frozen gates, including >=80 merged source events, >=2 non-source targets with >=40 events, >=+15bps pooled executable +15m, >=+10bps event-control differential, positive day-cluster bootstrap lower bound, positive +30m persistence, positive BTC-only and ETH-only source branches, <=35% positive-month concentration.
-
-Do not rescue a failed D035 with percentile/horizon/target mining, direction inversion, liquidation/funding/basis/RSI/ATR filters or source-specific thresholds on the inspected 2024-2025 sample.
+The original D035 primary verdict remains REJECT regardless of E1.
 
 ## Immediate execution order
-1. Run D035 exporter in Strategy Tester **M1 / 1 minute OHLC**, 2023-11-01 through 2025-12-31, on **BTCUSD plus every crypto CFD available on the target FundedNext account**. No inputs.
-2. Collect/zip every generated `D035_CFD_M1_*.csv`.
-3. Run the frozen D035 analyzer in development mode only; do not use `--confirm`.
-4. Archive the development verdict and update this handoff the same session.
-5. Keep D032 Doji as a sparse confirmed-entry sleeve; do not rescue D030/D029/D033/D034 on inspected samples.
-6. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
+1. Archive D035 primary as closed rejected; do not run `--confirm`.
+2. Optional next research action: D035-E1 causal dual-source diagnostic on 2024-2025 only, with progress/ETA/checkpoint logging in the local analyzer.
+3. Keep D032 Doji as a sparse confirmed-entry sleeve; do not rescue rejected families on inspected samples.
+4. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
+5. FundedNext Algo Trading remains OFF until request-budget/retry pathology is resolved and replacement core is compiled/smoked.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
 Daily ledger rule: every Europe/Paris day with material Guardian work must be recorded in `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` before session end/handoff.
