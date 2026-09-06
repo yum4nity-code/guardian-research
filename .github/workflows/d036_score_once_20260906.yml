@@ -1,0 +1,31 @@
+name: D036 score once
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/d036_score_once_20260906.yml']
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: mainrepo
+      - name: Checkout backtest results
+        uses: actions/checkout@v4
+        with:
+          ref: backtest-results
+          path: bt
+      - name: Score D036 DEV
+        shell: bash
+        run: |
+          set -euo pipefail
+          python mainrepo/research/analysis/analyze_d036_donchian_v0_v1_01.py \
+            --stage DEV_2024_2025 \
+            --input bt/backtests/inbox/2026/09/06/20260906_164118_D036_BTCUSD_cbce3f8ae674/D036_V100_DEV_2024_2025_BTCUSD_TRADES.csv \
+            --input bt/backtests/inbox/2026/09/06/20260906_164332_D036_ETHUSD_d264ccba42ca/D036_V100_DEV_2024_2025_ETHUSD_TRADES.csv \
+            --input bt/backtests/inbox/2026/09/06/20260906_174741_D036_EURUSD_965cda8af8fb/D036_V102_DEV_2024_2025_EURUSD_TRADES.csv \
+            --input bt/backtests/inbox/2026/09/06/20260906_174916_D036_GBPUSD_9a80a17d0f56/D036_V102_DEV_2024_2025_GBPUSD_TRADES.csv \
+            --input bt/backtests/inbox/2026/09/06/20260906_165035_D036_USDJPY_530f977e8d25/D036_V100_DEV_2024_2025_USDJPY_TRADES.csv \
+            --input bt/backtests/inbox/2026/09/06/20260906_165052_D036_XAUUSD_b9c055f2d484/D036_V100_DEV_2024_2025_XAUUSD_TRADES.csv
