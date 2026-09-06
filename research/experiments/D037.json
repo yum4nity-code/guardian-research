@@ -133,6 +133,15 @@
       "errors": 0,
       "warnings": 0
     },
+    "single_symbol_integrity_proof": {
+      "status": "TEST_PASS_INTEGRITY",
+      "observed_from_user_confirmation": true,
+      "stage": "development",
+      "symbol": "USDJPY",
+      "tester_model": 0,
+      "recovered_after_utf16_parser_fix": true,
+      "note": "Engineering proof only; not a development science result and does not open confirmation."
+    },
     "development": null,
     "confirmation": null,
     "final_verdict": null
