@@ -28,6 +28,8 @@ import state_tools
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG = ROOT / "local" / "guardian_runner.json"
 RESULT_RE = re.compile(r"(?P<errors>\d+)\s+errors?\s*,\s*(?P<warnings>\d+)\s+warnings?", re.IGNORECASE)
+SOURCE_SHA_MODE_TEXT_LF = "UTF8_TEXT_LF_NORMALIZED"
+SOURCE_SHA_MODE_RAW = "RAW_BYTES"
 
 
 class RunnerError(RuntimeError):
@@ -35,11 +37,37 @@ class RunnerError(RuntimeError):
 
 
 def sha256_file(path: Path) -> str:
+    """Byte-for-byte SHA-256 used for deployed files, EX5 and result evidence."""
     h = hashlib.sha256()
     with path.open("rb") as fh:
         for chunk in iter(lambda: fh.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def sha256_text_lf(path: Path) -> str:
+    """Canonical source identity SHA-256, insensitive only to UTF-8 BOM/line endings.
+
+    Git may check out text as CRLF on Windows even when the committed logical
+    source was hashed with LF on Linux. For MQL source identity we normalize
+    UTF-8 text to LF before hashing. Any other text/code change still changes
+    this digest.
+    """
+    raw = path.read_bytes()
+    try:
+        text = raw.decode("utf-8-sig")
+    except UnicodeDecodeError as exc:
+        raise RunnerError(f"source is not valid UTF-8 text: {path}: {exc}") from exc
+    normalized = text.replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
+def source_identity_sha256(path: Path, mode: str) -> str:
+    if mode == SOURCE_SHA_MODE_TEXT_LF:
+        return sha256_text_lf(path)
+    if mode == SOURCE_SHA_MODE_RAW:
+        return sha256_file(path)
+    raise RunnerError(f"unsupported source_sha256_mode: {mode}")
 
 
 def _expand_path(value: str) -> Path:
@@ -112,38 +140,56 @@ def source_readiness(manifest: dict[str, Any]) -> tuple[Path | None, list[str]]:
     source_path = ROOT / canonical if canonical else None
 
     if source_path and source_path.is_file() and source.get("source_sha256"):
-        actual = sha256_file(source_path)
-        if actual.lower() != source["source_sha256"].lower():
-            blockers.append(
-                f"source SHA mismatch: manifest={source['source_sha256']} actual={actual} path={canonical}"
-            )
+        mode = source.get("source_sha256_mode", SOURCE_SHA_MODE_RAW)
+        try:
+            actual = source_identity_sha256(source_path, mode)
+        except RunnerError as exc:
+            blockers.append(str(exc))
+        else:
+            if actual.lower() != source["source_sha256"].lower():
+                blockers.append(
+                    f"source identity SHA mismatch: mode={mode} manifest={source['source_sha256']} "
+                    f"actual={actual} raw_bytes={sha256_file(source_path)} path={canonical}"
+                )
     return source_path, blockers
 
 
-def direct_deploy_verified(source_path: Path, target_dir: Path) -> dict[str, str]:
+def direct_deploy_verified(source_path: Path, target_dir: Path, source_sha_mode: str = SOURCE_SHA_MODE_TEXT_LF) -> dict[str, str]:
+    """Copy exact local bytes to MT5 and prove both logical identity and byte equality."""
     target_dir.mkdir(parents=True, exist_ok=True)
     destination = target_dir / source_path.name
     temp = target_dir / f".{source_path.name}.guardian-copy.tmp"
 
-    source_sha = sha256_file(source_path)
+    source_bytes_sha = sha256_file(source_path)
+    source_identity_sha = source_identity_sha256(source_path, source_sha_mode)
     if temp.exists():
         temp.unlink()
     shutil.copy2(source_path, temp)
-    temp_sha = sha256_file(temp)
-    if temp_sha != source_sha:
+    temp_bytes_sha = sha256_file(temp)
+    if temp_bytes_sha != source_bytes_sha:
         temp.unlink(missing_ok=True)
-        raise RunnerError(f"deploy temp SHA mismatch: source={source_sha} temp={temp_sha}")
+        raise RunnerError(f"deploy temp byte SHA mismatch: source={source_bytes_sha} temp={temp_bytes_sha}")
 
     os.replace(temp, destination)
-    destination_sha = sha256_file(destination)
-    if destination_sha != source_sha:
-        raise RunnerError(f"deploy destination SHA mismatch: source={source_sha} destination={destination_sha}")
+    destination_bytes_sha = sha256_file(destination)
+    if destination_bytes_sha != source_bytes_sha:
+        raise RunnerError(
+            f"deploy destination byte SHA mismatch: source={source_bytes_sha} destination={destination_bytes_sha}"
+        )
+    destination_identity_sha = source_identity_sha256(destination, source_sha_mode)
+    if destination_identity_sha != source_identity_sha:
+        raise RunnerError(
+            f"deploy destination identity SHA mismatch: source={source_identity_sha} destination={destination_identity_sha}"
+        )
 
     return {
         "source": str(source_path),
         "destination": str(destination),
-        "source_sha256": source_sha,
-        "destination_sha256": destination_sha,
+        "source_sha256_mode": source_sha_mode,
+        "source_sha256": source_identity_sha,
+        "destination_sha256": destination_identity_sha,
+        "source_bytes_sha256": source_bytes_sha,
+        "destination_bytes_sha256": destination_bytes_sha,
     }
 
 
@@ -217,11 +263,23 @@ def write_receipt(path: Path, payload: dict[str, Any]) -> None:
 def plan(identifier: str) -> dict[str, Any]:
     state, manifest_path, manifest = load_context(identifier)
     source_path, blockers = source_readiness(manifest)
+    source_report: dict[str, Any] = {}
+    if source_path and source_path.is_file():
+        mode = manifest["source"].get("source_sha256_mode", SOURCE_SHA_MODE_RAW)
+        try:
+            source_report = {
+                "sha256_mode": mode,
+                "identity_sha256": source_identity_sha256(source_path, mode),
+                "raw_bytes_sha256": sha256_file(source_path),
+            }
+        except RunnerError as exc:
+            source_report = {"sha256_mode": mode, "identity_error": str(exc)}
     return {
         "experiment_id": manifest["experiment_id"],
         "manifest": str(manifest_path.relative_to(ROOT)),
         "source": str(source_path.relative_to(ROOT)) if source_path else None,
         "source_ready": not blockers,
+        "source_identity": source_report,
         "blockers": blockers,
         "execution": manifest["execution"],
         "stages": {
@@ -262,7 +320,8 @@ def cmd_prepare(identifier: str) -> int:
         raise RunnerError("invalid local config: " + "; ".join(config_errors))
 
     target_dir = _expand_path(config["mt5_experts_dir"])
-    deploy = direct_deploy_verified(source_path, target_dir)
+    mode = manifest["source"].get("source_sha256_mode", SOURCE_SHA_MODE_RAW)
+    deploy = direct_deploy_verified(source_path, target_dir, mode)
     print(json.dumps(deploy, indent=2, ensure_ascii=False))
     return 0
 
@@ -278,7 +337,8 @@ def cmd_compile(identifier: str) -> int:
     if config_errors:
         raise RunnerError("invalid local config: " + "; ".join(config_errors))
 
-    deploy = direct_deploy_verified(source_path, _expand_path(config["mt5_experts_dir"]))
+    mode = manifest["source"].get("source_sha256_mode", SOURCE_SHA_MODE_RAW)
+    deploy = direct_deploy_verified(source_path, _expand_path(config["mt5_experts_dir"]), mode)
     receipt = build_receipt_path(config, manifest["experiment_id"])
     compile_log = receipt.parent / "metaeditor_compile.log"
     compile_result = compile_with_metaeditor(
@@ -294,6 +354,7 @@ def cmd_compile(identifier: str) -> int:
         "experiment_id": manifest["experiment_id"],
         "manifest_path": str(manifest_path.relative_to(ROOT)),
         "source_version": manifest["source"]["version"],
+        "source_sha256_mode": mode,
         "deploy": deploy,
         "compile": compile_result,
         "autosync_used": False,
