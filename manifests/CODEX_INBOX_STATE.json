@@ -14,7 +14,8 @@
     "handoff/chatgpt_to_codex/2026/09/01/D024_MULTI_STRATEGY_PORTFOLIO_CAP_PREREG.md",
     "handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md",
     "handoff/chatgpt_to_codex/2026/09/06/D17_BANGER_GLOBAL_AUDIT_2026_09_06.md",
-    "handoff/chatgpt_to_codex/2026/09/06/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md"
+    "handoff/chatgpt_to_codex/2026/09/06/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md",
+    "handoff/chatgpt_to_codex/2026/09/06/D17_LIVE_V1117_LINEAGE_ATTRIBUTION_PREP_2026_09_06.md"
   ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
@@ -27,5 +28,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "NEW 2026-09-06: Guardian Core v12.01 compile-fix has now been user-compiled in MetaEditor with 0 errors / 0 warnings. Read GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md and production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md. Exact compiled Core SHA256 c15c2f04da78f9a4841cc461224bd62db35a110e1c2ff3ed15c6a0fd9c27e826. Preserve the local same-folder MQH layout and pure-core invariant. P0 research remains D17 lineage/native attribution; do not let this archival task preempt it. Earlier unread notes remain listed for explicit reconciliation; supersede rather than blindly execute incompatible old instructions."
+  "notes": "NEW 2026-09-06 P0 UPDATE: exact FTMO live source has now been supplied and source lineage is resolved. Read D17_LIVE_V1117_LINEAGE_ATTRIBUTION_PREP_2026_09_06.md before doing D17 work. Live is v11.17 SHA256 875a56e95e5ab4282442e410e4e80f1c776aa9f974d4a3ce9dc5b12505cf8327 with Momentum+RSI. Raw Momentum setup is close lineage to v11.16 but crypto regime entry semantics changed materially to default BNS_JUMP_ONLY, so old v11.16 samples are not exact validation. Attribution candidate D017_Momentum_LiveV1117_Attribution_v1_100_20260906.mq5 SHA256 0e181ad3f65ee0dd370db834dcdfed40ae8a3f806073da9e3639e4277d3338d3 is waiting for user MetaEditor compile 0/0, then frozen BTCUSD Every-tick runs. Do not use TIMEBOX=60m, do not tune BNS or manager parameters, and do not mix RSI. Guardian Core v12.01 remains compile-validated baseline."
 }
