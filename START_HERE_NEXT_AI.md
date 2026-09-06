@@ -15,7 +15,7 @@ Read only what is needed, in this order:
 
 - Experiment: **D039-INSIDE-DAY-BREAKOUT-V0**
 - State: **READY_SMOKE**
-- Next action: **On return to the MT5 research PC, pull the refactor branch and run `py -3 .\research\runner\guardian_research.py compile D039`. D039 is preregistered, source-complete and SHA-frozen but has not yet received local MetaEditor compile proof. If compile is 0 errors / 0 warnings with trusted EX5 receipt, run `py -3 .\research\runner\campaign.py D039 --stage smoke --no-finalize` to execute the three-market October-2023 engineering smoke and native Trade Path validation in one unattended command. Do not open D039 development until smoke passes. The assistant can read the automatically published GitHub evidence after the user says only `fini`.**
+- Next action: **On return to the MT5 research PC, pull the refactor branch and run `py -3 .\research\runner\guardian_research.py compile D039`. D039 is preregistered, source-complete and SHA-frozen but has not yet received local MetaEditor compile proof. If compile is 0 errors / 0 warnings with trusted EX5 receipt, run `py -3 .\research\runner\guardian_research.py campaign D039 --stage smoke --no-finalize` to execute the three-market October-2023 engineering smoke and native Trade Path validation in one unattended command. Do not open D039 development until smoke passes. The assistant can read the automatically published GitHub evidence after the user says only `fini`.**
 
 ## Operational truths
 
