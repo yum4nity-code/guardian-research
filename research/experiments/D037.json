@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "strategy_family": "Williams-inspired previous-day range volatility breakout",
-  "status": "SOURCE_PENDING",
+  "status": "COMPILE_PENDING",
   "hypothesis": "Can a simple previous-day-range volatility expansion rule produce a positive, broad, cost-robust intraday edge across the Guardian/FundedNext six-market universe without indicator filters or post-hoc tuning?",
   "preregistration": {
     "path": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
@@ -13,16 +13,17 @@
     ]
   },
   "source": {
-    "canonical_path": null,
-    "source_sha256": null,
-    "git_blob_sha": null,
+    "canonical_path": "research/strategies/d037/D037_Williams_M15_v1_01.mq5",
+    "source_sha256": "8a30c8e20c38803492c2b1cb3c94dd2aa25df66575ca665aa3da660833fac96d",
+    "git_blob_sha": "c112ab550933526f733ff6cde2aec681b1e61ce6",
     "version": "1.01",
-    "complete_repository_source": false,
+    "complete_repository_source": true,
     "strategy_semantics_frozen": true,
     "engineering_lineage": [
       "research/strategies/d037/D037_Williams_M15_v1_00.mq5",
-      "automation/Build_D037_v101_20260906.ps1",
-      "v1.01 must be committed as a complete source; textual runtime source generation is not canonical"
+      "automation/Build_D037_v101_20260906.ps1 was the historical patch specification only",
+      "complete v1.01 source committed at a9c00bb7ee3ba6a1bdb09ab3845d87af45d8783a",
+      "v1.01 engineering-only change: OnDeinit processes last closed M15 bar r[1] instead of current forming bar r[0], plus version/log/CSV identity updates"
     ]
   },
   "execution": {
@@ -64,7 +65,7 @@
       "from": "2024-01-02",
       "to": "2025-12-31",
       "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
-      "status": "LOCKED",
+      "status": "LOCKED_PENDING_COMPILE",
       "gates": {
         "aggregate_n_min": 800,
         "each_symbol_n_min": 80,
