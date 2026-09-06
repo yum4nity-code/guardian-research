@@ -1,16 +1,15 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T12:00:00+02:00",
-  "active_primary": "D017-NATIVE-RATCHET-LINEAGE-ATTRIBUTION",
+  "updated_at": "2026-09-06T13:30:00+02:00",
+  "active_primary": "D023-LONDON-ORB-M15-V0",
   "items": [
     {
       "id": "D017-NATIVE-RATCHET-LINEAGE-ATTRIBUTION",
-      "priority": 0,
-      "status": "WAITING_RESULT",
+      "priority": 5,
+      "status": "REJECTED",
       "owner": "ChatGPT/User",
-      "type": "source_lineage_resolved_managed_edge_attribution",
-      "goal": "CURRENT P0. Exact FTMO live source is now resolved as v11.17 SHA256 875a56e95e5ab4282442e410e4e80f1c776aa9f974d4a3ce9dc5b12505cf8327. Raw Momentum setup is close lineage to v11.16 but crypto regime semantics changed to default BNS_JUMP_ONLY, so attribution must use the v11.17 entry set. Compile D017_Momentum_LiveV1117_Attribution_v1_100_20260906.mq5 SHA256 0e181ad3f65ee0dd370db834dcdfed40ae8a3f806073da9e3639e4277d3338d3, then run frozen BTCUSD Every-tick NATIVE_RATCHET vs FIXED_3R plus raw path diagnostics. Preserve TP1 2R/25%, true-net-style BE 1.25R and 1.75 ATR one-way setup-bar-gated trail. No TIMEBOX.",
-      "blocking": "Only MetaEditor compile 0 errors / 0 warnings and the frozen tester run remain. Codex credits are not required to proceed. Read handoff/chatgpt_to_codex/2026/09/06/D17_LIVE_V1117_LINEAGE_ATTRIBUTION_PREP_2026_09_06.md."
+      "type": "closed_alpha_family_preserved_for_manager_evidence",
+      "goal": "D17 Momentum is closed as a current alpha candidate after completed attribution across BTCUSD, ETHUSD, EURUSD, GBPUSD, USDJPY, XAUUSD and USDCAD. Preserve results for source lineage and Manager Evidence Ledger only. Do not tune or rescue D17 on inspected samples."
     },
     {
       "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
@@ -63,11 +62,12 @@
     },
     {
       "id": "D023-LONDON-ORB-M15-V0",
-      "priority": 2,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "scientific_hypothesis_legacy_broad_family",
-      "goal": "DO NOT rerun the old broad four-market discovery as the active primary. Broad D023 failed; USDJPY remains a discovery/watchlist branch (~+0.1179R after approximate commission, n=489, positive 2024/2025/2026) and needs a genuinely untouched preregistered confirmation before portfolio promotion. No rescue filters."
+      "priority": 0,
+      "status": "READY",
+      "owner": "NextAI/User",
+      "type": "scientific_hypothesis_untouched_confirmation",
+      "goal": "CURRENT P0. USDJPY London ORB remains a serious candidate after FundedNext/DST-aware 2024-2026 conformance: n=482, mean net about +0.0915R/trade, cumulative +44.10R, PF about 1.176, positive 2024/2025/2026 H1 but weakening through time. Preserve frozen ORB semantics. Next scientific action is untouched 2023 confirmation against preregistered gates, but only after the diagnostic harness is audited, really compiled and smoke-tested. Read GUARDIAN_MASTER_MANDATE.md and handoff/guardian_next_ai/2026/09/06/GUARDIAN_PROJECT_RESTART_HANDOFF_2026_09_06.md.",
+      "blocking": "Do NOT ask for another full 2023 run yet. Latest local v1.07 stats harness was never compile-validated and has a suspected path-string defect. Build a uniquely named output-only harness from frozen v1.04 semantics, compile 0/0, prove INIT/FINAL output on a short smoke run, manually verify several ORB rows, then run full 2023 once."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
@@ -75,7 +75,7 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "legacy_scientific_hypothesis",
-      "goal": "Legacy queue item. Reconcile against the Sep-6 handoff/status before any execution; do not let it preempt D17 attribution. If still scientifically active, use only the frozen corrected engine and no post-hoc pair substitution."
+      "goal": "Legacy queue item. Reconcile against the Sep-6 handoff/status before any execution. If still scientifically active, use only the frozen corrected engine and no post-hoc pair substitution."
     },
     {
       "id": "D027-NR7-CONTRACTION-BREAKOUT-V0",
@@ -83,7 +83,7 @@
       "status": "WAITING_CODEX",
       "owner": "ChatGPT/Codex",
       "type": "legacy_scientific_hypothesis",
-      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not preempt D17 attribution or rerun an already inspected family blindly."
+      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not preempt D023 or rerun an already inspected family blindly."
     },
     {
       "id": "D028-INTRADAY-SESSION-MOMENTUM-V0",
@@ -91,7 +91,7 @@
       "status": "WAITING_CODEX",
       "owner": "ChatGPT/Codex",
       "type": "legacy_scientific_hypothesis",
-      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not preempt D17 attribution or rerun an already inspected family blindly."
+      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not preempt D023 or rerun an already inspected family blindly."
     },
     {
       "id": "D029-CLASSIC-TSMOM-BENCHMARK-V0",
@@ -132,11 +132,11 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "legacy_campaign",
-      "goal": "Defer. Broad D017 Momentum failed the 2024-2025 large-edge standard across available major markets; current question is exact managed-system attribution, not another broad scan."
+      "goal": "Defer. Broad D017 Momentum failed the current alpha standard. Do not restart broad scanning unless a new preregistered hypothesis justifies it."
     },
     {
       "id": "D017-V11-16-PROVENANCE-AUDIT",
-      "priority": 0,
+      "priority": 5,
       "status": "VALIDATED",
       "owner": "ChatGPT",
       "type": "semantic_provenance_audit_resolved",
@@ -144,11 +144,11 @@
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
-      "priority": 3,
+      "priority": 8,
       "status": "READY",
       "owner": "Codex",
       "type": "technical_non_regression_control",
-      "goal": "After virtual attribution, use the exact live v11.17 EA with RSI OFF if needed to quantify production execution/account-state effects on the same feed. Do not turn this into a parameter search."
+      "goal": "Historical technical control only. Do not let this preempt D023 confirmation or become another D17 rescue campaign."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -160,5 +160,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-06 P0 update. Exact live D17 source is resolved. Live v11.17 preserves the raw Momentum continuation setup but changes crypto entry selection via default BNS_JUMP_ONLY and changes several execution/account-selection layers. Attribution candidate D017_Momentum_LiveV1117_Attribution_v1_100_20260906.mq5 is prepared and waiting only for user compile 0/0 then frozen BTCUSD Every-tick results. No TIMEBOX. D023 USDJPY remains watchlist pending untouched confirmation; Deribit observer stays secondary; D029 rejected. Guardian Core v12.01 is compile-validated baseline and must not be modified for strategy research."
+  "notes": "2026-09-06 restart handoff. Root mandate is GUARDIAN_MASTER_MANDATE.md. D17 Momentum is closed as current alpha; preserve only lineage and manager evidence. Active P0 is D023 USDJPY London ORB. FundedNext/DST-aware inspected-period conformance remained positive but weakened through time. Untouched 2023 confirmation is next, but only after a new uniquely named diagnostic harness is really compiled and smoke-tested with deterministic INIT/FINAL outputs. Guardian Core v12.01 remains the compile-validated pure infrastructure baseline. FundedNext request/retry pathology remains a separate runtime issue and AUTO stays off until bounded."
 }
