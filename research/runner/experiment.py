@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[2]
 EXPERIMENT_DIR = ROOT / "research" / "experiments"
 ID_RE = re.compile(r"^D\d{3}(?:-[A-Z0-9][A-Z0-9_-]*)+$")
 SOURCE_SHA_MODES = {"UTF8_TEXT_LF_NORMALIZED", "RAW_BYTES"}
+STAGE_SELECTION_MODES = {"EA_DEFAULT_ONLY", "TESTER_DATE_RANGE_ONLY"}
 
 
 class ManifestError(RuntimeError):
@@ -128,6 +129,9 @@ def validate_manifest(manifest: dict[str, Any]) -> list[str]:
         require(bool(runner_contract.get("expert_relative_path")), "runner_contract.expert_relative_path is required")
         default_stage = runner_contract.get("default_stage")
         require(default_stage in {"smoke", "development", "confirmation"}, "runner_contract.default_stage is invalid")
+        stage_selection = runner_contract.get("stage_selection", "EA_DEFAULT_ONLY")
+        require(stage_selection in STAGE_SELECTION_MODES,
+                "runner_contract.stage_selection must be EA_DEFAULT_ONLY or TESTER_DATE_RANGE_ONLY")
         reference_model = runner_contract.get("tester_model_reference")
         require(isinstance(reference_model, int) and 0 <= reference_model <= 4,
                 "runner_contract.tester_model_reference must be integer 0..4")
