@@ -10,6 +10,8 @@ import sys
 import batch
 import diagnostics
 import experiment
+import publisher
+import rich_score
 import runner
 import score
 import tester
@@ -39,6 +41,36 @@ def pipeline_run(identifier: str) -> dict:
         "verdict_path": verdict["verdict_path"],
         "verdict": verdict["verdict"],
         "all_gates_pass": verdict["all_gates_pass"],
+    }
+
+
+def finalize_existing(identifier: str, stage: str, batch_path: str | None = None) -> dict:
+    """Finalize an already-completed batch without launching MT5.
+
+    Frozen decision scoring remains authoritative. Rich analytics are generated
+    separately, then a compact provenance bundle is published to
+    backtest-results through an isolated temporary clone.
+    """
+    decision = score.score(identifier, stage, batch_path)
+    rich = rich_score.rich_score(identifier, stage, decision["batch_path"])
+    published = publisher.publish_bundle(
+        identifier,
+        stage,
+        decision_path=decision["verdict_path"],
+        rich_path=rich["rich_score_path"],
+    )
+    return {
+        "status": "FINALIZE_PASS",
+        "stage": stage,
+        "decision_verdict": decision["verdict"],
+        "all_gates_pass": decision["all_gates_pass"],
+        "decision_score_path": decision["verdict_path"],
+        "rich_score_path": rich["rich_score_path"],
+        "publish_receipt": published["publish_receipt"],
+        "published_branch": published["branch"],
+        "published_path": published["target_path"],
+        "published_commit_sha": published["commit_sha"],
+        "autosync_used": False,
     }
 
 
@@ -73,6 +105,22 @@ def main() -> int:
     s.add_argument("--stage", default="development", choices=("development",))
     s.add_argument("--batch")
 
+    rs = sub.add_parser("rich-score")
+    rs.add_argument("experiment")
+    rs.add_argument("--stage", default="development", choices=("development",))
+    rs.add_argument("--batch")
+
+    pub = sub.add_parser("publish")
+    pub.add_argument("experiment")
+    pub.add_argument("--stage", default="development", choices=("development",))
+    pub.add_argument("--decision")
+    pub.add_argument("--rich")
+
+    final = sub.add_parser("finalize")
+    final.add_argument("experiment")
+    final.add_argument("--stage", default="development", choices=("development",))
+    final.add_argument("--batch")
+
     args = parser.parse_args()
 
     try:
@@ -98,9 +146,28 @@ def main() -> int:
         if args.command == "score":
             print(json.dumps(score.score(args.experiment, args.stage, args.batch), indent=2, ensure_ascii=False, allow_nan=False))
             return 0
+        if args.command == "rich-score":
+            print(json.dumps(rich_score.rich_score(args.experiment, args.stage, args.batch), indent=2, ensure_ascii=False, allow_nan=False))
+            return 0
+        if args.command == "publish":
+            print(json.dumps(publisher.publish_bundle(args.experiment, args.stage, args.decision, args.rich), indent=2, ensure_ascii=False, allow_nan=False))
+            return 0
+        if args.command == "finalize":
+            print(json.dumps(finalize_existing(args.experiment, args.stage, args.batch), indent=2, ensure_ascii=False, allow_nan=False))
+            return 0
         print(json.dumps(pipeline_run(args.experiment), indent=2, ensure_ascii=False, allow_nan=False))
         return 0
-    except (runner.RunnerError, tester.TestError, diagnostics.DiagnosticError, score.ScoreError, experiment.ManifestError, KeyError, OSError) as exc:
+    except (
+        runner.RunnerError,
+        tester.TestError,
+        diagnostics.DiagnosticError,
+        score.ScoreError,
+        rich_score.RichScoreError,
+        publisher.PublishError,
+        experiment.ManifestError,
+        KeyError,
+        OSError,
+    ) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
 
