@@ -14,8 +14,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0**
-- State: **COMPILE_PENDING**
-- Next action: **On the MT5 research PC, pull the latest refactor branch and run only `py -3 .\research\runner\guardian_research.py compile D038`. Require COMPILE_PASS with 0 errors / 0 warnings and an EX5 SHA before any D038 backtest. If compile passes, the next separate proof is exactly one USDJPY smoke test for 2023-11-01 through 2023-11-30 using Model=0; do not launch the three-symbol smoke batch until that single run passes lifecycle and Trade Path integrity.**
+- State: **READY_SMOKE**
+- Next action: **On the MT5 research PC, pull the latest refactor branch and run exactly `py -3 .\research\runner\guardian_research.py test-one D038 --stage smoke --symbol USDJPY`. This is one engineering-only smoke run for 2023-11-01 through 2023-11-30 under Model=0. Require TEST_PASS_INTEGRITY, FINAL lifecycle, opened=closed=rows, zero invalid price/risk/PnL/path failures, and usable native Trade Path telemetry before running the three-symbol smoke batch.**
 
 ## Operational truths
 
