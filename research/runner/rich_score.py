@@ -178,27 +178,71 @@ def grouped_summary(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
     return out
 
 
+def two_dimensional_matrix(rows: list[dict[str, Any]], first: str, second: str) -> dict[str, Any]:
+    matrix: dict[str, dict[str, list[float]]] = defaultdict(lambda: defaultdict(list))
+    for row in rows:
+        matrix[str(row[first])][str(row[second])].append(float(row["_net_r"]))
+    return {
+        outer: {
+            inner: {
+                "n": len(values),
+                "total_net_r": sum(values),
+                "mean_net_r": statistics.fmean(values) if values else None,
+                "profit_factor": profit_factor(values),
+            }
+            for inner, values in sorted(inner_map.items())
+        }
+        for outer, inner_map in sorted(matrix.items())
+    }
+
+
+def period_sign_counts(grouped: dict[str, Any]) -> dict[str, int]:
+    totals = [float(item["total_r"]) for item in grouped.values()]
+    return {
+        "positive": sum(1 for value in totals if value > 0),
+        "negative": sum(1 for value in totals if value < 0),
+        "flat": sum(1 for value in totals if value == 0),
+    }
+
+
 def concentration(values: list[float]) -> dict[str, Any]:
-    positives = sorted((x for x in values if x > 0), reverse=True)
-    negatives = sorted((x for x in values if x < 0))
+    sorted_desc = sorted(values, reverse=True)
+    sorted_asc = sorted(values)
+    positives = [x for x in sorted_desc if x > 0]
+    negatives = [x for x in sorted_asc if x < 0]
+    total_net = sum(values)
     positive_total = sum(positives)
     negative_total_abs = abs(sum(negatives))
 
-    def positive_share(n: int) -> float | None:
-        return (sum(positives[:n]) / positive_total) if positive_total > 0 else None
+    def top_percent(pct: float) -> dict[str, Any]:
+        count = max(1, math.ceil(len(values) * pct)) if values else 0
+        contribution = sum(sorted_desc[:count]) if count else 0.0
+        return {
+            "trade_count": count,
+            "contribution_r": contribution,
+            "share_of_total_net_r": (contribution / total_net) if total_net > 0 else None,
+            "share_of_total_positive_r": (sum(x for x in sorted_desc[:count] if x > 0) / positive_total) if positive_total > 0 else None,
+        }
 
-    def negative_share(n: int) -> float | None:
-        return (abs(sum(negatives[:n])) / negative_total_abs) if negative_total_abs > 0 else None
+    def bottom_percent(pct: float) -> dict[str, Any]:
+        count = max(1, math.ceil(len(values) * pct)) if values else 0
+        contribution = sum(sorted_asc[:count]) if count else 0.0
+        return {
+            "trade_count": count,
+            "contribution_r": contribution,
+            "share_of_total_negative_r_abs": (abs(sum(x for x in sorted_asc[:count] if x < 0)) / negative_total_abs) if negative_total_abs > 0 else None,
+        }
 
     return {
+        "total_net_r": total_net,
         "positive_r_total": positive_total,
         "negative_r_total_abs": negative_total_abs,
-        "top_1_positive_trade_share": positive_share(1),
-        "top_5_positive_trades_share": positive_share(5),
-        "top_10_positive_trades_share": positive_share(10),
-        "worst_1_trade_loss_share": negative_share(1),
-        "worst_5_trades_loss_share": negative_share(5),
-        "worst_10_trades_loss_share": negative_share(10),
+        "top_1pct": top_percent(0.01),
+        "top_5pct": top_percent(0.05),
+        "top_10pct": top_percent(0.10),
+        "bottom_1pct": bottom_percent(0.01),
+        "bottom_5pct": bottom_percent(0.05),
+        "bottom_10pct": bottom_percent(0.10),
     }
 
 
@@ -209,11 +253,17 @@ def threshold_summary(values: list[float]) -> dict[str, Any]:
     return {
         "note": "These are REALIZED exit-R thresholds, not intratrade touches. MFE/MAE path data was not recorded by D037.",
         "realized_at_or_above": {
-            f"{level:g}R": {"n": sum(1 for x in values if x >= level), "rate": (sum(1 for x in values if x >= level) / n) if n else None}
+            f"{level:g}R": {
+                "n": sum(1 for x in values if x >= level),
+                "rate": (sum(1 for x in values if x >= level) / n) if n else None,
+            }
             for level in positive_levels
         },
         "realized_at_or_below": {
-            f"{level:g}R": {"n": sum(1 for x in values if x <= level), "rate": (sum(1 for x in values if x <= level) / n) if n else None}
+            f"{level:g}R": {
+                "n": sum(1 for x in values if x <= level),
+                "rate": (sum(1 for x in values if x <= level) / n) if n else None,
+            }
             for level in negative_levels
         },
     }
@@ -259,6 +309,8 @@ def load_rows(manifest: dict[str, Any], batch_payload: dict[str, Any]) -> tuple[
             row["_risk_money"] = parse_float(row, "risk_money_1lot_usd", f"TRADES:{symbol}")
             row["_year"] = entry.year
             row["_month"] = f"{entry.year:04d}-{entry.month:02d}"
+            row["_entry_hour"] = f"{entry.hour:02d}"
+            row["_weekday"] = entry.strftime("%A")
             rows.append(row)
 
         evidence.append({
@@ -315,16 +367,20 @@ def rich_score(identifier: str, stage: str, batch_path: str | None = None) -> di
         raise RichScoreError("batch receipt does not match experiment/stage")
 
     rows, evidence = load_rows(manifest, batch_payload)
-    chronological = sorted(rows, key=lambda x: (x["_entry_dt"], x["symbol"], x["exit_time"]))
-    net = [float(row["_net_r"]) for row in chronological]
-    gross = [float(row["_gross_r"]) for row in chronological]
-    stress = [float(row["_stress_r"]) for row in chronological]
-    commission = [float(row["_commission_r"]) for row in chronological]
-    durations = [float(row["_duration_minutes"]) for row in chronological]
-    risk_money = [float(row["_risk_money"]) for row in chronological]
+    realized_close_order = sorted(rows, key=lambda x: (x["_exit_dt"], x["symbol"], x["entry_time"]))
+    net = [float(row["_net_r"]) for row in realized_close_order]
+    gross = [float(row["_gross_r"]) for row in realized_close_order]
+    stress = [float(row["_stress_r"]) for row in realized_close_order]
+    commission = [float(row["_commission_r"]) for row in realized_close_order]
+    durations = [float(row["_duration_minutes"]) for row in realized_close_order]
+    risk_money = [float(row["_risk_money"]) for row in realized_close_order]
 
+    by_symbol = grouped_summary(rows, "symbol")
+    by_year = grouped_summary(rows, "_year")
+    by_month = grouped_summary(rows, "_month")
     dd = max_drawdown_r(net)
     total_net = sum(net)
+    total_gross = sum(gross)
     analytics = {
         "scope": {
             "trades": len(rows),
@@ -341,13 +397,16 @@ def rich_score(identifier: str, stage: str, batch_path: str | None = None) -> di
             "commission_r_distribution": distribution(commission),
             "total_commission_r": sum(commission),
             "mean_commission_r": statistics.fmean(commission) if commission else None,
-            "gross_total_r": sum(gross),
+            "gross_total_r": total_gross,
             "net_total_r": total_net,
             "stress_total_r": sum(stress),
+            "commission_share_of_gross_total_r": (sum(commission) / total_gross) if total_gross != 0 else None,
         },
         "duration_minutes": distribution(durations),
         "risk_money_1lot_usd": distribution(risk_money),
-        "chronological_equity_r": {
+        "realized_trade_close_curve_r": {
+            "ordering": "exit_time_then_symbol",
+            "note": "Realized trade-close R curve; not concurrent mark-to-market portfolio drawdown.",
             **dd,
             "ending_equity_r": total_net,
             "recovery_factor_total_r_over_max_dd": (total_net / dd["max_drawdown_r"]) if dd["max_drawdown_r"] > 0 else None,
@@ -356,21 +415,33 @@ def rich_score(identifier: str, stage: str, batch_path: str | None = None) -> di
         },
         "concentration": concentration(net),
         "realized_r_thresholds": threshold_summary(net),
-        "by_symbol": grouped_summary(rows, "symbol"),
+        "by_symbol": by_symbol,
         "by_asset_class": grouped_summary(rows, "asset_class"),
         "by_side": grouped_summary(rows, "side"),
         "by_exit_reason": grouped_summary(rows, "exit_reason"),
-        "by_year": grouped_summary(rows, "_year"),
-        "by_month": grouped_summary(rows, "_month"),
+        "by_year": by_year,
+        "by_month": by_month,
+        "symbol_x_year": two_dimensional_matrix(rows, "symbol", "_year"),
+        "period_sign_counts": {
+            "symbols": period_sign_counts(by_symbol),
+            "years": period_sign_counts(by_year),
+            "months": period_sign_counts(by_month),
+        },
+        "descriptive_only_entry_time_breakdowns": {
+            "by_entry_hour": grouped_summary(rows, "_entry_hour"),
+            "by_weekday": grouped_summary(rows, "_weekday"),
+            "warning": "Descriptive only. These breakdowns do not authorize post-hoc filters in the originating experiment.",
+        },
         "exit_reason_counts": dict(sorted(Counter(str(row["exit_reason"]) for row in rows).items())),
         "side_counts": dict(sorted(Counter(str(row["side"]) for row in rows).items())),
         "trade_path": {
             "available": False,
             "reason": "D037 v1.02 records entry/exit outcomes but not intratrade MFE/MAE or first-touch R milestones.",
+            "contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
             "required_future_fields": [
                 "mfe_r", "mae_r", "time_to_0_5r_minutes", "time_to_1r_minutes", "time_to_2r_minutes",
                 "time_to_3r_minutes", "time_to_5r_minutes", "reached_0_5r", "reached_1r", "reached_2r",
-                "reached_3r", "reached_5r", "max_retracement_from_mfe_r"
+                "reached_3r", "reached_5r", "max_retracement_from_mfe_r",
             ],
         },
     }
