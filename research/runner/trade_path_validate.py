@@ -3,6 +3,8 @@
 
 This tool never launches MT5. It re-reads immutable run evidence and verifies
 that path counters, schema fields, and reached-milestone values are coherent.
+Validated results are compactly published to backtest-results through the same
+isolated result-transport path used by the runner.
 """
 
 from __future__ import annotations
@@ -16,6 +18,7 @@ from pathlib import Path
 from typing import Any
 
 import experiment
+import result_transport
 import runner
 import tester
 
@@ -197,7 +200,9 @@ def main() -> int:
     parser.add_argument("--symbol", required=True)
     args = parser.parse_args()
     try:
-        print(json.dumps(validate_latest(args.experiment, args.stage, args.symbol), indent=2, ensure_ascii=False))
+        result = validate_latest(args.experiment, args.stage, args.symbol)
+        result["github_transport"] = result_transport.safe_publish_event(args.experiment, args.stage, "trade-path", result)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
     except (TradePathError, tester.TestError, runner.RunnerError, experiment.ManifestError, OSError, KeyError, json.JSONDecodeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
