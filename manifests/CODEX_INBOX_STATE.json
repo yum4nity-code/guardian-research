@@ -3,6 +3,7 @@
   "last_checked_at": "2026-09-01T08:02:53Z",
   "last_reviewed_commit": "5c0adb06961664dfb24a40e859fb3c11310810aa",
   "unread_notes": [
+    "handoff/chatgpt_to_codex/2026/09/06/D023_V108_2023_HARNESS_COMPILE_SMOKE_REQUEST_2026_09_06.md",
     "handoff/chatgpt_to_codex/2026/09/01/D017_SIX_MARKET_RESULT_SANITY_BLOCK.md",
     "handoff/chatgpt_to_codex/2026/09/01/FUNDEDNEXT_FREE_TRIAL_EA_OPTION_AWARE_FIX.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_2_CAPREF_SAFETY_FIX.md",
@@ -29,5 +30,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "NEW 2026-09-06 RESULT: read D17_LIVE_V1117_BTC_ATTRIBUTION_RESULT_2026_09_06.md first. BTCUSD 2024-2025 frozen live-v11.17 attribution is complete. NATIVE_RATCHET n=1739 gross +0.07737R/trade, cost 0.19350R/trade, net -0.11613R/trade, PF 0.828. FIXED_3R net -0.14694R/trade. Native incremental advantage is only +0.03081R/trade and its 95% bootstrap interval crosses zero. BTC therefore fails net edge. Do not tune BNS, 2R/25%, BE, trail, cost thresholds or SELL-only filters on this inspected sample. Next preregistered action is ETHUSD 2024-2025 Every tick with IDENTICAL diagnostic code/settings and same four CSV outputs. Guardian Core v12.01 remains frozen."
+  "notes": "P0 UPDATE 2026-09-06: read D023_V108_2023_HARNESS_COMPILE_SMOKE_REQUEST_2026_09_06.md first. D023 v1.08 HARNESSFIX is committed and static-audited only; SHA256 10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4. Required next action is real FundedNext MetaEditor compile 0 errors / 0 warnings, then USDJPY M15 Every tick smoke 2023-03-13 through 2023-03-31, direct STATS/TRADES inspection and manual DST/ORB verification. Do NOT run the full 2023 confirmation yet. D17 remains closed as current alpha and Guardian Core v12.01 remains frozen."
 }
