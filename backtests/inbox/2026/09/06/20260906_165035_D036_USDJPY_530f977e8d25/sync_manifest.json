@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260906_165035_D036_USDJPY_530f977e8d25",
+    "fingerprint":  "530f977e8d2576d1d6a322524cc12f144c881adb830f71aff1d33af5debcf180",
+    "synced_at_utc":  "2026-09-06T16:54:09.1419685Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "DEV_2024_2025",
+                       "symbol":  "USDJPY",
+                       "timeframe":  "PERIOD_H1",
+                       "trades_closed":  458,
+                       "published_trades_rows":  458
+                   },
+    "files":  [
+                  {
+                      "name":  "D036_V100_DEV_2024_2025_USDJPY_STATS.csv",
+                      "source_sha256":  "45d216bfb65f7b83d9d9de4fa1bb200e37c9b84af4ba9bf573ba0edd9fa51029",
+                      "published_sha256":  "5b0356b6c883bbe00dbc6c8de418ab0f95d2f56c97a63cedce217b0d44821725",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D036_V100_DEV_2024_2025_USDJPY_TRADES.csv",
+                      "source_sha256":  "04b17ddb18dcc33a56a754f9877075bde5df5b7451e032b317114b2b1e512c32",
+                      "published_sha256":  "8665ee39ae032b280a7a7fb1e42f1bd6eaf46b9e01a6420bdcda4cbea3655ed5",
+                      "sanitized":  false
+                  }
+              ]
+}
