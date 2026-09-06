@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-06T22:53:29.5880071Z",
-    "run_id":  "20260906_225302_D038_BTCUSD_6728f0e33562",
-    "path":  "backtests/inbox/2026/09/06/20260906_225302_D038_BTCUSD_6728f0e33562",
-    "fingerprint":  "6728f0e33562d27d9611dce05afaac79b24683ba48db0979b17767f58b67fcde",
+    "synced_at_utc":  "2026-09-06T22:54:15.9586471Z",
+    "run_id":  "20260906_225349_D038_ETHUSD_57eec075f662",
+    "path":  "backtests/inbox/2026/09/06/20260906_225349_D038_ETHUSD_57eec075f662",
+    "fingerprint":  "57eec075f66213526dec95be2a516ece72654a74dc35a82de83979c52d93b99a",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D038_V100_RUN_BTCUSD_STATS.csv",
-                  "D038_V100_RUN_BTCUSD_TRADES.csv",
+                  "D038_V100_RUN_ETHUSD_STATS.csv",
+                  "D038_V100_RUN_ETHUSD_TRADES.csv",
                   "sync_manifest.json"
               ]
 }
