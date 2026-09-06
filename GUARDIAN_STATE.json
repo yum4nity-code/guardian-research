@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T23:35:00+02:00",
+  "updated_at": "2026-09-06T23:00:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,7 +8,7 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_2_COMPLETE_PHASE_3_ACTIVE_LOCAL_PROOF_PENDING",
+    "status": "PHASE_2_COMPLETE_PHASE_3_ACTIVE_COMPILE_PROOF_PENDING",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
@@ -28,7 +28,7 @@
     ],
     "historical_builder": "automation/Build_D037_v101_20260906.ps1",
     "resolved_engineering_issue": "v1.01 is now a complete immutable repository source. Textual source generation is no longer needed for D037 execution.",
-    "next_action": "On the MT5 research PC: run the Windows bootstrap/doctor without a backtest, then compile D037 v1.01, then run one USDJPY development test. Only after all three proofs pass should the six-symbol DEV batch run.",
+    "next_action": "Compile D037 v1.01 on the MT5 research PC without launching a backtest. Require verified local-source to MT5-copy raw SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt. Only then run one USDJPY development test.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -54,7 +54,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "END_TO_END_CODE_IMPLEMENTED_LOCAL_MT5_PROOF_PENDING",
+    "status": "END_TO_END_CODE_IMPLEMENTED_BOOTSTRAP_DOCTOR_PASS_COMPILE_PROOF_PENDING",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -82,7 +82,16 @@
     "fast_model_approved": false,
     "autosync_required_for_local_pipeline": false,
     "github_ci_status": "PASS",
-    "local_mt5_status": "UNTESTED",
+    "local_mt5_status": "BOOTSTRAP_DOCTOR_PASS_COMPILE_UNTESTED",
+    "local_bootstrap_proof": {
+      "observed_from_user_terminal_output": true,
+      "source_ready": true,
+      "local_environment_ready": true,
+      "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+      "source_identity_sha256": "8a30c8e20c38803492c2b1cb3c94dd2aa25df66575ca665aa3da660833fac96d",
+      "local_raw_bytes_sha256": "6d43cff58aa8a9da81c77fee00fffd27562f2c6b112c3e770253c0eeac19ed4a",
+      "blockers": []
+    },
     "principle": "one manifest + one complete strategy source; deterministic compile/test/batch/score pipeline"
   },
   "non_guardian_projects": {
