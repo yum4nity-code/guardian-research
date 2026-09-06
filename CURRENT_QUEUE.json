@@ -2,25 +2,25 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T00:48:00+02:00",
-  "active_primary": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "updated_at": "2026-09-07T01:23:34+02:00",
+  "active_primary": "D039-INSIDE-DAY-BREAKOUT-V0",
   "items": [
     {
-      "id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "id": "D039-INSIDE-DAY-BREAKOUT-V0",
       "priority": 0,
-      "status": "READY_DEV",
+      "status": "READY_SMOKE",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "On the MT5 research PC, pull the latest refactor branch and run `py -3 .\\research\\runner\\guardian_research.py batch D038 --stage development`. The six-market 2024-01-02..2025-12-31 DEV batch is now authorized after a clean three-market engineering smoke. The runner automatically publishes the completed batch event to branch backtest-results and updates backtests/d038/live/latest.json through an isolated clone. The user should no longer paste the full terminal output; after completion they can simply say that the batch is finished and the assistant will read the GitHub result. If automatic GitHub transport fails, local scientific evidence remains valid and the transport failure is reported separately; do not rerun MT5 solely for transport.",
-      "manifest": "research/experiments/D038.json"
+      "goal": "On return to the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py compile D039`. D039 is preregistered, source-complete and SHA-frozen but has not yet received local MetaEditor compile proof. If compile is 0 errors / 0 warnings with trusted EX5 receipt, run `py -3 .\\research\\runner\\campaign.py D039 --stage smoke --no-finalize` to execute the three-market October-2023 engineering smoke and native Trade Path validation in one unattended command. Do not open D039 development until smoke passes. The assistant can read the automatically published GitHub evidence after the user says only `fini`.",
+      "manifest": "research/experiments/D039.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "D038_SMOKE_PASS_DEV_READY_WITH_AUTOMATIC_GITHUB_RESULT_EVENTS",
+      "status": "END_TO_END_PROVEN_WITH_SEQUENTIAL_MULTI_STRATEGY_CAMPAIGN_MODE",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
-      "goal": "one manifest + one complete strategy source; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline"
+      "goal": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; several ready experiments may be run unattended through sequential campaign mode"
     },
     {
       "id": "AUTOSYNC_V3_FROM_SCRATCH",
@@ -61,6 +61,14 @@
       "owner": "HISTORICAL",
       "type": "closed_research",
       "goal": "REJECTED_V0"
+    },
+    {
+      "id": "D038",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
     }
   ],
   "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. No operational item may wait on Codex."
