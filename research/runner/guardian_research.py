@@ -25,6 +25,36 @@ def _with_transport(identifier: str, stage: str, kind: str, payload: dict) -> di
     return result
 
 
+def _publish_failure_diagnostic(args: argparse.Namespace, original_error: Exception) -> dict | None:
+    """Best-effort publication of already-collected invalid-run evidence.
+
+    A failed transport must never replace the original engineering error and a
+    failed MT5 run must never be re-run solely so ChatGPT can see the failure.
+    """
+    if getattr(args, "command", None) not in {"test-one", "batch"}:
+        return None
+    experiment_id = getattr(args, "experiment", None)
+    stage = getattr(args, "stage", None)
+    if not experiment_id or not stage:
+        return None
+    try:
+        diagnostic = diagnostics.diagnose_latest_invalid(experiment_id, stage)
+    except Exception as diagnostic_exc:
+        return {
+            "status": "FAILURE_DIAGNOSTIC_UNAVAILABLE",
+            "original_error": str(original_error),
+            "diagnostic_error": str(diagnostic_exc),
+            "autosync_used": False,
+        }
+    transport = result_transport.safe_publish_event(experiment_id, stage, "failure-diagnostic", diagnostic)
+    return {
+        "status": "FAILURE_DIAGNOSTIC_COLLECTED",
+        "diagnostic": diagnostic,
+        "github_transport": transport,
+        "autosync_used": False,
+    }
+
+
 def pipeline_run(identifier: str) -> dict:
     # Compile always runs first. This deliberately creates a fresh trusted EX5
     # receipt instead of reusing an old binary merely because one exists.
@@ -187,7 +217,11 @@ def main() -> int:
         KeyError,
         OSError,
     ) as exc:
-        print(f"ERROR: {exc}", file=sys.stderr)
+        failure_report = _publish_failure_diagnostic(args, exc)
+        if failure_report is not None:
+            print(json.dumps({"status": "COMMAND_FAILED", "error": str(exc), "failure_report": failure_report}, indent=2, ensure_ascii=False), file=sys.stderr)
+        else:
+            print(f"ERROR: {exc}", file=sys.stderr)
         return 1
 
 
