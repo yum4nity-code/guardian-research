@@ -20,13 +20,13 @@ class RunnerContractTests(unittest.TestCase):
 
     def test_d037_output_names_are_deterministic(self) -> None:
         stats, trades = tester.expected_output_names(self.manifest, "development", "EURUSD")
-        self.assertEqual("D037_V101_DEV_2024_2025_EURUSD_STATS.csv", stats)
-        self.assertEqual("D037_V101_DEV_2024_2025_EURUSD_TRADES.csv", trades)
+        self.assertEqual("D037_V102_DEV_2024_2025_EURUSD_STATS.csv", stats)
+        self.assertEqual("D037_V102_DEV_2024_2025_EURUSD_TRADES.csv", trades)
 
     def test_d037_reference_ini_is_non_optimizing_and_local(self) -> None:
         stage = self.manifest["stages"]["development"]
         ini = tester.render_tester_ini(self.manifest, "development", stage, "USDJPY", 0)
-        self.assertIn("Expert=GuardianResearch\\D037_Williams_M15_v1_01", ini)
+        self.assertIn("Expert=GuardianResearch\\D037_Williams_M15_v1_02", ini)
         self.assertIn("Symbol=USDJPY", ini)
         self.assertIn("Period=M15", ini)
         self.assertIn("Model=0", ini)
@@ -37,6 +37,15 @@ class RunnerContractTests(unittest.TestCase):
         self.assertIn("UseRemote=0", ini)
         self.assertIn("UseCloud=0", ini)
         self.assertIn("ShutdownTerminal=1", ini)
+
+    def test_d037_v102_zero_range_clarification_is_generic(self) -> None:
+        self.assertEqual("1.02", self.manifest["source"]["version"])
+        source = runner.ROOT / self.manifest["source"]["canonical_path"]
+        text = source.read_text(encoding="utf-8")
+        self.assertIn("SKIP_NO_REFERENCE_RANGE", text)
+        self.assertIn("g_no_reference_range_days", text)
+        self.assertIn("if(prev_range==0.0)", text)
+        self.assertNotIn('if(StringFind(_Symbol,"XAUUSD")>=0 && prev_range==0.0)', text)
 
     def test_reference_and_fast_models_are_explicit(self) -> None:
         contract = self.manifest["runner_contract"]
