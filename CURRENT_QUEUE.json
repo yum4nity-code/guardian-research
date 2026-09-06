@@ -1,39 +1,23 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T16:20:00+02:00",
-  "active_primary": "NEXT-INDEPENDENT-P0-SELECTION",
+  "updated_at": "2026-09-06T17:05:00+02:00",
+  "active_primary": "D036-DONCHIAN-TREND-BREAKOUT-H1-V0",
   "items": [
     {
-      "id": "NEXT-INDEPENDENT-P0-SELECTION",
+      "id": "D036-DONCHIAN-TREND-BREAKOUT-H1-V0",
       "priority": 0,
       "status": "READY",
-      "owner": "ChatGPT/Codex",
-      "type": "research_portfolio_transition",
-      "goal": "D023 failed untouched 2023 confirmation materially. Reconcile the current slate and select the next independent preregistered strategy family without mining D023 2023 or reviving rejected families post hoc. Preserve cheap smoke -> frozen confirmation -> no rescue discipline."
-    },
-    {
-      "id": "D017-NATIVE-RATCHET-LINEAGE-ATTRIBUTION",
-      "priority": 5,
-      "status": "REJECTED",
       "owner": "ChatGPT/User",
-      "type": "closed_alpha_family_preserved_for_manager_evidence",
-      "goal": "D17 Momentum is closed as a current alpha candidate after completed attribution across BTCUSD, ETHUSD, EURUSD, GBPUSD, USDJPY, XAUUSD and USDCAD. Preserve results for source lineage and Manager Evidence Ledger only. Do not tune or rescue D17 on inspected samples."
+      "type": "scientific_hypothesis_preregistered",
+      "goal": "Run the frozen D036 H1 Donchian/Turtle-inspired V0. Preregistration, MT5 no-order harness v1.00 and scorer v1.01 are committed. First local gate is MetaEditor 0/0 then March-2025 smoke on USDJPY, XAUUSD and BTCUSD. Only after smoke PASS may the six-symbol 2024-2025 development sample be opened. 2026-H1 remains untouched confirmation."
     },
     {
-      "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
-      "priority": 5,
-      "status": "VALIDATED",
-      "owner": "ChatGPT",
-      "type": "historical_runtime_invariant_superseded_for_live_v1117",
-      "goal": "Historical v11.16 minimum-risk behavior remains documented, but it is NOT a current live-v11.17 invariant. Live v11.17 defaults InpMinAutoTradeRiskPct=0.00; 0.25% is the maximum target risk, not an artificial minimum. Preserve this item only as lineage evidence."
-    },
-    {
-      "id": "D017-V11-16-CAPREF-RUNTIME-DIVERGENCE",
-      "priority": 5,
-      "status": "VALIDATED",
-      "owner": "ChatGPT",
-      "type": "critical_runtime_safety_fix_historical",
-      "goal": "v11.16.2 CAPREF remains a validated historical runtime safety fix; do not confuse this with current source-lineage authority."
+      "id": "AUTOSYNC-GENERIC-V201",
+      "priority": 0,
+      "status": "READY",
+      "owner": "ChatGPT/User",
+      "type": "research_output_transport",
+      "goal": "Install Generic PUBLICSAFE AutoSync v2.01 once. It supersedes the D023-specific v1.04 watcher and should remain resident/autostart for future Dxxx STATS/TRADES pairs. First local install requires one health check; normal later backtests require no -Once command."
     },
     {
       "id": "FUNDEDNEXT-FREE-TRIAL-EA-OPTION-AWARE-FIX",
@@ -41,15 +25,7 @@
       "status": "READY",
       "owner": "Codex",
       "type": "focused_runtime_compliance_fix",
-      "goal": "Keep as a focused runtime/compliance fix. FundedNext Algo Trading remains OFF until request-budget/retry pathology is resolved; do not mix this with strategy research."
-    },
-    {
-      "id": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
-      "priority": 4,
-      "status": "VALIDATED",
-      "owner": "Codex",
-      "type": "research_infrastructure",
-      "goal": "Shared Bybit+Binance collection, venue-separated market state and MT5 FILE_COMMON bridge have passed live runtime gates. Preserve as read-only research infrastructure and continue timestamped archive accumulation."
+      "goal": "FundedNext Algo Trading remains OFF until request-budget/retry pathology is bounded. Keep separate from alpha research."
     },
     {
       "id": "DERIBIT-0DTE-OI-OBSERVER-V1",
@@ -57,7 +33,15 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "read_only_forward_research_infrastructure",
-      "goal": "Run a local live-network smoke of research/external_intelligence/deribit_expiry_observer_v1.py, then accumulate 07:00 UTC prior-only ATM OI snapshots. No keys, no trading, no retrospective threshold fitting. Preserve the source 09:00-vs-10:00 exit discrepancy for preregistration."
+      "goal": "Run local live-network smoke then accumulate prior-only 07:00 UTC ATM OI snapshots. No retrospective threshold fitting."
+    },
+    {
+      "id": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
+      "priority": 4,
+      "status": "VALIDATED",
+      "owner": "Codex",
+      "type": "research_infrastructure",
+      "goal": "Preserve validated Bybit+Binance read-only collection and timestamped archive accumulation."
     },
     {
       "id": "D025-LIQUIDITY-EXHAUSTION-RECLAIM",
@@ -65,72 +49,8 @@
       "status": "BLOCKED",
       "owner": "ChatGPT/Codex",
       "type": "scientific_hypothesis",
-      "goal": "Future crypto event study using external-intelligence variables only after enough timestamped live archive exists for leakage-safe validation.",
-      "blocking": "Archive is currently too young for long-history validation. No retrospective threshold fitting."
-    },
-    {
-      "id": "D023-AUTOSYNC-V102-RECOVERY",
-      "priority": 5,
-      "status": "VALIDATED",
-      "owner": "ChatGPT/User",
-      "type": "output_transport_reliability_resolved",
-      "goal": "Superseded by runtime-validated AutoSync v1.04 NATIVEGITFIX PUBLICSAFE. v1.04 successfully auto-published both the D023 smoke and untouched full-2023 run to backtest-results with provenance, row-count validation and Windows username redaction. No per-backtest -Once command is required. Preserve v1.02/v1.03 only as bug lineage."
-    },
-    {
-      "id": "D023-LONDON-ORB-M15-V0",
-      "priority": 5,
-      "status": "REJECTED",
-      "owner": "ChatGPT/User",
-      "type": "scientific_hypothesis_untouched_confirmation_failed",
-      "goal": "Closed. Untouched 2023 confirmation produced n=195, mean net -0.198176R/trade, PF 0.708428, 5-day block-bootstrap lower 5% zero-filled weekday daily mean -0.268783R/day, and 1.5x commission stress -44.512458R total. Only 1/5 frozen gates passed. Do not rescue, remove SHORT, add filters or tune on 2023. Preserve as evidence of regime instability versus positive inspected 2024-2026 clue."
-    },
-    {
-      "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
-      "priority": 6,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "legacy_scientific_hypothesis",
-      "goal": "Legacy queue item. Reconcile against the Sep-6 handoff/status before any execution. If still scientifically active, use only the frozen corrected engine and no post-hoc pair substitution."
-    },
-    {
-      "id": "D027-NR7-CONTRACTION-BREAKOUT-V0",
-      "priority": 6,
-      "status": "WAITING_CODEX",
-      "owner": "ChatGPT/Codex",
-      "type": "legacy_scientific_hypothesis",
-      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not rerun an already inspected family blindly."
-    },
-    {
-      "id": "D028-INTRADAY-SESSION-MOMENTUM-V0",
-      "priority": 6,
-      "status": "WAITING_CODEX",
-      "owner": "ChatGPT/Codex",
-      "type": "legacy_scientific_hypothesis",
-      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not rerun an already inspected family blindly."
-    },
-    {
-      "id": "D029-CLASSIC-TSMOM-BENCHMARK-V0",
-      "priority": 7,
-      "status": "REJECTED",
-      "owner": "ChatGPT/Codex",
-      "type": "scientific_benchmark",
-      "goal": "Closed as a transport/temporal-decay benchmark: 2018-2023 pooled executable result was negative/flat with sign reversal across time blocks. Preserve as evidence; do not rescue on inspected samples."
-    },
-    {
-      "id": "DECISION-D021-HYPOTHESIS",
-      "priority": 7,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "scientific_decision",
-      "goal": "Keep D021 MICRO-REV behind the stronger current slate. Existing engine must not be rewritten or tuned."
-    },
-    {
-      "id": "AUTONOMY-RECOVERY-001",
-      "priority": 7,
-      "status": "RUNNING_MIMO",
-      "owner": "Codex",
-      "type": "infrastructure_reconciliation",
-      "goal": "MiMo continues independently; harvest/checkpoint healthy work and never duplicate-restart it. Reconcile actual local process state before acting on this stale status."
+      "goal": "Future leakage-safe crypto external-intelligence study only after enough live archive exists.",
+      "blocking": "Archive too young; no retrospective threshold fitting."
     },
     {
       "id": "D024-MULTI-STRATEGY-POSITION-CAP-STUDY",
@@ -138,42 +58,67 @@
       "status": "BLOCKED",
       "owner": "ChatGPT/Codex",
       "type": "portfolio_policy_preregistration",
-      "goal": "Compare portfolio concurrency policies only after at least two independently validated strategies exist.",
+      "goal": "Compare concurrency policies only after at least two independently validated strategies exist.",
       "blocking": "No validated strategy pair yet."
     },
     {
-      "id": "D017-V11-16-GENERALIZATION-PREOOS",
-      "priority": 10,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "legacy_campaign",
-      "goal": "Defer. Broad D017 Momentum failed the current alpha standard. Do not restart broad scanning unless a new preregistered hypothesis justifies it."
+      "id": "D023-LONDON-ORB-M15-V0",
+      "priority": 9,
+      "status": "REJECTED",
+      "owner": "ChatGPT/User",
+      "type": "closed_scientific_hypothesis",
+      "goal": "Closed after untouched 2023 confirmation: 1/5 gates, n=195, mean -0.198176R, PF 0.708428. Preserve only as regime-instability evidence; no rescue or rerun."
     },
     {
-      "id": "D017-V11-16-PROVENANCE-AUDIT",
-      "priority": 5,
-      "status": "VALIDATED",
-      "owner": "ChatGPT",
-      "type": "semantic_provenance_audit_resolved",
-      "goal": "Resolved 2026-09-06 from user-supplied exact live FTMO source. Live v11.17 SHA256 875a56e95e5ab4282442e410e4e80f1c776aa9f974d4a3ce9dc5b12505cf8327. Compare against v11.16 MOMENTUM_PROD only as lineage, not exact-source identity."
+      "id": "D017-MOMENTUM",
+      "priority": 9,
+      "status": "REJECTED",
+      "owner": "ChatGPT/Codex",
+      "type": "closed_alpha_family",
+      "goal": "Closed as current alpha after broad seven-market attribution. Preserve lineage/manager evidence only; no rescue tuning."
     },
     {
-      "id": "D017-V11-16-EXACT-FEED-CONTROL",
-      "priority": 8,
-      "status": "READY",
-      "owner": "Codex",
-      "type": "technical_non_regression_control",
-      "goal": "Historical technical control only. Do not let this preempt next independent alpha selection or become another D17 rescue campaign."
-    },
-    {
-      "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
+      "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
       "priority": 10,
       "status": "REJECTED",
+      "owner": "ChatGPT/Codex",
+      "type": "closed_legacy_family",
+      "goal": "Sep-5 slate failure preserved; do not restart blindly."
+    },
+    {
+      "id": "D027-NR7-CONTRACTION-BREAKOUT-V0",
+      "priority": 10,
+      "status": "REJECTED",
+      "owner": "ChatGPT/Codex",
+      "type": "closed_legacy_family",
+      "goal": "Sep-5 frozen family already failed applicable gates; preserve evidence, no blind rerun."
+    },
+    {
+      "id": "D028-INTRADAY-SESSION-MOMENTUM-V0",
+      "priority": 10,
+      "status": "REJECTED",
+      "owner": "ChatGPT/Codex",
+      "type": "closed_legacy_family",
+      "goal": "Sep-5 frozen family already failed applicable gates; preserve evidence, no blind rerun."
+    },
+    {
+      "id": "D029-CLASSIC-TSMOM-BENCHMARK-V0",
+      "priority": 10,
+      "status": "REJECTED",
+      "owner": "ChatGPT/Codex",
+      "type": "closed_scientific_benchmark",
+      "goal": "Closed negative/flat long-history benchmark; no rescue."
+    },
+    {
+      "id": "DECISION-D021-HYPOTHESIS",
+      "priority": 10,
+      "status": "BLOCKED",
       "owner": "Codex",
-      "type": "legacy_production_line",
-      "goal": "Resolved and superseded; do not patch, test or redeploy v11.15."
+      "type": "deferred_scientific_hypothesis",
+      "goal": "Do not rewrite or tune existing D021. Reopen only if a fresh independent preregistered reason emerges.",
+      "blocking": "D036 is current independent P0."
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-06 current state: D023 USDJPY London ORB is REJECTED after untouched 2023 confirmation (1/5 frozen gates). AutoSync v1.04 is runtime-validated and successfully publishes finalized D023 outputs without per-backtest commands. Next alpha action is independent P0 selection/reconciliation; do not mine D023 or revive rejected families post hoc. D17 remains closed; Guardian Core v12.01 remains stable; FundedNext request/retry pathology remains separate and AUTO stays off until bounded."
+  "notes": "2026-09-06: D036 Donchian/Turtle-inspired H1 V0 is the active independent P0. It is preregistered before data inspection. D036 v1.00 harness and scorer v1.01 are committed; Generic AutoSync v2.01 is static-audited and ready for one-time local installation. D023 and D17 remain closed. Guardian Core v12.01 remains stable. FundedNext AUTO remains off until request/retry compliance is separately bounded."
 }
