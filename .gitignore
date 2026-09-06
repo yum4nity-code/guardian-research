@@ -12,6 +12,9 @@
 *.7z
 *.rar
 
+# Machine-local runner configuration
+local/guardian_runner.json
+
 # Large/raw local result dumps
 research/raw/
 **/RawResults/
