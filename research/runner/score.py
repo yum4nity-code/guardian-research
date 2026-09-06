@@ -66,12 +66,12 @@ def entry_year(value: str) -> int:
         raise ScoreError(f"cannot parse entry year from {value!r}") from exc
 
 
-def profit_factor(values: list[float]) -> float:
+def profit_factor_parts(values: list[float]) -> tuple[float | None, bool]:
     gains = sum(x for x in values if x > 0)
     losses = -sum(x for x in values if x < 0)
     if losses == 0:
-        return math.inf if gains > 0 else 0.0
-    return gains / losses
+        return (None, gains > 0)
+    return (gains / losses, False)
 
 
 def score_development(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[str, Any]:
@@ -106,6 +106,7 @@ def score_development(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[s
 
     net_r = [parse_float(row, "net_r", Path("TRADES")) for row in all_rows]
     stress_r = [parse_float(row, "net_r_commission_x1_5", Path("TRADES")) for row in all_rows]
+    pf_value, pf_infinite = profit_factor_parts(net_r)
     per_symbol_n = {symbol: len(rows_by_symbol[symbol]) for symbol in expected_symbols}
     per_symbol_total = {
         symbol: sum(parse_float(row, "net_r", Path(f"TRADES:{symbol}")) for row in rows_by_symbol[symbol])
@@ -126,7 +127,8 @@ def score_development(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[s
         "aggregate_n": len(all_rows),
         "per_symbol_n": per_symbol_n,
         "aggregate_mean_net_r": (sum(net_r) / len(net_r)) if net_r else 0.0,
-        "aggregate_pf": profit_factor(net_r),
+        "aggregate_pf": pf_value,
+        "aggregate_pf_infinite": pf_infinite,
         "positive_symbols": positive_symbols,
         "positive_symbols_n": len(positive_symbols),
         "per_symbol_total_net_r": per_symbol_total,
@@ -138,11 +140,12 @@ def score_development(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[s
     }
 
     gates = manifest["stages"]["development"]["gates"]
+    pf_gate = pf_infinite or (pf_value is not None and pf_value >= float(gates["aggregate_pf_min"]))
     gate_results = {
         "aggregate_n_min": metrics["aggregate_n"] >= int(gates["aggregate_n_min"]),
         "each_symbol_n_min": all(n >= int(gates["each_symbol_n_min"]) for n in per_symbol_n.values()),
         "aggregate_mean_net_r_min": metrics["aggregate_mean_net_r"] >= float(gates["aggregate_mean_net_r_min"]),
-        "aggregate_pf_min": metrics["aggregate_pf"] >= float(gates["aggregate_pf_min"]),
+        "aggregate_pf_min": pf_gate,
         "positive_symbols_min": metrics["positive_symbols_n"] >= int(gates["positive_symbols_min"]),
         "aggregate_2024_positive": totals_by_year.get(2024, 0.0) > 0,
         "aggregate_2025_positive": totals_by_year.get(2025, 0.0) > 0,
@@ -153,12 +156,7 @@ def score_development(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[s
     passed = all(gate_results.values())
     verdict = "CANDIDATE_CONFIRM" if passed else str(gates.get("failure_verdict", "REJECT_V0"))
 
-    return {
-        "metrics": metrics,
-        "gates": gate_results,
-        "all_gates_pass": passed,
-        "verdict": verdict,
-    }
+    return {"metrics": metrics, "gates": gate_results, "all_gates_pass": passed, "verdict": verdict}
 
 
 def score(identifier: str, stage: str, batch_path: str | None) -> dict[str, Any]:
