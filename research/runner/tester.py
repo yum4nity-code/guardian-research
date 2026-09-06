@@ -8,7 +8,9 @@ Scope v1:
 - runs one symbol sequentially with the reference tester model;
 - quarantines stale expected CSV outputs before launch;
 - collects immutable STATS/TRADES evidence from FILE_COMMON;
-- validates source identity and lifecycle integrity.
+- validates source identity and lifecycle integrity;
+- can recover a completed local test whose immutable evidence was copied before
+  a post-run parser failure, without re-running MT5.
 
 No Git transport and no AutoSync are involved.
 """
@@ -17,12 +19,12 @@ from __future__ import annotations
 
 import argparse
 import csv
+import io
 import json
 import os
 import shutil
 import subprocess
 import sys
-import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -45,8 +47,26 @@ def clean_symbol(symbol: str) -> str:
     return symbol.replace(".", "_").replace("#", "_").replace(" ", "_")
 
 
+def decode_csv_text(path: Path) -> tuple[str, str]:
+    """Decode MT5 CSV deterministically, including FILE_UNICODE UTF-16 output."""
+    raw = path.read_bytes()
+    if raw.startswith((b"\xff\xfe", b"\xfe\xff")):
+        try:
+            return raw.decode("utf-16"), "utf-16"
+        except UnicodeDecodeError as exc:
+            raise TestError(f"cannot decode UTF-16 CSV {path}: {exc}") from exc
+
+    for encoding in ("utf-8-sig", "utf-8", "cp1252"):
+        try:
+            return raw.decode(encoding), encoding
+        except UnicodeDecodeError:
+            continue
+    raise TestError(f"cannot decode CSV with supported encodings: {path}")
+
+
 def read_semicolon_csv(path: Path) -> list[dict[str, str]]:
-    with path.open("r", encoding="utf-8-sig", newline="") as fh:
+    text, _ = decode_csv_text(path)
+    with io.StringIO(text, newline="") as fh:
         return list(csv.DictReader(fh, delimiter=";"))
 
 
@@ -216,6 +236,8 @@ def validate_evidence(stats_path: Path, trades_path: Path, manifest: dict[str, A
     if final.get("run_stage") != expected_stage_token:
         raise TestError(f"run_stage mismatch: expected={expected_stage_token} got={final.get('run_stage')}")
 
+    _, stats_encoding = decode_csv_text(stats_path)
+    _, trades_encoding = decode_csv_text(trades_path)
     return {
         "final_status": final["status"],
         "source_name": final["source_name"],
@@ -228,6 +250,8 @@ def validate_evidence(stats_path: Path, trades_path: Path, manifest: dict[str, A
         "invalid_price": values["invalid_price"],
         "invalid_risk": values["invalid_risk"],
         "pnl_calc_failures": values["pnl_calc_failures"],
+        "stats_encoding": stats_encoding,
+        "trades_encoding": trades_encoding,
     }
 
 
@@ -307,6 +331,66 @@ def run_one(identifier: str, stage_name: str, symbol: str, model: int | None = N
         "stats": {"path": str(collected_stats), "sha256": runner.sha256_file(collected_stats)},
         "trades": {"path": str(collected_trades), "sha256": runner.sha256_file(collected_trades)},
         "integrity": integrity,
+        "recovered_after_parser_failure": False,
+        "autosync_used": False,
+    }
+    runner.write_receipt(run_dir / "run.json", evidence)
+    return evidence
+
+
+def recover_latest(identifier: str, stage_name: str, symbol: str) -> dict[str, Any]:
+    """Validate the newest copied evidence set lacking run.json; never launches MT5."""
+    _, manifest_path, manifest = runner.load_context(identifier)
+    source_path, blockers = runner.source_readiness(manifest)
+    if blockers or source_path is None:
+        raise TestError("source is not execution-ready: " + "; ".join(blockers))
+    ensure_stage_allowed(manifest, stage_name, symbol)
+
+    config = runner.load_config()
+    config_errors = validate_test_config(config)
+    if config_errors:
+        raise TestError("invalid local config: " + "; ".join(config_errors))
+    receipt_path, compile_receipt = latest_compile_receipt(config, manifest)
+
+    workspace = runner._expand_path(config["workspace_dir"])
+    stats_name, trades_name = expected_output_names(manifest, stage_name, symbol)
+    base = workspace / "runs" / manifest["experiment_id"] / stage_name
+    candidates = sorted((p for p in base.glob(f"*_{clean_symbol(symbol)}_M*") if p.is_dir()), reverse=True) if base.exists() else []
+    run_dir: Path | None = None
+    for candidate in candidates:
+        if (candidate / "run.json").exists():
+            continue
+        if (candidate / stats_name).is_file() and (candidate / trades_name).is_file():
+            run_dir = candidate
+            break
+    if run_dir is None:
+        raise TestError("no recoverable incomplete run with copied STATS/TRADES evidence was found")
+
+    collected_stats = run_dir / stats_name
+    collected_trades = run_dir / trades_name
+    integrity = validate_evidence(collected_stats, collected_trades, manifest, stage_name, symbol)
+    reference_model = int(manifest["runner_contract"]["tester_model_reference"])
+    evidence = {
+        "schema_version": 1,
+        "status": "TEST_PASS_INTEGRITY",
+        "experiment_id": manifest["experiment_id"],
+        "manifest_path": str(manifest_path.relative_to(ROOT)),
+        "stage": stage_name,
+        "symbol": symbol,
+        "tester_model": reference_model,
+        "started_at_utc": None,
+        "finished_at_utc": datetime.fromtimestamp(max(collected_stats.stat().st_mtime, collected_trades.stat().st_mtime), tz=timezone.utc).isoformat(),
+        "terminal_exit_code": None,
+        "command": ["RECOVER_EXISTING_COPIED_EVIDENCE_NO_MT5_RERUN"],
+        "compile_receipt": str(receipt_path),
+        "source_sha256": manifest["source"]["source_sha256"],
+        "ex5_sha256": compile_receipt["compile"]["ex5_sha256"],
+        "quarantined_stale_outputs": [],
+        "stats": {"path": str(collected_stats), "sha256": runner.sha256_file(collected_stats)},
+        "trades": {"path": str(collected_trades), "sha256": runner.sha256_file(collected_trades)},
+        "integrity": integrity,
+        "recovered_after_parser_failure": True,
+        "recovery_reason": "MT5 completed and immutable evidence was copied before the previous UTF-8-only CSV parser failed on MT5 UTF-16 BOM output",
         "autosync_used": False,
     }
     runner.write_receipt(run_dir / "run.json", evidence)
@@ -314,13 +398,14 @@ def run_one(identifier: str, stage_name: str, symbol: str, model: int | None = N
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run one Guardian MT5 Strategy Tester case")
+    parser = argparse.ArgumentParser(description="Run or recover one Guardian MT5 Strategy Tester case")
     parser.add_argument("experiment", help="D037 or experiment manifest path")
     parser.add_argument("--stage", default="development", choices=("smoke", "development", "confirmation"))
     parser.add_argument("--symbol", required=True)
+    parser.add_argument("--recover-latest", action="store_true", help="validate copied evidence from latest incomplete run without launching MT5")
     args = parser.parse_args()
     try:
-        evidence = run_one(args.experiment, args.stage, args.symbol)
+        evidence = recover_latest(args.experiment, args.stage, args.symbol) if args.recover_latest else run_one(args.experiment, args.stage, args.symbol)
     except (TestError, runner.RunnerError, experiment.ManifestError, subprocess.TimeoutExpired, KeyError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
