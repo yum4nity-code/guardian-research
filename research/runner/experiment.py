@@ -19,6 +19,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 EXPERIMENT_DIR = ROOT / "research" / "experiments"
 ID_RE = re.compile(r"^D\d{3}(?:-[A-Z0-9][A-Z0-9_-]*)+$")
+SOURCE_SHA_MODES = {"UTF8_TEXT_LF_NORMALIZED", "RAW_BYTES"}
 
 
 class ManifestError(RuntimeError):
@@ -104,6 +105,8 @@ def validate_manifest(manifest: dict[str, Any]) -> list[str]:
         if canonical_path:
             require((ROOT / canonical_path).is_file(), f"canonical source missing: {canonical_path}")
         require(bool(source.get("source_sha256")), "complete source requires source_sha256")
+        require(source.get("source_sha256_mode") in SOURCE_SHA_MODES,
+                "complete source requires supported source_sha256_mode")
     else:
         require(canonical_path in (None, ""),
                 "incomplete source must not masquerade as a canonical_path")
@@ -194,6 +197,8 @@ def execution_readiness(manifest: dict[str, Any]) -> list[str]:
         blockers.append("canonical complete repository source is not ready")
     if not source.get("source_sha256"):
         blockers.append("source_sha256 is not frozen")
+    if source.get("source_sha256_mode") not in SOURCE_SHA_MODES:
+        blockers.append("source_sha256_mode is not frozen/supported")
     if not manifest.get("runner_contract"):
         blockers.append("runner_contract is not frozen")
     return blockers
