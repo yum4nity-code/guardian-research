@@ -38,6 +38,7 @@ jobs:
           research/runner/test_state_tools.py
           research/runner/test_runner_contract.py
           research/runner/test_trade_path_validate.py
+          research/runner/test_rich_trade_path.py
 
       - name: Parse Windows PowerShell launcher
         shell: pwsh
@@ -77,3 +78,4 @@ jobs:
           python research/runner/test_state_tools.py
           python research/runner/test_runner_contract.py
           python research/runner/test_trade_path_validate.py
+          python research/runner/test_rich_trade_path.py
