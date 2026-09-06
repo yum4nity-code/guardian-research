@@ -54,8 +54,7 @@ def candidate_roots(explicit: str | None = None) -> list[Path]:
     for base in (Path("C:/Program Files"), Path("C:/Program Files (x86)"), Path("D:/")):
         if not base.exists():
             continue
-        patterns = ("*MetaTrader*", "*FundedNext*", "*MT5*")
-        for pattern in patterns:
+        for pattern in ("*MetaTrader*", "*FundedNext*", "*MT5*"):
             try:
                 for entry in base.glob(pattern):
                     if entry.is_dir():
@@ -83,7 +82,7 @@ def inspect_root(root: Path) -> dict[str, str | bool | None]:
     metaeditor = find_case_insensitive(root, ("metaeditor64.exe", "metaeditor.exe"))
     terminal = find_case_insensitive(root, ("terminal64.exe", "terminal.exe"))
     experts = root / "MQL5" / "Experts"
-    coherent = bool(metaeditor and experts.is_dir())
+    coherent = bool(metaeditor and terminal and experts.is_dir())
     return {
         "root": norm(root),
         "coherent": coherent,
@@ -118,16 +117,23 @@ def default_workspace() -> Path:
     return ROOT / "local" / "guardian-runner-workspace"
 
 
+def default_common_files() -> Path:
+    appdata = os.environ.get("APPDATA")
+    if not appdata:
+        raise RuntimeError("APPDATA is unavailable; cannot resolve MetaTrader common files folder")
+    return Path(appdata) / "MetaQuotes" / "Terminal" / "Common" / "Files"
+
+
 def build_config(installation: dict[str, str | bool | None]) -> dict[str, str]:
     experts = Path(str(installation["experts_dir"])) / "GuardianResearch"
-    config = {
+    return {
+        "mt5_root": str(installation["root"]),
         "metaeditor_exe": str(installation["metaeditor_exe"]),
+        "terminal_exe": str(installation["terminal_exe"]),
         "mt5_experts_dir": norm(experts),
+        "common_files_dir": norm(default_common_files()),
         "workspace_dir": norm(default_workspace()),
     }
-    if installation.get("terminal_exe"):
-        config["terminal_exe"] = str(installation["terminal_exe"])
-    return config
 
 
 def main() -> int:
@@ -143,12 +149,12 @@ def main() -> int:
 
     try:
         chosen, inspected = choose_installation(args.mt5_root)
+        config = build_config(chosen)
     except RuntimeError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         print(json.dumps({"inspected": [inspect_root(p) for p in candidate_roots(args.mt5_root)]}, indent=2))
         return 1
 
-    config = build_config(chosen)
     report = {"chosen": chosen, "config": config, "config_path": norm(CONFIG)}
     if args.dry_run:
         report["inspected"] = inspected
@@ -161,6 +167,7 @@ def main() -> int:
 
     CONFIG.parent.mkdir(parents=True, exist_ok=True)
     Path(config["mt5_experts_dir"]).mkdir(parents=True, exist_ok=True)
+    Path(config["common_files_dir"]).mkdir(parents=True, exist_ok=True)
     Path(config["workspace_dir"]).mkdir(parents=True, exist_ok=True)
     CONFIG.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report, indent=2))
