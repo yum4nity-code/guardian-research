@@ -40,6 +40,7 @@ jobs:
           research/runner/test_runner_contract.py
           research/runner/test_trade_path_validate.py
           research/runner/test_rich_trade_path.py
+          research/runner/test_campaign_transport.py
 
       - name: Parse Windows PowerShell launcher
         shell: pwsh
@@ -60,21 +61,24 @@ jobs:
         run: python research/runner/state_tools.py validate
 
       - name: Validate active experiment contract
-        run: python research/runner/experiment.py validate D038
+        run: python research/runner/experiment.py validate D039
 
       - name: Verify active experiment source is execution-ready
-        run: python research/runner/experiment.py ready D038
+        run: python research/runner/experiment.py ready D039
 
       - name: Exercise active runner planning without MT5
-        run: python research/runner/guardian_research.py plan D038
+        run: python research/runner/guardian_research.py plan D039
+
+      - name: Validate closed D038 manifest remains coherent
+        run: python research/runner/experiment.py validate D038
 
       - name: Report D037 v1.02 historical source identity
         run: python research/runner/source_hash.py research/strategies/d037/D037_Williams_M15_v1_02.mq5
 
-      - name: Report D038 v1.00 active source identity
+      - name: Report D038 v1.00 closed source identity
         run: python research/runner/source_hash.py research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5
 
-      - name: Report D039 v1.00 candidate source identity
+      - name: Report D039 v1.00 active source identity
         run: python research/runner/source_hash.py research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5
 
       - name: Run regression tests
@@ -83,3 +87,4 @@ jobs:
           python research/runner/test_runner_contract.py
           python research/runner/test_trade_path_validate.py
           python research/runner/test_rich_trade_path.py
+          python research/runner/test_campaign_transport.py
