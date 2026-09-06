@@ -13,7 +13,8 @@
     "handoff/chatgpt_to_codex/2026/09/01/D023_LONDON_ORB_M15_PREREG_AND_ENGINE.md",
     "handoff/chatgpt_to_codex/2026/09/01/D024_MULTI_STRATEGY_PORTFOLIO_CAP_PREREG.md",
     "handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md",
-    "handoff/chatgpt_to_codex/2026/09/06/D17_BANGER_GLOBAL_AUDIT_2026_09_06.md"
+    "handoff/chatgpt_to_codex/2026/09/06/D17_BANGER_GLOBAL_AUDIT_2026_09_06.md",
+    "handoff/chatgpt_to_codex/2026/09/06/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md"
   ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
@@ -26,5 +27,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "NEW 2026-09-06 P0: read D17_BANGER_GLOBAL_AUDIT_2026_09_06.md before choosing work. Current handoff supersedes the stale CURRENT_QUEUE active_primary: resolve exact live/local D17 lineage and native-manager attribution first. Critical correction: do NOT implement TIMEBOX=60m as native; MOMENTUM_PROD has strategy time-stop locked OFF and the 60m constant is legacy/inactive. Preserve TP1 2R/25%, true-net BE 1.25R, 1.75 ATR one-way setup-bar-gated trail. Also reconcile missing v11.16.11 production source/Core v12.01 repo provenance and stale queue/status/decisions. Earlier unread notes remain listed for explicit reconciliation; supersede rather than blindly execute any incompatible old instruction."
+  "notes": "NEW 2026-09-06: Guardian Core v12.01 compile-fix has now been user-compiled in MetaEditor with 0 errors / 0 warnings. Read GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md and production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md. Exact compiled Core SHA256 c15c2f04da78f9a4841cc461224bd62db35a110e1c2ff3ed15c6a0fd9c27e826. Preserve the local same-folder MQH layout and pure-core invariant. P0 research remains D17 lineage/native attribution; do not let this archival task preempt it. Earlier unread notes remain listed for explicit reconciliation; supersede rather than blindly execute incompatible old instructions."
 }
