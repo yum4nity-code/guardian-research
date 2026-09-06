@@ -1,9 +1,9 @@
 ﻿{
     "schema":  4,
-    "synced_at_utc":  "2026-09-06T15:06:32.4829269Z",
-    "run_id":  "20260906_150632_D023_V108_USDJPY_8d05cacd101c",
-    "path":  "backtests/inbox/2026/09/06/20260906_150632_D023_V108_USDJPY_8d05cacd101c",
-    "fingerprint":  "8d05cacd101c4d71f004e0c392a32b3800ce9aeeac92bb15c117ede609fcf86f",
+    "synced_at_utc":  "2026-09-06T15:18:52.7283147Z",
+    "run_id":  "20260906_151852_D023_V108_USDJPY_c6c4489100ff",
+    "path":  "backtests/inbox/2026/09/06/20260906_151852_D023_V108_USDJPY_c6c4489100ff",
+    "fingerprint":  "c6c4489100ffc4adc9fc63f2908a74f0d886d323260df9cad1dc6cccc826ace0",
     "reason":  "D023_V108_FINAL_VALIDATED",
     "files":  [
                   "D023_V108_USDJPY_2023_STATS.csv",
