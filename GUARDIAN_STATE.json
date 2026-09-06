@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T01:23:34+02:00",
+  "updated_at": "2026-09-07T01:27:14+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -25,7 +25,7 @@
     "canonical_sources_currently_in_repo": [
       "research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5"
     ],
-    "next_action": "On return to the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py compile D039`. D039 is preregistered, source-complete and SHA-frozen but has not yet received local MetaEditor compile proof. If compile is 0 errors / 0 warnings with trusted EX5 receipt, run `py -3 .\\research\\runner\\campaign.py D039 --stage smoke --no-finalize` to execute the three-market October-2023 engineering smoke and native Trade Path validation in one unattended command. Do not open D039 development until smoke passes. The assistant can read the automatically published GitHub evidence after the user says only `fini`.",
+    "next_action": "On return to the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py compile D039`. D039 is preregistered, source-complete and SHA-frozen but has not yet received local MetaEditor compile proof. If compile is 0 errors / 0 warnings with trusted EX5 receipt, run `py -3 .\\research\\runner\\guardian_research.py campaign D039 --stage smoke --no-finalize` to execute the three-market October-2023 engineering smoke and native Trade Path validation in one unattended command. Do not open D039 development until smoke passes. The assistant can read the automatically published GitHub evidence after the user says only `fini`.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -75,6 +75,7 @@
     },
     "legacy_backtest_bot_cleanup": {
       "status": "LOCAL_PC_INSPECTION_REQUIRED",
+      "inspector": "research/runner/Inspect-LegacyResultTransport.ps1",
       "reason": "D038 runs also produced duplicate commits authored by Guardian Backtest Bot / Auto-sync validated CSV while the new runner transport was already working.",
       "safety": "Identify the actual scheduled task/process and command line before disabling it; do not guess or use it as fallback."
     },
@@ -132,7 +133,9 @@
       "AUTOMATIC_COMPACT_RESULT_EVENT_PUBLISH",
       "STABLE_LIVE_RESULT_POINTER",
       "SEQUENTIAL_MULTI_STRATEGY_CAMPAIGN",
-      "RICH_EVENT_PAYLOAD_COMPACTION"
+      "UNIFIED_CAMPAIGN_CLI",
+      "RICH_EVENT_PAYLOAD_COMPACTION",
+      "READ_ONLY_LEGACY_TRANSPORT_INSPECTOR"
     ],
     "planned_stages": [
       "D039_LOCAL_COMPILE",
@@ -148,7 +151,7 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not yet proven safe; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D039_ACTIVE_STATE_CI",
+    "github_ci_status": "GREEN_D039_ACTIVE_STATE_CAMPAIGN_AND_TRANSPORT_REGRESSION_TESTS",
     "local_mt5_status": "D038_CLOSED_D039_AWAITING_LOCAL_COMPILE",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "ergonomics_speed_audit": "docs/RESEARCH_RUNNER_ERGONOMICS_SPEED_AUDIT_2026_09_07.md",
