@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260906_212408_D037_EURUSD_fe6cea29e931",
+    "fingerprint":  "fe6cea29e93166e2371a472fc088defbe2fc543ae9111f1ff0d003ce8e4a19e4",
+    "synced_at_utc":  "2026-09-06T21:24:37.6735599Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D037_Williams_M15_v1_01.mq5",
+                       "source_version":  "1.01",
+                       "run_stage":  "DEV_2024_2025",
+                       "symbol":  "EURUSD",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  387,
+                       "published_trades_rows":  387
+                   },
+    "files":  [
+                  {
+                      "name":  "D037_V101_DEV_2024_2025_EURUSD_STATS.csv",
+                      "source_sha256":  "8ebf5d4df4f91e5371f783807e9627145ac6f48490d80a6c0a8193b4998ed81d",
+                      "published_sha256":  "778cc97b9bb7de0a053ae0b232654a80ccc75163ab03f6b7a06e863ffaf6bd87",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D037_V101_DEV_2024_2025_EURUSD_TRADES.csv",
+                      "source_sha256":  "8bab9e061acd351286ce7a68365df446da022100cd78c6ee31ebae0556714422",
+                      "published_sha256":  "1c242328d44e70c9cf46bfb3ca217b269f5727180684992ae48301870cc5fe95",
+                      "sanitized":  false
+                  }
+              ]
+}
