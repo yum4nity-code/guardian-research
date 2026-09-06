@@ -2,7 +2,7 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-06T23:10:00+02:00",
+  "updated_at": "2026-09-06T23:35:00+02:00",
   "active_primary": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "items": [
     {
@@ -11,16 +11,16 @@
       "status": "COMPILE_PENDING",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "On the MT5 research PC, configure the local Guardian runner and compile D037 v1.01. Require verified source-copy SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt before any DEV run.",
+      "goal": "On the MT5 research PC: run the Windows bootstrap/doctor without a backtest, then compile D037 v1.01, then run one USDJPY development test. Only after all three proofs pass should the six-symbol DEV batch run.",
       "manifest": "research/experiments/D037.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "LOCAL_DEPLOY_COMPILE_CORE_IMPLEMENTED",
+      "status": "END_TO_END_CODE_IMPLEMENTED_LOCAL_MT5_PROOF_PENDING",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
-      "goal": "one manifest + one complete strategy source; deterministic compile/smoke/dev/score pipeline"
+      "goal": "one manifest + one complete strategy source; deterministic compile/test/batch/score pipeline"
     },
     {
       "id": "AUTOSYNC_V3_FROM_SCRATCH",
