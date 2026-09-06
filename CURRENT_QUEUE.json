@@ -1,8 +1,17 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-05T07:25:00+01:00",
-  "active_primary": "D023-LONDON-ORB-M15-V0",
+  "updated_at": "2026-09-06T11:15:00+01:00",
+  "active_primary": "D017-NATIVE-RATCHET-LINEAGE-ATTRIBUTION",
   "items": [
+    {
+      "id": "D017-NATIVE-RATCHET-LINEAGE-ATTRIBUTION",
+      "priority": 0,
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
+      "type": "source_lineage_and_managed_edge_attribution",
+      "goal": "CURRENT P0. Identify the exact live/local FTMO D17 source/binary/preset lineage against GitHub MOMENTUM_PROD and the documented v11.16.11 branch, then preregister and run exact native-manager attribution on identical frozen entries. Preserve TP1 2R/25%, true-net BE 1.25R and 1.75 ATR one-way setup-bar-gated trail. Do not assume v11.16.19 is authoritative and do not implement the inactive legacy 60-minute Momentum time-stop as native TIMEBOX.",
+      "blocking": "Exact live/source lineage and the third counterfactual definition must be resolved before a long attribution run. Read handoff/chatgpt_to_codex/2026/09/06/D17_BANGER_GLOBAL_AUDIT_2026_09_06.md."
+    },
     {
       "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
       "priority": 1,
@@ -17,23 +26,31 @@
       "status": "VALIDATED",
       "owner": "ChatGPT",
       "type": "critical_runtime_safety_fix",
-      "goal": "v11.16.2 CAPREF remains the current research/production baseline. User confirmed coherent runtime on FTMO Demo 100k after the 10k-reference/>90k-daily-margin bug was fixed."
+      "goal": "v11.16.2 CAPREF remains a validated historical runtime safety fix; do not confuse this with current source-lineage authority."
     },
     {
       "id": "FUNDEDNEXT-FREE-TRIAL-EA-OPTION-AWARE-FIX",
-      "priority": 2,
+      "priority": 1,
       "status": "READY",
       "owner": "Codex",
       "type": "focused_runtime_compliance_fix",
-      "goal": "Keep as a focused runtime/compliance fix. Do not mix with strategy research or mutate validated research semantics."
+      "goal": "Keep as a focused runtime/compliance fix. FundedNext Algo Trading remains OFF until request-budget/retry pathology is resolved; do not mix this with strategy research."
     },
     {
       "id": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
-      "priority": 8,
+      "priority": 4,
       "status": "VALIDATED",
       "owner": "Codex",
       "type": "research_infrastructure",
       "goal": "Shared Bybit+Binance collection, venue-separated market state and MT5 FILE_COMMON bridge have passed live runtime gates. Preserve as read-only research infrastructure and continue timestamped archive accumulation."
+    },
+    {
+      "id": "DERIBIT-0DTE-OI-OBSERVER-V1",
+      "priority": 2,
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
+      "type": "read_only_forward_research_infrastructure",
+      "goal": "Run a local live-network smoke of research/external_intelligence/deribit_expiry_observer_v1.py, then accumulate 07:00 UTC prior-only ATM OI snapshots. No keys, no trading, no retrospective threshold fitting. Preserve the source 09:00-vs-10:00 exit discrepancy for preregistration."
     },
     {
       "id": "D025-LIQUIDITY-EXHAUSTION-RECLAIM",
@@ -46,52 +63,51 @@
     },
     {
       "id": "D023-LONDON-ORB-M15-V0",
-      "priority": 1,
-      "status": "READY",
-      "owner": "Codex",
-      "type": "scientific_hypothesis",
-      "goal": "PRIMARY NEXT RESEARCH TEST. Execute the preregistered London ORB M15 V0 exactly once on EURUSD/GBPUSD/USDJPY/XAUUSD. Engine SHA256 3788e8963b1c3a3c4213e29cf6fa212e29437e10d3c900c9e34261f637946b27. No tuning, no OOS."
-    },
-    {
-      "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
       "priority": 2,
       "status": "WAITING_CODEX",
       "owner": "Codex",
-      "type": "scientific_hypothesis",
-      "goal": "SECOND evidence-based family. Use only corrected d022_pair_rev_eventstudy_v2.py (SHA256 29f17859acfd7c78ba8eac5e677a6763eea0aab7233474625e4bdd5578b3ed45). Execute AUDUSD/NZDUSD and EURUSD/GBPUSD once if all four symbols/data are accessible; no tuning/OOS.",
-      "blocking": "If AUDUSD or NZDUSD is unavailable on the current broker, defer rather than substitute pairs post-hoc."
+      "type": "scientific_hypothesis_legacy_broad_family",
+      "goal": "DO NOT rerun the old broad four-market discovery as the active primary. Broad D023 failed; USDJPY remains a discovery/watchlist branch (~+0.1179R after approximate commission, n=489, positive 2024/2025/2026) and needs a genuinely untouched preregistered confirmation before portfolio promotion. No rescue filters."
     },
     {
-      "id": "D027-NR7-CONTRACTION-BREAKOUT-V0",
-      "priority": 3,
-      "status": "READY",
-      "owner": "ChatGPT/Codex",
-      "type": "scientific_hypothesis",
-      "goal": "THIRD evidence-based family. Run frozen NR7 prior-day contraction breakout on EURUSD/GBPUSD/USDJPY/XAUUSD using research/campaigns/D027_NR7_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_05.md and research/analysis/analyze_d027_d028_price_action_v1.py. No filters or parameter search."
-    },
-    {
-      "id": "D028-INTRADAY-SESSION-MOMENTUM-V0",
-      "priority": 4,
-      "status": "READY",
-      "owner": "ChatGPT/Codex",
-      "type": "scientific_hypothesis",
-      "goal": "FOURTH evidence-based family. Test frozen London 08:00-08:30 direction -> 16:30-17:00 same-direction return on EURUSD/GBPUSD/USDJPY/XAUUSD using the shared D027/D028 engine. Include costs and 1.5x stress; no threshold search."
-    },
-    {
-      "id": "D029-CLASSIC-TSMOM-BENCHMARK-V0",
-      "priority": 5,
-      "status": "READY",
-      "owner": "ChatGPT/Codex",
-      "type": "scientific_benchmark",
-      "goal": "FIFTH optional benchmark. Test literature-style 252-day time-series momentum separately from D017. Strong external evidence but lower challenge frequency, so do after the four primary intraday/relative-value tests."
-    },
-    {
-      "id": "DECISION-D021-HYPOTHESIS",
+      "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
       "priority": 6,
       "status": "WAITING_CODEX",
       "owner": "Codex",
+      "type": "legacy_scientific_hypothesis",
+      "goal": "Legacy queue item. Reconcile against the Sep-6 handoff/status before any execution; do not let it preempt D17 attribution. If still scientifically active, use only the frozen corrected engine and no post-hoc pair substitution."
+    },
+    {
+      "id": "D027-NR7-CONTRACTION-BREAKOUT-V0",
+      "priority": 6,
+      "status": "WAITING_CODEX",
+      "owner": "ChatGPT/Codex",
+      "type": "legacy_scientific_hypothesis",
+      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not preempt D17 attribution or rerun an already inspected family blindly."
+    },
+    {
+      "id": "D028-INTRADAY-SESSION-MOMENTUM-V0",
+      "priority": 6,
+      "status": "WAITING_CODEX",
+      "owner": "ChatGPT/Codex",
+      "type": "legacy_scientific_hypothesis",
+      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not preempt D17 attribution or rerun an already inspected family blindly."
+    },
+    {
+      "id": "D029-CLASSIC-TSMOM-BENCHMARK-V0",
+      "priority": 7,
+      "status": "REJECTED",
+      "owner": "ChatGPT/Codex",
+      "type": "scientific_benchmark",
+      "goal": "Closed as a transport/temporal-decay benchmark: 2018-2023 pooled executable result was negative/flat with sign reversal across time blocks. Preserve as evidence; do not rescue on inspected samples."
+    },
+    {
+      "id": "DECISION-D021-HYPOTHESIS",
+      "priority": 7,
+      "status": "WAITING_CODEX",
+      "owner": "Codex",
       "type": "scientific_decision",
-      "goal": "Keep D021 MICRO-REV available but behind the stronger externally grounded slate. Existing engine must not be rewritten or tuned."
+      "goal": "Keep D021 MICRO-REV behind the stronger current slate. Existing engine must not be rewritten or tuned."
     },
     {
       "id": "AUTONOMY-RECOVERY-001",
@@ -99,7 +115,7 @@
       "status": "RUNNING_MIMO",
       "owner": "Codex",
       "type": "infrastructure_reconciliation",
-      "goal": "MiMo continues independently; harvest/checkpoint healthy work and never duplicate-restart it."
+      "goal": "MiMo continues independently; harvest/checkpoint healthy work and never duplicate-restart it. Reconcile actual local process state before acting on this stale status."
     },
     {
       "id": "D024-MULTI-STRATEGY-POSITION-CAP-STUDY",
@@ -116,23 +132,23 @@
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "legacy_campaign",
-      "goal": "Defer. Broad D017 Momentum has now failed the 2024-2025 large-edge standard across the available major markets."
+      "goal": "Defer. Broad D017 Momentum failed the 2024-2025 large-edge standard across available major markets; current question is exact managed-system attribution, not another broad scan."
     },
     {
       "id": "D017-V11-16-PROVENANCE-AUDIT",
-      "priority": 10,
-      "status": "CANDIDATE",
+      "priority": 0,
+      "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "semantic_provenance_audit",
-      "goal": "Historical/deferred unless a concrete discrepancy blocks a higher-priority experiment."
+      "goal": "Reactivated only as part of the P0 D17 lineage task: identify exact live/local source/binary/preset and reconcile against MOMENTUM_PROD/v11.16.11 before attribution."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
-      "priority": 10,
+      "priority": 3,
       "status": "READY",
       "owner": "Codex",
       "type": "technical_non_regression_control",
-      "goal": "Optional/deferred unless a feed discrepancy blocks a higher-priority result."
+      "goal": "Use only if needed to establish that a candidate source reproduces the intended D17 entry/management behavior on the same feed; do not turn this into a parameter search."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -144,5 +160,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-05 evidence-first reset. Target four independent V0 strategy families today: D023 ORB, D022 pair reversion if symbols exist, D027 NR7 contraction breakout, D028 intraday session momentum. D029 classic TSMOM is optional benchmark. D021 is deprioritized, not deleted. No RSI/D017/D025/D026 rescue tuning. See research/results/STRATEGY_RESEARCH_SLATE_2026_09_05.md."
+  "notes": "2026-09-06 synchronization audit. CURRENT_PROJECT_HANDOFF is the canonical state. Active P0 is exact D17 live/source lineage plus native-manager attribution; the old Sep-5 D023 broad slate is no longer active primary. Critical correction: MOMENTUM_PROD has strategy time-stop locked OFF, so the legacy 60-minute constant must not be used as a native TIMEBOX. D023 USDJPY is watchlist/discovery pending untouched confirmation. D029 is preserved as rejected benchmark. Reconcile remaining legacy WAITING_CODEX/RUNNING_MIMO statuses against actual local state before execution. Read handoff/chatgpt_to_codex/2026/09/06/D17_BANGER_GLOBAL_AUDIT_2026_09_06.md."
 }
