@@ -292,7 +292,7 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Keep D032 Doji as sparse research only; do not rescue rejected families on inspected samples.
 - Pure Guardian Core v12.01 compile/smoke remains a separate prerequisite before any live replacement.
 
-## 2026-09-06 — D035 verdict, cross-strategy autopsy, E1 close, META-A1 preparation, D17 lineage reopening, Banger Lab V1
+## 2026-09-06 — D035 verdict, cross-strategy autopsy, D17 closure, D023 restart handoff and v1.08 harness recovery
 
 **Work / decisions — early session**
 - User returned the complete `D35 OUTPUT.zip` from the frozen D035 2024-2025 development run.
@@ -304,53 +304,62 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Cross-strategy edge-decay autopsy completed. Main conclusion: short-window profitability versus long-history decay reflects regime dependence, raw-signal vs managed-system/account-state mismatch, multiple testing, CFD cost drag and data provenance. D032 remains proof that the stricter protocol can still confirm a large edge.
 - META-A1 Momentum v1.00 was prepared from v11.16.19 with Momentum thresholds unchanged and RSI disabled for the experiment, logging raw/filtered/actual/management layers. Static QA passed; MQL5 compile remains external/mandatory.
 
-**Work / decisions — later session**
-- Short-window reruns and file confusion showed that v11.16.19 can no longer be treated as the sole authoritative D17 lineage anchor without a non-regression match. The earlier instruction to stop looking for older D17 sources is superseded by new evidence and user uncertainty.
+**Work / decisions — later research session**
+- Short-window reruns and file confusion showed that v11.16.19 could not be treated as the sole authoritative D17 lineage anchor without a non-regression match.
 - Guardian Finder located multiple historical Momentum candidates. GitHub inspection confirmed `candidates/for_guardian/Guardian_D017_PropFirmAuto_v11_16_MOMENTUM_PROD.mq5` and the documented v11.16.5→v11.16.11 lineage.
-- `docs/GUARDIAN_V11_16_5_TO_11_16_11_CHANGELOG.md` records that v11.16.11 added top-level Momentum/RSI switches without changing strategy parameters. This becomes a useful lineage anchor rather than assuming the later monolith is exact.
-- User reported that the D17 currently running on FTMO is behaving reasonably in practice, particularly the stop that ratchets upward/downward with favorable price. This is retained as operational evidence only, not a performance validation.
-- Source inspection confirms the later D17 native Momentum manager uses TP1 2R / 25%, true-net BE around 1.25R and 1.75 ATR trailing that only moves the stop in the risk-reducing direction. Decision: preserve and attribute this manager before simplifying or tuning it.
-- External literature review strengthened that decision: trailing/stop overlays can materially alter momentum risk-adjusted outcomes, with benefit depending on volatility, serial correlation and signal quality. This does not prove the D17 manager works on BTC, but makes exact management attribution scientifically necessary.
-- **Guardian Banger Lab V1** created and committed (`research/results/GUARDIAN_BANGER_LAB_V1_2026_09_06.md`, commit `8786bb393c3641fcef0997452501a0af9e9d061f`). It proposes a multi-sleeve `GUARDIAN HYDRA V0` rather than an opaque super-score: D17 native-ratchet Momentum + frozen USDJPY London ORB after untouched confirmation + confirmed sparse D032 Doji reversal + new BTC Deribit 0DTE expiry sleeve after replication/CFD transfer.
-- A predeclared **D17 Native Ratchet attribution** is now P0: exact same entries, compare only NATIVE vs FIXED-3R vs TIMEBOX; no parameter grid. Required outputs include exact SL ratchet path, TP1/BE events, MFE/MAE/touch ordering, full costs and Guardian/account-state blocks.
-- New external candidate: **BTC Deribit 0DTE expiry reversal**. A 2026 Finance Research Letters study reports a high-ATM-OI expiry effect with negative return into 08:00 UTC and reversal afterward; the working-paper narrative gives short 07:00→08:00 then long 08:00→09:00 and an after-cost annualized Sharpe around 0.92. This is treated only as external source evidence; target-CFD validation is mandatory.
-- Read-only forward observer `research/external_intelligence/deribit_expiry_observer_v1.py` created and committed (`51633a2ce1dece72a05c07e11b08bacd2b288825`). It collects public Deribit 0DTE ATM OI around 07:00 UTC and uses only prior observations for an expanding top-decile gate. Python `py_compile` PASS and deterministic self-test PASS. **Live Deribit network execution was NOT run in this environment.**
-- A separate experimental **Liquidation Cascade Exhaustion Reclaim** hypothesis was frozen conceptually: extreme BTC 5m drop + OI contraction + cross-venue long-liquidation burst, wait for M5 reclaim, then long with cascade-low stop and 120m time exit. It is distinct from rejected D035 delayed-short lead/lag. Historical synchronized OI/liquidation data remain the bottleneck.
-- `CURRENT_PROJECT_HANDOFF.md` updated to reflect D17 lineage reopening and Banger priorities (commit `7b76cb4d3ec259236d03ec6f6c8c8b6b0fcb32f3`).
+- Source inspection preserved the D17 native manager lineage: TP1 2R / 25%, true-net BE around 1.25R and 1.75 ATR trailing that only moves the stop in the risk-reducing direction.
+- Cross-market D17 attribution was subsequently completed across BTCUSD, ETHUSD, EURUSD, GBPUSD, USDJPY, XAUUSD and USDCAD. Broad D17 Momentum in its present form is now **closed as a current alpha candidate**; keep only lineage and Manager Evidence Ledger evidence. Do not tune or rescue D17 on inspected samples.
+- Manager evidence remains mixed but useful: the native ratchet helped 5/7 D17 markets and hurt 2/7, which argues against a universal manager and supports testing management weakness on an independent strategy family before any Manager Lab.
+- Guardian Core v12.01 was compile-validated by the user in MetaEditor at 0 errors / 0 warnings and is now the stable pure infrastructure baseline; keep it out of strategy research.
+- FundedNext request/retry pathology remains unresolved and separate from alpha research; FundedNext AUTO stays OFF until request budgeting/dedup/retry/backoff behavior is bounded.
+
+**Work / decisions — restart / D023 harness session**
+- A new canonical takeover entrypoint `START_HERE_NEXT_AI.md` was adopted at commit `ce2b28c1fb3524d2e989995f09df8f571930df68`, with `GUARDIAN_MASTER_MANDATE.md` and the Sep-6 restart handoff as governing documents.
+- Active P0 was reconciled to **D023 USDJPY London ORB**, not D17. D023 remains a serious candidate after FundedNext/DST-aware 2024-2026 conformance: n=482, mean net ~+0.0915R/trade, cumulative ~+44.10R, PF ~1.176, positive 2024/2025/2026 H1 but weakening through time.
+- Untouched 2023 gates remain frozen: n>=150, mean net R>0, PF>=1.10, 5-day moving-block bootstrap lower 5% bound >0, and positive result at 1.5x commission. No direction/day/indicator rescue filters and no manager experiment before scoring.
+- The exact historical local v1.07 2023 harness was recovered from the user's ChatGPT Library. Its measured SHA256 `34ce816eef241c662d6b9fa3be3caea62bc67a25d034bf6cb86e9c67903fff01` exactly matches the restart-handoff SHA, establishing provenance.
+- The v1.07 defect was confirmed directly: malformed `"\Files\"`-style path literal plus stale `v1.06` log labels. v1.07 remains untrusted and was not run.
+- New `D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5` created with harness/output-only changes and SHA256 `10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4`.
+- Static non-regression comparison confirms calendar/DST/cost/state, `WriteTrade`, and complete `OnTick` strategy logic are byte-identical to recovered v1.07. No ORB entry/stop/spread/commission/time-exit rule was intentionally changed.
+- v1.08 fixes path escaping, requires M15 and CSV output, creates/flushed STATS `INIT` before TRADES, writes `READY` only after both files exist, records `FATAL_TRADES_OPEN` on output failure, writes source/version/symbol/timeframe/cost/paths, and flushes `FINAL` counters.
+- Static lexical sanity passed, but this is **not** a MetaEditor compile. Compile status remains UNKNOWN until real FundedNext MetaEditor evidence exists.
+- v1.08 source committed in `b0fb0bc6b557aea5c58cd56a041856a3a0bccd7b`.
+- Static audit committed in `41b85bf753b3f7d7c89081f2773f907573a9ef96`.
+- Local compile/smoke request committed in `561a9018ca9afb7452b5a0b8fbf3c86a1d1cdea3` and queued unread for Codex.
+- `CURRENT_QUEUE.json` updated so D023 is `WAITING_CODEX`; full 2023 is explicitly blocked until compile/smoke/direct-output checks pass.
+- `CURRENT_PROJECT_HANDOFF.md` rewritten to align all future resumes with the Sep-6 D023 P0 state rather than older D17/Banger execution orders.
+- Short smoke interval frozen for harness validation: USDJPY M15 Every tick, 2023-03-13 through 2023-03-31. This crosses the US-vs-UK DST mismatch and UK DST transition. Expected server-London offset: 3h through 2023-03-24 weekdays, 2h from 2023-03-27.
+- Inherited CSV convention documented: `TIME_1600` uses the close of the 15:45-16:00 London bar but records the bar-open timestamp 15:45 in `exit_time_*`; manual smoke verification must not misread that as an economic 15:45 exit.
 
 **Time evidence**
 - Early Guardian activity is confirmed from approximately 06:53 Europe/Paris through at least 07:57.
-- A later Banger Lab session resumed at approximately 10:25 Europe/Paris and continued materially through this ledger update; exact active duration is not responsibly measurable from available evidence.
-- `Human active total: NOT QUANTIFIED` for the day. Strategy Tester / collector / analysis waiting is excluded.
+- Later Guardian work continued through multiple sessions during the day, including the restart/harness work through approximately 15:05 Europe/Paris.
+- `CONFIRMED ACTIVITY SPAN: ~06:53 -> ~15:05 Europe/Paris`, but this includes breaks and separate sessions.
+- `Human active total: NOT QUANTIFIED`; do not infer continuous work from the span.
+- Strategy Tester / collectors / unattended compute are excluded from human time.
 
 **Next**
-- P0: resolve exact D17 source/non-regression using the GitHub `MOMENTUM_PROD` anchor and the live/local D17 branch, then run Native vs Fixed-3R vs Timebox attribution without retuning 2R/25%, 1.25R BE or 1.75 ATR trail.
-- Run an untouched confirmation of frozen USDJPY D023 ORB before any promotion.
-- Start Deribit 07:00 UTC forward OI snapshots; separately source provenance-clean historical Deribit option-chain OI for 2021-2023 replication and target-CFD transfer.
-- Preserve D032 Doji as confirmed sparse sleeve; do not force frequency or rescue failed managers.
-- Test Cascade Reclaim only when adequate synchronized OI/liquidation history exists.
-- Activate D024 portfolio overlap/equity replay only when at least two sleeves independently validate.
-- FundedNext Algo Trading remains OFF until request-budget/retry pathology is resolved and the clean replacement core is compiled/smoked.
+- P0: sync exact D023 v1.08, verify SHA256, compile in the relevant FundedNext MetaEditor and require **0 errors / 0 warnings**.
+- If compile passes, run only the short smoke `2023-03-13` through `2023-03-31`; verify STATS `INIT -> READY -> FINAL`, both deterministic outputs, `csv_trade_rows == trades_closed`, nonzero counters, at least three ORB sessions and both DST regimes.
+- Do **not** run full `2023-01-02` through `2023-12-29` until compile + smoke + direct CSV/manual verification PASS.
+- Only then run untouched 2023 once and score against the frozen gates. If it fails, do not rescue-filter the same sample.
+- D17 remains closed as current alpha; preserve only manager/lineage evidence.
+- Keep Guardian Core v12.01 stable and FundedNext AUTO off until the request/retry pathology is separately resolved.
 
 ---
 
 # Current planning / backlog
 
-## P0 — D17 Native Ratchet lineage + attribution
+## P0 — D023 USDJPY London ORB 2023 confirmation harness
 
-- Do not assume v11.16.19 is authoritative solely because it is later.
-- Use the GitHub `Guardian_D017_PropFirmAuto_v11_16_MOMENTUM_PROD.mq5`, v11.16.11 changelog, any matching local/live source and non-regression trade behavior to identify the actual D17 branch.
-- Preserve native management while testing: TP1 2R/25%, true-net BE ~1.25R, 1.75 ATR one-way ratchet.
-- Once entry behavior is fixed, compare only NATIVE / FIXED-3R / TIMEBOX on identical trades. No optimization grid.
-- Attribute raw signal, strategy-local selection, Guardian/account-state selection, manager lift and cost drag separately.
-- META-A1 v11.16.19 pack remains available as an instrumentation artifact but is not the mandatory next long backtest until lineage is matched.
-
-## P0 — Guardian Banger Lab V1
-
-- Hydra V0 candidate sleeves: D17 native-ratchet Momentum; USDJPY D023 after untouched confirmation; D032 confirmed Doji reversal; Deribit 0DTE expiry after historical replication/CFD transfer.
-- Research-only frozen risk proposal before portfolio replay: 0.25% / 0.20% / 0.20% / 0.15%, account open-risk cap 1.00%, no dynamic performance sizing.
-- Start Deribit forward OI collection now; historical option-chain OI provenance is required before a retrospective claim.
-- Cascade Reclaim stays a separate experimental family and must not reuse D035 results as validation.
+- Active source: `research/strategies/d023/D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5`.
+- Expected SHA256: `10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4`.
+- Current status: static-audited only; **WAITING_CODEX** for real compile and smoke.
+- First gate: FundedNext MetaEditor 0 errors / 0 warnings.
+- Second gate: USDJPY M15 Every tick smoke `2023-03-13` -> `2023-03-31` with direct STATS/TRADES inspection and manual DST/ORB verification.
+- Full untouched 2023 remains blocked until both gates pass.
+- Frozen full-year gates: n>=150, mean net R>0, PF>=1.10, 5-day moving-block bootstrap lower 5% bound >0, positive at 1.5x commission.
+- No D023 tuning, LONG-only conversion, day/range/indicator filters or manager testing before untouched confirmation is scored.
 
 ## P0 — FundedNext request-budget fix
 
@@ -367,6 +376,13 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Evaluate FundedNext-specific early BE/SL behavior only if risk-neutral.
 - Never hold an unsafe trade open simply to avoid Quick Strike classification.
 
+## P1 — Manager evidence / D17 lineage
+
+- D17 Momentum is closed as current alpha after broad seven-market attribution.
+- Preserve exact lineage and paired Native-vs-Fixed manager results in `research/MANAGER_EVIDENCE_LEDGER.md`.
+- Do not tune D17 to rescue inspected samples.
+- A dedicated Manager Lab becomes justified only if a similar management weakness appears on an independent strategy family such as D023 after entry confirmation.
+
 ## P1 — Shared Intelligence / Crypto+
 
 - Keep Binance + Bybit collector running read-only.
@@ -376,6 +392,7 @@ From 2026-09-04 onward, time should be logged more precisely.
 
 ## P1 — Guardian production continuity
 
+- Guardian Core v12.01 remains the compile-validated pure infrastructure baseline.
 - Keep `CURRENT_PROJECT_HANDOFF.md` as fast-resume canonical state.
 - Keep this file as the historical/time/planning ledger.
 - Update both on material architecture/research decisions.
