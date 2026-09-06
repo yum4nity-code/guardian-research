@@ -1,0 +1,33 @@
+﻿{
+    "schema":  4,
+    "run_id":  "20260906_150632_D023_V108_USDJPY_8d05cacd101c",
+    "fingerprint":  "8d05cacd101c4d71f004e0c392a32b3800ce9aeeac92bb15c117ede609fcf86f",
+    "synced_at_utc":  "2026-09-06T15:06:32.4829269Z",
+    "reason":  "D023_V108_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "1.04",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5",
+                       "source_version":  "1.08",
+                       "symbol":  "USDJPY",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  13,
+                       "csv_trade_rows":  13,
+                       "published_trades_rows":  13
+                   },
+    "files":  [
+                  {
+                      "name":  "D023_V108_USDJPY_2023_STATS.csv",
+                      "source_sha256":  "34ed41074a0380daf7ee7e294063287ca15de3dcee94781aba80cfa9da11e502",
+                      "published_sha256":  "11c97d73d7a528d2c94f9ce8fad50c703aa6400be6d4f4eef1b1f44f61fb9322",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D023_V108_USDJPY_2023_TRADES.csv",
+                      "source_sha256":  "c79eae0cd7b1c4812d07d7ea7f334752e3e70520090440d42f0fef143b8031ef",
+                      "published_sha256":  "aad9bf3cfa73f9106551b2a1b77cc5641a9e02eb9f51749985108e12892728dc",
+                      "sanitized":  false
+                  }
+              ]
+}
