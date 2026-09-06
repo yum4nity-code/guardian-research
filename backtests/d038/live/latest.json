@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-06T22:56:43.419233+00:00",
+  "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "development",
+  "kind": "batch",
+  "event_id": "20260906T225212Z",
+  "event_path": "backtests/d038/live/events/development/batch/20260906T225212Z",
+  "event_fingerprint_sha256": "5ef1a87bb835f83c9acce743a887a8fcd2367542ffaa0019c176e2e742127d45",
+  "status": "BATCH_PASS_INTEGRITY",
+  "autosync_used": false
+}
