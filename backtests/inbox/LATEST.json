@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-06T21:56:06.8141985Z",
-    "run_id":  "20260906_215538_D037_ETHUSD_fc610d25298c",
-    "path":  "backtests/inbox/2026/09/06/20260906_215538_D037_ETHUSD_fc610d25298c",
-    "fingerprint":  "fc610d25298ce3665c725ebc3f903931785d226b034d32457c043849063586cb",
+    "synced_at_utc":  "2026-09-06T21:56:44.0957627Z",
+    "run_id":  "20260906_215612_D037_EURUSD_e3b0d0a9899a",
+    "path":  "backtests/inbox/2026/09/06/20260906_215612_D037_EURUSD_e3b0d0a9899a",
+    "fingerprint":  "e3b0d0a9899aa6e68de3f2b6a518881bd1a25a3e5e62ea3cc541a5e03dad8586",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D037_V102_DEV_2024_2025_ETHUSD_STATS.csv",
-                  "D037_V102_DEV_2024_2025_ETHUSD_TRADES.csv",
+                  "D037_V102_DEV_2024_2025_EURUSD_STATS.csv",
+                  "D037_V102_DEV_2024_2025_EURUSD_TRADES.csv",
                   "sync_manifest.json"
               ]
 }
