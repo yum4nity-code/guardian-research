@@ -55,18 +55,18 @@ jobs:
         run: python research/runner/state_tools.py validate
 
       - name: Validate active experiment contract
-        run: python research/runner/experiment.py validate D037
+        run: python research/runner/experiment.py validate D038
 
-      - name: Verify active experiment is execution-ready
-        run: python research/runner/experiment.py ready D037
+      - name: Verify active experiment source is execution-ready
+        run: python research/runner/experiment.py ready D038
 
-      - name: Exercise runner planning without MT5
-        run: python research/runner/guardian_research.py plan D037
+      - name: Exercise active runner planning without MT5
+        run: python research/runner/guardian_research.py plan D038
 
-      - name: Report D037 v1.02 source identity
+      - name: Report D037 v1.02 historical source identity
         run: python research/runner/source_hash.py research/strategies/d037/D037_Williams_M15_v1_02.mq5
 
-      - name: Report D038 v1.00 candidate source identity
+      - name: Report D038 v1.00 active source identity
         run: python research/runner/source_hash.py research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5
 
       - name: Run regression tests
