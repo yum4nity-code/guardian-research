@@ -9,6 +9,7 @@ and pushed. Legacy AutoSync is never invoked.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import shutil
 import subprocess
@@ -82,13 +83,26 @@ def _safe_short_id(experiment_id: str) -> str:
     return cleaned
 
 
+def _batch_run_id(batch_path: str) -> str:
+    path = Path(batch_path)
+    run_id = path.parent.name
+    if not run_id or run_id in (".", ".."):
+        raise PublishError(f"cannot derive batch run id from {batch_path!r}")
+    return run_id
+
+
+def _stable_fingerprint(payload: dict[str, Any]) -> str:
+    encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def _summary_markdown(decision: dict[str, Any], rich: dict[str, Any]) -> str:
     metrics = decision.get("metrics", {})
     gates = decision.get("gates", {})
     analytics = rich.get("analytics", {})
     net = analytics.get("net_r", {})
     net_dist = net.get("distribution", {})
-    equity = analytics.get("chronological_equity_r", {})
+    equity = analytics.get("realized_trade_close_curve_r", {})
     duration = analytics.get("duration_minutes", {})
     failed = [name for name, passed in gates.items() if not passed]
 
@@ -112,7 +126,7 @@ def _summary_markdown(decision: dict[str, Any], rich: dict[str, Any]) -> str:
         f"- Win rate: {net.get('win_rate')}",
         f"- Average win / loss R: {net.get('average_win_r')} / {net.get('average_loss_r')}",
         f"- Payoff ratio: {net.get('payoff_ratio_avg_win_to_abs_avg_loss')}",
-        f"- Chronological max drawdown: {equity.get('max_drawdown_r')} R",
+        f"- Realized trade-close max drawdown: {equity.get('max_drawdown_r')} R",
         f"- Longest winning / losing streak: {equity.get('longest_winning_streak')} / {equity.get('longest_losing_streak')}",
         f"- Median trade duration: {duration.get('median')} minutes",
         "",
@@ -141,6 +155,10 @@ def build_bundle(identifier: str, stage: str, decision_path: str | None = None, 
         if payload.get("manifest_source_sha256") != manifest["source"]["source_sha256"]:
             raise PublishError(f"{label} source SHA does not match active manifest")
 
+    if decision.get("batch_path") != rich.get("batch_path"):
+        raise PublishError("decision and rich scores reference different batches")
+    batch_run_id = _batch_run_id(str(decision["batch_path"]))
+
     compact = rich.get("compact_trades", {})
     compact_path = Path(compact.get("path", ""))
     if not compact_path.is_file():
@@ -148,24 +166,39 @@ def build_bundle(identifier: str, stage: str, decision_path: str | None = None, 
     if runner.sha256_file(compact_path) != compact.get("sha256"):
         raise PublishError("rich compact trades SHA mismatch")
 
+    evidence = rich.get("evidence", [])
+    fingerprint_payload = {
+        "experiment_id": manifest["experiment_id"],
+        "stage": stage,
+        "batch_run_id": batch_run_id,
+        "source_sha256": manifest["source"]["source_sha256"],
+        "decision_verdict": decision.get("verdict"),
+        "decision_gates": decision.get("gates"),
+        "decision_metrics": decision.get("metrics"),
+        "evidence": evidence,
+        "compact_trades_sha256": compact.get("sha256"),
+    }
+    result_fingerprint = _stable_fingerprint(fingerprint_payload)
+
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     bundle_dir = workspace / "publish_bundles" / manifest["experiment_id"] / stage / stamp
     bundle_dir.mkdir(parents=True, exist_ok=False)
 
     shutil.copy2(decision_file, bundle_dir / "decision_score.json")
-    shutil.copy2(rich_file, bundle_dir / "rich_score.json")
+    shutil.copy2(rich_file, bundle_dir / "analytics.json")
     compact_published = False
     if compact_path.stat().st_size <= MAX_COMPACT_CSV_BYTES:
         shutil.copy2(compact_path, bundle_dir / "trades_compact.csv")
         compact_published = True
 
     source_path = runner.ROOT / manifest["source"]["canonical_path"]
-    evidence = rich.get("evidence", [])
     provenance = {
         "schema_version": 1,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "experiment_id": manifest["experiment_id"],
         "stage": stage,
+        "batch_run_id": batch_run_id,
+        "result_fingerprint_sha256": result_fingerprint,
         "decision_verdict": decision.get("verdict"),
         "decision_all_gates_pass": decision.get("all_gates_pass"),
         "manifest_path": str(manifest_path.relative_to(runner.ROOT)),
@@ -181,7 +214,7 @@ def build_bundle(identifier: str, stage: str, decision_path: str | None = None, 
         "evidence": evidence,
         "published_files": {
             "decision_score.json": {"sha256": runner.sha256_file(bundle_dir / "decision_score.json")},
-            "rich_score.json": {"sha256": runner.sha256_file(bundle_dir / "rich_score.json")},
+            "analytics.json": {"sha256": runner.sha256_file(bundle_dir / "analytics.json")},
             "trades_compact.csv": {
                 "included": compact_published,
                 "sha256": compact.get("sha256"),
@@ -204,6 +237,8 @@ def build_bundle(identifier: str, stage: str, decision_path: str | None = None, 
         "decision_verdict": decision.get("verdict"),
         "compact_trades_included": compact_published,
         "stamp": stamp,
+        "batch_run_id": batch_run_id,
+        "result_fingerprint_sha256": result_fingerprint,
     }
 
 
@@ -225,36 +260,49 @@ def publish_bundle(identifier: str, stage: str, decision_path: str | None = None
     if clone_dir.exists():
         shutil.rmtree(clone_dir)
 
+    publish_status = "PUBLISH_PASS"
     try:
         _run_git(["clone", "--quiet", "--depth", "1", "--single-branch", "--branch", RESULT_BRANCH, remote, str(clone_dir)], timeout=300)
-        target_rel = Path("backtests") / short_id / bundle["stamp"]
+        target_rel = Path("backtests") / short_id / stage / bundle["batch_run_id"]
         target = clone_dir / target_rel
         if target.exists():
-            raise PublishError(f"publish target already exists: {target_rel.as_posix()}")
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(bundle_dir, target)
-
-        _run_git(["add", "--", target_rel.as_posix()], cwd=clone_dir)
-        message = f"Publish {short_id.upper()} {stage} {bundle['decision_verdict']} {bundle['stamp']}"
-        _run_git([
-            "-c", "user.name=Guardian Research Runner",
-            "-c", "user.email=guardian-runner@local",
-            "commit", "-m", message,
-        ], cwd=clone_dir)
-        commit_sha = _run_git(["rev-parse", "HEAD"], cwd=clone_dir)
-        _run_git(["push", "origin", f"HEAD:{RESULT_BRANCH}"], cwd=clone_dir, timeout=300)
+            existing_manifest = target / "manifest.json"
+            if not existing_manifest.is_file():
+                raise PublishError(f"existing target has no manifest: {target_rel.as_posix()}")
+            existing = _read_json(existing_manifest, "existing published manifest")
+            if existing.get("result_fingerprint_sha256") != bundle["result_fingerprint_sha256"]:
+                raise PublishError(
+                    f"publish target collision with different payload: {target_rel.as_posix()} "
+                    f"existing={existing.get('result_fingerprint_sha256')} new={bundle['result_fingerprint_sha256']}"
+                )
+            commit_sha = _run_git(["rev-parse", "HEAD"], cwd=clone_dir)
+            publish_status = "PUBLISH_NOOP_ALREADY_PRESENT"
+        else:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copytree(bundle_dir, target)
+            _run_git(["add", "--", target_rel.as_posix()], cwd=clone_dir)
+            message = f"Publish {short_id.upper()} {stage} {bundle['decision_verdict']} {bundle['batch_run_id']}"
+            _run_git([
+                "-c", "user.name=Guardian Research Runner",
+                "-c", "user.email=guardian-runner@local",
+                "commit", "-m", message,
+            ], cwd=clone_dir)
+            commit_sha = _run_git(["rev-parse", "HEAD"], cwd=clone_dir)
+            _run_git(["push", "origin", f"HEAD:{RESULT_BRANCH}"], cwd=clone_dir, timeout=300)
     finally:
         if clone_dir.exists():
             shutil.rmtree(clone_dir, ignore_errors=True)
 
     receipt = {
         "schema_version": 1,
-        "status": "PUBLISH_PASS",
+        "status": publish_status,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "experiment_id": manifest["experiment_id"],
         "stage": stage,
         "branch": RESULT_BRANCH,
-        "target_path": (Path("backtests") / short_id / bundle["stamp"]).as_posix(),
+        "target_path": (Path("backtests") / short_id / stage / bundle["batch_run_id"]).as_posix(),
+        "batch_run_id": bundle["batch_run_id"],
+        "result_fingerprint_sha256": bundle["result_fingerprint_sha256"],
         "commit_sha": commit_sha,
         "bundle_dir": str(bundle_dir),
         "decision_verdict": bundle["decision_verdict"],
@@ -262,7 +310,7 @@ def publish_bundle(identifier: str, stage: str, decision_path: str | None = None
         "transport": "ISOLATED_GIT_CLONE_PUBLISHER",
         "autosync_used": False,
     }
-    receipt_path = workspace / "publish_receipts" / manifest["experiment_id"] / stage / f"{bundle['stamp']}.json"
+    receipt_path = workspace / "publish_receipts" / manifest["experiment_id"] / stage / f"{bundle['batch_run_id']}.json"
     runner.write_receipt(receipt_path, receipt)
     return {"publish_receipt": str(receipt_path), **receipt}
 
