@@ -62,6 +62,26 @@ class RunnerContractTests(unittest.TestCase):
             b.write_bytes(b"#property strict\r\nint x=2;\r\n")
             self.assertNotEqual(runner.sha256_text_lf(a), runner.sha256_text_lf(b))
 
+    def test_mt5_utf16_csv_with_bom_is_decoded(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "mt5.csv"
+            path.write_bytes("status;trades_opened\r\nFINAL;12\r\n".encode("utf-16"))
+            text, encoding = tester.decode_csv_text(path)
+            rows = tester.read_semicolon_csv(path)
+            self.assertEqual("utf-16", encoding)
+            self.assertIn("FINAL;12", text)
+            self.assertEqual("FINAL", rows[0]["status"])
+            self.assertEqual("12", rows[0]["trades_opened"])
+
+    def test_utf8_sig_csv_still_decodes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "utf8.csv"
+            path.write_bytes(b"\xef\xbb\xbfstatus;value\nREADY;1\n")
+            _, encoding = tester.decode_csv_text(path)
+            rows = tester.read_semicolon_csv(path)
+            self.assertEqual("utf-8-sig", encoding)
+            self.assertEqual("READY", rows[0]["status"])
+
     def test_profit_factor_zero_loss_stays_json_safe(self) -> None:
         pf, infinite = score.profit_factor_parts([1.0, 0.5, 0.0])
         self.assertIsNone(pf)
