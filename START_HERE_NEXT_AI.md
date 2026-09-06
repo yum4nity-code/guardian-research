@@ -14,8 +14,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0**
-- State: **COMPILE_PENDING**
-- Next action: **On the MT5 research PC: pull D037 v1.02, compile it with source/destination SHA proof and MetaEditor 0 errors / 0 warnings, then run exactly one XAUUSD development integrity test. Only if XAUUSD finishes FINAL with zero integrity counters should the six-symbol DEV batch be restarted from scratch.**
+- State: **READY_DEV**
+- Next action: **Restart the sequential six-symbol D037 v1.02 development batch from scratch with reference tester model 0. Stop immediately on any engineering/integrity failure. If all six runs pass integrity, score the frozen DEV gates; any failed gate means REJECT_V0 with no rescue tuning.**
 
 ## Operational truths
 
