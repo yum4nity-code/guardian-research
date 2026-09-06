@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T00:10:00+02:00",
+  "updated_at": "2026-09-07T00:18:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,11 +8,11 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_CORE_RUNNER_PROVEN_FINALIZATION_LAYER_PENDING",
+    "status": "PHASE_3_FINALIZATION_IMPLEMENTED_LOCAL_PROOF_PENDING",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_ADD_RICH_ANALYTICS_AND_DETERMINISTIC_RESULTS_PUBLISHING",
+    "next_phase": "PHASE_3_PROVE_RICH_ANALYTICS_AND_BACKTEST_RESULTS_PUBLISH_ON_D037",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
@@ -32,7 +32,7 @@
     ],
     "historical_builder": "automation/Build_D037_v101_20260906.ps1",
     "resolved_engineering_issue": "D037 v1.02 distinguishes a finite positive previous D1 bar with High==Low from a genuine invalid-price event. Such a day has no positive D037 volatility reference, is counted as no_reference_range_days, opens no trade, and execution continues. Genuine invalid/non-finite prices remain fatal with detailed D1 logging. Full v1.02 DEV batch passed integrity on all six markets.",
-    "next_action": "Implement the common rich analytics scorer and deterministic compact result publisher defined in docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md. Publish validated result bundles to the backtest-results branch without touching the user's active research working tree. Preserve D037 REJECT_V0; its 2,377 DEV trades may feed transversal Trade Path Dataset / Exit Lab research but may not rescue D037. Then select and preregister D038.",
+    "next_action": "On the MT5 research PC, pull the latest branch and run exactly `py -3 .\\research\\runner\\guardian_research.py finalize D037 --stage development`. This must not launch MT5. Require FINALIZE_PASS, rich analytics over the validated 2,377 DEV trades, a compact result bundle, and an isolated publish to the backtest-results branch (or an idempotent already-present no-op) with a local publish receipt. D037 remains REJECT_V0. After this proof, select and preregister D038 with native Trade Path telemetry.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -57,13 +57,13 @@
     "trusted_runtime_installed_version": null,
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "STANDARD_LOCKED_IMPLEMENTATION_PENDING",
+    "research_results_status": "IMPLEMENTED_LOCAL_PROOF_PENDING",
     "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
-    "research_results_policy": "Publish only runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. This publisher is not legacy AutoSync and must use an isolated checkout/worktree so it never mutates the active research working tree."
+    "research_results_policy": "Publish only runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. This publisher is not legacy AutoSync and uses an isolated temporary clone so it never mutates the active research working tree. Re-publishing the same validated batch is idempotent; conflicting payloads fail closed."
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "END_TO_END_BATCH_SCORE_PROVEN_RICH_ANALYTICS_PUBLISHER_PENDING",
+    "status": "END_TO_END_BATCH_SCORE_PROVEN_FINALIZE_IMPLEMENTED_LOCAL_PROOF_PENDING",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -87,20 +87,22 @@
       "VERDICT_RECEIPT",
       "INVALID_RUN_DIAGNOSTIC",
       "MT5_UTF16_CSV_DECODE",
-      "SOURCE_IDENTITY_REPORT"
-    ],
-    "planned_stages": [
+      "SOURCE_IDENTITY_REPORT",
       "RICH_ANALYTICS_SCORE",
       "COMPACT_RESULT_BUNDLE",
       "ISOLATED_BACKTEST_RESULTS_PUBLISH",
       "FINALIZE_COMMAND"
     ],
+    "planned_stages": [
+      "NATIVE_TRADE_PATH_TELEMETRY_FOR_D038_PLUS"
+    ],
     "reference_tester_model": 0,
     "fast_tester_model_candidate": 1,
     "fast_model_approved": false,
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_AFTER_D037_FINAL_STATE_UPDATE",
-    "local_mt5_status": "V102_DEV_BATCH_PASS_SCORE_REJECT_V0",
+    "github_ci_status": "PASS_STATIC_FINALIZE_IMPLEMENTATION",
+    "local_mt5_status": "V102_DEV_BATCH_PASS_SCORE_REJECT_V0_FINALIZE_UNTESTED",
+    "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "canonical_v102": {
       "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
       "source_identity_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
@@ -141,7 +143,7 @@
         "verdict": "REJECT_V0",
         "confirmation_opened": false,
         "decision_report": "reports/research/D037_DEV_2024_2025_V102_SCORE_20260906.json",
-        "rich_analytics_status": "PENDING_COMMON_RICH_SCORER"
+        "rich_analytics_status": "FINALIZE_IMPLEMENTED_LOCAL_PROOF_PENDING"
       }
     },
     "v101_historical_local_proof": {
