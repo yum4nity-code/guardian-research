@@ -65,7 +65,8 @@ def _recent_fatal_lines(config: dict[str, Any], evidence_mtime: float) -> dict[s
         except OSError:
             continue
         for line in text.splitlines():
-            if "D037 V101 FATAL" in line:
+            # Match D037 harness revisions generically (V101, V102, ...).
+            if "D037 V10" in line and " FATAL" in line:
                 matches.append({"log": str(path), "line": line.strip()})
 
     return {
@@ -132,6 +133,7 @@ def diagnose_latest_invalid(identifier: str, stage_name: str) -> dict[str, Any]:
                     "days_initialized",
                     "days_traded",
                     "ambiguous_days",
+                    "no_reference_range_days",
                     "entry_signals",
                     "trades_opened",
                     "trades_closed",
