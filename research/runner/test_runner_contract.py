@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 
+import tempfile
 import unittest
+from pathlib import Path
 
 import experiment
+import runner
 import score
 import tester
 
@@ -39,6 +42,25 @@ class RunnerContractTests(unittest.TestCase):
         contract = self.manifest["runner_contract"]
         self.assertEqual(0, contract["tester_model_reference"])
         self.assertEqual(1, contract["tester_model_fast_candidate"])
+
+    def test_source_identity_ignores_only_line_ending_checkout_difference(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            lf = root / "lf.mq5"
+            crlf = root / "crlf.mq5"
+            lf.write_bytes(b"#property strict\nint x=1;\n")
+            crlf.write_bytes(b"#property strict\r\nint x=1;\r\n")
+            self.assertNotEqual(runner.sha256_file(lf), runner.sha256_file(crlf))
+            self.assertEqual(runner.sha256_text_lf(lf), runner.sha256_text_lf(crlf))
+
+    def test_source_identity_still_detects_real_code_change(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            a = root / "a.mq5"
+            b = root / "b.mq5"
+            a.write_bytes(b"#property strict\nint x=1;\n")
+            b.write_bytes(b"#property strict\r\nint x=2;\r\n")
+            self.assertNotEqual(runner.sha256_text_lf(a), runner.sha256_text_lf(b))
 
     def test_profit_factor_zero_loss_stays_json_safe(self) -> None:
         pf, infinite = score.profit_factor_parts([1.0, 0.5, 0.0])
