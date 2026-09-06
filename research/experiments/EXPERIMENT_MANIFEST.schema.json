@@ -25,7 +25,7 @@
         "IDEA",
         "PREREGISTERED",
         "SOURCE_PENDING",
-        "READY_COMPILE",
+        "COMPILE_PENDING",
         "COMPILE_FAILED",
         "READY_SMOKE",
         "SMOKE_FAILED",
@@ -49,11 +49,7 @@
         "path": {"type": "string", "minLength": 1},
         "git_blob_sha": {"type": ["string", "null"]},
         "frozen_before_result_inspection": {"type": "boolean"},
-        "execution_deviations": {
-          "type": "array",
-          "items": {"type": "string"},
-          "default": []
-        }
+        "execution_deviations": {"type": "array", "items": {"type": "string"}, "default": []}
       }
     },
     "source": {
@@ -67,11 +63,7 @@
         "version": {"type": ["string", "null"]},
         "complete_repository_source": {"type": "boolean"},
         "strategy_semantics_frozen": {"type": "boolean"},
-        "engineering_lineage": {
-          "type": "array",
-          "items": {"type": "string"},
-          "default": []
-        }
+        "engineering_lineage": {"type": "array", "items": {"type": "string"}, "default": []}
       }
     },
     "execution": {
@@ -84,6 +76,37 @@
         "symbols": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
         "account_currency": {"type": "string"},
         "prop_firm_profile": {"type": "string"}
+      }
+    },
+    "runner_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expert_relative_path", "default_stage", "tester_model_reference", "output"],
+      "properties": {
+        "expert_relative_path": {"type": "string", "minLength": 1},
+        "default_stage": {"enum": ["smoke", "development", "confirmation"]},
+        "tester_model_reference": {"type": "integer", "minimum": 0, "maximum": 4},
+        "tester_model_fast_candidate": {"type": ["integer", "null"], "minimum": 0, "maximum": 4},
+        "output": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["location", "stats_template", "trades_template", "stage_tokens"],
+          "properties": {
+            "location": {"const": "FILE_COMMON"},
+            "stats_template": {"type": "string", "minLength": 1},
+            "trades_template": {"type": "string", "minLength": 1},
+            "stage_tokens": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["smoke", "development", "confirmation"],
+              "properties": {
+                "smoke": {"type": "string"},
+                "development": {"type": "string"},
+                "confirmation": {"type": "string"}
+              }
+            }
+          }
+        }
       }
     },
     "cost_model": {
@@ -116,10 +139,7 @@
         "invalid_run_is_not_strategy_reject": {"type": "boolean"}
       }
     },
-    "results": {
-      "type": "object",
-      "additionalProperties": true
-    }
+    "results": {"type": "object", "additionalProperties": true}
   },
   "$defs": {
     "stage": {
@@ -132,7 +152,7 @@
         "to": {"type": "string", "format": "date"},
         "symbols": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
         "status": {
-          "enum": ["LOCKED", "WAIVED", "READY", "RUNNING", "PASS", "FAIL", "INVALID", "UNOPENED"]
+          "enum": ["LOCKED", "LOCKED_PENDING_COMPILE", "WAIVED", "READY", "RUNNING", "PASS", "FAIL", "INVALID", "UNOPENED"]
         },
         "gates": {"type": "object", "additionalProperties": true},
         "result_paths": {"type": "array", "items": {"type": "string"}}
