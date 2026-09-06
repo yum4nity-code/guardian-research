@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "guardian://research/experiment-manifest/v1",
+  "title": "Guardian Research Experiment Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "experiment_id",
+    "status",
+    "hypothesis",
+    "preregistration",
+    "source",
+    "execution",
+    "cost_model",
+    "stages",
+    "decision_policy"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "strategy_family": {"type": "string"},
+    "status": {
+      "enum": [
+        "IDEA",
+        "PREREGISTERED",
+        "SOURCE_PENDING",
+        "READY_COMPILE",
+        "COMPILE_FAILED",
+        "READY_SMOKE",
+        "SMOKE_FAILED",
+        "READY_DEV",
+        "RUNNING_DEV",
+        "DEV_INVALID",
+        "REJECTED",
+        "CANDIDATE_CONFIRM",
+        "RUNNING_CONFIRM",
+        "UNCONFIRMED",
+        "CONFIRMED",
+        "ARCHIVED"
+      ]
+    },
+    "hypothesis": {"type": "string", "minLength": 1},
+    "preregistration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "frozen_before_result_inspection"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "git_blob_sha": {"type": ["string", "null"]},
+        "frozen_before_result_inspection": {"type": "boolean"},
+        "execution_deviations": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": []
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonical_path", "source_sha256", "complete_repository_source", "strategy_semantics_frozen"],
+      "properties": {
+        "canonical_path": {"type": ["string", "null"]},
+        "source_sha256": {"type": ["string", "null"]},
+        "git_blob_sha": {"type": ["string", "null"]},
+        "version": {"type": ["string", "null"]},
+        "complete_repository_source": {"type": "boolean"},
+        "strategy_semantics_frozen": {"type": "boolean"},
+        "engineering_lineage": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": []
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["timeframe", "symbols", "account_currency", "prop_firm_profile"],
+      "properties": {
+        "timeframe": {"type": "string"},
+        "reference_timeframes": {"type": "array", "items": {"type": "string"}},
+        "symbols": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "account_currency": {"type": "string"},
+        "prop_firm_profile": {"type": "string"}
+      }
+    },
+    "cost_model": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["name", "spread_source", "commission_stress_multiplier"],
+      "properties": {
+        "name": {"type": "string"},
+        "spread_source": {"type": "string"},
+        "commission_stress_multiplier": {"type": "number", "minimum": 1}
+      }
+    },
+    "stages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["smoke", "development", "confirmation"],
+      "properties": {
+        "smoke": {"$ref": "#/$defs/stage"},
+        "development": {"$ref": "#/$defs/stage"},
+        "confirmation": {"$ref": "#/$defs/stage"}
+      }
+    },
+    "decision_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["no_posthoc_rescue", "confirmation_locked_until_dev_pass", "invalid_run_is_not_strategy_reject"],
+      "properties": {
+        "no_posthoc_rescue": {"type": "boolean"},
+        "confirmation_locked_until_dev_pass": {"type": "boolean"},
+        "invalid_run_is_not_strategy_reject": {"type": "boolean"}
+      }
+    },
+    "results": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage_name", "from", "to", "status", "gates"],
+      "properties": {
+        "stage_name": {"type": "string"},
+        "from": {"type": "string", "format": "date"},
+        "to": {"type": "string", "format": "date"},
+        "symbols": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "status": {
+          "enum": ["LOCKED", "WAIVED", "READY", "RUNNING", "PASS", "FAIL", "INVALID", "UNOPENED"]
+        },
+        "gates": {"type": "object", "additionalProperties": true},
+        "result_paths": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}
