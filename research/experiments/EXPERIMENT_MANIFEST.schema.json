@@ -55,10 +55,11 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["canonical_path", "source_sha256", "complete_repository_source", "strategy_semantics_frozen"],
+      "required": ["canonical_path", "source_sha256", "source_sha256_mode", "complete_repository_source", "strategy_semantics_frozen"],
       "properties": {
         "canonical_path": {"type": ["string", "null"]},
         "source_sha256": {"type": ["string", "null"]},
+        "source_sha256_mode": {"enum": ["UTF8_TEXT_LF_NORMALIZED", "RAW_BYTES"]},
         "git_blob_sha": {"type": ["string", "null"]},
         "version": {"type": ["string", "null"]},
         "complete_repository_source": {"type": "boolean"},
