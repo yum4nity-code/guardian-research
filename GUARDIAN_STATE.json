@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T23:47:00+02:00",
+  "updated_at": "2026-09-07T00:10:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,17 +8,17 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_2_COMPLETE_PHASE_3_ACTIVE_V102_DEV_BATCH_PENDING",
+    "status": "PHASE_3_CORE_RUNNER_PROVEN_FINALIZATION_LAYER_PENDING",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_PROVE_V102_SIX_SYMBOL_DEV_BATCH_SCORE",
+    "next_phase": "PHASE_3_ADD_RICH_ANALYTICS_AND_DETERMINISTIC_RESULTS_PUBLISHING",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
     "experiment_manifest": "research/experiments/D037.json",
-    "status": "READY_DEV",
+    "status": "REJECTED",
     "strategy_family": "Williams-inspired previous-day range volatility breakout",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
@@ -31,8 +31,8 @@
       "research/strategies/d037/D037_Williams_M15_v1_01.mq5"
     ],
     "historical_builder": "automation/Build_D037_v101_20260906.ps1",
-    "resolved_engineering_issue": "D037 v1.02 distinguishes a finite positive previous D1 bar with High==Low from a genuine invalid-price event. Such a day has no positive D037 volatility reference, is counted as no_reference_range_days, opens no trade, and execution continues. Genuine invalid/non-finite prices remain fatal with detailed D1 logging. Local XAUUSD v1.02 development integrity proof passed with 406 opened=closed rows and zero integrity counters.",
-    "next_action": "Restart the sequential six-symbol D037 v1.02 development batch from scratch with reference tester model 0. Stop immediately on any engineering/integrity failure. If all six runs pass integrity, score the frozen DEV gates; any failed gate means REJECT_V0 with no rescue tuning.",
+    "resolved_engineering_issue": "D037 v1.02 distinguishes a finite positive previous D1 bar with High==Low from a genuine invalid-price event. Such a day has no positive D037 volatility reference, is counted as no_reference_range_days, opens no trade, and execution continues. Genuine invalid/non-finite prices remain fatal with detailed D1 logging. Full v1.02 DEV batch passed integrity on all six markets.",
+    "next_action": "Implement the common rich analytics scorer and deterministic compact result publisher defined in docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md. Publish validated result bundles to the backtest-results branch without touching the user's active research working tree. Preserve D037 REJECT_V0; its 2,377 DEV trades may feed transversal Trade Path Dataset / Exit Lab research but may not rescue D037. Then select and preregister D038.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -54,11 +54,16 @@
     "legacy_runtime_status": "UNTRUSTED_NEVER_RELIABLY_WORKED",
     "legacy_scripts_role": "REFERENCE_ONLY_NOT_FALLBACK",
     "migration_policy": "Do not preserve or extend v1/v2 behavior. Build v3 independently in an isolated harness, prove end-to-end reliability, then connect it to MT5/GitHub.",
-    "trusted_runtime_installed_version": null
+    "trusted_runtime_installed_version": null,
+    "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
+    "research_results_branch": "backtest-results",
+    "research_results_status": "STANDARD_LOCKED_IMPLEMENTATION_PENDING",
+    "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
+    "research_results_policy": "Publish only runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. This publisher is not legacy AutoSync and must use an isolated checkout/worktree so it never mutates the active research working tree."
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "V102_COMPILE_XAU_PASS_DEV_BATCH_PENDING",
+    "status": "END_TO_END_BATCH_SCORE_PROVEN_RICH_ANALYTICS_PUBLISHER_PENDING",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -84,12 +89,18 @@
       "MT5_UTF16_CSV_DECODE",
       "SOURCE_IDENTITY_REPORT"
     ],
+    "planned_stages": [
+      "RICH_ANALYTICS_SCORE",
+      "COMPACT_RESULT_BUNDLE",
+      "ISOLATED_BACKTEST_RESULTS_PUBLISH",
+      "FINALIZE_COMMAND"
+    ],
     "reference_tester_model": 0,
     "fast_tester_model_candidate": 1,
     "fast_model_approved": false,
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_AFTER_V102_LOCAL_PROOF_STATE_UPDATE",
-    "local_mt5_status": "V102_COMPILE_PASS_XAUUSD_TEST_PASS_INTEGRITY_DEV_BATCH_PENDING",
+    "github_ci_status": "PENDING_AFTER_D037_FINAL_STATE_UPDATE",
+    "local_mt5_status": "V102_DEV_BATCH_PASS_SCORE_REJECT_V0",
     "canonical_v102": {
       "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
       "source_identity_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
@@ -113,6 +124,24 @@
         "pnl_calc_failures": 0,
         "stats_sha256": "226c36e7f015ec655a41772a2352ba58dee3b5b4f9d278534ab397305fa3501a",
         "trades_sha256": "9b29f0120c94fc3f887d51645047c3b5496299215187f0c2d6841abace37985f"
+      },
+      "development_final": {
+        "batch_status": "BATCH_PASS_INTEGRITY",
+        "tester_model": 0,
+        "aggregate_n": 2377,
+        "aggregate_mean_net_r": 0.020111581320992847,
+        "aggregate_pf": 1.0456845051767667,
+        "aggregate_total_net_r": 47.805228799999995,
+        "aggregate_total_stress_net_r": 10.620232049999997,
+        "positive_symbols": ["BTCUSD", "ETHUSD", "USDJPY", "XAUUSD"],
+        "year_2024_total_net_r": 24.21205831000002,
+        "year_2025_total_net_r": 23.59317048999999,
+        "integrity_events": 0,
+        "failed_gates": ["aggregate_mean_net_r_min", "aggregate_pf_min"],
+        "verdict": "REJECT_V0",
+        "confirmation_opened": false,
+        "decision_report": "reports/research/D037_DEV_2024_2025_V102_SCORE_20260906.json",
+        "rich_analytics_status": "PENDING_COMMON_RICH_SCORER"
       }
     },
     "v101_historical_local_proof": {
@@ -134,7 +163,7 @@
         "science_verdict": "INVALID_ENGINEERING_NOT_STRATEGY_REJECT"
       }
     },
-    "principle": "one manifest + one complete strategy source; deterministic compile/test/batch/score pipeline"
+    "principle": "one manifest + one complete strategy source; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline"
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
