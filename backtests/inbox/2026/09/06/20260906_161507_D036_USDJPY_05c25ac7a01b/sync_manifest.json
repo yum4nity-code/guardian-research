@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260906_161507_D036_USDJPY_05c25ac7a01b",
+    "fingerprint":  "05c25ac7a01b3de2e6066c7bc3932bc7e4959a8f5a1bd5790a84ad12647ab38a",
+    "synced_at_utc":  "2026-09-06T16:21:01.7103907Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "SMOKE_MAR2025",
+                       "symbol":  "USDJPY",
+                       "timeframe":  "PERIOD_H1",
+                       "trades_closed":  21,
+                       "published_trades_rows":  21
+                   },
+    "files":  [
+                  {
+                      "name":  "D036_V100_SMOKE_MAR2025_USDJPY_STATS.csv",
+                      "source_sha256":  "d6678abcbacbf29e3ce6822ec24a02877b8fbd05dda99a299f6215b35398ea95",
+                      "published_sha256":  "39f7db7c5db08afce62810fe03b1907bcb5c916dd440645f89f09d24d60f72fc",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D036_V100_SMOKE_MAR2025_USDJPY_TRADES.csv",
+                      "source_sha256":  "1c068e22015691584e2ef87342f712eeadf56482de85c7232cfa1df127ea4040",
+                      "published_sha256":  "50a968424419c85cd9aa550032da33918afaa18715d8832f22766d5ddd0b7d30",
+                      "sanitized":  false
+                  }
+              ]
+}
