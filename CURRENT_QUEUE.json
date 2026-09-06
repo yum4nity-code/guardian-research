@@ -2,22 +2,22 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-06T23:00:00+02:00",
+  "updated_at": "2026-09-06T23:12:00+02:00",
   "active_primary": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "items": [
     {
       "id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
       "priority": 0,
-      "status": "COMPILE_PENDING",
+      "status": "READY_DEV",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "Compile D037 v1.01 on the MT5 research PC without launching a backtest. Require verified local-source to MT5-copy raw SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt. Only then run one USDJPY development test.",
+      "goal": "Run exactly one USDJPY development test with reference tester model 0. Require the trusted compile receipt/EX5, fresh FILE_COMMON outputs, and a clean lifecycle/integrity verdict. Do not launch the six-symbol DEV batch until this single-symbol proof passes.",
       "manifest": "research/experiments/D037.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "END_TO_END_CODE_IMPLEMENTED_BOOTSTRAP_DOCTOR_PASS_COMPILE_PROOF_PENDING",
+      "status": "END_TO_END_CODE_IMPLEMENTED_BOOTSTRAP_COMPILE_PASS_SINGLE_TEST_PENDING",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
       "goal": "one manifest + one complete strategy source; deterministic compile/test/batch/score pipeline"
