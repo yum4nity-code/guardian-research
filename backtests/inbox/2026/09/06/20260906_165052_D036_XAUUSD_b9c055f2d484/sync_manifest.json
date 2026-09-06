@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260906_165052_D036_XAUUSD_b9c055f2d484",
+    "fingerprint":  "b9c055f2d484f24b7198718bb784d7dc03d4fd3b067ba06092bf78f1ebfd7e3c",
+    "synced_at_utc":  "2026-09-06T16:54:39.7328476Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "DEV_2024_2025",
+                       "symbol":  "XAUUSD",
+                       "timeframe":  "PERIOD_H1",
+                       "trades_closed":  423,
+                       "published_trades_rows":  423
+                   },
+    "files":  [
+                  {
+                      "name":  "D036_V100_DEV_2024_2025_XAUUSD_STATS.csv",
+                      "source_sha256":  "1e3c80a85c4073df2fdb51456de9abfb4ac657e5abd561ad135b05fa80c75609",
+                      "published_sha256":  "d582f3a4ee54468982792984fd6f240bf70d85a9c26786d9657e3ae25ee379a8",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D036_V100_DEV_2024_2025_XAUUSD_TRADES.csv",
+                      "source_sha256":  "e31e7a50b28f313f014016c987e2082ca85082feb023f083878a7697873f006f",
+                      "published_sha256":  "784e836960618164c4d266ce66c749993f28a6966a73f05f78120848207858e8",
+                      "sanitized":  false
+                  }
+              ]
+}
