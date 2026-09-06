@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T22:35:00+02:00",
+  "updated_at": "2026-09-06T22:40:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -45,10 +45,12 @@
     "legacy_manifest_warning": "production/manifests/GUARDIAN_CURRENT.json is older than the v12.01 baseline and is not authoritative during this migration."
   },
   "transport": {
-    "target": "AUTOSYNC_V3",
+    "target": "AUTOSYNC_V3_FROM_SCRATCH",
     "standard": "automation/AUTOSYNC_PC_GITHUB_ENGINEERING_STANDARD_20260906.md",
-    "runtime_installed_version": "UNKNOWN_FROM_GITHUB_ONLY",
-    "legacy_scripts_preserved_until_v3_e2e_pass": true
+    "legacy_runtime_status": "UNTRUSTED_NEVER_RELIABLY_WORKED",
+    "legacy_scripts_role": "REFERENCE_ONLY_NOT_FALLBACK",
+    "migration_policy": "Do not preserve or extend v1/v2 behavior. Build v3 independently in an isolated harness, prove end-to-end reliability, then connect it to MT5/GitHub.",
+    "trusted_runtime_installed_version": null
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
