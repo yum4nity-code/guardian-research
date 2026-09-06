@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-09-06T22:18:03.199417+00:00",
+  "experiment_id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
+  "stage": "development",
+  "batch_run_id": "20260906T215334Z",
+  "result_fingerprint_sha256": "752a6fa1b8abb32deb6077cbed8a258141abc08b7f9ad02e02902bb23305be0b",
+  "decision_verdict": "REJECT_V0",
+  "decision_all_gates_pass": false,
+  "manifest_path": "research\\experiments\\D037.json",
+  "source": {
+    "path": "research/strategies/d037/D037_Williams_M15_v1_02.mq5",
+    "version": "1.02",
+    "identity_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+    "identity_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+    "raw_bytes_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+    "bytes": 22030
+  },
+  "batch_path_local": "D:\\MT5_Backtests\\guardian-runner\\batches\\D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0\\development\\20260906T215334Z\\batch.json",
+  "evidence": [
+    {
+      "symbol": "BTCUSD",
+      "tester_model": 0,
+      "source_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+      "ex5_sha256": "2f794061c37993c4c1cd75aeb9c4f767703fa78715c1bcde84d03d626b4acb2e",
+      "trades": {
+        "name": "D037_V102_DEV_2024_2025_BTCUSD_TRADES.csv",
+        "sha256": "a0cd16a2adc639b8b99002201e8d3950555f0cae676042bb1d2eb5ce757cba3c",
+        "bytes": 232336
+      },
+      "stats": {
+        "name": "D037_V102_DEV_2024_2025_BTCUSD_STATS.csv",
+        "sha256": "9c68bfd8d90437522f5a94abcf18bb57a6686e4486bba0bb3727785aaf1d344d",
+        "bytes": 94056
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D037_Williams_M15_v1_02.mq5",
+        "source_version": "1.02",
+        "run_stage": "DEV_2024_2025",
+        "symbol": "BTCUSD",
+        "trades": 392,
+        "trades_opened": 392,
+        "trades_closed": 392,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      }
+    },
+    {
+      "symbol": "ETHUSD",
+      "tester_model": 0,
+      "source_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+      "ex5_sha256": "2f794061c37993c4c1cd75aeb9c4f767703fa78715c1bcde84d03d626b4acb2e",
+      "trades": {
+        "name": "D037_V102_DEV_2024_2025_ETHUSD_TRADES.csv",
+        "sha256": "2ef2014cf8be6f004f351cd01e64b86113c1a6daba6258f44f9c02c14a8cdfdb",
+        "bytes": 229846
+      },
+      "stats": {
+        "name": "D037_V102_DEV_2024_2025_ETHUSD_STATS.csv",
+        "sha256": "2050f38e0c7aaf1b8d0f6cffd055bdeaed4d8bd8897d6dfd7e1bccef35fcae50",
+        "bytes": 94090
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D037_Williams_M15_v1_02.mq5",
+        "source_version": "1.02",
+        "run_stage": "DEV_2024_2025",
+        "symbol": "ETHUSD",
+        "trades": 407,
+        "trades_opened": 407,
+        "trades_closed": 407,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      }
+    },
+    {
+      "symbol": "EURUSD",
+      "tester_model": 0,
+      "source_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+      "ex5_sha256": "2f794061c37993c4c1cd75aeb9c4f767703fa78715c1bcde84d03d626b4acb2e",
+      "trades": {
+        "name": "D037_V102_DEV_2024_2025_EURUSD_TRADES.csv",
+        "sha256": "8bab9e061acd351286ce7a68365df446da022100cd78c6ee31ebae0556714422",
+        "bytes": 216954
+      },
+      "stats": {
+        "name": "D037_V102_DEV_2024_2025_EURUSD_STATS.csv",
+        "sha256": "a61c805f6f3cf51caa7e453d0b800b59678c2ffa8bfadd24759098686c564913",
+        "bytes": 93056
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D037_Williams_M15_v1_02.mq5",
+        "source_version": "1.02",
+        "run_stage": "DEV_2024_2025",
+        "symbol": "EURUSD",
+        "trades": 387,
+        "trades_opened": 387,
+        "trades_closed": 387,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      }
+    },
+    {
+      "symbol": "GBPUSD",
+      "tester_model": 0,
+      "source_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+      "ex5_sha256": "2f794061c37993c4c1cd75aeb9c4f767703fa78715c1bcde84d03d626b4acb2e",
+      "trades": {
+        "name": "D037_V102_DEV_2024_2025_GBPUSD_TRADES.csv",
+        "sha256": "9792e65fb3957c1b51144967ad18a7f69d80642d5ef51ef094a51a27ab87ffec",
+        "bytes": 218080
+      },
+      "stats": {
+        "name": "D037_V102_DEV_2024_2025_GBPUSD_STATS.csv",
+        "sha256": "e9245cea51690cd5de2940a87e4e3df1119f42479bb5b7bffcf31d25ae340c2d",
+        "bytes": 93086
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D037_Williams_M15_v1_02.mq5",
+        "source_version": "1.02",
+        "run_stage": "DEV_2024_2025",
+        "symbol": "GBPUSD",
+        "trades": 389,
+        "trades_opened": 389,
+        "trades_closed": 389,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      }
+    },
+    {
+      "symbol": "USDJPY",
+      "tester_model": 0,
+      "source_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+      "ex5_sha256": "2f794061c37993c4c1cd75aeb9c4f767703fa78715c1bcde84d03d626b4acb2e",
+      "trades": {
+        "name": "D037_V102_DEV_2024_2025_USDJPY_TRADES.csv",
+        "sha256": "f55eb576adf316e1a8911703fa7ae30e2d5fcaab918748ac27e5d0792a800472",
+        "bytes": 220386
+      },
+      "stats": {
+        "name": "D037_V102_DEV_2024_2025_USDJPY_STATS.csv",
+        "sha256": "bc2668171f95256ae1dbdefe5d3a5d051f47628ff8aac0baa413dbcf586c9d11",
+        "bytes": 93062
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D037_Williams_M15_v1_02.mq5",
+        "source_version": "1.02",
+        "run_stage": "DEV_2024_2025",
+        "symbol": "USDJPY",
+        "trades": 396,
+        "trades_opened": 396,
+        "trades_closed": 396,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      }
+    },
+    {
+      "symbol": "XAUUSD",
+      "tester_model": 0,
+      "source_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+      "ex5_sha256": "2f794061c37993c4c1cd75aeb9c4f767703fa78715c1bcde84d03d626b4acb2e",
+      "trades": {
+        "name": "D037_V102_DEV_2024_2025_XAUUSD_TRADES.csv",
+        "sha256": "9b29f0120c94fc3f887d51645047c3b5496299215187f0c2d6841abace37985f",
+        "bytes": 231090
+      },
+      "stats": {
+        "name": "D037_V102_DEV_2024_2025_XAUUSD_STATS.csv",
+        "sha256": "226c36e7f015ec655a41772a2352ba58dee3b5b4f9d278534ab397305fa3501a",
+        "bytes": 90604
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D037_Williams_M15_v1_02.mq5",
+        "source_version": "1.02",
+        "run_stage": "DEV_2024_2025",
+        "symbol": "XAUUSD",
+        "trades": 406,
+        "trades_opened": 406,
+        "trades_closed": 406,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      }
+    }
+  ],
+  "published_files": {
+    "decision_score.json": {
+      "sha256": "247339463efdefd694b1732504c66253bc25d4ad61b51b657cac47524b2796c1"
+    },
+    "analytics.json": {
+      "sha256": "d7653fc1bedf933788562a2aae50989f8b094111a41f49ddf6bf97e11a45e2b6"
+    },
+    "trades_compact.csv": {
+      "included": true,
+      "sha256": "a305aa22bd172f1008596a7444a22869f61af71490d471f7f392882a636cbdad",
+      "bytes": 386453,
+      "rows": 2377,
+      "size_limit_bytes": 5242880
+    }
+  },
+  "raw_policy": "Large/raw MT5 evidence remains on the research PC; GitHub stores compact derivatives plus SHA256/byte provenance.",
+  "transport": "ISOLATED_GIT_CLONE_PUBLISHER",
+  "autosync_used": false
+}
