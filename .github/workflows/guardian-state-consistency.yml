@@ -33,8 +33,10 @@ jobs:
           research/runner/guardian_research.py
           research/runner/bootstrap_windows.py
           research/runner/source_hash.py
+          research/runner/trade_path_validate.py
           research/runner/test_state_tools.py
           research/runner/test_runner_contract.py
+          research/runner/test_trade_path_validate.py
 
       - name: Parse Windows PowerShell launcher
         shell: pwsh
@@ -73,3 +75,4 @@ jobs:
         run: |
           python research/runner/test_state_tools.py
           python research/runner/test_runner_contract.py
+          python research/runner/test_trade_path_validate.py
