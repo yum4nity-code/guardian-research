@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "recorded_from_user_terminal_output": true,
+  "created_at_utc": "2026-09-06T22:01:08.035016+00:00",
+  "experiment_id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
+  "stage": "development",
+  "stage_token": "DEV_2024_2025",
+  "source_version": "1.02",
+  "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+  "source_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
+  "ex5_sha256": "2f794061c37993c4c1cd75aeb9c4f767703fa78715c1bcde84d03d626b4acb2e",
+  "batch": {
+    "status": "BATCH_PASS_INTEGRITY",
+    "tester_model": 0,
+    "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+    "aggregate_n": 2377,
+    "per_symbol_n": {
+      "BTCUSD": 392,
+      "ETHUSD": 407,
+      "EURUSD": 387,
+      "GBPUSD": 389,
+      "USDJPY": 396,
+      "XAUUSD": 406
+    },
+    "integrity_events": 0
+  },
+  "metrics": {
+    "aggregate_n": 2377,
+    "aggregate_mean_net_r": 0.020111581320992847,
+    "aggregate_pf": 1.0456845051767667,
+    "aggregate_pf_infinite": false,
+    "positive_symbols": ["BTCUSD", "ETHUSD", "USDJPY", "XAUUSD"],
+    "positive_symbols_n": 4,
+    "per_symbol_total_net_r": {
+      "BTCUSD": 17.21224029,
+      "ETHUSD": 16.53546591,
+      "EURUSD": -32.88589437,
+      "GBPUSD": -7.01269851,
+      "USDJPY": 28.55692414,
+      "XAUUSD": 25.399191339999998
+    },
+    "aggregate_total_net_r": 47.805228799999995,
+    "aggregate_total_stress_net_r": 10.620232049999997,
+    "year_total_net_r": {
+      "2024": 24.21205831000002,
+      "2025": 23.59317048999999
+    },
+    "max_positive_symbol_contribution_share": 0.3256063828574545,
+    "integrity_events": 0
+  },
+  "gates": {
+    "aggregate_n_min": true,
+    "each_symbol_n_min": true,
+    "aggregate_mean_net_r_min": false,
+    "aggregate_pf_min": false,
+    "positive_symbols_min": true,
+    "aggregate_2024_positive": true,
+    "aggregate_2025_positive": true,
+    "aggregate_positive_at_commission_stress": true,
+    "max_positive_symbol_contribution_share": true,
+    "integrity_events_max": true
+  },
+  "failed_gates": [
+    "aggregate_mean_net_r_min",
+    "aggregate_pf_min"
+  ],
+  "all_gates_pass": false,
+  "verdict": "REJECT_V0",
+  "confirmation_opened": false,
+  "decision_discipline": "No rescue tuning on opened DEV sample. Confirmation remains unopened. D037 trade evidence may be retained for transversal trade-path research but must not be used to retroactively rescue D037 V0.",
+  "autosync_used": false
+}
