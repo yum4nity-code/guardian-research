@@ -121,8 +121,23 @@ class RunnerContractTests(unittest.TestCase):
         self.assertIn("REALIZED", thresholds["note"])
         self.assertEqual(1, thresholds["realized_at_or_above"]["2R"]["n"])
 
+    def test_rich_concentration_uses_percent_of_all_trades(self) -> None:
+        result = rich_score.concentration([4.0, 3.0, 2.0, 1.0] + [-1.0] * 96)
+        self.assertEqual(1, result["top_1pct"]["trade_count"])
+        self.assertEqual(5, result["top_5pct"]["trade_count"])
+        self.assertEqual(10, result["top_10pct"]["trade_count"])
+
     def test_publisher_uses_stable_short_experiment_id(self) -> None:
         self.assertEqual("d037", publisher._safe_short_id("D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0"))
+
+    def test_publisher_uses_batch_directory_as_idempotency_run_id(self) -> None:
+        self.assertEqual("20260906T215334Z", publisher._batch_run_id("D:/workspace/batches/D037/development/20260906T215334Z/batch.json"))
+
+    def test_publisher_fingerprint_is_key_order_independent(self) -> None:
+        self.assertEqual(
+            publisher._stable_fingerprint({"a": 1, "b": 2}),
+            publisher._stable_fingerprint({"b": 2, "a": 1}),
+        )
 
 
 if __name__ == "__main__":
