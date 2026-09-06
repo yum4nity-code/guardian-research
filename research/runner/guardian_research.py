@@ -54,6 +54,11 @@ def main() -> int:
     one.add_argument("--stage", default="development", choices=("smoke", "development", "confirmation"))
     one.add_argument("--symbol", required=True)
 
+    recover = sub.add_parser("recover-one")
+    recover.add_argument("experiment")
+    recover.add_argument("--stage", default="development", choices=("smoke", "development", "confirmation"))
+    recover.add_argument("--symbol", required=True)
+
     b = sub.add_parser("batch")
     b.add_argument("experiment")
     b.add_argument("--stage", default="development", choices=("smoke", "development", "confirmation"))
@@ -75,6 +80,9 @@ def main() -> int:
             return runner.cmd_compile(args.experiment)
         if args.command == "test-one":
             print(json.dumps(tester.run_one(args.experiment, args.stage, args.symbol), indent=2, ensure_ascii=False))
+            return 0
+        if args.command == "recover-one":
+            print(json.dumps(tester.recover_latest(args.experiment, args.stage, args.symbol), indent=2, ensure_ascii=False))
             return 0
         if args.command == "batch":
             print(json.dumps(batch.run_batch(args.experiment, args.stage), indent=2, ensure_ascii=False))
