@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T00:36:00+02:00",
+  "updated_at": "2026-09-07T00:48:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,24 +8,24 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D038_COMPILE_PASS_SINGLE_SMOKE_PENDING",
+    "status": "PHASE_3_D038_SMOKE_PASS_DEV_READY_AUTO_RESULT_TRANSPORT_IMPLEMENTED",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_PROVE_D038_SINGLE_SYMBOL_ENGINEERING_SMOKE",
+    "next_phase": "PHASE_3_RUN_D038_DEVELOPMENT_AND_PROVE_AUTOMATIC_RESULT_EVENT_PUBLISH",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
     "experiment_manifest": "research/experiments/D038.json",
-    "status": "READY_SMOKE",
+    "status": "READY_DEV",
     "strategy_family": "NR7 volatility contraction breakout",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D038_NR7_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
     "canonical_sources_currently_in_repo": [
       "research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5"
     ],
-    "next_action": "On the MT5 research PC, pull the latest refactor branch and run exactly `py -3 .\\research\\runner\\guardian_research.py test-one D038 --stage smoke --symbol USDJPY`. This is one engineering-only smoke run for 2023-11-01 through 2023-11-30 under Model=0. Require TEST_PASS_INTEGRITY, FINAL lifecycle, opened=closed=rows, zero invalid price/risk/PnL/path failures, and usable native Trade Path telemetry before running the three-symbol smoke batch.",
+    "next_action": "On the MT5 research PC, pull the latest refactor branch and run `py -3 .\\research\\runner\\guardian_research.py batch D038 --stage development`. The six-market 2024-01-02..2025-12-31 DEV batch is now authorized after a clean three-market engineering smoke. The runner automatically publishes the completed batch event to branch backtest-results and updates backtests/d038/live/latest.json through an isolated clone. The user should no longer paste the full terminal output; after completion they can simply say that the batch is finished and the assistant will read the GitHub result. If automatic GitHub transport fails, local scientific evidence remains valid and the transport failure is reported separately; do not rerun MT5 solely for transport.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -51,9 +51,18 @@
     "trusted_runtime_installed_version": null,
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "PROVEN_LOCAL_FINALIZE_AND_GITHUB_PUBLISH_PASS",
+    "research_results_status": "FINALIZE_PUBLISH_PROVEN_AUTO_EVENT_PUBLISH_IMPLEMENTED_PENDING_FIRST_LOCAL_PROOF",
     "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
-    "research_results_policy": "Publish only runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. This publisher is not legacy AutoSync and uses an isolated temporary clone so it never mutates the active research working tree. Re-publishing the same validated batch is idempotent; conflicting payloads fail closed.",
+    "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. Final result bundles and automatic command-event transport both use isolated temporary clones and never mutate the active research working tree. Automatic events maintain a stable per-experiment pointer at backtests/<d0xx>/live/latest.json. A network/push failure never invalidates already-valid local scientific evidence and never requires an MT5 rerun by itself.",
+    "automatic_event_transport": {
+      "status": "IMPLEMENTED_PENDING_FIRST_LOCAL_PROOF",
+      "module": "research/runner/result_transport.py",
+      "branch": "backtest-results",
+      "latest_pointer_template": "backtests/<d0xx>/live/latest.json",
+      "event_path_template": "backtests/<d0xx>/live/events/<stage>/<kind>/<event_id>/event.json",
+      "working_tree_isolation": true,
+      "legacy_autosync_used": false
+    },
     "d037_publish_proof": {
       "status": "PASS",
       "branch": "backtest-results",
@@ -65,7 +74,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "D038_COMPILE_PASS_SINGLE_SYMBOL_SMOKE_PENDING",
+    "status": "D038_SMOKE_PASS_DEV_READY_WITH_AUTOMATIC_GITHUB_RESULT_EVENTS",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -95,19 +104,22 @@
       "ISOLATED_BACKTEST_RESULTS_PUBLISH",
       "FINALIZE_COMMAND",
       "TRADE_PATH_DATASET_CONTRACT",
-      "D038_NATIVE_TICK_PATH_HARNESS"
+      "D038_NATIVE_TICK_PATH_HARNESS",
+      "TRADE_PATH_POSTRUN_VALIDATOR",
+      "AUTOMATIC_COMPACT_RESULT_EVENT_PUBLISH",
+      "STABLE_LIVE_RESULT_POINTER"
     ],
     "planned_stages": [
-      "D038_SINGLE_SYMBOL_SMOKE_PROOF",
-      "D038_THREE_SYMBOL_SMOKE",
-      "D038_DEV_BATCH"
+      "D038_DEV_BATCH",
+      "D038_DEV_TRADE_PATH_VALIDATION",
+      "D038_DEV_SCORE_RICH_ANALYTICS_FINALIZE"
     ],
     "reference_tester_model": 0,
     "fast_tester_model_candidate": null,
     "fast_model_approved": false,
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PASS_D038_SOURCE_IDENTITY_AND_STATIC_TOOLING",
-    "local_mt5_status": "D038_COMPILE_PASS_SMOKE_UNTESTED",
+    "github_ci_status": "PENDING_AUTO_RESULT_TRANSPORT_CI",
+    "local_mt5_status": "D038_SMOKE_PASS_DEV_READY",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "canonical_d038": {
       "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
@@ -123,7 +135,13 @@
       "compile_acceptance_basis": "0 errors / 0 warnings in MetaEditor log, exact source/destination SHA identity, EX5 exists and is SHA256-addressed",
       "native_trade_path": true,
       "smoke_period": "2023-11-01..2023-11-30",
-      "smoke_symbols": ["USDJPY", "XAUUSD", "BTCUSD"]
+      "smoke_symbols": ["USDJPY", "XAUUSD", "BTCUSD"],
+      "smoke_status": "PASS",
+      "smoke_aggregate_trades": 14,
+      "smoke_trade_path_status": "PASS_ALL_THREE_SYMBOLS",
+      "smoke_proof_report": "reports/research/D038_SMOKE_NOV2023_PASS_20260906.json",
+      "development_period": "2024-01-02..2025-12-31",
+      "development_status": "READY"
     },
     "d037_final_proof": {
       "verdict": "REJECT_V0",
