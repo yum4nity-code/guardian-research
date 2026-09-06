@@ -37,8 +37,7 @@ def _read_json(path: Path) -> dict[str, Any]:
 def resolve_manifest(identifier: str) -> Path:
     candidate = Path(identifier)
     if candidate.suffix.lower() == ".json":
-        path = candidate if candidate.is_absolute() else ROOT / candidate
-        return path
+        return candidate if candidate.is_absolute() else ROOT / candidate
 
     short = identifier.upper()
     if not short.startswith("D"):
@@ -117,6 +116,30 @@ def validate_manifest(manifest: dict[str, Any]) -> list[str]:
         require(all(isinstance(x, str) and x for x in symbols), "execution.symbols must be non-empty strings")
     require(bool(execution.get("timeframe")), "execution.timeframe is required")
     require(bool(execution.get("prop_firm_profile")), "execution.prop_firm_profile is required")
+    require(bool(execution.get("account_currency")), "execution.account_currency is required")
+
+    runner_contract = manifest.get("runner_contract", {})
+    if complete_source:
+        require(bool(runner_contract), "complete executable source requires runner_contract")
+    if runner_contract:
+        require(bool(runner_contract.get("expert_relative_path")), "runner_contract.expert_relative_path is required")
+        default_stage = runner_contract.get("default_stage")
+        require(default_stage in {"smoke", "development", "confirmation"}, "runner_contract.default_stage is invalid")
+        reference_model = runner_contract.get("tester_model_reference")
+        require(isinstance(reference_model, int) and 0 <= reference_model <= 4,
+                "runner_contract.tester_model_reference must be integer 0..4")
+        fast_model = runner_contract.get("tester_model_fast_candidate")
+        require(fast_model is None or (isinstance(fast_model, int) and 0 <= fast_model <= 4),
+                "runner_contract.tester_model_fast_candidate must be null or integer 0..4")
+        output = runner_contract.get("output", {})
+        require(output.get("location") == "FILE_COMMON", "runner_contract.output.location must be FILE_COMMON")
+        for key in ("stats_template", "trades_template"):
+            template = output.get(key)
+            require(isinstance(template, str) and "{stage_token}" in template and "{symbol_clean}" in template,
+                    f"runner_contract.output.{key} must include stage_token and symbol_clean")
+        stage_tokens = output.get("stage_tokens", {})
+        require(set(stage_tokens) == {"smoke", "development", "confirmation"},
+                "runner_contract.output.stage_tokens must define exactly smoke/development/confirmation")
 
     cost = manifest.get("cost_model", {})
     require(bool(cost.get("name")), "cost_model.name is required")
@@ -143,8 +166,8 @@ def validate_manifest(manifest: dict[str, Any]) -> list[str]:
             require(set(stage["symbols"]).issubset(set(symbols)),
                     f"{name}.symbols must be a subset of execution.symbols")
 
-    dev_from, dev_to = parsed.get("development", (None, None))
-    conf_from, conf_to = parsed.get("confirmation", (None, None))
+    _, dev_to = parsed.get("development", (None, None))
+    conf_from, _ = parsed.get("confirmation", (None, None))
     if dev_to and conf_from:
         require(conf_from > dev_to, "confirmation period must start strictly after development period")
 
@@ -157,8 +180,7 @@ def validate_manifest(manifest: dict[str, Any]) -> list[str]:
 
     results = manifest.get("results", {})
     confirmation = stages.get("confirmation", {})
-    dev_result = results.get("development")
-    if dev_result is None:
+    if results.get("development") is None:
         require(confirmation.get("status") in {"UNOPENED", "LOCKED"},
                 "confirmation must remain unopened/locked before a development result exists")
 
@@ -166,13 +188,14 @@ def validate_manifest(manifest: dict[str, Any]) -> list[str]:
 
 
 def execution_readiness(manifest: dict[str, Any]) -> list[str]:
-    """Return blockers that prevent the deterministic runner from executing MT5."""
     blockers = validate_manifest(manifest)
     source = manifest.get("source", {})
     if source.get("complete_repository_source") is not True:
         blockers.append("canonical complete repository source is not ready")
     if not source.get("source_sha256"):
         blockers.append("source_sha256 is not frozen")
+    if not manifest.get("runner_contract"):
+        blockers.append("runner_contract is not frozen")
     return blockers
 
 
