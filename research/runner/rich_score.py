@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Rich descriptive analytics for an integrity-passed Guardian research batch.
 
-This module is deliberately separate from score.py. score.py owns frozen
-decision gates; rich_score.py is descriptive research output and MUST NOT alter
-an experiment verdict or open confirmation.
+score.py owns frozen decision gates. This module is descriptive only: it may
+extract and summarize native Trade Path telemetry, but it MUST NOT alter an
+experiment verdict or open confirmation.
 """
 
 from __future__ import annotations
@@ -29,6 +29,46 @@ class RichScoreError(RuntimeError):
     pass
 
 
+TRADE_PATH_MILESTONES = [
+    ("0_5r", "0.5R"),
+    ("1r", "1R"),
+    ("2r", "2R"),
+    ("3r", "3R"),
+    ("5r", "5R"),
+]
+
+TRADE_PATH_REQUIRED_FIELDS = [
+    "trade_id",
+    "mfe_r",
+    "mae_r",
+    "time_to_mfe_minutes",
+    "time_to_mae_minutes",
+    "max_retracement_from_mfe_r",
+    "reached_0_5r",
+    "first_touch_0_5r_time",
+    "time_to_0_5r_minutes",
+    "mae_before_0_5r",
+    "reached_1r",
+    "first_touch_1r_time",
+    "time_to_1r_minutes",
+    "mae_before_1r",
+    "reached_2r",
+    "first_touch_2r_time",
+    "time_to_2r_minutes",
+    "mae_before_2r",
+    "reached_3r",
+    "first_touch_3r_time",
+    "time_to_3r_minutes",
+    "mae_before_3r",
+    "reached_5r",
+    "first_touch_5r_time",
+    "time_to_5r_minutes",
+    "mae_before_5r",
+    "path_ambiguous",
+    "path_ambiguity_reason",
+]
+
+
 def parse_time(value: str) -> datetime:
     try:
         return datetime.strptime(value, "%Y.%m.%d %H:%M")
@@ -44,6 +84,26 @@ def parse_float(row: dict[str, str], field: str, source: str) -> float:
     if not math.isfinite(value):
         raise RichScoreError(f"non-finite {field} in {source}: {value}")
     return value
+
+
+def parse_optional_float(row: dict[str, Any], field: str, source: str) -> float | None:
+    raw = row.get(field)
+    if raw in (None, ""):
+        return None
+    try:
+        value = float(raw)
+    except (TypeError, ValueError) as exc:
+        raise RichScoreError(f"invalid {field} in {source}: {raw!r}") from exc
+    if not math.isfinite(value):
+        raise RichScoreError(f"non-finite {field} in {source}: {value}")
+    return value
+
+
+def parse_flag(row: dict[str, Any], field: str, source: str) -> bool:
+    raw = str(row.get(field, ""))
+    if raw not in {"0", "1"}:
+        raise RichScoreError(f"{field} must be 0/1 in {source}: {raw!r}")
+    return raw == "1"
 
 
 def quantile(values: Iterable[float], q: float) -> float | None:
@@ -221,7 +281,9 @@ def concentration(values: list[float]) -> dict[str, Any]:
             "trade_count": count,
             "contribution_r": contribution,
             "share_of_total_net_r": (contribution / total_net) if total_net > 0 else None,
-            "share_of_total_positive_r": (sum(x for x in sorted_desc[:count] if x > 0) / positive_total) if positive_total > 0 else None,
+            "share_of_total_positive_r": (
+                sum(x for x in sorted_desc[:count] if x > 0) / positive_total
+            ) if positive_total > 0 else None,
         }
 
     def bottom_percent(pct: float) -> dict[str, Any]:
@@ -230,7 +292,9 @@ def concentration(values: list[float]) -> dict[str, Any]:
         return {
             "trade_count": count,
             "contribution_r": contribution,
-            "share_of_total_negative_r_abs": (abs(sum(x for x in sorted_asc[:count] if x < 0)) / negative_total_abs) if negative_total_abs > 0 else None,
+            "share_of_total_negative_r_abs": (
+                abs(sum(x for x in sorted_asc[:count] if x < 0)) / negative_total_abs
+            ) if negative_total_abs > 0 else None,
         }
 
     return {
@@ -251,7 +315,7 @@ def threshold_summary(values: list[float]) -> dict[str, Any]:
     positive_levels = (0.5, 1.0, 2.0, 3.0, 5.0)
     negative_levels = (-0.5, -1.0, -2.0)
     return {
-        "note": "These are REALIZED exit-R thresholds, not intratrade touches. MFE/MAE path data was not recorded by D037.",
+        "note": "REALIZED exit-R thresholds only. Native intratrade touches are reported separately when Trade Path is available.",
         "realized_at_or_above": {
             f"{level:g}R": {
                 "n": sum(1 for x in values if x >= level),
@@ -267,6 +331,156 @@ def threshold_summary(values: list[float]) -> dict[str, Any]:
             for level in negative_levels
         },
     }
+
+
+def _trade_path_fields_present(rows: list[dict[str, Any]]) -> tuple[bool, list[str]]:
+    if not rows:
+        return False, list(TRADE_PATH_REQUIRED_FIELDS)
+    missing = [
+        field
+        for field in TRADE_PATH_REQUIRED_FIELDS
+        if any(field not in row for row in rows)
+    ]
+    return not missing, missing
+
+
+def _path_group_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    n = len(rows)
+    mfe = [parse_float(row, "mfe_r", f"TRADE_PATH:{row.get('symbol')}") for row in rows]
+    mae = [parse_float(row, "mae_r", f"TRADE_PATH:{row.get('symbol')}") for row in rows]
+    retrace = [
+        parse_float(row, "max_retracement_from_mfe_r", f"TRADE_PATH:{row.get('symbol')}")
+        for row in rows
+    ]
+    mfe_minus_gross = [
+        parse_float(row, "mfe_r", "TRADE_PATH") - float(row["_gross_r"])
+        for row in rows
+    ]
+    capture_ratio = [
+        float(row["_gross_r"]) / parse_float(row, "mfe_r", "TRADE_PATH")
+        for row in rows
+        if parse_float(row, "mfe_r", "TRADE_PATH") > 0
+    ]
+    winners = [row for row in rows if float(row["_net_r"]) > 0]
+    losers = [row for row in rows if float(row["_net_r"]) < 0]
+
+    milestones: dict[str, Any] = {}
+    hit_counts: dict[str, int] = {}
+    for suffix, label in TRADE_PATH_MILESTONES:
+        reached_rows = [row for row in rows if parse_flag(row, f"reached_{suffix}", "TRADE_PATH")]
+        not_reached_rows = [row for row in rows if not parse_flag(row, f"reached_{suffix}", "TRADE_PATH")]
+        hit_counts[label] = len(reached_rows)
+        times = [
+            parse_float(row, f"time_to_{suffix}_minutes", "TRADE_PATH")
+            for row in reached_rows
+        ]
+        mae_before = [
+            parse_float(row, f"mae_before_{suffix}", "TRADE_PATH")
+            for row in reached_rows
+        ]
+        post_touch: dict[str, Any] = {}
+        if suffix in {"1r", "2r", "3r"}:
+            mins = [
+                parse_optional_float(row, f"min_r_after_first_{suffix}_before_exit", "TRADE_PATH")
+                for row in reached_rows
+            ]
+            maxs = [
+                parse_optional_float(row, f"max_r_after_first_{suffix}_before_exit", "TRADE_PATH")
+                for row in reached_rows
+            ]
+            paired = [
+                (row, low, high)
+                for row, low, high in zip(reached_rows, mins, maxs)
+                if low is not None and high is not None
+            ]
+            giveback_to_gross_exit = [
+                float(high) - float(row["_gross_r"])
+                for row, _low, high in paired
+            ]
+            post_touch = {
+                "min_r_before_exit": distribution([float(low) for _row, low, _high in paired]),
+                "max_r_before_exit": distribution([float(high) for _row, _low, high in paired]),
+                "giveback_from_post_touch_peak_to_gross_exit_r": distribution(giveback_to_gross_exit),
+            }
+
+        milestones[label] = {
+            "reached_n": len(reached_rows),
+            "reached_rate": (len(reached_rows) / n) if n else None,
+            "not_reached_n": len(not_reached_rows),
+            "time_to_touch_minutes": distribution(times),
+            "mae_before_touch_r": distribution(mae_before),
+            "final_net_r_if_reached": summarize_values([float(row["_net_r"]) for row in reached_rows]),
+            "final_net_r_if_not_reached": summarize_values([float(row["_net_r"]) for row in not_reached_rows]),
+            "stop_after_touch_n": sum(1 for row in reached_rows if row.get("exit_reason") == "STOP"),
+            "eod_after_touch_n": sum(1 for row in reached_rows if row.get("exit_reason") == "EOD"),
+            **({"post_touch_path": post_touch} if post_touch else {}),
+        }
+
+    conversions: dict[str, Any] = {}
+    previous_label: str | None = None
+    for _suffix, label in TRADE_PATH_MILESTONES:
+        if previous_label is not None:
+            denom = hit_counts[previous_label]
+            conversions[f"{previous_label}_to_{label}"] = hit_counts[label] / denom if denom else None
+        previous_label = label
+
+    loser_opportunity = {
+        label: {
+            "n": sum(1 for row in losers if parse_flag(row, f"reached_{suffix}", "TRADE_PATH")),
+            "rate_of_losers": (
+                sum(1 for row in losers if parse_flag(row, f"reached_{suffix}", "TRADE_PATH")) / len(losers)
+                if losers else None
+            ),
+        }
+        for suffix, label in TRADE_PATH_MILESTONES
+    }
+
+    return {
+        "trades": n,
+        "mfe_r": distribution(mfe),
+        "mae_r": distribution(mae),
+        "max_retracement_from_mfe_r": distribution(retrace),
+        "mfe_minus_gross_exit_r": distribution(mfe_minus_gross),
+        "gross_exit_capture_ratio_of_mfe": distribution(capture_ratio),
+        "mae_r_winners": distribution([parse_float(row, "mae_r", "TRADE_PATH") for row in winners]),
+        "mae_r_losers": distribution([parse_float(row, "mae_r", "TRADE_PATH") for row in losers]),
+        "mfe_r_winners": distribution([parse_float(row, "mfe_r", "TRADE_PATH") for row in winners]),
+        "mfe_r_losers": distribution([parse_float(row, "mfe_r", "TRADE_PATH") for row in losers]),
+        "milestones": milestones,
+        "milestone_conversion_rates": conversions,
+        "losers_that_previously_reached_milestone": loser_opportunity,
+    }
+
+
+def trade_path_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    available, missing = _trade_path_fields_present(rows)
+    if not available:
+        return {
+            "available": False,
+            "reason": "required native Trade Path fields are not present in every trade row",
+            "missing_fields": missing,
+            "contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
+        }
+
+    ambiguous_rows = [row for row in rows if parse_flag(row, "path_ambiguous", "TRADE_PATH")]
+    by_symbol = {
+        symbol: _path_group_summary([row for row in rows if row["symbol"] == symbol])
+        for symbol in sorted({str(row["symbol"]) for row in rows})
+    }
+    overall = _path_group_summary(rows)
+    overall.update({
+        "available": True,
+        "contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
+        "path_rows": len(rows),
+        "path_ambiguous_rows": len(ambiguous_rows),
+        "path_ambiguity_reasons": dict(sorted(Counter(str(row.get("path_ambiguity_reason", "")) for row in ambiguous_rows).items())),
+        "by_symbol": by_symbol,
+        "scientific_boundary": (
+            "Descriptive Trade Path analytics only. They may motivate a separately preregistered Exit Lab/D0xx experiment, "
+            "but cannot rescue or modify the originating experiment verdict."
+        ),
+    })
+    return overall
 
 
 def load_rows(manifest: dict[str, Any], batch_payload: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -326,34 +540,20 @@ def load_rows(manifest: dict[str, Any], batch_payload: dict[str, Any]) -> tuple[
 
 
 def write_compact_trades(path: Path, rows: list[dict[str, Any]]) -> None:
-    fields = [
-        "run_stage", "symbol", "asset_class", "day_key", "side", "entry_time", "exit_time",
-        "duration_minutes", "entry", "initial_stop", "exit", "exit_reason", "gross_r", "commission_r",
-        "net_r", "net_r_commission_x1_5",
-    ]
     path.parent.mkdir(parents=True, exist_ok=True)
+    if not rows:
+        path.write_text("", encoding="utf-8")
+        return
+
+    original_fields = [key for key in rows[0].keys() if not key.startswith("_")]
+    fields = [*original_fields, "duration_minutes"]
     with path.open("w", encoding="utf-8", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=fields)
         writer.writeheader()
         for row in sorted(rows, key=lambda x: (x["_entry_dt"], x["symbol"], x["exit_time"])):
-            writer.writerow({
-                "run_stage": row["run_stage"],
-                "symbol": row["symbol"],
-                "asset_class": row["asset_class"],
-                "day_key": row["day_key"],
-                "side": row["side"],
-                "entry_time": row["entry_time"],
-                "exit_time": row["exit_time"],
-                "duration_minutes": f"{row['_duration_minutes']:.6f}",
-                "entry": row["entry"],
-                "initial_stop": row["initial_stop"],
-                "exit": row["exit"],
-                "exit_reason": row["exit_reason"],
-                "gross_r": row["gross_r"],
-                "commission_r": row["commission_r"],
-                "net_r": row["net_r"],
-                "net_r_commission_x1_5": row["net_r_commission_x1_5"],
-            })
+            payload = {field: row.get(field, "") for field in original_fields}
+            payload["duration_minutes"] = f"{row['_duration_minutes']:.6f}"
+            writer.writerow(payload)
 
 
 def rich_score(identifier: str, stage: str, batch_path: str | None = None) -> dict[str, Any]:
@@ -434,16 +634,7 @@ def rich_score(identifier: str, stage: str, batch_path: str | None = None) -> di
         },
         "exit_reason_counts": dict(sorted(Counter(str(row["exit_reason"]) for row in rows).items())),
         "side_counts": dict(sorted(Counter(str(row["side"]) for row in rows).items())),
-        "trade_path": {
-            "available": False,
-            "reason": "D037 v1.02 records entry/exit outcomes but not intratrade MFE/MAE or first-touch R milestones.",
-            "contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
-            "required_future_fields": [
-                "mfe_r", "mae_r", "time_to_0_5r_minutes", "time_to_1r_minutes", "time_to_2r_minutes",
-                "time_to_3r_minutes", "time_to_5r_minutes", "reached_0_5r", "reached_1r", "reached_2r",
-                "reached_3r", "reached_5r", "max_retracement_from_mfe_r",
-            ],
-        },
+        "trade_path": trade_path_summary(rows),
     }
 
     workspace = runner._expand_path(config["workspace_dir"])
@@ -454,7 +645,7 @@ def rich_score(identifier: str, stage: str, batch_path: str | None = None) -> di
     write_compact_trades(compact_path, rows)
 
     payload = {
-        "schema_version": 1,
+        "schema_version": 2,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "experiment_id": manifest["experiment_id"],
         "manifest_path": str(manifest_path.relative_to(runner.ROOT)),
@@ -469,6 +660,7 @@ def rich_score(identifier: str, stage: str, batch_path: str | None = None) -> di
             "sha256": runner.sha256_file(compact_path),
             "bytes": compact_path.stat().st_size,
             "rows": len(rows),
+            "includes_native_trade_path_fields": analytics["trade_path"].get("available") is True,
         },
         "autosync_used": False,
     }
