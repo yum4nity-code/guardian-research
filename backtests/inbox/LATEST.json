@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-06T16:54:39.7368486Z",
-    "run_id":  "20260906_165052_D036_XAUUSD_b9c055f2d484",
-    "path":  "backtests/inbox/2026/09/06/20260906_165052_D036_XAUUSD_b9c055f2d484",
-    "fingerprint":  "b9c055f2d484f24b7198718bb784d7dc03d4fd3b067ba06092bf78f1ebfd7e3c",
+    "synced_at_utc":  "2026-09-06T17:48:07.5242070Z",
+    "run_id":  "20260906_174741_D036_EURUSD_965cda8af8fb",
+    "path":  "backtests/inbox/2026/09/06/20260906_174741_D036_EURUSD_965cda8af8fb",
+    "fingerprint":  "965cda8af8fb274d9f4b086235b9d9c6a9aa5d01d08c13b6525d2199e08b3f7e",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D036_V100_DEV_2024_2025_XAUUSD_STATS.csv",
-                  "D036_V100_DEV_2024_2025_XAUUSD_TRADES.csv",
+                  "D036_V102_DEV_2024_2025_EURUSD_STATS.csv",
+                  "D036_V102_DEV_2024_2025_EURUSD_TRADES.csv",
                   "sync_manifest.json"
               ]
 }

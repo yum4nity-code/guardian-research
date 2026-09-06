@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260906_174741_D036_EURUSD_965cda8af8fb",
+    "fingerprint":  "965cda8af8fb274d9f4b086235b9d9c6a9aa5d01d08c13b6525d2199e08b3f7e",
+    "synced_at_utc":  "2026-09-06T17:48:07.5102068Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D036_DonchianTrendBreakout_H1_v1_02_FUNDEDNEXT_PNLINTEGRITY_DIRECT_20260906.mq5",
+                       "source_version":  "1.02",
+                       "run_stage":  "DEV_2024_2025",
+                       "symbol":  "EURUSD",
+                       "timeframe":  "PERIOD_H1",
+                       "trades_closed":  476,
+                       "published_trades_rows":  476
+                   },
+    "files":  [
+                  {
+                      "name":  "D036_V102_DEV_2024_2025_EURUSD_STATS.csv",
+                      "source_sha256":  "361233fbd396692e3e6d0d68a3518891b0b543896a61ba1f3b49c491b9ee0b1c",
+                      "published_sha256":  "c1705a3d7c6efcbe352b59524b5252403844a014732f69829e1273c55437f2e6",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D036_V102_DEV_2024_2025_EURUSD_TRADES.csv",
+                      "source_sha256":  "1a899f73a12edca20de2ec85c27af68a1106c2510c8da8c4aa1eacd64d49b595",
+                      "published_sha256":  "80112d11555907c36975792a159eedf70fb4ea6848a355eeeab0abcab2683dcb",
+                      "sanitized":  false
+                  }
+              ]
+}
