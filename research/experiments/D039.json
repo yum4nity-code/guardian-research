@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+  "strategy_family": "Strict inside-day contraction breakout",
+  "status": "READY_SMOKE",
+  "hypothesis": "Can a strict D-1 inside-day contraction followed by the next broker day's first executable break of that inside range produce a positive, broad, cost-robust intraday edge across the six-market Guardian/FundedNext universe?",
+  "preregistration": {
+    "path": "research/campaigns/D039_INSIDE_DAY_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md",
+    "git_blob_sha": "aebbd5d7c433b837b4ba7950fe6ecbc7dd7a248c",
+    "frozen_before_result_inspection": true,
+    "execution_deviations": []
+  },
+  "source": {
+    "canonical_path": "research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5",
+    "source_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+    "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+    "git_blob_sha": "6788ef91e324039b5d3a4bf0969a02f7599f74c0",
+    "version": "1.00",
+    "complete_repository_source": true,
+    "strategy_semantics_frozen": true,
+    "engineering_lineage": [
+      "D039 v1.00 is the first complete repository source for the preregistered Inside-Day Breakout V0 experiment",
+      "D039 preserves D038's executable-tick lifecycle, FundedNext cost model and native Trade Path telemetry while changing only the frozen setup predicate and setup range",
+      "D039 is hypothesis-generated after D038; D039 2024-2025 is development only and 2026 H1 is the only locked prospective confirmation window",
+      "source identity independently reported by GitHub CI as 543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd before local compilation"
+    ]
+  },
+  "execution": {
+    "timeframe": "M15",
+    "reference_timeframes": ["D1"],
+    "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+    "account_currency": "USD",
+    "prop_firm_profile": "FUNDEDNEXT"
+  },
+  "runner_contract": {
+    "expert_relative_path": "GuardianResearch\\D039_InsideDay_TickPath_M15_v1_00",
+    "default_stage": "smoke",
+    "stage_selection": "EA_DEFAULT_ONLY",
+    "tester_model_reference": 0,
+    "tester_model_fast_candidate": null,
+    "output": {
+      "location": "FILE_COMMON",
+      "stats_template": "D039_V100_{stage_token}_{symbol_clean}_STATS.csv",
+      "trades_template": "D039_V100_{stage_token}_{symbol_clean}_TRADES.csv",
+      "stage_tokens": {
+        "smoke": "RUN",
+        "development": "RUN",
+        "confirmation": "RUN"
+      }
+    }
+  },
+  "cost_model": {
+    "name": "D039_FUNDEDNEXT_FROZEN_V0",
+    "spread_source": "tester executable bid/ask ticks",
+    "commission_stress_multiplier": 1.5,
+    "forex": "USD 5 per lot per side",
+    "metals": "0.0016% x lot x contract size x side execution price per side",
+    "crypto": "0.04% x lot x contract size x side execution price per side"
+  },
+  "stages": {
+    "smoke": {
+      "stage_name": "D039_SMOKE_OCT2023",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "symbols": ["USDJPY", "XAUUSD", "BTCUSD"],
+      "status": "READY",
+      "gates": {
+        "compile_errors": 0,
+        "compile_warnings": 0,
+        "lifecycle_clean": true,
+        "opened_equals_closed_equals_trade_rows_equals_path_rows": true,
+        "invalid_price_risk_pnl_path_events": 0,
+        "trade_path_fields_present_and_parseable": true,
+        "deterministic_stats_trades_output": true,
+        "science_role": "ENGINEERING_ONLY_NO_ALPHA_VERDICT"
+      },
+      "result_paths": []
+    },
+    "development": {
+      "stage_name": "D039_DEV_2024_2025",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+      "status": "LOCKED_UNTIL_SMOKE_PASS",
+      "gates": {
+        "aggregate_n_min": 480,
+        "each_symbol_n_min": 50,
+        "aggregate_mean_net_r_min": 0.05,
+        "aggregate_pf_min": 1.10,
+        "positive_symbols_min": 4,
+        "aggregate_2024_positive": true,
+        "aggregate_2025_positive": true,
+        "aggregate_positive_at_commission_stress": true,
+        "max_positive_symbol_contribution_share": 0.60,
+        "integrity_events_max": 0,
+        "failure_verdict": "REJECT_V0"
+      },
+      "result_paths": []
+    },
+    "confirmation": {
+      "stage_name": "D039_CONFIRM_2026_H1",
+      "from": "2026-01-02",
+      "to": "2026-06-30",
+      "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+      "status": "UNOPENED",
+      "gates": {
+        "aggregate_n_min": 120,
+        "aggregate_mean_net_r_strictly_positive": true,
+        "aggregate_pf_min": 1.08,
+        "positive_symbols_min": 3,
+        "aggregate_positive_at_commission_stress": true,
+        "integrity_events_max": 0,
+        "failure_verdict": "UNCONFIRMED"
+      },
+      "result_paths": []
+    }
+  },
+  "decision_policy": {
+    "no_posthoc_rescue": true,
+    "confirmation_locked_until_dev_pass": true,
+    "invalid_run_is_not_strategy_reject": true
+  },
+  "results": {
+    "compile": null,
+    "smoke": null,
+    "development": null,
+    "rich_analytics": null,
+    "confirmation": null,
+    "final_verdict": null
+  }
+}
