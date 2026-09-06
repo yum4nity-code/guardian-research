@@ -7,15 +7,15 @@ Read only what is needed, in this order:
 
 1. `GUARDIAN_STATE.json`
 2. `GUARDIAN_MASTER_MANDATE.md`
-3. `research/experiments/D037.json`
-4. `research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md`
+3. `research/experiments/D038.json`
+4. `research/campaigns/D038_NR7_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md`
 5. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
 
 ## Current P0
 
-- Experiment: **D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0**
-- State: **REJECTED**
-- Next action: **D037 is closed as REJECT_V0 with rich analytics and compact validated results published to backtest-results. Select and preregister D038. D038 and later harnesses must implement research/runner/TRADE_PATH_DATASET_SPEC.md natively so MFE, MAE, R milestones and timing become reusable research data without post-hoc reconstruction.**
+- Experiment: **D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0**
+- State: **COMPILE_PENDING**
+- Next action: **On the MT5 research PC, pull the latest refactor branch and run only `py -3 .\research\runner\guardian_research.py compile D038`. Require COMPILE_PASS with 0 errors / 0 warnings and an EX5 SHA before any D038 backtest. If compile passes, the next separate proof is exactly one USDJPY smoke test for 2023-11-01 through 2023-11-30 using Model=0; do not launch the three-symbol smoke batch until that single run passes lifecycle and Trade Path integrity.**
 
 ## Operational truths
 
