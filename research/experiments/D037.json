@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "strategy_family": "Williams-inspired previous-day range volatility breakout",
-  "status": "COMPILE_PENDING",
+  "status": "READY_DEV",
   "hypothesis": "Can a simple previous-day-range volatility expansion rule produce a positive, broad, cost-robust intraday edge across the Guardian/FundedNext six-market universe without indicator filters or post-hoc tuning?",
   "preregistration": {
     "path": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
@@ -83,7 +83,7 @@
       "from": "2024-01-02",
       "to": "2025-12-31",
       "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
-      "status": "LOCKED_PENDING_COMPILE",
+      "status": "READY",
       "gates": {
         "aggregate_n_min": 800,
         "each_symbol_n_min": 80,
@@ -123,6 +123,16 @@
     "invalid_run_is_not_strategy_reject": true
   },
   "results": {
+    "compile": {
+      "status": "COMPILE_PASS",
+      "observed_from_user_terminal_output": true,
+      "created_at_utc": "2026-09-06T21:10:21.142204+00:00",
+      "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+      "source_sha256": "8a30c8e20c38803492c2b1cb3c94dd2aa25df66575ca665aa3da660833fac96d",
+      "ex5_sha256": "4c07d19ea0367d310f19c86f0b4730dd172c6ecf2f091ac323e596eeebbfcf4e",
+      "errors": 0,
+      "warnings": 0
+    },
     "development": null,
     "confirmation": null,
     "final_verdict": null
