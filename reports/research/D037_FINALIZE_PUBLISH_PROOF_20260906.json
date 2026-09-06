@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
+  "stage": "development",
+  "observed_from_user_terminal_output": true,
+  "finalize": {
+    "status": "FINALIZE_PASS",
+    "decision_verdict": "REJECT_V0",
+    "all_gates_pass": false,
+    "decision_score_path_local": "D:\\MT5_Backtests\\guardian-runner\\scores\\D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0\\development\\20260906T221802Z\\verdict.json",
+    "rich_score_path_local": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0\\development\\20260906T221803Z\\rich_score.json",
+    "publish_receipt_local": "D:\\MT5_Backtests\\guardian-runner\\publish_receipts\\D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0\\development\\20260906T215334Z.json",
+    "autosync_used": false
+  },
+  "github_publish": {
+    "verified_via_github_connector": true,
+    "branch": "backtest-results",
+    "path": "backtests/d037/development/20260906T215334Z",
+    "commit_sha": "69e18140486bd5151e0ce029ff374fb8dbe2bebe",
+    "commit_message": "Publish D037 development REJECT_V0 20260906T215334Z",
+    "files": [
+      "SUMMARY.md",
+      "analytics.json",
+      "decision_score.json",
+      "manifest.json",
+      "trades_compact.csv"
+    ],
+    "result_fingerprint_sha256": "752a6fa1b8abb32deb6077cbed8a258141abc08b7f9ad02e02902bb23305be0b"
+  },
+  "rich_summary": {
+    "trades": 2377,
+    "net_r_median": -0.19495369,
+    "net_r_p10": -1.0457525859999999,
+    "net_r_p90": 1.5968267000000003,
+    "win_rate": 0.43331931005469077,
+    "average_win_r": 1.0623556301262136,
+    "average_loss_r": -0.7768530588195991,
+    "payoff_ratio": 1.3675116781292278,
+    "realized_trade_close_max_drawdown_r": 88.97819435999995,
+    "longest_winning_streak": 10,
+    "longest_losing_streak": 14,
+    "median_trade_duration_minutes": 480.0
+  },
+  "scientific_boundary": {
+    "d037_verdict_remains": "REJECT_V0",
+    "confirmation_opened": false,
+    "rich_analytics_may_change_verdict": false,
+    "d037_has_native_intratrade_mfe_mae": false,
+    "future_experiments_require_native_trade_path_telemetry": true
+  }
+}
