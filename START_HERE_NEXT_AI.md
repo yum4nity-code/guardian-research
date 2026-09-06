@@ -15,7 +15,7 @@ Read only what is needed, in this order:
 
 - Experiment: **D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0**
 - State: **READY_DEV**
-- Next action: **Run exactly one USDJPY development test with reference tester model 0. Require the trusted compile receipt/EX5, fresh FILE_COMMON outputs, and a clean lifecycle/integrity verdict. Do not launch the six-symbol DEV batch until this single-symbol proof passes.**
+- Next action: **Run the sequential six-symbol D037 development batch with reference tester model 0. Stop immediately on any engineering/integrity failure. If the batch passes integrity, score the frozen DEV gates; any gate failure means REJECT_V0 with no rescue tuning.**
 
 ## Operational truths
 
