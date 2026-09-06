@@ -28,6 +28,8 @@ jobs:
           research/runner/tester.py
           research/runner/batch.py
           research/runner/score.py
+          research/runner/rich_score.py
+          research/runner/publisher.py
           research/runner/guardian_research.py
           research/runner/bootstrap_windows.py
           research/runner/source_hash.py
