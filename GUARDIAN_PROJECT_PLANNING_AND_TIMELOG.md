@@ -346,20 +346,43 @@ From 2026-09-04 onward, time should be logged more precisely.
 - D17 remains closed as current alpha; preserve only manager/lineage evidence.
 - Keep Guardian Core v12.01 stable and FundedNext AUTO off until the request/retry pathology is separately resolved.
 
+### 2026-09-06 late session — AutoSync v1.04 runtime proof and D023 untouched 2023 rejection
+
+**Work / decisions**
+- FundedNext local execution path was clarified: research source/versioning remains under `D:\MT5_Backtests\guardian-research`, while FundedNext MT5 compile/backtest EAs are executed from `D:\MT5_FundedNext\MQL5\Experts\GuardianReasearch`.
+- D023 v1.08 compiled successfully in the user's FundedNext MetaEditor.
+- Initial smoke attempts exposed an MT5 Strategy Tester selection/cache issue repeatedly loading the example Moving Average EA despite selecting D023; the test was corrected without changing D023 strategy semantics.
+- D023 v1.08 smoke `2023-03-13` through `2023-03-31` completed and produced deterministic FILE_COMMON STATS/TRADES outputs.
+- AutoSync engineering was repaired through v1.04. v1.02 failed because `$Args` collided with PowerShell automatic `$args`; v1.03 fixed that but Windows PowerShell treated normal Git stderr such as `From https://...` as terminating under `$ErrorActionPreference='Stop'`; v1.04 isolates native Git stdout/stderr and trusts the process exit code.
+- AutoSync v1.04 was installed with Windows Startup and successfully auto-published the smoke to `backtest-results` without any per-backtest `-Once` command. Provenance, row counts and Windows username redaction passed.
+- Smoke DST behavior passed: before the UK DST transition, FundedNext server UTC+3 vs London UTC+0; from 2023-03-27, London UTC+1 and server-London offset reduces from 3h to 2h as expected.
+- The untouched full 2023 confirmation was then run exactly once on USDJPY M15 using the frozen D023 v1.08 strategy and auto-published successfully.
+- Frozen 2023 confirmation result: n=195; total net R **-38.644330**; mean net **-0.198176R/trade**; net PF **0.708428**; 5-day moving-block bootstrap lower 5% bound of zero-filled weekday daily mean **-0.268783R/day**; 1.5x commission stress **-44.512458R total / -0.228269R/trade**.
+- D023 passes only the sample-size gate: **1/5 frozen gates -> REJECT / UNCONFIRMED**. This is a material failure, not a borderline miss.
+- Per preregistration, D023 is closed as current P0 alpha. Do not remove SHORT, add day/direction/EMA/RSI/ATR/news rescue filters, or tune on 2023.
+- Canonical result persisted at `research/results/D023_USDJPY_2023_UNTOUCHED_CONFIRMATION_RESULT_2026_09_06.md`; `CURRENT_PROJECT_HANDOFF.md` and `CURRENT_QUEUE.json` updated accordingly.
+
+**Time evidence**
+- Late-session user/ChatGPT work is confirmed around the 16:00 Europe/Paris hour through this result/persistence phase.
+- `Human active total: NOT QUANTIFIED`; do not infer continuous activity from the day's broad span.
+- Strategy Tester runtime and watcher polling are unattended compute and excluded from human time.
+
+**Next**
+- Do not rerun or rescue D023.
+- Reconcile the research slate and select the next independent preregistered strategy family.
+- Keep AutoSync v1.04 as the proven D023 transport baseline; no per-backtest PowerShell command should be required.
+- Keep Guardian Core v12.01 stable and FundedNext AUTO off until the separate request/retry pathology is bounded.
+
 ---
 
 # Current planning / backlog
 
 ## P0 — D023 USDJPY London ORB 2023 confirmation harness
 
-- Active source: `research/strategies/d023/D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5`.
-- Expected SHA256: `10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4`.
-- Current status: static-audited only; **WAITING_CODEX** for real compile and smoke.
-- First gate: FundedNext MetaEditor 0 errors / 0 warnings.
-- Second gate: USDJPY M15 Every tick smoke `2023-03-13` -> `2023-03-31` with direct STATS/TRADES inspection and manual DST/ORB verification.
-- Full untouched 2023 remains blocked until both gates pass.
-- Frozen full-year gates: n>=150, mean net R>0, PF>=1.10, 5-day moving-block bootstrap lower 5% bound >0, positive at 1.5x commission.
-- No D023 tuning, LONG-only conversion, day/range/indicator filters or manager testing before untouched confirmation is scored.
+- **CLOSED / REJECTED.** Untouched 2023 confirmation completed once and failed 4/5 frozen gates.
+- Result: n=195, mean net -0.198176R/trade, PF 0.708428, block-bootstrap lower 5% -0.268783R/day, 1.5x commission stress -44.512458R total.
+- Preserve the source/output/result for evidence only. Do not rescue-filter, retune or rerun 2023.
+- Next alpha action is selection of a new independent preregistered P0 family.
 
 ## P0 — FundedNext request-budget fix
 
@@ -381,7 +404,7 @@ From 2026-09-04 onward, time should be logged more precisely.
 - D17 Momentum is closed as current alpha after broad seven-market attribution.
 - Preserve exact lineage and paired Native-vs-Fixed manager results in `research/MANAGER_EVIDENCE_LEDGER.md`.
 - Do not tune D17 to rescue inspected samples.
-- A dedicated Manager Lab becomes justified only if a similar management weakness appears on an independent strategy family such as D023 after entry confirmation.
+- A dedicated Manager Lab becomes justified only if a similar management weakness appears on an independent strategy family after entry confirmation.
 
 ## P1 — Shared Intelligence / Crypto+
 
