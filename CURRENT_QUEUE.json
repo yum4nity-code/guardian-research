@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T13:30:00+02:00",
+  "updated_at": "2026-09-06T15:05:00+02:00",
   "active_primary": "D023-LONDON-ORB-M15-V0",
   "items": [
     {
@@ -63,11 +63,11 @@
     {
       "id": "D023-LONDON-ORB-M15-V0",
       "priority": 0,
-      "status": "READY",
-      "owner": "NextAI/User",
+      "status": "WAITING_CODEX",
+      "owner": "Codex/User",
       "type": "scientific_hypothesis_untouched_confirmation",
-      "goal": "CURRENT P0. USDJPY London ORB remains a serious candidate after FundedNext/DST-aware 2024-2026 conformance: n=482, mean net about +0.0915R/trade, cumulative +44.10R, PF about 1.176, positive 2024/2025/2026 H1 but weakening through time. Preserve frozen ORB semantics. Next scientific action is untouched 2023 confirmation against preregistered gates, but only after the diagnostic harness is audited, really compiled and smoke-tested. Read GUARDIAN_MASTER_MANDATE.md and handoff/guardian_next_ai/2026/09/06/GUARDIAN_PROJECT_RESTART_HANDOFF_2026_09_06.md.",
-      "blocking": "Do NOT ask for another full 2023 run yet. Latest local v1.07 stats harness was never compile-validated and has a suspected path-string defect. Build a uniquely named output-only harness from frozen v1.04 semantics, compile 0/0, prove INIT/FINAL output on a short smoke run, manually verify several ORB rows, then run full 2023 once."
+      "goal": "CURRENT P0. D023 v1.08 HARNESSFIX is committed at research/strategies/d023/D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5, SHA256 10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4. Static audit confirms exact v1.07 provenance and no change to OnTick/calendar-cost-state/WriteTrade. Next action is real FundedNext MetaEditor compile 0 errors / 0 warnings, then short USDJPY M15 Every tick smoke 2023-03-13 through 2023-03-31, direct STATS/TRADES inspection and manual ORB/DST verification. Only after that may the untouched full 2023 confirmation be run once against frozen gates.",
+      "blocking": "FULL 2023 RUN BLOCKED. v1.08 is static-audited but NOT compile-validated or smoke-validated. Read research/results/D023_V108_2023_HARNESS_STATIC_AUDIT_2026_09_06.md and handoff/chatgpt_to_codex/2026/09/06/D023_V108_2023_HARNESS_COMPILE_SMOKE_REQUEST_2026_09_06.md. Do not tune D023, remove SHORT, add filters or test managers before the untouched confirmation is scored."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
@@ -160,5 +160,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-06 restart handoff. Root mandate is GUARDIAN_MASTER_MANDATE.md. D17 Momentum is closed as current alpha; preserve only lineage and manager evidence. Active P0 is D023 USDJPY London ORB. FundedNext/DST-aware inspected-period conformance remained positive but weakened through time. Untouched 2023 confirmation is next, but only after a new uniquely named diagnostic harness is really compiled and smoke-tested with deterministic INIT/FINAL outputs. Guardian Core v12.01 remains the compile-validated pure infrastructure baseline. FundedNext request/retry pathology remains a separate runtime issue and AUTO stays off until bounded."
+  "notes": "2026-09-06 P0 state: D023 USDJPY London ORB remains the primary candidate. v1.08 HARNESSFIX is now the active confirmation harness source but is static-audited only. Real MetaEditor compile 0/0 and the 2023-03-13..2023-03-31 DST smoke must PASS before any full 2023 run. D17 Momentum remains closed as current alpha; preserve lineage/manager evidence only. Guardian Core v12.01 remains the compile-validated pure infrastructure baseline. FundedNext request/retry pathology remains separate and AUTO stays off until bounded."
 }
