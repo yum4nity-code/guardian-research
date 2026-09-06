@@ -27,6 +27,7 @@ jobs:
           research/runner/runner.py
           research/runner/tester.py
           research/runner/batch.py
+          research/runner/campaign.py
           research/runner/score.py
           research/runner/rich_score.py
           research/runner/publisher.py
@@ -72,6 +73,9 @@ jobs:
 
       - name: Report D038 v1.00 active source identity
         run: python research/runner/source_hash.py research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5
+
+      - name: Report D039 v1.00 candidate source identity
+        run: python research/runner/source_hash.py research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5
 
       - name: Run regression tests
         run: |
