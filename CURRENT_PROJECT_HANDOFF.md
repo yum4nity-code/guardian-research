@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-06 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D029+D030+D033+D034 GOLD+D035 PRIMARY CLOSED REJECTED / D035-E1 CAUSAL DUAL-SOURCE FOLLOW-UP OPTIONAL / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D029+D030+D033+D034 GOLD+D035 PRIMARY CLOSED REJECTED / D035-E1 CAUSAL DUAL-SOURCE EXPLORATORY DIAGNOSTIC PREREGISTERED+PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
@@ -82,22 +82,35 @@ Frozen D035 gate:
 
 Final: **4/8 -> DISCOVERY_REJECT**. There is a small statistically detectable timing effect, but it is not economically large enough after executable FundedNext spreads in the broad CFD pool. BTCUSD and ETHUSD individually remain positive at +15m (~+5.86/+5.43 bps) but below the preregistered +15 bps hurdle.
 
-## D035 dual-source post-hoc warning / possible E1
-The returned development rows labelled `BTCUSD+ETHUSD` look superficially much stronger, but **must not be treated as causal evidence from the current output**. The v1.01 merge routine keeps `event_time_utc` from the first source shock while adding the second source to the label if it occurs within five minutes. Filtering on the dual-source label at that first timestamp therefore uses future information.
+## D035-E1 — causal dual-source exploratory diagnostic — PREREGISTERED / PREPARED
+Reason: rows labelled `BTCUSD+ETHUSD` in the original development output look strong but are not causally tradable as measured because the first source timestamp receives the dual label when the second source arrives up to five minutes later.
 
-If this family is pursued once more, create a clearly separate **D035-E1 exploratory diagnostic** on the already inspected 2024-2025 sample:
-- same frozen BTC/ETH shock definitions and per-source cooldown;
-- require both source shocks within five minutes;
-- signal timestamp = **later/second** qualifying source shock;
-- no threshold/horizon/target rescue mining;
-- 2026-H1 remains untouched;
-- only a large causal E1 result can justify a fresh D035-C1 preregistration before opening 2026-H1.
+Preregistration:
+`research/campaigns/D035_E1_CAUSAL_DUAL_SOURCE_DIAGNOSTIC_PREREGISTRATION_2026_09_06.md`
+Commit: `e6ddd6989f49bbdba4581c575d9b9e5deec3ab9e`.
 
-The original D035 primary verdict remains REJECT regardless of E1.
+Analyzer:
+`research/analysis/D035_E1_CausalDualConfirm_v1_00.py`
+Commit: `4f95cc088478d520a28a95d376b6d08d357c544c`.
+Delivered pack: `D035_E1_CausalDual_Pack_v1_00.zip`.
+Python syntax compile PASS. The local runner includes progress percentage, elapsed time, ETA and per-CFD checkpoints.
+
+Frozen E1 mechanics:
+- same D035 BTC/ETH single-source shock definitions and 30m cooldown;
+- require BTC and ETH shocks within <=5 minutes;
+- tradable signal timestamp = **later/second qualifying source shock**;
+- exploratory sample remains 2024-2025 only;
+- primary cross-asset target frozen to **XLMUSD**; other CFDs diagnostics only;
+- +15m primary, same +1/+5/+30/+60/+120 diagnostics;
+- 2026-H1 remains untouched.
+
+E1 advancement requires 8/8 on XLMUSD: >=200 events, mean executable +15m >=15bps, median >0, raw day-cluster bootstrap lower >0, event-control differential >=10bps, differential bootstrap lower >0, +30m >0, and both 2024/2025 +15m means >0.
+
+D035 primary remains REJECT regardless of E1. Only an E1 8/8 result permits a fresh D035-C1 preregistration before touching 2026-H1.
 
 ## Immediate execution order
-1. Archive D035 primary as closed rejected; do not run `--confirm`.
-2. Optional next research action: D035-E1 causal dual-source diagnostic on 2024-2025 only, with progress/ETA/checkpoint logging in the local analyzer.
+1. Run the delivered D035-E1 pack against the same existing CFD export folder and `D035_binance_cache`; no MT5 rerun and no 2026 data.
+2. If E1 returns 8/8, preregister D035-C1 before opening 2026-H1. If not, close the dual-source branch.
 3. Keep D032 Doji as a sparse confirmed-entry sleeve; do not rescue rejected families on inspected samples.
 4. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
 5. FundedNext Algo Trading remains OFF until request-budget/retry pathology is resolved and replacement core is compiled/smoked.
