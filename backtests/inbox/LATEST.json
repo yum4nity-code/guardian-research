@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-06T21:24:37.6821540Z",
-    "run_id":  "20260906_212408_D037_EURUSD_fe6cea29e931",
-    "path":  "backtests/inbox/2026/09/06/20260906_212408_D037_EURUSD_fe6cea29e931",
-    "fingerprint":  "fe6cea29e93166e2371a472fc088defbe2fc543ae9111f1ff0d003ce8e4a19e4",
+    "synced_at_utc":  "2026-09-06T21:25:14.8621136Z",
+    "run_id":  "20260906_212449_D037_GBPUSD_9fdc0fb4a967",
+    "path":  "backtests/inbox/2026/09/06/20260906_212449_D037_GBPUSD_9fdc0fb4a967",
+    "fingerprint":  "9fdc0fb4a9678f3e5ef576203dd3c87b9c0f5c1aa21889d07aa3c44cf73fd650",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D037_V101_DEV_2024_2025_EURUSD_STATS.csv",
-                  "D037_V101_DEV_2024_2025_EURUSD_TRADES.csv",
+                  "D037_V101_DEV_2024_2025_GBPUSD_STATS.csv",
+                  "D037_V101_DEV_2024_2025_GBPUSD_TRADES.csv",
                   "sync_manifest.json"
               ]
 }
