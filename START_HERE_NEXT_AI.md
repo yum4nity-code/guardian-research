@@ -14,8 +14,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0**
-- State: **COMPILE_PENDING**
-- Next action: **Compile D037 v1.01 on the MT5 research PC without launching a backtest. Require verified local-source to MT5-copy raw SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt. Only then run one USDJPY development test.**
+- State: **READY_DEV**
+- Next action: **Run exactly one USDJPY development test with reference tester model 0. Require the trusted compile receipt/EX5, fresh FILE_COMMON outputs, and a clean lifecycle/integrity verdict. Do not launch the six-symbol DEV batch until this single-symbol proof passes.**
 
 ## Operational truths
 
