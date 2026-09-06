@@ -14,8 +14,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0**
-- State: **READY_DEV**
-- Next action: **Restart the sequential six-symbol D037 v1.02 development batch from scratch with reference tester model 0. Stop immediately on any engineering/integrity failure. If all six runs pass integrity, score the frozen DEV gates; any failed gate means REJECT_V0 with no rescue tuning.**
+- State: **REJECTED**
+- Next action: **Implement the common rich analytics scorer and deterministic compact result publisher defined in docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md. Publish validated result bundles to the backtest-results branch without touching the user's active research working tree. Preserve D037 REJECT_V0; its 2,377 DEV trades may feed transversal Trade Path Dataset / Exit Lab research but may not rescue D037. Then select and preregister D038.**
 
 ## Operational truths
 
