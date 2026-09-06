@@ -1,0 +1,12 @@
+# Keep canonical research/program source text stable across Windows/Linux checkouts.
+*.mq5 text eol=lf
+*.mqh text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# PowerShell is intentionally allowed to use native text handling; launcher
+# provenance is covered by CI syntax checks rather than strategy source SHA.
+*.ps1 text
