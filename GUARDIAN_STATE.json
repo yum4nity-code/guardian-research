@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T00:48:00+02:00",
+  "updated_at": "2026-09-07T01:23:34+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,30 +8,39 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D038_SMOKE_PASS_DEV_READY_AUTO_RESULT_TRANSPORT_IMPLEMENTED",
+    "status": "PHASE_3_RESEARCH_RUNNER_PROVEN_D039_READY_SMOKE_CAMPAIGN_MODE_ADDED",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_RUN_D038_DEVELOPMENT_AND_PROVE_AUTOMATIC_RESULT_EVENT_PUBLISH",
+    "next_phase": "PHASE_3_COMPILE_AND_SMOKE_D039_THEN_PREPARE_EXECUTABLE_D040_D045_SUBSET",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
-    "active_experiment": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
-    "experiment_manifest": "research/experiments/D038.json",
-    "status": "READY_DEV",
-    "strategy_family": "NR7 volatility contraction breakout",
+    "active_experiment": "D039-INSIDE-DAY-BREAKOUT-V0",
+    "experiment_manifest": "research/experiments/D039.json",
+    "status": "READY_SMOKE",
+    "strategy_family": "Strict inside-day contraction breakout",
     "timeframe": "M15",
-    "preregistration": "research/campaigns/D038_NR7_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
+    "preregistration": "research/campaigns/D039_INSIDE_DAY_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md",
     "canonical_sources_currently_in_repo": [
-      "research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5"
+      "research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5"
     ],
-    "next_action": "On the MT5 research PC, pull the latest refactor branch and run `py -3 .\\research\\runner\\guardian_research.py batch D038 --stage development`. The six-market 2024-01-02..2025-12-31 DEV batch is now authorized after a clean three-market engineering smoke. The runner automatically publishes the completed batch event to branch backtest-results and updates backtests/d038/live/latest.json through an isolated clone. The user should no longer paste the full terminal output; after completion they can simply say that the batch is finished and the assistant will read the GitHub result. If automatic GitHub transport fails, local scientific evidence remains valid and the transport failure is reported separately; do not rerun MT5 solely for transport.",
+    "next_action": "On return to the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py compile D039`. D039 is preregistered, source-complete and SHA-frozen but has not yet received local MetaEditor compile proof. If compile is 0 errors / 0 warnings with trusted EX5 receipt, run `py -3 .\\research\\runner\\campaign.py D039 --stage smoke --no-finalize` to execute the three-market October-2023 engineering smoke and native Trade Path validation in one unattended command. Do not open D039 development until smoke passes. The assistant can read the automatically published GitHub evidence after the user says only `fini`.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
       "D036": "REJECTED_V0",
-      "D037": "REJECTED_V0"
-    }
+      "D037": "REJECTED_V0",
+      "D038": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
+    },
+    "d038_followup": {
+      "v0_verdict": "REJECT_V0",
+      "confirmation_opened": false,
+      "closeout_report": "reports/research/D038_DEV_FINAL_RICH_CLOSEOUT_20260907.md",
+      "exit_lab_e1": "research/campaigns/D038_EXIT_LAB_E1_BE_AFTER_1R_2026_09_07.md",
+      "policy": "Exit Lab is a separate management hypothesis and may not rescue or relabel D038 V0."
+    },
+    "next_six_drafts": "research/campaigns/D040_D045_NEXT_SIX_STRATEGY_DRAFTS_2026_09_07.md"
   },
   "production": {
     "guardian_core": {
@@ -47,21 +56,27 @@
     "standard": "automation/AUTOSYNC_PC_GITHUB_ENGINEERING_STANDARD_20260906.md",
     "legacy_runtime_status": "UNTRUSTED_NEVER_RELIABLY_WORKED",
     "legacy_scripts_role": "REFERENCE_ONLY_NOT_FALLBACK",
-    "migration_policy": "Do not preserve or extend v1/v2 behavior. Build v3 independently in an isolated harness, prove end-to-end reliability, then connect it to MT5/GitHub.",
+    "migration_policy": "Do not preserve or extend v1/v2 behavior. The deterministic research-result publisher now solves the current research transport need; a broader AutoSync v3 daemon remains deferred unless a separate operational need is proven.",
     "trusted_runtime_installed_version": null,
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "FINALIZE_PUBLISH_PROVEN_AUTO_EVENT_PUBLISH_IMPLEMENTED_PENDING_FIRST_LOCAL_PROOF",
+    "research_results_status": "PROVEN_END_TO_END_WITH_STABLE_LATEST_POINTER_AND_COMPACT_RICH_EVENTS",
     "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
-    "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. Final result bundles and automatic command-event transport both use isolated temporary clones and never mutate the active research working tree. Automatic events maintain a stable per-experiment pointer at backtests/<d0xx>/live/latest.json. A network/push failure never invalidates already-valid local scientific evidence and never requires an MT5 rerun by itself.",
+    "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. Final result bundles and automatic command-event transport use isolated temporary clones and never mutate the active research working tree. Automatic events maintain a stable per-experiment pointer at backtests/<d0xx>/live/latest.json. A network/push failure never invalidates already-valid local scientific evidence and never requires an MT5 rerun by itself.",
     "automatic_event_transport": {
-      "status": "IMPLEMENTED_PENDING_FIRST_LOCAL_PROOF",
+      "status": "PROVEN_D038_BATCH_SCORE_RICH_FINALIZE",
       "module": "research/runner/result_transport.py",
       "branch": "backtest-results",
       "latest_pointer_template": "backtests/<d0xx>/live/latest.json",
       "event_path_template": "backtests/<d0xx>/live/events/<stage>/<kind>/<event_id>/event.json",
       "working_tree_isolation": true,
+      "rich_event_payload_compaction": true,
       "legacy_autosync_used": false
+    },
+    "legacy_backtest_bot_cleanup": {
+      "status": "LOCAL_PC_INSPECTION_REQUIRED",
+      "reason": "D038 runs also produced duplicate commits authored by Guardian Backtest Bot / Auto-sync validated CSV while the new runner transport was already working.",
+      "safety": "Identify the actual scheduled task/process and command line before disabling it; do not guess or use it as fallback."
     },
     "d037_publish_proof": {
       "status": "PASS",
@@ -70,15 +85,23 @@
       "commit_sha": "69e18140486bd5151e0ce029ff374fb8dbe2bebe",
       "result_fingerprint_sha256": "752a6fa1b8abb32deb6077cbed8a258141abc08b7f9ad02e02902bb23305be0b",
       "proof_report": "reports/research/D037_FINALIZE_PUBLISH_PROOF_20260906.json"
+    },
+    "d038_transport_proof": {
+      "status": "PASS",
+      "batch_latest_pointer": "backtests/d038/live/latest.json",
+      "development_bundle": "backtests/d038/development/20260906T225212Z",
+      "finalize_commit_sha": "81ca497ae6cbd58403d6598ddf38dbde81e5215c",
+      "corrected_rich_event": "backtests/d038/live/events/development/rich-score/20260906T230626Z"
     }
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "D038_SMOKE_PASS_DEV_READY_WITH_AUTOMATIC_GITHUB_RESULT_EVENTS",
+    "status": "END_TO_END_PROVEN_WITH_SEQUENTIAL_MULTI_STRATEGY_CAMPAIGN_MODE",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
     "entrypoint": "research/runner/guardian_research.py",
+    "campaign_entrypoint": "research/runner/campaign.py",
     "windows_launcher": "research/runner/Run-GuardianResearch.ps1",
     "implemented_stages": [
       "STATE_VALIDATE",
@@ -104,55 +127,60 @@
       "ISOLATED_BACKTEST_RESULTS_PUBLISH",
       "FINALIZE_COMMAND",
       "TRADE_PATH_DATASET_CONTRACT",
-      "D038_NATIVE_TICK_PATH_HARNESS",
+      "NATIVE_TICK_PATH_HARNESS",
       "TRADE_PATH_POSTRUN_VALIDATOR",
       "AUTOMATIC_COMPACT_RESULT_EVENT_PUBLISH",
-      "STABLE_LIVE_RESULT_POINTER"
+      "STABLE_LIVE_RESULT_POINTER",
+      "SEQUENTIAL_MULTI_STRATEGY_CAMPAIGN",
+      "RICH_EVENT_PAYLOAD_COMPACTION"
     ],
     "planned_stages": [
-      "D038_DEV_BATCH",
-      "D038_DEV_TRADE_PATH_VALIDATION",
-      "D038_DEV_SCORE_RICH_ANALYTICS_FINALIZE"
+      "D039_LOCAL_COMPILE",
+      "D039_THREE_MARKET_ENGINEERING_SMOKE",
+      "D039_NATIVE_TRADE_PATH_VALIDATION",
+      "D039_DEV_ONLY_IF_SMOKE_PASS",
+      "D038_EXIT_LAB_E1_EXACT_REPLAY_IF_PRIORITIZED",
+      "D040_D045_PROMOTE_SELECTED_DRAFTS_TO_PREREG_SOURCE_MANIFEST"
     ],
     "reference_tester_model": 0,
     "fast_tester_model_candidate": null,
     "fast_model_approved": false,
+    "parallel_mt5_approved": false,
+    "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not yet proven safe; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_AUTO_RESULT_TRANSPORT_CI",
-    "local_mt5_status": "D038_SMOKE_PASS_DEV_READY",
+    "github_ci_status": "PENDING_D039_ACTIVE_STATE_CI",
+    "local_mt5_status": "D038_CLOSED_D039_AWAITING_LOCAL_COMPILE",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
-    "canonical_d038": {
+    "ergonomics_speed_audit": "docs/RESEARCH_RUNNER_ERGONOMICS_SPEED_AUDIT_2026_09_07.md",
+    "canonical_d039": {
       "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
-      "source_identity_sha256": "e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8",
-      "git_blob_sha": "b0e2e9222970281de47fec9d36377698b6aed5d7",
+      "source_identity_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+      "git_blob_sha": "6788ef91e324039b5d3a4bf0969a02f7599f74c0",
       "source_version": "1.00",
       "ci_identity_report_pass": true,
-      "local_compile_status": "COMPILE_PASS",
-      "local_ex5_sha256": "32ecb804a722bf6d7c2959baecf0002a365abe1ef796e2e52397de0aa55422bd",
-      "metaeditor_errors": 0,
-      "metaeditor_warnings": 0,
-      "metaeditor_process_exit_code": 1,
-      "compile_acceptance_basis": "0 errors / 0 warnings in MetaEditor log, exact source/destination SHA identity, EX5 exists and is SHA256-addressed",
+      "local_compile_status": "NOT_RUN_YET",
       "native_trade_path": true,
-      "smoke_period": "2023-11-01..2023-11-30",
+      "smoke_period": "2023-10-02..2023-10-31",
       "smoke_symbols": ["USDJPY", "XAUUSD", "BTCUSD"],
-      "smoke_status": "PASS",
-      "smoke_aggregate_trades": 14,
-      "smoke_trade_path_status": "PASS_ALL_THREE_SYMBOLS",
-      "smoke_proof_report": "reports/research/D038_SMOKE_NOV2023_PASS_20260906.json",
+      "smoke_status": "READY_AFTER_COMPILE",
       "development_period": "2024-01-02..2025-12-31",
-      "development_status": "READY"
+      "development_status": "LOCKED_UNTIL_SMOKE_PASS",
+      "confirmation_period": "2026-01-02..2026-06-30",
+      "confirmation_status": "UNOPENED"
     },
-    "d037_final_proof": {
+    "d038_final_proof": {
       "verdict": "REJECT_V0",
-      "aggregate_n": 2377,
-      "finalize_status": "FINALIZE_PASS",
-      "publish_branch": "backtest-results",
-      "publish_path": "backtests/d037/development/20260906T215334Z",
-      "publish_commit_sha": "69e18140486bd5151e0ce029ff374fb8dbe2bebe",
-      "proof_report": "reports/research/D037_FINALIZE_PUBLISH_PROOF_20260906.json"
+      "aggregate_n": 459,
+      "failed_gates": ["aggregate_n_min"],
+      "aggregate_mean_net_r": 0.17949124751633988,
+      "aggregate_pf": 1.5549236197092462,
+      "aggregate_total_net_r": 82.38648261,
+      "stress_total_net_r": 77.18744327,
+      "native_trade_path": true,
+      "closeout_report": "reports/research/D038_DEV_FINAL_RICH_CLOSEOUT_20260907.md",
+      "exit_lab_e1": "research/campaigns/D038_EXIT_LAB_E1_BE_AFTER_1R_2026_09_07.md"
     },
-    "principle": "one manifest + one complete strategy source; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline"
+    "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; several ready experiments may be run unattended through sequential campaign mode"
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
