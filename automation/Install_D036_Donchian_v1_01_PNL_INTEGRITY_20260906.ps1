@@ -10,8 +10,6 @@ $Target=Join-Path $TargetDir 'D036_DonchianTrendBreakout_H1_v1_01_FUNDEDNEXT_PNL
 if(-not(Test-Path -LiteralPath $Source)){throw "Source v1.00 introuvable: $Source"}
 New-Item -ItemType Directory -Force -Path $TargetDir | Out-Null
 
-# Normalize the committed source to LF first so every multiline patch is deterministic
-# regardless of git autocrlf / Windows checkout behavior.
 $raw=(Get-Content -LiteralPath $Source -Raw) -replace "`r`n","`n"
 
 function Replace-Exact([string]$Text,[string]$Old,[string]$New,[string]$Label){
@@ -19,12 +17,10 @@ function Replace-Exact([string]$Text,[string]$Old,[string]$New,[string]$Label){
     return $Text.Replace($Old,$New)
 }
 
-# Unique source/version identity. Never overwrite v1.00.
 $raw=Replace-Exact $raw '#property version "1.00"' '#property version "1.01"' 'property version'
 $raw=Replace-Exact $raw 'D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5' 'D036_DonchianTrendBreakout_H1_v1_01_FUNDEDNEXT_PNLINTEGRITY_20260906.mq5' 'source name'
 $raw=Replace-Exact $raw 'string SOURCE_VERSION="1.00";' 'string SOURCE_VERSION="1.01";' 'source version'
 
-# Dedicated integrity counters / fatal state.
 $oldGlobals=@'
 long g_invalid_risk=0;
 long g_csv_rows=0;
@@ -38,7 +34,6 @@ bool g_fatal_pnl=false;
 '@
 $raw=Replace-Exact $raw $oldGlobals $newGlobals 'global integrity counters'
 
-# Primary OrderCalcProfit plus exact USD-quote fallback for EURUSD/GBPUSD only.
 $oldMoney=@'
 bool MoneyPnL(double exit_px,double &pnl)
 {
@@ -57,8 +52,6 @@ bool MoneyPnL(double exit_px,double &pnl)
    int primary_err=GetLastError();
 
    // Exact one-lot USD-quote fallback, frozen only for EURUSD/GBPUSD.
-   // For these two symbols the quote currency is USD, therefore account P/L in USD
-   // is contract_size * signed(exit-entry) for one lot.
    if((StringFind(_Symbol,"EURUSD")>=0 || StringFind(_Symbol,"GBPUSD")>=0) && AssetClass()=="FOREX")
    {
       double contract=SymbolInfoDouble(_Symbol,SYMBOL_TRADE_CONTRACT_SIZE);
@@ -81,7 +74,6 @@ bool MoneyPnL(double exit_px,double &pnl)
 '@
 $raw=Replace-Exact $raw $oldMoney $newMoney 'MoneyPnL'
 
-# Never silently discard an opened trade.
 $oldFail=@'
    double pnl=0.0;
    if(!MoneyPnL(exit_px,pnl) || g_risk_money<=0.0)
@@ -104,18 +96,14 @@ $newFail=@'
 '@
 $raw=Replace-Exact $raw $oldFail $newFail 'WriteTrade failure handling'
 
-# STATS schema/value observability.
-$raw=Replace-Exact $raw \
-'g_stop_exits,g_channel_exits,g_stage_end_exits,g_test_end_exits,g_invalid_risk,g_csv_rows,' \
-'g_stop_exits,g_channel_exits,g_stage_end_exits,g_test_end_exits,g_invalid_risk,g_pnl_fallbacks,g_pnl_calc_failures,g_csv_rows,' \
-'WriteStats integrity values'
+$oldStatsVals='g_stop_exits,g_channel_exits,g_stage_end_exits,g_test_end_exits,g_invalid_risk,g_csv_rows,'
+$newStatsVals='g_stop_exits,g_channel_exits,g_stage_end_exits,g_test_end_exits,g_invalid_risk,g_pnl_fallbacks,g_pnl_calc_failures,g_csv_rows,'
+$raw=Replace-Exact $raw $oldStatsVals $newStatsVals 'WriteStats integrity values'
 
-$raw=Replace-Exact $raw \
-'"stop_exits","channel_exits","stage_end_exits","test_end_exits","invalid_risk","csv_trade_rows","symbol"' \
-'"stop_exits","channel_exits","stage_end_exits","test_end_exits","invalid_risk","pnl_fallbacks","pnl_calc_failures","csv_trade_rows","symbol"' \
-'STATS integrity header'
+$oldHeader='"stop_exits","channel_exits","stage_end_exits","test_end_exits","invalid_risk","csv_trade_rows","symbol"'
+$newHeader='"stop_exits","channel_exits","stage_end_exits","test_end_exits","invalid_risk","pnl_fallbacks","pnl_calc_failures","csv_trade_rows","symbol"'
+$raw=Replace-Exact $raw $oldHeader $newHeader 'STATS integrity header'
 
-# Stop processing after an unrecoverable PnL failure.
 $oldTick=@'
 void OnTick()
 {
@@ -129,7 +117,6 @@ void OnTick()
 '@
 $raw=Replace-Exact $raw $oldTick $newTick 'OnTick fatal guard'
 
-# A run with unrecoverable PnL failure must never emit a valid FINAL.
 $oldDeinit=@'
 void OnDeinit(const int reason)
 {
@@ -145,14 +132,12 @@ void OnDeinit(const int reason)
 $raw=Replace-Exact $raw $oldDeinit $newDeinit 'OnDeinit fatal guard'
 $raw=Replace-Exact $raw '   WriteStats("FINAL");' '   WriteStats(g_fatal_pnl ? "FINAL_INVALID_PNL_CALC" : "FINAL");' 'FINAL validity status'
 
-# Deterministic v1.01 output filenames so v1.00 files remain untouched.
 $raw=Replace-Exact $raw 'D036_V100_%s_%s_STATS.csv' 'D036_V101_%s_%s_STATS.csv' 'stats filename template'
 $raw=Replace-Exact $raw 'D036_V100_%s_%s_TRADES.csv' 'D036_V101_%s_%s_TRADES.csv' 'trades filename template'
 $raw=$raw.Replace('D036 V100','D036 V101')
 
 Set-Content -LiteralPath $Target -Value $raw -Encoding UTF8
 
-# Static assertions before handing the file to MetaEditor.
 $check=(Get-Content -LiteralPath $Target -Raw) -replace "`r`n","`n"
 foreach($needle in @(
     '#property version "1.01"',
