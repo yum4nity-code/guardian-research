@@ -1,5 +1,8 @@
 {
+  "mt5_root": "D:/MT5_FundedNext",
   "metaeditor_exe": "D:/MT5_FundedNext/metaeditor64.exe",
+  "terminal_exe": "D:/MT5_FundedNext/terminal64.exe",
   "mt5_experts_dir": "D:/MT5_FundedNext/MQL5/Experts/GuardianResearch",
+  "common_files_dir": "C:/Users/YOU/AppData/Roaming/MetaQuotes/Terminal/Common/Files",
   "workspace_dir": "D:/MT5_Backtests/guardian-runner"
 }
