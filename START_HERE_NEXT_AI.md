@@ -15,7 +15,7 @@ Read only what is needed, in this order:
 
 - Experiment: **D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0**
 - State: **COMPILE_PENDING**
-- Next action: **On the MT5 research PC, configure the local Guardian runner and compile D037 v1.01. Require verified source-copy SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt before any DEV run.**
+- Next action: **On the MT5 research PC: run the Windows bootstrap/doctor without a backtest, then compile D037 v1.01, then run one USDJPY development test. Only after all three proofs pass should the six-symbol DEV batch run.**
 
 ## Operational truths
 
