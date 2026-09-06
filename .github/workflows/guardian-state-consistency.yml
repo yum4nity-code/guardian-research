@@ -42,19 +42,25 @@ jobs:
           research/runner/test_rich_trade_path.py
           research/runner/test_campaign_transport.py
 
-      - name: Parse Windows PowerShell launcher
+      - name: Parse Windows PowerShell tools
         shell: pwsh
         run: |
-          $tokens = $null
-          $parseErrors = $null
-          [System.Management.Automation.Language.Parser]::ParseFile(
-            (Resolve-Path 'research/runner/Run-GuardianResearch.ps1'),
-            [ref]$tokens,
-            [ref]$parseErrors
-          ) | Out-Null
-          if ($parseErrors.Count -gt 0) {
-            $parseErrors | ForEach-Object { Write-Error $_.Message }
-            exit 1
+          $files = @(
+            'research/runner/Run-GuardianResearch.ps1',
+            'research/runner/Inspect-LegacyResultTransport.ps1'
+          )
+          foreach ($file in $files) {
+            $tokens = $null
+            $parseErrors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile(
+              (Resolve-Path $file),
+              [ref]$tokens,
+              [ref]$parseErrors
+            ) | Out-Null
+            if ($parseErrors.Count -gt 0) {
+              $parseErrors | ForEach-Object { Write-Error ("${file}: " + $_.Message) }
+              exit 1
+            }
           }
 
       - name: Validate authoritative state and generated views
