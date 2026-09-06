@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260906_225414_D038_EURUSD_ffb10fc55780",
+    "fingerprint":  "ffb10fc5578019535ac660aa38f0806d78c949c5e8676989326be560d2f34529",
+    "synced_at_utc":  "2026-09-06T22:54:51.6865075Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D038_NR7_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "RUN",
+                       "symbol":  "EURUSD",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  72,
+                       "published_trades_rows":  72
+                   },
+    "files":  [
+                  {
+                      "name":  "D038_V100_RUN_EURUSD_STATS.csv",
+                      "source_sha256":  "136fd49423aee59d21dab22cbb48dc48928ad4299b68d4e64aca892601af82c1",
+                      "published_sha256":  "5df1b8964086554bf4d82464698b6f0ea1ad5390ed49edc4655cf68233c65bf5",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D038_V100_RUN_EURUSD_TRADES.csv",
+                      "source_sha256":  "9376643bf0cac10045a13cd5b618a85f2d8dc77cf87dbadce631c465312b5679",
+                      "published_sha256":  "b4d0a059997ce997a9cdf326920780fab4a8b5d66d5de43edc2d22127f366082",
+                      "sanitized":  false
+                  }
+              ]
+}
