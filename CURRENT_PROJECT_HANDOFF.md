@@ -1,150 +1,201 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-06 Europe/Paris
-Status: **ACTIVE / D023 REJECTED ON UNTOUCHED 2023 / AUTOSYNC V1.04 RUNTIME-VALIDATED / NEXT INDEPENDENT P0 TO SELECT**
+Status: **ACTIVE / D036 DONCHIAN H1 V0 PREREGISTERED / HARNESS V1.00 STATIC-AUDITED / GENERIC AUTOSYNC V2.01 STATIC-AUDITED / LOCAL COMPILE+SMOKE PENDING**
 
-## Canonical entrypoint
+## Canonical resume
 
 Read first:
+1. `CURRENT_QUEUE.json`
+2. this file
+3. `START_HERE_NEXT_AI.md`
+4. `GUARDIAN_MASTER_MANDATE.md`
 
-1. `START_HERE_NEXT_AI.md`
-2. `GUARDIAN_MASTER_MANDATE.md`
-3. `handoff/guardian_next_ai/2026/09/06/GUARDIAN_PROJECT_RESTART_HANDOFF_2026_09_06.md`
-4. `CURRENT_QUEUE.json`
+Do not reopen rejected families merely because they remain in historical documents.
 
-The Sep-6 restart handoff supersedes older execution-order text in historical handoffs.
+## Active P0 — D036 Donchian / Turtle-inspired Trend Breakout H1 V0
 
-## Latest material milestone — D023 untouched 2023 confirmation
+Preregistration:
+`research/campaigns/D036_DONCHIAN_TREND_BREAKOUT_H1_V0_PREREGISTRATION_2026_09_06.md`
 
-D023 USDJPY London ORB has now completed its preregistered untouched 2023 confirmation and **FAILED materially**.
+MT5 no-order harness:
+`research/strategies/d036/D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5`
 
-Published AutoSync run:
+Scorer:
+`research/analysis/analyze_d036_donchian_v0_v1_01.py`
 
-`backtests/inbox/2026/09/06/20260906_151852_D023_V108_USDJPY_c6c4489100ff`
+Static audit:
+`research/results/D036_V100_AND_AUTOSYNC_V201_STATIC_AUDIT_2026_09_06.md`
 
-Result artifact:
+### Frozen strategy
 
-`research/results/D023_USDJPY_2023_UNTOUCHED_CONFIRMATION_RESULT_2026_09_06.md`
+Exactly six markets:
+- BTCUSD
+- ETHUSD
+- EURUSD
+- GBPUSD
+- USDJPY
+- XAUUSD
 
-Frozen gates scored:
+Tester timeframe: H1.
 
-- n >= 150: **PASS — 195**
-- mean net R > 0: **FAIL — -0.198176 R/trade**
-- net PF >= 1.10: **FAIL — 0.708428**
-- 5-day moving-block bootstrap lower 5% bound of zero-filled weekday daily mean net R > 0: **FAIL — -0.268783 R/day**
-- result remains positive at 1.5x commission: **FAIL — -44.512458 R total / -0.228269 R/trade**
+Signal at closed bar S:
+- LONG iff close(S) > highest HIGH of the preceding 20 complete H1 bars;
+- SHORT iff close(S) < lowest LOW of the preceding 20 complete H1 bars;
+- enter next H1 open on executable spread side.
 
-Baseline total net R: **-38.644330 R**.
+Initial stop:
+- exactly 2.0 × MT5 ATR(20) measured at signal bar S.
 
-Verdict: **REJECT / UNCONFIRMED — 1/5 gates passed.**
+Exit:
+- protective initial stop, or
+- opposite 10-complete-H1-bar Donchian channel;
+- gap beyond threshold fills at worse executable bar-open price;
+- if stop and channel are both touched in one OHLC bar and order is ambiguous, take the economically worse valid exit.
 
-This is not a borderline miss. D023 was positive in inspected FundedNext/DST-aware 2024-2026 evidence but materially negative in untouched 2023, so treat the frozen strategy as regime-unstable / non-confirmed. Per preregistration: do not remove SHORT, do not add day/direction/EMA/RSI/ATR/news rescue filters, and do not tune on 2023.
+No pyramiding, TP, time exit, BE, trailing ATR, RSI, EMA, ADX, news/day/direction filters or parameter search.
+One open D036 position per symbol max. Same-bar exit + opposite 20-bar signal may reverse at the next H1 open.
 
-D023 is closed as the current P0 alpha candidate. Preserve for evidence only.
+This is explicitly a **Turtle-inspired intraday adaptation**, not a claim to reproduce the historical Turtle system verbatim.
 
-## D023 lineage / harness
+### FundedNext frozen costs — Stellar 1-Step / 2-Step
 
-Frozen strategy semantics used for the failed confirmation:
+- Forex: USD 5/lot/side.
+- Metals: 0.0016% × lot × contract size × execution price, per side.
+- Crypto: 0.04% × lot × contract size × execution price, per side.
+- Spread is tester MqlRates executable-side spread.
+- Net R uses 1-lot `OrderCalcProfit` money P/L / initial-stop money risk.
+- Harness emits baseline net R and net R with commission ×1.5 per trade.
+- USD account currency required for valid frozen cost accounting.
 
-- USDJPY M15;
-- London OR 08:00-09:00, exactly four M15 bars;
-- first strict M15 close outside OR from 09:00 inclusive to 11:00 exclusive;
-- enter next M15 open on executable spread side;
-- stop opposite OR edge;
-- maximum one trade/day;
-- exit at stop or close of the M15 bar finishing 16:00 London;
-- no EMA/RSI/ATR/day/news/direction filters.
+## D036 data sequence — frozen before outcomes
 
-Active confirmation harness source:
+### 1. Compile gate
+Real FundedNext MetaEditor compile of exact v1.00 source: **0 errors / 0 warnings required**.
 
-`research/strategies/d023/D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5`
+### 2. Smoke gate — no alpha scoring
+Period: `2025-03-03` through `2025-03-31`.
+Run exactly one representative symbol per FundedNext commission class:
+- USDJPY — Forex
+- XAUUSD — Metal
+- BTCUSD — Crypto
 
-Canonical Git source commit:
+Input stage must remain `D036_SMOKE_MAR2025`.
+Purpose only: output lifecycle, channel chronology, ATR/stop logic, executable spread side and three commission classes.
 
-`b0fb0bc6b557aea5c58cd56a041856a3a0bccd7b`
+Require:
+- STATS ordered INIT -> READY -> FINAL;
+- `trades_opened == trades_closed == csv_trade_rows == physical TRADES rows`;
+- no PUBLICSAFE leak after AutoSync;
+- plausible signal/entry chronology and cost values in all three classes.
 
-Git source SHA256 recorded at creation:
+### 3. Development / cheap-fail sample
+Only after smoke PASS:
+- `2024-01-02` through `2025-12-31`;
+- all six symbols;
+- stage `D036_DEV_2024_2025`.
 
-`10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4`
+Frozen continuation gates — all required:
+- aggregate n >= 180;
+- each symbol n >= 20;
+- aggregate mean net R >= +0.08R/trade;
+- aggregate net PF >= 1.15;
+- >=4/6 symbols positive total net R;
+- aggregate 2024 positive and aggregate 2025 positive;
+- aggregate remains positive at 1.5× commission;
+- no single symbol >60% of positive-symbol net-R contribution.
 
-The user compiled v1.08 successfully in the FundedNext MetaEditor and ran the preregistered smoke before the full confirmation. Smoke 2023-03-13..2023-03-31 validated deterministic outputs and the expected UK DST transition behavior.
+Any fail => **REJECT_V0**, no parameter/timeframe/direction rescue on opened 2024-2025 data.
 
-## GitHub AutoSync — v1.04 runtime validated
+### 4. Untouched confirmation — HARD LOCK until development passes
+- `2026-01-02` through `2026-06-30`;
+- all six same symbols;
+- same code/semantics/cost model;
+- stage `D036_CONFIRM_2026_H1`.
 
-Installed watcher:
+Frozen confirmation gates — all required:
+- aggregate n >=45;
+- mean net R >0;
+- PF >=1.10;
+- >=3/6 symbols positive total net R;
+- positive aggregate at 1.5× commission.
 
-`automation/Guardian_Backtest_CSV_AutoSync_v1_04_D023_NATIVEGITFIX_PUBLICSAFE.ps1`
+Do not inspect 2026-H1 to rescue a failed development result.
 
-Commit introducing v1.04:
+## Reporting requirement for D036
 
-`4dc8b740a387faa98a5666e684674cdb7350652e`
+Do not return only `N / expectancy / PF`.
 
-Runtime proof now exists:
+Each scored D036 result must include:
+- aggregate + per-symbol N, total/mean/median net R, win rate, PF;
+- long vs short contribution;
+- year contribution on development;
+- stop vs channel exit share;
+- strongest/weakest symbol and profit concentration;
+- max gain/loss and largest losing streak where available;
+- baseline vs 1.5× commission stress;
+- stability/failure-mode interpretation;
+- explicit decision and next action.
 
-- Windows Startup installation succeeded;
-- v1.04 shut down old v1.02/v1.03 watcher state during installation;
-- D023 smoke auto-published successfully to `backtest-results`;
-- untouched full-2023 run auto-published successfully to `backtest-results`;
-- source/version/symbol/timeframe and row-count checks passed;
-- `trades_closed == csv_trade_rows == published_trades_rows`;
-- Windows username path was redacted in published STATS;
-- GitHub push commit was produced by `Guardian Backtest Bot` without user running `-Once` after the backtest.
+Keep the concise top line, but follow it with the richer diagnostic.
 
-Important implementation history:
+## Generic GitHub AutoSync — v2.01
 
-- v1.02 failed because the PowerShell function parameter `$Args` collided with automatic `$args` and produced empty Git invocations.
-- v1.03 fixed `GitArgs` but Windows PowerShell promoted normal Git stderr such as `From https://...` to terminating errors under `$ErrorActionPreference='Stop'`.
-- v1.04 isolates Git with `System.Diagnostics/Start-Process` style stdout/stderr handling and trusts the native process exit code.
+Active prepared watcher:
+`automation/Guardian_Backtest_CSV_AutoSync_v2_01_GENERIC_PUBLICSAFE.ps1`
 
-Normal operation now: user runs the relevant MT5 backtest; watcher stays resident and auto-publishes finalized D023 CSV pairs. No per-backtest PowerShell command is required. Windows reboot + session-login autostart is configured; actual reboot-cycle proof has not yet been explicitly observed in-chat.
+Purpose: replace the D023-specific watcher with one persistent transport contract for future `Dxxx` harnesses.
+
+On install it:
+- stops/removes D023 v1.04 and generic v2.00 startup/PID state;
+- installs one Windows Startup watcher;
+- ignores historical CSVs older than installation time;
+- watches new `Dxxx_V..._STATS.csv` + exact `_TRADES.csv` companion pairs;
+- waits for stable files;
+- requires INIT -> READY -> FINAL;
+- validates source/version/symbol/timeframe, closed/CSV/physical rows and opened==closed when exposed;
+- hashes before/after validation;
+- redacts Windows username paths and blocks obvious secret/email leakage;
+- uses native-Git exit-code handling inherited from the runtime-proven v1.04 fix;
+- uses deterministic run identity and recovers push-before-state crashes;
+- writes health/log/state/PID under `D:\MT5_Backtests`.
+
+v2.01 is static-audited here but not yet Windows-runtime validated. After its first local install, only one health check is required. Normal later backtests must not require `-Once`.
+
+## Local execution paths
+
+Canonical Git repo/source/versioning:
+`D:\MT5_Backtests\guardian-research`
+
+FundedNext MT5 compilation/backtest EA folder:
+`D:\MT5_FundedNext\MQL5\Experts\GuardianReasearch`
+
+All FundedNext backtest `.mq5` execution copies go in that `GuardianReasearch` folder unless the user explicitly changes this convention.
+
+## Closed alpha families — do not rescue
+
+### D023 USDJPY London ORB
+Untouched 2023: n=195, total -38.644330R, mean -0.198176R, PF 0.708428, 1/5 gates. **REJECTED / UNCONFIRMED.** Preserve evidence only.
+
+### D17 Momentum
+Closed after broad seven-market attribution. Preserve lineage and Manager Evidence Ledger only.
+
+D022, D027, D028 and D029 are reconciled as closed/rejected legacy families in `CURRENT_QUEUE.json`; do not blindly relaunch them.
+
+## Guardian production / compliance separation
+
+Guardian Core v12.01 remains the stable compile-validated pure infrastructure baseline. Keep strategy research out of Core.
+
+FundedNext request/retry hyperactivity remains a separate P1/P0 compliance-runtime problem. FundedNext AUTO stays OFF until request budgeting/dedup/backoff is bounded. Do not mix that issue into D036 alpha scoring.
 
 ## Next safe action
 
-Do **not** rerun, rescue or tune D023.
+1. sync repo locally;
+2. install Generic AutoSync v2.01 once and verify health;
+3. copy exact D036 v1.00 source into the FundedNext `GuardianReasearch` execution folder;
+4. compile 0 errors / 0 warnings;
+5. if compile passes, run the three March-2025 smoke symbols only;
+6. allow AutoSync to publish automatically;
+7. audit smoke before opening 2024-2025 development.
 
-Select/reconcile the next preregistered independent strategy family from `CURRENT_QUEUE.json` / current research slate, preserving the evidence-first rule:
-
-1. independent documented hypothesis;
-2. frozen rules before untouched confirmation;
-3. cheap smoke/output validation first;
-4. one untouched confirmation;
-5. no post-hoc rescue on failed held-out data.
-
-Do not let the separate FundedNext request/retry compliance issue become an excuse to mix alpha and infrastructure research.
-
-## D17 Momentum
-
-D17 Momentum is closed as a current alpha candidate after broad attribution across BTCUSD, ETHUSD, EURUSD, GBPUSD, USDJPY, XAUUSD and USDCAD.
-
-Preserve D17 only for source lineage and Manager Evidence Ledger. Do not restart a rescue campaign or tune inspected D17 samples.
-
-Manager evidence remains useful, but a dedicated Manager Lab should wait for similar management weakness on an independent confirmed strategy family.
-
-## Guardian Core
-
-Guardian Core v12.01 is the stable compile-validated pure infrastructure baseline.
-
-Canonical note:
-
-`production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
-
-Keep Core stable during strategy research. Strategies integrate through the registry/API; do not turn Core back into the research laboratory.
-
-## FundedNext runtime issue
-
-FundedNext request/retry hyperactivity is a separate runtime/compliance problem.
-
-FundedNext AUTO remains OFF until request budgeting, deduplication, retry/backoff behavior and safety are bounded and verified. Do not mix this runtime issue into alpha conclusions.
-
-## Communication / persistence
-
-After every material milestone:
-
-- update `CURRENT_QUEUE.json`;
-- update this handoff;
-- update `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` for the Europe/Paris workday;
-- persist local-action requests through the ChatGPT/Codex handoff + inbox mechanism when needed.
-
-For confirmation results report concisely:
-
-**VERDICT — N — expectancy — PF — stability/cost issue — next action**
+No 2024-2025 alpha run before compile + smoke PASS.
