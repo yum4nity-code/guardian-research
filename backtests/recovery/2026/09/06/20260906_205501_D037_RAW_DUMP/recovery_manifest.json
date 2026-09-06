@@ -1,0 +1,15 @@
+﻿{
+    "schema":  2,
+    "reason":  "D037_RAW_RECOVERY_DUMP_NO_FINAL_REQUIRED",
+    "created_at":  "2026-09-06T20:55:01.7094570+01:00",
+    "file_count":  12,
+    "symbols":  [
+                    "BTCUSD",
+                    "ETHUSD",
+                    "EURUSD",
+                    "GBPUSD",
+                    "USDJPY",
+                    "XAUUSD"
+                ],
+    "note":  "Raw local dump for remote audit. Presence here does not imply validation."
+}
