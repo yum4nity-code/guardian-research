@@ -15,7 +15,8 @@
     "handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md",
     "handoff/chatgpt_to_codex/2026/09/06/D17_BANGER_GLOBAL_AUDIT_2026_09_06.md",
     "handoff/chatgpt_to_codex/2026/09/06/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md",
-    "handoff/chatgpt_to_codex/2026/09/06/D17_LIVE_V1117_LINEAGE_ATTRIBUTION_PREP_2026_09_06.md"
+    "handoff/chatgpt_to_codex/2026/09/06/D17_LIVE_V1117_LINEAGE_ATTRIBUTION_PREP_2026_09_06.md",
+    "handoff/chatgpt_to_codex/2026/09/06/D17_LIVE_V1117_BTC_ATTRIBUTION_RESULT_2026_09_06.md"
   ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
@@ -28,5 +29,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "NEW 2026-09-06 P0 UPDATE: exact FTMO live source has now been supplied and source lineage is resolved. Read D17_LIVE_V1117_LINEAGE_ATTRIBUTION_PREP_2026_09_06.md before doing D17 work. Live is v11.17 SHA256 875a56e95e5ab4282442e410e4e80f1c776aa9f974d4a3ce9dc5b12505cf8327 with Momentum+RSI. Raw Momentum setup is close lineage to v11.16 but crypto regime entry semantics changed materially to default BNS_JUMP_ONLY, so old v11.16 samples are not exact validation. Attribution candidate D017_Momentum_LiveV1117_Attribution_v1_100_20260906.mq5 SHA256 0e181ad3f65ee0dd370db834dcdfed40ae8a3f806073da9e3639e4277d3338d3 is waiting for user MetaEditor compile 0/0, then frozen BTCUSD Every-tick runs. Do not use TIMEBOX=60m, do not tune BNS or manager parameters, and do not mix RSI. Guardian Core v12.01 remains compile-validated baseline."
+  "notes": "NEW 2026-09-06 RESULT: read D17_LIVE_V1117_BTC_ATTRIBUTION_RESULT_2026_09_06.md first. BTCUSD 2024-2025 frozen live-v11.17 attribution is complete. NATIVE_RATCHET n=1739 gross +0.07737R/trade, cost 0.19350R/trade, net -0.11613R/trade, PF 0.828. FIXED_3R net -0.14694R/trade. Native incremental advantage is only +0.03081R/trade and its 95% bootstrap interval crosses zero. BTC therefore fails net edge. Do not tune BNS, 2R/25%, BE, trail, cost thresholds or SELL-only filters on this inspected sample. Next preregistered action is ETHUSD 2024-2025 Every tick with IDENTICAL diagnostic code/settings and same four CSV outputs. Guardian Core v12.01 remains frozen."
 }
