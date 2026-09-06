@@ -1,10 +1,11 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-06 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D029+D030+D033+D034 GOLD+D035 PRIMARY CLOSED REJECTED / D035-E1 CAUSAL DUAL-SOURCE EXPLORATORY DIAGNOSTIC PREREGISTERED+PREPARED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D029+D030+D033+D034 GOLD+D035 PRIMARY CLOSED REJECTED / D035-E1 RUNNING/PREPARED / CROSS-STRATEGY EDGE-DECAY AUTOPSY COMPLETE / BLIND NEW-FAMILY HUNT PAUSED AFTER E1 / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
+Cross-strategy autopsy: `research/results/CROSS_STRATEGY_EDGE_DECAY_AUTOPSY_2026_09_06.md`.
 
 ## MANDATORY DAILY HOUSEKEEPING — applies to every AI/agent
 Every Europe/Paris calendar day with material Guardian work **must** receive an entry/update in `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` before the agent ends the session or hands off. This applies to ChatGPT, Codex and any future AI. Do not defer it on the assumption that another agent will do it.
@@ -16,12 +17,14 @@ This requirement is also repeated in root `AGENTS.md` and `README.md`.
 ## Research standard
 - No curve fitting or post-hoc rescues disguised as validation.
 - Target materially large recurring edge, roughly >= +0.15R/trade and ideally +0.20R+, before production when a natural stop/R exists.
+- IMPORTANT after the 2026-09-06 autopsy: keep >=~+0.15R as the **Tier-A standalone-engine** preference, but do not use it as the only possible success class. Future preregistrations may prospectively define a **Tier-B portfolio sleeve** class around roughly +0.07R to +0.10R net/trade only when bootstrap, independent time-block stability, full costs, frequency and portfolio-correlation gates are also satisfied. This is prospective only and does not rescue past failed/post-hoc branches.
 - When a source has no natural stop, do not invent R post-hoc; use source/raw return metrics first.
 - Guardian is execution/protection infrastructure, not alpha.
 - Preserve `EXACT_REPLICATION`, `CLOSE_REPLICATION`, `ADAPTATION` labels.
 - Ex-post anomalies require a new preregistered test unless a rerun is a mechanical implementation correction dictated by the frozen source specification.
 - CFD transfer requires executable BID/ASK/cost handling.
 - Scanner QA after D032 v1.00: output-column counts/index bounds, immediate header flush, runtime output QA, plus source-algorithm audit for nontrivial sequence construction.
+- New meta-rule: managed-strategy claims must separate RAW SIGNAL EDGE, EXACT NATIVE MANAGEMENT LIFT, STRATEGY-SELECTION LIFT, GUARDIAN/ACCOUNT-STATE SELECTION LIFT and COST DRAG instead of comparing incomparable P/L and virtual entry studies.
 
 ## Pure Guardian Core v12.01
 Candidate: `Guardian_Core_Base_v12_01_CANDIDATE.mq5`
@@ -83,7 +86,7 @@ Frozen D035 gate:
 Final: **4/8 -> DISCOVERY_REJECT**. There is a small statistically detectable timing effect, but it is not economically large enough after executable FundedNext spreads in the broad CFD pool. BTCUSD and ETHUSD individually remain positive at +15m (~+5.86/+5.43 bps) but below the preregistered +15 bps hurdle.
 
 ## D035-E1 — causal dual-source exploratory diagnostic — PREREGISTERED / PREPARED
-Reason: rows labelled `BTCUSD+ETHUSD` in the original development output look strong but are not causally tradable as measured because the first source timestamp receives the dual label when the second source arrives up to five minutes later.
+Reason: rows labelled `BTCUSD+ETHUSD` in the original development output look strong but are not causally tradable as measured because the first source timestamp receives the dual label when the second arrives up to five minutes later.
 
 Preregistration:
 `research/campaigns/D035_E1_CAUSAL_DUAL_SOURCE_DIAGNOSTIC_PREREGISTRATION_2026_09_06.md`
@@ -108,12 +111,30 @@ E1 advancement requires 8/8 on XLMUSD: >=200 events, mean executable +15m >=15bp
 
 D035 primary remains REJECT regardless of E1. Only an E1 8/8 result permits a fresh D035-C1 preregistration before touching 2026-H1.
 
+# 2026-09-06 cross-strategy edge-decay autopsy — META DECISION
+Canonical report: `research/results/CROSS_STRATEGY_EDGE_DECAY_AUTOPSY_2026_09_06.md`, commit `e1b062a164a19134c3f8c1a2ae83bfd77cb42186`.
+
+Main conclusion: the transition from spectacular short-window P/L to weak broad edges is not explained by one cause. Evidence identifies a combination of **regime dependence, raw-signal vs native-manager/account-selection mismatch, multiple-testing/symbol selection, CFD cost drag, and data provenance**. D032 proves the stricter process can still confirm a large edge.
+
+Most important surviving evidence:
+- **D032 Doji entry**: Tier-A-sized confirmed entry edge, but sparse and management unresolved.
+- **D023 USDJPY ORB**: discovery-only but unusually stable; n=489, ~+0.1179R/trade after approximate commission, positive 2024/2025/2026. Requires a new untouched confirmation; do not reinterpret D023 broad V0.
+- **D017 BTC SELL Momentum**: discovery/watchlist but recurring; n=761, ~+0.125R to +0.131R at larger fixed targets, descriptive native-like management ~+0.109R, positive both 2024/2025. Requires exact-native attribution/full costs and later prospective confirmation.
+- **D035 BTC/ETH**: small positive executable response only ~+5-6bps; microstructure observation, not enough cost cushion unless E1 is materially stronger.
+
+Critical unresolved attribution question: the profitable 2026-09-02 RSI/Momentum short-window P/L and later raw-signal long-history diagnostics were not identical experiments. RSI raw entry is clearly negative over 2024-2025 while the short managed test was profitable; Momentum broad signal decays materially but account-state/native management may have supplied selection lift. Do not call the old P/L false until exact native replay decomposes it.
+
+Next meta-experiment after D035-E1: build a frozen **META-A1 exact edge-attribution replay** for legacy RSI and D017 Momentum with nested L0 raw signal -> L1 exact native manager -> L2 strategy-local gates -> L3 Guardian/account-state selection, plus explicit cost drag and year splits. No thresholds may change.
+
 ## Immediate execution order
-1. Run the delivered D035-E1 pack against the same existing CFD export folder and `D035_binance_cache`; no MT5 rerun and no 2026 data.
-2. If E1 returns 8/8, preregister D035-C1 before opening 2026-H1. If not, close the dual-source branch.
-3. Keep D032 Doji as a sparse confirmed-entry sleeve; do not rescue rejected families on inspected samples.
-4. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
-5. FundedNext Algo Trading remains OFF until request-budget/retry pathology is resolved and replacement core is compiled/smoked.
+1. Let the already-started D035-E1 run finish on the same 2024-2025 data. Do not touch 2026-H1.
+2. If E1 returns 8/8, preregister D035-C1 before opening 2026-H1. If E1 fails, close the dual-source branch.
+3. **After E1, pause blind new-family scanning.** Do not immediately create D036/D037 merely to keep searching.
+4. Prepare META-A1 exact-native edge attribution for the previously profitable legacy RSI and D017 Momentum lineages. Measure management/selection lift rather than comparing raw entry EV with full managed P/L.
+5. Preserve USDJPY ORB and BTC SELL Momentum as Tier-B hypotheses only. Any confirmation must be separately preregistered on untouched data and include full realistic costs; no same-sample threshold mining.
+6. Keep D032 Doji as the one confirmed sparse entry sleeve; future work must solve causal risk management without altering the confirmed pattern definition.
+7. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
+8. FundedNext Algo Trading remains OFF until request-budget/retry pathology is resolved and replacement core is compiled/smoked.
 
 Continuity rule: after every material milestone, update this handoff in the same work session.
 Daily ledger rule: every Europe/Paris day with material Guardian work must be recorded in `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` before session end/handoff.
