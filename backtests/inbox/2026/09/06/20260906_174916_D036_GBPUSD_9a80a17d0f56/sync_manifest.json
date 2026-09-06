@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260906_174916_D036_GBPUSD_9a80a17d0f56",
+    "fingerprint":  "9a80a17d0f56421c063951f081ec27e991d568520ad97124aa7aa1a3475b11d9",
+    "synced_at_utc":  "2026-09-06T17:49:43.1737193Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D036_DonchianTrendBreakout_H1_v1_02_FUNDEDNEXT_PNLINTEGRITY_DIRECT_20260906.mq5",
+                       "source_version":  "1.02",
+                       "run_stage":  "DEV_2024_2025",
+                       "symbol":  "GBPUSD",
+                       "timeframe":  "PERIOD_H1",
+                       "trades_closed":  476,
+                       "published_trades_rows":  476
+                   },
+    "files":  [
+                  {
+                      "name":  "D036_V102_DEV_2024_2025_GBPUSD_STATS.csv",
+                      "source_sha256":  "0a8a3cd6790fbbbd19aeedd6d85d5389504aeae3d311890780f22718f0137afa",
+                      "published_sha256":  "18898a74ebaa2e5873c7d07c8836b6d62c9ca0219a00ee4f49eeb0cd182f9acb",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D036_V102_DEV_2024_2025_GBPUSD_TRADES.csv",
+                      "source_sha256":  "a013f55249530887b8609405d0426ddda980c293ec0ae342fed56b6af33f7c5b",
+                      "published_sha256":  "8c2d4d4b77bc23f9b1ecf40e4a09938d07360b7de361d57159f2442585b4872e",
+                      "sanitized":  false
+                  }
+              ]
+}
