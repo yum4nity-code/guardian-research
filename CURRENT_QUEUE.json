@@ -2,22 +2,22 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T00:36:00+02:00",
+  "updated_at": "2026-09-07T00:48:00+02:00",
   "active_primary": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "items": [
     {
       "id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
       "priority": 0,
-      "status": "READY_SMOKE",
+      "status": "READY_DEV",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "On the MT5 research PC, pull the latest refactor branch and run exactly `py -3 .\\research\\runner\\guardian_research.py test-one D038 --stage smoke --symbol USDJPY`. This is one engineering-only smoke run for 2023-11-01 through 2023-11-30 under Model=0. Require TEST_PASS_INTEGRITY, FINAL lifecycle, opened=closed=rows, zero invalid price/risk/PnL/path failures, and usable native Trade Path telemetry before running the three-symbol smoke batch.",
+      "goal": "On the MT5 research PC, pull the latest refactor branch and run `py -3 .\\research\\runner\\guardian_research.py batch D038 --stage development`. The six-market 2024-01-02..2025-12-31 DEV batch is now authorized after a clean three-market engineering smoke. The runner automatically publishes the completed batch event to branch backtest-results and updates backtests/d038/live/latest.json through an isolated clone. The user should no longer paste the full terminal output; after completion they can simply say that the batch is finished and the assistant will read the GitHub result. If automatic GitHub transport fails, local scientific evidence remains valid and the transport failure is reported separately; do not rerun MT5 solely for transport.",
       "manifest": "research/experiments/D038.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "D038_COMPILE_PASS_SINGLE_SYMBOL_SMOKE_PENDING",
+      "status": "D038_SMOKE_PASS_DEV_READY_WITH_AUTOMATIC_GITHUB_RESULT_EVENTS",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
       "goal": "one manifest + one complete strategy source; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline"
