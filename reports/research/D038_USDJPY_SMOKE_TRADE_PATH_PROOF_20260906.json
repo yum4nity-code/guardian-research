@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "source_version": "1.00",
+  "source_sha256": "e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8",
+  "stage": "smoke",
+  "period": {
+    "from": "2023-11-01",
+    "to": "2023-11-30"
+  },
+  "symbol": "USDJPY",
+  "tester_model": 0,
+  "local_run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0\\smoke\\20260906T223755Z_USDJPY_M0",
+  "lifecycle": {
+    "status": "TEST_PASS_INTEGRITY",
+    "final_status": "FINAL",
+    "trades": 6,
+    "trades_opened": 6,
+    "trades_closed": 6,
+    "invalid_price": 0,
+    "invalid_risk": 0,
+    "pnl_calc_failures": 0
+  },
+  "trade_path": {
+    "status": "TRADE_PATH_PASS",
+    "trades": 6,
+    "path_rows": 6,
+    "path_calc_failures": 0,
+    "required_columns": 36,
+    "reached_counts": {
+      "0.5R": 3,
+      "1R": 1,
+      "2R": 0,
+      "3R": 0,
+      "5R": 0
+    },
+    "path_ambiguous_rows": 0,
+    "stats_encoding": "utf-16",
+    "trades_encoding": "utf-16"
+  },
+  "science_role": "ENGINEERING_SMOKE_ONLY_NO_ALPHA_VERDICT",
+  "autosync_used": false,
+  "evidence_source": "user terminal output observed in ChatGPT session"
+}
