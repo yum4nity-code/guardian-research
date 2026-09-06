@@ -8,6 +8,7 @@ import json
 import sys
 
 import batch
+import diagnostics
 import experiment
 import runner
 import score
@@ -59,6 +60,10 @@ def main() -> int:
     recover.add_argument("--stage", default="development", choices=("smoke", "development", "confirmation"))
     recover.add_argument("--symbol", required=True)
 
+    diagnose = sub.add_parser("diagnose-invalid")
+    diagnose.add_argument("experiment")
+    diagnose.add_argument("--stage", default="development", choices=("smoke", "development", "confirmation"))
+
     b = sub.add_parser("batch")
     b.add_argument("experiment")
     b.add_argument("--stage", default="development", choices=("smoke", "development", "confirmation"))
@@ -84,6 +89,9 @@ def main() -> int:
         if args.command == "recover-one":
             print(json.dumps(tester.recover_latest(args.experiment, args.stage, args.symbol), indent=2, ensure_ascii=False))
             return 0
+        if args.command == "diagnose-invalid":
+            print(json.dumps(diagnostics.diagnose_latest_invalid(args.experiment, args.stage), indent=2, ensure_ascii=False))
+            return 0
         if args.command == "batch":
             print(json.dumps(batch.run_batch(args.experiment, args.stage), indent=2, ensure_ascii=False))
             return 0
@@ -92,7 +100,7 @@ def main() -> int:
             return 0
         print(json.dumps(pipeline_run(args.experiment), indent=2, ensure_ascii=False, allow_nan=False))
         return 0
-    except (runner.RunnerError, tester.TestError, score.ScoreError, experiment.ManifestError, KeyError, OSError) as exc:
+    except (runner.RunnerError, tester.TestError, diagnostics.DiagnosticError, score.ScoreError, experiment.ManifestError, KeyError, OSError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
 
