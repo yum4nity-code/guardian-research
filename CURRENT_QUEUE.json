@@ -2,25 +2,25 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-06T23:47:00+02:00",
+  "updated_at": "2026-09-07T00:10:00+02:00",
   "active_primary": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "items": [
     {
       "id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
       "priority": 0,
-      "status": "READY_DEV",
+      "status": "REJECTED",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "Restart the sequential six-symbol D037 v1.02 development batch from scratch with reference tester model 0. Stop immediately on any engineering/integrity failure. If all six runs pass integrity, score the frozen DEV gates; any failed gate means REJECT_V0 with no rescue tuning.",
+      "goal": "Implement the common rich analytics scorer and deterministic compact result publisher defined in docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md. Publish validated result bundles to the backtest-results branch without touching the user's active research working tree. Preserve D037 REJECT_V0; its 2,377 DEV trades may feed transversal Trade Path Dataset / Exit Lab research but may not rescue D037. Then select and preregister D038.",
       "manifest": "research/experiments/D037.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "V102_COMPILE_XAU_PASS_DEV_BATCH_PENDING",
+      "status": "END_TO_END_BATCH_SCORE_PROVEN_RICH_ANALYTICS_PUBLISHER_PENDING",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
-      "goal": "one manifest + one complete strategy source; deterministic compile/test/batch/score pipeline"
+      "goal": "one manifest + one complete strategy source; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline"
     },
     {
       "id": "AUTOSYNC_V3_FROM_SCRATCH",
