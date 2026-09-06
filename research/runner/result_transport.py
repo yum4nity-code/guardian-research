@@ -67,6 +67,56 @@ def _candidate_files(payload: dict[str, Any]) -> list[Path]:
     return out
 
 
+def _event_payload(kind: str, payload: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+    """Keep event envelopes compact when the full evidence is already a file.
+
+    rich_score.json is itself copied into the immutable event directory. Repeating
+    its entire analytics tree inside event.json roughly doubles every rich-score
+    transport commit and makes `latest` inspection slower for no scientific gain.
+    The fingerprint still covers the original complete payload, so idempotence and
+    collision detection remain evidence-sensitive.
+    """
+    if kind != "rich-score":
+        return payload, False
+
+    analytics = payload.get("analytics", {}) if isinstance(payload.get("analytics"), dict) else {}
+    net = analytics.get("net_r", {}) if isinstance(analytics.get("net_r"), dict) else {}
+    stress = analytics.get("commission_stress_1_5x_r", {}) if isinstance(analytics.get("commission_stress_1_5x_r"), dict) else {}
+    trade_path = analytics.get("trade_path", {}) if isinstance(analytics.get("trade_path"), dict) else {}
+
+    summary = {
+        "schema_version": payload.get("schema_version"),
+        "experiment_id": payload.get("experiment_id"),
+        "stage": payload.get("stage"),
+        "role": payload.get("role"),
+        "rich_score_path": payload.get("rich_score_path"),
+        "batch_path": payload.get("batch_path"),
+        "scope": analytics.get("scope"),
+        "net_r_summary": {
+            "n": net.get("distribution", {}).get("n") if isinstance(net.get("distribution"), dict) else None,
+            "mean": net.get("distribution", {}).get("mean") if isinstance(net.get("distribution"), dict) else None,
+            "median": net.get("distribution", {}).get("median") if isinstance(net.get("distribution"), dict) else None,
+            "profit_factor": net.get("profit_factor"),
+            "total_r": net.get("total_r"),
+            "win_rate": net.get("win_rate"),
+        },
+        "commission_stress_summary": {
+            "mean": stress.get("distribution", {}).get("mean") if isinstance(stress.get("distribution"), dict) else None,
+            "profit_factor": stress.get("profit_factor"),
+            "total_r": stress.get("total_r"),
+        },
+        "trade_path_summary": {
+            "available": trade_path.get("available"),
+            "trades": trade_path.get("trades"),
+            "path_ambiguous_rows": trade_path.get("path_ambiguous_rows"),
+            "milestone_touch": trade_path.get("milestone_touch"),
+        },
+        "compact_trades": payload.get("compact_trades"),
+        "autosync_used": payload.get("autosync_used", False),
+    }
+    return summary, True
+
+
 def publish_event(identifier: str, stage: str, kind: str, payload: dict[str, Any]) -> dict[str, Any]:
     _, _, manifest = runner.load_context(identifier)
     config = runner.load_config()
@@ -74,6 +124,7 @@ def publish_event(identifier: str, stage: str, kind: str, payload: dict[str, Any
     short_id = publisher._safe_short_id(manifest["experiment_id"])
     event_id = _event_id(kind, payload)
     event_fingerprint = _fingerprint({"kind": kind, "stage": stage, "payload": payload})
+    envelope_payload, compacted = _event_payload(kind, payload)
 
     remote = publisher._run_git(["-C", str(runner.ROOT), "remote", "get-url", "origin"])
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -116,7 +167,7 @@ def publish_event(identifier: str, stage: str, kind: str, payload: dict[str, Any
                 published_files.append(item)
 
             event = {
-                "schema_version": 1,
+                "schema_version": 2,
                 "created_at_utc": datetime.now(timezone.utc).isoformat(),
                 "experiment_id": manifest["experiment_id"],
                 "stage": stage,
@@ -124,7 +175,8 @@ def publish_event(identifier: str, stage: str, kind: str, payload: dict[str, Any
                 "event_id": event_id,
                 "event_fingerprint_sha256": event_fingerprint,
                 "source_sha256": manifest.get("source", {}).get("source_sha256"),
-                "payload": payload,
+                "payload": envelope_payload,
+                "payload_compacted": compacted,
                 "files": published_files,
                 "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
                 "autosync_used": False,
@@ -171,6 +223,7 @@ def publish_event(identifier: str, stage: str, kind: str, payload: dict[str, Any
         "event_id": event_id,
         "event_fingerprint_sha256": event_fingerprint,
         "commit_sha": commit_sha,
+        "payload_compacted": compacted,
         "autosync_used": False,
     }
     receipt_path = workspace / "result_transport_receipts" / manifest["experiment_id"] / stage / kind / f"{event_id}.json"
