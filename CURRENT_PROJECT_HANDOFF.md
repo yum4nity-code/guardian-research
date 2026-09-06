@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-06 Europe/Paris
-Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D029+D030+D033+D034 GOLD+D035 PRIMARY CLOSED REJECTED / D035-E1 RUNNING/PREPARED / CROSS-STRATEGY EDGE-DECAY AUTOPSY COMPLETE / BLIND NEW-FAMILY HUNT PAUSED AFTER E1 / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
+Status: ACTIVE / PURE GUARDIAN CORE V12.01 STATIC CANDIDATE / D032 DOJI ENTRY CONFIRMED BUT MANAGEMENT UNSOLVED / D029+D030+D033+D034 GOLD+D035+D035-E1 CLOSED REJECTED / CROSS-STRATEGY EDGE-DECAY AUTOPSY COMPLETE / META-A1 EXACT EDGE ATTRIBUTION NEXT / BLIND NEW-FAMILY HUNT PAUSED / CURRENT FUNDEDNEXT LIVE AUTO STILL OFF
 
 Canonical protocol: `docs/RESEARCH_PROTOCOL.md`.
 Historical chronology: `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`.
@@ -46,7 +46,8 @@ Status remains STATIC PASS only; MetaEditor compile/smoke required before live r
 - D029 Moskowitz/Ooi/Pedersen TSMOM 12M/1M: full 8-market gate rejected. Canonical result `research/results/D029_TSMOM_12M1M_FULL_PRIMARY_VERDICT_2018_2023_2026_09_05.md`.
 - D033 Ben Omrane & Van Oppens EURUSD M5 DT/DB M2: corrected v1.01 arm rejected 0/7 gates. Canonical result `research/results/D033_V1_01_CORRECTED_M2_VERDICT_2026_09_05.md`.
 - D034 Caporale/Plastun abnormal-return Strategy 1 GOLD arm: rejected 3/7 gates. OIL untested because unavailable. Canonical result `research/results/D034_XAUUSD_ABNORMAL_RETURN_STRAT1_VERDICT_2026_09_05.md`.
-- D035 Binance BTC/ETH deleveraging -> FundedNext crypto CFD lead-lag primary development: rejected 4/8 gates. Canonical result `research/results/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_DISCOVERY_VERDICT_2026_09_06.md`, commit `436068e04ed5a9538cae79b8305417e08c79d3f3`.
+- D035 Binance BTC/ETH deleveraging -> FundedNext crypto CFD lead-lag primary development: rejected 4/8 gates. Canonical result `research/results/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_DISCOVERY_VERDICT_2026_09_06.md`.
+- D035-E1 causal dual-source XLMUSD exploratory diagnostic: rejected 6/8 advancement gates. Canonical result `research/results/D035_E1_CAUSAL_DUAL_SOURCE_VERDICT_2026_09_06.md`.
 
 # D032 — Crypto H1 Bullish Doji Star
 Research basis: Moser & Brauneis (2026), DOI `10.1016/j.iref.2026.105158`.
@@ -59,57 +60,29 @@ Core BTC+ETH+DOG PRE2024: n=79, mean +133.52 bps, median +93.43 bps, win 64.56%,
 
 Not production-ready. Management/entry-localization attempts -1R/+3R/24h, post24 1R runner, RSI<30 and 6h reclaim-high did not solve the problem. Keep as sparse research sleeve only.
 
-# D035 — Binance BTC/ETH deleveraging -> FundedNext crypto CFD lead-lag — PRIMARY CLOSED REJECTED
-Canonical preregistration: `research/campaigns/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_LEADLAG_PREREGISTRATION_2026_09_05.md`.
-Canonical result: `research/results/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_DISCOVERY_VERDICT_2026_09_06.md`.
+# D035 — Binance BTC/ETH deleveraging -> FundedNext crypto CFD lead-lag — FAMILY CLOSED FOR NOW
+Canonical primary preregistration: `research/campaigns/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_LEADLAG_PREREGISTRATION_2026_09_05.md`.
+Primary result: `research/results/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_DISCOVERY_VERDICT_2026_09_06.md`.
+E1 preregistration: `research/campaigns/D035_E1_CAUSAL_DUAL_SOURCE_DIAGNOSTIC_PREREGISTRATION_2026_09_06.md`.
+E1 result: `research/results/D035_E1_CAUSAL_DUAL_SOURCE_VERDICT_2026_09_06.md`.
 
-Development remained 2024-01-01..2025-12-31; 2026-H1 remains untouched.
+Primary D035 ended **4/8 DISCOVERY_REJECT**. E1 then removed the post-hoc dual-source look-ahead by requiring the tradable signal at the later/second BTC/ETH shock.
 
-Returned pack quality:
-- 5,558 merged BTC/ETH source events;
-- 38,622 target-event rows;
-- 9 eligible FundedNext crypto CFDs: ADAUSD, BTCUSD, DOGUSD, ETHUSD, LNKUSD, LTCUSD, XLMUSD, XMRUSD, XRPUSD;
-- Binance daily metrics complete for both BTC and ETH; no missing days/duplicate rows in returned QA;
-- BTC/ETH 1m archive coverage complete for the loaded period;
-- server->UTC alignment 114/114 weeks usable, mean weekly correlation ~0.996.
+D035-E1 returned:
+- 973 causal dual events;
+- primary XLMUSD n=870;
+- mean executable SHORT +15m **+6.705 bps**;
+- median executable +15m **0.000 bps**;
+- event-control differential **+13.490 bps**;
+- raw day-cluster bootstrap **[+1.996,+11.549] bps**;
+- differential bootstrap **[+8.793,+18.302] bps**;
+- mean executable +30m **+3.697 bps**;
+- year mean +15m: 2024 **+4.104 bps**, 2025 **+9.935 bps**;
+- frozen advancement gate **6/8 -> E1_DO_NOT_ADVANCE** because mean executable +15m failed the +15bps hurdle and median +15m was not >0.
 
-Frozen D035 gate:
-- G1 event count PASS;
-- G2 target count PASS;
-- G3 pooled executable +15m FAIL: **-25.448 bps**;
-- G4 event-control differential +15m FAIL: **+5.179 bps** vs +10 bps requirement;
-- G5 day-cluster bootstrap lower >0 PASS: **[+3.033,+7.385] bps**;
-- G6 pooled executable +30m FAIL: **-25.438 bps**;
-- G7 BTC-only and ETH-only branches both positive FAIL: BTC-only **-3.281 bps**, ETH-only **+3.283 bps**;
-- G8 month concentration PASS: max ~8.08%.
+2026-H1 remains untouched. **Do not run D035-C1 on 2026-H1.** Do not retune the window, shock thresholds, target, direction or horizon on inspected 2024-2025 data.
 
-Final: **4/8 -> DISCOVERY_REJECT**. There is a small statistically detectable timing effect, but it is not economically large enough after executable FundedNext spreads in the broad CFD pool. BTCUSD and ETHUSD individually remain positive at +15m (~+5.86/+5.43 bps) but below the preregistered +15 bps hurdle.
-
-## D035-E1 — causal dual-source exploratory diagnostic — PREREGISTERED / PREPARED
-Reason: rows labelled `BTCUSD+ETHUSD` in the original development output look strong but are not causally tradable as measured because the first source timestamp receives the dual label when the second arrives up to five minutes later.
-
-Preregistration:
-`research/campaigns/D035_E1_CAUSAL_DUAL_SOURCE_DIAGNOSTIC_PREREGISTRATION_2026_09_06.md`
-Commit: `e6ddd6989f49bbdba4581c575d9b9e5deec3ab9e`.
-
-Analyzer:
-`research/analysis/D035_E1_CausalDualConfirm_v1_00.py`
-Commit: `4f95cc088478d520a28a95d376b6d08d357c544c`.
-Delivered pack: `D035_E1_CausalDual_Pack_v1_00.zip`.
-Python syntax compile PASS. The local runner includes progress percentage, elapsed time, ETA and per-CFD checkpoints.
-
-Frozen E1 mechanics:
-- same D035 BTC/ETH single-source shock definitions and 30m cooldown;
-- require BTC and ETH shocks within <=5 minutes;
-- tradable signal timestamp = **later/second qualifying source shock**;
-- exploratory sample remains 2024-2025 only;
-- primary cross-asset target frozen to **XLMUSD**; other CFDs diagnostics only;
-- +15m primary, same +1/+5/+30/+60/+120 diagnostics;
-- 2026-H1 remains untouched.
-
-E1 advancement requires 8/8 on XLMUSD: >=200 events, mean executable +15m >=15bps, median >0, raw day-cluster bootstrap lower >0, event-control differential >=10bps, differential bootstrap lower >0, +30m >0, and both 2024/2025 +15m means >0.
-
-D035 primary remains REJECT regardless of E1. Only an E1 8/8 result permits a fresh D035-C1 preregistration before touching 2026-H1.
+Diagnostics only: ETHUSD was ~+14.999bps mean executable +15m and BTCUSD ~+10.359bps, both with positive medians, but neither was the frozen E1 primary target. Do not promote these post hoc into a 2026 confirmation. Any future revisit requires genuinely fresh data and a separately preregistered hypothesis.
 
 # 2026-09-06 cross-strategy edge-decay autopsy — META DECISION
 Canonical report: `research/results/CROSS_STRATEGY_EDGE_DECAY_AUTOPSY_2026_09_06.md`, commit `e1b062a164a19134c3f8c1a2ae83bfd77cb42186`.
@@ -120,17 +93,26 @@ Most important surviving evidence:
 - **D032 Doji entry**: Tier-A-sized confirmed entry edge, but sparse and management unresolved.
 - **D023 USDJPY ORB**: discovery-only but unusually stable; n=489, ~+0.1179R/trade after approximate commission, positive 2024/2025/2026. Requires a new untouched confirmation; do not reinterpret D023 broad V0.
 - **D017 BTC SELL Momentum**: discovery/watchlist but recurring; n=761, ~+0.125R to +0.131R at larger fixed targets, descriptive native-like management ~+0.109R, positive both 2024/2025. Requires exact-native attribution/full costs and later prospective confirmation.
-- **D035 BTC/ETH**: small positive executable response only ~+5-6bps; microstructure observation, not enough cost cushion unless E1 is materially stronger.
 
 Critical unresolved attribution question: the profitable 2026-09-02 RSI/Momentum short-window P/L and later raw-signal long-history diagnostics were not identical experiments. RSI raw entry is clearly negative over 2024-2025 while the short managed test was profitable; Momentum broad signal decays materially but account-state/native management may have supplied selection lift. Do not call the old P/L false until exact native replay decomposes it.
 
-Next meta-experiment after D035-E1: build a frozen **META-A1 exact edge-attribution replay** for legacy RSI and D017 Momentum with nested L0 raw signal -> L1 exact native manager -> L2 strategy-local gates -> L3 Guardian/account-state selection, plus explicit cost drag and year splits. No thresholds may change.
+## META-A1 — next research task
+Build a frozen exact edge-attribution replay for legacy RSI and D017 Momentum with nested:
+- L0 raw signal;
+- L1 exact native management;
+- L2 strategy-local gates/cooldowns;
+- L3 Guardian/account-state selection;
+- explicit BID/ASK, commission/slippage and 2024/2025 splits.
+
+No thresholds may change. First market is BTCUSD 2024-2025. If the fully reconstructed system does not survive there, stop before broadening.
+
+**Source recovery blocker:** the exact v11.16.11 source used for the 2026-09-02 BTC baseline is not currently present in GitHub at the expected path. Required exact identity from the historical mirror handoff: `Guardian_D017_PropFirmAuto_v11_16_11_STRATEGY_SWITCHES.mq5`, size 272765 bytes, 5729 lines, SHA256 `d30ff21378331f972bea947a4c6c826b6f4a2547e58878947551199b9d01c495`. Do not substitute v11.16.1 or later v11.16.19 for exact META-A1 attribution. Locate/mirror the exact source before building the replay.
 
 ## Immediate execution order
-1. Let the already-started D035-E1 run finish on the same 2024-2025 data. Do not touch 2026-H1.
-2. If E1 returns 8/8, preregister D035-C1 before opening 2026-H1. If E1 fails, close the dual-source branch.
-3. **After E1, pause blind new-family scanning.** Do not immediately create D036/D037 merely to keep searching.
-4. Prepare META-A1 exact-native edge attribution for the previously profitable legacy RSI and D017 Momentum lineages. Measure management/selection lift rather than comparing raw entry EV with full managed P/L.
+1. D035/D035-E1 are closed for immediate development; leave 2026-H1 untouched.
+2. Recover and mirror the exact v11.16.11 baseline source by hash before PC cleanup or META-A1 implementation.
+3. Prepare META-A1 exact-native edge attribution on BTCUSD 2024-2025.
+4. **Keep blind new-family scanning paused.** Do not create D036/D037 merely to keep searching.
 5. Preserve USDJPY ORB and BTC SELL Momentum as Tier-B hypotheses only. Any confirmation must be separately preregistered on untouched data and include full realistic costs; no same-sample threshold mining.
 6. Keep D032 Doji as the one confirmed sparse entry sleeve; future work must solve causal risk management without altering the confirmed pattern definition.
 7. Pure Guardian Core v12.01 compile/smoke remains independently required before any live replacement.
