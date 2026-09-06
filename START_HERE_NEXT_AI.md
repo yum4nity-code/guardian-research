@@ -14,8 +14,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0**
-- State: **READY_SMOKE**
-- Next action: **On the MT5 research PC, pull the latest refactor branch and run exactly `py -3 .\research\runner\guardian_research.py test-one D038 --stage smoke --symbol USDJPY`. This is one engineering-only smoke run for 2023-11-01 through 2023-11-30 under Model=0. Require TEST_PASS_INTEGRITY, FINAL lifecycle, opened=closed=rows, zero invalid price/risk/PnL/path failures, and usable native Trade Path telemetry before running the three-symbol smoke batch.**
+- State: **READY_DEV**
+- Next action: **On the MT5 research PC, pull the latest refactor branch and run `py -3 .\research\runner\guardian_research.py batch D038 --stage development`. The six-market 2024-01-02..2025-12-31 DEV batch is now authorized after a clean three-market engineering smoke. The runner automatically publishes the completed batch event to branch backtest-results and updates backtests/d038/live/latest.json through an isolated clone. The user should no longer paste the full terminal output; after completion they can simply say that the batch is finished and the assistant will read the GitHub result. If automatic GitHub transport fails, local scientific evidence remains valid and the transport failure is reported separately; do not rerun MT5 solely for transport.**
 
 ## Operational truths
 
