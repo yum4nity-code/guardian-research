@@ -8,6 +8,8 @@ import unittest
 from pathlib import Path
 
 import experiment
+import publisher
+import rich_score
 import runner
 import score
 import tester
@@ -98,6 +100,29 @@ class RunnerContractTests(unittest.TestCase):
 
     def test_entry_year_parses_mql5_time_string(self) -> None:
         self.assertEqual(2025, score.entry_year("2025.07.31 15:45"))
+
+    def test_rich_quantile_uses_linear_interpolation(self) -> None:
+        self.assertEqual(1.0, rich_score.quantile([0.0, 2.0], 0.5))
+        self.assertEqual(0.5, rich_score.quantile([0.0, 1.0, 2.0], 0.25))
+
+    def test_rich_max_drawdown_is_chronological_peak_to_trough(self) -> None:
+        result = rich_score.max_drawdown_r([1.0, 1.0, -0.5, -2.0, 0.25])
+        self.assertAlmostEqual(2.5, result["max_drawdown_r"])
+        self.assertEqual(1, result["peak_index"])
+        self.assertEqual(3, result["trough_index"])
+
+    def test_rich_streaks_are_directional(self) -> None:
+        values = [1.0, 0.5, -1.0, -0.2, -0.1, 2.0]
+        self.assertEqual(2, rich_score.longest_streak(values, True))
+        self.assertEqual(3, rich_score.longest_streak(values, False))
+
+    def test_realized_thresholds_are_not_mislabeled_as_mfe(self) -> None:
+        thresholds = rich_score.threshold_summary([2.5, 0.8, -1.0])
+        self.assertIn("REALIZED", thresholds["note"])
+        self.assertEqual(1, thresholds["realized_at_or_above"]["2R"]["n"])
+
+    def test_publisher_uses_stable_short_experiment_id(self) -> None:
+        self.assertEqual("d037", publisher._safe_short_id("D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0"))
 
 
 if __name__ == "__main__":
