@@ -9,22 +9,34 @@ $Target=Join-Path $TargetDir 'D036_DonchianTrendBreakout_H1_v1_01_FUNDEDNEXT_PNL
 
 if(-not(Test-Path -LiteralPath $Source)){throw "Source v1.00 introuvable: $Source"}
 New-Item -ItemType Directory -Force -Path $TargetDir | Out-Null
-$raw=Get-Content -LiteralPath $Source -Raw
+
+# Normalize the committed source to LF first so every multiline patch is deterministic
+# regardless of git autocrlf / Windows checkout behavior.
+$raw=(Get-Content -LiteralPath $Source -Raw) -replace "`r`n","`n"
+
+function Replace-Exact([string]$Text,[string]$Old,[string]$New,[string]$Label){
+    if(-not $Text.Contains($Old)){throw "Patch anchor not found: $Label"}
+    return $Text.Replace($Old,$New)
+}
 
 # Unique source/version identity. Never overwrite v1.00.
-$raw=$raw.Replace('#property version "1.00"','#property version "1.01"')
-$raw=$raw.Replace('D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5','D036_DonchianTrendBreakout_H1_v1_01_FUNDEDNEXT_PNLINTEGRITY_20260906.mq5')
-$raw=$raw.Replace('string SOURCE_VERSION="1.00";','string SOURCE_VERSION="1.01";')
+$raw=Replace-Exact $raw '#property version "1.00"' '#property version "1.01"' 'property version'
+$raw=Replace-Exact $raw 'D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5' 'D036_DonchianTrendBreakout_H1_v1_01_FUNDEDNEXT_PNLINTEGRITY_20260906.mq5' 'source name'
+$raw=Replace-Exact $raw 'string SOURCE_VERSION="1.00";' 'string SOURCE_VERSION="1.01";' 'source version'
 
 # Dedicated integrity counters / fatal state.
-$oldGlobals='long g_invalid_risk=0;`r`nlong g_csv_rows=0;'
-$newGlobals='long g_invalid_risk=0;`r`nlong g_pnl_calc_failures=0;`r`nlong g_csv_rows=0;`r`nbool g_fatal_pnl=false;'
-if(-not $raw.Contains($oldGlobals)){
-    $oldGlobals="long g_invalid_risk=0;`nlong g_csv_rows=0;"
-    $newGlobals="long g_invalid_risk=0;`nlong g_pnl_calc_failures=0;`nlong g_csv_rows=0;`nbool g_fatal_pnl=false;"
-}
-if(-not $raw.Contains($oldGlobals)){throw 'Global-counter anchor not found.'}
-$raw=$raw.Replace($oldGlobals,$newGlobals)
+$oldGlobals=@'
+long g_invalid_risk=0;
+long g_csv_rows=0;
+'@
+$newGlobals=@'
+long g_invalid_risk=0;
+long g_pnl_fallbacks=0;
+long g_pnl_calc_failures=0;
+long g_csv_rows=0;
+bool g_fatal_pnl=false;
+'@
+$raw=Replace-Exact $raw $oldGlobals $newGlobals 'global integrity counters'
 
 # Primary OrderCalcProfit plus exact USD-quote fallback for EURUSD/GBPUSD only.
 $oldMoney=@'
@@ -40,12 +52,13 @@ bool MoneyPnL(double exit_px,double &pnl)
    ENUM_ORDER_TYPE ot=g_long?ORDER_TYPE_BUY:ORDER_TYPE_SELL;
    ResetLastError();
    if(OrderCalcProfit(ot,_Symbol,1.0,g_entry,exit_px,pnl))
-      return (MathIsValidNumber(pnl));
+      return MathIsValidNumber(pnl);
 
    int primary_err=GetLastError();
 
    // Exact one-lot USD-quote fallback, frozen only for EURUSD/GBPUSD.
-   // For these symbols account P/L in USD is contract_size * signed price delta.
+   // For these two symbols the quote currency is USD, therefore account P/L in USD
+   // is contract_size * signed(exit-entry) for one lot.
    if((StringFind(_Symbol,"EURUSD")>=0 || StringFind(_Symbol,"GBPUSD")>=0) && AssetClass()=="FOREX")
    {
       double contract=SymbolInfoDouble(_Symbol,SYMBOL_TRADE_CONTRACT_SIZE);
@@ -55,6 +68,7 @@ bool MoneyPnL(double exit_px,double &pnl)
          pnl=contract*delta;
          if(MathIsValidNumber(pnl))
          {
+            g_pnl_fallbacks++;
             PrintFormat("D036 V101 PNL FALLBACK | symbol=%s | primary_err=%d | entry=%.10f | exit=%.10f | pnl=%.8f",_Symbol,primary_err,g_entry,exit_px,pnl);
             return true;
          }
@@ -65,8 +79,7 @@ bool MoneyPnL(double exit_px,double &pnl)
    return false;
 }
 '@
-if(-not $raw.Contains($oldMoney)){throw 'MoneyPnL anchor not found.'}
-$raw=$raw.Replace($oldMoney,$newMoney)
+$raw=Replace-Exact $raw $oldMoney $newMoney 'MoneyPnL'
 
 # Never silently discard an opened trade.
 $oldFail=@'
@@ -89,56 +102,74 @@ $newFail=@'
       return;
    }
 '@
-if(-not $raw.Contains($oldFail)){throw 'WriteTrade failure anchor not found.'}
-$raw=$raw.Replace($oldFail,$newFail)
+$raw=Replace-Exact $raw $oldFail $newFail 'WriteTrade failure handling'
 
 # STATS schema/value observability.
-$oldStatsVals='g_stop_exits,g_channel_exits,g_stage_end_exits,g_test_end_exits,g_invalid_risk,g_csv_rows,'
-$newStatsVals='g_stop_exits,g_channel_exits,g_stage_end_exits,g_test_end_exits,g_invalid_risk,g_pnl_calc_failures,g_csv_rows,'
-if(-not $raw.Contains($oldStatsVals)){throw 'WriteStats values anchor not found.'}
-$raw=$raw.Replace($oldStatsVals,$newStatsVals)
+$raw=Replace-Exact $raw \
+'g_stop_exits,g_channel_exits,g_stage_end_exits,g_test_end_exits,g_invalid_risk,g_csv_rows,' \
+'g_stop_exits,g_channel_exits,g_stage_end_exits,g_test_end_exits,g_invalid_risk,g_pnl_fallbacks,g_pnl_calc_failures,g_csv_rows,' \
+'WriteStats integrity values'
 
-$oldHeader='"stop_exits","channel_exits","stage_end_exits","test_end_exits","invalid_risk","csv_trade_rows","symbol"'
-$newHeader='"stop_exits","channel_exits","stage_end_exits","test_end_exits","invalid_risk","pnl_calc_failures","csv_trade_rows","symbol"'
-if(-not $raw.Contains($oldHeader)){throw 'STATS header anchor not found.'}
-$raw=$raw.Replace($oldHeader,$newHeader)
+$raw=Replace-Exact $raw \
+'"stop_exits","channel_exits","stage_end_exits","test_end_exits","invalid_risk","csv_trade_rows","symbol"' \
+'"stop_exits","channel_exits","stage_end_exits","test_end_exits","invalid_risk","pnl_fallbacks","pnl_calc_failures","csv_trade_rows","symbol"' \
+'STATS integrity header'
 
 # Stop processing after an unrecoverable PnL failure.
-$onTickAnchor='void OnTick()`r`n{`r`n   MqlRates r[];'
-$onTickReplacement='void OnTick()`r`n{`r`n   if(g_fatal_pnl) return;`r`n   MqlRates r[];'
-if(-not $raw.Contains($onTickAnchor)){
-    $onTickAnchor="void OnTick()`n{`n   MqlRates r[];"
-    $onTickReplacement="void OnTick()`n{`n   if(g_fatal_pnl) return;`n   MqlRates r[];"
-}
-if(-not $raw.Contains($onTickAnchor)){throw 'OnTick anchor not found.'}
-$raw=$raw.Replace($onTickAnchor,$onTickReplacement)
+$oldTick=@'
+void OnTick()
+{
+   MqlRates r[];
+'@
+$newTick=@'
+void OnTick()
+{
+   if(g_fatal_pnl) return;
+   MqlRates r[];
+'@
+$raw=Replace-Exact $raw $oldTick $newTick 'OnTick fatal guard'
 
 # A run with unrecoverable PnL failure must never emit a valid FINAL.
-$raw=$raw.Replace('   if(g_in_trade)`r`n   {','   if(!g_fatal_pnl && g_in_trade)`r`n   {')
-$raw=$raw.Replace('   WriteStats("FINAL");','   WriteStats(g_fatal_pnl ? "FINAL_INVALID_PNL_CALC" : "FINAL");')
-$raw=$raw.Replace('PrintFormat("D036 V100 FINAL | stage=%s | symbol=%s | trades=%d | rows=%d | stops=%d | channels=%d",StageName(),_Symbol,g_trades_closed,g_csv_rows,g_stop_exits,g_channel_exits);','PrintFormat("D036 V101 FINAL | stage=%s | symbol=%s | trades=%d | rows=%d | stops=%d | channels=%d | pnl_failures=%d",StageName(),_Symbol,g_trades_closed,g_csv_rows,g_stop_exits,g_channel_exits,g_pnl_calc_failures);')
+$oldDeinit=@'
+void OnDeinit(const int reason)
+{
+   if(g_in_trade)
+   {
+'@
+$newDeinit=@'
+void OnDeinit(const int reason)
+{
+   if(!g_fatal_pnl && g_in_trade)
+   {
+'@
+$raw=Replace-Exact $raw $oldDeinit $newDeinit 'OnDeinit fatal guard'
+$raw=Replace-Exact $raw '   WriteStats("FINAL");' '   WriteStats(g_fatal_pnl ? "FINAL_INVALID_PNL_CALC" : "FINAL");' 'FINAL validity status'
 
 # Deterministic v1.01 output filenames so v1.00 files remain untouched.
-$raw=$raw.Replace('D036_V100_%s_%s_STATS.csv','D036_V101_%s_%s_STATS.csv')
-$raw=$raw.Replace('D036_V100_%s_%s_TRADES.csv','D036_V101_%s_%s_TRADES.csv')
+$raw=Replace-Exact $raw 'D036_V100_%s_%s_STATS.csv' 'D036_V101_%s_%s_STATS.csv' 'stats filename template'
+$raw=Replace-Exact $raw 'D036_V100_%s_%s_TRADES.csv' 'D036_V101_%s_%s_TRADES.csv' 'trades filename template'
 $raw=$raw.Replace('D036 V100','D036 V101')
 
 Set-Content -LiteralPath $Target -Value $raw -Encoding UTF8
 
-# Static assertions.
-$check=Get-Content -LiteralPath $Target -Raw
+# Static assertions before handing the file to MetaEditor.
+$check=(Get-Content -LiteralPath $Target -Raw) -replace "`r`n","`n"
 foreach($needle in @(
     '#property version "1.01"',
     'string SOURCE_VERSION="1.01";',
+    'g_pnl_fallbacks',
     'g_pnl_calc_failures',
     'D036 V101 PNL FALLBACK',
     'FINAL_INVALID_PNL_CALC',
     'D036_V101_%s_%s_STATS.csv',
-    'D036_V101_%s_%s_TRADES.csv'
+    'D036_V101_%s_%s_TRADES.csv',
+    'if(!g_fatal_pnl && g_in_trade)'
 )){
     if(-not $check.Contains($needle)){throw "Generated v1.01 missing assertion: $needle"}
 }
-if($check.Contains('D036_V100_%s_%s_STATS.csv') -or $check.Contains('D036_V100_%s_%s_TRADES.csv')){throw 'Generated v1.01 still contains V100 output templates.'}
+if($check.Contains('D036_V100_%s_%s_STATS.csv') -or $check.Contains('D036_V100_%s_%s_TRADES.csv')){
+    throw 'Generated v1.01 still contains V100 output templates.'
+}
 
 $hash=(Get-FileHash -Algorithm SHA256 -LiteralPath $Target).Hash.ToLowerInvariant()
 Write-Host "INSTALLE: $Target"
