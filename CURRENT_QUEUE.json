@@ -1,8 +1,16 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T15:25:00+02:00",
-  "active_primary": "D023-LONDON-ORB-M15-V0",
+  "updated_at": "2026-09-06T16:20:00+02:00",
+  "active_primary": "NEXT-INDEPENDENT-P0-SELECTION",
   "items": [
+    {
+      "id": "NEXT-INDEPENDENT-P0-SELECTION",
+      "priority": 0,
+      "status": "READY",
+      "owner": "ChatGPT/Codex",
+      "type": "research_portfolio_transition",
+      "goal": "D023 failed untouched 2023 confirmation materially. Reconcile the current slate and select the next independent preregistered strategy family without mining D023 2023 or reviving rejected families post hoc. Preserve cheap smoke -> frozen confirmation -> no rescue discipline."
+    },
     {
       "id": "D017-NATIVE-RATCHET-LINEAGE-ATTRIBUTION",
       "priority": 5,
@@ -62,21 +70,19 @@
     },
     {
       "id": "D023-AUTOSYNC-V102-RECOVERY",
-      "priority": 0,
-      "status": "WAITING_CODEX",
-      "owner": "Codex/User",
-      "type": "p0_output_recovery_and_transport_reliability",
-      "goal": "Before rerunning any D023 test, inspect FILE_COMMON for an already-finalized v1.08 STATS/TRADES pair and recover it with automation/Guardian_Backtest_CSV_AutoSync_v1_02_D023_RESILIENT_PUBLICSAFE.ps1. v1.02 validates INIT->READY->FINAL, exact v1.08 provenance, USDJPY M15, trades_closed==csv_trade_rows==physical trade rows, redacts local Windows username paths, records source/published hashes, uses deterministic run identity and retries Git errors without killing the watcher. If no finalized pair exists, install v1.02 and proceed only with the already-preregistered short smoke.",
-      "blocking": "Local PowerShell runtime validation and first successful backtest-results publication are still pending. At takeover, backtest-results head was 4d4a300c00d882dc66a497689284b0cc2827e165 from 2026-09-04 and backtests/inbox/LATEST.json did not exist. Read research/results/D023_AUTOSYNC_V102_STATIC_AUDIT_2026_09_06.md and handoff/chatgpt_to_codex/2026/09/06/D023_AUTOSYNC_V102_INSTALL_RECOVER_AND_SMOKE_REQUEST_2026_09_06.md."
+      "priority": 5,
+      "status": "VALIDATED",
+      "owner": "ChatGPT/User",
+      "type": "output_transport_reliability_resolved",
+      "goal": "Superseded by runtime-validated AutoSync v1.04 NATIVEGITFIX PUBLICSAFE. v1.04 successfully auto-published both the D023 smoke and untouched full-2023 run to backtest-results with provenance, row-count validation and Windows username redaction. No per-backtest -Once command is required. Preserve v1.02/v1.03 only as bug lineage."
     },
     {
       "id": "D023-LONDON-ORB-M15-V0",
-      "priority": 0,
-      "status": "WAITING_CODEX",
-      "owner": "Codex/User",
-      "type": "scientific_hypothesis_untouched_confirmation",
-      "goal": "CURRENT P0 alpha candidate. D023 v1.08 HARNESSFIX is committed at research/strategies/d023/D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5, SHA256 10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4. First recover any existing finalized v1.08 outputs through AutoSync v1.02. If none exist, next action is real FundedNext MetaEditor compile 0 errors / 0 warnings, then short USDJPY M15 Every tick smoke 2023-03-13 through 2023-03-31, direct STATS/TRADES inspection and manual ORB/DST verification. Only after that may the untouched full 2023 confirmation be run once against frozen gates.",
-      "blocking": "FULL 2023 RUN BLOCKED. v1.08 is static-audited but NOT compile-validated or smoke-validated. AutoSync v1.02 is also static-audited but not locally runtime-validated. Do not rerun an already-existing finalized smoke merely to recreate outputs. Do not tune D023, remove SHORT, add filters or test managers before the untouched confirmation is scored."
+      "priority": 5,
+      "status": "REJECTED",
+      "owner": "ChatGPT/User",
+      "type": "scientific_hypothesis_untouched_confirmation_failed",
+      "goal": "Closed. Untouched 2023 confirmation produced n=195, mean net -0.198176R/trade, PF 0.708428, 5-day block-bootstrap lower 5% zero-filled weekday daily mean -0.268783R/day, and 1.5x commission stress -44.512458R total. Only 1/5 frozen gates passed. Do not rescue, remove SHORT, add filters or tune on 2023. Preserve as evidence of regime instability versus positive inspected 2024-2026 clue."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
@@ -92,7 +98,7 @@
       "status": "WAITING_CODEX",
       "owner": "ChatGPT/Codex",
       "type": "legacy_scientific_hypothesis",
-      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not preempt D023 or rerun an already inspected family blindly."
+      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not rerun an already inspected family blindly."
     },
     {
       "id": "D028-INTRADAY-SESSION-MOMENTUM-V0",
@@ -100,7 +106,7 @@
       "status": "WAITING_CODEX",
       "owner": "ChatGPT/Codex",
       "type": "legacy_scientific_hypothesis",
-      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not preempt D023 or rerun an already inspected family blindly."
+      "goal": "Legacy Sep-5 slate item. Reconcile current verdict/status before any further execution; do not rerun an already inspected family blindly."
     },
     {
       "id": "D029-CLASSIC-TSMOM-BENCHMARK-V0",
@@ -157,7 +163,7 @@
       "status": "READY",
       "owner": "Codex",
       "type": "technical_non_regression_control",
-      "goal": "Historical technical control only. Do not let this preempt D023 confirmation or become another D17 rescue campaign."
+      "goal": "Historical technical control only. Do not let this preempt next independent alpha selection or become another D17 rescue campaign."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -169,5 +175,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-06 P0 state: D023 USDJPY London ORB remains the primary candidate. Before any rerun, recover any existing finalized v1.08 FILE_COMMON outputs with D023 AutoSync v1.02. v1.08 HARNESSFIX and AutoSync v1.02 are static-audited only; local runtime proof is pending. If no valid finalized pair exists, real MetaEditor compile 0/0 and the 2023-03-13..2023-03-31 DST smoke must PASS before any full 2023 run. D17 Momentum remains closed as current alpha; Guardian Core v12.01 remains the compile-validated pure infrastructure baseline; FundedNext request/retry pathology remains separate and AUTO stays off until bounded."
+  "notes": "2026-09-06 current state: D023 USDJPY London ORB is REJECTED after untouched 2023 confirmation (1/5 frozen gates). AutoSync v1.04 is runtime-validated and successfully publishes finalized D023 outputs without per-backtest commands. Next alpha action is independent P0 selection/reconciliation; do not mine D023 or revive rejected families post hoc. D17 remains closed; Guardian Core v12.01 remains stable; FundedNext request/retry pathology remains separate and AUTO stays off until bounded."
 }
