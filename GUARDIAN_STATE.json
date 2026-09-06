@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T00:32:00+02:00",
+  "updated_at": "2026-09-07T00:36:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,24 +8,24 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D038_ACTIVE_COMPILE_PENDING",
+    "status": "PHASE_3_D038_COMPILE_PASS_SINGLE_SMOKE_PENDING",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_PROVE_D038_COMPILE_THEN_ENGINEERING_SMOKE",
+    "next_phase": "PHASE_3_PROVE_D038_SINGLE_SYMBOL_ENGINEERING_SMOKE",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
     "experiment_manifest": "research/experiments/D038.json",
-    "status": "COMPILE_PENDING",
+    "status": "READY_SMOKE",
     "strategy_family": "NR7 volatility contraction breakout",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D038_NR7_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
     "canonical_sources_currently_in_repo": [
       "research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5"
     ],
-    "next_action": "On the MT5 research PC, pull the latest refactor branch and run only `py -3 .\\research\\runner\\guardian_research.py compile D038`. Require COMPILE_PASS with 0 errors / 0 warnings and an EX5 SHA before any D038 backtest. If compile passes, the next separate proof is exactly one USDJPY smoke test for 2023-11-01 through 2023-11-30 using Model=0; do not launch the three-symbol smoke batch until that single run passes lifecycle and Trade Path integrity.",
+    "next_action": "On the MT5 research PC, pull the latest refactor branch and run exactly `py -3 .\\research\\runner\\guardian_research.py test-one D038 --stage smoke --symbol USDJPY`. This is one engineering-only smoke run for 2023-11-01 through 2023-11-30 under Model=0. Require TEST_PASS_INTEGRITY, FINAL lifecycle, opened=closed=rows, zero invalid price/risk/PnL/path failures, and usable native Trade Path telemetry before running the three-symbol smoke batch.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -65,7 +65,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "D038_SOURCE_FROZEN_COMPILE_PENDING",
+    "status": "D038_COMPILE_PASS_SINGLE_SYMBOL_SMOKE_PENDING",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -98,7 +98,6 @@
       "D038_NATIVE_TICK_PATH_HARNESS"
     ],
     "planned_stages": [
-      "D038_LOCAL_COMPILE_PROOF",
       "D038_SINGLE_SYMBOL_SMOKE_PROOF",
       "D038_THREE_SYMBOL_SMOKE",
       "D038_DEV_BATCH"
@@ -108,7 +107,7 @@
     "fast_model_approved": false,
     "autosync_required_for_local_pipeline": false,
     "github_ci_status": "PASS_D038_SOURCE_IDENTITY_AND_STATIC_TOOLING",
-    "local_mt5_status": "D038_UNCOMPILED",
+    "local_mt5_status": "D038_COMPILE_PASS_SMOKE_UNTESTED",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "canonical_d038": {
       "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
@@ -116,7 +115,12 @@
       "git_blob_sha": "b0e2e9222970281de47fec9d36377698b6aed5d7",
       "source_version": "1.00",
       "ci_identity_report_pass": true,
-      "local_compile_status": "UNTESTED",
+      "local_compile_status": "COMPILE_PASS",
+      "local_ex5_sha256": "32ecb804a722bf6d7c2959baecf0002a365abe1ef796e2e52397de0aa55422bd",
+      "metaeditor_errors": 0,
+      "metaeditor_warnings": 0,
+      "metaeditor_process_exit_code": 1,
+      "compile_acceptance_basis": "0 errors / 0 warnings in MetaEditor log, exact source/destination SHA identity, EX5 exists and is SHA256-addressed",
       "native_trade_path": true,
       "smoke_period": "2023-11-01..2023-11-30",
       "smoke_symbols": ["USDJPY", "XAUUSD", "BTCUSD"]
