@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-09-06T22:59:43.576531+00:00",
+  "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "development",
+  "kind": "finalize",
+  "event_id": "20260906T225936Z",
+  "event_fingerprint_sha256": "15e4ca88661ea8fc78c591e0e0fa169eef6b393ea8d31698956cca22a0a7094b",
+  "source_sha256": "e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8",
+  "payload": {
+    "status": "FINALIZE_PASS",
+    "stage": "development",
+    "decision_verdict": "REJECT_V0",
+    "all_gates_pass": false,
+    "decision_score_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260906T225936Z\\verdict.json",
+    "rich_score_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260906T225936Z\\rich_score.json",
+    "publish_receipt": "D:\\MT5_Backtests\\guardian-runner\\publish_receipts\\D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260906T225212Z.json",
+    "published_branch": "backtest-results",
+    "published_path": "backtests/d038/development/20260906T225212Z",
+    "published_commit_sha": "81ca497ae6cbd58403d6598ddf38dbde81e5215c",
+    "autosync_used": false
+  },
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260906T225936Z\\rich_score.json",
+      "exists": true,
+      "sha256": "0bb54af5a120e99556fc791e17df94f9de885a7314a2fb1f346ac04bdc6a8ec0",
+      "bytes": 110485,
+      "published_as": "rich_score.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\publish_receipts\\D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260906T225212Z.json",
+      "exists": true,
+      "sha256": "6d1406eb9b0d5b708f8404ce32a3b799e0020d23e5c2376d18aef8c1cd99be12",
+      "bytes": 802,
+      "published_as": "20260906T225212Z.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
