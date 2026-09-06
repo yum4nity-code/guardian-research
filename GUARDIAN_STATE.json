@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T22:55:00+02:00",
+  "updated_at": "2026-09-06T23:10:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,28 +8,27 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_1_ACTIVE_ONE_SOURCE_OF_TRUTH",
+    "status": "PHASE_2_COMPLETE_PHASE_3_ACTIVE",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_2_GENERIC_EXPERIMENT_CONTRACT",
+    "next_phase": "PHASE_3_RUNNER_LOCAL_COMPILE_THEN_MT5_BATCH",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
     "experiment_manifest": "research/experiments/D037.json",
-    "status": "SOURCE_PENDING_V101_COMPLETE_REPOSITORY_ARTIFACT",
+    "status": "COMPILE_PENDING",
     "strategy_family": "Williams-inspired previous-day range volatility breakout",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
     "execution_deviation": "research/campaigns/D037_EXECUTION_DEVIATION_NO_SMOKE_2026_09_06.md",
     "canonical_sources_currently_in_repo": [
-      "research/strategies/d037/D037_WilliamsPrevDayRangeBreakout_M15_v1_00_FUNDEDNEXT_DIRECT_20260906.mq5",
-      "research/strategies/d037/D037_Williams_M15_v1_00.mq5"
+      "research/strategies/d037/D037_Williams_M15_v1_01.mq5"
     ],
-    "temporary_builder": "automation/Build_D037_v101_20260906.ps1",
-    "known_engineering_issue": "The current v1.01 path is produced by textual patching from v1.00. The refactor will replace this with a complete versioned repository source before the generic runner treats it as canonical.",
-    "next_action": "Create and validate a complete D037 v1.01 repository source, then use it as the first migration specimen for the generic runner.",
+    "historical_builder": "automation/Build_D037_v101_20260906.ps1",
+    "resolved_engineering_issue": "v1.01 is now a complete immutable repository source. Textual source generation is no longer needed for D037 execution.",
+    "next_action": "On the MT5 research PC, configure the local Guardian runner and compile D037 v1.01. Require verified source-copy SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt before any DEV run.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -55,10 +54,21 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "STATE_VALIDATOR_IMPLEMENTED_CONTRACT_READY",
+    "status": "LOCAL_DEPLOY_COMPILE_CORE_IMPLEMENTED",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
+    "entrypoint": "research/runner/runner.py",
+    "implemented_stages": [
+      "STATE_VALIDATE",
+      "MANIFEST_VALIDATE",
+      "SOURCE_SHA_VALIDATE",
+      "DIRECT_MT5_COPY",
+      "DESTINATION_SHA_VALIDATE",
+      "METAEDITOR_COMPILE",
+      "EX5_SHA_RECEIPT"
+    ],
+    "autosync_required_for_compile": false,
     "principle": "one manifest + one complete strategy source; deterministic compile/smoke/dev/score pipeline"
   },
   "non_guardian_projects": {
