@@ -1,124 +1,59 @@
 {
-  "schema_version": 1,
-  "updated_at": "2026-09-06T17:05:00+02:00",
-  "active_primary": "D036-DONCHIAN-TREND-BREAKOUT-H1-V0",
+  "schema_version": 2,
+  "generated": true,
+  "generated_from": "GUARDIAN_STATE.json",
+  "updated_at": "2026-09-06T22:55:00+02:00",
+  "active_primary": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "items": [
     {
-      "id": "D036-DONCHIAN-TREND-BREAKOUT-H1-V0",
+      "id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
       "priority": 0,
-      "status": "READY",
-      "owner": "ChatGPT/User",
-      "type": "scientific_hypothesis_preregistered",
-      "goal": "Run the frozen D036 H1 Donchian/Turtle-inspired V0. Preregistration, MT5 no-order harness v1.00 and scorer v1.01 are committed. First local gate is MetaEditor 0/0 then March-2025 smoke on USDJPY, XAUUSD and BTCUSD. Only after smoke PASS may the six-symbol 2024-2025 development sample be opened. 2026-H1 remains untouched confirmation."
+      "status": "SOURCE_PENDING_V101_COMPLETE_REPOSITORY_ARTIFACT",
+      "owner": "DETERMINISTIC_RUNNER+USER",
+      "type": "active_research_experiment",
+      "goal": "Create and validate a complete D037 v1.01 repository source, then use it as the first migration specimen for the generic runner.",
+      "manifest": "research/experiments/D037.json"
     },
     {
-      "id": "AUTOSYNC-GENERIC-V201",
-      "priority": 0,
-      "status": "READY",
-      "owner": "ChatGPT/User",
-      "type": "research_output_transport",
-      "goal": "Install Generic PUBLICSAFE AutoSync v2.01 once. It supersedes the D023-specific v1.04 watcher and should remain resident/autostart for future Dxxx STATS/TRADES pairs. First local install requires one health check; normal later backtests require no -Once command."
-    },
-    {
-      "id": "FUNDEDNEXT-FREE-TRIAL-EA-OPTION-AWARE-FIX",
+      "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "READY",
-      "owner": "Codex",
-      "type": "focused_runtime_compliance_fix",
-      "goal": "FundedNext Algo Trading remains OFF until request-budget/retry pathology is bounded. Keep separate from alpha research."
+      "status": "STATE_VALIDATOR_IMPLEMENTED_CONTRACT_READY",
+      "owner": "DETERMINISTIC_LOCAL_TOOLING",
+      "type": "research_orchestration",
+      "goal": "one manifest + one complete strategy source; deterministic compile/smoke/dev/score pipeline"
     },
     {
-      "id": "DERIBIT-0DTE-OI-OBSERVER-V1",
-      "priority": 2,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "read_only_forward_research_infrastructure",
-      "goal": "Run local live-network smoke then accumulate prior-only 07:00 UTC ATM OI snapshots. No retrospective threshold fitting."
+      "id": "AUTOSYNC_V3_FROM_SCRATCH",
+      "priority": 5,
+      "status": "DEFERRED_UNTIL_RUNNER_CORE_WORKS",
+      "owner": "DETERMINISTIC_LOCAL_TOOLING",
+      "type": "result_transport",
+      "goal": "Build from scratch; legacy AutoSync is reference-only and never a fallback."
     },
     {
-      "id": "GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1",
-      "priority": 4,
-      "status": "VALIDATED",
-      "owner": "Codex",
-      "type": "research_infrastructure",
-      "goal": "Preserve validated Bybit+Binance read-only collection and timestamped archive accumulation."
+      "id": "D017",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_ALPHA_FAMILY"
     },
     {
-      "id": "D025-LIQUIDITY-EXHAUSTION-RECLAIM",
-      "priority": 8,
-      "status": "BLOCKED",
-      "owner": "ChatGPT/Codex",
-      "type": "scientific_hypothesis",
-      "goal": "Future leakage-safe crypto external-intelligence study only after enough live archive exists.",
-      "blocking": "Archive too young; no retrospective threshold fitting."
+      "id": "D023",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_UNTOUCHED_CONFIRMATION"
     },
     {
-      "id": "D024-MULTI-STRATEGY-POSITION-CAP-STUDY",
-      "priority": 9,
-      "status": "BLOCKED",
-      "owner": "ChatGPT/Codex",
-      "type": "portfolio_policy_preregistration",
-      "goal": "Compare concurrency policies only after at least two independently validated strategies exist.",
-      "blocking": "No validated strategy pair yet."
-    },
-    {
-      "id": "D023-LONDON-ORB-M15-V0",
-      "priority": 9,
-      "status": "REJECTED",
-      "owner": "ChatGPT/User",
-      "type": "closed_scientific_hypothesis",
-      "goal": "Closed after untouched 2023 confirmation: 1/5 gates, n=195, mean -0.198176R, PF 0.708428. Preserve only as regime-instability evidence; no rescue or rerun."
-    },
-    {
-      "id": "D017-MOMENTUM",
-      "priority": 9,
-      "status": "REJECTED",
-      "owner": "ChatGPT/Codex",
-      "type": "closed_alpha_family",
-      "goal": "Closed as current alpha after broad seven-market attribution. Preserve lineage/manager evidence only; no rescue tuning."
-    },
-    {
-      "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
-      "priority": 10,
-      "status": "REJECTED",
-      "owner": "ChatGPT/Codex",
-      "type": "closed_legacy_family",
-      "goal": "Sep-5 slate failure preserved; do not restart blindly."
-    },
-    {
-      "id": "D027-NR7-CONTRACTION-BREAKOUT-V0",
-      "priority": 10,
-      "status": "REJECTED",
-      "owner": "ChatGPT/Codex",
-      "type": "closed_legacy_family",
-      "goal": "Sep-5 frozen family already failed applicable gates; preserve evidence, no blind rerun."
-    },
-    {
-      "id": "D028-INTRADAY-SESSION-MOMENTUM-V0",
-      "priority": 10,
-      "status": "REJECTED",
-      "owner": "ChatGPT/Codex",
-      "type": "closed_legacy_family",
-      "goal": "Sep-5 frozen family already failed applicable gates; preserve evidence, no blind rerun."
-    },
-    {
-      "id": "D029-CLASSIC-TSMOM-BENCHMARK-V0",
-      "priority": 10,
-      "status": "REJECTED",
-      "owner": "ChatGPT/Codex",
-      "type": "closed_scientific_benchmark",
-      "goal": "Closed negative/flat long-history benchmark; no rescue."
-    },
-    {
-      "id": "DECISION-D021-HYPOTHESIS",
-      "priority": 10,
-      "status": "BLOCKED",
-      "owner": "Codex",
-      "type": "deferred_scientific_hypothesis",
-      "goal": "Do not rewrite or tune existing D021. Reopen only if a fresh independent preregistered reason emerges.",
-      "blocking": "D036 is current independent P0."
+      "id": "D036",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_V0"
     }
   ],
-  "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-06: D036 Donchian/Turtle-inspired H1 V0 is the active independent P0. It is preregistered before data inspection. D036 v1.00 harness and scorer v1.01 are committed; Generic AutoSync v2.01 is static-audited and ready for one-time local installation. D023 and D17 remain closed. Guardian Core v12.01 remains stable. FundedNext AUTO remains off until request/retry compliance is separately bounded."
+  "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. No operational item may wait on Codex."
 }
