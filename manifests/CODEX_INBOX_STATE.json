@@ -12,7 +12,8 @@
     "handoff/chatgpt_to_codex/2026/09/01/D022_PAIR_REV_ENGINE_V2_OOS_FIX.md",
     "handoff/chatgpt_to_codex/2026/09/01/D023_LONDON_ORB_M15_PREREG_AND_ENGINE.md",
     "handoff/chatgpt_to_codex/2026/09/01/D024_MULTI_STRATEGY_PORTFOLIO_CAP_PREREG.md",
-    "handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md"
+    "handoff/chatgpt_to_codex/2026/09/04/D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md",
+    "handoff/chatgpt_to_codex/2026/09/06/D17_BANGER_GLOBAL_AUDIT_2026_09_06.md"
   ],
   "reviewed_notes": [
     "handoff/chatgpt_to_codex/2026/08/31/GUARDIAN_V11_15_MIGRATION_AUDIT.md",
@@ -25,5 +26,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "URGENT CHEAP SANITY CHECK BEFORE ACCEPTING THE LOCAL D017 6-MARKET VERDICT: latest local status reports only 0-2 trades per market despite 100% report quality. This is implausible against the prior USDCAD frequency anchor (~155 trades) and may be a tester/config/gating mismatch. Read D017_SIX_MARKET_RESULT_SANITY_BLOCK.md first. Do NOT rerun all six. Inspect one representative USDCAD report/config+journal; rerun USDCAD once only if a concrete fault is found. Quota conservation remains mandatory. FundedNext v11.16.3 work appears locally completed per user screenshot but is not yet visible on GitHub; do not redo it, push/checkpoint local commits when possible. D024 stays blocked. UPDATED 2026-09-04: Guardian EIB V1 collector/replay is ALREADY IMPLEMENTED on GitHub and passed py_compile + 4 offline tests. Do not rebuild it. Read updated D025_LER_EXTERNAL_INTELLIGENCE_BUS_V1.md and D025_EIB_V1_IMPLEMENTATION_REPORT.md, then install/run a real 30+ minute BTC/ETH smoke on the PC, verify reconnect/staleness/dedup/replay, and push compact evidence. No live LER trading and no production mutation."
+  "notes": "NEW 2026-09-06 P0: read D17_BANGER_GLOBAL_AUDIT_2026_09_06.md before choosing work. Current handoff supersedes the stale CURRENT_QUEUE active_primary: resolve exact live/local D17 lineage and native-manager attribution first. Critical correction: do NOT implement TIMEBOX=60m as native; MOMENTUM_PROD has strategy time-stop locked OFF and the 60m constant is legacy/inactive. Preserve TP1 2R/25%, true-net BE 1.25R, 1.75 ATR one-way setup-bar-gated trail. Also reconcile missing v11.16.11 production source/Core v12.01 repo provenance and stale queue/status/decisions. Earlier unread notes remain listed for explicit reconciliation; supersede rather than blindly execute any incompatible old instruction."
 }
