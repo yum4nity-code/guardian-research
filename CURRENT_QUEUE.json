@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T11:15:00+01:00",
+  "updated_at": "2026-09-06T12:00:00+02:00",
   "active_primary": "D017-NATIVE-RATCHET-LINEAGE-ATTRIBUTION",
   "items": [
     {
       "id": "D017-NATIVE-RATCHET-LINEAGE-ATTRIBUTION",
       "priority": 0,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "source_lineage_and_managed_edge_attribution",
-      "goal": "CURRENT P0. Identify the exact live/local FTMO D17 source/binary/preset lineage against GitHub MOMENTUM_PROD and the documented v11.16.11 branch, then preregister and run exact native-manager attribution on identical frozen entries. Preserve TP1 2R/25%, true-net BE 1.25R and 1.75 ATR one-way setup-bar-gated trail. Do not assume v11.16.19 is authoritative and do not implement the inactive legacy 60-minute Momentum time-stop as native TIMEBOX.",
-      "blocking": "Exact live/source lineage and the third counterfactual definition must be resolved before a long attribution run. Read handoff/chatgpt_to_codex/2026/09/06/D17_BANGER_GLOBAL_AUDIT_2026_09_06.md."
+      "status": "WAITING_RESULT",
+      "owner": "ChatGPT/User",
+      "type": "source_lineage_resolved_managed_edge_attribution",
+      "goal": "CURRENT P0. Exact FTMO live source is now resolved as v11.17 SHA256 875a56e95e5ab4282442e410e4e80f1c776aa9f974d4a3ce9dc5b12505cf8327. Raw Momentum setup is close lineage to v11.16 but crypto regime semantics changed to default BNS_JUMP_ONLY, so attribution must use the v11.17 entry set. Compile D017_Momentum_LiveV1117_Attribution_v1_100_20260906.mq5 SHA256 0e181ad3f65ee0dd370db834dcdfed40ae8a3f806073da9e3639e4277d3338d3, then run frozen BTCUSD Every-tick NATIVE_RATCHET vs FIXED_3R plus raw path diagnostics. Preserve TP1 2R/25%, true-net-style BE 1.25R and 1.75 ATR one-way setup-bar-gated trail. No TIMEBOX.",
+      "blocking": "Only MetaEditor compile 0 errors / 0 warnings and the frozen tester run remain. Codex credits are not required to proceed. Read handoff/chatgpt_to_codex/2026/09/06/D17_LIVE_V1117_LINEAGE_ATTRIBUTION_PREP_2026_09_06.md."
     },
     {
       "id": "D017-V11-16-MIN-RISK-SCALING-DIVERGENCE",
-      "priority": 1,
+      "priority": 5,
       "status": "VALIDATED",
       "owner": "ChatGPT",
-      "type": "critical_candidate_invariant",
-      "goal": "Minimum auto-trade risk remains self-contained at 0.25% of reference capital: 25 USD on 10k and 250 USD on 100k."
+      "type": "historical_runtime_invariant_superseded_for_live_v1117",
+      "goal": "Historical v11.16 minimum-risk behavior remains documented, but it is NOT a current live-v11.17 invariant. Live v11.17 defaults InpMinAutoTradeRiskPct=0.00; 0.25% is the maximum target risk, not an artificial minimum. Preserve this item only as lineage evidence."
     },
     {
       "id": "D017-V11-16-CAPREF-RUNTIME-DIVERGENCE",
-      "priority": 1,
+      "priority": 5,
       "status": "VALIDATED",
       "owner": "ChatGPT",
-      "type": "critical_runtime_safety_fix",
+      "type": "critical_runtime_safety_fix_historical",
       "goal": "v11.16.2 CAPREF remains a validated historical runtime safety fix; do not confuse this with current source-lineage authority."
     },
     {
@@ -137,10 +137,10 @@
     {
       "id": "D017-V11-16-PROVENANCE-AUDIT",
       "priority": 0,
-      "status": "WAITING_CODEX",
-      "owner": "Codex",
-      "type": "semantic_provenance_audit",
-      "goal": "Reactivated only as part of the P0 D17 lineage task: identify exact live/local source/binary/preset and reconcile against MOMENTUM_PROD/v11.16.11 before attribution."
+      "status": "VALIDATED",
+      "owner": "ChatGPT",
+      "type": "semantic_provenance_audit_resolved",
+      "goal": "Resolved 2026-09-06 from user-supplied exact live FTMO source. Live v11.17 SHA256 875a56e95e5ab4282442e410e4e80f1c776aa9f974d4a3ce9dc5b12505cf8327. Compare against v11.16 MOMENTUM_PROD only as lineage, not exact-source identity."
     },
     {
       "id": "D017-V11-16-EXACT-FEED-CONTROL",
@@ -148,7 +148,7 @@
       "status": "READY",
       "owner": "Codex",
       "type": "technical_non_regression_control",
-      "goal": "Use only if needed to establish that a candidate source reproduces the intended D17 entry/management behavior on the same feed; do not turn this into a parameter search."
+      "goal": "After virtual attribution, use the exact live v11.17 EA with RSI OFF if needed to quantify production execution/account-state effects on the same feed. Do not turn this into a parameter search."
     },
     {
       "id": "GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE",
@@ -160,5 +160,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-06 synchronization audit. CURRENT_PROJECT_HANDOFF is the canonical state. Active P0 is exact D17 live/source lineage plus native-manager attribution; the old Sep-5 D023 broad slate is no longer active primary. Critical correction: MOMENTUM_PROD has strategy time-stop locked OFF, so the legacy 60-minute constant must not be used as a native TIMEBOX. D023 USDJPY is watchlist/discovery pending untouched confirmation. D029 is preserved as rejected benchmark. Reconcile remaining legacy WAITING_CODEX/RUNNING_MIMO statuses against actual local state before execution. Read handoff/chatgpt_to_codex/2026/09/06/D17_BANGER_GLOBAL_AUDIT_2026_09_06.md."
+  "notes": "2026-09-06 P0 update. Exact live D17 source is resolved. Live v11.17 preserves the raw Momentum continuation setup but changes crypto entry selection via default BNS_JUMP_ONLY and changes several execution/account-selection layers. Attribution candidate D017_Momentum_LiveV1117_Attribution_v1_100_20260906.mq5 is prepared and waiting only for user compile 0/0 then frozen BTCUSD Every-tick results. No TIMEBOX. D023 USDJPY remains watchlist pending untouched confirmation; Deribit observer stays secondary; D029 rejected. Guardian Core v12.01 is compile-validated baseline and must not be modified for strategy research."
 }
