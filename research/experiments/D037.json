@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "strategy_family": "Williams-inspired previous-day range volatility breakout",
-  "status": "READY_DEV",
+  "status": "REJECTED",
   "hypothesis": "Can a simple previous-day-range volatility expansion rule produce a positive, broad, cost-robust intraday edge across the Guardian/FundedNext six-market universe without indicator filters or post-hoc tuning?",
   "preregistration": {
     "path": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
@@ -30,6 +30,7 @@
       "v1.02 engineering-only clarification: finite positive previous D1 prices with High==Low produce SKIP_NO_REFERENCE_RANGE for that current broker day instead of a fatal invalid-price event; all genuine invalid prices remain fatal and exact D1 setup values are logged",
       "v1.02 source identity was independently reported by GitHub CI as 5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9 before canonicalization",
       "v1.02 local proof: compile 0 errors / 0 warnings, XAUUSD development TEST_PASS_INTEGRITY with 406 opened=closed=CSV rows and zero invalid-price/risk/PnL counters",
+      "v1.02 full DEV batch: all six symbols passed integrity under reference tester model 0 with 2,377 aggregate trades and zero integrity events",
       "source_sha256 identifies UTF-8 text normalized to LF so Windows CRLF checkout does not alter scientific source identity; byte-for-byte SHA is still required for local source to MT5 deployment"
     ]
   },
@@ -88,7 +89,7 @@
       "from": "2024-01-02",
       "to": "2025-12-31",
       "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
-      "status": "READY",
+      "status": "FAIL",
       "gates": {
         "aggregate_n_min": 800,
         "each_symbol_n_min": 80,
@@ -102,7 +103,9 @@
         "integrity_events_max": 0,
         "failure_verdict": "REJECT_V0"
       },
-      "result_paths": []
+      "result_paths": [
+        "reports/research/D037_DEV_2024_2025_V102_SCORE_20260906.json"
+      ]
     },
     "confirmation": {
       "stage_name": "D037_CONFIRM_2026_H1",
@@ -152,7 +155,7 @@
       "final_status": "FINAL",
       "stats_sha256": "226c36e7f015ec655a41772a2352ba58dee3b5b4f9d278534ab397305fa3501a",
       "trades_sha256": "9b29f0120c94fc3f887d51645047c3b5496299215187f0c2d6841abace37985f",
-      "note": "Engineering integrity proof only; the six-symbol DEV batch must restart from scratch for the scientific result."
+      "note": "Engineering integrity proof only."
     },
     "engineering_history": {
       "v1_01": {
@@ -180,8 +183,50 @@
         }
       }
     },
-    "development": null,
+    "development": {
+      "batch_status": "BATCH_PASS_INTEGRITY",
+      "tester_model": 0,
+      "aggregate_n": 2377,
+      "per_symbol_n": {
+        "BTCUSD": 392,
+        "ETHUSD": 407,
+        "EURUSD": 387,
+        "GBPUSD": 389,
+        "USDJPY": 396,
+        "XAUUSD": 406
+      },
+      "aggregate_mean_net_r": 0.020111581320992847,
+      "aggregate_pf": 1.0456845051767667,
+      "positive_symbols": ["BTCUSD", "ETHUSD", "USDJPY", "XAUUSD"],
+      "per_symbol_total_net_r": {
+        "BTCUSD": 17.21224029,
+        "ETHUSD": 16.53546591,
+        "EURUSD": -32.88589437,
+        "GBPUSD": -7.01269851,
+        "USDJPY": 28.55692414,
+        "XAUUSD": 25.399191339999998
+      },
+      "aggregate_total_net_r": 47.805228799999995,
+      "aggregate_total_stress_net_r": 10.620232049999997,
+      "year_total_net_r": {
+        "2024": 24.21205831000002,
+        "2025": 23.59317048999999
+      },
+      "max_positive_symbol_contribution_share": 0.3256063828574545,
+      "integrity_events": 0,
+      "failed_gates": ["aggregate_mean_net_r_min", "aggregate_pf_min"],
+      "verdict": "REJECT_V0",
+      "decision_report": "reports/research/D037_DEV_2024_2025_V102_SCORE_20260906.json"
+    },
+    "rich_analytics": {
+      "status": "PENDING_COMMON_RICH_SCORER",
+      "standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
+      "retain_validated_trade_rows": 2377,
+      "trade_path_enrichment_allowed": true,
+      "may_change_d037_verdict": false,
+      "note": "D037 trade data remains reusable for transversal Trade Path Dataset / Exit Lab research. Rich analytics must not rescue D037 V0."
+    },
     "confirmation": null,
-    "final_verdict": null
+    "final_verdict": "REJECT_V0"
   }
 }
