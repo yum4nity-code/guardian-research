@@ -86,6 +86,7 @@
       "properties": {
         "expert_relative_path": {"type": "string", "minLength": 1},
         "default_stage": {"enum": ["smoke", "development", "confirmation"]},
+        "stage_selection": {"enum": ["EA_DEFAULT_ONLY", "TESTER_DATE_RANGE_ONLY"]},
         "tester_model_reference": {"type": "integer", "minimum": 0, "maximum": 4},
         "tester_model_fast_candidate": {"type": ["integer", "null"], "minimum": 0, "maximum": 4},
         "output": {
