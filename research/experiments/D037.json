@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
+  "strategy_family": "Williams-inspired previous-day range volatility breakout",
+  "status": "SOURCE_PENDING",
+  "hypothesis": "Can a simple previous-day-range volatility expansion rule produce a positive, broad, cost-robust intraday edge across the Guardian/FundedNext six-market universe without indicator filters or post-hoc tuning?",
+  "preregistration": {
+    "path": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
+    "git_blob_sha": "b704452326f0a9831f8ffe284aef3c149f93f84f",
+    "frozen_before_result_inspection": true,
+    "execution_deviations": [
+      "research/campaigns/D037_EXECUTION_DEVIATION_NO_SMOKE_2026_09_06.md"
+    ]
+  },
+  "source": {
+    "canonical_path": null,
+    "source_sha256": null,
+    "git_blob_sha": null,
+    "version": "1.01",
+    "complete_repository_source": false,
+    "strategy_semantics_frozen": true,
+    "engineering_lineage": [
+      "research/strategies/d037/D037_Williams_M15_v1_00.mq5",
+      "automation/Build_D037_v101_20260906.ps1",
+      "v1.01 must be committed as a complete source; textual runtime source generation is not canonical"
+    ]
+  },
+  "execution": {
+    "timeframe": "M15",
+    "reference_timeframes": ["D1"],
+    "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+    "account_currency": "USD",
+    "prop_firm_profile": "FUNDEDNEXT"
+  },
+  "cost_model": {
+    "name": "D037_FUNDEDNEXT_FROZEN_V0",
+    "spread_source": "tester executable-side prices",
+    "commission_stress_multiplier": 1.5,
+    "forex": "USD 5 per lot per side",
+    "metals": "0.0016% x lot x contract size x side execution price per side",
+    "crypto": "0.04% x lot x contract size x side execution price per side"
+  },
+  "stages": {
+    "smoke": {
+      "stage_name": "D037_SMOKE_MAR2025",
+      "from": "2025-03-03",
+      "to": "2025-03-31",
+      "symbols": ["USDJPY", "XAUUSD", "BTCUSD"],
+      "status": "WAIVED",
+      "gates": {
+        "compile_errors": 0,
+        "compile_warnings": 0,
+        "lifecycle_clean": true,
+        "positive_valid_prices_only": true,
+        "opened_equals_closed_equals_rows": true,
+        "invalid_risk_or_price_events": 0,
+        "deterministic_stats_trades_output": true,
+        "note": "Historical D037 execution deviation only. Future experiments should not inherit this waiver."
+      },
+      "result_paths": []
+    },
+    "development": {
+      "stage_name": "D037_DEV_2024_2025",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+      "status": "LOCKED",
+      "gates": {
+        "aggregate_n_min": 800,
+        "each_symbol_n_min": 80,
+        "aggregate_mean_net_r_min": 0.05,
+        "aggregate_pf_min": 1.10,
+        "positive_symbols_min": 4,
+        "aggregate_2024_positive": true,
+        "aggregate_2025_positive": true,
+        "aggregate_positive_at_commission_stress": true,
+        "max_positive_symbol_contribution_share": 0.60,
+        "integrity_events_max": 0,
+        "failure_verdict": "REJECT_V0"
+      },
+      "result_paths": []
+    },
+    "confirmation": {
+      "stage_name": "D037_CONFIRM_2026_H1",
+      "from": "2026-01-02",
+      "to": "2026-06-30",
+      "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+      "status": "UNOPENED",
+      "gates": {
+        "aggregate_n_min": 180,
+        "aggregate_mean_net_r_strictly_positive": true,
+        "aggregate_pf_min": 1.08,
+        "positive_symbols_min": 3,
+        "aggregate_positive_at_commission_stress": true,
+        "integrity_events_max": 0,
+        "failure_verdict": "UNCONFIRMED"
+      },
+      "result_paths": []
+    }
+  },
+  "decision_policy": {
+    "no_posthoc_rescue": true,
+    "confirmation_locked_until_dev_pass": true,
+    "invalid_run_is_not_strategy_reject": true
+  },
+  "results": {
+    "development": null,
+    "confirmation": null,
+    "final_verdict": null
+  }
+}
