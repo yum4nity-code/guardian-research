@@ -2,7 +2,7 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-06T23:35:00+02:00",
+  "updated_at": "2026-09-06T23:00:00+02:00",
   "active_primary": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "items": [
     {
@@ -11,13 +11,13 @@
       "status": "COMPILE_PENDING",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "On the MT5 research PC: run the Windows bootstrap/doctor without a backtest, then compile D037 v1.01, then run one USDJPY development test. Only after all three proofs pass should the six-symbol DEV batch run.",
+      "goal": "Compile D037 v1.01 on the MT5 research PC without launching a backtest. Require verified local-source to MT5-copy raw SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt. Only then run one USDJPY development test.",
       "manifest": "research/experiments/D037.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "END_TO_END_CODE_IMPLEMENTED_LOCAL_MT5_PROOF_PENDING",
+      "status": "END_TO_END_CODE_IMPLEMENTED_BOOTSTRAP_DOCTOR_PASS_COMPILE_PROOF_PENDING",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
       "goal": "one manifest + one complete strategy source; deterministic compile/test/batch/score pipeline"
