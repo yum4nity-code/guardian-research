@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T00:20:00+02:00",
+  "updated_at": "2026-09-07T00:32:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,31 +8,24 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_FINALIZATION_AND_RESULT_PUBLISHING_PROVEN",
+    "status": "PHASE_3_D038_ACTIVE_COMPILE_PENDING",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_SELECT_AND_PREREGISTER_D038_WITH_NATIVE_TRADE_PATH_TELEMETRY",
+    "next_phase": "PHASE_3_PROVE_D038_COMPILE_THEN_ENGINEERING_SMOKE",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
-    "active_experiment": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
-    "experiment_manifest": "research/experiments/D037.json",
-    "status": "REJECTED",
-    "strategy_family": "Williams-inspired previous-day range volatility breakout",
+    "active_experiment": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+    "experiment_manifest": "research/experiments/D038.json",
+    "status": "COMPILE_PENDING",
+    "strategy_family": "NR7 volatility contraction breakout",
     "timeframe": "M15",
-    "preregistration": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
-    "execution_deviation": "research/campaigns/D037_EXECUTION_DEVIATION_NO_SMOKE_2026_09_06.md",
-    "execution_clarification": "research/campaigns/D037_EXECUTION_CLARIFICATION_ZERO_RANGE_REFERENCE_DAY_2026_09_06.md",
+    "preregistration": "research/campaigns/D038_NR7_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
     "canonical_sources_currently_in_repo": [
-      "research/strategies/d037/D037_Williams_M15_v1_02.mq5"
+      "research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5"
     ],
-    "historical_sources_preserved": [
-      "research/strategies/d037/D037_Williams_M15_v1_01.mq5"
-    ],
-    "historical_builder": "automation/Build_D037_v101_20260906.ps1",
-    "resolved_engineering_issue": "D037 v1.02 distinguishes a finite positive previous D1 bar with High==Low from a genuine invalid-price event. Such a day has no positive D037 volatility reference, is counted as no_reference_range_days, opens no trade, and execution continues. Genuine invalid/non-finite prices remain fatal with detailed D1 logging. Full v1.02 DEV batch passed integrity on all six markets.",
-    "next_action": "D037 is closed as REJECT_V0 with rich analytics and compact validated results published to backtest-results. Select and preregister D038. D038 and later harnesses must implement research/runner/TRADE_PATH_DATASET_SPEC.md natively so MFE, MAE, R milestones and timing become reusable research data without post-hoc reconstruction.",
+    "next_action": "On the MT5 research PC, pull the latest refactor branch and run only `py -3 .\\research\\runner\\guardian_research.py compile D038`. Require COMPILE_PASS with 0 errors / 0 warnings and an EX5 SHA before any D038 backtest. If compile passes, the next separate proof is exactly one USDJPY smoke test for 2023-11-01 through 2023-11-30 using Model=0; do not launch the three-symbol smoke batch until that single run passes lifecycle and Trade Path integrity.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -72,7 +65,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "END_TO_END_BATCH_SCORE_RICH_ANALYTICS_FINALIZE_PUBLISH_PROVEN",
+    "status": "D038_SOURCE_FROZEN_COMPILE_PENDING",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -100,84 +93,42 @@
       "RICH_ANALYTICS_SCORE",
       "COMPACT_RESULT_BUNDLE",
       "ISOLATED_BACKTEST_RESULTS_PUBLISH",
-      "FINALIZE_COMMAND"
+      "FINALIZE_COMMAND",
+      "TRADE_PATH_DATASET_CONTRACT",
+      "D038_NATIVE_TICK_PATH_HARNESS"
     ],
     "planned_stages": [
-      "NATIVE_TRADE_PATH_TELEMETRY_FOR_D038_PLUS"
+      "D038_LOCAL_COMPILE_PROOF",
+      "D038_SINGLE_SYMBOL_SMOKE_PROOF",
+      "D038_THREE_SYMBOL_SMOKE",
+      "D038_DEV_BATCH"
     ],
     "reference_tester_model": 0,
-    "fast_tester_model_candidate": 1,
+    "fast_tester_model_candidate": null,
     "fast_model_approved": false,
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PASS_STATIC_FINALIZE_IMPLEMENTATION",
-    "local_mt5_status": "V102_DEV_BATCH_PASS_SCORE_REJECT_V0_FINALIZE_PASS_PUBLISHED",
+    "github_ci_status": "PASS_D038_SOURCE_IDENTITY_AND_STATIC_TOOLING",
+    "local_mt5_status": "D038_UNCOMPILED",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
-    "canonical_v102": {
+    "canonical_d038": {
       "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
-      "source_identity_sha256": "5b77ef6919c5c61a767a54fe1687996239f4cbade2f49b663e170acc5c9bb0e9",
-      "git_blob_sha": "d1c2abc71d8fc209d6fb5306b2138ad9354adf2b",
-      "source_version": "1.02",
+      "source_identity_sha256": "e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8",
+      "git_blob_sha": "b0e2e9222970281de47fec9d36377698b6aed5d7",
+      "source_version": "1.00",
       "ci_identity_report_pass": true,
-      "local_compile_status": "COMPILE_PASS",
-      "local_ex5_sha256": "2f794061c37993c4c1cd75aeb9c4f767703fa78715c1bcde84d03d626b4acb2e",
-      "metaeditor_errors": 0,
-      "metaeditor_warnings": 0,
-      "xauusd_single_test": {
-        "status": "TEST_PASS_INTEGRITY",
-        "stage": "development",
-        "tester_model": 0,
-        "final_status": "FINAL",
-        "trades_opened": 406,
-        "trades_closed": 406,
-        "csv_trade_rows": 406,
-        "invalid_price": 0,
-        "invalid_risk": 0,
-        "pnl_calc_failures": 0,
-        "stats_sha256": "226c36e7f015ec655a41772a2352ba58dee3b5b4f9d278534ab397305fa3501a",
-        "trades_sha256": "9b29f0120c94fc3f887d51645047c3b5496299215187f0c2d6841abace37985f"
-      },
-      "development_final": {
-        "batch_status": "BATCH_PASS_INTEGRITY",
-        "tester_model": 0,
-        "aggregate_n": 2377,
-        "aggregate_mean_net_r": 0.020111581320992847,
-        "aggregate_pf": 1.0456845051767667,
-        "aggregate_total_net_r": 47.805228799999995,
-        "aggregate_total_stress_net_r": 10.620232049999997,
-        "positive_symbols": ["BTCUSD", "ETHUSD", "USDJPY", "XAUUSD"],
-        "year_2024_total_net_r": 24.21205831000002,
-        "year_2025_total_net_r": 23.59317048999999,
-        "integrity_events": 0,
-        "failed_gates": ["aggregate_mean_net_r_min", "aggregate_pf_min"],
-        "verdict": "REJECT_V0",
-        "confirmation_opened": false,
-        "decision_report": "reports/research/D037_DEV_2024_2025_V102_SCORE_20260906.json",
-        "rich_analytics_status": "COMPLETE_PUBLISHED",
-        "finalize_status": "FINALIZE_PASS",
-        "publish_branch": "backtest-results",
-        "publish_path": "backtests/d037/development/20260906T215334Z",
-        "publish_commit_sha": "69e18140486bd5151e0ce029ff374fb8dbe2bebe",
-        "publish_proof_report": "reports/research/D037_FINALIZE_PUBLISH_PROOF_20260906.json"
-      }
+      "local_compile_status": "UNTESTED",
+      "native_trade_path": true,
+      "smoke_period": "2023-11-01..2023-11-30",
+      "smoke_symbols": ["USDJPY", "XAUUSD", "BTCUSD"]
     },
-    "v101_historical_local_proof": {
-      "bootstrap_doctor": "PASS",
-      "compile_status": "COMPILE_PASS",
-      "source_identity_sha256": "8a30c8e20c38803492c2b1cb3c94dd2aa25df66575ca665aa3da660833fac96d",
-      "ex5_sha256": "4c07d19ea0367d310f19c86f0b4730dd172c6ecf2f091ac323e596eeebbfcf4e",
-      "metaeditor_errors": 0,
-      "metaeditor_warnings": 0,
-      "usdJPY_single_test": "TEST_PASS_INTEGRITY",
-      "xauusd_batch_failure": {
-        "status": "FINAL_INVALID_PRICE",
-        "broker_time": "2024-01-02 01:15:00",
-        "bars_seen": 0,
-        "trades_opened": 0,
-        "csv_trade_rows": 0,
-        "invalid_price": 1,
-        "fatal_message": "invalid broker-day setup price/range",
-        "science_verdict": "INVALID_ENGINEERING_NOT_STRATEGY_REJECT"
-      }
+    "d037_final_proof": {
+      "verdict": "REJECT_V0",
+      "aggregate_n": 2377,
+      "finalize_status": "FINALIZE_PASS",
+      "publish_branch": "backtest-results",
+      "publish_path": "backtests/d037/development/20260906T215334Z",
+      "publish_commit_sha": "69e18140486bd5151e0ce029ff374fb8dbe2bebe",
+      "proof_report": "reports/research/D037_FINALIZE_PUBLISH_PROOF_20260906.json"
     },
     "principle": "one manifest + one complete strategy source; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline"
   },
