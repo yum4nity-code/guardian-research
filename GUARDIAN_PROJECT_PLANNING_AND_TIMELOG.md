@@ -292,41 +292,44 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Keep D032 Doji as sparse research only; do not rescue rejected families on inspected samples.
 - Pure Guardian Core v12.01 compile/smoke remains a separate prerequisite before any live replacement.
 
-## 2026-09-06 — D035 development verdict / causal dual-source audit
+## 2026-09-06 — D035 verdict, cross-strategy autopsy, E1 close, META-A1 pivot
 
 **Work / decisions**
 - User returned the complete `D35 OUTPUT.zip` from the frozen D035 2024-2025 development run.
 - D035 data quality was strong: 5,558 merged BTC/ETH source events, 38,622 target-event rows, nine FundedNext crypto CFDs, complete loaded Binance metrics/1m archive QA, and 114/114 server->UTC calibration weeks usable with mean correlation ~0.996.
 - Frozen D035 primary gate closed **REJECT 4/8**: pooled executable SHORT +15m -25.448 bps; event-control differential +5.179 bps; bootstrap differential [+3.033,+7.385] bps; pooled executable +30m -25.438 bps; BTC-only differential -3.281 bps vs ETH-only +3.283 bps.
-- Interpretation: a small statistically detectable conditional timing effect exists, but it is economically too small for the broad FundedNext CFD spread structure. BTCUSD/ETHUSD individually remain only ~+5 to +6 bps at +15m, below the frozen +15 bps hurdle.
-- Canonical D035 result archived at `research/results/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_DISCOVERY_VERDICT_2026_09_06.md`.
-- Post-hoc audit found that the superficially strong `BTCUSD+ETHUSD` subgroup in the original output is not causally tradable as measured: the merge routine labels the first source timestamp with both sources when the second arrives within five minutes. Selecting that label at the first timestamp leaks future information.
-- A separate D035-E1 exploratory diagnostic was therefore preregistered, not as a rescue: same frozen single-source shock rules, require both BTC and ETH within five minutes, signal only at the **later/second** source shock, XLMUSD frozen as the primary cross-asset target, all other targets diagnostics, 2026-H1 still untouched.
-- E1 local analyzer prepared with progress %, elapsed time, ETA and per-CFD checkpoints so long local computations are observable and resumable at target granularity.
+- Post-hoc audit found that the superficially strong `BTCUSD+ETHUSD` subgroup in the original output leaked future information if interpreted from the first source timestamp. A causal E1 was preregistered with the signal moved to the later/second shock and XLMUSD frozen as primary.
+- Cross-strategy edge-decay autopsy completed. Main conclusion: short-window profitability vs long-history decay is explained by a mixture of regime dependence, raw-signal vs exact-native manager/account-state selection mismatch, multiple testing, CFD cost drag and data provenance. D032 remains the proof that the stricter protocol can still confirm a large edge.
+- Blind new-family scanning was paused after E1. META-A1 exact edge attribution was chosen as the next research task: L0 raw signal -> L1 exact native manager -> L2 strategy-local selection -> L3 Guardian/account-state selection -> cost drag.
+- Source recovery check found the exact v11.16.11 baseline used for the 2026-09-02 BTC engine-isolation backtests is still not present at the expected GitHub production path. Required identity remains `Guardian_D017_PropFirmAuto_v11_16_11_STRATEGY_SWITCHES.mq5`, 272765 bytes, 5729 lines, SHA256 `d30ff21378331f972bea947a4c6c826b6f4a2547e58878947551199b9d01c495`. User-supplied v11.16.1 and later v11.16.19 are not substitutes for exact attribution.
+- User returned `D35 CASUAL.zip`. D035-E1 causal run completed with 973 dual events. Primary XLMUSD n=870: mean executable SHORT +15m **+6.705 bps**, median **0.000 bps**, event-control differential **+13.490 bps**, raw bootstrap **[+1.996,+11.549] bps**, differential bootstrap **[+8.793,+18.302] bps**, +30m **+3.697 bps**, 2024 **+4.104 bps**, 2025 **+9.935 bps**.
+- Frozen E1 advancement gate closed **6/8 -> E1_DO_NOT_ADVANCE**. It failed the required mean executable +15m >=15bps and median +15m >0 gates. 2026-H1 remains untouched and must not be opened for D035-C1.
+- ETHUSD (~+14.999bps mean executable +15m) and BTCUSD (~+10.359bps) looked better as diagnostics, but they were not the frozen E1 primary target and therefore cannot be promoted post hoc into a 2026 confirmation.
+- Canonical E1 result archived at `research/results/D035_E1_CAUSAL_DUAL_SOURCE_VERDICT_2026_09_06.md`.
 
 **Time evidence**
-- Guardian activity is confirmed from approximately 06:53 Europe/Paris through this ledger update in the early morning session.
-- `MINIMUM OBSERVED: >= 0h30`; exact human active time not quantified. Any overnight D035 compute before the returned ZIP is not counted as human work time.
+- Guardian activity is confirmed from approximately 06:53 Europe/Paris through the early-morning session and later result review.
+- `MINIMUM OBSERVED: >= 0h30`; exact human active total remains `NOT QUANTIFIED`. D035/E1 unattended compute is excluded from human time.
 
 **Next**
-- Run D035-E1 on the same existing CFD exports/cache; no MT5 rerun and no 2026 data.
-- If E1 XLMUSD passes all 8 frozen advancement gates, preregister D035-C1 before opening 2026-H1. If E1 fails, close the dual-source branch.
-- Keep D032 Doji as sparse research only and keep FundedNext live auto OFF pending Guardian request-budget/core validation work.
+- Close D035/D035-E1 for immediate development; keep 2026-H1 untouched.
+- Recover/mirror the exact v11.16.11 baseline source before PC cleanup or META-A1 implementation.
+- Build META-A1 exact-native RSI/Momentum attribution on BTCUSD 2024-2025, with no threshold changes.
+- Keep blind D036/D037-style strategy-family scanning paused.
+- Keep D032 Doji as sparse confirmed entry evidence and FundedNext live auto OFF pending Guardian request-budget/core validation work.
 
 ---
 
 # Current planning / backlog
 
-## P0 — D025 management research
+## P0 — META-A1 exact edge attribution
 
-- Finish **1.03 Virtual Path Diagnostic** clean 2024-2025 reruns.
-- Priority symbols: BTCUSD, ETHUSD, XAUUSD, GBPUSD, USDJPY, EURUSD. SOL only if available again on the relevant FundedNext history/feed.
-- For each run collect: `events`, `trades`, `outcomes`.
-- Validate that virtual signal counts recover the missing BTC/ETH population and are no longer account/lot/margin filtered.
-- Compare frozen management candidates without changing locked D025 V0 entries/structural SL.
-- Treat same-M1 target/BE/stop ordering as ambiguous rather than inventing an order.
-- Require a **large, recurring edge**, not a marginal pre-cost advantage.
-- Only after structural edge is clear: apply realistic spread + commission + slippage and stress costs upward.
+- Recover exact `Guardian_D017_PropFirmAuto_v11_16_11_STRATEGY_SWITCHES.mq5` by the frozen SHA256 before implementation.
+- First market: BTCUSD 2024-2025.
+- Separate L0 raw signal, L1 exact native management, L2 strategy-local filters/cooldowns, L3 Guardian/account-state selection, then explicit BID/ASK + commission/slippage cost drag.
+- Preserve original RSI/Momentum rules exactly; no threshold tuning.
+- Produce year, direction, frequency, PF/EV and contribution/lift attribution at each layer.
+- If the full reconstructed system does not survive BTC over the long window, stop before broadening.
 
 ## P0 — FundedNext request-budget fix
 
@@ -347,7 +350,8 @@ From 2026-09-04 onward, time should be logged more precisely.
 
 - Keep Binance + Bybit collector running read-only.
 - Continue accumulating BTC/ETH external history: spot/perp, OI, funding, liquidations, basis/dislocation and quality.
-- D035 primary is closed rejected. D035-E1 is the only permitted immediate follow-up and remains exploratory on 2024-2025; do not open 2026-H1 without a fresh confirmation preregistration.
+- D035 primary and D035-E1 are closed for immediate development. Preserve 2026-H1 untouched; do not consume it to rescue ETH/BTC diagnostics post hoc.
+- Any future revisit of the causal dual-source mechanism requires a separate preregistration on genuinely fresh data.
 - Preserve `available_at <= event_time` for any forward EIB study.
 
 ## P1 — Guardian production continuity
