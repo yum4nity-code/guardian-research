@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-06T19:43:34.5254770Z",
-    "run_id":  "20260906_194305_D037_BTCUSD_37e684c18111",
-    "path":  "backtests/inbox/2026/09/06/20260906_194305_D037_BTCUSD_37e684c18111",
-    "fingerprint":  "37e684c18111e524a0149ff4eaff581eab663ec0039f24e85278f142bf6e609e",
+    "synced_at_utc":  "2026-09-06T21:14:58.7071738Z",
+    "run_id":  "20260906_211429_D037_USDJPY_2d33fa07a15c",
+    "path":  "backtests/inbox/2026/09/06/20260906_211429_D037_USDJPY_2d33fa07a15c",
+    "fingerprint":  "2d33fa07a15c1c906cee376ea55eb48f5da5ad6f890116aa82fa92f8a9459a0f",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D037_V100_DEV_2024_2025_BTCUSD_STATS.csv",
-                  "D037_V100_DEV_2024_2025_BTCUSD_TRADES.csv",
+                  "D037_V101_DEV_2024_2025_USDJPY_STATS.csv",
+                  "D037_V101_DEV_2024_2025_USDJPY_TRADES.csv",
                   "sync_manifest.json"
               ]
 }
