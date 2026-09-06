@@ -71,7 +71,10 @@ def run_batch(identifier: str, stage_name: str) -> dict[str, Any]:
         payload["error"] = str(exc)
         payload["finished_at_utc"] = datetime.now(timezone.utc).isoformat()
         runner.write_receipt(batch_path, payload)
-        raise
+        raise tester.TestError(
+            f"batch stopped on symbol={symbol}; completed_tests={len(payload['tests'])}; "
+            f"batch_receipt={batch_path}; cause={exc}"
+        ) from exc
 
     payload["status"] = "BATCH_PASS_INTEGRITY"
     payload["finished_at_utc"] = datetime.now(timezone.utc).isoformat()
