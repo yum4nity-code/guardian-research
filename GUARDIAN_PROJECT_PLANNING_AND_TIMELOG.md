@@ -1,6 +1,6 @@
 # Guardian — Project Planning & Time Log
 
-Last reconstructed: 2026-09-05 Europe/Paris
+Last reconstructed: 2026-09-06 Europe/Paris
 Status: LIVING FILE — update during each material Guardian work session
 
 ## Purpose
@@ -292,6 +292,27 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Keep D032 Doji as sparse research only; do not rescue rejected families on inspected samples.
 - Pure Guardian Core v12.01 compile/smoke remains a separate prerequisite before any live replacement.
 
+## 2026-09-06 — D035 development verdict / causal dual-source audit
+
+**Work / decisions**
+- User returned the complete `D35 OUTPUT.zip` from the frozen D035 2024-2025 development run.
+- D035 data quality was strong: 5,558 merged BTC/ETH source events, 38,622 target-event rows, nine FundedNext crypto CFDs, complete loaded Binance metrics/1m archive QA, and 114/114 server->UTC calibration weeks usable with mean correlation ~0.996.
+- Frozen D035 primary gate closed **REJECT 4/8**: pooled executable SHORT +15m -25.448 bps; event-control differential +5.179 bps; bootstrap differential [+3.033,+7.385] bps; pooled executable +30m -25.438 bps; BTC-only differential -3.281 bps vs ETH-only +3.283 bps.
+- Interpretation: a small statistically detectable conditional timing effect exists, but it is economically too small for the broad FundedNext CFD spread structure. BTCUSD/ETHUSD individually remain only ~+5 to +6 bps at +15m, below the frozen +15 bps hurdle.
+- Canonical D035 result archived at `research/results/D035_BINANCE_DELEVERAGING_FUNDEDNEXT_CFD_DISCOVERY_VERDICT_2026_09_06.md`.
+- Post-hoc audit found that the superficially strong `BTCUSD+ETHUSD` subgroup in the original output is not causally tradable as measured: the merge routine labels the first source timestamp with both sources when the second arrives within five minutes. Selecting that label at the first timestamp leaks future information.
+- A separate D035-E1 exploratory diagnostic was therefore preregistered, not as a rescue: same frozen single-source shock rules, require both BTC and ETH within five minutes, signal only at the **later/second** source shock, XLMUSD frozen as the primary cross-asset target, all other targets diagnostics, 2026-H1 still untouched.
+- E1 local analyzer prepared with progress %, elapsed time, ETA and per-CFD checkpoints so long local computations are observable and resumable at target granularity.
+
+**Time evidence**
+- Guardian activity is confirmed from approximately 06:53 Europe/Paris through this ledger update in the early morning session.
+- `MINIMUM OBSERVED: >= 0h30`; exact human active time not quantified. Any overnight D035 compute before the returned ZIP is not counted as human work time.
+
+**Next**
+- Run D035-E1 on the same existing CFD exports/cache; no MT5 rerun and no 2026 data.
+- If E1 XLMUSD passes all 8 frozen advancement gates, preregister D035-C1 before opening 2026-H1. If E1 fails, close the dual-source branch.
+- Keep D032 Doji as sparse research only and keep FundedNext live auto OFF pending Guardian request-budget/core validation work.
+
 ---
 
 # Current planning / backlog
@@ -326,7 +347,7 @@ From 2026-09-04 onward, time should be logged more precisely.
 
 - Keep Binance + Bybit collector running read-only.
 - Continue accumulating BTC/ETH external history: spot/perp, OI, funding, liquidations, basis/dislocation and quality.
-- D035 is now the frozen historical cross-venue lead-lag campaign; do not feed its development findings into Guardian before independent confirmation.
+- D035 primary is closed rejected. D035-E1 is the only permitted immediate follow-up and remains exploratory on 2024-2025; do not open 2026-H1 without a fresh confirmation preregistration.
 - Preserve `available_at <= event_time` for any forward EIB study.
 
 ## P1 — Guardian production continuity
