@@ -33,6 +33,22 @@
     "account_currency": "USD",
     "prop_firm_profile": "FUNDEDNEXT"
   },
+  "runner_contract": {
+    "expert_relative_path": "GuardianResearch\\D037_Williams_M15_v1_01",
+    "default_stage": "development",
+    "tester_model_reference": 0,
+    "tester_model_fast_candidate": 1,
+    "output": {
+      "location": "FILE_COMMON",
+      "stats_template": "D037_V101_{stage_token}_{symbol_clean}_STATS.csv",
+      "trades_template": "D037_V101_{stage_token}_{symbol_clean}_TRADES.csv",
+      "stage_tokens": {
+        "smoke": "SMOKE_MAR2025",
+        "development": "DEV_2024_2025",
+        "confirmation": "CONFIRM_2026_H1"
+      }
+    }
+  },
   "cost_model": {
     "name": "D037_FUNDEDNEXT_FROZEN_V0",
     "spread_source": "tester executable-side prices",
