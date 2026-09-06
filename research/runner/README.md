@@ -1,119 +1,136 @@
 # Guardian Research Runner v1
 
-Status: foundation only — no live MT5 behavior changed yet.
+Status: GitHub/static validation green; first Windows MT5 proof still required before merge.
 
 ## Purpose
 
-Provide one deterministic execution path for all D0xx research experiments.
+Reduce a frozen strategy experiment to:
+
+`manifest + complete .mq5 source -> compile -> MT5 batch -> integrity checks -> frozen gates -> verdict`
+
+No Codex and no AutoSync are required for the local research path.
 
 A strategy experiment should contribute only:
-
 1. one complete, versioned strategy source;
 2. one machine-readable experiment manifest;
-3. reusable analysis/scoring code only when the generic scorer cannot express the frozen gates.
+3. reusable analysis/scoring code only when the generic scorer cannot express frozen gates.
 
-Everything else belongs to the runner.
+## Implemented now
 
-## Intended command surface
+- authoritative project-state validation;
+- generic D0xx manifest validation;
+- source SHA-256 verification;
+- exact local copy into the dedicated MT5 Experts research folder;
+- source/destination SHA-256 equality proof;
+- MetaEditor compile and 0 errors / 0 warnings requirement;
+- EX5 SHA-256 build receipt;
+- MT5 Strategy Tester `.ini` generation;
+- sequential multi-symbol testing;
+- stale `FILE_COMMON` result quarantine;
+- immutable local result evidence;
+- lifecycle / source identity / row-count / integrity validation;
+- deterministic D037 development gate scoring;
+- one-command compile -> batch -> score pipeline.
+
+Not yet proven on the user's Windows MT5 machine:
+- actual local path autodetection;
+- MetaEditor invocation against the installed FundedNext terminal;
+- terminal `/config:` Strategy Tester launch;
+- end-to-end `FILE_COMMON` collection.
+
+Therefore this branch must not be treated as locally validated yet.
+
+## Command surface
 
 ```powershell
-guardian-research validate D038
-guardian-research compile D038
-guardian-research smoke D038
-guardian-research dev D038
-guardian-research score D038
-guardian-research run D038
+python research/runner/guardian_research.py doctor D037
+python research/runner/guardian_research.py plan D037
+python research/runner/guardian_research.py compile D037
+python research/runner/guardian_research.py test-one D037 --stage development --symbol USDJPY
+python research/runner/guardian_research.py batch D037 --stage development
+python research/runner/guardian_research.py score D037
+python research/runner/guardian_research.py run D037
 ```
 
-`run` is orchestration sugar. Every stage remains individually callable and idempotent.
+`run` currently means: fresh compile -> frozen default-stage batch -> score.
 
-## Stage contract
+## First local proof
 
-### validate
-- load experiment manifest;
-- validate schema;
-- verify frozen source exists;
-- calculate source SHA-256;
-- reject source/manifest mismatch;
-- verify DEV/OOS periods do not overlap;
-- verify required gates exist;
-- verify no rejected experiment is accidentally reopened without an explicit new experiment id.
+From the repository root on the MT5 research PC, while on branch `refactor/guardian-research-runner-v1`:
 
-### compile
-- copy exact repository source to MT5 staging location;
-- compare source/destination SHA-256;
-- invoke MetaEditor;
-- require 0 errors / 0 warnings unless manifest explicitly records another frozen compile policy;
-- record compile receipt.
+```powershell
+powershell -ExecutionPolicy Bypass -File research/runner/Run-GuardianResearch.ps1 -BootstrapOnly
+```
 
-### smoke
-- run a short deterministic technical test;
-- require output lifecycle (`INIT` then `FINAL`);
-- validate schema/counters/identity;
-- inspect at least one meaningful strategy event when feasible;
-- never inspect confirmation/OOS data here.
+This only autodetects/configures paths and runs `doctor`. It launches no backtest.
 
-### dev
-- run only the frozen development universe;
-- preserve one immutable run directory per symbol/config;
-- fail closed on output integrity issues;
-- do not silently retry strategy/harness defects under the same source identity.
+Then compile D037 only:
 
-### score
-- compute frozen metrics and gates;
-- distinguish `PASS`, `REJECT`, and `INVALID_RUN`;
-- write `verdict.json` plus concise human summary;
-- never mutate strategy parameters.
+```powershell
+python research/runner/guardian_research.py compile D037
+```
 
-### confirm
-- available only after development/robustness gates permit it;
-- requires frozen source SHA + frozen gates;
-- marks the confirmation period as opened before reading results;
-- confirmation failure cannot be rescued by retuning the same opened sample.
+Required evidence before any DEV run:
+- repository source SHA matches the D037 manifest;
+- deployed source SHA equals repository source SHA;
+- MetaEditor reports 0 errors / 0 warnings;
+- EX5 exists;
+- build receipt contains EX5 SHA.
 
-## Artifact model
+Then one symbol:
 
-Target local/GitHub bundle:
+```powershell
+python research/runner/guardian_research.py test-one D037 --stage development --symbol USDJPY
+```
+
+Only after that succeeds should the complete current pipeline run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File research/runner/Run-GuardianResearch.ps1
+```
+
+## Reference tester model
+
+D037 is pinned to MT5 `Model=0` (Every tick) as the reference execution mode until a short conformance experiment proves that a faster model produces equivalent D037 trade evidence. Speed must not silently alter strategy semantics.
+
+The manifest records `Model=1` (1 minute OHLC) only as the current fast candidate, not as an approved replacement.
+
+## Result layout
+
+The local workspace defaults to `D:/MT5_Backtests/guardian-runner` when available.
 
 ```text
-runs/D038/<run_id>/
-  manifest.json
-  source_receipt.json
-  compile_receipt.json
-  run_receipt.json
-  stats.csv
-  trades.csv
-  score.json
-  verdict.json
-  summary.md
+builds/<experiment>/<utc>/build.json
+runs/<experiment>/<stage>/<run-id>/run.json
+batches/<experiment>/<stage>/<utc>/batch.json
+scores/<experiment>/<stage>/<utc>/verdict.json
+quarantine/stale_outputs/...
 ```
 
-`run_id` must uniquely identify experiment, source version/SHA, stage, market, period and execution profile.
+Raw MT5 CSV files are copied into each immutable run directory and SHA-256-addressed in `run.json`.
 
-## Error classes
+## Failure classes
 
-The runner must never collapse these into one generic failure:
+The runner must not collapse these into one generic failure:
+- project/manifest contradiction;
+- source identity failure;
+- missing local dependency;
+- compile failure;
+- missing MT5 output;
+- lifecycle/integrity failure;
+- strategy gate rejection;
+- transport failure.
 
-- `CONFIG_ERROR` — invalid/missing manifest or dependency;
-- `SOURCE_ERROR` — missing source or SHA mismatch;
-- `COMPILE_ERROR` — MetaEditor failure;
-- `HARNESS_ERROR` — lifecycle/output/provenance failure;
-- `RUNNER_ERROR` — orchestration bug;
-- `TRANSPORT_ERROR` — Git/network publication problem;
-- `STRATEGY_REJECT` — valid run, frozen scientific gates failed;
-- `STRATEGY_PASS` — valid run, frozen scientific gates passed.
+An engineering/integrity failure is never treated as strategy rejection.
 
-Only transport errors are normally retryable without changing scientific provenance.
+## Confirmation discipline
 
-## First migration specimen
+A development pass only produces `CANDIDATE_CONFIRM`. The runner does not automatically open the untouched confirmation sample. Opening confirmation requires an explicit state transition after the development verdict is recorded.
 
-D037 will be used as the first real specimen, but the runner must remain generic.
+## AutoSync
 
-Before that migration:
-- replace textual v1.00 -> v1.01 source generation with a complete committed v1.01 source;
-- preserve D037 preregistered strategy semantics;
-- treat the already-recorded smoke waiver as historical execution context, not as a template for future experiments.
+Legacy AutoSync v1/v2 is not part of this execution path and is never used as fallback. A future AutoSync v3 is transport only, after the local runner is proven.
 
 ## Rule against framework creep
 
-Do not add a feature to the runner because one strategy can imagine using it. Add only features required by at least one current frozen experiment or by universal reproducibility/safety requirements.
+Do not add a feature because one strategy can imagine using it. Add only features required by a current frozen experiment or by universal reproducibility/safety requirements.
