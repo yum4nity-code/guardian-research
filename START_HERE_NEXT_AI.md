@@ -15,7 +15,7 @@ Read only what is needed, in this order:
 
 - Experiment: **D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0**
 - State: **REJECTED**
-- Next action: **Implement the common rich analytics scorer and deterministic compact result publisher defined in docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md. Publish validated result bundles to the backtest-results branch without touching the user's active research working tree. Preserve D037 REJECT_V0; its 2,377 DEV trades may feed transversal Trade Path Dataset / Exit Lab research but may not rescue D037. Then select and preregister D038.**
+- Next action: **On the MT5 research PC, pull the latest branch and run exactly `py -3 .\research\runner\guardian_research.py finalize D037 --stage development`. This must not launch MT5. Require FINALIZE_PASS, rich analytics over the validated 2,377 DEV trades, a compact result bundle, and an isolated publish to the backtest-results branch (or an idempotent already-present no-op) with a local publish receipt. D037 remains REJECT_V0. After this proof, select and preregister D038 with native Trade Path telemetry.**
 
 ## Operational truths
 
