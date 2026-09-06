@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260906_164332_D036_ETHUSD_d264ccba42ca",
+    "fingerprint":  "d264ccba42ca0625c728a25deeaa8f0e4f07f65fa54e99927c5c7db46fbe0ba0",
+    "synced_at_utc":  "2026-09-06T16:46:41.5457610Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "DEV_2024_2025",
+                       "symbol":  "ETHUSD",
+                       "timeframe":  "PERIOD_H1",
+                       "trades_closed":  448,
+                       "published_trades_rows":  448
+                   },
+    "files":  [
+                  {
+                      "name":  "D036_V100_DEV_2024_2025_ETHUSD_STATS.csv",
+                      "source_sha256":  "d633220207d58fdbeee51dc2ea669b283cbabc784e72a4dc19e755883f4d642c",
+                      "published_sha256":  "a6ed5cf81e07be7c3617c53216f63ef5ef97799154188470e7c3392641a78053",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D036_V100_DEV_2024_2025_ETHUSD_TRADES.csv",
+                      "source_sha256":  "fa0902a300393c9af54a4d152de2d9f4888ddb9810350a65581d94b738884bb3",
+                      "published_sha256":  "4f50dd92950689543ae4ba4c43775ecf648f1a60501f4ed8e428ea6709089d4e",
+                      "sanitized":  false
+                  }
+              ]
+}
