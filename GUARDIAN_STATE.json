@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T22:40:00+02:00",
+  "updated_at": "2026-09-06T22:55:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,11 +8,12 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_0_COMPLETE_PHASE_1_READY",
+    "status": "PHASE_1_ACTIVE_ONE_SOURCE_OF_TRUTH",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_1_ONE_SOURCE_OF_TRUTH"
+    "next_phase": "PHASE_2_GENERIC_EXPERIMENT_CONTRACT",
+    "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
@@ -54,9 +55,10 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "CONTRACT_AND_MANIFEST_SCHEMA_DEFINED",
+    "status": "STATE_VALIDATOR_IMPLEMENTED_CONTRACT_READY",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
+    "state_tools": "research/runner/state_tools.py",
     "principle": "one manifest + one complete strategy source; deterministic compile/smoke/dev/score pipeline"
   },
   "non_guardian_projects": {
@@ -69,8 +71,8 @@
     }
   },
   "compatibility_state": {
-    "START_HERE_NEXT_AI.md": "STALE_LEGACY_ENTRYPOINT_PENDING_PHASE_1",
-    "CURRENT_QUEUE.json": "STALE_LEGACY_QUEUE_PENDING_PHASE_1",
-    "handoff": "HISTORICAL_CONTEXT_PENDING_ARCHIVE_REORGANIZATION"
+    "START_HERE_NEXT_AI.md": "GENERATED_FROM_GUARDIAN_STATE",
+    "CURRENT_QUEUE.json": "GENERATED_FROM_GUARDIAN_STATE",
+    "handoff": "HISTORICAL_CONTEXT_NOT_OPERATIONAL_STATE"
   }
 }
