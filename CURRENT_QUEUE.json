@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T15:05:00+02:00",
+  "updated_at": "2026-09-06T15:25:00+02:00",
   "active_primary": "D023-LONDON-ORB-M15-V0",
   "items": [
     {
@@ -61,13 +61,22 @@
       "blocking": "Archive is currently too young for long-history validation. No retrospective threshold fitting."
     },
     {
+      "id": "D023-AUTOSYNC-V102-RECOVERY",
+      "priority": 0,
+      "status": "WAITING_CODEX",
+      "owner": "Codex/User",
+      "type": "p0_output_recovery_and_transport_reliability",
+      "goal": "Before rerunning any D023 test, inspect FILE_COMMON for an already-finalized v1.08 STATS/TRADES pair and recover it with automation/Guardian_Backtest_CSV_AutoSync_v1_02_D023_RESILIENT_PUBLICSAFE.ps1. v1.02 validates INIT->READY->FINAL, exact v1.08 provenance, USDJPY M15, trades_closed==csv_trade_rows==physical trade rows, redacts local Windows username paths, records source/published hashes, uses deterministic run identity and retries Git errors without killing the watcher. If no finalized pair exists, install v1.02 and proceed only with the already-preregistered short smoke.",
+      "blocking": "Local PowerShell runtime validation and first successful backtest-results publication are still pending. At takeover, backtest-results head was 4d4a300c00d882dc66a497689284b0cc2827e165 from 2026-09-04 and backtests/inbox/LATEST.json did not exist. Read research/results/D023_AUTOSYNC_V102_STATIC_AUDIT_2026_09_06.md and handoff/chatgpt_to_codex/2026/09/06/D023_AUTOSYNC_V102_INSTALL_RECOVER_AND_SMOKE_REQUEST_2026_09_06.md."
+    },
+    {
       "id": "D023-LONDON-ORB-M15-V0",
       "priority": 0,
       "status": "WAITING_CODEX",
       "owner": "Codex/User",
       "type": "scientific_hypothesis_untouched_confirmation",
-      "goal": "CURRENT P0. D023 v1.08 HARNESSFIX is committed at research/strategies/d023/D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5, SHA256 10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4. Static audit confirms exact v1.07 provenance and no change to OnTick/calendar-cost-state/WriteTrade. Next action is real FundedNext MetaEditor compile 0 errors / 0 warnings, then short USDJPY M15 Every tick smoke 2023-03-13 through 2023-03-31, direct STATS/TRADES inspection and manual ORB/DST verification. Only after that may the untouched full 2023 confirmation be run once against frozen gates.",
-      "blocking": "FULL 2023 RUN BLOCKED. v1.08 is static-audited but NOT compile-validated or smoke-validated. Read research/results/D023_V108_2023_HARNESS_STATIC_AUDIT_2026_09_06.md and handoff/chatgpt_to_codex/2026/09/06/D023_V108_2023_HARNESS_COMPILE_SMOKE_REQUEST_2026_09_06.md. Do not tune D023, remove SHORT, add filters or test managers before the untouched confirmation is scored."
+      "goal": "CURRENT P0 alpha candidate. D023 v1.08 HARNESSFIX is committed at research/strategies/d023/D023_USDJPY_LondonORB_M15_v1_08_FUNDEDNEXT_2023_HARNESSFIX_20260906.mq5, SHA256 10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4. First recover any existing finalized v1.08 outputs through AutoSync v1.02. If none exist, next action is real FundedNext MetaEditor compile 0 errors / 0 warnings, then short USDJPY M15 Every tick smoke 2023-03-13 through 2023-03-31, direct STATS/TRADES inspection and manual ORB/DST verification. Only after that may the untouched full 2023 confirmation be run once against frozen gates.",
+      "blocking": "FULL 2023 RUN BLOCKED. v1.08 is static-audited but NOT compile-validated or smoke-validated. AutoSync v1.02 is also static-audited but not locally runtime-validated. Do not rerun an already-existing finalized smoke merely to recreate outputs. Do not tune D023, remove SHORT, add filters or test managers before the untouched confirmation is scored."
     },
     {
       "id": "D022-RELATIVE-VALUE-PAIR-REV-M15",
@@ -160,5 +169,5 @@
     }
   ],
   "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-06 P0 state: D023 USDJPY London ORB remains the primary candidate. v1.08 HARNESSFIX is now the active confirmation harness source but is static-audited only. Real MetaEditor compile 0/0 and the 2023-03-13..2023-03-31 DST smoke must PASS before any full 2023 run. D17 Momentum remains closed as current alpha; preserve lineage/manager evidence only. Guardian Core v12.01 remains the compile-validated pure infrastructure baseline. FundedNext request/retry pathology remains separate and AUTO stays off until bounded."
+  "notes": "2026-09-06 P0 state: D023 USDJPY London ORB remains the primary candidate. Before any rerun, recover any existing finalized v1.08 FILE_COMMON outputs with D023 AutoSync v1.02. v1.08 HARNESSFIX and AutoSync v1.02 are static-audited only; local runtime proof is pending. If no valid finalized pair exists, real MetaEditor compile 0/0 and the 2023-03-13..2023-03-31 DST smoke must PASS before any full 2023 run. D17 Momentum remains closed as current alpha; Guardian Core v12.01 remains the compile-validated pure infrastructure baseline; FundedNext request/retry pathology remains separate and AUTO stays off until bounded."
 }
