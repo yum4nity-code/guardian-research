@@ -14,8 +14,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0**
-- State: **SOURCE_PENDING_V101_COMPLETE_REPOSITORY_ARTIFACT**
-- Next action: **Create and validate a complete D037 v1.01 repository source, then use it as the first migration specimen for the generic runner.**
+- State: **COMPILE_PENDING**
+- Next action: **On the MT5 research PC, configure the local Guardian runner and compile D037 v1.01. Require verified source-copy SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt before any DEV run.**
 
 ## Operational truths
 
