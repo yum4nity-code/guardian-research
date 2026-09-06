@@ -8,37 +8,59 @@ Policy:
 - A manager study becomes justified when the same management weakness appears across multiple independent sleeves or markets.
 - When justified, freeze a finite candidate family, tune only on a designated development sample, then confirm on genuinely untouched data / markets.
 - Prefer reusable manager components over strategy-specific rescue rules.
-- Do not demand a perfect entry with frozen exits forever; manager quality is itself a research object.
 
 ## Current evidence — 2026-09-06
 
-All D17 figures below compare the same v11.17 entry events under NATIVE_RATCHET versus FIXED_3R.
+### D17 BTCUSD 2024-2025
+- NATIVE_RATCHET improved gross outcome over FIXED_3R by about +0.031R/trade.
+- Manager delta bootstrap crossed zero; improvement not statistically established.
+- Strategy remained negative after crypto costs.
 
-| Market | N | Native net R/trade | Fixed 3R net R/trade | Native - Fixed |
-|---|---:|---:|---:|---:|
-| BTCUSD | 1739 | -0.116 | -0.147 | +0.031 |
-| ETHUSD | 1141 | -0.119 | -0.208 | +0.088 |
-| EURUSD | 300 | -0.076 | -0.271 | +0.195 |
-| GBPUSD | 429 | -0.118 | -0.073 | -0.044 |
-| USDJPY | 524 | -0.009 | -0.045 | +0.037 |
-| XAUUSD | 676 | -0.049 | +0.041 | -0.090 |
+### D17 ETHUSD 2024-2025
+- NATIVE_RATCHET improved outcome over FIXED_3R by about +0.088R/trade.
+- Delta bootstrap was positive in the prior audit.
+- Strategy still remained negative after crypto costs.
 
-### Interpretation
-- Ratchet helps 4/6 tested markets versus fixed 3R, but hurts GBPUSD and XAUUSD.
-- ETHUSD and EURUSD show clearly positive paired manager deltas on the inspected sample; BTCUSD and USDJPY improvements are smaller/inconclusive.
-- XAUUSD is the strongest warning against a universal manager: FIXED_3R is mildly positive pooled while NATIVE_RATCHET is negative.
-- Therefore manager tuning is justified as a future component study, but the current evidence argues against one universal fixed trail setting across all asset classes.
-- Asset-class-specific or state-dependent manager hypotheses may be researched later, but only with finite preregistered candidate families and untouched confirmation.
+### D17 EURUSD 2024-2025
+- Native net about -0.076R/trade vs Fixed about -0.271R/trade.
+- Ratchet delta about +0.195R/trade.
+- Manager helps strongly, but entry family remains negative.
 
-### D17 entry-system conclusion so far
-- BTCUSD/ETHUSD: insufficient net alpha after costs.
-- EURUSD/GBPUSD: negative under both managers.
-- USDJPY: near-flat Native pooled, but strong 2024 positive / 2025 negative regime flip; not validated alpha.
-- XAUUSD: FIXED_3R pooled about +0.041R/trade but 2024 negative / 2025 positive regime flip; not validated alpha.
-- USDCAD is still missing from this exact v11.17 cost-aware batch.
+### D17 GBPUSD 2024-2025
+- Native net about -0.118R/trade vs Fixed about -0.073R/trade.
+- Ratchet delta about -0.044R/trade.
+- Manager hurts this market.
+
+### D17 USDJPY 2024-2025
+- Native net about -0.009R/trade vs Fixed about -0.045R/trade.
+- Ratchet delta about +0.037R/trade.
+- Native is near flat pooled but strongly regime-dependent: positive 2024, negative 2025.
+
+### D17 XAUUSD 2024-2025
+- Native net about -0.049R/trade vs Fixed about +0.041R/trade.
+- Ratchet delta about -0.090R/trade.
+- The current 1.75 ATR ratchet appears harmful on this market; Fixed 3R is mildly positive pooled but not year-stable.
+
+### D17 USDCAD 2024-2025
+- Native net -0.106R/trade vs Fixed -0.123R/trade.
+- Ratchet delta +0.016R/trade; paired bootstrap CI crosses zero.
+- 2024 strongly negative; 2025 near flat. No robust edge.
+
+## Cross-market D17 snapshot
+
+Approximate Native-minus-Fixed deltas:
+- BTCUSD +0.031R/trade
+- ETHUSD +0.088R/trade
+- EURUSD +0.195R/trade
+- USDJPY +0.037R/trade
+- USDCAD +0.016R/trade
+- GBPUSD -0.044R/trade
+- XAUUSD -0.090R/trade
+
+This is evidence against a single universal exit manager across all asset classes. The same Native manager helps 5 of 7 tested markets and hurts 2, with very different effect sizes.
 
 Decision:
-- Keep dedicated MANAGER-STUDY hypothesis alive.
-- Do not rescue D17 by tuning on these same inspected markets and calling that validation.
-- Finish USDCAD exact v11.17 cost-aware attribution.
-- Then move to independent strategy sleeves (USDJPY ORB, D032 Doji, etc.) and log whether similar exit-management weaknesses recur. If they do, open a formal manager campaign.
+- Cross-market evidence is sufficient to keep a dedicated manager-study hypothesis alive.
+- Do NOT tune D17 itself now to rescue inspected samples.
+- Next useful test is across an independent strategy family (USDJPY London ORB), so the project can determine whether the same exit-management weakness repeats across strategies rather than merely across markets inside D17.
+- If it does, launch a preregistered manager campaign with a finite candidate family and untouched confirmation data.
