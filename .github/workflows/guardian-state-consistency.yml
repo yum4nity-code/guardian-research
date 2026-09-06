@@ -33,6 +33,21 @@ jobs:
           research/runner/test_state_tools.py
           research/runner/test_runner_contract.py
 
+      - name: Parse Windows PowerShell launcher
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $parseErrors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path 'research/runner/Run-GuardianResearch.ps1'),
+            [ref]$tokens,
+            [ref]$parseErrors
+          ) | Out-Null
+          if ($parseErrors.Count -gt 0) {
+            $parseErrors | ForEach-Object { Write-Error $_.Message }
+            exit 1
+          }
+
       - name: Validate authoritative state and generated views
         run: python research/runner/state_tools.py validate
 
