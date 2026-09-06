@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T23:00:00+02:00",
+  "updated_at": "2026-09-06T23:12:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,7 +8,7 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_2_COMPLETE_PHASE_3_ACTIVE_COMPILE_PROOF_PENDING",
+    "status": "PHASE_2_COMPLETE_PHASE_3_ACTIVE_SINGLE_TEST_PROOF_PENDING",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
@@ -18,7 +18,7 @@
   "research": {
     "active_experiment": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
     "experiment_manifest": "research/experiments/D037.json",
-    "status": "COMPILE_PENDING",
+    "status": "READY_DEV",
     "strategy_family": "Williams-inspired previous-day range volatility breakout",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D037_WILLIAMS_PREVDAY_RANGE_VOLATILITY_BREAKOUT_V0_PREREGISTRATION_2026_09_06.md",
@@ -28,7 +28,7 @@
     ],
     "historical_builder": "automation/Build_D037_v101_20260906.ps1",
     "resolved_engineering_issue": "v1.01 is now a complete immutable repository source. Textual source generation is no longer needed for D037 execution.",
-    "next_action": "Compile D037 v1.01 on the MT5 research PC without launching a backtest. Require verified local-source to MT5-copy raw SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt. Only then run one USDJPY development test.",
+    "next_action": "Run exactly one USDJPY development test with reference tester model 0. Require the trusted compile receipt/EX5, fresh FILE_COMMON outputs, and a clean lifecycle/integrity verdict. Do not launch the six-symbol DEV batch until this single-symbol proof passes.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -54,7 +54,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "END_TO_END_CODE_IMPLEMENTED_BOOTSTRAP_DOCTOR_PASS_COMPILE_PROOF_PENDING",
+    "status": "END_TO_END_CODE_IMPLEMENTED_BOOTSTRAP_COMPILE_PASS_SINGLE_TEST_PENDING",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -82,7 +82,7 @@
     "fast_model_approved": false,
     "autosync_required_for_local_pipeline": false,
     "github_ci_status": "PASS",
-    "local_mt5_status": "BOOTSTRAP_DOCTOR_PASS_COMPILE_UNTESTED",
+    "local_mt5_status": "BOOTSTRAP_DOCTOR_PASS_COMPILE_PASS_SINGLE_TEST_UNTESTED",
     "local_bootstrap_proof": {
       "observed_from_user_terminal_output": true,
       "source_ready": true,
@@ -91,6 +91,19 @@
       "source_identity_sha256": "8a30c8e20c38803492c2b1cb3c94dd2aa25df66575ca665aa3da660833fac96d",
       "local_raw_bytes_sha256": "6d43cff58aa8a9da81c77fee00fffd27562f2c6b112c3e770253c0eeac19ed4a",
       "blockers": []
+    },
+    "local_compile_proof": {
+      "observed_from_user_terminal_output": true,
+      "status": "COMPILE_PASS",
+      "created_at_utc": "2026-09-06T21:10:21.142204+00:00",
+      "source_identity_sha256": "8a30c8e20c38803492c2b1cb3c94dd2aa25df66575ca665aa3da660833fac96d",
+      "source_bytes_sha256": "6d43cff58aa8a9da81c77fee00fffd27562f2c6b112c3e770253c0eeac19ed4a",
+      "destination_bytes_sha256": "6d43cff58aa8a9da81c77fee00fffd27562f2c6b112c3e770253c0eeac19ed4a",
+      "metaeditor_errors": 0,
+      "metaeditor_warnings": 0,
+      "metaeditor_process_exit_code": 1,
+      "ex5_sha256": "4c07d19ea0367d310f19c86f0b4730dd172c6ecf2f091ac323e596eeebbfcf4e",
+      "acceptance_basis": "MetaEditor log reported 0 errors / 0 warnings and the EX5 existed with a recorded SHA; source-to-destination byte SHA equality was also proven."
     },
     "principle": "one manifest + one complete strategy source; deterministic compile/test/batch/score pipeline"
   },
