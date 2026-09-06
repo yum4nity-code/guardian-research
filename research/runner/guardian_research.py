@@ -11,10 +11,18 @@ import batch
 import diagnostics
 import experiment
 import publisher
+import result_transport
 import rich_score
 import runner
 import score
 import tester
+
+
+def _with_transport(identifier: str, stage: str, kind: str, payload: dict) -> dict:
+    """Attach automatic GitHub transport without invalidating valid local evidence."""
+    result = dict(payload)
+    result["github_transport"] = result_transport.safe_publish_event(identifier, stage, kind, payload)
+    return result
 
 
 def pipeline_run(identifier: str) -> dict:
@@ -27,6 +35,7 @@ def pipeline_run(identifier: str) -> dict:
     _, _, manifest = runner.load_context(identifier)
     stage = manifest["runner_contract"]["default_stage"]
     batch_result = batch.run_batch(identifier, stage)
+    batch_result = _with_transport(identifier, stage, "batch", batch_result)
     if stage != "development":
         return {
             "status": "BATCH_COMPLETE_SCORER_NOT_IMPLEMENTED_FOR_STAGE",
@@ -34,6 +43,7 @@ def pipeline_run(identifier: str) -> dict:
             "batch": batch_result,
         }
     verdict = score.score(identifier, stage, batch_result["batch_path"])
+    verdict = _with_transport(identifier, stage, "score", verdict)
     return {
         "status": "PIPELINE_COMPLETE",
         "stage": stage,
@@ -41,6 +51,7 @@ def pipeline_run(identifier: str) -> dict:
         "verdict_path": verdict["verdict_path"],
         "verdict": verdict["verdict"],
         "all_gates_pass": verdict["all_gates_pass"],
+        "github_transport": verdict["github_transport"],
     }
 
 
@@ -59,7 +70,7 @@ def finalize_existing(identifier: str, stage: str, batch_path: str | None = None
         decision_path=decision["verdict_path"],
         rich_path=rich["rich_score_path"],
     )
-    return {
+    result = {
         "status": "FINALIZE_PASS",
         "stage": stage,
         "decision_verdict": decision["verdict"],
@@ -72,6 +83,8 @@ def finalize_existing(identifier: str, stage: str, batch_path: str | None = None
         "published_commit_sha": published["commit_sha"],
         "autosync_used": False,
     }
+    result["github_transport"] = result_transport.safe_publish_event(identifier, stage, "finalize", result)
+    return result
 
 
 def main() -> int:
@@ -132,22 +145,28 @@ def main() -> int:
         if args.command == "compile":
             return runner.cmd_compile(args.experiment)
         if args.command == "test-one":
-            print(json.dumps(tester.run_one(args.experiment, args.stage, args.symbol), indent=2, ensure_ascii=False))
+            result = tester.run_one(args.experiment, args.stage, args.symbol)
+            print(json.dumps(_with_transport(args.experiment, args.stage, "test-one", result), indent=2, ensure_ascii=False))
             return 0
         if args.command == "recover-one":
-            print(json.dumps(tester.recover_latest(args.experiment, args.stage, args.symbol), indent=2, ensure_ascii=False))
+            result = tester.recover_latest(args.experiment, args.stage, args.symbol)
+            print(json.dumps(_with_transport(args.experiment, args.stage, "recover-one", result), indent=2, ensure_ascii=False))
             return 0
         if args.command == "diagnose-invalid":
-            print(json.dumps(diagnostics.diagnose_latest_invalid(args.experiment, args.stage), indent=2, ensure_ascii=False))
+            result = diagnostics.diagnose_latest_invalid(args.experiment, args.stage)
+            print(json.dumps(_with_transport(args.experiment, args.stage, "diagnose-invalid", result), indent=2, ensure_ascii=False))
             return 0
         if args.command == "batch":
-            print(json.dumps(batch.run_batch(args.experiment, args.stage), indent=2, ensure_ascii=False))
+            result = batch.run_batch(args.experiment, args.stage)
+            print(json.dumps(_with_transport(args.experiment, args.stage, "batch", result), indent=2, ensure_ascii=False))
             return 0
         if args.command == "score":
-            print(json.dumps(score.score(args.experiment, args.stage, args.batch), indent=2, ensure_ascii=False, allow_nan=False))
+            result = score.score(args.experiment, args.stage, args.batch)
+            print(json.dumps(_with_transport(args.experiment, args.stage, "score", result), indent=2, ensure_ascii=False, allow_nan=False))
             return 0
         if args.command == "rich-score":
-            print(json.dumps(rich_score.rich_score(args.experiment, args.stage, args.batch), indent=2, ensure_ascii=False, allow_nan=False))
+            result = rich_score.rich_score(args.experiment, args.stage, args.batch)
+            print(json.dumps(_with_transport(args.experiment, args.stage, "rich-score", result), indent=2, ensure_ascii=False, allow_nan=False))
             return 0
         if args.command == "publish":
             print(json.dumps(publisher.publish_bundle(args.experiment, args.stage, args.decision, args.rich), indent=2, ensure_ascii=False, allow_nan=False))
