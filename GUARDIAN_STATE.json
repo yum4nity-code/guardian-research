@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T23:12:00+02:00",
+  "updated_at": "2026-09-06T23:18:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,11 +8,11 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_2_COMPLETE_PHASE_3_ACTIVE_SINGLE_TEST_PROOF_PENDING",
+    "status": "PHASE_2_COMPLETE_PHASE_3_ACTIVE_DEV_BATCH_PROOF_PENDING",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_PROVE_WINDOWS_MT5_COMPILE_SINGLE_TEST_BATCH_SCORE",
+    "next_phase": "PHASE_3_PROVE_WINDOWS_MT5_DEV_BATCH_SCORE",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
@@ -28,7 +28,7 @@
     ],
     "historical_builder": "automation/Build_D037_v101_20260906.ps1",
     "resolved_engineering_issue": "v1.01 is now a complete immutable repository source. Textual source generation is no longer needed for D037 execution.",
-    "next_action": "Run exactly one USDJPY development test with reference tester model 0. Require the trusted compile receipt/EX5, fresh FILE_COMMON outputs, and a clean lifecycle/integrity verdict. Do not launch the six-symbol DEV batch until this single-symbol proof passes.",
+    "next_action": "Run the sequential six-symbol D037 development batch with reference tester model 0. Stop immediately on any engineering/integrity failure. If the batch passes integrity, score the frozen DEV gates; any gate failure means REJECT_V0 with no rescue tuning.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -54,7 +54,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "END_TO_END_CODE_IMPLEMENTED_BOOTSTRAP_COMPILE_PASS_SINGLE_TEST_PENDING",
+    "status": "BOOTSTRAP_COMPILE_SINGLE_TEST_PASS_DEV_BATCH_PENDING",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -82,7 +82,7 @@
     "fast_model_approved": false,
     "autosync_required_for_local_pipeline": false,
     "github_ci_status": "PASS",
-    "local_mt5_status": "BOOTSTRAP_DOCTOR_PASS_COMPILE_PASS_SINGLE_TEST_UNTESTED",
+    "local_mt5_status": "BOOTSTRAP_DOCTOR_PASS_COMPILE_PASS_USDJPY_TEST_PASS_INTEGRITY",
     "local_bootstrap_proof": {
       "observed_from_user_terminal_output": true,
       "source_ready": true,
@@ -104,6 +104,15 @@
       "metaeditor_process_exit_code": 1,
       "ex5_sha256": "4c07d19ea0367d310f19c86f0b4730dd172c6ecf2f091ac323e596eeebbfcf4e",
       "acceptance_basis": "MetaEditor log reported 0 errors / 0 warnings and the EX5 existed with a recorded SHA; source-to-destination byte SHA equality was also proven."
+    },
+    "local_single_test_proof": {
+      "observed_from_user_confirmation": true,
+      "symbol": "USDJPY",
+      "stage": "development",
+      "tester_model": 0,
+      "status": "TEST_PASS_INTEGRITY",
+      "recovered_after_utf16_parser_fix": true,
+      "note": "Exact local run receipt/trade count was not pasted into chat; only the successful recovery/integrity outcome was confirmed by the user."
     },
     "principle": "one manifest + one complete strategy source; deterministic compile/test/batch/score pipeline"
   },
