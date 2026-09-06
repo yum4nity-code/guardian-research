@@ -19,8 +19,14 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Compile deterministic Python tooling
+        run: python -m py_compile research/runner/state_tools.py research/runner/experiment.py research/runner/test_state_tools.py
+
       - name: Validate authoritative state and generated views
         run: python research/runner/state_tools.py validate
+
+      - name: Validate active experiment contract
+        run: python research/runner/experiment.py validate D037
 
       - name: Run state regression tests
         run: python research/runner/test_state_tools.py
