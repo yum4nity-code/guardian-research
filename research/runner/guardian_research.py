@@ -8,6 +8,7 @@ import json
 import sys
 
 import batch
+import campaign
 import diagnostics
 import experiment
 import publisher
@@ -164,6 +165,15 @@ def main() -> int:
     final.add_argument("--stage", default="development", choices=("development",))
     final.add_argument("--batch")
 
+    multi = sub.add_parser("campaign")
+    multi.add_argument("experiments", nargs="+", help="D039 D040 ...")
+    multi.add_argument("--stage", default="smoke", choices=("smoke", "development", "confirmation"))
+    multi.add_argument(
+        "--no-finalize",
+        action="store_true",
+        help="For development, stop after batch/path validation instead of score/rich/publish",
+    )
+
     args = parser.parse_args()
 
     try:
@@ -204,6 +214,14 @@ def main() -> int:
         if args.command == "finalize":
             print(json.dumps(finalize_existing(args.experiment, args.stage, args.batch), indent=2, ensure_ascii=False, allow_nan=False))
             return 0
+        if args.command == "campaign":
+            print(json.dumps(
+                campaign.run_campaign(args.experiments, args.stage, finalize_development=not args.no_finalize),
+                indent=2,
+                ensure_ascii=False,
+                allow_nan=False,
+            ))
+            return 0
         print(json.dumps(pipeline_run(args.experiment), indent=2, ensure_ascii=False, allow_nan=False))
         return 0
     except (
@@ -213,6 +231,7 @@ def main() -> int:
         score.ScoreError,
         rich_score.RichScoreError,
         publisher.PublishError,
+        campaign.CampaignError,
         experiment.ManifestError,
         KeyError,
         OSError,
