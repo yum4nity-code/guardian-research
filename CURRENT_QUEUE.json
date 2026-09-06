@@ -2,22 +2,22 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-06T22:55:00+02:00",
+  "updated_at": "2026-09-06T23:10:00+02:00",
   "active_primary": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
   "items": [
     {
       "id": "D037-WILLIAMS-PREVDAY-RANGE-VOLATILITY-BREAKOUT-V0",
       "priority": 0,
-      "status": "SOURCE_PENDING_V101_COMPLETE_REPOSITORY_ARTIFACT",
+      "status": "COMPILE_PENDING",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "Create and validate a complete D037 v1.01 repository source, then use it as the first migration specimen for the generic runner.",
+      "goal": "On the MT5 research PC, configure the local Guardian runner and compile D037 v1.01. Require verified source-copy SHA equality, MetaEditor 0 errors / 0 warnings, and an EX5 SHA receipt before any DEV run.",
       "manifest": "research/experiments/D037.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "STATE_VALIDATOR_IMPLEMENTED_CONTRACT_READY",
+      "status": "LOCAL_DEPLOY_COMPILE_CORE_IMPLEMENTED",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
       "goal": "one manifest + one complete strategy source; deterministic compile/smoke/dev/score pipeline"
