@@ -1,0 +1,39 @@
+name: Materialize D037 v1.01 once
+
+on:
+  push:
+    branches:
+      - refactor/guardian-research-runner-v1
+    paths:
+      - research/runner/_migration_materialize_d037_v101.py
+      - .github/workflows/materialize-d037-v101.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: refactor/guardian-research-runner-v1
+
+      - name: Materialize exact v1.01 source
+        run: python research/runner/_migration_materialize_d037_v101.py
+
+      - name: Commit complete source if needed
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE='research/strategies/d037/D037_Williams_M15_v1_01.mq5'
+          if [[ -z "$(git status --porcelain -- "$FILE")" ]]; then
+            echo 'Source already committed; nothing to do.'
+            exit 0
+          fi
+          git config user.name 'guardian-research-bot'
+          git config user.email 'guardian-research-bot@users.noreply.github.com'
+          git add "$FILE"
+          git commit -m 'Commit complete D037 v1.01 closed-bar source'
+          git push origin HEAD:refactor/guardian-research-runner-v1
