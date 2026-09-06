@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260906_162823_D036_BTCUSD_c0f815433d1c",
+    "fingerprint":  "c0f815433d1c5cb33ba053324d52f2c4fbbb17065f6bcfdda73efcec1a0f3496",
+    "synced_at_utc":  "2026-09-06T16:29:42.4537719Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "SMOKE_MAR2025",
+                       "symbol":  "BTCUSD",
+                       "timeframe":  "PERIOD_H1",
+                       "trades_closed":  19,
+                       "published_trades_rows":  19
+                   },
+    "files":  [
+                  {
+                      "name":  "D036_V100_SMOKE_MAR2025_BTCUSD_STATS.csv",
+                      "source_sha256":  "dce5e2fe0cd1298381a69237b7f09d5005574aa9f1afc39afe490046826ad69c",
+                      "published_sha256":  "6a007f377b983fa317bacc347f8bd945fb561544a204e8c552cc00b6d8ed057e",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D036_V100_SMOKE_MAR2025_BTCUSD_TRADES.csv",
+                      "source_sha256":  "f951b8a324ab04ba81636e555385cd0915324572cfb80eae3556e5e30c2b79ee",
+                      "published_sha256":  "a79d9bbe654068cae7e5928d18dc72af69cca5421b112ab864500676d5b1a8ae",
+                      "sanitized":  false
+                  }
+              ]
+}
