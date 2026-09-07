@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-07T12:07:20.9823179Z",
-    "run_id":  "20260907_120459_D038_AUDUSD_cf797a4e5659",
-    "path":  "backtests/inbox/2026/09/07/20260907_120459_D038_AUDUSD_cf797a4e5659",
-    "fingerprint":  "cf797a4e56591cf30ac0a44901ad27b19917b77917468a759d95697d20b896fc",
+    "synced_at_utc":  "2026-09-07T12:07:55.7486518Z",
+    "run_id":  "20260907_120517_D038_SPX500_154811187915",
+    "path":  "backtests/inbox/2026/09/07/20260907_120517_D038_SPX500_154811187915",
+    "fingerprint":  "154811187915ff6de9f1ad9522c195a3013254f38ccbe8bba1cb641eeb23bf47",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D038_V100_RUN_AUDUSD_STATS.csv",
-                  "D038_V100_RUN_AUDUSD_TRADES.csv",
+                  "D038_V100_RUN_SPX500_STATS.csv",
+                  "D038_V100_RUN_SPX500_TRADES.csv",
                   "sync_manifest.json"
               ]
 }

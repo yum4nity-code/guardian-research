@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_120517_D038_SPX500_154811187915",
+    "fingerprint":  "154811187915ff6de9f1ad9522c195a3013254f38ccbe8bba1cb641eeb23bf47",
+    "synced_at_utc":  "2026-09-07T12:07:55.7330231Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00-MTL1",
+                       "run_stage":  "RUN",
+                       "symbol":  "SPX500",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  3,
+                       "published_trades_rows":  3
+                   },
+    "files":  [
+                  {
+                      "name":  "D038_V100_RUN_SPX500_STATS.csv",
+                      "source_sha256":  "25957352a5097a8427e6e7bc93663cc4188bd170d94815a1f5cf23cbf2e3991f",
+                      "published_sha256":  "c02e9268d61d1001bb7a1985d7f29fc936bcf42a0ce1c5a3f268ee28fc52931b",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D038_V100_RUN_SPX500_TRADES.csv",
+                      "source_sha256":  "841289fdda3e80b2d6e1ba9f5a8bac8d06b80cb22afd013ce82bed7c946f133c",
+                      "published_sha256":  "5aa4e8c9f1ba48a6db9a083b6b7f20e7f38eba827c86b2761462c65a4fbc802b",
+                      "sanitized":  false
+                  }
+              ]
+}
