@@ -38,6 +38,7 @@ class LabTests(unittest.TestCase):
         self.assertEqual(s["daily_dd_violation"]["probability"],0.0)
 
     def test_daily_limit_resets(self):
+        # One -3R atomic trade per day at 1% risk is -3% each day: below 5% daily, but max DD eventually fails.
         report=lab.run_lab(make_days([-3.0]),self.cfg(),risks=[1.0],paths=200,seed=9,use_adverse_r=False)
         s=report["results"][0]
         self.assertEqual(s["daily_dd_violation"]["probability"],0.0)
