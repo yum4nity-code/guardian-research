@@ -1,0 +1,17 @@
+name: D053 source identity
+
+on:
+  push:
+    branches:
+      - refactor/guardian-research-runner-v1
+
+jobs:
+  hash:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Print D053 normalized source identity
+        run: python research/runner/source_hash.py research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5
