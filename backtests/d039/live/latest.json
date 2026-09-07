@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T06:16:57.352737+00:00",
+  "updated_at_utc": "2026-09-07T06:28:53.335872+00:00",
   "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
-  "stage": "smoke",
-  "kind": "campaign",
-  "event_id": "20260907T061652Z",
-  "event_path": "backtests/d039/live/events/smoke/campaign/20260907T061652Z",
-  "event_fingerprint_sha256": "3970d1f947bc3873775df5dbf9314febe8f38586fd2aa6cfe7ab3bc122ba018e",
-  "status": "CAMPAIGN_PASS",
+  "stage": "development",
+  "kind": "batch",
+  "event_id": "20260907T062153Z",
+  "event_path": "backtests/d039/live/events/development/batch/20260907T062153Z",
+  "event_fingerprint_sha256": "fa15eddf94d49b2bf9bdd9991c70293ea763867a6131f54f6c30409924d53f9c",
+  "status": "BATCH_PASS_INTEGRITY",
   "autosync_used": false
 }
