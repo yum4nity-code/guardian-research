@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
   "strategy_family": "Turtle Soup 20-day failed-break reversal entry-alpha transport",
-  "status": "READY_SMOKE",
+  "status": "READY_DEV",
   "hypothesis": "Can a source-aligned Turtle Soup failed 20-day breakout entry, with the prior extreme at least four sessions old and a fixed five-tick re-entry, produce positive broad after-cost edge across the six-market Guardian/FundedNext universe when measured with the frozen structural stop and a deterministic H24 Guardian reference exit?",
   "preregistration": {
     "path": "research/campaigns/D044_TURTLE_SOUP_20D_FAILED_BREAK_REVERSAL_V0_PREREGISTRATION_2026_09_07.md",
@@ -23,7 +23,8 @@
       "Core entry structure follows published Street Smarts Turtle Soup transcriptions: new 20-day extreme, prior extreme at least four sessions old, 5-10 tick re-entry, structural stop one tick beyond current session extreme.",
       "V0 freezes the lower source-allowed five-tick offset before testing; no offset grid is permitted.",
       "H24 is a deterministic Guardian entry-alpha reference exit and is explicitly not claimed to reproduce the source's discretionary trailing/re-entry management.",
-      "GitHub CI independently measured normalized source identity SHA256 98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0 before any local MetaEditor compile or D044 tester outcome."
+      "GitHub CI independently measured normalized source identity SHA256 98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0 before any local MetaEditor compile or D044 tester outcome.",
+      "October 2023 engineering smoke passed sequentially on USDJPY, XAUUSD and BTCUSD under Model=0 with 5 total trades, clean lifecycle, zero invalid price/risk/PnL events and native Trade Path publication for all three symbols; smoke profitability was not used."
     ]
   },
   "execution": {
@@ -35,7 +36,7 @@
   },
   "runner_contract": {
     "expert_relative_path": "GuardianResearch\\D044_TurtleSoup20D_H24_TickPath_M15_v1_00",
-    "default_stage": "smoke",
+    "default_stage": "development",
     "stage_selection": "TESTER_DATE_RANGE_ONLY",
     "tester_model_reference": 0,
     "tester_model_fast_candidate": null,
@@ -65,7 +66,7 @@
       "from": "2023-10-02",
       "to": "2023-10-31",
       "symbols": ["USDJPY", "XAUUSD", "BTCUSD"],
-      "status": "READY",
+      "status": "PASS",
       "gates": {
         "compile_errors": 0,
         "compile_warnings": 0,
@@ -76,14 +77,19 @@
         "deterministic_stats_trades_output": true,
         "science_role": "ENGINEERING_ONLY_NO_ALPHA_VERDICT"
       },
-      "result_paths": []
+      "result_paths": [
+        "backtests/d044/live/events/smoke/batch/20260907T113119Z",
+        "backtests/d044/live/events/smoke/trade-path/20260907T113119Z_USDJPY_M0",
+        "backtests/d044/live/events/smoke/trade-path/20260907T113129Z_XAUUSD_M0",
+        "backtests/d044/live/events/smoke/trade-path/20260907T113141Z_BTCUSD_M0"
+      ]
     },
     "development": {
       "stage_name": "D044_DEV_2024_2025",
       "from": "2024-01-02",
       "to": "2025-12-31",
       "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
-      "status": "LOCKED",
+      "status": "READY",
       "gates": {
         "aggregate_n_min": 120,
         "each_symbol_n_min": 10,
@@ -123,8 +129,22 @@
     "invalid_run_is_not_strategy_reject": true
   },
   "results": {
-    "compile": null,
-    "smoke": null,
+    "compile": {
+      "status": "COMPILE_PASS",
+      "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+      "ex5_sha256": "4b12011369068912ddc4e5d1273e0d6e508267d0521bfa47ade16c29e3856b1d"
+    },
+    "smoke": {
+      "status": "PASS",
+      "total_trades": 5,
+      "per_symbol_trades": {
+        "USDJPY": 1,
+        "XAUUSD": 1,
+        "BTCUSD": 3
+      },
+      "integrity_failures": 0,
+      "batch_event": "backtests/d044/live/events/smoke/batch/20260907T113119Z"
+    },
     "development": null,
     "confirmation": null,
     "final_verdict": null
