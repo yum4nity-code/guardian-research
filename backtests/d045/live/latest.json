@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T08:03:30.445725+00:00",
+  "updated_at_utc": "2026-09-07T08:03:36.148220+00:00",
   "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "stage": "development",
-  "kind": "score",
-  "event_id": "20260907T080327Z",
-  "event_path": "backtests/d045/live/events/development/score/20260907T080327Z",
-  "event_fingerprint_sha256": "1bc4c43f7b7bb5130f6ce27e2638a956d243cae47152980be99e36b1575006f4",
+  "kind": "rich-score",
+  "event_id": "20260907T080333Z",
+  "event_path": "backtests/d045/live/events/development/rich-score/20260907T080333Z",
+  "event_fingerprint_sha256": "51f7c9b4bb79471ef705c3682e808b337950ef0651fb594ec98604a8910e608c",
   "status": null,
   "autosync_used": false
 }
