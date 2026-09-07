@@ -1,0 +1,114 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T12:05:55.900108+00:00",
+  "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+  "stage": "smoke",
+  "kind": "market-transport-smoke",
+  "event_id": "20260907T120548Z",
+  "event_fingerprint_sha256": "db35e0635a469ecf8ee4325b365820cbb6e01f4b19c6265881c7f27ad491cd56",
+  "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+  "payload": {
+    "schema_version": 1,
+    "status": "MARKET_TRANSPORT_SMOKE_PASS",
+    "created_at_utc": "2026-09-07T12:05:48.062273+00:00",
+    "lab": "MARKET_TRANSPORT_V1",
+    "parent": "D038",
+    "transport_id": "D047-MARKET-TRANSPORT-NR7-V1",
+    "source_provenance": {
+      "parent_key": "D038",
+      "parent_source": "research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5",
+      "parent_source_sha256": "e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8",
+      "generated_source": "local\\market_transport_v1_generated\\MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+      "generated_source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "patch_contract": "ALLOWLIST_ASSETCLASS_COMMISSION_AND_EVIDENCE_IDENTITY_ONLY"
+    },
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D047-MARKET-TRANSPORT-NR7-V1\\smoke\\20260907T120450Z\\batch.json",
+    "symbols": [
+      "AUDUSD",
+      "SPX500",
+      "XAGUSD"
+    ],
+    "trade_path": [
+      {
+        "symbol": "AUDUSD",
+        "status": "TRADE_PATH_PASS",
+        "trades": 3,
+        "path_rows": 3,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 0,
+          "1R": 0,
+          "2R": 0,
+          "3R": 0,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      {
+        "symbol": "SPX500",
+        "status": "TRADE_PATH_PASS",
+        "trades": 3,
+        "path_rows": 3,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 1,
+          "1R": 0,
+          "2R": 0,
+          "3R": 0,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      {
+        "symbol": "XAGUSD",
+        "status": "TRADE_PATH_PASS",
+        "trades": 2,
+        "path_rows": 2,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 1,
+          "1R": 0,
+          "2R": 0,
+          "3R": 0,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      }
+    ],
+    "batch_transport": {
+      "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D047-MARKET-TRANSPORT-NR7-V1\\smoke\\market-transport-batch\\20260907T120539Z.json",
+      "status": "EVENT_PUBLISH_PASS",
+      "branch": "backtest-results",
+      "event_path": "backtests/d047/live/events/smoke/market-transport-batch/20260907T120539Z",
+      "latest_path": "backtests/d047/live/latest.json",
+      "event_id": "20260907T120539Z",
+      "event_fingerprint_sha256": "7076ce47977213c4779eb605e2745c9e01026eae4d3cf4e020782c1789f5497e",
+      "commit_sha": "ed39499200009283801eeccfcc8ee1fd8d1ee471",
+      "payload_compacted": false,
+      "autosync_used": false
+    },
+    "autosync_used": false,
+    "smoke_path": "D:\\MT5_Backtests\\guardian-runner\\market_transport\\v1\\D047-MARKET-TRANSPORT-NR7-V1\\smoke\\20260907T120548Z\\smoke.json"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D047-MARKET-TRANSPORT-NR7-V1\\smoke\\20260907T120450Z\\batch.json",
+      "exists": true,
+      "sha256": "8631bd7d06441e98a76504586f7dc2f2a1306866bc31f5e61a3d23d4dca70a5c",
+      "bytes": 7016,
+      "published_as": "batch.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
