@@ -1,0 +1,92 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T07:02:20.925021+00:00",
+  "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "development",
+  "kind": "rich-score",
+  "event_id": "20260907T070216Z",
+  "event_fingerprint_sha256": "4e9028c97a9c564b095359f3d898eea4b6462bbe4bff225bbbe96f208521dac6",
+  "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+  "payload": {
+    "schema_version": 2,
+    "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+    "stage": "development",
+    "role": "DESCRIPTIVE_ANALYTICS_ONLY_DOES_NOT_CHANGE_DECISION_VERDICT",
+    "rich_score_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T070216Z\\rich_score.json",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065356Z\\batch.json",
+    "scope": {
+      "trades": 758,
+      "symbols": [
+        "BTCUSD",
+        "ETHUSD",
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY",
+        "XAUUSD"
+      ],
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "timeframe": "M15",
+      "tester_model": 0
+    },
+    "net_r_summary": {
+      "n": 758,
+      "mean": 0.11467410832453825,
+      "median": -0.05159105,
+      "profit_factor": {
+        "value": 1.3672947796298534,
+        "infinite": false
+      },
+      "total_r": 86.92297411,
+      "win_rate": 0.48284960422163586
+    },
+    "commission_stress_summary": {
+      "mean": 0.10445304770448549,
+      "profit_factor": {
+        "value": 1.3290780437783123,
+        "infinite": false
+      },
+      "total_r": 79.17541016
+    },
+    "trade_path_summary": {
+      "available": true,
+      "trades": 758,
+      "path_ambiguous_rows": 0,
+      "milestone_touch": null
+    },
+    "compact_trades": {
+      "path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T070216Z\\trades_compact.csv",
+      "sha256": "6d33d2b8aa0f66e3eb1ac3d6492c49dcf107a38e411ffe8d67b4053c616d900a",
+      "bytes": 346642,
+      "rows": 758,
+      "includes_native_trade_path_fields": true
+    },
+    "autosync_used": false
+  },
+  "payload_compacted": true,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065356Z\\batch.json",
+      "exists": true,
+      "sha256": "3bfbf60a92075ddbb2a8cafaafff6a842d10fae1c2bce55d41419a4a84996f94",
+      "bytes": 14981,
+      "published_as": "batch.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T070216Z\\rich_score.json",
+      "exists": true,
+      "sha256": "a53c1cf173e79cf67e9fbd5b4d6f5be1980a46d259a5a17765bd74b0462dfd2a",
+      "bytes": 305476,
+      "published_as": "rich_score.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T070216Z\\trades_compact.csv",
+      "exists": true,
+      "sha256": "6d33d2b8aa0f66e3eb1ac3d6492c49dcf107a38e411ffe8d67b4053c616d900a",
+      "bytes": 346642,
+      "published_as": "trades_compact.csv"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}

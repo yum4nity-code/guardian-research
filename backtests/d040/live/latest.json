@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T07:02:10.333792+00:00",
+  "updated_at_utc": "2026-09-07T07:02:20.925959+00:00",
   "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "stage": "development",
-  "kind": "score",
-  "event_id": "20260907T070206Z",
-  "event_path": "backtests/d040/live/events/development/score/20260907T070206Z",
-  "event_fingerprint_sha256": "5c5d1ea0bccc03ce3f5969e74eb9f1ae54caa23d4033c20383e7902d6c7803ec",
+  "kind": "rich-score",
+  "event_id": "20260907T070216Z",
+  "event_path": "backtests/d040/live/events/development/rich-score/20260907T070216Z",
+  "event_fingerprint_sha256": "4e9028c97a9c564b095359f3d898eea4b6462bbe4bff225bbbe96f208521dac6",
   "status": null,
   "autosync_used": false
 }
