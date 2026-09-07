@@ -1,0 +1,334 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T07:53:54.112144+00:00",
+  "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+  "stage": "smoke",
+  "kind": "campaign",
+  "event_id": "20260907T075351Z",
+  "event_fingerprint_sha256": "4e2ea3982d3f33ba2ed7a579a18688397130b0ff1884ada45ded2b2e8f37f21a",
+  "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+  "payload": {
+    "schema_version": 2,
+    "campaign_id": "20260907T075303Z",
+    "status": "CAMPAIGN_PASS",
+    "stage": "smoke",
+    "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+    "parallel_mt5": false,
+    "continue_after_scientific_reject": true,
+    "continue_after_experiment_engineering_failure": true,
+    "finalize_development": true,
+    "finalize_scored_stage": true,
+    "experiments_requested": [
+      "D045"
+    ],
+    "started_at_utc": "2026-09-07T07:53:03.962299+00:00",
+    "experiments": [
+      {
+        "identifier": "D045",
+        "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+        "stage": "smoke",
+        "started_at_utc": "2026-09-07T07:53:03.986335+00:00",
+        "status": "EXPERIMENT_STAGE_PASS",
+        "compile": {
+          "status": "COMPILE_PASS",
+          "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075304Z\\build.json",
+          "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+          "ex5_sha256": "02626a1e0878b2ee034d8bce477f218745acf8ffc21414338658f7822c856c1f"
+        },
+        "batch": {
+          "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075305Z\\batch.json",
+          "schema_version": 1,
+          "status": "BATCH_PASS_INTEGRITY",
+          "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+          "manifest_path": "research\\experiments\\D045.json",
+          "stage": "smoke",
+          "symbols": [
+            "USDJPY",
+            "XAUUSD",
+            "BTCUSD"
+          ],
+          "started_at_utc": "2026-09-07T07:53:05.714167+00:00",
+          "execution_mode": "SEQUENTIAL",
+          "tester_model": 0,
+          "tests": [
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "manifest_path": "research\\experiments\\D045.json",
+              "stage": "smoke",
+              "symbol": "USDJPY",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T07:53:05.721661+00:00",
+              "finished_at_utc": "2026-09-07T07:53:13.703162+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075305Z_USDJPY_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075304Z\\build.json",
+              "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+              "ex5_sha256": "02626a1e0878b2ee034d8bce477f218745acf8ffc21414338658f7822c856c1f",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075305Z_USDJPY_M0\\D045_V100_RUN_USDJPY_STATS.csv",
+                "sha256": "844bfde872b684990561728db60b298f3328c5f40eeb23f77ba5624777309aed"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075305Z_USDJPY_M0\\D045_V100_RUN_USDJPY_TRADES.csv",
+                "sha256": "f22e85ff4b1f42549b5b37ba005a4379600c5475c350ece82b8cb3da0863c7c5"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "USDJPY",
+                "trades": 3,
+                "trades_opened": 3,
+                "trades_closed": 3,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "manifest_path": "research\\experiments\\D045.json",
+              "stage": "smoke",
+              "symbol": "XAUUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T07:53:13.747719+00:00",
+              "finished_at_utc": "2026-09-07T07:53:22.614280+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075313Z_XAUUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075304Z\\build.json",
+              "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+              "ex5_sha256": "02626a1e0878b2ee034d8bce477f218745acf8ffc21414338658f7822c856c1f",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075313Z_XAUUSD_M0\\D045_V100_RUN_XAUUSD_STATS.csv",
+                "sha256": "516d9752b67f6000bc210f7c979507b3c26cbea03afaa01d9c577fbed8f3b461"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075313Z_XAUUSD_M0\\D045_V100_RUN_XAUUSD_TRADES.csv",
+                "sha256": "f43883bcf44e313b28d91c37ab4c9dfa1185b744cf9c47bbdb22b6b8408a3919"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "XAUUSD",
+                "trades": 4,
+                "trades_opened": 4,
+                "trades_closed": 4,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "manifest_path": "research\\experiments\\D045.json",
+              "stage": "smoke",
+              "symbol": "BTCUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T07:53:22.652246+00:00",
+              "finished_at_utc": "2026-09-07T07:53:31.555746+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075322Z_BTCUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075304Z\\build.json",
+              "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+              "ex5_sha256": "02626a1e0878b2ee034d8bce477f218745acf8ffc21414338658f7822c856c1f",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075322Z_BTCUSD_M0\\D045_V100_RUN_BTCUSD_STATS.csv",
+                "sha256": "7be4605224c48fa95cfd61d299b486df89bc576dae259bc4d1688fa6b23a1525"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075322Z_BTCUSD_M0\\D045_V100_RUN_BTCUSD_TRADES.csv",
+                "sha256": "90cd6a011229ef1b0500e75c967cbd8b368632da0ad81360cabd46d857fbf834"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "BTCUSD",
+                "trades": 3,
+                "trades_opened": 3,
+                "trades_closed": 3,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            }
+          ],
+          "autosync_used": false,
+          "finished_at_utc": "2026-09-07T07:53:31.598494+00:00",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\batch\\20260907T075305Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d045/live/events/smoke/batch/20260907T075305Z",
+            "latest_path": "backtests/d045/live/latest.json",
+            "event_id": "20260907T075305Z",
+            "event_fingerprint_sha256": "48a27667a371126d06be21e141baf455abf926120ca09a2879fa5e95ec3e695f",
+            "commit_sha": "e98b7ce0203391117c6df6c64773c667f8bf01b5",
+            "payload_compacted": false,
+            "autosync_used": false
+          }
+        },
+        "trade_path": {
+          "status": "TRADE_PATH_PASS_ALL",
+          "symbols": [
+            "USDJPY",
+            "XAUUSD",
+            "BTCUSD"
+          ],
+          "results": [
+            {
+              "schema_version": 1,
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "stage": "smoke",
+              "symbol": "USDJPY",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075305Z_USDJPY_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 3,
+              "path_rows": 3,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 2,
+                "1R": 2,
+                "2R": 0,
+                "3R": 0,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\trade-path\\20260907T075305Z_USDJPY_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d045/live/events/smoke/trade-path/20260907T075305Z_USDJPY_M0",
+                "latest_path": "backtests/d045/live/latest.json",
+                "event_id": "20260907T075305Z_USDJPY_M0",
+                "event_fingerprint_sha256": "d0c45f2a8bb81c1035ce97fa3b36b3aa9c6d6601e412ff1acdf91885c63fb5b6",
+                "commit_sha": "ec8525865ce35b8356b1e3dd80d8f606a6a9729a",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "stage": "smoke",
+              "symbol": "XAUUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075313Z_XAUUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 4,
+              "path_rows": 4,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 3,
+                "1R": 3,
+                "2R": 1,
+                "3R": 1,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\trade-path\\20260907T075313Z_XAUUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d045/live/events/smoke/trade-path/20260907T075313Z_XAUUSD_M0",
+                "latest_path": "backtests/d045/live/latest.json",
+                "event_id": "20260907T075313Z_XAUUSD_M0",
+                "event_fingerprint_sha256": "d9fd21fc40b09d1bb9d6bffbd4c7cd4fa8bd449938fa6ce4cc4911b3680e4181",
+                "commit_sha": "142eb90b1d737b8cdea89efd24a977bbe05548c0",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "stage": "smoke",
+              "symbol": "BTCUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\20260907T075322Z_BTCUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 3,
+              "path_rows": 3,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 2,
+                "1R": 2,
+                "2R": 2,
+                "3R": 2,
+                "5R": 1
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\smoke\\trade-path\\20260907T075322Z_BTCUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d045/live/events/smoke/trade-path/20260907T075322Z_BTCUSD_M0",
+                "latest_path": "backtests/d045/live/latest.json",
+                "event_id": "20260907T075322Z_BTCUSD_M0",
+                "event_fingerprint_sha256": "f09383edacb83850a7e78126e0092d46f9d34e621d22727189015db082082077",
+                "commit_sha": "da393dec5b8891214e7ab9a7aac4f0c59b0e576a",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            }
+          ]
+        },
+        "finished_at_utc": "2026-09-07T07:53:51.525177+00:00"
+      }
+    ],
+    "autosync_used": false,
+    "engineering_failures": 0,
+    "post_decision_analytics_failures": 0,
+    "scientific_rejections": 0,
+    "finished_at_utc": "2026-09-07T07:53:51.526370+00:00",
+    "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T075303Z\\campaign.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}

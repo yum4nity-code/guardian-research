@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T07:53:48.888293+00:00",
+  "updated_at_utc": "2026-09-07T07:53:54.112882+00:00",
   "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "stage": "smoke",
-  "kind": "trade-path",
-  "event_id": "20260907T075322Z_BTCUSD_M0",
-  "event_path": "backtests/d045/live/events/smoke/trade-path/20260907T075322Z_BTCUSD_M0",
-  "event_fingerprint_sha256": "f09383edacb83850a7e78126e0092d46f9d34e621d22727189015db082082077",
-  "status": "TRADE_PATH_PASS",
+  "kind": "campaign",
+  "event_id": "20260907T075351Z",
+  "event_path": "backtests/d045/live/events/smoke/campaign/20260907T075351Z",
+  "event_fingerprint_sha256": "4e2ea3982d3f33ba2ed7a579a18688397130b0ff1884ada45ded2b2e8f37f21a",
+  "status": "CAMPAIGN_PASS",
   "autosync_used": false
 }
