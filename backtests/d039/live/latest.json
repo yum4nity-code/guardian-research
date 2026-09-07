@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T06:28:53.335872+00:00",
+  "updated_at_utc": "2026-09-07T06:29:04.656053+00:00",
   "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
   "stage": "development",
-  "kind": "batch",
-  "event_id": "20260907T062153Z",
-  "event_path": "backtests/d039/live/events/development/batch/20260907T062153Z",
-  "event_fingerprint_sha256": "fa15eddf94d49b2bf9bdd9991c70293ea763867a6131f54f6c30409924d53f9c",
-  "status": "BATCH_PASS_INTEGRITY",
+  "kind": "trade-path",
+  "event_id": "20260907T062153Z_BTCUSD_M0",
+  "event_path": "backtests/d039/live/events/development/trade-path/20260907T062153Z_BTCUSD_M0",
+  "event_fingerprint_sha256": "c21ffb02ae6f216820b3f83d5da2376be6d44e9c5c384235696f826de35c521e",
+  "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
