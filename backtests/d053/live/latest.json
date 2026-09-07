@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T16:20:29.467455+00:00",
+  "updated_at_utc": "2026-09-07T18:25:54.973401+00:00",
   "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
   "stage": "development",
-  "kind": "d053-development-score",
-  "event_id": "20260907T162026Z",
-  "event_path": "backtests/d053/live/events/development/d053-development-score/20260907T162026Z",
-  "event_fingerprint_sha256": "55033ea7c9b2b1e56a7ab08bacbdbddaf956d22e32814d0240b38b69a090c3e6",
-  "status": "D053_REJECT_V0",
+  "kind": "d053-descriptive-audit",
+  "event_id": "20260907T182547Z",
+  "event_path": "backtests/d053/live/events/development/d053-descriptive-audit/20260907T182547Z",
+  "event_fingerprint_sha256": "c94431355696286df976408a8cdc1b01826ef0616eb7d7ff74d623e2ebf9f90b",
+  "status": "D053_DESCRIPTIVE_AUDIT_COMPLETE_NO_VERDICT_CHANGE",
   "autosync_used": false
 }
