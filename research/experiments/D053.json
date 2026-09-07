@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+  "strategy_family": "opening-range breakout / US equity-index intraday entry alpha",
+  "status": "READY_SMOKE",
+  "hypothesis": "A fixed 30-minute FundedNext server-time opening range on four US equity-index CFDs contains robust first-breakout directional alpha after executable spread and 1.5x spread stress.",
+  "preregistration": {
+    "path": "research/campaigns/D053_US_INDEX_ORB30_ENTRY_ALPHA_V0_PREREGISTRATION_2026_09_07.md",
+    "git_blob_sha": "2d66799b1e25cc6cf19dd5d033bd2731372c5cd3",
+    "frozen_before_result_inspection": true,
+    "execution_deviations": [
+      "16:30-17:00 is a frozen FundedNext server-time operational anchor, not a claim of exact exchange-local cash-open alignment on every DST transition day.",
+      "Specialized D053 runner validates ORB-specific lifecycle/path fields and uses a frozen 1.5x executable-spread stress."
+    ]
+  },
+  "source": {
+    "canonical_path": "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5",
+    "source_sha256": "bbd0178f3c71a99802b75db563f06f38a94d4735bc828a78ee8c009dd4900ec8",
+    "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+    "git_blob_sha": "f60329c6fcb79b308c5a60e74c0512b52481386a",
+    "version": "1.00",
+    "complete_repository_source": true,
+    "strategy_semantics_frozen": true,
+    "engineering_lineage": [
+      "Preregistration committed before D053 source outcome inspection.",
+      "Source uses executable ASK/BID ticks; no orders.",
+      "Native MFE/MAE path telemetry is descriptive only and cannot alter D053 decision."
+    ]
+  },
+  "execution": {
+    "timeframe": "M15",
+    "reference_timeframes": [],
+    "symbols": [
+      "SPX500",
+      "NDX100",
+      "US30",
+      "US2000"
+    ],
+    "account_currency": "USD",
+    "prop_firm_profile": "FUNDEDNEXT_D053_US_INDEX_ORB30_V0"
+  },
+  "runner_contract": {
+    "expert_relative_path": "GuardianResearch\\D053_USIndex_ORB30_Tick_M15_v1_00",
+    "default_stage": "development",
+    "stage_selection": "TESTER_DATE_RANGE_ONLY",
+    "tester_model_reference": 0,
+    "tester_model_fast_candidate": null,
+    "output": {
+      "location": "FILE_COMMON",
+      "stats_template": "D053_V100_{stage_token}_{symbol_clean}_STATS.csv",
+      "trades_template": "D053_V100_{stage_token}_{symbol_clean}_TRADES.csv",
+      "stage_tokens": {
+        "smoke": "RUN",
+        "development": "RUN",
+        "confirmation": "RUN"
+      }
+    }
+  },
+  "cost_model": {
+    "name": "D053_INDEX_EXECUTABLE_SPREAD_PLUS_1_5X_SPREAD_STRESS",
+    "spread_source": "Strategy Tester executable ASK entry/BID exit or BID entry/ASK exit",
+    "commission_stress_multiplier": 1.5,
+    "explicit_index_commission": "0 in V0, consistent with prior Guardian FundedNext index transport treatment",
+    "spread_stress": "additional adverse cost equal to 0.25*(entry_spread+exit_spread), equivalent to 1.5x observed round-trip spread penalty relative to mid",
+    "swap": "excluded; frozen intraday liquidation"
+  },
+  "stages": {
+    "smoke": {
+      "stage_name": "D053_SMOKE_OCT2023",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "symbols": [
+        "SPX500",
+        "NDX100",
+        "US2000"
+      ],
+      "status": "READY",
+      "gates": {
+        "engineering_only": true,
+        "each_symbol_range_days_min": 1,
+        "batch_closed_trades_min": 1,
+        "integrity_events_max": 0
+      },
+      "result_paths": []
+    },
+    "development": {
+      "stage_name": "D053_DEV_2024_2025",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "symbols": [
+        "SPX500",
+        "NDX100",
+        "US30",
+        "US2000"
+      ],
+      "status": "LOCKED",
+      "gates": {
+        "aggregate_n_min": 1000,
+        "each_symbol_n_min": 200,
+        "aggregate_mean_net_r_min": 0.05,
+        "aggregate_pf_min": 1.1,
+        "aggregate_total_net_r_positive": true,
+        "spread_stress_total_positive": true,
+        "positive_symbols_min": 3,
+        "year_2024_positive": true,
+        "year_2025_positive": true,
+        "month_block_bootstrap_lower_95_positive": true,
+        "max_positive_symbol_contribution_share": 0.55,
+        "integrity_events_max": 0
+      },
+      "result_paths": []
+    },
+    "confirmation": {
+      "stage_name": "D053_HOLDOUT_JUL_AUG_2026",
+      "from": "2026-07-01",
+      "to": "2026-08-31",
+      "symbols": [
+        "SPX500",
+        "NDX100",
+        "US30",
+        "US2000"
+      ],
+      "status": "UNOPENED",
+      "gates": {
+        "locked_until_all_dev_gates_pass": true,
+        "aggregate_n_min": 100,
+        "each_symbol_n_min": 20,
+        "aggregate_mean_net_r_positive": true,
+        "aggregate_pf_min": 1.05,
+        "aggregate_total_net_r_positive": true,
+        "spread_stress_total_positive": true,
+        "positive_symbols_min": 3,
+        "day_block_bootstrap_lower_95_positive": true,
+        "integrity_events_max": 0
+      },
+      "result_paths": []
+    }
+  },
+  "decision_policy": {
+    "no_posthoc_rescue": true,
+    "confirmation_locked_until_dev_pass": true,
+    "invalid_run_is_not_strategy_reject": true
+  },
+  "results": {
+    "compile": null,
+    "smoke": null,
+    "development": null,
+    "confirmation": null,
+    "final_verdict": null
+  }
+}
