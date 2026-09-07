@@ -1,0 +1,246 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T10:55:38.434067+00:00",
+  "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+  "stage": "development",
+  "kind": "expiry-finalize",
+  "event_id": "20260907T105525Z",
+  "event_fingerprint_sha256": "c97c51bd37e54cc5e435485fc4a13e142a01ad99f3c04fe9d154ea99b5252fff",
+  "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
+  "payload": {
+    "schema_version": 1,
+    "status": "D046_EXPIRY_SCREEN_COMPLETE",
+    "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+    "stage": "development",
+    "scientific_role": "D046_UNCONDITIONAL_08UTC_EXPIRY_REVERSAL_SCREEN",
+    "verdict": "INCONCLUSIVE_COUNT",
+    "all_gates_pass": false,
+    "metrics": {
+      "paired_days_n": 513,
+      "pre_short_mean_net_bps": -13.439734165516569,
+      "post_long_mean_net_bps": -8.891994456276803,
+      "combined_day_mean_net_bps": -22.33172862179337,
+      "combined_day_total_net_bps": -11456.17678298,
+      "combined_day_profit_factor": {
+        "value": 0.3940476401453543,
+        "infinite": false
+      },
+      "combined_stress_total_net_bps": -15560.176782980001,
+      "year_total_net_bps": {
+        "2024": -6923.866279779999,
+        "2025": -4532.310503199997
+      },
+      "month_block_bootstrap": {
+        "blocks": 24,
+        "resamples": 20000,
+        "seed": 460800,
+        "lower_95": -26.793829559878056,
+        "median": -22.295431347516242,
+        "upper_95": -17.821943646947847
+      },
+      "eligible_leg_counts": {
+        "PRE_SHORT": 514,
+        "POST_LONG": 513
+      },
+      "ineligible_rows": 1,
+      "unpaired_eligible_days": 1
+    },
+    "gates": {
+      "paired_days_min": false,
+      "pre_short_mean_net_bps_strictly_positive": false,
+      "post_long_mean_net_bps_strictly_positive": false,
+      "combined_day_mean_net_bps_strictly_positive": false,
+      "combined_day_pf_min": false,
+      "combined_stress_total_net_bps_positive": false,
+      "month_block_bootstrap_lower_95_strictly_positive": false,
+      "integrity_events_max": true,
+      "year_2024_total_net_bps_positive": false,
+      "year_2025_total_net_bps_positive": false
+    },
+    "verdict_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105525Z\\verdict.json",
+    "analytics_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105525Z\\expiry_analytics.json",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105443Z\\batch.json",
+    "score_transport": {
+      "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\score\\20260907T105525Z.json",
+      "status": "EVENT_PUBLISH_PASS",
+      "branch": "backtest-results",
+      "event_path": "backtests/d046/live/events/development/score/20260907T105525Z",
+      "latest_path": "backtests/d046/live/latest.json",
+      "event_id": "20260907T105525Z",
+      "event_fingerprint_sha256": "4a158841d7a146607b61bcb88c74dc537f0d994a667c4b148dcc88abe749ca95",
+      "commit_sha": "82728f62212c4bd6e4d639d70c05433acba3784d",
+      "payload_compacted": false,
+      "autosync_used": false
+    },
+    "analytics_transport": {
+      "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\rich-score\\20260907T105530Z.json",
+      "status": "EVENT_PUBLISH_PASS",
+      "branch": "backtest-results",
+      "event_path": "backtests/d046/live/events/development/rich-score/20260907T105530Z",
+      "latest_path": "backtests/d046/live/latest.json",
+      "event_id": "20260907T105530Z",
+      "event_fingerprint_sha256": "3658fb37b48df23c1105963ac7cd81031352e07ac77a113ba8d574b5688455b4",
+      "commit_sha": "95dc4f7f8ffd515036a1f19e0ca32292974faa93",
+      "payload_compacted": true,
+      "autosync_used": false
+    },
+    "high_oi_mechanism_tested": false,
+    "high_oi_boundary": "A D046-A failure rejects only the unconditional screen and does not falsify the historical high-ATM-OI mechanism.",
+    "generic_publisher_used": false,
+    "campaign": {
+      "schema_version": 2,
+      "campaign_id": "20260907T105442Z",
+      "status": "CAMPAIGN_PASS",
+      "stage": "development",
+      "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+      "parallel_mt5": false,
+      "continue_after_scientific_reject": true,
+      "continue_after_experiment_engineering_failure": true,
+      "finalize_development": false,
+      "finalize_scored_stage": false,
+      "experiments_requested": [
+        "D046"
+      ],
+      "started_at_utc": "2026-09-07T10:54:42.098607+00:00",
+      "experiments": [
+        {
+          "identifier": "D046",
+          "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+          "stage": "development",
+          "started_at_utc": "2026-09-07T10:54:42.121809+00:00",
+          "status": "EXPERIMENT_STAGE_PASS",
+          "compile": {
+            "status": "COMPILE_PASS",
+            "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\20260907T105442Z\\build.json",
+            "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
+            "ex5_sha256": "68c3c9476a47de3727632b7059409f5d237c08aa0a72d0861636ff347c56ff32"
+          },
+          "batch": {
+            "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105443Z\\batch.json",
+            "schema_version": 1,
+            "status": "BATCH_PASS_INTEGRITY",
+            "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+            "manifest_path": "research\\experiments\\D046.json",
+            "stage": "development",
+            "symbols": [
+              "BTCUSD"
+            ],
+            "started_at_utc": "2026-09-07T10:54:43.373459+00:00",
+            "execution_mode": "SEQUENTIAL",
+            "tester_model": 0,
+            "tests": [
+              {
+                "schema_version": 1,
+                "status": "TEST_PASS_INTEGRITY",
+                "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+                "manifest_path": "research\\experiments\\D046.json",
+                "stage": "development",
+                "symbol": "BTCUSD",
+                "tester_model": 0,
+                "started_at_utc": "2026-09-07T10:54:43.385529+00:00",
+                "finished_at_utc": "2026-09-07T10:55:14.484870+00:00",
+                "terminal_exit_code": 0,
+                "command": [
+                  "D:\\MT5_FundedNext\\terminal64.exe",
+                  "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105443Z_BTCUSD_M0\\tester.ini",
+                  "/portable"
+                ],
+                "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\20260907T105442Z\\build.json",
+                "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
+                "ex5_sha256": "68c3c9476a47de3727632b7059409f5d237c08aa0a72d0861636ff347c56ff32",
+                "quarantined_stale_outputs": [
+                  "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\BTCUSD\\20260907T105443Z\\D046_V100_RUN_BTCUSD_STATS.csv",
+                  "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\BTCUSD\\20260907T105443Z\\D046_V100_RUN_BTCUSD_TRADES.csv"
+                ],
+                "stats": {
+                  "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105443Z_BTCUSD_M0\\D046_V100_RUN_BTCUSD_STATS.csv",
+                  "sha256": "02bbc0db4aa0cdbd8363ad5e669ae2d1b27b3496e5ddc74f36fe364392139c19"
+                },
+                "trades": {
+                  "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105443Z_BTCUSD_M0\\D046_V100_RUN_BTCUSD_TRADES.csv",
+                  "sha256": "0ab1bfb4df84df7cd8943a0d6b06af33f614965fa62f364b4d3a9d458009d4f5"
+                },
+                "integrity": {
+                  "final_status": "FINAL",
+                  "source_name": "D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5",
+                  "source_version": "1.00",
+                  "run_stage": "RUN",
+                  "symbol": "BTCUSD",
+                  "trades": 1028,
+                  "trades_opened": 1028,
+                  "trades_closed": 1028,
+                  "invalid_price": 0,
+                  "invalid_risk": 0,
+                  "pnl_calc_failures": 0,
+                  "stats_encoding": "utf-8-sig",
+                  "trades_encoding": "utf-8-sig"
+                },
+                "recovered_after_parser_failure": false,
+                "autosync_used": false
+              }
+            ],
+            "autosync_used": false,
+            "finished_at_utc": "2026-09-07T10:55:14.527373+00:00",
+            "github_transport": {
+              "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\batch\\20260907T105443Z.json",
+              "status": "EVENT_PUBLISH_PASS",
+              "branch": "backtest-results",
+              "event_path": "backtests/d046/live/events/development/batch/20260907T105443Z",
+              "latest_path": "backtests/d046/live/latest.json",
+              "event_id": "20260907T105443Z",
+              "event_fingerprint_sha256": "410fb4c4b4ed6f0f281d9ed1ec4a4e2a675419c9a57a0e2c4f3c37d6bba8d779",
+              "commit_sha": "688299712a73239f4ab4c32983b2451de91e68b1",
+              "payload_compacted": false,
+              "autosync_used": false
+            }
+          },
+          "trade_path": {
+            "status": "NOT_REQUIRED_BY_MANIFEST",
+            "symbols": [
+              "BTCUSD"
+            ]
+          },
+          "finished_at_utc": "2026-09-07T10:55:19.792762+00:00"
+        }
+      ],
+      "autosync_used": false,
+      "engineering_failures": 0,
+      "post_decision_analytics_failures": 0,
+      "scientific_rejections": 0,
+      "finished_at_utc": "2026-09-07T10:55:19.793867+00:00",
+      "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T105442Z\\campaign.json",
+      "github_transport": {
+        "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\campaign\\20260907T105519Z.json",
+        "status": "EVENT_PUBLISH_PASS",
+        "branch": "backtest-results",
+        "event_path": "backtests/d046/live/events/development/campaign/20260907T105519Z",
+        "latest_path": "backtests/d046/live/latest.json",
+        "event_id": "20260907T105519Z",
+        "event_fingerprint_sha256": "cc70d902fb2ac6b36c86c9debe53dda4715cc9ae3b8b401f656a3ff77a938f50",
+        "commit_sha": "131401cb1da303a22939dd8de1b48e9b93b45565",
+        "payload_compacted": false,
+        "autosync_used": false
+      }
+    },
+    "autosync_used": false
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105443Z\\batch.json",
+      "exists": true,
+      "sha256": "1ee8f4324b2d0058a0d3057ccfa91a3a3885670a9e749f1efea0e542f47d6f57",
+      "bytes": 3131,
+      "published_as": "batch.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105525Z\\verdict.json",
+      "exists": true,
+      "sha256": "3040140d617121c048715a872647f4ab05cff9b47daa679accc5ebcb07862864",
+      "bytes": 2390,
+      "published_as": "verdict.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
