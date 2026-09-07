@@ -43,6 +43,7 @@ jobs:
           research/runner/d046_expiry_workflow.py
           research/runner/d051_nr7_index_confirmation.py
           research/runner/d052_management_alpha_workflow.py
+          research/runner/d052_management_alpha_run.py
           research/runner/management_benchmark.py
           research/runner/management_benchmark_offline.py
           research/runner/management_benchmark_v2.py
@@ -110,6 +111,11 @@ jobs:
           python research/runner/experiment.py validate D040
           python research/runner/experiment.py validate D039
           python research/runner/experiment.py validate D038
+
+      - name: Validate frozen D052 experiment contract
+        run: |
+          python research/runner/experiment.py validate D052
+          python research/runner/experiment.py ready D052
 
       - name: Report frozen source identities
         run: |
