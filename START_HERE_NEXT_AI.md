@@ -15,8 +15,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0**
-- State: **READY_SMOKE**
-- Next action: **Run D046 engineering smoke only: git pull then py -3 .\research\runner\d046_expiry_workflow.py D046 --stage smoke. Smoke is December 2023 engineering-only and must not be interpreted for profitability. If smoke passes, update manifest/state to READY development before opening the frozen 2024-2025 unconditional screen. Binance/Bybit live OI and slope-ATR telemetry remain separate prospective context and must not be inserted into D046-A post hoc.**
+- State: **READY_DEVELOPMENT**
+- Next action: **Run the frozen D046 development screen only: git pull then py -3 .\research\runner\d046_expiry_workflow.py D046 --stage development. This opens the preregistered 2024-01-01 through 2025-12-31 unconditional BTC 07:00-08:00 UTC short plus 08:00-09:00 UTC long screen. The scorer publishes the bps verdict automatically. Do not add Binance/Bybit OI, slope-ATR, weekdays, volatility filters or alternative times to D046-A after seeing results.**
 
 ## Canonical operator UX
 
