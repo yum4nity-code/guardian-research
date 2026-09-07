@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-07T12:12:26.5600892Z",
-    "run_id":  "20260907_120619_D039_SPX500_f12809513bd9",
-    "path":  "backtests/inbox/2026/09/07/20260907_120619_D039_SPX500_f12809513bd9",
-    "fingerprint":  "f12809513bd930860750d38f913763e1c5577b01b70c69970e6c15916fa41727",
+    "synced_at_utc":  "2026-09-07T12:13:01.2932365Z",
+    "run_id":  "20260907_120628_D039_XAGUSD_fa69923cb9a9",
+    "path":  "backtests/inbox/2026/09/07/20260907_120628_D039_XAGUSD_fa69923cb9a9",
+    "fingerprint":  "fa69923cb9a91c86c2ca67e2975def1e0f714bd2e9ea97eeb7b64a4bfb9fe175",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D039_V100_RUN_SPX500_STATS.csv",
-                  "D039_V100_RUN_SPX500_TRADES.csv",
+                  "D039_V100_RUN_XAGUSD_STATS.csv",
+                  "D039_V100_RUN_XAGUSD_TRADES.csv",
                   "sync_manifest.json"
               ]
 }

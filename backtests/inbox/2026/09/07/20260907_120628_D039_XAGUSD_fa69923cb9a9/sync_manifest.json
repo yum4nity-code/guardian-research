@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_120628_D039_XAGUSD_fa69923cb9a9",
+    "fingerprint":  "fa69923cb9a91c86c2ca67e2975def1e0f714bd2e9ea97eeb7b64a4bfb9fe175",
+    "synced_at_utc":  "2026-09-07T12:13:01.2932365Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "MTL_V1_D039_InsideDay_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00-MTL1",
+                       "run_stage":  "RUN",
+                       "symbol":  "XAGUSD",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  5,
+                       "published_trades_rows":  5
+                   },
+    "files":  [
+                  {
+                      "name":  "D039_V100_RUN_XAGUSD_STATS.csv",
+                      "source_sha256":  "5bf4d86f24ce536b3c891e22dd7d5e971d6ca04f482c3c2442481a59a11f3f0e",
+                      "published_sha256":  "8f3d13f9c50a45aadfaa1eaf00fa89071808c2c756e7f9a3573f0c3c17047ed7",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D039_V100_RUN_XAGUSD_TRADES.csv",
+                      "source_sha256":  "c053d51db1ed68d377b02d18a357a279c1b49e5a849fba34ab302f3ab902cf99",
+                      "published_sha256":  "6050622452abc18244394ec6e697dd40e42937b4872dd601ee94b0d07fedf748",
+                      "sanitized":  false
+                  }
+              ]
+}
