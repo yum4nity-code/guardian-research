@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-09-07T07:02:06.373972+00:00",
+  "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "manifest_path": "research\\experiments\\D040.json",
+  "manifest_source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+  "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065356Z\\batch.json",
+  "stage": "development",
+  "metrics": {
+    "aggregate_n": 758,
+    "per_symbol_n": {
+      "BTCUSD": 125,
+      "ETHUSD": 130,
+      "EURUSD": 128,
+      "GBPUSD": 126,
+      "USDJPY": 125,
+      "XAUUSD": 124
+    },
+    "aggregate_mean_net_r": 0.11467410832453825,
+    "aggregate_pf": 1.3672947796298534,
+    "aggregate_pf_infinite": false,
+    "positive_symbols": [
+      "BTCUSD",
+      "ETHUSD",
+      "EURUSD",
+      "GBPUSD",
+      "USDJPY",
+      "XAUUSD"
+    ],
+    "positive_symbols_n": 6,
+    "per_symbol_total_net_r": {
+      "BTCUSD": 12.515388560000002,
+      "ETHUSD": 0.6851058999999995,
+      "EURUSD": 27.91255438,
+      "GBPUSD": 9.11312878,
+      "USDJPY": 21.10557227,
+      "XAUUSD": 15.591224219999999
+    },
+    "aggregate_total_net_r": 86.92297411,
+    "aggregate_total_stress_net_r": 79.17541016,
+    "year_total_net_r": {
+      "2024": 74.12190536000007,
+      "2025": 12.80106875
+    },
+    "max_positive_symbol_contribution_share": 0.32111826206817307,
+    "integrity_events": 0
+  },
+  "gates": {
+    "aggregate_n_min": true,
+    "each_symbol_n_min": true,
+    "aggregate_mean_net_r_min": true,
+    "aggregate_pf_min": true,
+    "positive_symbols_min": true,
+    "aggregate_2024_positive": true,
+    "aggregate_2025_positive": true,
+    "aggregate_positive_at_commission_stress": true,
+    "max_positive_symbol_contribution_share": true,
+    "integrity_events_max": true
+  },
+  "all_gates_pass": true,
+  "verdict": "CANDIDATE_CONFIRM",
+  "confirmation_opened": false,
+  "autosync_used": false
+}
