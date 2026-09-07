@@ -1,0 +1,65 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T11:36:12.876401+00:00",
+  "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+  "stage": "development",
+  "kind": "campaign",
+  "event_id": "20260907T113608Z",
+  "event_fingerprint_sha256": "8c69a3977a170a7ad6e78613ea3f9eca471bf7873c0f1c4163d3bfb8d3c462c7",
+  "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+  "payload": {
+    "schema_version": 2,
+    "campaign_id": "20260907T113554Z",
+    "status": "CAMPAIGN_COMPLETE_WITH_ENGINEERING_FAILURES",
+    "stage": "development",
+    "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+    "parallel_mt5": false,
+    "continue_after_scientific_reject": true,
+    "continue_after_experiment_engineering_failure": true,
+    "finalize_development": true,
+    "finalize_scored_stage": true,
+    "experiments_requested": [
+      "D044"
+    ],
+    "started_at_utc": "2026-09-07T11:35:54.262349+00:00",
+    "experiments": [
+      {
+        "identifier": "D044",
+        "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+        "stage": "development",
+        "started_at_utc": "2026-09-07T11:35:54.268417+00:00",
+        "status": "EXPERIMENT_ENGINEERING_FAILURE",
+        "compile": {
+          "status": "COMPILE_PASS",
+          "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\20260907T113554Z\\build.json",
+          "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+          "ex5_sha256": "06c8ba6f1c9ce9b4c08c7d5b0a6c211796cb712bbb10566c271ad9f966c90dcb"
+        },
+        "error": "v1 batch only supports the source default stage smoke; requested development",
+        "failure_transport": {
+          "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\campaign-failure\\20260907T113557Z.json",
+          "status": "EVENT_PUBLISH_PASS",
+          "branch": "backtest-results",
+          "event_path": "backtests/d044/live/events/development/campaign-failure/20260907T113557Z",
+          "latest_path": "backtests/d044/live/latest.json",
+          "event_id": "20260907T113557Z",
+          "event_fingerprint_sha256": "a2422366eff1bd7fd33a7af1c8595b379519489986572bb40aa2d643cb78f57f",
+          "commit_sha": "98bd601bc827f3670adb7202c6b7df363dbf7dd0",
+          "payload_compacted": false,
+          "autosync_used": false
+        },
+        "finished_at_utc": "2026-09-07T11:36:08.124588+00:00"
+      }
+    ],
+    "autosync_used": false,
+    "engineering_failures": 1,
+    "post_decision_analytics_failures": 0,
+    "scientific_rejections": 0,
+    "finished_at_utc": "2026-09-07T11:36:08.126865+00:00",
+    "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T113554Z\\campaign.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
