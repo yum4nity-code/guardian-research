@@ -2,25 +2,25 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T16:45:00+01:00",
-  "active_primary": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+  "updated_at": "2026-09-07T18:35:00+02:00",
+  "active_primary": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
   "items": [
     {
-      "id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+      "id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
       "priority": 0,
-      "status": "READY_SMOKE",
+      "status": "CANDIDATE_CONFIRM",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "Run the frozen D053 unattended workflow: git pull then py -3 .\\research\\runner\\d053_orb30_index_run.py. It verifies frozen identities, compiles, runs October-2023 engineering smoke on SPX500/NDX100/US2000, and only if smoke passes runs unchanged 2024-2025 DEV on SPX500/NDX100/US30/US2000, scores frozen ORB30 gates and publishes evidence. Jul-Aug 2026 holdout must remain unopened in this command.",
-      "manifest": "research/experiments/D053.json"
+      "goal": "Run one frozen program: py -3 .\\research\\runner\\d054_orb30_core3_run.py. It first audits only already-seen D053 2024-2025 CSVs without MT5 or rule changes, then compiles the exact D053 v1.01 source, runs engineering smoke on SPX500/NDX100/US30, and only after clean smoke opens the preregistered untouched Jul-Aug 2026 D054 confirmation on those same three symbols. No 2024-2025 rerun and no management/parameter optimization.",
+      "manifest": "research/experiments/D054.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "D053_READY_SMOKE_THEN_DEV",
+      "status": "D054_READY_AUDIT_SMOKE_CONFIRM",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
-      "goal": "One frozen preregistration + source identity + deterministic local execution + specialized score + automatic evidence publication. User normally runs one short PowerShell block and replies `fini`; transport failure alone never justifies repeating valid MT5 science."
+      "goal": "Freeze the derived hypothesis before descriptive audit; never reuse D053 discovery as fresh OOS; one short operator command; automatic evidence publication; no post-hoc rescue."
     },
     {
       "id": "AUTOSYNC_V3_FROM_SCRATCH",
@@ -165,6 +165,14 @@
       "owner": "HISTORICAL",
       "type": "closed_research",
       "goal": "NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY"
+    },
+    {
+      "id": "D053",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECT_V0_11_OF_12_GATES_BOOTSTRAP_LOWER_BOUND_ONLY"
     }
   ],
   "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. Canonical operator UX: docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md. No operational item may wait on Codex."
