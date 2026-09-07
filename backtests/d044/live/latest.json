@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T11:45:41.295285+00:00",
+  "updated_at_utc": "2026-09-07T11:45:51.195138+00:00",
   "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
   "stage": "development",
-  "kind": "trade-path",
-  "event_id": "20260907T114225Z_XAUUSD_M0",
-  "event_path": "backtests/d044/live/events/development/trade-path/20260907T114225Z_XAUUSD_M0",
-  "event_fingerprint_sha256": "018f65889567679e4d0bbabedae412bb09c754257cd565a884ef9320fe49f098",
-  "status": "TRADE_PATH_PASS",
+  "kind": "score",
+  "event_id": "20260907T114545Z",
+  "event_path": "backtests/d044/live/events/development/score/20260907T114545Z",
+  "event_fingerprint_sha256": "a6c615985101454a210c858ccaa5c5ce6f94f1b710ec04673397f150c292acc1",
+  "status": null,
   "autosync_used": false
 }
