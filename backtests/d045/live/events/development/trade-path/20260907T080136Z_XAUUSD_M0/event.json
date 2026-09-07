@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T08:03:25.124414+00:00",
+  "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+  "stage": "development",
+  "kind": "trade-path",
+  "event_id": "20260907T080136Z_XAUUSD_M0",
+  "event_fingerprint_sha256": "8557bc7f75d2689d52b6095914661696095ec0b9d3b91d6148842c7c56497ba6",
+  "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+  "payload": {
+    "schema_version": 1,
+    "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+    "stage": "development",
+    "symbol": "XAUUSD",
+    "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080136Z_XAUUSD_M0",
+    "status": "TRADE_PATH_PASS",
+    "trades": 21,
+    "path_rows": 21,
+    "path_calc_failures": 0,
+    "required_columns": 36,
+    "reached_counts": {
+      "0.5R": 10,
+      "1R": 10,
+      "2R": 6,
+      "3R": 4,
+      "5R": 2
+    },
+    "path_ambiguous_rows": 0,
+    "stats_encoding": "utf-16",
+    "trades_encoding": "utf-16"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}

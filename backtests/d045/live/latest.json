@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T08:03:20.003616+00:00",
+  "updated_at_utc": "2026-09-07T08:03:25.125088+00:00",
   "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "stage": "development",
   "kind": "trade-path",
-  "event_id": "20260907T080045Z_USDJPY_M0",
-  "event_path": "backtests/d045/live/events/development/trade-path/20260907T080045Z_USDJPY_M0",
-  "event_fingerprint_sha256": "469846b465a1a61494b104aafbdd04c4178096f4fb8dbdbf33e2a4b2cfa4a93a",
+  "event_id": "20260907T080136Z_XAUUSD_M0",
+  "event_path": "backtests/d045/live/events/development/trade-path/20260907T080136Z_XAUUSD_M0",
+  "event_fingerprint_sha256": "8557bc7f75d2689d52b6095914661696095ec0b9d3b91d6148842c7c56497ba6",
   "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
