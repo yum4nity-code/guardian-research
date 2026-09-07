@@ -1,0 +1,180 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T12:06:38.800909+00:00",
+  "experiment_id": "D048-MARKET-TRANSPORT-INSIDE-DAY-V1",
+  "stage": "smoke",
+  "kind": "market-transport-batch",
+  "event_id": "20260907T120632Z",
+  "event_fingerprint_sha256": "1dd9013a16e92af4acd2d5a5d1feee33e4145adfbf81f8bfefa48b86097fab1c",
+  "source_sha256": "a7896df1cebe01ab09759993bea998143a65c7ba4111a5f7d7c9a18c70f5715a",
+  "payload": {
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120602Z\\batch.json",
+    "schema_version": 1,
+    "status": "BATCH_PASS_INTEGRITY",
+    "experiment_id": "D048-MARKET-TRANSPORT-INSIDE-DAY-V1",
+    "manifest_path": "local\\market_transport_v1_generated\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1_smoke.json",
+    "stage": "smoke",
+    "symbols": [
+      "AUDUSD",
+      "SPX500",
+      "XAGUSD"
+    ],
+    "started_at_utc": "2026-09-07T12:06:02.417253+00:00",
+    "execution_mode": "SEQUENTIAL",
+    "tester_model": 0,
+    "tests": [
+      {
+        "schema_version": 1,
+        "status": "TEST_PASS_INTEGRITY",
+        "experiment_id": "D048-MARKET-TRANSPORT-INSIDE-DAY-V1",
+        "manifest_path": "local\\market_transport_v1_generated\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1_smoke.json",
+        "stage": "smoke",
+        "symbol": "AUDUSD",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T12:06:02.440683+00:00",
+        "finished_at_utc": "2026-09-07T12:06:12.736793+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120602Z_AUDUSD_M0\\tester.ini",
+          "/portable"
+        ],
+        "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\20260907T120559Z\\build.json",
+        "source_sha256": "a7896df1cebe01ab09759993bea998143a65c7ba4111a5f7d7c9a18c70f5715a",
+        "ex5_sha256": "cb2dab3e801745c4a94fe03c8d7a037642919af7bb6aec2c0ec3908247629d3f",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120602Z_AUDUSD_M0\\D039_V100_RUN_AUDUSD_STATS.csv",
+          "sha256": "b10367ded01be8377e3db38713f9726b1dbf560ae3e56e0fa8f3fc1992df204c"
+        },
+        "trades": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120602Z_AUDUSD_M0\\D039_V100_RUN_AUDUSD_TRADES.csv",
+          "sha256": "1650475dbadc5fc1e0908720e747a8292c62dc7b6cb21a5de4d62503a946bfc7"
+        },
+        "integrity": {
+          "final_status": "FINAL",
+          "source_name": "MTL_V1_D039_InsideDay_TickPath_M15_v1_00.mq5",
+          "source_version": "1.00-MTL1",
+          "run_stage": "RUN",
+          "symbol": "AUDUSD",
+          "trades": 2,
+          "trades_opened": 2,
+          "trades_closed": 2,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0,
+          "stats_encoding": "utf-16",
+          "trades_encoding": "utf-16"
+        },
+        "recovered_after_parser_failure": false,
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "TEST_PASS_INTEGRITY",
+        "experiment_id": "D048-MARKET-TRANSPORT-INSIDE-DAY-V1",
+        "manifest_path": "local\\market_transport_v1_generated\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1_smoke.json",
+        "stage": "smoke",
+        "symbol": "SPX500",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T12:06:12.786330+00:00",
+        "finished_at_utc": "2026-09-07T12:06:22.068718+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120612Z_SPX500_M0\\tester.ini",
+          "/portable"
+        ],
+        "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\20260907T120559Z\\build.json",
+        "source_sha256": "a7896df1cebe01ab09759993bea998143a65c7ba4111a5f7d7c9a18c70f5715a",
+        "ex5_sha256": "cb2dab3e801745c4a94fe03c8d7a037642919af7bb6aec2c0ec3908247629d3f",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120612Z_SPX500_M0\\D039_V100_RUN_SPX500_STATS.csv",
+          "sha256": "22ea345287a51c7f3a5bc68a4b9185ae2e7fe152c9391547ca708d64b98c431c"
+        },
+        "trades": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120612Z_SPX500_M0\\D039_V100_RUN_SPX500_TRADES.csv",
+          "sha256": "1a013751047b79a6fd82363fdf6006c6e9817f981918d2d6f0c23fd1f9d15e62"
+        },
+        "integrity": {
+          "final_status": "FINAL",
+          "source_name": "MTL_V1_D039_InsideDay_TickPath_M15_v1_00.mq5",
+          "source_version": "1.00-MTL1",
+          "run_stage": "RUN",
+          "symbol": "SPX500",
+          "trades": 1,
+          "trades_opened": 1,
+          "trades_closed": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0,
+          "stats_encoding": "utf-16",
+          "trades_encoding": "utf-16"
+        },
+        "recovered_after_parser_failure": false,
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "TEST_PASS_INTEGRITY",
+        "experiment_id": "D048-MARKET-TRANSPORT-INSIDE-DAY-V1",
+        "manifest_path": "local\\market_transport_v1_generated\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1_smoke.json",
+        "stage": "smoke",
+        "symbol": "XAGUSD",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T12:06:22.138659+00:00",
+        "finished_at_utc": "2026-09-07T12:06:32.391048+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120622Z_XAGUSD_M0\\tester.ini",
+          "/portable"
+        ],
+        "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\20260907T120559Z\\build.json",
+        "source_sha256": "a7896df1cebe01ab09759993bea998143a65c7ba4111a5f7d7c9a18c70f5715a",
+        "ex5_sha256": "cb2dab3e801745c4a94fe03c8d7a037642919af7bb6aec2c0ec3908247629d3f",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120622Z_XAGUSD_M0\\D039_V100_RUN_XAGUSD_STATS.csv",
+          "sha256": "5bf4d86f24ce536b3c891e22dd7d5e971d6ca04f482c3c2442481a59a11f3f0e"
+        },
+        "trades": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120622Z_XAGUSD_M0\\D039_V100_RUN_XAGUSD_TRADES.csv",
+          "sha256": "c053d51db1ed68d377b02d18a357a279c1b49e5a849fba34ab302f3ab902cf99"
+        },
+        "integrity": {
+          "final_status": "FINAL",
+          "source_name": "MTL_V1_D039_InsideDay_TickPath_M15_v1_00.mq5",
+          "source_version": "1.00-MTL1",
+          "run_stage": "RUN",
+          "symbol": "XAGUSD",
+          "trades": 5,
+          "trades_opened": 5,
+          "trades_closed": 5,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0,
+          "stats_encoding": "utf-16",
+          "trades_encoding": "utf-16"
+        },
+        "recovered_after_parser_failure": false,
+        "autosync_used": false
+      }
+    ],
+    "autosync_used": false,
+    "finished_at_utc": "2026-09-07T12:06:32.436713+00:00"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D048-MARKET-TRANSPORT-INSIDE-DAY-V1\\smoke\\20260907T120602Z\\batch.json",
+      "exists": true,
+      "sha256": "c665ae1c1020b365ed3866f671045e805f503e72a69620a8f218c4434d3ef43e",
+      "bytes": 7174,
+      "published_as": "batch.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}

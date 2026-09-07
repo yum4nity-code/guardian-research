@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-07T12:06:38.801768+00:00",
+  "experiment_id": "D048-MARKET-TRANSPORT-INSIDE-DAY-V1",
+  "stage": "smoke",
+  "kind": "market-transport-batch",
+  "event_id": "20260907T120632Z",
+  "event_path": "backtests/d048/live/events/smoke/market-transport-batch/20260907T120632Z",
+  "event_fingerprint_sha256": "1dd9013a16e92af4acd2d5a5d1feee33e4145adfbf81f8bfefa48b86097fab1c",
+  "status": "BATCH_PASS_INTEGRITY",
+  "autosync_used": false
+}
