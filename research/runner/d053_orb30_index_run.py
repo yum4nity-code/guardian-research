@@ -9,6 +9,22 @@ import d053_orb30_index_workflow as d053
 import experiment
 import runner
 
+# Engineering amendment v1.01 was frozen after clean smoke and before any
+# completed DEV symbol. Keep the large workflow stable and override only the
+# frozen source identity/version plus the result-transport identifier mapping.
+d053.SOURCE_VERSION = "1.01"
+d053.EXPECTED_SOURCE_BLOB = "7da58ecf8968d6814b634be0ee0043b9616fb6c6"
+d053.EXPECTED_SOURCE_SHA256 = "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad"
+
+_original_safe_publish_event = d053.result_transport.safe_publish_event
+
+def _d053_safe_publish_event(identifier: str, stage: str, kind: str, payload: dict):
+    # result_transport resolves repository manifests by short key/path. The long
+    # experiment ID is evidence metadata, not a valid manifest lookup key.
+    return _original_safe_publish_event(d053.KEY, stage, kind, payload)
+
+d053.result_transport.safe_publish_event = _d053_safe_publish_event
+
 
 def preflight() -> dict:
     identities = d053.verify_frozen_repository_identity()
@@ -23,9 +39,11 @@ def preflight() -> dict:
     if manifest["stages"]["confirmation"]["status"] != "UNOPENED":
         raise d053.D053Error("D053 holdout is not UNOPENED")
     return {
-        "status": "D053_PREFLIGHT_PASS",
+        "status": "D053_PREFLIGHT_PASS_V101",
         "manifest": str(manifest_path.relative_to(d053.ROOT)),
+        "source_version": d053.SOURCE_VERSION,
         "source_sha256": identities["source_sha256"],
+        "engineering_amendment": "research/campaigns/D053_ENGINEERING_AMENDMENT_V101_SESSION_END_2026_09_07.md",
         "smoke": [d053.SMOKE_FROM, d053.SMOKE_TO, d053.SMOKE_SYMBOLS],
         "development": [d053.DEV_FROM, d053.DEV_TO, d053.SYMBOLS],
         "holdout": {"status": "LOCKED_UNOPENED", "from": d053.HOLDOUT_FROM, "to": d053.HOLDOUT_TO},
