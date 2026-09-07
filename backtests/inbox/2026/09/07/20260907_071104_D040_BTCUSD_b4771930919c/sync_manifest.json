@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_071104_D040_BTCUSD_b4771930919c",
+    "fingerprint":  "b4771930919cfac3f066797220fd262f8e18cde3a71591994188bd2281d88d9d",
+    "synced_at_utc":  "2026-09-07T07:11:34.5686427Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D040_NR4_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "RUN",
+                       "symbol":  "BTCUSD",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  32,
+                       "published_trades_rows":  32
+                   },
+    "files":  [
+                  {
+                      "name":  "D040_V100_RUN_BTCUSD_STATS.csv",
+                      "source_sha256":  "a4a9019786b47fe0c7f5a7d3a88897ed7223887f970615dc1db55cd2cd166dfb",
+                      "published_sha256":  "8f93cae71a1bcefed09b030c9594e01f96bd6ff1ef606b26714c77e7e0cf7d84",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D040_V100_RUN_BTCUSD_TRADES.csv",
+                      "source_sha256":  "301a955f0777e05428a179beac7ef48832fa54d2d1586e8930c3acf501bdd6e3",
+                      "published_sha256":  "ba7bb186b59914154cc63eb0bf10132feb5c584b9c77e193993ffe1e83098da6",
+                      "sanitized":  false
+                  }
+              ]
+}
