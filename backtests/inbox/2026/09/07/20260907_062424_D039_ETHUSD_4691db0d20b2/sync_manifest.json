@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_062424_D039_ETHUSD_4691db0d20b2",
+    "fingerprint":  "4691db0d20b2ade4f7cd5ad989fc20791c6b341965d3b9e2fd5a338a58a92637",
+    "synced_at_utc":  "2026-09-07T06:24:53.1341210Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D039_InsideDay_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "RUN",
+                       "symbol":  "ETHUSD",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  77,
+                       "published_trades_rows":  77
+                   },
+    "files":  [
+                  {
+                      "name":  "D039_V100_RUN_ETHUSD_STATS.csv",
+                      "source_sha256":  "5e9c7c90dbce2b6362d3dec827c945288eb9391df62c04abcff8d8f69f48c910",
+                      "published_sha256":  "9311be71db10ef248005701ac2a2b0bc3fc6d60e15ef8bc49d1da5be2b9a1ea4",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D039_V100_RUN_ETHUSD_TRADES.csv",
+                      "source_sha256":  "85703f028ea86c50fbae2c4f7195de31e7d102300316e51341b84d90e51d93fc",
+                      "published_sha256":  "7e95bfd85e14914e1853f4fcfa86abf7ed0f27b36085bd8d8a09e20b6485a21e",
+                      "sanitized":  false
+                  }
+              ]
+}
