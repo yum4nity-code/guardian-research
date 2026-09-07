@@ -8,15 +8,15 @@ Read only what is needed, in this order:
 1. `GUARDIAN_STATE.json`
 2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
 3. `GUARDIAN_MASTER_MANDATE.md`
-4. `research/experiments/D041.json`
-5. `research/campaigns/D032_M2_DOJI_REALISTIC_MANAGEMENT_POST2024_VALIDATION_PREREGISTRATION_2026_09_05.md`
+4. `research/experiments/D046.json`
+5. `research/campaigns/D046_BTC_DERIBIT_08UTC_EXPIRY_REVERSAL_SCREEN_V0_PREREGISTRATION_2026_09_07.md`
 6. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
 
 ## Current P0
 
-- Experiment: **D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0**
-- State: **CLOSED_REJECTED_MANAGEMENT**
-- Next action: **No MT5 action is required for D041. The preregistered D032-M2 POST2024 management validation is permanently REJECT_MANAGEMENT: 77 eligible paired events, reference mean +0.666436R, candidate mean +0.328383R, paired candidate-minus-reference mean -0.338054R, 0/3 positive-delta symbols, and deterministic month-block bootstrap 95% interval [-0.533035R, -0.121697R]. The final 'decision score does not match experiment/stage' message occurred only after the valid score and paired analytics were published, when the specialized workflow incorrectly called the generic strategy bundle publisher. Do not rerun MT5 for D041. Next work is to audit existing D042/Momentum attribution evidence before creating new code or tests.**
+- Experiment: **D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0**
+- State: **READY_SMOKE**
+- Next action: **Run D046 engineering smoke only: git pull then py -3 .\research\runner\d046_expiry_workflow.py D046 --stage smoke. Smoke is December 2023 engineering-only and must not be interpreted for profitability. If smoke passes, update manifest/state to READY development before opening the frozen 2024-2025 unconditional screen. Binance/Bybit live OI and slope-ATR telemetry remain separate prospective context and must not be inserted into D046-A post hoc.**
 
 ## Canonical operator UX
 
