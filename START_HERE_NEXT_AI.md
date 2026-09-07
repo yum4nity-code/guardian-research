@@ -15,8 +15,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0**
-- State: **READY_DEVELOPMENT**
-- Next action: **Run the frozen D046 development screen only: git pull then py -3 .\research\runner\d046_expiry_workflow.py D046 --stage development. This opens the preregistered 2024-01-01 through 2025-12-31 unconditional BTC 07:00-08:00 UTC short plus 08:00-09:00 UTC long screen. The scorer publishes the bps verdict automatically. Do not add Binance/Bybit OI, slope-ATR, weekdays, volatility filters or alternative times to D046-A after seeing results.**
+- State: **CLOSED_INCONCLUSIVE_COUNT_NO_CONFIRMATION**
+- Next action: **No further MT5 action for D046. Formal verdict remains INCONCLUSIVE_COUNT because the frozen 600-day gate was unattainable on the observed weekday-style FundedNext BTC calendar (513 paired days), but every substantive economic gate failed strongly: PRE short -13.44 bps/day, POST long -8.89 bps/day, combined -22.33 bps/day, PF 0.394, both 2024 and 2025 negative, stress negative, bootstrap 95% interval fully negative. Keep 2026 H1 unopened and do not retune D046. Next science is D044 Turtle Soup: exact Street Smarts entry rules have now been recovered; build a separately preregistered Guardian entry-alpha screen without pretending to replicate the book's discretionary trailing management.**
 
 ## Canonical operator UX
 
@@ -32,7 +32,7 @@ Read only what is needed, in this order:
 - Guardian Core baseline: **v12.01** — do not modify during this research refactor.
 - Legacy AutoSync: **UNTRUSTED_NEVER_RELIABLY_WORKED** — reference only, never fallback.
 - AutoSync target: **AUTOSYNC_V3_FROM_SCRATCH**.
-- Closed experiments: D017=REJECTED_ALPHA_FAMILY, D023=REJECTED_UNTOUCHED_CONFIRMATION, D036=REJECTED_V0, D037=REJECTED_V0, D038=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D039=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D040=UNCONFIRMED_2026_H1_ARCHIVED, D041=REJECTED_MANAGEMENT_D032_M2_POST2024, D045=REJECTED_V0_MEAN_GATE_ONLY_RICH_PATH_RETAINED.
+- Closed experiments: D017=REJECTED_ALPHA_FAMILY, D023=REJECTED_UNTOUCHED_CONFIRMATION, D036=REJECTED_V0, D037=REJECTED_V0, D038=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D039=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D040=UNCONFIRMED_2026_H1_ARCHIVED, D041=REJECTED_MANAGEMENT_D032_M2_POST2024, D045=REJECTED_V0_MEAN_GATE_ONLY_RICH_PATH_RETAINED, D046=INCONCLUSIVE_COUNT_CLOSED_NO_CONFIRMATION_STRONGLY_NEGATIVE_UNCONDITIONAL_SCREEN.
 
 If this file ever disagrees with `GUARDIAN_STATE.json`, the state file wins and this file must be regenerated with:
 
