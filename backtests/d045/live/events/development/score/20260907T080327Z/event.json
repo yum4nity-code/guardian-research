@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T08:03:30.444874+00:00",
+  "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+  "stage": "development",
+  "kind": "score",
+  "event_id": "20260907T080327Z",
+  "event_fingerprint_sha256": "1bc4c43f7b7bb5130f6ce27e2638a956d243cae47152980be99e36b1575006f4",
+  "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+  "payload": {
+    "verdict_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080327Z\\verdict.json",
+    "schema_version": 1,
+    "created_at_utc": "2026-09-07T08:03:27.973011+00:00",
+    "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+    "manifest_path": "research\\experiments\\D045.json",
+    "manifest_source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075755Z\\batch.json",
+    "stage": "development",
+    "metrics": {
+      "aggregate_n": 145,
+      "per_symbol_n": {
+        "BTCUSD": 25,
+        "ETHUSD": 25,
+        "EURUSD": 23,
+        "GBPUSD": 30,
+        "USDJPY": 21,
+        "XAUUSD": 21
+      },
+      "aggregate_mean_net_r": 0.09590872331034482,
+      "aggregate_pf": 1.2011785982494556,
+      "aggregate_pf_infinite": false,
+      "positive_symbols": [
+        "BTCUSD",
+        "ETHUSD",
+        "EURUSD",
+        "USDJPY",
+        "XAUUSD"
+      ],
+      "positive_symbols_n": 5,
+      "per_symbol_total_net_r": {
+        "BTCUSD": 0.20625386999999992,
+        "ETHUSD": 1.7281477599999997,
+        "EURUSD": 1.17234672,
+        "GBPUSD": -8.1486895,
+        "USDJPY": 8.2911561,
+        "XAUUSD": 10.65754993
+      },
+      "aggregate_total_net_r": 13.906764879999999,
+      "aggregate_total_stress_net_r": 13.41851664,
+      "year_total_net_r": {
+        "2024": 10.980654779999998,
+        "2025": 2.9261101000000003
+      },
+      "max_positive_symbol_contribution_share": 0.4832160673898571,
+      "integrity_events": 0
+    },
+    "gates": {
+      "aggregate_n_min": true,
+      "each_symbol_n_min": true,
+      "aggregate_mean_net_r_min": false,
+      "aggregate_pf_min": true,
+      "positive_symbols_min": true,
+      "aggregate_2024_positive": true,
+      "aggregate_2025_positive": true,
+      "aggregate_positive_at_commission_stress": true,
+      "max_positive_symbol_contribution_share": true,
+      "integrity_events_max": true
+    },
+    "all_gates_pass": false,
+    "verdict": "REJECT_V0",
+    "confirmation_opened": false,
+    "autosync_used": false
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075755Z\\batch.json",
+      "exists": true,
+      "sha256": "a04912623569dda3073a17fd47a30837bec72815cfb2715a1deef8ab0b8a02d7",
+      "bytes": 14745,
+      "published_as": "batch.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080327Z\\verdict.json",
+      "exists": true,
+      "sha256": "5738ce5c49b3e84156a3d9716a651efb075d7e155388755cdd6f5f6906558027",
+      "bytes": 1998,
+      "published_as": "verdict.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
