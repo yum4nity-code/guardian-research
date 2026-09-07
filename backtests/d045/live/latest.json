@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T08:03:09.020736+00:00",
+  "updated_at_utc": "2026-09-07T08:03:14.286513+00:00",
   "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "stage": "development",
   "kind": "trade-path",
-  "event_id": "20260907T075943Z_EURUSD_M0",
-  "event_path": "backtests/d045/live/events/development/trade-path/20260907T075943Z_EURUSD_M0",
-  "event_fingerprint_sha256": "ab184a89489461025f3e4944225c8cdeba5726098c56b314287950bceceff80b",
+  "event_id": "20260907T080011Z_GBPUSD_M0",
+  "event_path": "backtests/d045/live/events/development/trade-path/20260907T080011Z_GBPUSD_M0",
+  "event_fingerprint_sha256": "d76ab20fdc6415bf971f194bdef09b3aa216d961d3af69b1338d5c4249efcedd",
   "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
