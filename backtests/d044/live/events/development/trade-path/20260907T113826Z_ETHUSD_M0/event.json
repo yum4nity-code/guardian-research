@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T11:44:52.426322+00:00",
+  "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+  "stage": "development",
+  "kind": "trade-path",
+  "event_id": "20260907T113826Z_ETHUSD_M0",
+  "event_fingerprint_sha256": "f32ce6339ddb0abbda8d3603eb1c3b7f6686974b6ba30872d761ce7ffa8ba257",
+  "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+  "payload": {
+    "schema_version": 1,
+    "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+    "stage": "development",
+    "symbol": "ETHUSD",
+    "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113826Z_ETHUSD_M0",
+    "status": "TRADE_PATH_PASS",
+    "trades": 31,
+    "path_rows": 31,
+    "path_calc_failures": 0,
+    "required_columns": 36,
+    "reached_counts": {
+      "0.5R": 20,
+      "1R": 18,
+      "2R": 15,
+      "3R": 12,
+      "5R": 7
+    },
+    "path_ambiguous_rows": 0,
+    "stats_encoding": "utf-16",
+    "trades_encoding": "utf-16"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
