@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T16:35:00+01:00",
+  "updated_at": "2026-09-07T16:45:00+01:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,25 +8,25 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "DETERMINISTIC_RUNNER_D052_COMPLETE",
+    "status": "DETERMINISTIC_RUNNER_ACTIVE_D053_ORB30_ENTRY_ALPHA",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "RETURN_TO_ENTRY_CONTEXT_ALPHA_RESEARCH",
+    "next_phase": "D053_SMOKE_THEN_FROZEN_2024_2025_DEV_IF_SMOKE_PASS",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
-    "active_experiment": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
-    "experiment_manifest": "research/experiments/D052.json",
-    "status": "CLOSED_NO_MANAGEMENT_ALPHA",
-    "strategy_family": "management-as-alpha paired direction-neutral null-entry lab",
+    "active_experiment": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+    "experiment_manifest": "research/experiments/D053.json",
+    "status": "READY_SMOKE",
+    "strategy_family": "opening-range breakout / US equity-index intraday entry alpha",
     "timeframe": "M15",
-    "preregistration": "research/campaigns/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_ENTRY_V0_PREREGISTRATION_2026_09_07.md",
+    "preregistration": "research/campaigns/D053_US_INDEX_ORB30_ENTRY_ALPHA_V0_PREREGISTRATION_2026_09_07.md",
     "canonical_sources_currently_in_repo": [
-      "research/strategies/d052/D052_ManagementAsAlpha_PairedNull_M15_v1_00.mq5"
+      "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "D052 is closed. Do not open its Jul-Aug 2026 holdout and do not retune its management family. Return priority to entry/context alpha. Prepare the next fresh preregistered entry-alpha experiment before any new MT5 outcome; management remains risk/execution engineering, not an assumed source of edge.",
+    "next_action": "Run the frozen D053 unattended workflow: git pull then py -3 .\\research\\runner\\d053_orb30_index_run.py. It verifies frozen identities, compiles, runs October-2023 engineering smoke on SPX500/NDX100/US2000, and only if smoke passes runs unchanged 2024-2025 DEV on SPX500/NDX100/US30/US2000, scores frozen ORB30 gates and publishes evidence. Jul-Aug 2026 holdout must remain unopened in this command.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -46,41 +46,36 @@
       "D051": "UNCONFIRMED_2026_H1_NR7_INDEX_CLUSTER",
       "D052": "NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY"
     },
-    "d051_closeout": {
-      "verdict": "D051_UNCONFIRMED_CLOSE",
-      "confirmation_event": "backtests/d051/live/events/confirmation/d051-confirm-score/20260907T135932Z",
-      "n": 61,
-      "mean_net_r": -0.04297371016393443,
-      "pf": 0.8784327733519505,
-      "total_net_r": -2.62139632,
-      "positive_symbols_n": 2,
-      "integrity_events": 0,
-      "reserved_jul_aug_2026_holdout": "UNOPENED_LOCKED_BY_FAILED_CONFIRMATION",
-      "closeout": "reports/research/D051_NR7_INDEX_CLUSTER_CONFIRMATION_CLOSEOUT_20260907.md"
-    },
     "d052_management_alpha": {
       "formal_status": "D052_NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY",
       "development_event": "backtests/d052/live/events/development/d052-development-score/20260907T152924Z",
       "passing_candidates": 0,
       "selected_candidate": null,
       "holdout": "UNOPENED_PERMANENTLY_LOCKED_BY_FAILED_DEV",
-      "integrity_events": 0,
       "reference_n": 12318,
       "reference_mean_net_r": -0.02662648530037344,
-      "reference_total_net_r": -327.98504593,
-      "reference_pf": 0.8790507722176077,
       "least_negative_candidate": "SL1_BE_AFTER_1R_EOD",
       "least_negative_candidate_mean_net_r": -0.024993159301834714,
-      "least_negative_candidate_total_net_r": -307.86573628,
-      "least_negative_candidate_stress_total_net_r": -357.25723913,
-      "least_negative_candidate_pf": 0.8847298469678108,
-      "least_negative_candidate_paired_delta_mean_r": 0.0016333259985387239,
-      "least_negative_candidate_delta_bootstrap_lower_95": -0.0029910883318329824,
-      "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
-      "preregistration_git_blob_sha": "faa986bb7460806ccc7b5423ba8a697f7569de8e",
-      "source_git_blob_sha": "98ca64ebe2c8e21f2579e9f4cc804b8848d6325b",
-      "closeout": "reports/research/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_CLOSEOUT_20260907.md",
-      "scientific_conclusion": "Frozen management rules can reshape or slightly improve a null-entry distribution but did not create robust positive expectancy. Entry/context alpha remains necessary in this tested family."
+      "closeout": "reports/research/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_CLOSEOUT_20260907.md"
+    },
+    "d053_orb30": {
+      "scientific_question": "Does one frozen 30-minute server-time opening-range first-breakout rule carry robust directional alpha on four FundedNext US index CFDs?",
+      "preregistration_git_blob_sha": "2d66799b1e25cc6cf19dd5d033bd2731372c5cd3",
+      "source_git_blob_sha": "f60329c6fcb79b308c5a60e74c0512b52481386a",
+      "source_sha256": "bbd0178f3c71a99802b75db563f06f38a94d4735bc828a78ee8c009dd4900ec8",
+      "operator_entrypoint": "research/runner/d053_orb30_index_run.py",
+      "workflow": "research/runner/d053_orb30_index_workflow.py",
+      "universe": [
+        "SPX500",
+        "NDX100",
+        "US30",
+        "US2000"
+      ],
+      "rule": "16:30-17:00 server OR; first breakout +1 trade tick; opposite-range stop; first executable liquidation >=22:45; no TP/BE/trail/filter",
+      "smoke": "2023-10-02 through 2023-10-31; SPX500/NDX100/US2000; engineering only",
+      "development": "2024-01-02 through 2025-12-31; four frozen symbols",
+      "holdout": "2026-07-01 through 2026-08-31; locked and unopened unless every DEV gate passes",
+      "policy": "No OR-width grid, no post-hoc direction/symbol selection, no gate waiver, no holdout opening from the DEV command."
     }
   },
   "production": {
@@ -97,7 +92,7 @@
     "standard": "automation/AUTOSYNC_PC_GITHUB_ENGINEERING_STANDARD_20260906.md",
     "legacy_runtime_status": "UNTRUSTED_NEVER_RELIABLY_WORKED",
     "legacy_scripts_role": "REFERENCE_ONLY_NOT_FALLBACK",
-    "migration_policy": "Do not preserve or extend v1/v2 behavior. Research evidence is published by the deterministic isolated-clone result transport; broader AutoSync v3 remains deferred.",
+    "migration_policy": "Do not preserve or extend v1/v2 behavior. Research evidence is published by deterministic isolated-clone result transport; broader AutoSync v3 remains deferred.",
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
     "research_results_status": "PROVEN_END_TO_END_THROUGH_D052",
@@ -112,13 +107,13 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "D052_COMPLETE_READY_NEXT_ENTRY_ALPHA_DESIGN",
+    "status": "D053_READY_SMOKE_THEN_DEV",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
     "entrypoint": "research/runner/guardian_research.py",
-    "d052_operator_entrypoint": "research/runner/d052_management_alpha_run.py",
-    "d052_workflow": "research/runner/d052_management_alpha_workflow.py",
+    "d053_operator_entrypoint": "research/runner/d053_orb30_index_run.py",
+    "d053_workflow": "research/runner/d053_orb30_index_workflow.py",
     "windows_launcher": "research/runner/Run-GuardianResearch.ps1",
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
     "implemented_stages": [
@@ -128,27 +123,24 @@
       "DIRECT_MT5_COPY",
       "METAEDITOR_COMPILE",
       "SEQUENTIAL_MULTI_SYMBOL_BATCH",
-      "SPECIALIZED_PAIRED_MANAGEMENT_SCORING",
+      "D053_ORB30_TICK_HARNESS",
+      "D053_SPREAD_STRESS_SCORER",
       "DETERMINISTIC_BLOCK_BOOTSTRAP",
-      "MECHANICAL_CANDIDATE_SELECTION",
       "ISOLATED_BACKTEST_RESULTS_PUBLISH",
-      "D052_SOURCE_FREEZE_PUBLISH",
-      "D052_PAIRED_NULL_SMOKE",
-      "D052_12_MARKET_DEV",
-      "D052_RESILIENT_FAILURE_PUBLISH"
+      "D053_RESILIENT_FAILURE_PUBLISH"
     ],
     "planned_stages": [
-      "FRESH_ENTRY_CONTEXT_ALPHA_EXPERIMENT"
+      "D053_JUL_AUG_2026_CONFIRMATION_ONLY_IF_DEV_ALL_GATES_PASS"
     ],
     "reference_tester_model": 0,
     "fast_tester_model_candidate": null,
     "fast_model_approved": false,
     "parallel_mt5_approved": false,
-    "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; keep MT5 sequential.",
+    "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; D053 remains sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "D052_PRE_RUN_STATIC_CI_PASS_AND_POST_RUN_EVIDENCE_PUBLISHED",
-    "local_mt5_status": "D052_COMPLETE_12_MARKET_DEV_INTEGRITY_PASS",
-    "principle": "One frozen preregistration + source identity + deterministic local execution + specialized score + automatic evidence publication. The user should normally run one short PowerShell block and reply `fini`; transport failure alone never justifies repeating valid MT5 science."
+    "github_ci_status": "PENDING_D053_STATIC_CI",
+    "local_mt5_status": "D053_NOT_YET_RUN",
+    "principle": "One frozen preregistration + source identity + deterministic local execution + specialized score + automatic evidence publication. User normally runs one short PowerShell block and replies `fini`; transport failure alone never justifies repeating valid MT5 science."
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
