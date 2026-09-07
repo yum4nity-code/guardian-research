@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-07T11:31:58.034895+00:00",
+  "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+  "stage": "smoke",
+  "kind": "batch",
+  "event_id": "20260907T113119Z",
+  "event_path": "backtests/d044/live/events/smoke/batch/20260907T113119Z",
+  "event_fingerprint_sha256": "0170346d8c6b0f891ea9a14f8689af7c90af9ec82791aaa970994ac3cf926f60",
+  "status": "BATCH_PASS_INTEGRITY",
+  "autosync_used": false
+}
