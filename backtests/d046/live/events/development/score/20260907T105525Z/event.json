@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T10:55:27.858401+00:00",
+  "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+  "stage": "development",
+  "kind": "score",
+  "event_id": "20260907T105525Z",
+  "event_fingerprint_sha256": "4a158841d7a146607b61bcb88c74dc537f0d994a667c4b148dcc88abe749ca95",
+  "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
+  "payload": {
+    "verdict_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105525Z\\verdict.json",
+    "analytics_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105525Z\\expiry_analytics.json",
+    "schema_version": 1,
+    "created_at_utc": "2026-09-07T10:55:25.544753+00:00",
+    "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+    "scientific_preregistration": "research/campaigns/D046_BTC_DERIBIT_08UTC_EXPIRY_REVERSAL_SCREEN_V0_PREREGISTRATION_2026_09_07.md",
+    "scientific_role": "D046_UNCONDITIONAL_08UTC_EXPIRY_REVERSAL_SCREEN",
+    "stage": "development",
+    "manifest_path": "research\\experiments\\D046.json",
+    "manifest_source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105443Z\\batch.json",
+    "metrics": {
+      "paired_days_n": 513,
+      "pre_short_mean_net_bps": -13.439734165516569,
+      "post_long_mean_net_bps": -8.891994456276803,
+      "combined_day_mean_net_bps": -22.33172862179337,
+      "combined_day_total_net_bps": -11456.17678298,
+      "combined_day_profit_factor": {
+        "value": 0.3940476401453543,
+        "infinite": false
+      },
+      "combined_stress_total_net_bps": -15560.176782980001,
+      "year_total_net_bps": {
+        "2024": -6923.866279779999,
+        "2025": -4532.310503199997
+      },
+      "month_block_bootstrap": {
+        "blocks": 24,
+        "resamples": 20000,
+        "seed": 460800,
+        "lower_95": -26.793829559878056,
+        "median": -22.295431347516242,
+        "upper_95": -17.821943646947847
+      },
+      "eligible_leg_counts": {
+        "PRE_SHORT": 514,
+        "POST_LONG": 513
+      },
+      "ineligible_rows": 1,
+      "unpaired_eligible_days": 1
+    },
+    "gates": {
+      "paired_days_min": false,
+      "pre_short_mean_net_bps_strictly_positive": false,
+      "post_long_mean_net_bps_strictly_positive": false,
+      "combined_day_mean_net_bps_strictly_positive": false,
+      "combined_day_pf_min": false,
+      "combined_stress_total_net_bps_positive": false,
+      "month_block_bootstrap_lower_95_strictly_positive": false,
+      "integrity_events_max": true,
+      "year_2024_total_net_bps_positive": false,
+      "year_2025_total_net_bps_positive": false
+    },
+    "all_gates_pass": false,
+    "verdict": "INCONCLUSIVE_COUNT",
+    "high_oi_mechanism_tested": false,
+    "high_oi_mechanism_boundary": "A D046-A failure rejects only the unconditional screen and does not falsify the historical high-ATM-OI mechanism.",
+    "autosync_used": false
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105443Z\\batch.json",
+      "exists": true,
+      "sha256": "1ee8f4324b2d0058a0d3057ccfa91a3a3885670a9e749f1efea0e542f47d6f57",
+      "bytes": 3131,
+      "published_as": "batch.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\development\\20260907T105525Z\\verdict.json",
+      "exists": true,
+      "sha256": "3040140d617121c048715a872647f4ab05cff9b47daa679accc5ebcb07862864",
+      "bytes": 2390,
+      "published_as": "verdict.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
