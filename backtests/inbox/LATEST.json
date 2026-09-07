@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-07T07:53:36.0906173Z",
-    "run_id":  "20260907_075311_D045_USDJPY_6eaa350d8942",
-    "path":  "backtests/inbox/2026/09/07/20260907_075311_D045_USDJPY_6eaa350d8942",
-    "fingerprint":  "6eaa350d89424b7bb40ce12da4fbc592910c2ea4a5682c8304a22810b1ec0049",
+    "synced_at_utc":  "2026-09-07T07:55:16.1260811Z",
+    "run_id":  "20260907_075320_D045_XAUUSD_072612bef4a1",
+    "path":  "backtests/inbox/2026/09/07/20260907_075320_D045_XAUUSD_072612bef4a1",
+    "fingerprint":  "072612bef4a13bce6d3b660d333044d882410d8842679b87c9f28414b3ce9b55",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D045_V100_RUN_USDJPY_STATS.csv",
-                  "D045_V100_RUN_USDJPY_TRADES.csv",
+                  "D045_V100_RUN_XAUUSD_STATS.csv",
+                  "D045_V100_RUN_XAUUSD_TRADES.csv",
                   "sync_manifest.json"
               ]
 }
