@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T11:36:03.650325+00:00",
+  "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+  "stage": "development",
+  "kind": "campaign-failure",
+  "event_id": "20260907T113557Z",
+  "event_fingerprint_sha256": "a2422366eff1bd7fd33a7af1c8595b379519489986572bb40aa2d643cb78f57f",
+  "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+  "payload": {
+    "identifier": "D044",
+    "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+    "stage": "development",
+    "started_at_utc": "2026-09-07T11:35:54.268417+00:00",
+    "status": "EXPERIMENT_ENGINEERING_FAILURE",
+    "compile": {
+      "status": "COMPILE_PASS",
+      "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\20260907T113554Z\\build.json",
+      "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+      "ex5_sha256": "06c8ba6f1c9ce9b4c08c7d5b0a6c211796cb712bbb10566c271ad9f966c90dcb"
+    },
+    "error": "v1 batch only supports the source default stage smoke; requested development"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
