@@ -85,6 +85,12 @@ def validate_state(state: dict[str, Any]) -> list[str]:
         errors.append("maman-70-santorin current_path is missing")
 
     research = state.get("research", {})
+    operator_workflow = research.get("operator_workflow")
+    if operator_workflow:
+        require((ROOT / operator_workflow).is_file(), f"operator workflow is missing: {operator_workflow}")
+    else:
+        errors.append("research.operator_workflow is missing")
+
     manifest_rel = research.get("experiment_manifest")
     if manifest_rel:
         manifest_path = ROOT / manifest_rel
@@ -117,8 +123,9 @@ def render_start_here(state: dict[str, Any], manifest: dict[str, Any]) -> str:
     transport = state["transport"]
     closed = research.get("closed_experiments", {})
     closed_text = ", ".join(f"{key}={value}" for key, value in sorted(closed.items())) or "none"
+    operator_workflow = research["operator_workflow"]
 
-    return f"""# START HERE — GUARDIAN\n\n> **GENERATED COMPATIBILITY ENTRYPOINT. DO NOT EDIT BY HAND.**\n> Authoritative state: `GUARDIAN_STATE.json`.\n\nRead only what is needed, in this order:\n\n1. `GUARDIAN_STATE.json`\n2. `GUARDIAN_MASTER_MANDATE.md`\n3. `{research['experiment_manifest']}`\n4. `{manifest['preregistration']['path']}`\n5. `{production['reference_note']}`\n\n## Current P0\n\n- Experiment: **{research['active_experiment']}**\n- State: **{research['status']}**\n- Next action: **{research['next_action']}**\n\n## Operational truths\n\n- Codex required: **NO**\n- Guardian Core baseline: **{production['baseline']}** — do not modify during this research refactor.\n- Legacy AutoSync: **{transport['legacy_runtime_status']}** — reference only, never fallback.\n- AutoSync target: **{transport['target']}**.\n- Closed experiments: {closed_text}.\n\nIf this file ever disagrees with `GUARDIAN_STATE.json`, the state file wins and this file must be regenerated with:\n\n```powershell\npython research/runner/state_tools.py generate\n```\n"""
+    return f"""# START HERE — GUARDIAN\n\n> **GENERATED COMPATIBILITY ENTRYPOINT. DO NOT EDIT BY HAND.**\n> Authoritative state: `GUARDIAN_STATE.json`.\n\nRead only what is needed, in this order:\n\n1. `GUARDIAN_STATE.json`\n2. `{operator_workflow}`\n3. `GUARDIAN_MASTER_MANDATE.md`\n4. `{research['experiment_manifest']}`\n5. `{manifest['preregistration']['path']}`\n6. `{production['reference_note']}`\n\n## Current P0\n\n- Experiment: **{research['active_experiment']}**\n- State: **{research['status']}**\n- Next action: **{research['next_action']}**\n\n## Canonical operator UX\n\n- Prefer one short PowerShell command block.\n- The runner publishes results automatically to `backtest-results`.\n- The user normally responds only **`fini`**.\n- The assistant then retrieves GitHub evidence, updates state, and gives the next minimal command.\n- Do not ask the user to paste logs/JSON when automatic transport succeeded.\n\n## Operational truths\n\n- Codex required: **NO**\n- Guardian Core baseline: **{production['baseline']}** — do not modify during this research refactor.\n- Legacy AutoSync: **{transport['legacy_runtime_status']}** — reference only, never fallback.\n- AutoSync target: **{transport['target']}**.\n- Closed experiments: {closed_text}.\n\nIf this file ever disagrees with `GUARDIAN_STATE.json`, the state file wins and this file must be regenerated with:\n\n```powershell\npython research/runner/state_tools.py generate\n```\n"""
 
 
 def build_queue(state: dict[str, Any]) -> dict[str, Any]:
@@ -171,7 +178,7 @@ def build_queue(state: dict[str, Any]) -> dict[str, Any]:
         "updated_at": state["updated_at"],
         "active_primary": research["active_experiment"],
         "items": items,
-        "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. No operational item may wait on Codex.",
+        "notes": f"Compatibility view only. GUARDIAN_STATE.json is authoritative. Canonical operator UX: {research['operator_workflow']}. No operational item may wait on Codex.",
     }
 
 
