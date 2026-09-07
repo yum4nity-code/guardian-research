@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T15:29:14.339493+00:00",
+  "updated_at_utc": "2026-09-07T15:29:27.227759+00:00",
   "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
   "stage": "development",
-  "kind": "d052-development-batch",
-  "event_id": "20260907T152911Z",
-  "event_path": "backtests/d052/live/events/development/d052-development-batch/20260907T152911Z",
-  "event_fingerprint_sha256": "fa908a0e3af4c28ed29decac42fd0e719b2ccc1103684dfb4d534d36907552ec",
-  "status": "D052_BATCH_PASS_INTEGRITY",
+  "kind": "d052-development-score",
+  "event_id": "20260907T152924Z",
+  "event_path": "backtests/d052/live/events/development/d052-development-score/20260907T152924Z",
+  "event_fingerprint_sha256": "b6bb28156276107b3612d56bb34b1bec7398db8261e46f6984230080416562b7",
+  "status": "D052_NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY",
   "autosync_used": false
 }
