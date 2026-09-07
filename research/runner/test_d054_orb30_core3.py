@@ -11,6 +11,8 @@ sys.path.insert(0, str(ROOT / "research" / "runner"))
 
 import d053_orb30_deep_audit as audit053
 import d054_orb30_core3_workflow as d054
+import experiment
+import runner
 
 
 def row(symbol: str, day: str, side: str, net: float, stress: float) -> dict[str, str]:
@@ -63,9 +65,18 @@ def synthetic_month_failure_batch() -> dict:
     return {"tests": tests}
 
 
-def test_identity_and_frozen_gates() -> None:
-    ids = d054.verify_frozen_repository_identity()
-    assert ids["source_sha256"] == d054.EXPECTED_SOURCE_SHA256
+def test_identity_and_closed_frozen_gates() -> None:
+    manifest_path, manifest = experiment.load_manifest("D054")
+    assert manifest_path.name == "D054.json"
+    assert manifest["experiment_id"] == d054.EXPERIMENT_ID
+    assert manifest["status"] == "UNCONFIRMED"
+    assert manifest["stages"]["confirmation"]["status"] == "FAIL"
+    assert manifest["stages"]["confirmation"]["gates"] == d054.FROZEN_CONFIRMATION_GATES
+    assert manifest["results"]["final_verdict"] == "D054_UNCONFIRMED_CLOSE"
+    assert d054.git_blob_sha(d054.PREREG) == d054.EXPECTED_PREREG_BLOB
+    assert d054.git_blob_sha(d054.SOURCE) == d054.EXPECTED_SOURCE_BLOB
+    source_sha = runner.source_identity_sha256(ROOT / d054.SOURCE, runner.SOURCE_SHA_MODE_TEXT_LF)
+    assert source_sha == d054.EXPECTED_SOURCE_SHA256
     assert d054.SYMBOLS == ["SPX500", "NDX100", "US30"]
     assert d054.HOLDOUT_FROM == "2026-07-01"
     assert d054.HOLDOUT_TO == "2026-08-31"
@@ -134,7 +145,7 @@ def test_dst_proxy_has_mismatch_and_alignment() -> None:
 
 
 if __name__ == "__main__":
-    test_identity_and_frozen_gates()
+    test_identity_and_closed_frozen_gates()
     test_positive_confirmation_passes()
     test_negative_confirmation_fails()
     test_one_negative_month_cannot_be_hidden_by_good_aggregate()
