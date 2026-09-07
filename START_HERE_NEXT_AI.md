@@ -9,7 +9,7 @@ Read only what is needed, in this order:
 2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
 3. `GUARDIAN_MASTER_MANDATE.md`
 4. `research/experiments/D054.json`
-5. `research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
+5. `research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
 6. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
 
 ## Current P0
