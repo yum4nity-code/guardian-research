@@ -1,6 +1,6 @@
 # Guardian — Project Planning & Time Log
 
-Last reconstructed: 2026-09-06 Europe/Paris
+Last reconstructed: 2026-09-07 Europe/Paris
 Status: LIVING FILE — update during each material Guardian work session
 
 ## Purpose
@@ -372,6 +372,36 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Reconcile the research slate and select the next independent preregistered strategy family.
 - Keep AutoSync v1.04 as the proven D023 transport baseline; no per-backtest PowerShell command should be required.
 - Keep Guardian Core v12.01 stable and FundedNext AUTO off until the separate request/retry pathology is bounded.
+
+## 2026-09-07 — Challenge Probability Lab v1.00 and current-state reconciliation
+
+**Work / decisions**
+- New `Challenge Probability Lab` implemented as strategy-independent research infrastructure under `research/challenge_probability_lab/`; production Guardian Core was not modified.
+- Objective frozen to challenge passage: estimate probability of reaching the profit target before daily/max drawdown violation, rather than maximize terminal profit.
+- Default frozen risk grid: 0.10%, 0.15%, 0.20%, 0.25%, 0.33%, 0.50% per trade.
+- Simulator consumes real R-based trade logs and resamples circular moving blocks of contiguous calendar days (default five days), preserving observed clustering/short regime persistence instead of iid-shuffling trades.
+- Common random day paths are reused across risk levels for paired comparisons.
+- Outputs include pass probability + Wilson 95% CI, daily/max/any DD violation probabilities, timeout, median/P25/P75/P90 days to pass, trades-to-pass and median/P90/P95/P99/worst-observed max DD, plus risk selected specifically for pass probability.
+- Rules are external configuration; initial/reference-capital risk sizing is default, with static-initial or trailing-EOD max-loss anchors available.
+- Optional `--day-column` supports a prop-firm-normalized challenge day; optional signed adverse-R supports stronger intratrade checks.
+- Exactness boundary explicitly preserved: without synchronized floating-equity/mark-to-market data, v1.00 is an atomic/closed-equity simulator and can understate real floating DD breaches, especially with overlapping/multi-day positions.
+- Engine and tests were locally validated: `py_compile` PASS and 8/8 unit tests PASS. A real-schema smoke using an 18-row excerpt of D037 `trades_compact.csv` loaded successfully and generated JSON/CSV/Markdown; no scientific performance conclusion was drawn from the tiny smoke.
+- Validated engine Git blob: `0fbe86213b5d42dd4d8a6202e4e246ae2ed6ee75`; validated test blob: `800808538f1c2013cabb3a48c3ddaa787fb81853`.
+- Implementation report persisted at `research/results/CHALLENGE_PROBABILITY_LAB_V1_00_IMPLEMENTATION_REPORT_2026_09_07.md`.
+- Current-state reconciliation found `main` metadata lagging far behind the live result mirror. `backtest-results` shows D053 formal verdict `D053_REJECT_V0` and D054 latest confirmation status `D054_UNCONFIRMED_CLOSE`; no D055 directory was present when checked.
+- `CURRENT_PROJECT_HANDOFF.md` was rewritten so stale D036 text no longer masquerades as the active P0. No new alpha P0 was invented; next alpha family must be independently selected/preregistered.
+
+**Time evidence**
+- This ChatGPT/Guardian session is confirmed from approximately 19:45 through 21:04 Europe/Paris.
+- `CONFIRMED ACTIVITY SPAN: ~1h19`; this includes tool execution/testing and is not a claim of 1h19 continuous human keyboard time.
+- `Human active total: NOT QUANTIFIED`.
+- No unattended Strategy Tester/collector runtime is counted in this entry.
+
+**Next**
+- Do not use Challenge Probability Lab to rescue D053/D054 or any strategy that failed alpha/OOS gates.
+- Run the Lab on the next strategy/portfolio only after its underlying trade evidence survives the normal scientific gates; use 20,000+ paths for a decision run with frozen seed/profile/block length/horizon.
+- Extend future standardized harness exports with normalized `challenge_day`, signed MAE/adverse R, and ideally synchronized portfolio floating-equity snapshots to move from atomic DD estimation toward exact prop-firm DD simulation.
+- Reconcile `CURRENT_QUEUE.json` when the next independent alpha family is formally selected.
 
 ---
 
