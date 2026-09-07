@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T08:02:58.913337+00:00",
+  "updated_at_utc": "2026-09-07T08:03:03.922581+00:00",
   "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "stage": "development",
   "kind": "trade-path",
-  "event_id": "20260907T075755Z_BTCUSD_M0",
-  "event_path": "backtests/d045/live/events/development/trade-path/20260907T075755Z_BTCUSD_M0",
-  "event_fingerprint_sha256": "0be3924f6175a954e142a1d9c2a4ca570922d0ba46cecb5cf9a48f6ccf68f4ca",
+  "event_id": "20260907T075851Z_ETHUSD_M0",
+  "event_path": "backtests/d045/live/events/development/trade-path/20260907T075851Z_ETHUSD_M0",
+  "event_fingerprint_sha256": "ad45ba7724cd66626efefaa1621fbff62a0f0d8e319533eadff6779a2805b7c6",
   "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
