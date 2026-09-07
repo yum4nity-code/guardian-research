@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T07:14:33.185364+00:00",
+  "updated_at_utc": "2026-09-07T07:14:43.373839+00:00",
   "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "stage": "confirmation",
   "kind": "trade-path",
-  "event_id": "20260907T071107Z_ETHUSD_M0",
-  "event_path": "backtests/d040/live/events/confirmation/trade-path/20260907T071107Z_ETHUSD_M0",
-  "event_fingerprint_sha256": "41b05b5a3b96c120d492e58e44997aacb19ee14d61ee1aad3bcecd0f1b9b8aa4",
+  "event_id": "20260907T071208Z_EURUSD_M0",
+  "event_path": "backtests/d040/live/events/confirmation/trade-path/20260907T071208Z_EURUSD_M0",
+  "event_fingerprint_sha256": "0a2da09ee8b5dc493eb57afcf49260a1dc9f932a11878a99e8bab1466fe6f70f",
   "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
