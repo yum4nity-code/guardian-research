@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T07:02:02.356606+00:00",
+  "updated_at_utc": "2026-09-07T07:02:10.333792+00:00",
   "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "stage": "development",
-  "kind": "trade-path",
-  "event_id": "20260907T065904Z_XAUUSD_M0",
-  "event_path": "backtests/d040/live/events/development/trade-path/20260907T065904Z_XAUUSD_M0",
-  "event_fingerprint_sha256": "480a22b0215457694a9ed2638d7887ca7afed59c0f3574fc86e4d27f6c2f8cba",
-  "status": "TRADE_PATH_PASS",
+  "kind": "score",
+  "event_id": "20260907T070206Z",
+  "event_path": "backtests/d040/live/events/development/score/20260907T070206Z",
+  "event_fingerprint_sha256": "5c5d1ea0bccc03ce3f5969e74eb9f1ae54caa23d4033c20383e7902d6c7803ec",
+  "status": null,
   "autosync_used": false
 }
