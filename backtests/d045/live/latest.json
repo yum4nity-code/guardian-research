@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T08:03:36.148220+00:00",
+  "updated_at_utc": "2026-09-07T08:03:46.713610+00:00",
   "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "stage": "development",
-  "kind": "rich-score",
-  "event_id": "20260907T080333Z",
-  "event_path": "backtests/d045/live/events/development/rich-score/20260907T080333Z",
-  "event_fingerprint_sha256": "51f7c9b4bb79471ef705c3682e808b337950ef0651fb594ec98604a8910e608c",
-  "status": null,
+  "kind": "campaign",
+  "event_id": "20260907T080344Z",
+  "event_path": "backtests/d045/live/events/development/campaign/20260907T080344Z",
+  "event_fingerprint_sha256": "391a885f31b69ee06b83cccb7381cc12d87245d126e0740a9e55d18cf4579e33",
+  "status": "CAMPAIGN_PASS",
   "autosync_used": false
 }

@@ -1,0 +1,639 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T08:03:46.712510+00:00",
+  "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+  "stage": "development",
+  "kind": "campaign",
+  "event_id": "20260907T080344Z",
+  "event_fingerprint_sha256": "391a885f31b69ee06b83cccb7381cc12d87245d126e0740a9e55d18cf4579e33",
+  "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+  "payload": {
+    "schema_version": 2,
+    "campaign_id": "20260907T075753Z",
+    "status": "CAMPAIGN_PASS",
+    "stage": "development",
+    "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+    "parallel_mt5": false,
+    "continue_after_scientific_reject": true,
+    "continue_after_experiment_engineering_failure": true,
+    "finalize_development": true,
+    "finalize_scored_stage": true,
+    "experiments_requested": [
+      "D045"
+    ],
+    "started_at_utc": "2026-09-07T07:57:53.324323+00:00",
+    "experiments": [
+      {
+        "identifier": "D045",
+        "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+        "stage": "development",
+        "started_at_utc": "2026-09-07T07:57:53.348899+00:00",
+        "status": "EXPERIMENT_FINALIZED",
+        "compile": {
+          "status": "COMPILE_PASS",
+          "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075753Z\\build.json",
+          "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+          "ex5_sha256": "403cb7ae54246badf3310a896d6ad11f40969f0e29b40d1eb7de68f08518b611"
+        },
+        "batch": {
+          "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075755Z\\batch.json",
+          "schema_version": 1,
+          "status": "BATCH_PASS_INTEGRITY",
+          "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+          "manifest_path": "research\\experiments\\D045.json",
+          "stage": "development",
+          "symbols": [
+            "BTCUSD",
+            "ETHUSD",
+            "EURUSD",
+            "GBPUSD",
+            "USDJPY",
+            "XAUUSD"
+          ],
+          "started_at_utc": "2026-09-07T07:57:55.051691+00:00",
+          "execution_mode": "SEQUENTIAL",
+          "tester_model": 0,
+          "tests": [
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "manifest_path": "research\\experiments\\D045.json",
+              "stage": "development",
+              "symbol": "BTCUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T07:57:55.064577+00:00",
+              "finished_at_utc": "2026-09-07T07:58:51.346902+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075755Z_BTCUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075753Z\\build.json",
+              "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+              "ex5_sha256": "403cb7ae54246badf3310a896d6ad11f40969f0e29b40d1eb7de68f08518b611",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\BTCUSD\\20260907T075755Z\\D045_V100_RUN_BTCUSD_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\BTCUSD\\20260907T075755Z\\D045_V100_RUN_BTCUSD_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075755Z_BTCUSD_M0\\D045_V100_RUN_BTCUSD_STATS.csv",
+                "sha256": "2855464fc6e2faacc86cac4be4f555f68f4cef54da3d670d5c38b1d2654a1445"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075755Z_BTCUSD_M0\\D045_V100_RUN_BTCUSD_TRADES.csv",
+                "sha256": "bdaee32dc4afaf11cafd8a05c6686304451d27463d5ed52228827b9375e217a3"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "BTCUSD",
+                "trades": 25,
+                "trades_opened": 25,
+                "trades_closed": 25,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "manifest_path": "research\\experiments\\D045.json",
+              "stage": "development",
+              "symbol": "ETHUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T07:58:51.400542+00:00",
+              "finished_at_utc": "2026-09-07T07:59:43.499750+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075851Z_ETHUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075753Z\\build.json",
+              "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+              "ex5_sha256": "403cb7ae54246badf3310a896d6ad11f40969f0e29b40d1eb7de68f08518b611",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075851Z_ETHUSD_M0\\D045_V100_RUN_ETHUSD_STATS.csv",
+                "sha256": "0ac07d14df92c5e479541efebe974b61ad2ceeaa6a8e73e94a59568db5e50b9b"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075851Z_ETHUSD_M0\\D045_V100_RUN_ETHUSD_TRADES.csv",
+                "sha256": "7ee9aed4ae702b896f41b5f3e967171ef0592ccdc2dde17625bc2b31befd520a"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "ETHUSD",
+                "trades": 25,
+                "trades_opened": 25,
+                "trades_closed": 25,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "manifest_path": "research\\experiments\\D045.json",
+              "stage": "development",
+              "symbol": "EURUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T07:59:43.546220+00:00",
+              "finished_at_utc": "2026-09-07T08:00:11.500050+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075943Z_EURUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075753Z\\build.json",
+              "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+              "ex5_sha256": "403cb7ae54246badf3310a896d6ad11f40969f0e29b40d1eb7de68f08518b611",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075943Z_EURUSD_M0\\D045_V100_RUN_EURUSD_STATS.csv",
+                "sha256": "01f8ed8562d967b25fb4f7078f9260f11d97dcef911eeaeea9c622bacf0fcca9"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075943Z_EURUSD_M0\\D045_V100_RUN_EURUSD_TRADES.csv",
+                "sha256": "046c3ff5ad454f9d1759074f4682ce540dd0f0f269740d3396a104aa8635e4b3"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "EURUSD",
+                "trades": 23,
+                "trades_opened": 23,
+                "trades_closed": 23,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "manifest_path": "research\\experiments\\D045.json",
+              "stage": "development",
+              "symbol": "GBPUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T08:00:11.552492+00:00",
+              "finished_at_utc": "2026-09-07T08:00:45.552897+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080011Z_GBPUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075753Z\\build.json",
+              "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+              "ex5_sha256": "403cb7ae54246badf3310a896d6ad11f40969f0e29b40d1eb7de68f08518b611",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080011Z_GBPUSD_M0\\D045_V100_RUN_GBPUSD_STATS.csv",
+                "sha256": "35c50886ea2f0314cefa6588390696d44af2b54f94c24bfc9c75666531f47e7f"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080011Z_GBPUSD_M0\\D045_V100_RUN_GBPUSD_TRADES.csv",
+                "sha256": "051a240e21d4eb8655615bb34227bcb9a7a1bc2289ed12b21b013e1d9e39243b"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "GBPUSD",
+                "trades": 30,
+                "trades_opened": 30,
+                "trades_closed": 30,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "manifest_path": "research\\experiments\\D045.json",
+              "stage": "development",
+              "symbol": "USDJPY",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T08:00:45.617446+00:00",
+              "finished_at_utc": "2026-09-07T08:01:36.790527+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080045Z_USDJPY_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075753Z\\build.json",
+              "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+              "ex5_sha256": "403cb7ae54246badf3310a896d6ad11f40969f0e29b40d1eb7de68f08518b611",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\USDJPY\\20260907T080045Z\\D045_V100_RUN_USDJPY_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\USDJPY\\20260907T080045Z\\D045_V100_RUN_USDJPY_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080045Z_USDJPY_M0\\D045_V100_RUN_USDJPY_STATS.csv",
+                "sha256": "9e9116e0cf0280c5a3660775e1cccbe8267c7de37be545ef5fe8cb42ea4a61d7"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080045Z_USDJPY_M0\\D045_V100_RUN_USDJPY_TRADES.csv",
+                "sha256": "8d4d9ca8873ef8ef503baa8063581269d853ed595dec8984f38c4a2e399519f9"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "USDJPY",
+                "trades": 21,
+                "trades_opened": 21,
+                "trades_closed": 21,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "manifest_path": "research\\experiments\\D045.json",
+              "stage": "development",
+              "symbol": "XAUUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T08:01:36.842398+00:00",
+              "finished_at_utc": "2026-09-07T08:02:51.285691+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080136Z_XAUUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\20260907T075753Z\\build.json",
+              "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+              "ex5_sha256": "403cb7ae54246badf3310a896d6ad11f40969f0e29b40d1eb7de68f08518b611",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\XAUUSD\\20260907T080136Z\\D045_V100_RUN_XAUUSD_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\XAUUSD\\20260907T080136Z\\D045_V100_RUN_XAUUSD_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080136Z_XAUUSD_M0\\D045_V100_RUN_XAUUSD_STATS.csv",
+                "sha256": "6b150fe1b9adbc4307920dc4d3063b1f1d503ab7b77ac6418821f6ece4965d50"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080136Z_XAUUSD_M0\\D045_V100_RUN_XAUUSD_TRADES.csv",
+                "sha256": "dcdf7b5dbf3a103337dadf0160c5454ccb2a0ec1909faceb86a1d8fa50919956"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "XAUUSD",
+                "trades": 21,
+                "trades_opened": 21,
+                "trades_closed": 21,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            }
+          ],
+          "autosync_used": false,
+          "finished_at_utc": "2026-09-07T08:02:51.334706+00:00",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\batch\\20260907T075755Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d045/live/events/development/batch/20260907T075755Z",
+            "latest_path": "backtests/d045/live/latest.json",
+            "event_id": "20260907T075755Z",
+            "event_fingerprint_sha256": "aa02eb2465487902812718faaf8b22fdeeacc830eb304018bc4787bd552f93a7",
+            "commit_sha": "d679cb743b86f5e991946166dc15a6c1b2e40f64",
+            "payload_compacted": false,
+            "autosync_used": false
+          }
+        },
+        "trade_path": {
+          "status": "TRADE_PATH_PASS_ALL",
+          "symbols": [
+            "BTCUSD",
+            "ETHUSD",
+            "EURUSD",
+            "GBPUSD",
+            "USDJPY",
+            "XAUUSD"
+          ],
+          "results": [
+            {
+              "schema_version": 1,
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "stage": "development",
+              "symbol": "BTCUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075755Z_BTCUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 25,
+              "path_rows": 25,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 18,
+                "1R": 8,
+                "2R": 6,
+                "3R": 3,
+                "5R": 2
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\trade-path\\20260907T075755Z_BTCUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d045/live/events/development/trade-path/20260907T075755Z_BTCUSD_M0",
+                "latest_path": "backtests/d045/live/latest.json",
+                "event_id": "20260907T075755Z_BTCUSD_M0",
+                "event_fingerprint_sha256": "0be3924f6175a954e142a1d9c2a4ca570922d0ba46cecb5cf9a48f6ccf68f4ca",
+                "commit_sha": "e5649ab8c8b6924813b2970060176fe306935f49",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "stage": "development",
+              "symbol": "ETHUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075851Z_ETHUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 25,
+              "path_rows": 25,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 14,
+                "1R": 12,
+                "2R": 7,
+                "3R": 4,
+                "5R": 2
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\trade-path\\20260907T075851Z_ETHUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d045/live/events/development/trade-path/20260907T075851Z_ETHUSD_M0",
+                "latest_path": "backtests/d045/live/latest.json",
+                "event_id": "20260907T075851Z_ETHUSD_M0",
+                "event_fingerprint_sha256": "ad45ba7724cd66626efefaa1621fbff62a0f0d8e319533eadff6779a2805b7c6",
+                "commit_sha": "e888c36c44091e13dc9867867aef53c367ec1cab",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "stage": "development",
+              "symbol": "EURUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075943Z_EURUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 23,
+              "path_rows": 23,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 19,
+                "1R": 13,
+                "2R": 5,
+                "3R": 2,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\trade-path\\20260907T075943Z_EURUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d045/live/events/development/trade-path/20260907T075943Z_EURUSD_M0",
+                "latest_path": "backtests/d045/live/latest.json",
+                "event_id": "20260907T075943Z_EURUSD_M0",
+                "event_fingerprint_sha256": "ab184a89489461025f3e4944225c8cdeba5726098c56b314287950bceceff80b",
+                "commit_sha": "f5c857fc8e672e4067a59d9d15c2f4cbcdc64f04",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "stage": "development",
+              "symbol": "GBPUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080011Z_GBPUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 30,
+              "path_rows": 30,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 20,
+                "1R": 13,
+                "2R": 2,
+                "3R": 0,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\trade-path\\20260907T080011Z_GBPUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d045/live/events/development/trade-path/20260907T080011Z_GBPUSD_M0",
+                "latest_path": "backtests/d045/live/latest.json",
+                "event_id": "20260907T080011Z_GBPUSD_M0",
+                "event_fingerprint_sha256": "d76ab20fdc6415bf971f194bdef09b3aa216d961d3af69b1338d5c4249efcedd",
+                "commit_sha": "0483af3cbf65c2824e9fb415f08f94bf4b6ffa85",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "stage": "development",
+              "symbol": "USDJPY",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080045Z_USDJPY_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 21,
+              "path_rows": 21,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 15,
+                "1R": 10,
+                "2R": 7,
+                "3R": 4,
+                "5R": 2
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\trade-path\\20260907T080045Z_USDJPY_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d045/live/events/development/trade-path/20260907T080045Z_USDJPY_M0",
+                "latest_path": "backtests/d045/live/latest.json",
+                "event_id": "20260907T080045Z_USDJPY_M0",
+                "event_fingerprint_sha256": "469846b465a1a61494b104aafbdd04c4178096f4fb8dbdbf33e2a4b2cfa4a93a",
+                "commit_sha": "cd3b9fd9186721f936c56af534202feeb2a38105",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+              "stage": "development",
+              "symbol": "XAUUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080136Z_XAUUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 21,
+              "path_rows": 21,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 10,
+                "1R": 10,
+                "2R": 6,
+                "3R": 4,
+                "5R": 2
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\trade-path\\20260907T080136Z_XAUUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d045/live/events/development/trade-path/20260907T080136Z_XAUUSD_M0",
+                "latest_path": "backtests/d045/live/latest.json",
+                "event_id": "20260907T080136Z_XAUUSD_M0",
+                "event_fingerprint_sha256": "8557bc7f75d2689d52b6095914661696095ec0b9d3b91d6148842c7c56497ba6",
+                "commit_sha": "e56c5b639c6623b58a30d91fd37f839631ab9a73",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            }
+          ]
+        },
+        "decision": {
+          "verdict": "REJECT_V0",
+          "all_gates_pass": false,
+          "verdict_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080327Z\\verdict.json",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\score\\20260907T080327Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d045/live/events/development/score/20260907T080327Z",
+            "latest_path": "backtests/d045/live/latest.json",
+            "event_id": "20260907T080327Z",
+            "event_fingerprint_sha256": "1bc4c43f7b7bb5130f6ce27e2638a956d243cae47152980be99e36b1575006f4",
+            "commit_sha": "090c167b7798526908eaa50c4c99ecc1d2a3fbe8",
+            "payload_compacted": false,
+            "autosync_used": false
+          }
+        },
+        "rich_score": {
+          "rich_score_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080333Z\\rich_score.json",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\rich-score\\20260907T080333Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d045/live/events/development/rich-score/20260907T080333Z",
+            "latest_path": "backtests/d045/live/latest.json",
+            "event_id": "20260907T080333Z",
+            "event_fingerprint_sha256": "51f7c9b4bb79471ef705c3682e808b337950ef0651fb594ec98604a8910e608c",
+            "commit_sha": "a7e9667dc5bea92e3d02c0837ab92f812207bed3",
+            "payload_compacted": true,
+            "autosync_used": false
+          }
+        },
+        "bundle": {
+          "publish_receipt": "D:\\MT5_Backtests\\guardian-runner\\publish_receipts\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075755Z.json",
+          "schema_version": 1,
+          "status": "PUBLISH_PASS",
+          "created_at_utc": "2026-09-07T08:03:44.349578+00:00",
+          "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+          "stage": "development",
+          "branch": "backtest-results",
+          "target_path": "backtests/d045/development/20260907T075755Z",
+          "batch_run_id": "20260907T075755Z",
+          "result_fingerprint_sha256": "b12db227f5a135c0461ddc7a5decc739a6932b6de1cf681b8ad465097978104a",
+          "commit_sha": "a2f5ecd53757875b750a9f8065326d84a519813f",
+          "bundle_dir": "D:\\MT5_Backtests\\guardian-runner\\publish_bundles\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080338Z",
+          "decision_verdict": "REJECT_V0",
+          "compact_trades_included": true,
+          "transport": "ISOLATED_GIT_CLONE_PUBLISHER",
+          "autosync_used": false
+        },
+        "finished_at_utc": "2026-09-07T08:03:44.351772+00:00"
+      }
+    ],
+    "autosync_used": false,
+    "engineering_failures": 0,
+    "post_decision_analytics_failures": 0,
+    "scientific_rejections": 1,
+    "finished_at_utc": "2026-09-07T08:03:44.353318+00:00",
+    "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T075753Z\\campaign.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
