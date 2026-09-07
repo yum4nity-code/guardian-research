@@ -25,6 +25,12 @@ class CampaignTransportTests(unittest.TestCase):
         self.assertTrue(campaign._path_supported_from_manifest(native))
         self.assertFalse(campaign._path_supported_from_manifest(legacy))
 
+    def test_scored_stage_finalization_includes_confirmation(self) -> None:
+        self.assertFalse(campaign._stage_is_scored("smoke", True))
+        self.assertTrue(campaign._stage_is_scored("development", True))
+        self.assertTrue(campaign._stage_is_scored("confirmation", True))
+        self.assertFalse(campaign._stage_is_scored("confirmation", False))
+
     def test_rich_score_event_payload_is_compacted_but_keeps_core_summary(self) -> None:
         payload = {
             "schema_version": 1,
