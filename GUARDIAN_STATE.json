@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T01:27:14+02:00",
+  "updated_at": "2026-09-07T07:19:00+01:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,24 +8,24 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_RESEARCH_RUNNER_PROVEN_D039_READY_SMOKE_CAMPAIGN_MODE_ADDED",
+    "status": "PHASE_3_D039_SMOKE_PASS_DEV_READY_CAMPAIGN_MODE_PROVEN",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_COMPILE_AND_SMOKE_D039_THEN_PREPARE_EXECUTABLE_D040_D045_SUBSET",
+    "next_phase": "PHASE_3_RUN_D039_DEVELOPMENT_AND_PROMOTE_D040_D045_DRAFTS",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D039-INSIDE-DAY-BREAKOUT-V0",
     "experiment_manifest": "research/experiments/D039.json",
-    "status": "READY_SMOKE",
+    "status": "READY_DEV",
     "strategy_family": "Strict inside-day contraction breakout",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D039_INSIDE_DAY_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md",
     "canonical_sources_currently_in_repo": [
       "research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5"
     ],
-    "next_action": "On return to the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py compile D039`. D039 is preregistered, source-complete and SHA-frozen but has not yet received local MetaEditor compile proof. If compile is 0 errors / 0 warnings with trusted EX5 receipt, run `py -3 .\\research\\runner\\guardian_research.py campaign D039 --stage smoke --no-finalize` to execute the three-market October-2023 engineering smoke and native Trade Path validation in one unattended command. Do not open D039 development until smoke passes. The assistant can read the automatically published GitHub evidence after the user says only `fini`.",
+    "next_action": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py campaign D039 --stage development`. D039 smoke is now engineering-PASS: compile PASS, 10 total smoke trades across USDJPY/XAUUSD/BTCUSD, zero integrity failures and native Trade Path PASS on all three. The development command recompiles the frozen source, runs the six-market 2024-01-02..2025-12-31 Model=0 batch, validates Trade Path, applies the frozen decision gates, computes rich analytics and publishes the compact result bundle automatically. Scientific rejection does not trigger any rescue. Confirmation remains unopened unless every development gate passes. After completion the user only needs to say `fini`.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -64,7 +64,7 @@
     "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
     "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. Final result bundles and automatic command-event transport use isolated temporary clones and never mutate the active research working tree. Automatic events maintain a stable per-experiment pointer at backtests/<d0xx>/live/latest.json. A network/push failure never invalidates already-valid local scientific evidence and never requires an MT5 rerun by itself.",
     "automatic_event_transport": {
-      "status": "PROVEN_D038_BATCH_SCORE_RICH_FINALIZE",
+      "status": "PROVEN_D038_FULL_PIPELINE_AND_D039_SMOKE_CAMPAIGN",
       "module": "research/runner/result_transport.py",
       "branch": "backtest-results",
       "latest_pointer_template": "backtests/<d0xx>/live/latest.json",
@@ -93,6 +93,12 @@
       "development_bundle": "backtests/d038/development/20260906T225212Z",
       "finalize_commit_sha": "81ca497ae6cbd58403d6598ddf38dbde81e5215c",
       "corrected_rich_event": "backtests/d038/live/events/development/rich-score/20260906T230626Z"
+    },
+    "d039_smoke_transport_proof": {
+      "status": "PASS",
+      "campaign_event": "backtests/d039/live/events/smoke/campaign/20260907T061652Z",
+      "campaign_status": "CAMPAIGN_PASS",
+      "compile_ex5_sha256": "4cc3ed4146909782db109dac2fff8d3564fccf31b132a21c7c221aaf2529e9ea"
     }
   },
   "runner": {
@@ -138,10 +144,10 @@
       "READ_ONLY_LEGACY_TRANSPORT_INSPECTOR"
     ],
     "planned_stages": [
-      "D039_LOCAL_COMPILE",
-      "D039_THREE_MARKET_ENGINEERING_SMOKE",
-      "D039_NATIVE_TRADE_PATH_VALIDATION",
-      "D039_DEV_ONLY_IF_SMOKE_PASS",
+      "D039_SIX_MARKET_DEVELOPMENT",
+      "D039_DEV_TRADE_PATH_VALIDATION",
+      "D039_DEV_SCORE_RICH_ANALYTICS_PUBLISH",
+      "D039_CONFIRMATION_ONLY_IF_ALL_DEV_GATES_PASS",
       "D038_EXIT_LAB_E1_EXACT_REPLAY_IF_PRIORITIZED",
       "D040_D045_PROMOTE_SELECTED_DRAFTS_TO_PREREG_SOURCE_MANIFEST"
     ],
@@ -151,8 +157,8 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not yet proven safe; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "GREEN_D039_ACTIVE_STATE_CAMPAIGN_AND_TRANSPORT_REGRESSION_TESTS",
-    "local_mt5_status": "D038_CLOSED_D039_AWAITING_LOCAL_COMPILE",
+    "github_ci_status": "PENDING_D039_DEV_READY_STATE_CI",
+    "local_mt5_status": "D039_SMOKE_PASS_DEV_READY",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "ergonomics_speed_audit": "docs/RESEARCH_RUNNER_ERGONOMICS_SPEED_AUDIT_2026_09_07.md",
     "canonical_d039": {
@@ -161,13 +167,17 @@
       "git_blob_sha": "6788ef91e324039b5d3a4bf0969a02f7599f74c0",
       "source_version": "1.00",
       "ci_identity_report_pass": true,
-      "local_compile_status": "NOT_RUN_YET",
+      "local_compile_status": "COMPILE_PASS",
+      "local_ex5_sha256": "4cc3ed4146909782db109dac2fff8d3564fccf31b132a21c7c221aaf2529e9ea",
       "native_trade_path": true,
       "smoke_period": "2023-10-02..2023-10-31",
       "smoke_symbols": ["USDJPY", "XAUUSD", "BTCUSD"],
-      "smoke_status": "READY_AFTER_COMPILE",
+      "smoke_status": "PASS",
+      "smoke_aggregate_trades": 10,
+      "smoke_trade_path_status": "TRADE_PATH_PASS_ALL",
+      "smoke_campaign_event": "backtests/d039/live/events/smoke/campaign/20260907T061652Z",
       "development_period": "2024-01-02..2025-12-31",
-      "development_status": "LOCKED_UNTIL_SMOKE_PASS",
+      "development_status": "READY",
       "confirmation_period": "2026-01-02..2026-06-30",
       "confirmation_status": "UNOPENED"
     },
