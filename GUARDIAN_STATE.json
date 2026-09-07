@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T16:45:00+01:00",
+  "updated_at": "2026-09-07T18:35:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,25 +8,25 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "DETERMINISTIC_RUNNER_ACTIVE_D053_ORB30_ENTRY_ALPHA",
+    "status": "DETERMINISTIC_RUNNER_ACTIVE_D054_ORB30_CORE3_CONFIRMATION",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "D053_SMOKE_THEN_FROZEN_2024_2025_DEV_IF_SMOKE_PASS",
+    "next_phase": "D053_DESCRIPTIVE_AUDIT_THEN_D054_INDEPENDENT_JUL_AUG2026_CONFIRMATION",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
-    "active_experiment": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
-    "experiment_manifest": "research/experiments/D053.json",
-    "status": "READY_SMOKE",
-    "strategy_family": "opening-range breakout / US equity-index intraday entry alpha",
+    "active_experiment": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+    "experiment_manifest": "research/experiments/D054.json",
+    "status": "CANDIDATE_CONFIRM",
+    "strategy_family": "opening-range breakout / derived Core-3 independent confirmation",
     "timeframe": "M15",
-    "preregistration": "research/campaigns/D053_US_INDEX_ORB30_ENTRY_ALPHA_V0_PREREGISTRATION_2026_09_07.md",
+    "preregistration": "research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md",
     "canonical_sources_currently_in_repo": [
       "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "Run the frozen D053 unattended workflow: git pull then py -3 .\\research\\runner\\d053_orb30_index_run.py. It verifies frozen identities, compiles, runs October-2023 engineering smoke on SPX500/NDX100/US2000, and only if smoke passes runs unchanged 2024-2025 DEV on SPX500/NDX100/US30/US2000, scores frozen ORB30 gates and publishes evidence. Jul-Aug 2026 holdout must remain unopened in this command.",
+    "next_action": "Run one frozen program: py -3 .\\research\\runner\\d054_orb30_core3_run.py. It first audits only already-seen D053 2024-2025 CSVs without MT5 or rule changes, then compiles the exact D053 v1.01 source, runs engineering smoke on SPX500/NDX100/US30, and only after clean smoke opens the preregistered untouched Jul-Aug 2026 D054 confirmation on those same three symbols. No 2024-2025 rerun and no management/parameter optimization.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -44,38 +44,43 @@
       "D049": "MARKET_TRANSPORT_ENGINEERING_INCOMPLETE_XPTUSD_OPERATIONALLY_CLOSED",
       "D050": "MARKET_TRANSPORT_COMPARATOR_NO_BROAD_PASS_NR4",
       "D051": "UNCONFIRMED_2026_H1_NR7_INDEX_CLUSTER",
-      "D052": "NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY"
+      "D052": "NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY",
+      "D053": "REJECT_V0_11_OF_12_GATES_BOOTSTRAP_LOWER_BOUND_ONLY"
     },
-    "d052_management_alpha": {
-      "formal_status": "D052_NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY",
-      "development_event": "backtests/d052/live/events/development/d052-development-score/20260907T152924Z",
-      "passing_candidates": 0,
-      "selected_candidate": null,
-      "holdout": "UNOPENED_PERMANENTLY_LOCKED_BY_FAILED_DEV",
-      "reference_n": 12318,
-      "reference_mean_net_r": -0.02662648530037344,
-      "least_negative_candidate": "SL1_BE_AFTER_1R_EOD",
-      "least_negative_candidate_mean_net_r": -0.024993159301834714,
-      "closeout": "reports/research/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_CLOSEOUT_20260907.md"
+    "d053_orb30_closeout": {
+      "formal_status": "D053_REJECT_V0",
+      "development_event": "backtests/d053/live/events/development/d053-development-score/20260907T162026Z",
+      "closeout": "reports/research/D053_US_INDEX_ORB30_DEV_CLOSEOUT_20260907.md",
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+      "n": 2042,
+      "mean_net_r": 0.06198411615083252,
+      "pf": 1.1349128070500516,
+      "total_net_r": 126.57156518,
+      "stress_total_net_r": 88.56095494,
+      "year_2024_total_r": 67.53893644,
+      "year_2025_total_r": 59.03262874,
+      "positive_symbols_n": 3,
+      "bootstrap_lower_95": -0.0290412995746548,
+      "bootstrap_upper_95": 0.14669593194171174,
+      "integrity_events": 0,
+      "jul_aug_2026_opened_by_d053": false,
+      "scientific_interpretation": "Economically strong multi-index bidirectional ORB result but failed frozen month-block robustness gate; D053 remains rejected and cannot be rescued post hoc."
     },
-    "d053_orb30": {
-      "scientific_question": "Does one frozen 30-minute server-time opening-range first-breakout rule carry robust directional alpha on four FundedNext US index CFDs?",
-      "preregistration_git_blob_sha": "2d66799b1e25cc6cf19dd5d033bd2731372c5cd3",
-      "source_git_blob_sha": "f60329c6fcb79b308c5a60e74c0512b52481386a",
-      "source_sha256": "bbd0178f3c71a99802b75db563f06f38a94d4735bc828a78ee8c009dd4900ec8",
-      "operator_entrypoint": "research/runner/d053_orb30_index_run.py",
-      "workflow": "research/runner/d053_orb30_index_workflow.py",
-      "universe": [
-        "SPX500",
-        "NDX100",
-        "US30",
-        "US2000"
-      ],
-      "rule": "16:30-17:00 server OR; first breakout +1 trade tick; opposite-range stop; first executable liquidation >=22:45; no TP/BE/trail/filter",
-      "smoke": "2023-10-02 through 2023-10-31; SPX500/NDX100/US2000; engineering only",
-      "development": "2024-01-02 through 2025-12-31; four frozen symbols",
-      "holdout": "2026-07-01 through 2026-08-31; locked and unopened unless every DEV gate passes",
-      "policy": "No OR-width grid, no post-hoc direction/symbol selection, no gate waiver, no holdout opening from the DEV command."
+    "d054_core3": {
+      "origin": "Derived explicitly from D053 discovery: SPX500/NDX100/US30 were independently positive; US2000 was negative. D053 verdict remains unchanged.",
+      "preregistration_git_blob_sha": "19ecf99440414d214fd1399692dfa786c569e563",
+      "exact_source_reuse": "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5",
+      "source_git_blob_sha": "7da58ecf8968d6814b634be0ee0043b9616fb6c6",
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+      "universe": ["SPX500", "NDX100", "US30"],
+      "discovery_period": "2024-2025 already seen in D053; never reused as D054 OOS",
+      "audit": "D053 descriptive-only, frozen D054 rules cannot change from it",
+      "smoke": "2023-10-02 through 2023-10-31; engineering only",
+      "confirmation": "2026-07-01 through 2026-08-31; untouched before D054",
+      "confirmation_gates": "n>=100; each>=20; mean>0; PF>=1.05; total>0; stress>0; 3/3 symbols positive; day-block bootstrap lower95>0; integrity0",
+      "operator_entrypoint": "research/runner/d054_orb30_core3_run.py",
+      "workflow": "research/runner/d054_orb30_core3_workflow.py",
+      "audit_tool": "research/runner/d053_orb30_deep_audit.py"
     }
   },
   "production": {
@@ -95,7 +100,7 @@
     "migration_policy": "Do not preserve or extend v1/v2 behavior. Research evidence is published by deterministic isolated-clone result transport; broader AutoSync v3 remains deferred.",
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "PROVEN_END_TO_END_THROUGH_D052",
+    "research_results_status": "PROVEN_END_TO_END_THROUGH_D053",
     "automatic_event_transport": {
       "status": "ACTIVE_PROVEN",
       "module": "research/runner/result_transport.py",
@@ -107,40 +112,42 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "D053_READY_SMOKE_THEN_DEV",
+    "status": "D054_READY_AUDIT_SMOKE_CONFIRM",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
     "entrypoint": "research/runner/guardian_research.py",
-    "d053_operator_entrypoint": "research/runner/d053_orb30_index_run.py",
-    "d053_workflow": "research/runner/d053_orb30_index_workflow.py",
+    "d054_operator_entrypoint": "research/runner/d054_orb30_core3_run.py",
+    "d054_workflow": "research/runner/d054_orb30_core3_workflow.py",
+    "d053_audit": "research/runner/d053_orb30_deep_audit.py",
     "windows_launcher": "research/runner/Run-GuardianResearch.ps1",
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
     "implemented_stages": [
       "STATE_VALIDATE",
       "MANIFEST_VALIDATE",
       "SOURCE_SHA_VALIDATE",
+      "D053_EXISTING_DATA_DESCRIPTIVE_AUDIT",
       "DIRECT_MT5_COPY",
       "METAEDITOR_COMPILE",
-      "SEQUENTIAL_MULTI_SYMBOL_BATCH",
-      "D053_ORB30_TICK_HARNESS",
-      "D053_SPREAD_STRESS_SCORER",
-      "DETERMINISTIC_BLOCK_BOOTSTRAP",
+      "D054_CORE3_ENGINEERING_SMOKE",
+      "D054_JUL_AUG2026_CONFIRMATION",
+      "D054_DAY_BLOCK_BOOTSTRAP",
       "ISOLATED_BACKTEST_RESULTS_PUBLISH",
-      "D053_RESILIENT_FAILURE_PUBLISH"
+      "RESILIENT_FAILURE_PUBLISH"
     ],
     "planned_stages": [
-      "D053_JUL_AUG_2026_CONFIRMATION_ONLY_IF_DEV_ALL_GATES_PASS"
+      "IF_D054_CONFIRMS_PROSPECTIVE_FORWARD_ORB_AND_SEPARATE_MANAGEMENT_LAB",
+      "IF_AUDIT_SUPPORTS_DST_HYPOTHESIS_PREREGISTER_D055_WITH_NEW_EVIDENCE_BOUNDARY"
     ],
     "reference_tester_model": 0,
     "fast_tester_model_candidate": null,
     "fast_model_approved": false,
     "parallel_mt5_approved": false,
-    "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; D053 remains sequential.",
+    "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; keep MT5 sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D053_STATIC_CI",
-    "local_mt5_status": "D053_NOT_YET_RUN",
-    "principle": "One frozen preregistration + source identity + deterministic local execution + specialized score + automatic evidence publication. User normally runs one short PowerShell block and replies `fini`; transport failure alone never justifies repeating valid MT5 science."
+    "github_ci_status": "PENDING_D054_STATIC_CI",
+    "local_mt5_status": "D054_NOT_YET_RUN",
+    "principle": "Freeze the derived hypothesis before descriptive audit; never reuse D053 discovery as fresh OOS; one short operator command; automatic evidence publication; no post-hoc rescue."
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
