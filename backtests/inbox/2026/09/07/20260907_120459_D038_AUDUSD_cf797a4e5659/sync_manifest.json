@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_120459_D038_AUDUSD_cf797a4e5659",
+    "fingerprint":  "cf797a4e56591cf30ac0a44901ad27b19917b77917468a759d95697d20b896fc",
+    "synced_at_utc":  "2026-09-07T12:07:20.9823179Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00-MTL1",
+                       "run_stage":  "RUN",
+                       "symbol":  "AUDUSD",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  3,
+                       "published_trades_rows":  3
+                   },
+    "files":  [
+                  {
+                      "name":  "D038_V100_RUN_AUDUSD_STATS.csv",
+                      "source_sha256":  "e899161e5f8f4514438eb33fc7702e9c8ecd9b74245745779c67e8c2657fda56",
+                      "published_sha256":  "c214caa6dad1d86b0351f35865cd3e414a61b724f0feee0d8bd356fa12175507",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D038_V100_RUN_AUDUSD_TRADES.csv",
+                      "source_sha256":  "4f2632119b823b521539e2dc5a0219550cb00bc3be756976c071c9ef3ac8d416",
+                      "published_sha256":  "4e9d7648e4b52e63cf3a8bb32f0d0600d5d12c6c9860ecd8e89f49a64e16dfaf",
+                      "sanitized":  false
+                  }
+              ]
+}
