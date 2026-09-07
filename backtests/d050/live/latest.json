@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-07T12:08:32.588340+00:00",
+  "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+  "stage": "smoke",
+  "kind": "market-transport-batch",
+  "event_id": "20260907T120827Z",
+  "event_path": "backtests/d050/live/events/smoke/market-transport-batch/20260907T120827Z",
+  "event_fingerprint_sha256": "60eb13d71abd7aa066f3447d0a30e56f80af68ab0f8ddaf255d755a1ab2221e9",
+  "status": "BATCH_PASS_INTEGRITY",
+  "autosync_used": false
+}

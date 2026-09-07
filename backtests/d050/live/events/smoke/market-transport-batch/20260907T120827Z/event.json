@@ -1,0 +1,180 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T12:08:32.587474+00:00",
+  "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+  "stage": "smoke",
+  "kind": "market-transport-batch",
+  "event_id": "20260907T120827Z",
+  "event_fingerprint_sha256": "60eb13d71abd7aa066f3447d0a30e56f80af68ab0f8ddaf255d755a1ab2221e9",
+  "source_sha256": "20af04522306dc935c9e5132caf50069b294149e04dc1f225a7d3b78055864de",
+  "payload": {
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120757Z\\batch.json",
+    "schema_version": 1,
+    "status": "BATCH_PASS_INTEGRITY",
+    "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+    "manifest_path": "local\\market_transport_v1_generated\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1_smoke.json",
+    "stage": "smoke",
+    "symbols": [
+      "AUDUSD",
+      "SPX500",
+      "XAGUSD"
+    ],
+    "started_at_utc": "2026-09-07T12:07:57.652224+00:00",
+    "execution_mode": "SEQUENTIAL",
+    "tester_model": 0,
+    "tests": [
+      {
+        "schema_version": 1,
+        "status": "TEST_PASS_INTEGRITY",
+        "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+        "manifest_path": "local\\market_transport_v1_generated\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1_smoke.json",
+        "stage": "smoke",
+        "symbol": "AUDUSD",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T12:07:57.672204+00:00",
+        "finished_at_utc": "2026-09-07T12:08:08.043146+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120757Z_AUDUSD_M0\\tester.ini",
+          "/portable"
+        ],
+        "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\20260907T120755Z\\build.json",
+        "source_sha256": "20af04522306dc935c9e5132caf50069b294149e04dc1f225a7d3b78055864de",
+        "ex5_sha256": "15e9434107c802f1dca6af98c77affeb1f697fabfda0e3f3d0515a7f48e76151",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120757Z_AUDUSD_M0\\D040_V100_RUN_AUDUSD_STATS.csv",
+          "sha256": "e42820c459e2b1477324245fbf453f93e43d5bb94982dd696be7e38646db1104"
+        },
+        "trades": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120757Z_AUDUSD_M0\\D040_V100_RUN_AUDUSD_TRADES.csv",
+          "sha256": "b10ca4b5b341d0e8a4f85fcbefd1db565b8c2f749a9f9e90ff3cb578af2b3263"
+        },
+        "integrity": {
+          "final_status": "FINAL",
+          "source_name": "MTL_V1_D040_NR4_TickPath_M15_v1_00.mq5",
+          "source_version": "1.00-MTL1",
+          "run_stage": "RUN",
+          "symbol": "AUDUSD",
+          "trades": 6,
+          "trades_opened": 6,
+          "trades_closed": 6,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0,
+          "stats_encoding": "utf-16",
+          "trades_encoding": "utf-16"
+        },
+        "recovered_after_parser_failure": false,
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "TEST_PASS_INTEGRITY",
+        "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+        "manifest_path": "local\\market_transport_v1_generated\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1_smoke.json",
+        "stage": "smoke",
+        "symbol": "SPX500",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T12:08:08.095069+00:00",
+        "finished_at_utc": "2026-09-07T12:08:17.302175+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120808Z_SPX500_M0\\tester.ini",
+          "/portable"
+        ],
+        "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\20260907T120755Z\\build.json",
+        "source_sha256": "20af04522306dc935c9e5132caf50069b294149e04dc1f225a7d3b78055864de",
+        "ex5_sha256": "15e9434107c802f1dca6af98c77affeb1f697fabfda0e3f3d0515a7f48e76151",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120808Z_SPX500_M0\\D040_V100_RUN_SPX500_STATS.csv",
+          "sha256": "d92e796ce1e3fc91bf5473984953d2ea224f2728e1cb4bedd39b4b43a6d37636"
+        },
+        "trades": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120808Z_SPX500_M0\\D040_V100_RUN_SPX500_TRADES.csv",
+          "sha256": "468d2df5d751aa1165adde4cbe126fd5524e2d5700734aadbc320d7247eb3d88"
+        },
+        "integrity": {
+          "final_status": "FINAL",
+          "source_name": "MTL_V1_D040_NR4_TickPath_M15_v1_00.mq5",
+          "source_version": "1.00-MTL1",
+          "run_stage": "RUN",
+          "symbol": "SPX500",
+          "trades": 4,
+          "trades_opened": 4,
+          "trades_closed": 4,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0,
+          "stats_encoding": "utf-16",
+          "trades_encoding": "utf-16"
+        },
+        "recovered_after_parser_failure": false,
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "TEST_PASS_INTEGRITY",
+        "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+        "manifest_path": "local\\market_transport_v1_generated\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1_smoke.json",
+        "stage": "smoke",
+        "symbol": "XAGUSD",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T12:08:17.356898+00:00",
+        "finished_at_utc": "2026-09-07T12:08:27.658065+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120817Z_XAGUSD_M0\\tester.ini",
+          "/portable"
+        ],
+        "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\20260907T120755Z\\build.json",
+        "source_sha256": "20af04522306dc935c9e5132caf50069b294149e04dc1f225a7d3b78055864de",
+        "ex5_sha256": "15e9434107c802f1dca6af98c77affeb1f697fabfda0e3f3d0515a7f48e76151",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120817Z_XAGUSD_M0\\D040_V100_RUN_XAGUSD_STATS.csv",
+          "sha256": "1b9e04b9489338c5beaa480c8ec4ef12bccf10a2053862210475b0254c3488eb"
+        },
+        "trades": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120817Z_XAGUSD_M0\\D040_V100_RUN_XAGUSD_TRADES.csv",
+          "sha256": "117106d7110dad6fd3b6264f26f0fc836910fad29f7499a7e72c69418eb60636"
+        },
+        "integrity": {
+          "final_status": "FINAL",
+          "source_name": "MTL_V1_D040_NR4_TickPath_M15_v1_00.mq5",
+          "source_version": "1.00-MTL1",
+          "run_stage": "RUN",
+          "symbol": "XAGUSD",
+          "trades": 5,
+          "trades_opened": 5,
+          "trades_closed": 5,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0,
+          "stats_encoding": "utf-16",
+          "trades_encoding": "utf-16"
+        },
+        "recovered_after_parser_failure": false,
+        "autosync_used": false
+      }
+    ],
+    "autosync_used": false,
+    "finished_at_utc": "2026-09-07T12:08:27.742499+00:00"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120757Z\\batch.json",
+      "exists": true,
+      "sha256": "f8afc5becb6dc6b397e38c7cc29ff287011dc9f7fceee58f20b82d8233867bd8",
+      "bytes": 7236,
+      "published_as": "batch.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
