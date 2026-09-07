@@ -89,6 +89,9 @@ jobs:
       - name: Report D040 v1.00 closed source identity
         run: python research/runner/source_hash.py research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5
 
+      - name: Report D045 v1.00 frozen source identity
+        run: python research/runner/source_hash.py research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5
+
       - name: Run regression tests
         run: |
           python research/runner/test_state_tools.py
