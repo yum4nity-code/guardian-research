@@ -37,12 +37,15 @@ jobs:
           research/runner/bootstrap_windows.py
           research/runner/source_hash.py
           research/runner/trade_path_validate.py
+          research/runner/paired_management_score.py
+          research/runner/d041_management_workflow.py
           research/runner/test_state_tools.py
           research/runner/test_runner_contract.py
           research/runner/test_trade_path_validate.py
           research/runner/test_rich_trade_path.py
           research/runner/test_campaign_transport.py
           research/runner/test_confirmation_rich_v2.py
+          research/runner/test_paired_management_score.py
 
       - name: Parse Windows PowerShell tools
         shell: pwsh
@@ -68,14 +71,17 @@ jobs:
       - name: Validate authoritative state and generated views
         run: python research/runner/state_tools.py validate
 
-      - name: Validate active D045 experiment contract
+      - name: Validate active D041 experiment contract
+        run: python research/runner/experiment.py validate D041
+
+      - name: Verify active D041 source is execution-ready
+        run: python research/runner/experiment.py ready D041
+
+      - name: Exercise active D041 runner planning without MT5
+        run: python research/runner/guardian_research.py plan D041
+
+      - name: Validate closed D045 manifest remains coherent
         run: python research/runner/experiment.py validate D045
-
-      - name: Verify active D045 source is execution-ready
-        run: python research/runner/experiment.py ready D045
-
-      - name: Exercise active D045 runner planning without MT5
-        run: python research/runner/guardian_research.py plan D045
 
       - name: Validate closed D040 manifest remains coherent
         run: python research/runner/experiment.py validate D040
@@ -98,8 +104,11 @@ jobs:
       - name: Report D040 v1.00 closed source identity
         run: python research/runner/source_hash.py research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5
 
-      - name: Report D045 v1.00 frozen source identity
+      - name: Report D045 v1.00 closed source identity
         run: python research/runner/source_hash.py research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5
+
+      - name: Report D041 v1.00 frozen source identity
+        run: python research/runner/source_hash.py research/strategies/d041/D041_D032_M2_DojiManagementValidation_v1_00.mq5
 
       - name: Run regression tests
         run: |
@@ -109,3 +118,4 @@ jobs:
           python research/runner/test_rich_trade_path.py
           python research/runner/test_campaign_transport.py
           python research/runner/test_confirmation_rich_v2.py
+          python research/runner/test_paired_management_score.py
