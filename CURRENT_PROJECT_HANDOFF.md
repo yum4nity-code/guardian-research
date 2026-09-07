@@ -1,26 +1,25 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-07 Europe/Paris
-Status: **ACTIVE / D054 ORB30 CORE-3 INDEPENDENT CONFIRMATION READY**
+Status: **D054 CLOSED / ORB30 CORE-3 UNCONFIRMED**
 
 ## Read this first on a new chat
 
 Read in this order:
 1. `GUARDIAN_STATE.json`
 2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
-3. `research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
+3. `reports/research/D054_ORB30_CORE3_CONFIRMATION_CLOSEOUT_20260907.md`
 4. `research/experiments/D054.json`
-5. `research/runner/d054_orb30_core3_run.py`
-6. `research/runner/d054_orb30_core3_workflow.py`
-7. `research/runner/d053_orb30_deep_audit.py`
-8. `reports/research/D053_US_INDEX_ORB30_DEV_CLOSEOUT_20260907.md`
-9. `GUARDIAN_MASTER_MANDATE.md`
+5. `research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
+6. `research/runner/d053_orb30_deep_audit.py`
+7. `reports/research/D053_US_INDEX_ORB30_DEV_CLOSEOUT_20260907.md`
+8. `GUARDIAN_MASTER_MANDATE.md`
 
 `GUARDIAN_STATE.json` is authoritative. `START_HERE_NEXT_AI.md` and `CURRENT_QUEUE.json` are generated compatibility views.
 
 Important: the similarly named older file
 `research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
-is explicitly **SUPERSEDED / DO NOT EXECUTE**.
+is **SUPERSEDED / DO NOT EXECUTE**.
 
 ## Canonical operator UX
 
@@ -40,21 +39,16 @@ is explicitly **SUPERSEDED / DO NOT EXECUTE**.
 - Legacy AutoSync v1/v2 and Guardian Backtest Bot are untrusted historical systems; never fallback.
 - No post-hoc rescue, threshold retune, symbol deletion after results, direction selection after results, or reuse of seen data as OOS.
 
-## D053 closeout — economically strong, formally rejected
+## D053 — economically strong, formally rejected
 
 Experiment: `D053-US-INDEX-ORB30-ENTRY-ALPHA-V0`
 
-Authoritative DEV event:
-`backtests/d053/live/events/development/d053-development-score/20260907T162026Z`
-
-Formal verdict: `D053_REJECT_V0`
-
-2024-2025 result:
+2024-2025:
 - n **2,042**
 - mean **+0.061984R/trade**
 - PF **1.1349**
 - total **+126.57R**
-- 1.5x spread-stress total **+88.56R**
+- stress **+88.56R**
 - 2024 **+67.54R**
 - 2025 **+59.03R**
 - LONG **+61.76R**
@@ -62,144 +56,95 @@ Formal verdict: `D053_REJECT_V0`
 - integrity **0**
 
 Per symbol:
-- SPX500: **+36.99R / 511 trades**
-- NDX100: **+48.08R / 512 trades**
-- US30: **+46.21R / 509 trades**
-- US2000: **-4.71R / 510 trades**
+- SPX500 **+36.99R**
+- NDX100 **+48.08R**
+- US30 **+46.21R**
+- US2000 **-4.71R**
 
-D053 passed 11/12 frozen DEV gates. Sole failure:
-- required month-block bootstrap lower95 >0;
-- observed **-0.029041R**.
+D053 passed 11/12 frozen DEV gates. Sole failure: month-block bootstrap lower95 **-0.029041R** required >0. Formal verdict remains `D053_REJECT_V0`.
 
-Therefore D053 remains rejected. Jul-Aug 2026 was **not opened by D053**.
+Descriptive audit event:
+`backtests/d053/live/events/development/d053-descriptive-audit/20260907T182547Z`
 
-Closeout:
-`reports/research/D053_US_INDEX_ORB30_DEV_CLOSEOUT_20260907.md`
+Useful descriptive findings from already-seen 2024-2025 data include:
+- Friday was strongest historically;
+- first 15 minutes after 17:00 server carried most historical edge;
+- DST mismatch proxy was much weaker than aligned periods;
+- these are hypothesis-generation only and cannot rescue D053/D054.
 
-## D054 scientific boundary
-
-D054 is a **new derived hypothesis**, not a rewrite or rescue of D053.
-
-The Core-3 universe is explicitly post-D053 discovery:
-- SPX500
-- NDX100
-- US30
-
-US2000 is excluded because D053 discovery showed it negative. This selection is permitted only because D054 pays for that selection entirely on untouched Jul-Aug 2026. D053 itself remains unchanged.
+## D054 — independent Core-3 confirmation
 
 Experiment:
 `D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0`
 
-Authoritative preregistration:
-`research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
+D054 was a new derived hypothesis, not a D053 rewrite. Core-3 was explicitly chosen post-D053 discovery:
+- SPX500
+- NDX100
+- US30
 
-Preregistration Git blob:
-`2c1bb149664a9e4153c6f6cb8ae59ce1e874da57`
+It reused exact D053 v1.01 source bytes, unchanged.
 
-Exact D053 v1.01 source reused:
-`research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5`
-
-Source Git blob:
-`7da58ecf8968d6814b634be0ee0043b9616fb6c6`
-
-Normalized source SHA256:
+Source SHA256:
 `d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad`
 
-No D054 trading-source fork exists. This prevents semantic drift.
-
-Exact rule remains D053 v1.01:
-- M15, Model0 / Every tick;
-- FundedNext server OR 16:30–17:00;
-- first breakout +1 trade tick;
-- opposite OR executable extreme initial stop;
-- one trade/day;
-- no TP, BE, trail, partial or filter;
-- normal liquidation first executable tick >=22:45;
-- unchanged `SESSION_END` fallback if session supplies no 22:45-or-later same-day tick;
-- executable bid/ask;
-- zero explicit index commission;
-- frozen 1.5x spread stress.
-
-## D053 deep audit
-
-Tool:
-`research/runner/d053_orb30_deep_audit.py`
-
-It uses only already-seen local D053 2024-2025 CSVs and launches **zero MT5 backtests**.
-
-It reports:
-- monthly results and positive/negative month count;
-- rolling 3m/6m stability;
-- symbol and side attribution;
-- weekdays;
-- breakout latency after 17:00;
-- exit reasons;
-- risk-width quartiles;
-- MFE/MAE and timing;
-- US-vs-Europe DST mismatch proxy.
-
-It is descriptive only. D054 rules/gates were frozen before this audit and cannot change from it. Any DST-aligned hypothesis must become D055 or later with a new evidence boundary.
-
-## D054 execution
-
-Engineering smoke:
-- 2023-10-02 through 2023-10-31
-- SPX500 / NDX100 / US30
-- engineering only; economics ignored
-
-Independent confirmation holdout:
+Independent confirmation window:
 - **2026-07-01 through 2026-08-31**
-- SPX500 / NDX100 / US30
 - untouched before D054
+- Model0 / Every tick
 
-Frozen confirmation gates — **all 14 required**:
-1. aggregate n >=100
-2. each symbol n >=25
-3. aggregate mean net R >0
-4. aggregate PF >=1.05
-5. aggregate total net R >0
-6. 1.5x spread-stress total >0
-7. at least 2/3 symbols positive
-8. July 2026 total >0
-9. August 2026 total >0
-10. LONG mean >0
-11. SHORT mean >0
-12. day-block bootstrap 95% lower bound >0; 20,000 reps; seed 540054
-13. max positive-symbol contribution share <=0.70
-14. integrity events =0
+Authoritative score event:
+`backtests/d054/live/events/confirmation/d054-confirmation-score/20260907T182809Z`
 
-Pass: `D054_CONFIRMED_CORE3_ENTRY_ALPHA`
+Result:
+- n **127**
+- mean **-0.199334R/trade**
+- PF **0.559651**
+- total **-25.315464R**
+- spread-stress **-26.342194R**
+- integrity **0**
 
-Any scientific gate failure: `D054_UNCONFIRMED_CLOSE`
+Per symbol:
+- SPX500: 43 trades, **-6.053875R**
+- NDX100: 42 trades, **-9.204839R**
+- US30: 42 trades, **-10.056750R**
+- positive symbols: **0/3**
 
-Engineering/data failure: `D054_ENGINEERING_INCOMPLETE` with no scientific verdict.
+By month:
+- July 2026 **-18.952060R**
+- August 2026 **-6.363405R**
 
-No second Jul-Aug variant is allowed after seeing D054.
+By direction:
+- LONG: 61 trades, **-12.130049R**, mean **-0.198853R**
+- SHORT: 66 trades, **-13.185416R**, mean **-0.199779R**
+
+Day-block bootstrap, 20,000 reps:
+- lower95 **-0.368529R/trade**
+- median **-0.200567R/trade**
+- upper95 **-0.017671R/trade**
+
+The entire bootstrap interval is below zero.
+
+Formal verdict:
+`D054_UNCONFIRMED_CLOSE`
+
+Closeout:
+`reports/research/D054_ORB30_CORE3_CONFIRMATION_CLOSEOUT_20260907.md`
+
+Interpretation: this is not another near-pass. The exact historical ORB30 baseline failed broadly on untouched data: all three indices negative, both months negative, both directions negative, stress negative, PF well below 1 and even bootstrap upper95 below zero. Do not promote to production.
+
+## Scientific consequence
+
+No second Jul-Aug 2026 ORB variant is allowed after seeing D054.
+
+The D053 audit plus D054 failure may generate a new hypothesis, but any D055 must be preregistered and judged only on a **new untouched/prospective evidence boundary**. Historical observations such as Friday strength, early-breakout strength or DST alignment cannot be applied retrospectively to Jul-Aug and called confirmation.
+
+The most defensible next step is hypothesis design, not another immediate salvage run.
 
 ## Current operator action
 
-Run exactly:
+**No PowerShell command is required now.**
 
-```powershell
-git pull
-py -3 .\research\runner\d054_orb30_core3_run.py
-```
-
-This performs:
-1. frozen D054 preflight;
-2. D053 descriptive audit from existing local CSVs only;
-3. compile exact D053 v1.01 source under D054 evidence identity;
-4. 3-symbol engineering smoke;
-5. if clean, opens Jul-Aug 2026 holdout exactly once;
-6. 3-symbol confirmation;
-7. strict 14-gate score including month, direction, concentration and day-bootstrap stability;
-8. automatic GitHub publication.
-
-No 2024-2025 MT5 rerun.
-
-Then user normally replies only: `fini`.
-
-On `fini`, fetch `backtests/d054/live/latest.json` from `backtest-results` and the D053 descriptive-audit event under `backtests/d053/live/events/development/d053-descriptive-audit/...`.
+Next research action is assistant-side review/design of a new D055 candidate. If a D055 is justified, freeze its source/rules/gates before any new unseen data are evaluated, then return to the canonical one-command operator workflow.
 
 ## Local paths
 
