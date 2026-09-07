@@ -1,9 +1,9 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-07T06:18:48.0763990Z",
-    "run_id":  "20260907_061615_D039_BTCUSD_10edf4b8562c",
-    "path":  "backtests/inbox/2026/09/07/20260907_061615_D039_BTCUSD_10edf4b8562c",
-    "fingerprint":  "10edf4b8562c4956b7eab88df8e79c54192d96cb5879188794a1e6088780a2c0",
+    "synced_at_utc":  "2026-09-07T06:23:44.7477436Z",
+    "run_id":  "20260907_062312_D039_BTCUSD_697c7977c441",
+    "path":  "backtests/inbox/2026/09/07/20260907_062312_D039_BTCUSD_697c7977c441",
+    "fingerprint":  "697c7977c4410a8e55b96a049545991b724f0872d9e304ca87e6cda680121754",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
                   "D039_V100_RUN_BTCUSD_STATS.csv",
