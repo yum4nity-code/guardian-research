@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T12:07:39.094280+00:00",
+  "updated_at_utc": "2026-09-07T12:07:50.672900+00:00",
   "experiment_id": "D049-MARKET-TRANSPORT-DONCHIAN20-10-V1",
   "stage": "smoke",
-  "kind": "market-transport-batch",
-  "event_id": "20260907T120731Z",
-  "event_path": "backtests/d049/live/events/smoke/market-transport-batch/20260907T120731Z",
-  "event_fingerprint_sha256": "30f4249e0f3686853ecc8da20985a26122860767b9c923dcb787eb283004f8a9",
-  "status": "BATCH_PASS_INTEGRITY",
+  "kind": "market-transport-smoke",
+  "event_id": "20260907T120743Z",
+  "event_path": "backtests/d049/live/events/smoke/market-transport-smoke/20260907T120743Z",
+  "event_fingerprint_sha256": "11f578a6ac4d4b639e2a73da818875194b89765a00a400d678c15d3db760d089",
+  "status": "MARKET_TRANSPORT_SMOKE_PASS",
   "autosync_used": false
 }
