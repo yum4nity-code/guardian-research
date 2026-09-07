@@ -45,6 +45,7 @@ jobs:
           research/runner/management_benchmark_offline.py
           research/runner/management_benchmark_v2.py
           research/runner/management_benchmark_v2_offline.py
+          research/runner/market_transport_lab_v1.py
           research/runner/test_state_tools.py
           research/runner/test_runner_contract.py
           research/runner/test_trade_path_validate.py
@@ -55,6 +56,7 @@ jobs:
           research/runner/test_d046_expiry_score.py
           research/runner/test_management_benchmark.py
           research/runner/test_management_benchmark_v2.py
+          research/runner/test_market_transport_lab_v1.py
 
       - name: Parse Windows PowerShell tools
         shell: pwsh
@@ -151,3 +153,4 @@ jobs:
           python research/runner/test_d046_expiry_score.py
           python research/runner/test_management_benchmark.py
           python research/runner/test_management_benchmark_v2.py
+          python research/runner/test_market_transport_lab_v1.py
