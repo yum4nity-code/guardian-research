@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-07T07:53:33.887822+00:00",
+  "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+  "stage": "smoke",
+  "kind": "batch",
+  "event_id": "20260907T075305Z",
+  "event_path": "backtests/d045/live/events/smoke/batch/20260907T075305Z",
+  "event_fingerprint_sha256": "48a27667a371126d06be21e141baf455abf926120ca09a2879fa5e95ec3e695f",
+  "status": "BATCH_PASS_INTEGRITY",
+  "autosync_used": false
+}
