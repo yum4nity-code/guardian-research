@@ -15,8 +15,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D045-D1-DONCHIAN-20-10-BENCHMARK-V0**
-- State: **READY_SMOKE**
-- Next action: **On the MT5 research PC run `git pull` then `py -3 .\research\runner\guardian_research.py campaign D045 --stage smoke`. Smoke is engineering-only on USDJPY/XAUUSD/BTCUSD for 2023-08-01..2023-10-31 in Model=0. Do not inspect smoke profitability. The campaign recompiles the exact frozen D045 source, runs the three smoke symbols, validates native Trade Path and publishes automatically. After completion the user should only say `fini`; the assistant reads `backtests/d045/live/latest.json`. Development remains locked until smoke engineering integrity passes.**
+- State: **READY_DEV**
+- Next action: **On the MT5 research PC run `git pull` then `py -3 .\research\runner\guardian_research.py campaign D045 --stage development`. D045 engineering smoke passed on USDJPY/XAUUSD/BTCUSD with 10 total trades, clean lifecycle/integrity and TRADE_PATH_PASS_ALL. Development is now legitimately opened for the frozen 2024-01-02..2025-12-31 six-market window in Model=0. The campaign recompiles the exact frozen source, runs all six markets, validates Trade Path, applies the frozen development gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d045/live/latest.json` and closes or advances the verdict.**
 
 ## Canonical operator UX
 
