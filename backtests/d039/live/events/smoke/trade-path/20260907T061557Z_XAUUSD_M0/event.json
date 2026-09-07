@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T06:16:38.942337+00:00",
+  "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+  "stage": "smoke",
+  "kind": "trade-path",
+  "event_id": "20260907T061557Z_XAUUSD_M0",
+  "event_fingerprint_sha256": "afa69d9932a1c63ecb6e12a86987d2a19a9f68267d34f0e5b683e91e4d4fc44c",
+  "source_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+  "payload": {
+    "schema_version": 1,
+    "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+    "stage": "smoke",
+    "symbol": "XAUUSD",
+    "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061557Z_XAUUSD_M0",
+    "status": "TRADE_PATH_PASS",
+    "trades": 2,
+    "path_rows": 2,
+    "path_calc_failures": 0,
+    "required_columns": 36,
+    "reached_counts": {
+      "0.5R": 0,
+      "1R": 0,
+      "2R": 0,
+      "3R": 0,
+      "5R": 0
+    },
+    "path_ambiguous_rows": 0,
+    "stats_encoding": "utf-16",
+    "trades_encoding": "utf-16"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
