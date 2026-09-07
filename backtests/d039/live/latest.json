@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T06:29:25.312722+00:00",
+  "updated_at_utc": "2026-09-07T06:29:33.779128+00:00",
   "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
   "stage": "development",
   "kind": "trade-path",
-  "event_id": "20260907T062426Z_EURUSD_M0",
-  "event_path": "backtests/d039/live/events/development/trade-path/20260907T062426Z_EURUSD_M0",
-  "event_fingerprint_sha256": "fbd8403a91d9254a37e74e23cc2541274c83e87e290cefad2471c42045a8a553",
+  "event_id": "20260907T062507Z_GBPUSD_M0",
+  "event_path": "backtests/d039/live/events/development/trade-path/20260907T062507Z_GBPUSD_M0",
+  "event_fingerprint_sha256": "8ed069660872c81e27bed638eb4fa201c121875fd3e85f0c91a0af4f738cb381",
   "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
