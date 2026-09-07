@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T06:46:06.276897+00:00",
+  "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "smoke",
+  "kind": "trade-path",
+  "event_id": "20260907T064532Z_USDJPY_M0",
+  "event_fingerprint_sha256": "e4dc59ca36c2616b37ff8b79172257b0f78c13c42e8a24fd69ba4832244bce76",
+  "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+  "payload": {
+    "schema_version": 1,
+    "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+    "stage": "smoke",
+    "symbol": "USDJPY",
+    "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\smoke\\20260907T064532Z_USDJPY_M0",
+    "status": "TRADE_PATH_PASS",
+    "trades": 2,
+    "path_rows": 2,
+    "path_calc_failures": 0,
+    "required_columns": 36,
+    "reached_counts": {
+      "0.5R": 0,
+      "1R": 0,
+      "2R": 0,
+      "3R": 0,
+      "5R": 0
+    },
+    "path_ambiguous_rows": 0,
+    "stats_encoding": "utf-16",
+    "trades_encoding": "utf-16"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
