@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T07:31:28.944045+00:00",
+  "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "confirmation",
+  "kind": "finalize",
+  "event_id": "20260907T073113Z",
+  "event_fingerprint_sha256": "fdcd41f1278e559d3bdbd815e2df4a7b9067963d230bdd2ce659afa0bb9eb16c",
+  "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+  "payload": {
+    "status": "FINALIZE_PASS",
+    "stage": "confirmation",
+    "decision_verdict": "UNCONFIRMED",
+    "all_gates_pass": false,
+    "decision_score_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\confirmation\\20260907T073113Z\\verdict.json",
+    "rich_score_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\confirmation\\20260907T073113Z\\rich_score.json",
+    "publish_receipt": "D:\\MT5_Backtests\\guardian-runner\\publish_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\confirmation\\20260907T070952Z.json",
+    "published_branch": "backtest-results",
+    "published_path": "backtests/d040/confirmation/20260907T070952Z",
+    "published_commit_sha": "a5a161e5429f55cb4ac50f1de13c2b843a645660",
+    "autosync_used": false
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\confirmation\\20260907T073113Z\\rich_score.json",
+      "exists": true,
+      "sha256": "9af5fcadf13d0327dcdc0a3e26730617c7507caea65b1ec3f736a7bdc218025c",
+      "bytes": 270765,
+      "published_as": "rich_score.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\publish_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\confirmation\\20260907T070952Z.json",
+      "exists": true,
+      "sha256": "591ace83742d0091021eaffa133eab2e913b901bac013ef42b4fb72ca6afc9ee",
+      "bytes": 807,
+      "published_as": "20260907T070952Z.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
