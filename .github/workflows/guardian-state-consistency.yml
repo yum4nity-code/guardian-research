@@ -46,6 +46,9 @@ jobs:
           research/runner/d052_management_alpha_run.py
           research/runner/d053_orb30_index_workflow.py
           research/runner/d053_orb30_index_run.py
+          research/runner/d053_orb30_deep_audit.py
+          research/runner/d054_orb30_core3_workflow.py
+          research/runner/d054_orb30_core3_run.py
           research/runner/management_benchmark.py
           research/runner/management_benchmark_offline.py
           research/runner/management_benchmark_v2.py
@@ -64,6 +67,7 @@ jobs:
           research/runner/test_market_transport_lab_v1.py
           research/runner/test_d052_management_alpha.py
           research/runner/test_d053_orb30_index.py
+          research/runner/test_d054_orb30_core3.py
 
       - name: Parse Windows PowerShell tools
         shell: pwsh
@@ -89,29 +93,30 @@ jobs:
       - name: Validate authoritative state and generated views
         run: python research/runner/state_tools.py validate
 
-      - name: Validate active D053 experiment contract
+      - name: Validate active D054 experiment contract
         run: |
-          python research/runner/experiment.py validate D053
-          python research/runner/experiment.py ready D053
+          python research/runner/experiment.py validate D054
+          python research/runner/experiment.py ready D054
 
-      - name: Verify active D053 source identity and runner plan
+      - name: Verify active D054 exact-source identity and runner plan
         run: |
           python - <<'PY'
           import sys
           sys.path.insert(0, 'research/runner')
           import runner
-          import d053_orb30_index_run as d053_run
-          d053 = d053_run.d053
-          identities = d053.verify_frozen_repository_identity()
-          report = runner.plan('D053')
+          import d054_orb30_core3_workflow as d054
+          identities = d054.verify_frozen_repository_identity()
+          report = runner.plan('D054')
           assert report['source_ready'], report['blockers']
-          assert report['experiment_id'] == 'D053-US-INDEX-ORB30-ENTRY-ALPHA-V0'
+          assert report['experiment_id'] == 'D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0'
+          assert report['execution']['symbols'] == ['SPX500', 'NDX100', 'US30']
           assert identities['source_sha256'] == 'd39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad'
-          print('D053_SOURCE_READY_V101', report['source_identity'])
+          print('D054_SOURCE_READY_EXACT_D053_V101', report['source_identity'])
           PY
 
       - name: Validate closed experiment manifests remain coherent
         run: |
+          python research/runner/experiment.py validate D053
           python research/runner/experiment.py validate D052
           python research/runner/experiment.py validate D046
           python research/runner/experiment.py validate D045
@@ -149,3 +154,4 @@ jobs:
           python research/runner/test_market_transport_lab_v1.py
           python research/runner/test_d052_management_alpha.py
           python research/runner/test_d053_orb30_index.py
+          python research/runner/test_d054_orb30_core3.py
