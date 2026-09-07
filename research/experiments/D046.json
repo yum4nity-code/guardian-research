@@ -2,13 +2,15 @@
   "schema_version": 1,
   "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
   "strategy_family": "BTC Deribit 08:00 UTC option-expiry reversal unconditional screen",
-  "status": "READY_DEVELOPMENT",
+  "status": "CLOSED_INCONCLUSIVE_COUNT_NO_CONFIRMATION",
   "hypothesis": "Does BTCUSD show a broad executable after-cost unconditional short 07:00-08:00 UTC then long 08:00-09:00 UTC reversal around Deribit's daily 08:00 UTC option expiry, strong enough to justify acquiring historical ATM option open interest for the separate high-OI mechanism test?",
   "preregistration": {
     "path": "research/campaigns/D046_BTC_DERIBIT_08UTC_EXPIRY_REVERSAL_SCREEN_V0_PREREGISTRATION_2026_09_07.md",
     "git_blob_sha": "2560986004cdc577b43168bf17e61402ed969a18",
     "frozen_before_result_inspection": true,
-    "execution_deviations": []
+    "execution_deviations": [
+      "No strategy-semantic deviation occurred. Post-result closeout records that the preregistered paired_days_min=600 was unattainable on the observed FundedNext weekday-style BTC calendar; the threshold is not changed retroactively and the formal verdict remains INCONCLUSIVE_COUNT."
+    ]
   },
   "source": {
     "canonical_path": "research/strategies/d046/D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5",
@@ -23,7 +25,8 @@
       "Virtual execution only: short 07:00-08:00 UTC then long 08:00-09:00 UTC using executable BID/ASK ticks and no stop/TP/manager.",
       "FundedNext server-to-UTC mapping is explicitly frozen to GMT+2/GMT+3 with transition-date exclusions because Strategy Tester cannot reconstruct historical GMT independently.",
       "D046-A intentionally omits historical Deribit OI; it is an unconditional economic screen, not a replication of the high-OI paper subgroup.",
-      "Engineering smoke completed on 2026-09-07 with 21 complete paired UTC days, 42/42 legs opened/closed, zero invalid price/risk/PnL events, zero ineligible rows and zero unpaired eligible days; no smoke profitability interpretation was permitted."
+      "Engineering smoke completed on 2026-09-07 with 21 complete paired UTC days, 42/42 legs opened/closed, zero invalid price/risk/PnL events, zero ineligible rows and zero unpaired eligible days; no smoke profitability interpretation was permitted.",
+      "Development completed on 2026-09-07 with 513 complete paired days and valid integrity. Formal verdict is INCONCLUSIVE_COUNT because frozen minimum was 600; all substantive economic gates nevertheless failed strongly, so confirmation remains unopened."
     ]
   },
   "execution": {
@@ -86,7 +89,7 @@
       "from": "2024-01-01",
       "to": "2025-12-31",
       "symbols": ["BTCUSD"],
-      "status": "READY",
+      "status": "INCONCLUSIVE_COUNT",
       "gates": {
         "science_role": "UNCONDITIONAL_EXPIRY_REVERSAL_SCREEN",
         "paired_days_min": 600,
@@ -105,14 +108,19 @@
         "failure_verdict": "REJECT_UNCONDITIONAL_SCREEN",
         "pass_verdict": "UNCONDITIONAL_EXPIRY_SCREEN_PASS"
       },
-      "result_paths": []
+      "result_paths": [
+        "backtests/d046/live/events/development/batch/20260907T105443Z",
+        "backtests/d046/live/events/development/score/20260907T105525Z",
+        "backtests/d046/live/events/development/rich-score/20260907T105530Z",
+        "backtests/d046/live/events/development/expiry-finalize/20260907T105525Z"
+      ]
     },
     "confirmation": {
       "stage_name": "D046_UNCONDITIONAL_EXPIRY_SCREEN_CONFIRM_2026_H1",
       "from": "2026-01-01",
       "to": "2026-06-30",
       "symbols": ["BTCUSD"],
-      "status": "UNOPENED",
+      "status": "UNOPENED_NOT_AUTHORIZED",
       "gates": {
         "science_role": "UNTOUCHED_UNCONDITIONAL_SCREEN_CONFIRMATION",
         "paired_days_min": 150,
@@ -140,7 +148,7 @@
     "compile": {
       "status": "COMPILE_PASS",
       "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
-      "ex5_sha256": "e65e0bd1d86c810aa9e53aa971d244ed8b071656139bb6661a429a870fd92375"
+      "ex5_sha256": "68c3c9476a47de3727632b7059409f5d237c08aa0a72d0861636ff347c56ff32"
     },
     "smoke": {
       "status": "PASS",
@@ -154,8 +162,46 @@
       "integrity_failures": 0,
       "event": "backtests/d046/live/events/smoke/expiry-smoke/20260907T102605Z"
     },
-    "development": null,
+    "development": {
+      "formal_verdict": "INCONCLUSIVE_COUNT",
+      "operational_disposition": "CLOSED_NO_CONFIRMATION_STRONGLY_NEGATIVE_UNCONDITIONAL_ECONOMICS",
+      "paired_days_n": 513,
+      "paired_days_min": 600,
+      "pre_short_mean_net_bps": -13.439734165516569,
+      "post_long_mean_net_bps": -8.891994456276803,
+      "combined_day_mean_net_bps": -22.33172862179337,
+      "combined_day_total_net_bps": -11456.17678298,
+      "combined_day_profit_factor": 0.3940476401453543,
+      "combined_stress_total_net_bps": -15560.176782980001,
+      "year_total_net_bps": {
+        "2024": -6923.866279779999,
+        "2025": -4532.310503199997
+      },
+      "month_block_bootstrap_lower_95": -26.793829559878056,
+      "month_block_bootstrap_median": -22.295431347516242,
+      "month_block_bootstrap_upper_95": -17.821943646947847,
+      "eligible_leg_counts": {
+        "PRE_SHORT": 514,
+        "POST_LONG": 513
+      },
+      "ineligible_rows": 1,
+      "unpaired_eligible_days": 1,
+      "failed_gates": [
+        "paired_days_min",
+        "pre_short_mean_net_bps_strictly_positive",
+        "post_long_mean_net_bps_strictly_positive",
+        "combined_day_mean_net_bps_strictly_positive",
+        "combined_day_pf_min",
+        "combined_stress_total_net_bps_positive",
+        "month_block_bootstrap_lower_95_strictly_positive",
+        "year_2024_total_net_bps_positive",
+        "year_2025_total_net_bps_positive"
+      ],
+      "integrity_failures": 0,
+      "event": "backtests/d046/live/events/development/expiry-finalize/20260907T105525Z"
+    },
     "confirmation": null,
-    "final_verdict": null
+    "final_verdict": "INCONCLUSIVE_COUNT",
+    "closeout": "reports/research/D046_BTC_DERIBIT_08UTC_EXPIRY_SCREEN_CLOSEOUT_20260907.md"
   }
 }
