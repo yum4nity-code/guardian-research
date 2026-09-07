@@ -1,201 +1,165 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-06 Europe/Paris
-Status: **ACTIVE / D036 DONCHIAN H1 V0 PREREGISTERED / HARNESS V1.00 STATIC-AUDITED / GENERIC AUTOSYNC V2.01 STATIC-AUDITED / LOCAL COMPILE+SMOKE PENDING**
+Last updated: 2026-09-07 Europe/Paris
+Status: **ACTIVE / MARKET TRANSPORT LAB V1 / D049 RECOVERY IN PROGRESS**
 
-## Canonical resume
+## Read this first on a new chat
 
-Read first:
-1. `CURRENT_QUEUE.json`
-2. this file
-3. `START_HERE_NEXT_AI.md`
-4. `GUARDIAN_MASTER_MANDATE.md`
+This file is the freshest human-readable handoff for the current session.
 
-Do not reopen rejected families merely because they remain in historical documents.
+Then read:
+1. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
+2. `GUARDIAN_MASTER_MANDATE.md`
+3. `research/campaigns/MARKET_TRANSPORT_LAB_V1_PREREGISTRATION_2026_09_07.md`
+4. `research/runner/market_transport_lab_v1.py`
+5. `research/runner/market_transport_d049_recovery.py`
+6. `GUARDIAN_STATE.json`
+7. `START_HERE_NEXT_AI.md`
 
-## Active P0 — D036 Donchian / Turtle-inspired Trend Breakout H1 V0
+Important: `GUARDIAN_STATE.json` / `START_HERE_NEXT_AI.md` are currently stale from the prior D044 phase and must be regenerated/updated only after the current D049 recovery has finished and the Market Transport Lab V1 can be closed coherently. Do not let those stale D044 fields override the newer evidence in this handoff and `backtest-results`.
 
-Preregistration:
-`research/campaigns/D036_DONCHIAN_TREND_BREAKOUT_H1_V0_PREREGISTRATION_2026_09_06.md`
+## Canonical operator UX — preserve this exactly
 
-MT5 no-order harness:
-`research/strategies/d036/D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5`
+The user should operate the research stack as little as possible.
 
-Scorer:
-`research/analysis/analyze_d036_donchian_v0_v1_01.py`
+- Assistant prepares GitHub, preregistration, source identity, runner changes, state transitions and interpretation.
+- Give **one short PowerShell block** whenever local MT5 execution is needed.
+- Runner publishes evidence automatically to `backtest-results`.
+- User normally replies only: **`fini`**.
+- On `fini`, retrieve GitHub evidence directly; do not ask the user to paste logs/JSON if transport worked.
+- If transport fails but valid local evidence exists, fix transport/publish evidence; do not rerun MT5 merely for transport.
+- Keep MT5 sequential.
 
-Static audit:
-`research/results/D036_V100_AND_AUTOSYNC_V201_STATIC_AUDIT_2026_09_06.md`
+Canonical UX document: `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`.
 
-### Frozen strategy
+## Scientific rules
 
-Exactly six markets:
-- BTCUSD
-- ETHUSD
-- EURUSD
-- GBPUSD
-- USDJPY
-- XAUUSD
+- No post-hoc rescue/retuning after opened results.
+- OOS once seen is never OOS again.
+- Preregister before outcome inspection.
+- Freeze source identity and costs.
+- Engineering smoke before DEV.
+- Confirmation only if every frozen DEV gate passes.
+- Separate entry alpha from management/exit research.
+- Backtest result is not live performance.
+- Prefer documented, robust, multi-market mechanisms; avoid indicator soup and blind parameter search.
 
-Tester timeframe: H1.
+## Production boundary
 
-Signal at closed bar S:
-- LONG iff close(S) > highest HIGH of the preceding 20 complete H1 bars;
-- SHORT iff close(S) < lowest LOW of the preceding 20 complete H1 bars;
-- enter next H1 open on executable spread side.
+Guardian Core **v12.01** is the frozen compile-validated production baseline. Do not modify it during this research work unless the user explicitly asks.
 
-Initial stop:
-- exactly 2.0 × MT5 ATR(20) measured at signal bar S.
+Do not merge to `main` unless explicitly requested/reviewed, preferably after local MT5 proof.
+Never use `git reset --hard` or destructive cleanup. Preserve unrelated local/untracked work.
 
-Exit:
-- protective initial stop, or
-- opposite 10-complete-H1-bar Donchian channel;
-- gap beyond threshold fills at worse executable bar-open price;
-- if stop and channel are both touched in one OHLC bar and order is ambiguous, take the economically worse valid exit.
+Legacy AutoSync v1/v2 is historical/untrusted and must never be used as fallback. The old Guardian Backtest Bot watcher was observed duplicating commits during Market Transport smoke and was intentionally stopped/removed from Startup before DEV. Current research publication is through `research/runner/result_transport.py` isolated clones.
 
-No pyramiding, TP, time exit, BE, trailing ATR, RSI, EMA, ADX, news/day/direction filters or parameter search.
-One open D036 position per symbol max. Same-bar exit + opposite 20-bar signal may reverse at the next H1 open.
+## Recently closed experiments
 
-This is explicitly a **Turtle-inspired intraday adaptation**, not a claim to reproduce the historical Turtle system verbatim.
+- D040 NR4: DEV strong, untouched 2026 H1 failed => **UNCONFIRMED**, closed permanently.
+- D045 Donchian20/10: DEV 145 trades, +0.0959087R/trade, PF 1.201, 5/6 positive; failed only frozen mean >=0.10 => **REJECT_V0**, no rounding/waiver.
+- D041 / D032-M2 management: **REJECT_MANAGEMENT**; does not revoke D032 entry edge.
+- D046 unconditional Deribit 08 UTC expiry screen: formal **INCONCLUSIVE_COUNT** because frozen n>=600 was unattainable; economics strongly negative, no 2026 confirmation, no post-hoc OI rescue.
+- D044 Turtle Soup V0: 192 trades, -0.863R/trade, PF 0.397, 0/6 positive => **REJECT_V0**.
 
-### FundedNext frozen costs — Stellar 1-Step / 2-Step
+## Current experiment — MARKET TRANSPORT LAB V1
 
-- Forex: USD 5/lot/side.
-- Metals: 0.0016% × lot × contract size × execution price, per side.
-- Crypto: 0.04% × lot × contract size × execution price, per side.
-- Spread is tester MqlRates executable-side spread.
-- Net R uses 1-lot `OrderCalcProfit` money P/L / initial-stop money risk.
-- Harness emits baseline net R and net R with commission ×1.5 per trade.
-- USD account currency required for valid frozen cost accounting.
+Purpose: test whether promising/rejected-by-threshold parent strategies transport to a preregistered **new FundedNext market universe without changing signal or management rules**.
 
-## D036 data sequence — frozen before outcomes
+Frozen new universe:
+- AUDUSD
+- USDCAD
+- USDCHF
+- EURJPY
+- GBPJPY
+- AUDJPY
+- SPX500
+- NDX100
+- GER30
+- US30
+- XAGUSD
+- XPTUSD
 
-### 1. Compile gate
-Real FundedNext MetaEditor compile of exact v1.00 source: **0 errors / 0 warnings required**.
+Parents / synthetic IDs:
+- D038 NR7 -> D047 `D047-MARKET-TRANSPORT-NR7-V1` PRIMARY
+- D039 Inside Day -> D048 `D048-MARKET-TRANSPORT-INSIDE-DAY-V1` PRIMARY
+- D045 Donchian20/10 -> D049 `D049-MARKET-TRANSPORT-DONCHIAN20-10-V1` PRIMARY
+- D040 NR4 -> D050 `D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1` COMPARATOR only
 
-### 2. Smoke gate — no alpha scoring
-Period: `2025-03-03` through `2025-03-31`.
-Run exactly one representative symbol per FundedNext commission class:
-- USDJPY — Forex
-- XAUUSD — Metal
-- BTCUSD — Crypto
+Transport layer changes only symbol allowlist, asset-class/commission mapping and evidence identity. Frozen parent signal/management semantics remain unchanged. Parent historical verdicts remain unchanged regardless of transport results.
 
-Input stage must remain `D036_SMOKE_MAR2025`.
-Purpose only: output lifecycle, channel chronology, ATR/stop logic, executable spread side and three commission classes.
+Smoke on AUDUSD/SPX500/XAGUSD passed for all four derivatives with clean Trade Path.
 
-Require:
-- STATS ordered INIT -> READY -> FINAL;
-- `trades_opened == trades_closed == csv_trade_rows == physical TRADES rows`;
-- no PUBLICSAFE leak after AutoSync;
-- plausible signal/entry chronology and cost values in all three classes.
+### DEV completed
 
-### 3. Development / cheap-fail sample
-Only after smoke PASS:
-- `2024-01-02` through `2025-12-31`;
-- all six symbols;
-- stage `D036_DEV_2024_2025`.
+D047 / NR7 transport:
+- n=903
+- mean=-0.0266508R/trade
+- PF=0.9314
+- 6/12 symbols positive
+- total=-24.0657R
+- 2024 and 2025 both negative
+- verdict **TRANSPORT_NO_BROAD_PASS**
+- notable positive totals: GBPJPY +0.37R, SPX500 +6.37R, NDX100 +8.17R, GER30 +13.43R, US30 +3.70R, XAGUSD +5.30R
 
-Frozen continuation gates — all required:
-- aggregate n >= 180;
-- each symbol n >= 20;
-- aggregate mean net R >= +0.08R/trade;
-- aggregate net PF >= 1.15;
-- >=4/6 symbols positive total net R;
-- aggregate 2024 positive and aggregate 2025 positive;
-- aggregate remains positive at 1.5× commission;
-- no single symbol >60% of positive-symbol net-R contribution.
+D048 / Inside Day transport:
+- n=805
+- mean=-0.0400952R/trade
+- PF=0.8872
+- 3/12 symbols positive
+- total=-32.2767R
+- 2024 and 2025 both negative
+- verdict **TRANSPORT_NO_BROAD_PASS**
+- positive: USDCHF +1.62R, NDX100 +11.72R, XAGUSD +6.89R
 
-Any fail => **REJECT_V0**, no parameter/timeframe/direction rescue on opened 2024-2025 data.
+D050 / NR4 comparator transport:
+- n=1567
+- mean=-0.0499294R/trade
+- PF=0.8615
+- 4/12 symbols positive
+- total=-78.2393R
+- 2024 and 2025 both negative
+- verdict **COMPARATOR_NO_BROAD_PASS**
+- positive: SPX500 +5.17R, NDX100 +3.35R, GER30 +15.71R, XAGUSD +12.64R
 
-### 4. Untouched confirmation — HARD LOCK until development passes
-- `2026-01-02` through `2026-06-30`;
-- all six same symbols;
-- same code/semantics/cost model;
-- stage `D036_CONFIRM_2026_H1`.
+A repeated descriptive pattern is visible across already-seen results: indices, especially NDX100/GER30, and XAGUSD appear more favorable than the new Forex basket. **Do not promote/cherry-pick this observation inside V1.** It may become a separately preregistered hypothesis only after V1 is closed.
 
-Frozen confirmation gates — all required:
-- aggregate n >=45;
-- mean net R >0;
-- PF >=1.10;
-- >=3/6 symbols positive total net R;
-- positive aggregate at 1.5× commission.
+### D049 current status
 
-Do not inspect 2026-H1 to rescue a failed development result.
+The full Lab command completed D047, D048 and D050, but D049 did not publish a DEV event. `market_transport_lab_v1.py` catches one parent exception and continues, so D050 finishing did not imply 48/48 successful completion.
 
-## Reporting requirement for D036
+A dedicated recovery script was added to rerun **D049 only**:
+`research/runner/market_transport_d049_recovery.py`
 
-Do not return only `N / expectancy / PF`.
+Current operator command already launched by the user:
 
-Each scored D036 result must include:
-- aggregate + per-symbol N, total/mean/median net R, win rate, PF;
-- long vs short contribution;
-- year contribution on development;
-- stop vs channel exit share;
-- strongest/weakest symbol and profit concentration;
-- max gain/loss and largest losing streak where available;
-- baseline vs 1.5× commission stress;
-- stability/failure-mode interpretation;
-- explicit decision and next action.
+```powershell
+git pull
+py -3 .\research\runner\market_transport_d049_recovery.py
+```
 
-Keep the concise top line, but follow it with the richer diagnostic.
+In MT5 this correctly appears as generated expert `MTL_V1_D045_Donchian20_10_TickPath_M15_v1_00.ex5`; that is D049's transport derivative of parent D045, not an accidental rerun of the historical D045 experiment.
 
-## Generic GitHub AutoSync — v2.01
+## What to do when the user says `fini`
 
-Active prepared watcher:
-`automation/Guardian_Backtest_CSV_AutoSync_v2_01_GENERIC_PUBLICSAFE.ps1`
+1. Fetch `backtests/d049/live/latest.json` from branch `backtest-results`.
+2. If latest is development `market-transport-score`, fetch the referenced event and extract all metrics/gates.
+3. Do not ask the user to paste output.
+4. Combine D047/D048/D049/D050 into a final Market Transport Lab V1 closeout.
+5. Preserve parent verdicts unchanged.
+6. If D049 has engineering failure/no event, diagnose the exact failure without rerunning D047/D048/D050.
+7. After D049 is resolved, update/regenerate `GUARDIAN_STATE.json`, `START_HERE_NEXT_AI.md`, `CURRENT_QUEUE.json` and the next-science queue coherently.
+8. Decide the next preregistered experiment from the evidence. A focused indices/XAGUSD transport hypothesis may be worth formal testing, but it must be preregistered as a **new** hypothesis and must not be presented as a V1 rescue.
 
-Purpose: replace the D023-specific watcher with one persistent transport contract for future `Dxxx` harnesses.
+## Local paths
 
-On install it:
-- stops/removes D023 v1.04 and generic v2.00 startup/PID state;
-- installs one Windows Startup watcher;
-- ignores historical CSVs older than installation time;
-- watches new `Dxxx_V..._STATS.csv` + exact `_TRADES.csv` companion pairs;
-- waits for stable files;
-- requires INIT -> READY -> FINAL;
-- validates source/version/symbol/timeframe, closed/CSV/physical rows and opened==closed when exposed;
-- hashes before/after validation;
-- redacts Windows username paths and blocks obvious secret/email leakage;
-- uses native-Git exit-code handling inherited from the runtime-proven v1.04 fix;
-- uses deterministic run identity and recovers push-before-state crashes;
-- writes health/log/state/PID under `D:\MT5_Backtests`.
+Repo: `D:\MT5_Backtests\guardian-research`
+Runner workspace: `D:\MT5_Backtests\guardian-runner`
+FundedNext MT5 root: `D:\MT5_FundedNext`
+MetaEditor: `D:\MT5_FundedNext\MetaEditor64.exe`
+Terminal: `D:\MT5_FundedNext\terminal64.exe`
+Experts destination: `D:\MT5_FundedNext\MQL5\Experts\GuardianResearch`
+FILE_COMMON: `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\Common\Files`
 
-v2.01 is static-audited here but not yet Windows-runtime validated. After its first local install, only one health check is required. Normal later backtests must not require `-Once`.
+## Tone / decision style
 
-## Local execution paths
-
-Canonical Git repo/source/versioning:
-`D:\MT5_Backtests\guardian-research`
-
-FundedNext MT5 compilation/backtest EA folder:
-`D:\MT5_FundedNext\MQL5\Experts\GuardianReasearch`
-
-All FundedNext backtest `.mq5` execution copies go in that `GuardianReasearch` folder unless the user explicitly changes this convention.
-
-## Closed alpha families — do not rescue
-
-### D023 USDJPY London ORB
-Untouched 2023: n=195, total -38.644330R, mean -0.198176R, PF 0.708428, 1/5 gates. **REJECTED / UNCONFIRMED.** Preserve evidence only.
-
-### D17 Momentum
-Closed after broad seven-market attribution. Preserve lineage and Manager Evidence Ledger only.
-
-D022, D027, D028 and D029 are reconciled as closed/rejected legacy families in `CURRENT_QUEUE.json`; do not blindly relaunch them.
-
-## Guardian production / compliance separation
-
-Guardian Core v12.01 remains the stable compile-validated pure infrastructure baseline. Keep strategy research out of Core.
-
-FundedNext request/retry hyperactivity remains a separate P1/P0 compliance-runtime problem. FundedNext AUTO stays OFF until request budgeting/dedup/backoff is bounded. Do not mix that issue into D036 alpha scoring.
-
-## Next safe action
-
-1. sync repo locally;
-2. install Generic AutoSync v2.01 once and verify health;
-3. copy exact D036 v1.00 source into the FundedNext `GuardianReasearch` execution folder;
-4. compile 0 errors / 0 warnings;
-5. if compile passes, run the three March-2025 smoke symbols only;
-6. allow AutoSync to publish automatically;
-7. audit smoke before opening 2024-2025 development.
-
-No 2024-2025 alpha run before compile + smoke PASS.
+Be concise, direct and technically opinionated when evidence supports it. Distinguish fact, inference and unknown. Contradict the user when evidence warrants it. Do not manufacture optimism. The user wants useful scientific decisions, not reassurance or ceremony.
