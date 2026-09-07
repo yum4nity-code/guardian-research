@@ -15,8 +15,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0**
-- State: **READY_CONFIRM**
-- Next action: **On the MT5 research PC, pull the refactor branch and run `py -3 .\research\runner\guardian_research.py campaign D040 --stage confirmation`. D040 passed every frozen development gate on 758 trades and is now legitimately opened for the untouched prospective 2026-01-02..2026-06-30 confirmation window. The confirmation campaign recompiles the exact frozen source, runs all six markets in Model=0, validates native Trade Path, applies the frozen confirmation gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and closes the verdict.**
+- State: **CLOSED_UNCONFIRMED_ANALYTICS_RECOVERY_READY**
+- Next action: **On the research PC run `git pull` then `py -3 .\research\runner\guardian_research.py finalize D040 --stage confirmation`. This command MUST NOT launch MT5: D040 is already scientifically CLOSED / UNCONFIRMED from the valid 191-trade 2026 H1 batch and frozen score. It only regenerates the same frozen confirmation verdict from existing evidence, computes the previously-missing descriptive rich analytics with rich_score_v2, and publishes the archival bundle. Do not rescue or retune D040. After completion the user should only say `fini`; the assistant reads GitHub and then removes D040 from the active queue.**
 
 ## Canonical operator UX
 
