@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T12:08:46.193666+00:00",
+  "updated_at_utc": "2026-09-07T13:05:54.816828+00:00",
   "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
-  "stage": "smoke",
-  "kind": "market-transport-smoke",
-  "event_id": "20260907T120836Z",
-  "event_path": "backtests/d050/live/events/smoke/market-transport-smoke/20260907T120836Z",
-  "event_fingerprint_sha256": "dcc84e6ba28b70a4664602015d19fa69b0257e1dec07aa553797a922948de406",
-  "status": "MARKET_TRANSPORT_SMOKE_PASS",
+  "stage": "development",
+  "kind": "market-transport-batch",
+  "event_id": "20260907T130545Z",
+  "event_path": "backtests/d050/live/events/development/market-transport-batch/20260907T130545Z",
+  "event_fingerprint_sha256": "c10b2d0bb1f496f9e2085b387de471630cbd7f5b1e2d5dda8ef6ce56b614609a",
+  "status": "BATCH_PASS_INTEGRITY",
   "autosync_used": false
 }
