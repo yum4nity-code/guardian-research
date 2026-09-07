@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+  "strategy_family": "opening-range breakout / derived Core-3 independent confirmation",
+  "status": "CANDIDATE_CONFIRM",
+  "hypothesis": "The exact D053 v1.01 ORB30 rule has positive robust out-of-sample expectancy during Jul-Aug 2026 on the D053-derived Core-3 cluster SPX500, NDX100 and US30.",
+  "preregistration": {
+    "path": "research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md",
+    "git_blob_sha": "19ecf99440414d214fd1399692dfa786c569e563",
+    "frozen_before_result_inspection": true,
+    "execution_deviations": [
+      "D054 is confirmation-only: 2024-2025 discovery occurred in D053 and is not rerun as fresh D054 development.",
+      "D054 deliberately reuses exact D053 v1.01 source bytes; the source allowlist is a superset, while D054 execution is frozen to SPX500/NDX100/US30.",
+      "D053 descriptive audit may run before D054 confirmation but D054 rules/gates/universe were frozen first."
+    ]
+  },
+  "source": {
+    "canonical_path": "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5",
+    "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+    "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+    "git_blob_sha": "7da58ecf8968d6814b634be0ee0043b9616fb6c6",
+    "version": "1.01",
+    "complete_repository_source": true,
+    "strategy_semantics_frozen": true,
+    "engineering_lineage": [
+      "Exact D053 v1.01 source reused without D054 trading-code changes.",
+      "D053 v1.01 added only SESSION_END lifecycle fallback before any completed D053 DEV symbol.",
+      "No D054 parameter, direction, timing, stop, exit or management change."
+    ]
+  },
+  "execution": {
+    "timeframe": "M15",
+    "reference_timeframes": [],
+    "symbols": ["SPX500", "NDX100", "US30"],
+    "account_currency": "USD",
+    "prop_firm_profile": "FUNDEDNEXT_D054_ORB30_CORE3_CONFIRM_V0"
+  },
+  "runner_contract": {
+    "expert_relative_path": "GuardianResearch\\D053_USIndex_ORB30_Tick_M15_v1_00",
+    "default_stage": "confirmation",
+    "stage_selection": "TESTER_DATE_RANGE_ONLY",
+    "tester_model_reference": 0,
+    "tester_model_fast_candidate": null,
+    "output": {
+      "location": "FILE_COMMON",
+      "stats_template": "D053_V100_{stage_token}_{symbol_clean}_STATS.csv",
+      "trades_template": "D053_V100_{stage_token}_{symbol_clean}_TRADES.csv",
+      "stage_tokens": {
+        "smoke": "RUN",
+        "development": "RUN",
+        "confirmation": "RUN"
+      }
+    }
+  },
+  "cost_model": {
+    "name": "D054_EXACT_D053_INDEX_EXECUTABLE_SPREAD_PLUS_1_5X_SPREAD_STRESS",
+    "spread_source": "Strategy Tester executable ASK/BID ticks, exact D053 v1.01 implementation",
+    "commission_stress_multiplier": 1.5,
+    "explicit_index_commission": "0, unchanged from D053",
+    "swap": "excluded; same-session liquidation"
+  },
+  "stages": {
+    "smoke": {
+      "stage_name": "D054_ENGINEERING_SMOKE_OCT2023",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "symbols": ["SPX500", "NDX100", "US30"],
+      "status": "READY",
+      "gates": {
+        "engineering_only": true,
+        "each_symbol_range_days_min": 1,
+        "each_symbol_closed_trades_min": 1,
+        "integrity_events_max": 0
+      },
+      "result_paths": []
+    },
+    "development": {
+      "stage_name": "D054_DISCOVERY_IN_D053_2024_2025",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "symbols": ["SPX500", "NDX100", "US30"],
+      "status": "WAIVED",
+      "gates": {
+        "formal_d054_dev_not_run": true,
+        "reason": "Core-3 hypothesis was derived from already-seen D053 2024-2025 discovery evidence; this period cannot be reused as D054 OOS."
+      },
+      "result_paths": ["reports/research/D053_US_INDEX_ORB30_DEV_CLOSEOUT_20260907.md"]
+    },
+    "confirmation": {
+      "stage_name": "D054_INDEPENDENT_JUL_AUG2026",
+      "from": "2026-07-01",
+      "to": "2026-08-31",
+      "symbols": ["SPX500", "NDX100", "US30"],
+      "status": "UNOPENED",
+      "gates": {
+        "aggregate_n_min": 100,
+        "each_symbol_n_min": 20,
+        "aggregate_mean_net_r_positive": true,
+        "aggregate_pf_min": 1.05,
+        "aggregate_total_net_r_positive": true,
+        "spread_stress_total_positive": true,
+        "positive_symbols_required": 3,
+        "day_block_bootstrap_lower_95_positive": true,
+        "integrity_events_max": 0
+      },
+      "result_paths": []
+    }
+  },
+  "decision_policy": {
+    "no_posthoc_rescue": true,
+    "confirmation_locked_until_dev_pass": true,
+    "invalid_run_is_not_strategy_reject": true
+  },
+  "results": {
+    "compile": null,
+    "smoke": null,
+    "development": {
+      "status": "DISCOVERY_PROVENANCE_ONLY_D053_NOT_D054_OOS",
+      "source": "backtests/d053/live/events/development/d053-development-score/20260907T162026Z"
+    },
+    "confirmation": null,
+    "final_verdict": null
+  }
+}
