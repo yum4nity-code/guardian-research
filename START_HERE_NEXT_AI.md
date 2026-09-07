@@ -6,16 +6,25 @@
 Read only what is needed, in this order:
 
 1. `GUARDIAN_STATE.json`
-2. `GUARDIAN_MASTER_MANDATE.md`
-3. `research/experiments/D040.json`
-4. `research/campaigns/D040_NR4_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md`
-5. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
+2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
+3. `GUARDIAN_MASTER_MANDATE.md`
+4. `research/experiments/D040.json`
+5. `research/campaigns/D040_NR4_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md`
+6. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
 
 ## Current P0
 
 - Experiment: **D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0**
-- State: **READY_DEV**
-- Next action: **On the MT5 research PC, pull the refactor branch and run `py -3 .\research\runner\guardian_research.py campaign D040 --stage development`. D040 smoke is engineering-PASS: compile PASS, 11 total smoke trades across USDJPY/XAUUSD/BTCUSD, zero integrity failures and native Trade Path PASS on all three. The development campaign recompiles the exact frozen source, runs all six markets for 2024-01-02..2025-12-31 in Model=0, validates Trade Path, applies frozen gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and continues.**
+- State: **READY_CONFIRM**
+- Next action: **On the MT5 research PC, pull the refactor branch and run `py -3 .\research\runner\guardian_research.py campaign D040 --stage confirmation`. D040 passed every frozen development gate on 758 trades and is now legitimately opened for the untouched prospective 2026-01-02..2026-06-30 confirmation window. The confirmation campaign recompiles the exact frozen source, runs all six markets in Model=0, validates native Trade Path, applies the frozen confirmation gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and closes the verdict.**
+
+## Canonical operator UX
+
+- Prefer one short PowerShell command block.
+- The runner publishes results automatically to `backtest-results`.
+- The user normally responds only **`fini`**.
+- The assistant then retrieves GitHub evidence, updates state, and gives the next minimal command.
+- Do not ask the user to paste logs/JSON when automatic transport succeeded.
 
 ## Operational truths
 
