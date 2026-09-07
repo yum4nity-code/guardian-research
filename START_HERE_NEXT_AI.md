@@ -15,8 +15,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0**
-- State: **READY_SMOKE**
-- Next action: **On the MT5 research PC run `git pull` then `py -3 .\research\runner\d041_management_workflow.py D041 --stage smoke`. This is engineering-only on already-seen PRE2024 data and uses the D032-M2 preregistered historical tester limitation Model=1 (1 minute OHLC). Do not inspect smoke profitability or management lift. The wrapper recompiles the exact recovered-lineage source, runs BTCUSD/ETHUSD/DOGUSD, validates deterministic STATS/TRADES integrity and publishes automatically. After completion the user should only say `fini`; the assistant reads `backtests/d041/live/latest.json`. The formal untouched POST2024 >24h management-validation window remains locked until smoke passes.**
+- State: **READY_DEV**
+- Next action: **On the MT5 research PC run `git pull` then `py -3 .\research\runner\d041_management_workflow.py D041 --stage development`. In D041 this runner stage name is only an orchestration label: scientifically it is the already-preregistered D032-M2 POST2024 MANAGEMENT VALIDATION, not a new development/tuning sample. The exact source and all gates remain frozen. It runs BTCUSD/ETHUSD/DOGUSD sequentially with Model=1 as preregistered, then applies the specialized paired month-block bootstrap scorer and publishes automatically. Do not inspect or modify thresholds mid-run. After completion the user should only say `fini`; the assistant reads `backtests/d041/live/latest.json` and the score/finalize events.**
 
 ## Canonical operator UX
 
