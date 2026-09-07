@@ -24,7 +24,7 @@ import batch
 import experiment
 import publisher
 import result_transport
-import rich_score
+import rich_score_v2 as rich_score
 import runner
 import score
 import tester
@@ -116,25 +116,38 @@ def run_experiment(identifier: str, stage: str, finalize_development: bool) -> d
                 "github_transport": decision["github_transport"],
             }
 
-            rich = rich_score.rich_score(identifier, stage, decision["batch_path"])
-            rich_event = result_transport.safe_publish_event(identifier, stage, "rich-score", rich)
-            result["rich_score"] = {
-                "rich_score_path": rich["rich_score_path"],
-                "github_transport": rich_event,
-            }
+            # The frozen decision above is scientifically authoritative. Rich
+            # analytics and bundle publication happen strictly afterwards. A
+            # failure here must never be mislabeled as an MT5/integrity failure
+            # or erase a valid REJECT/UNCONFIRMED/CONFIRMED verdict.
+            try:
+                rich = rich_score.rich_score(identifier, stage, decision["batch_path"])
+                rich_event = result_transport.safe_publish_event(identifier, stage, "rich-score", rich)
+                result["rich_score"] = {
+                    "rich_score_path": rich["rich_score_path"],
+                    "github_transport": rich_event,
+                }
 
-            published = publisher.publish_bundle(
-                identifier,
-                stage,
-                decision_path=decision["verdict_path"],
-                rich_path=rich["rich_score_path"],
-            )
-            result["bundle"] = published
-            result["status"] = "EXPERIMENT_FINALIZED"
+                published = publisher.publish_bundle(
+                    identifier,
+                    stage,
+                    decision_path=decision["verdict_path"],
+                    rich_path=rich["rich_score_path"],
+                )
+                result["bundle"] = published
+                result["status"] = "EXPERIMENT_FINALIZED"
+            except Exception as analytics_exc:
+                result["status"] = "EXPERIMENT_DECISION_COMPLETE_ANALYTICS_FAILURE"
+                result["post_decision_analytics_error"] = str(analytics_exc)
+                result["post_decision_transport"] = result_transport.safe_publish_event(
+                    identifier, stage, "post-decision-analytics-failure", result
+                )
         else:
             result["status"] = "EXPERIMENT_STAGE_PASS"
 
     except Exception as exc:
+        # This outer failure means compile/batch/path/score did not complete.
+        # It is distinct from a post-decision descriptive-analytics failure.
         result["status"] = "EXPERIMENT_ENGINEERING_FAILURE"
         result["error"] = str(exc)
         try:
@@ -165,7 +178,7 @@ def run_campaign(identifiers: list[str], stage: str, finalize_development: bool 
     receipt_path = out_dir / "campaign.json"
 
     payload: dict[str, Any] = {
-        "schema_version": 1,
+        "schema_version": 2,
         "campaign_id": campaign_id,
         "status": "RUNNING",
         "stage": stage,
@@ -188,8 +201,18 @@ def run_campaign(identifiers: list[str], stage: str, finalize_development: bool 
         runner.write_receipt(receipt_path, payload)
 
     failures = [x for x in payload["experiments"] if x["status"] == "EXPERIMENT_ENGINEERING_FAILURE"]
-    payload["status"] = "CAMPAIGN_COMPLETE_WITH_FAILURES" if failures else "CAMPAIGN_PASS"
+    analytics_failures = [
+        x for x in payload["experiments"]
+        if x["status"] == "EXPERIMENT_DECISION_COMPLETE_ANALYTICS_FAILURE"
+    ]
+    if failures:
+        payload["status"] = "CAMPAIGN_COMPLETE_WITH_ENGINEERING_FAILURES"
+    elif analytics_failures:
+        payload["status"] = "CAMPAIGN_COMPLETE_WITH_POST_DECISION_ANALYTICS_FAILURES"
+    else:
+        payload["status"] = "CAMPAIGN_PASS"
     payload["engineering_failures"] = len(failures)
+    payload["post_decision_analytics_failures"] = len(analytics_failures)
     payload["scientific_rejections"] = sum(
         1 for x in payload["experiments"] if x.get("decision", {}).get("verdict") in {"REJECT_V0", "UNCONFIRMED"}
     )
