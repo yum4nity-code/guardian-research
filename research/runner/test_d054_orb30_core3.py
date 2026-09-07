@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import csv
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -24,15 +26,11 @@ def row(symbol: str, day: str, side: str, net: float, stress: float) -> dict[str
 
 
 def synthetic_batch(value: float, stress: float) -> dict:
-    import tempfile
-    import csv
-    import tester
-
     temp = Path(tempfile.mkdtemp(prefix="d054_test_"))
     tests = []
+    fields = ["symbol", "day_key", "side", "net_r", "net_r_spread_x1_5", "mfe_r", "mae_r"]
     for si, symbol in enumerate(d054.SYMBOLS):
         path = temp / f"{symbol}.csv"
-        fields = ["symbol", "day_key", "side", "net_r", "net_r_spread_x1_5", "mfe_r", "mae_r"]
         rows = []
         for i in range(40):
             day = f"202607{(i % 20) + 1:02d}" if i < 20 else f"202608{(i % 20) + 1:02d}"
@@ -45,12 +43,48 @@ def synthetic_batch(value: float, stress: float) -> dict:
     return {"tests": tests}
 
 
-def test_identity() -> None:
+def synthetic_month_failure_batch() -> dict:
+    temp = Path(tempfile.mkdtemp(prefix="d054_month_fail_"))
+    tests = []
+    fields = ["symbol", "day_key", "side", "net_r", "net_r_spread_x1_5", "mfe_r", "mae_r"]
+    for si, symbol in enumerate(d054.SYMBOLS):
+        path = temp / f"{symbol}.csv"
+        rows = []
+        for i in range(40):
+            july = i < 20
+            day = f"202607{(i % 20) + 1:02d}" if july else f"202608{(i % 20) + 1:02d}"
+            value = -0.02 if july else 0.20
+            rows.append(row(symbol, day, "LONG" if (i + si) % 2 == 0 else "SHORT", value, value - 0.01))
+        with path.open("w", encoding="utf-8", newline="") as fh:
+            writer = csv.DictWriter(fh, fieldnames=fields, delimiter=";")
+            writer.writeheader()
+            writer.writerows(rows)
+        tests.append({"symbol": symbol, "trades": {"path": str(path)}, "integrity": {"integrity_events": 0}})
+    return {"tests": tests}
+
+
+def test_identity_and_frozen_gates() -> None:
     ids = d054.verify_frozen_repository_identity()
     assert ids["source_sha256"] == d054.EXPECTED_SOURCE_SHA256
     assert d054.SYMBOLS == ["SPX500", "NDX100", "US30"]
     assert d054.HOLDOUT_FROM == "2026-07-01"
     assert d054.HOLDOUT_TO == "2026-08-31"
+    assert d054.FROZEN_CONFIRMATION_GATES == {
+        "aggregate_n_min": 100,
+        "each_symbol_n_min": 25,
+        "aggregate_mean_net_r_positive": True,
+        "aggregate_pf_min": 1.05,
+        "aggregate_total_net_r_positive": True,
+        "spread_stress_total_positive": True,
+        "positive_symbols_min": 2,
+        "july_total_positive": True,
+        "august_total_positive": True,
+        "long_mean_positive": True,
+        "short_mean_positive": True,
+        "day_block_bootstrap_lower_95_positive": True,
+        "max_positive_symbol_contribution_share": 0.70,
+        "integrity_events_max": 0,
+    }
 
 
 def test_positive_confirmation_passes() -> None:
@@ -63,6 +97,10 @@ def test_positive_confirmation_passes() -> None:
     assert score["status"] == "D054_CONFIRMED_CORE3_ENTRY_ALPHA", score
     assert score["all_gates_pass"] is True
     assert score["metrics"]["positive_symbols_n"] == 3
+    assert score["gates"]["july_total_positive"] is True
+    assert score["gates"]["august_total_positive"] is True
+    assert score["gates"]["long_mean_positive"] is True
+    assert score["gates"]["short_mean_positive"] is True
 
 
 def test_negative_confirmation_fails() -> None:
@@ -77,6 +115,18 @@ def test_negative_confirmation_fails() -> None:
     assert score["gates"]["aggregate_mean_net_r_positive"] is False
 
 
+def test_one_negative_month_cannot_be_hidden_by_good_aggregate() -> None:
+    original = d054.BOOTSTRAP_REPS
+    d054.BOOTSTRAP_REPS = 1000
+    try:
+        score = d054.score_confirmation(synthetic_month_failure_batch())
+    finally:
+        d054.BOOTSTRAP_REPS = original
+    assert score["metrics"]["aggregate_total_net_r"] > 0
+    assert score["gates"]["july_total_positive"] is False
+    assert score["status"] == "D054_UNCONFIRMED_CLOSE"
+
+
 def test_dst_proxy_has_mismatch_and_alignment() -> None:
     from datetime import date
     assert audit053.dst_mismatch_proxy(date(2024, 3, 15)) is True
@@ -84,8 +134,9 @@ def test_dst_proxy_has_mismatch_and_alignment() -> None:
 
 
 if __name__ == "__main__":
-    test_identity()
+    test_identity_and_frozen_gates()
     test_positive_confirmation_passes()
     test_negative_confirmation_fails()
+    test_one_negative_month_cannot_be_hidden_by_good_aggregate()
     test_dst_proxy_has_mismatch_and_alignment()
     print("D054_TESTS_OK")
