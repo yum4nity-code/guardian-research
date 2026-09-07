@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T08:50:00+02:00",
+  "updated_at": "2026-09-07T09:05:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,17 +8,17 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D040_SMOKE_PASS_DEV_READY_CANONICAL_OPERATOR_WORKFLOW_DOCUMENTED",
+    "status": "PHASE_3_D040_DEV_PASS_CONFIRM_READY_CANONICAL_OPERATOR_WORKFLOW",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_RUN_D040_DEVELOPMENT_THEN_PROMOTE_D041_D045",
+    "next_phase": "PHASE_3_RUN_D040_PROSPECTIVE_CONFIRMATION_THEN_PROMOTE_D041_D045",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
     "experiment_manifest": "research/experiments/D040.json",
-    "status": "READY_DEV",
+    "status": "READY_CONFIRM",
     "strategy_family": "Strict NR4 volatility contraction breakout",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D040_NR4_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md",
@@ -26,7 +26,7 @@
       "research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py campaign D040 --stage development`. D040 smoke is engineering-PASS: compile PASS, 11 total smoke trades across USDJPY/XAUUSD/BTCUSD, zero integrity failures and native Trade Path PASS on all three. The development campaign recompiles the exact frozen source, runs all six markets for 2024-01-02..2025-12-31 in Model=0, validates Trade Path, applies frozen gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and continues.",
+    "next_action": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py campaign D040 --stage confirmation`. D040 passed every frozen development gate on 758 trades and is now legitimately opened for the untouched prospective 2026-01-02..2026-06-30 confirmation window. The confirmation campaign recompiles the exact frozen source, runs all six markets in Model=0, validates native Trade Path, applies the frozen confirmation gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and closes the verdict.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -60,7 +60,20 @@
         "score_event": "backtests/d039/live/events/development/score/20260907T062954Z",
         "rich_event": "backtests/d039/live/events/development/rich-score/20260907T063007Z"
       },
-      "D040_role": "Test the separately documented, less restrictive strict NR4 contraction with the same Guardian high/low breakout transport. The frozen 480-trade gate is intentionally unchanged to test whether frequency improves without post-hoc gate relaxation."
+      "D040_NR4": {
+        "verdict": "CANDIDATE_CONFIRM",
+        "all_dev_gates_pass": true,
+        "aggregate_n": 758,
+        "aggregate_mean_net_r": 0.11467410832453825,
+        "aggregate_pf": 1.3672947796298534,
+        "aggregate_total_net_r": 86.92297411,
+        "stress_total_net_r": 79.17541016,
+        "positive_symbols_n": 6,
+        "year_total_net_r": {"2024": 74.12190536000007, "2025": 12.80106875},
+        "confirmation_opened": true,
+        "score_event": "backtests/d040/live/events/development/score/20260907T070206Z",
+        "rich_event": "backtests/d040/live/events/development/rich-score/20260907T070216Z"
+      }
     },
     "d038_followup": {
       "v0_verdict": "REJECT_V0",
@@ -89,11 +102,11 @@
     "trusted_runtime_installed_version": null,
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "PROVEN_END_TO_END_D038_D039_AND_D040_SMOKE_WITH_STABLE_LATEST_POINTER_AND_COMPACT_RICH_EVENTS",
+    "research_results_status": "PROVEN_END_TO_END_D038_D039_D040_DEVELOPMENT_WITH_STABLE_LATEST_POINTER_AND_COMPACT_RICH_EVENTS",
     "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
     "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. Final bundles and automatic command-event transport use isolated temporary clones and never mutate the active working tree. A network/push failure never invalidates already-valid local scientific evidence and never requires an MT5 rerun by itself.",
     "automatic_event_transport": {
-      "status": "PROVEN_D038_D039_FULL_DEVELOPMENT_AND_D040_SMOKE",
+      "status": "PROVEN_D038_D039_D040_FULL_DEVELOPMENT_PIPELINES",
       "module": "research/runner/result_transport.py",
       "branch": "backtest-results",
       "latest_pointer_template": "backtests/<d0xx>/live/latest.json",
@@ -108,11 +121,11 @@
       "reason": "Legacy Guardian Backtest Bot duplicate commits were observed while the new runner transport was already working.",
       "safety": "Identify the actual scheduled task/process and command line before disabling it; do not guess or use it as fallback."
     },
-    "d040_smoke_transport_proof": {
+    "d040_development_transport_proof": {
       "status": "PASS",
-      "campaign_event": "backtests/d040/live/events/smoke/campaign/20260907T064619Z",
-      "campaign_status": "CAMPAIGN_PASS",
-      "compile_ex5_sha256": "105fda4254fe966aabc7c8b29433a087bd4a7748309f0a673e83ab5dd7b8c1b9"
+      "score_event": "backtests/d040/live/events/development/score/20260907T070206Z",
+      "rich_event": "backtests/d040/live/events/development/rich-score/20260907T070216Z",
+      "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c"
     }
   },
   "runner": {
@@ -140,6 +153,7 @@
       "LIFECYCLE_INTEGRITY_VALIDATE",
       "SEQUENTIAL_MULTI_SYMBOL_BATCH",
       "FROZEN_DEV_GATE_SCORE",
+      "FROZEN_CONFIRMATION_GATE_SCORE",
       "VERDICT_RECEIPT",
       "INVALID_RUN_DIAGNOSTIC",
       "MT5_UTF16_CSV_DECODE",
@@ -156,13 +170,13 @@
       "SEQUENTIAL_MULTI_STRATEGY_CAMPAIGN",
       "UNIFIED_CAMPAIGN_CLI",
       "RICH_EVENT_PAYLOAD_COMPACTION",
-      "READ_ONLY_LEGACY_TRANSPORT_INSPECTOR"
+      "READ_ONLY_LEGACY_TRANSPORT_INSPECTOR",
+      "AUTOMATIC_CONFIRMATION_FINALIZATION"
     ],
     "planned_stages": [
-      "D040_SIX_MARKET_DEVELOPMENT",
-      "D040_DEV_TRADE_PATH_VALIDATION",
-      "D040_DEV_SCORE_RICH_ANALYTICS_PUBLISH",
-      "D040_CONFIRMATION_ONLY_IF_ALL_DEV_GATES_PASS",
+      "D040_PROSPECTIVE_CONFIRMATION_2026_H1",
+      "D040_CONFIRM_TRADE_PATH_VALIDATION",
+      "D040_CONFIRM_SCORE_RICH_ANALYTICS_PUBLISH",
       "D038_EXIT_LAB_E1_EXACT_REPLAY_IF_PRIORITIZED",
       "D041_D045_PROMOTE_SELECTED_DRAFTS_TO_PREREG_SOURCE_MANIFEST"
     ],
@@ -172,8 +186,8 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D040_DEV_READY_STATE_CI",
-    "local_mt5_status": "D040_SMOKE_PASS_DEV_READY",
+    "github_ci_status": "PENDING_D040_CONFIRM_READY_STATE_CI",
+    "local_mt5_status": "D040_DEV_PASS_CONFIRM_READY",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "ergonomics_speed_audit": "docs/RESEARCH_RUNNER_ERGONOMICS_SPEED_AUDIT_2026_09_07.md",
     "canonical_d040": {
@@ -186,15 +200,19 @@
       "local_ex5_sha256": "105fda4254fe966aabc7c8b29433a087bd4a7748309f0a673e83ab5dd7b8c1b9",
       "native_trade_path": true,
       "smoke_period": "2023-10-02..2023-10-31",
-      "smoke_symbols": ["USDJPY", "XAUUSD", "BTCUSD"],
       "smoke_status": "PASS",
       "smoke_aggregate_trades": 11,
-      "smoke_trade_path_status": "TRADE_PATH_PASS_ALL",
-      "smoke_campaign_event": "backtests/d040/live/events/smoke/campaign/20260907T064619Z",
       "development_period": "2024-01-02..2025-12-31",
-      "development_status": "READY",
+      "development_status": "PASS",
+      "development_verdict": "CANDIDATE_CONFIRM",
+      "development_aggregate_n": 758,
+      "development_mean_net_r": 0.11467410832453825,
+      "development_pf": 1.3672947796298534,
+      "development_total_net_r": 86.92297411,
+      "development_stress_total_net_r": 79.17541016,
+      "development_positive_symbols_n": 6,
       "confirmation_period": "2026-01-02..2026-06-30",
-      "confirmation_status": "UNOPENED"
+      "confirmation_status": "READY"
     },
     "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; several ready experiments may be run unattended through sequential campaign mode; preserve the canonical PowerShell-first operator workflow so the user normally only runs one command block and replies `fini`"
   },
