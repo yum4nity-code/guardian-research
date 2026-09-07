@@ -2,17 +2,17 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T07:19:00+01:00",
-  "active_primary": "D039-INSIDE-DAY-BREAKOUT-V0",
+  "updated_at": "2026-09-07T07:42:00+01:00",
+  "active_primary": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "items": [
     {
-      "id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
       "priority": 0,
-      "status": "READY_DEV",
+      "status": "READY_SMOKE",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py campaign D039 --stage development`. D039 smoke is now engineering-PASS: compile PASS, 10 total smoke trades across USDJPY/XAUUSD/BTCUSD, zero integrity failures and native Trade Path PASS on all three. The development command recompiles the frozen source, runs the six-market 2024-01-02..2025-12-31 Model=0 batch, validates Trade Path, applies the frozen decision gates, computes rich analytics and publishes the compact result bundle automatically. Scientific rejection does not trigger any rescue. Confirmation remains unopened unless every development gate passes. After completion the user only needs to say `fini`.",
-      "manifest": "research/experiments/D039.json"
+      "goal": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py compile D040`. D040 is preregistered, source-complete and CI-SHA-frozen. If local MetaEditor compilation is accepted with 0 errors / 0 warnings and a trusted EX5 receipt, run `py -3 .\\research\\runner\\guardian_research.py campaign D040 --stage smoke --no-finalize`. Smoke is engineering-only on USDJPY/XAUUSD/BTCUSD for 2023-10-02..2023-10-31. Do not inspect smoke alpha and do not open DEV until lifecycle + native Trade Path pass. After completion the user only needs to say `fini`; the assistant reads GitHub evidence.",
+      "manifest": "research/experiments/D040.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
@@ -64,6 +64,14 @@
     },
     {
       "id": "D038",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
+    },
+    {
+      "id": "D039",
       "priority": 99,
       "status": "CLOSED",
       "owner": "HISTORICAL",
