@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""D054 ORB30 Core-3 independent Jul-Aug 2026 confirmation workflow."""
+"""D054 ORB30 Core-3 independent Jul-Aug 2026 confirmation workflow.
+
+D054 is a derived hypothesis selected from D053 discovery. It reuses the exact
+D053 v1.01 trading source and spends only untouched Jul-Aug 2026 evidence.
+"""
 from __future__ import annotations
 
 import json
@@ -21,8 +25,8 @@ import tester
 ROOT = Path(__file__).resolve().parents[2]
 KEY = "D054"
 EXPERIMENT_ID = "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0"
-PREREG = "research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md"
-EXPECTED_PREREG_BLOB = "19ecf99440414d214fd1399692dfa786c569e563"
+PREREG = "research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md"
+EXPECTED_PREREG_BLOB = "2c1bb149664a9e4153c6f6cb8ae59ce1e874da57"
 SOURCE = "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5"
 SOURCE_VERSION = "1.01"
 EXPECTED_SOURCE_BLOB = "7da58ecf8968d6814b634be0ee0043b9616fb6c6"
@@ -31,6 +35,24 @@ SYMBOLS = ["SPX500", "NDX100", "US30"]
 SMOKE_FROM, SMOKE_TO = "2023-10-02", "2023-10-31"
 HOLDOUT_FROM, HOLDOUT_TO = "2026-07-01", "2026-08-31"
 BOOTSTRAP_REPS = 20_000
+BOOTSTRAP_SEED = 540054
+
+FROZEN_CONFIRMATION_GATES: dict[str, Any] = {
+    "aggregate_n_min": 100,
+    "each_symbol_n_min": 25,
+    "aggregate_mean_net_r_positive": True,
+    "aggregate_pf_min": 1.05,
+    "aggregate_total_net_r_positive": True,
+    "spread_stress_total_positive": True,
+    "positive_symbols_min": 2,
+    "july_total_positive": True,
+    "august_total_positive": True,
+    "long_mean_positive": True,
+    "short_mean_positive": True,
+    "day_block_bootstrap_lower_95_positive": True,
+    "max_positive_symbol_contribution_share": 0.70,
+    "integrity_events_max": 0,
+}
 
 
 class D054Error(RuntimeError):
@@ -42,7 +64,10 @@ def stamp() -> str:
 
 
 def git_blob_sha(relative: str) -> str:
-    completed = subprocess.run(["git", "hash-object", relative], cwd=ROOT, capture_output=True, text=True, check=False)
+    completed = subprocess.run(
+        ["git", "hash-object", relative], cwd=ROOT,
+        capture_output=True, text=True, check=False,
+    )
     if completed.returncode != 0:
         raise D054Error(f"git hash-object failed for {relative}: {completed.stderr.strip()}")
     value = completed.stdout.strip()
@@ -61,6 +86,7 @@ def verify_frozen_repository_identity() -> dict[str, str]:
         raise D054Error(f"source blob mismatch expected={EXPECTED_SOURCE_BLOB} actual={source_blob}")
     if source_sha.lower() != EXPECTED_SOURCE_SHA256:
         raise D054Error(f"source SHA mismatch expected={EXPECTED_SOURCE_SHA256} actual={source_sha}")
+
     manifest_path, manifest = experiment.load_manifest(KEY)
     errors = experiment.validate_manifest(manifest)
     if errors:
@@ -75,14 +101,20 @@ def verify_frozen_repository_identity() -> dict[str, str]:
         raise D054Error("D054 manifest source SHA mismatch")
     if manifest["execution"]["symbols"] != SYMBOLS:
         raise D054Error("D054 universe mismatch")
+
     conf = manifest["stages"]["confirmation"]
     if conf["from"] != HOLDOUT_FROM or conf["to"] != HOLDOUT_TO or conf["symbols"] != SYMBOLS:
         raise D054Error("D054 holdout contract mismatch")
+    if conf.get("status") != "UNOPENED":
+        raise D054Error("D054 holdout must remain UNOPENED before operator execution")
+    if conf.get("gates") != FROZEN_CONFIRMATION_GATES:
+        raise D054Error("D054 manifest confirmation gates differ from frozen runner gates")
+
     return {"prereg_blob": prereg_blob, "source_blob": source_blob, "source_sha256": source_sha}
 
 
 def patch_d053_runtime_for_exact_reuse() -> None:
-    # Reuse D053's proven executor/CSV validator while changing only experiment evidence identity/universe.
+    """Reuse D053's proven MT5 executor/CSV validator, changing only evidence identity/universe."""
     d053.EXPERIMENT_ID = EXPERIMENT_ID
     d053.SOURCE_VERSION = SOURCE_VERSION
     d053.EXPECTED_SOURCE_BLOB = EXPECTED_SOURCE_BLOB
@@ -91,7 +123,9 @@ def patch_d053_runtime_for_exact_reuse() -> None:
     d053.SMOKE_SYMBOLS = list(SYMBOLS)
 
 
-def run_stage(manifest: dict[str, Any], source_sha: str, stage: str, start: str, end: str) -> dict[str, Any]:
+def run_stage(
+    manifest: dict[str, Any], source_sha: str, stage: str, start: str, end: str
+) -> dict[str, Any]:
     workspace = runner._expand_path(runner.load_config()["workspace_dir"])
     batch_dir = workspace / "d054" / stage / stamp()
     batch_dir.mkdir(parents=True, exist_ok=False)
@@ -122,7 +156,11 @@ def run_stage(manifest: dict[str, Any], source_sha: str, stage: str, start: str,
         payload["error"] = str(exc)
         payload["finished_at_utc"] = datetime.now(timezone.utc).isoformat()
         runner.write_receipt(receipt, payload)
-        raise D054Error(f"D054 {stage} stopped on {symbol}; completed={len(payload['tests'])}; receipt={receipt}; cause={exc}") from exc
+        raise D054Error(
+            f"D054 {stage} stopped on {symbol}; completed={len(payload['tests'])}; "
+            f"receipt={receipt}; cause={exc}"
+        ) from exc
+
     payload["status"] = "D054_BATCH_PASS_INTEGRITY"
     payload["finished_at_utc"] = datetime.now(timezone.utc).isoformat()
     payload["batch_path"] = str(receipt)
@@ -160,6 +198,7 @@ def score_confirmation(batch: dict[str, Any]) -> dict[str, Any]:
     symbol_values: dict[str, list[float]] = defaultdict(list)
     side_values: dict[str, list[float]] = defaultdict(list)
     day_values: dict[str, list[float]] = defaultdict(list)
+    month_values: dict[str, list[float]] = defaultdict(list)
     mfe: list[float] = []
     mae: list[float] = []
 
@@ -170,12 +209,17 @@ def score_confirmation(batch: dict[str, Any]) -> dict[str, Any]:
         side = str(row["side"])
         if side not in ("LONG", "SHORT"):
             raise D054Error(f"invalid side={side}")
+        day = str(row["day_key"])
+        if len(day) != 8 or not day.isdigit() or not day.startswith("2026"):
+            raise D054Error(f"invalid holdout day_key={day}")
+
         value = as_float(row, "net_r")
         net.append(value)
         stress.append(as_float(row, "net_r_spread_x1_5"))
         symbol_values[symbol].append(value)
         side_values[side].append(value)
-        day_values[str(row["day_key"])].append(value)
+        day_values[day].append(value)
+        month_values[day[:6]].append(value)
         mfe.append(as_float(row, "mfe_r"))
         mae.append(as_float(row, "mae_r"))
 
@@ -183,22 +227,37 @@ def score_confirmation(batch: dict[str, Any]) -> dict[str, Any]:
     per_symbol_n = {s: len(symbol_values[s]) for s in SYMBOLS}
     per_symbol_total = {s: sum(symbol_values[s]) for s in SYMBOLS}
     positive_symbols = [s for s in SYMBOLS if per_symbol_total[s] > 0]
-    ci = d053.block_bootstrap_ci(day_values, BOOTSTRAP_REPS, 540054)
+    positive_total = sum(per_symbol_total[s] for s in positive_symbols)
+    max_positive_share = (
+        max((per_symbol_total[s] / positive_total for s in positive_symbols), default=0.0)
+        if positive_total > 0 else 0.0
+    )
+    ci = d053.block_bootstrap_ci(day_values, BOOTSTRAP_REPS, BOOTSTRAP_SEED)
     mean = statistics.fmean(net) if net else 0.0
     total = sum(net)
+    long_mean = statistics.fmean(side_values["LONG"]) if side_values["LONG"] else 0.0
+    short_mean = statistics.fmean(side_values["SHORT"]) if side_values["SHORT"] else 0.0
+    july_total = sum(month_values["202607"])
+    august_total = sum(month_values["202608"])
 
     gates = {
         "aggregate_n_min": len(net) >= 100,
-        "each_symbol_n_min": all(per_symbol_n[s] >= 20 for s in SYMBOLS),
+        "each_symbol_n_min": all(per_symbol_n[s] >= 25 for s in SYMBOLS),
         "aggregate_mean_net_r_positive": mean > 0,
         "aggregate_pf_min": bool(aggregate_pf is not None and (math.isinf(aggregate_pf) or aggregate_pf >= 1.05)),
         "aggregate_total_net_r_positive": total > 0,
         "spread_stress_total_positive": sum(stress) > 0,
-        "positive_symbols_3_of_3": len(positive_symbols) == 3,
+        "positive_symbols_min": len(positive_symbols) >= 2,
+        "july_total_positive": july_total > 0,
+        "august_total_positive": august_total > 0,
+        "long_mean_positive": long_mean > 0,
+        "short_mean_positive": short_mean > 0,
         "day_block_bootstrap_lower_95_positive": ci["lower_95"] > 0,
+        "max_positive_symbol_contribution_share": max_positive_share <= 0.70,
         "integrity_events_max": integrity_events == 0,
     }
     passed = all(gates.values())
+
     return {
         "schema_version": 1,
         "status": "D054_CONFIRMED_CORE3_ENTRY_ALPHA" if passed else "D054_UNCONFIRMED_CLOSE",
@@ -216,15 +275,20 @@ def score_confirmation(batch: dict[str, Any]) -> dict[str, Any]:
             "per_symbol_total_net_r": per_symbol_total,
             "positive_symbols": positive_symbols,
             "positive_symbols_n": len(positive_symbols),
+            "max_positive_symbol_contribution_share": max_positive_share,
+            "month_total_net_r": {
+                "202607": july_total,
+                "202608": august_total,
+            },
             "side": {
                 "LONG": {
                     "n": len(side_values["LONG"]),
-                    "mean_net_r": statistics.fmean(side_values["LONG"]) if side_values["LONG"] else 0.0,
+                    "mean_net_r": long_mean,
                     "total_net_r": sum(side_values["LONG"]),
                 },
                 "SHORT": {
                     "n": len(side_values["SHORT"]),
-                    "mean_net_r": statistics.fmean(side_values["SHORT"]) if side_values["SHORT"] else 0.0,
+                    "mean_net_r": short_mean,
                     "total_net_r": sum(side_values["SHORT"]),
                 },
             },
@@ -237,8 +301,10 @@ def score_confirmation(batch: dict[str, Any]) -> dict[str, Any]:
         },
         "gates": gates,
         "all_gates_pass": passed,
+        "frozen_gate_contract": FROZEN_CONFIRMATION_GATES,
         "d053_verdict_unchanged": "D053_REJECT_V0",
         "discovery_period_reused_as_oos": False,
+        "posthoc_symbol_or_direction_deletion": False,
         "autosync_used": False,
     }
 
@@ -286,12 +352,15 @@ def main() -> int:
         "source_sha256": source_sha,
         "symbols": SYMBOLS,
         "holdout": [HOLDOUT_FROM, HOLDOUT_TO],
+        "confirmation_gate_contract": FROZEN_CONFIRMATION_GATES,
         "exact_d053_v101_source_reuse": True,
         "autosync_used": False,
     }
     local = write_local("source-freeze", freeze)
     freeze["local_path"] = str(local)
-    freeze["github_transport"] = result_transport.safe_publish_event(KEY, "smoke", "d054-source-freeze", freeze)
+    freeze["github_transport"] = result_transport.safe_publish_event(
+        KEY, "smoke", "d054-source-freeze", freeze
+    )
     print(json.dumps(freeze, indent=2, ensure_ascii=False))
 
     rc = runner.cmd_compile(KEY)
@@ -306,18 +375,24 @@ def main() -> int:
         return 2
 
     if any(int(t["integrity"]["trades"]) <= 0 for t in smoke["tests"]):
-        failure = publish_failure("smoke", "d054-smoke-invalid", D054Error("one or more smoke symbols produced zero trades"), source_sha)
+        failure = publish_failure(
+            "smoke", "d054-smoke-invalid",
+            D054Error("one or more smoke symbols produced zero trades"), source_sha,
+        )
         print(json.dumps(failure, indent=2, ensure_ascii=False), file=sys.stderr)
         return 2
 
     smoke_local = write_local("smoke-pass", smoke)
     smoke["local_path"] = str(smoke_local)
-    smoke["github_transport"] = result_transport.safe_publish_event(KEY, "smoke", "d054-smoke-pass", smoke)
+    smoke["github_transport"] = result_transport.safe_publish_event(
+        KEY, "smoke", "d054-smoke-pass", smoke
+    )
     print(json.dumps({
         "status": "D054_SMOKE_PASS_HOLDOUT_NOW_OPENS",
         "symbols": SYMBOLS,
         "trades": {t["symbol"]: t["integrity"]["trades"] for t in smoke["tests"]},
         "source_sha256": source_sha,
+        "frozen_gates": FROZEN_CONFIRMATION_GATES,
     }, indent=2, ensure_ascii=False))
 
     try:
@@ -329,7 +404,9 @@ def main() -> int:
 
     batch_local = write_local("confirmation-batch", confirmation)
     confirmation["local_path"] = str(batch_local)
-    batch_transport = result_transport.safe_publish_event(KEY, "confirmation", "d054-confirmation-batch", confirmation)
+    batch_transport = result_transport.safe_publish_event(
+        KEY, "confirmation", "d054-confirmation-batch", confirmation
+    )
 
     score = score_confirmation(confirmation)
     score["source_sha256"] = source_sha
@@ -337,7 +414,9 @@ def main() -> int:
     score["batch_transport"] = batch_transport
     score_local = write_local("confirmation-score", score)
     score["score_path"] = str(score_local)
-    score["github_transport"] = result_transport.safe_publish_event(KEY, "confirmation", "d054-confirmation-score", score)
+    score["github_transport"] = result_transport.safe_publish_event(
+        KEY, "confirmation", "d054-confirmation-score", score
+    )
     print(json.dumps(score, indent=2, ensure_ascii=False, allow_nan=False))
     return 0
 
@@ -348,8 +427,13 @@ if __name__ == "__main__":
     except Exception as exc:
         try:
             identities = verify_frozen_repository_identity()
-            failure = publish_failure("confirmation", "d054-workflow-incomplete", exc, identities["source_sha256"])
+            failure = publish_failure(
+                "confirmation", "d054-workflow-incomplete", exc, identities["source_sha256"]
+            )
             print(json.dumps(failure, indent=2, ensure_ascii=False), file=sys.stderr)
         except Exception as publish_exc:
-            print(f"D054 WORKFLOW ERROR: {exc}; failure publication also failed: {publish_exc}", file=sys.stderr)
+            print(
+                f"D054 WORKFLOW ERROR: {exc}; failure publication also failed: {publish_exc}",
+                file=sys.stderr,
+            )
         raise SystemExit(1)
