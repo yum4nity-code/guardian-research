@@ -1,0 +1,239 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T08:50:49.584608+00:00",
+  "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+  "stage": "development",
+  "kind": "campaign",
+  "event_id": "20260907T085043Z",
+  "event_fingerprint_sha256": "689f5175ab5c4c4c25a0c2cdcd660c3530e15a1555661e43a498d879a780f414",
+  "source_sha256": "36104319f5827c65f343a4accb2344e019eef1887a6c45b491615c6a308618be",
+  "payload": {
+    "schema_version": 2,
+    "campaign_id": "20260907T084955Z",
+    "status": "CAMPAIGN_PASS",
+    "stage": "development",
+    "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+    "parallel_mt5": false,
+    "continue_after_scientific_reject": true,
+    "continue_after_experiment_engineering_failure": true,
+    "finalize_development": false,
+    "finalize_scored_stage": false,
+    "experiments_requested": [
+      "D041"
+    ],
+    "started_at_utc": "2026-09-07T08:49:55.439015+00:00",
+    "experiments": [
+      {
+        "identifier": "D041",
+        "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+        "stage": "development",
+        "started_at_utc": "2026-09-07T08:49:55.483786+00:00",
+        "status": "EXPERIMENT_STAGE_PASS",
+        "compile": {
+          "status": "COMPILE_PASS",
+          "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\20260907T084955Z\\build.json",
+          "source_sha256": "36104319f5827c65f343a4accb2344e019eef1887a6c45b491615c6a308618be",
+          "ex5_sha256": "22c9906802c6a9f5d205f55271f78c5485ebfe218e628bab8b350769e7c1a435"
+        },
+        "batch": {
+          "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T084957Z\\batch.json",
+          "schema_version": 1,
+          "status": "BATCH_PASS_INTEGRITY",
+          "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+          "manifest_path": "research\\experiments\\D041.json",
+          "stage": "development",
+          "symbols": [
+            "BTCUSD",
+            "ETHUSD",
+            "DOGUSD"
+          ],
+          "started_at_utc": "2026-09-07T08:49:57.971331+00:00",
+          "execution_mode": "SEQUENTIAL",
+          "tester_model": 1,
+          "tests": [
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+              "manifest_path": "research\\experiments\\D041.json",
+              "stage": "development",
+              "symbol": "BTCUSD",
+              "tester_model": 1,
+              "started_at_utc": "2026-09-07T08:49:57.987489+00:00",
+              "finished_at_utc": "2026-09-07T08:50:09.261978+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T084957Z_BTCUSD_M1\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\20260907T084955Z\\build.json",
+              "source_sha256": "36104319f5827c65f343a4accb2344e019eef1887a6c45b491615c6a308618be",
+              "ex5_sha256": "22c9906802c6a9f5d205f55271f78c5485ebfe218e628bab8b350769e7c1a435",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\BTCUSD\\20260907T084957Z\\D041_V100_RUN_BTCUSD_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\BTCUSD\\20260907T084957Z\\D041_V100_RUN_BTCUSD_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T084957Z_BTCUSD_M1\\D041_V100_RUN_BTCUSD_STATS.csv",
+                "sha256": "04fb496606582c66255371972904e4377fe31e6961ab569c7375cd384de2911b"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T084957Z_BTCUSD_M1\\D041_V100_RUN_BTCUSD_TRADES.csv",
+                "sha256": "16434c367451be99922e5bd5584c3da34d274efdb2deb97abda2323be4a94248"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D041_D032_M2_DojiManagementValidation_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "BTCUSD",
+                "trades": 37,
+                "trades_opened": 37,
+                "trades_closed": 37,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+              "manifest_path": "research\\experiments\\D041.json",
+              "stage": "development",
+              "symbol": "ETHUSD",
+              "tester_model": 1,
+              "started_at_utc": "2026-09-07T08:50:09.327872+00:00",
+              "finished_at_utc": "2026-09-07T08:50:20.718892+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T085009Z_ETHUSD_M1\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\20260907T084955Z\\build.json",
+              "source_sha256": "36104319f5827c65f343a4accb2344e019eef1887a6c45b491615c6a308618be",
+              "ex5_sha256": "22c9906802c6a9f5d205f55271f78c5485ebfe218e628bab8b350769e7c1a435",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\ETHUSD\\20260907T085009Z\\D041_V100_RUN_ETHUSD_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\ETHUSD\\20260907T085009Z\\D041_V100_RUN_ETHUSD_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T085009Z_ETHUSD_M1\\D041_V100_RUN_ETHUSD_STATS.csv",
+                "sha256": "7357c8497456cf082e486c2f77894a770a3ab7ff345ca3ff320d74dbcc61d099"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T085009Z_ETHUSD_M1\\D041_V100_RUN_ETHUSD_TRADES.csv",
+                "sha256": "3bf0ffefeb5195d8e90371b8fc642e46a6de953a4836b237aec797b0b9b904fd"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D041_D032_M2_DojiManagementValidation_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "ETHUSD",
+                "trades": 42,
+                "trades_opened": 42,
+                "trades_closed": 42,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+              "manifest_path": "research\\experiments\\D041.json",
+              "stage": "development",
+              "symbol": "DOGUSD",
+              "tester_model": 1,
+              "started_at_utc": "2026-09-07T08:50:20.820798+00:00",
+              "finished_at_utc": "2026-09-07T08:50:31.016234+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T085020Z_DOGUSD_M1\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\20260907T084955Z\\build.json",
+              "source_sha256": "36104319f5827c65f343a4accb2344e019eef1887a6c45b491615c6a308618be",
+              "ex5_sha256": "22c9906802c6a9f5d205f55271f78c5485ebfe218e628bab8b350769e7c1a435",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\DOGUSD\\20260907T085020Z\\D041_V100_RUN_DOGUSD_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\DOGUSD\\20260907T085020Z\\D041_V100_RUN_DOGUSD_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T085020Z_DOGUSD_M1\\D041_V100_RUN_DOGUSD_STATS.csv",
+                "sha256": "c83fee0d7c0527c4fcbf2eebad9953f7320baf727143dc1eadc0f4a0f9bc9d31"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T085020Z_DOGUSD_M1\\D041_V100_RUN_DOGUSD_TRADES.csv",
+                "sha256": "0404e59ea8d00de5a5e565f448074844f142d68afbb1d8d430f648caf3a39b9f"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D041_D032_M2_DojiManagementValidation_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "DOGUSD",
+                "trades": 19,
+                "trades_opened": 19,
+                "trades_closed": 19,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            }
+          ],
+          "autosync_used": false,
+          "finished_at_utc": "2026-09-07T08:50:31.064034+00:00",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\batch\\20260907T084957Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d041/live/events/development/batch/20260907T084957Z",
+            "latest_path": "backtests/d041/live/latest.json",
+            "event_id": "20260907T084957Z",
+            "event_fingerprint_sha256": "4fa172cc902dab99ae8cd901faa4a19e4065f1f455a93a7ff243e731e9f4adb6",
+            "commit_sha": "45077b1d5db6959d8d09b26ade5da2af6683c3f7",
+            "payload_compacted": false,
+            "autosync_used": false
+          }
+        },
+        "trade_path": {
+          "status": "NOT_REQUIRED_BY_MANIFEST",
+          "symbols": [
+            "BTCUSD",
+            "ETHUSD",
+            "DOGUSD"
+          ]
+        },
+        "finished_at_utc": "2026-09-07T08:50:43.653903+00:00"
+      }
+    ],
+    "autosync_used": false,
+    "engineering_failures": 0,
+    "post_decision_analytics_failures": 0,
+    "scientific_rejections": 0,
+    "finished_at_utc": "2026-09-07T08:50:43.655295+00:00",
+    "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T084955Z\\campaign.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
