@@ -2,25 +2,25 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T10:58:00+02:00",
-  "active_primary": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+  "updated_at": "2026-09-07T12:21:00+02:00",
+  "active_primary": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
   "items": [
     {
-      "id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+      "id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
       "priority": 0,
-      "status": "CLOSED_REJECTED_MANAGEMENT",
+      "status": "READY_SMOKE",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "No MT5 action is required for D041. The preregistered D032-M2 POST2024 management validation is permanently REJECT_MANAGEMENT: 77 eligible paired events, reference mean +0.666436R, candidate mean +0.328383R, paired candidate-minus-reference mean -0.338054R, 0/3 positive-delta symbols, and deterministic month-block bootstrap 95% interval [-0.533035R, -0.121697R]. The final 'decision score does not match experiment/stage' message occurred only after the valid score and paired analytics were published, when the specialized workflow incorrectly called the generic strategy bundle publisher. Do not rerun MT5 for D041. Next work is to audit existing D042/Momentum attribution evidence before creating new code or tests.",
-      "manifest": "research/experiments/D041.json"
+      "goal": "Run D046 engineering smoke only: git pull then py -3 .\\research\\runner\\d046_expiry_workflow.py D046 --stage smoke. Smoke is December 2023 engineering-only and must not be interpreted for profitability. If smoke passes, update manifest/state to READY development before opening the frozen 2024-2025 unconditional screen. Binance/Bybit live OI and slope-ATR telemetry remain separate prospective context and must not be inserted into D046-A post hoc.",
+      "manifest": "research/experiments/D046.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "D041_REJECTED_SPECIALIZED_WORKFLOW_FIXED_NEXT_ATTRIBUTION_AUDIT",
+      "status": "D046_READY_SMOKE_SPECIALIZED_EXPIRY_WORKFLOW",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
-      "goal": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; specialized scorers are allowed only when required by a prior frozen scientific design; post-verdict archive-tool failures never invalidate valid science or trigger an MT5 rerun; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
+      "goal": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; specialized scorers are allowed only when required by a frozen scientific design; post-verdict archive-tool failures never invalidate valid science or trigger an MT5 rerun; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
     },
     {
       "id": "AUTOSYNC_V3_FROM_SCRATCH",
