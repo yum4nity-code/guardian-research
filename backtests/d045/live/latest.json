@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T07:53:33.887822+00:00",
+  "updated_at_utc": "2026-09-07T07:53:38.932614+00:00",
   "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "stage": "smoke",
-  "kind": "batch",
-  "event_id": "20260907T075305Z",
-  "event_path": "backtests/d045/live/events/smoke/batch/20260907T075305Z",
-  "event_fingerprint_sha256": "48a27667a371126d06be21e141baf455abf926120ca09a2879fa5e95ec3e695f",
-  "status": "BATCH_PASS_INTEGRITY",
+  "kind": "trade-path",
+  "event_id": "20260907T075305Z_USDJPY_M0",
+  "event_path": "backtests/d045/live/events/smoke/trade-path/20260907T075305Z_USDJPY_M0",
+  "event_fingerprint_sha256": "d0c45f2a8bb81c1035ce97fa3b36b3aa9c6d6601e412ff1acdf91885c63fb5b6",
+  "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
