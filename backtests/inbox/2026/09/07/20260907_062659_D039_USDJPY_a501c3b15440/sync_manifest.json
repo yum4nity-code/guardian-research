@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_062659_D039_USDJPY_a501c3b15440",
+    "fingerprint":  "a501c3b15440066fcbb1b5867af6ec3721160791bd5da277ce35fd37b47a2e6a",
+    "synced_at_utc":  "2026-09-07T06:27:24.9292166Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D039_InsideDay_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "RUN",
+                       "symbol":  "USDJPY",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  78,
+                       "published_trades_rows":  78
+                   },
+    "files":  [
+                  {
+                      "name":  "D039_V100_RUN_USDJPY_STATS.csv",
+                      "source_sha256":  "cc62350d865b026d52f172cfa8691d24457dfb0041105f4aaabda12f3090dfef",
+                      "published_sha256":  "b4b36b5d74c95386aa1bc5bf1f477f096afd8f9e5267cf8058154a58561cf373",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D039_V100_RUN_USDJPY_TRADES.csv",
+                      "source_sha256":  "a12213015583759c32a9c14f2a101f59f654fb481fe1b0bba00747c692c4053b",
+                      "published_sha256":  "e6f8b1df999b9b6406ad6dfdce6a3ce34147d6e400e9de5d5c1c4516fe0210b5",
+                      "sanitized":  false
+                  }
+              ]
+}
