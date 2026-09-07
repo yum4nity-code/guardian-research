@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "status": "D054_BATCH_PASS_INTEGRITY",
+  "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+  "stage": "smoke",
+  "symbols": [
+    "SPX500",
+    "NDX100",
+    "US30"
+  ],
+  "from": "2023-10-02",
+  "to": "2023-10-31",
+  "execution_mode": "SEQUENTIAL_ONE_MT5_RUN_PER_SYMBOL_MODEL0_EXACT_D053_V101_SOURCE",
+  "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+  "tests": [
+    {
+      "schema_version": 1,
+      "status": "D053_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+      "stage": "smoke",
+      "symbol": "SPX500",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T18:26:13.042717+00:00",
+      "finished_at_utc": "2026-09-07T18:26:30.409656+00:00",
+      "terminal_exit_code": 0,
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+      "ex5_sha256": "5093702919aeebaaa0680fbcdf2e4a0ad23b1fc8468c0f1663d5902b76317fe3",
+      "quarantined_stale_outputs": [
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\smoke\\SPX500\\20260907T182613Z\\D053_V100_RUN_SPX500_STATS.csv",
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\smoke\\SPX500\\20260907T182613Z\\D053_V100_RUN_SPX500_TRADES.csv"
+      ],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\smoke\\20260907T182613Z_SPX500_M0\\D053_V100_RUN_SPX500_STATS.csv",
+        "sha256": "a4cda46d3e9dcd438f27f9871cfc934a1a12bf500ece947e77bcaa4e8168c3bc"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\smoke\\20260907T182613Z_SPX500_M0\\D053_V100_RUN_SPX500_TRADES.csv",
+        "sha256": "b2b97046ddbcdcd9bdabdcc0a805d47386c4ff442dd0017e67d33c220b00d178"
+      },
+      "integrity": {
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "symbol": "SPX500",
+        "range_days": 21,
+        "trades": 21,
+        "ambiguous_days": 0,
+        "range_unusable_days": 0,
+        "integrity_events": 0
+      },
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "D053_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+      "stage": "smoke",
+      "symbol": "NDX100",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T18:26:30.468830+00:00",
+      "finished_at_utc": "2026-09-07T18:26:42.809622+00:00",
+      "terminal_exit_code": 0,
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+      "ex5_sha256": "5093702919aeebaaa0680fbcdf2e4a0ad23b1fc8468c0f1663d5902b76317fe3",
+      "quarantined_stale_outputs": [
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\smoke\\NDX100\\20260907T182630Z\\D053_V100_RUN_NDX100_STATS.csv",
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\smoke\\NDX100\\20260907T182630Z\\D053_V100_RUN_NDX100_TRADES.csv"
+      ],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\smoke\\20260907T182630Z_NDX100_M0\\D053_V100_RUN_NDX100_STATS.csv",
+        "sha256": "3a1a1bf01106331083cfc3bbafd7c695987fb36a3d62ff758340c398cec03221"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\smoke\\20260907T182630Z_NDX100_M0\\D053_V100_RUN_NDX100_TRADES.csv",
+        "sha256": "3b0ff00a4ed824923bac6f5979e55fb91b3577ebbb89f3e332cfc4f7236e8386"
+      },
+      "integrity": {
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "symbol": "NDX100",
+        "range_days": 21,
+        "trades": 21,
+        "ambiguous_days": 0,
+        "range_unusable_days": 0,
+        "integrity_events": 0
+      },
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "D053_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+      "stage": "smoke",
+      "symbol": "US30",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T18:26:42.893740+00:00",
+      "finished_at_utc": "2026-09-07T18:26:53.236993+00:00",
+      "terminal_exit_code": 0,
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+      "ex5_sha256": "5093702919aeebaaa0680fbcdf2e4a0ad23b1fc8468c0f1663d5902b76317fe3",
+      "quarantined_stale_outputs": [
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\smoke\\US30\\20260907T182642Z\\D053_V100_RUN_US30_STATS.csv",
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\smoke\\US30\\20260907T182642Z\\D053_V100_RUN_US30_TRADES.csv"
+      ],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\smoke\\20260907T182642Z_US30_M0\\D053_V100_RUN_US30_STATS.csv",
+        "sha256": "f7e6853f98442465a2aa79242c09edc78df822057c7a3a8d4e4c60a4ac326a99"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\smoke\\20260907T182642Z_US30_M0\\D053_V100_RUN_US30_TRADES.csv",
+        "sha256": "5c2d5712648a025564564c1d16e37eae40f457496a7ae2bb4662147ca567db64"
+      },
+      "integrity": {
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "symbol": "US30",
+        "range_days": 21,
+        "trades": 21,
+        "ambiguous_days": 0,
+        "range_unusable_days": 0,
+        "integrity_events": 0
+      },
+      "autosync_used": false
+    }
+  ],
+  "autosync_used": false,
+  "finished_at_utc": "2026-09-07T18:26:53.312249+00:00",
+  "batch_path": "D:\\MT5_Backtests\\guardian-runner\\d054\\smoke\\20260907T182613Z\\batch.json"
+}

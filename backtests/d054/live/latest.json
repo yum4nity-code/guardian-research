@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T18:26:05.843168+00:00",
+  "updated_at_utc": "2026-09-07T18:26:59.975215+00:00",
   "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
   "stage": "smoke",
-  "kind": "d054-source-freeze",
-  "event_id": "20260907T182559Z",
-  "event_path": "backtests/d054/live/events/smoke/d054-source-freeze/20260907T182559Z",
-  "event_fingerprint_sha256": "66151784a05cb2fd178bbb5c8b817443e480b5a4376ff0c2438a041babadbf06",
-  "status": "D054_FROZEN_BEFORE_HOLDOUT",
+  "kind": "d054-smoke-pass",
+  "event_id": "20260907T182653Z",
+  "event_path": "backtests/d054/live/events/smoke/d054-smoke-pass/20260907T182653Z",
+  "event_fingerprint_sha256": "1e18bab35b084ba7237eefee9db3d9b8c6b75ff76eb3396f370cd1156a282902",
+  "status": "D054_BATCH_PASS_INTEGRITY",
   "autosync_used": false
 }
