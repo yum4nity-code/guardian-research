@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T12:58:00+02:00",
+  "updated_at": "2026-09-07T13:24:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,25 +8,25 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D046_CLOSED_NEXT_D044_TURTLE_SOUP_PREREG",
+    "status": "PHASE_3_D044_TURTLE_SOUP_READY_SMOKE",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_D044_TURTLE_SOUP_ENTRY_ALPHA_PREREGISTRATION_AND_SOURCE",
+    "next_phase": "PHASE_3_D044_ENGINEERING_SMOKE_THEN_FROZEN_2024_2025_DEV_IF_PASS",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
-    "active_experiment": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
-    "experiment_manifest": "research/experiments/D046.json",
-    "status": "CLOSED_INCONCLUSIVE_COUNT_NO_CONFIRMATION",
-    "strategy_family": "BTC Deribit 08:00 UTC option-expiry reversal unconditional screen",
-    "timeframe": "M1",
-    "preregistration": "research/campaigns/D046_BTC_DERIBIT_08UTC_EXPIRY_REVERSAL_SCREEN_V0_PREREGISTRATION_2026_09_07.md",
+    "active_experiment": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+    "experiment_manifest": "research/experiments/D044.json",
+    "status": "READY_SMOKE",
+    "strategy_family": "Turtle Soup 20-day failed-break reversal entry-alpha transport",
+    "timeframe": "M15",
+    "preregistration": "research/campaigns/D044_TURTLE_SOUP_20D_FAILED_BREAK_REVERSAL_V0_PREREGISTRATION_2026_09_07.md",
     "canonical_sources_currently_in_repo": [
-      "research/strategies/d046/D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5"
+      "research/strategies/d044/D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "No further MT5 action for D046. Formal verdict remains INCONCLUSIVE_COUNT because the frozen 600-day gate was unattainable on the observed weekday-style FundedNext BTC calendar (513 paired days), but every substantive economic gate failed strongly: PRE short -13.44 bps/day, POST long -8.89 bps/day, combined -22.33 bps/day, PF 0.394, both 2024 and 2025 negative, stress negative, bootstrap 95% interval fully negative. Keep 2026 H1 unopened and do not retune D046. Next science is D044 Turtle Soup: exact Street Smarts entry rules have now been recovered; build a separately preregistered Guardian entry-alpha screen without pretending to replicate the book's discretionary trailing management.",
+    "next_action": "Run D044 engineering smoke only: git pull then py -3 .\\research\\runner\\guardian_research.py campaign D044 --stage smoke --no-finalize. Smoke is October 2023 on USDJPY, XAUUSD and BTCUSD and is engineering-only. The campaign must compile the frozen source, run Model0 sequentially, validate lifecycle and native Trade Path, and auto-publish evidence. Do not interpret smoke profitability. If smoke passes, move the unchanged source to the frozen 2024-2025 development stage.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -124,10 +124,29 @@
       "high_oi_boundary": "D046-A did not test historical Deribit high-ATM-OI conditioning. The OI mechanism remains untested, but D046-A did not provide the preregistered PASS required to justify acquisition as its next stage.",
       "prospective_context": "Existing Binance/Bybit live OI and slope-ATR collectors remain useful as fresh forward explanatory telemetry only; they are not substitutes for Deribit option OI and may not be inserted post hoc into D046-A."
     },
+    "d044_turtle_soup": {
+      "scientific_role": "SOURCE_ALIGNED_TURTLE_SOUP_ENTRY_ALPHA_TRANSPORT_WITH_GUARDIAN_H24_REFERENCE",
+      "status": "READY_SMOKE",
+      "preregistration": "research/campaigns/D044_TURTLE_SOUP_20D_FAILED_BREAK_REVERSAL_V0_PREREGISTRATION_2026_09_07.md",
+      "preregistration_git_blob_sha": "58229a52a392e8133896affa10f32c0de877ad1a",
+      "source": "research/strategies/d044/D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5",
+      "source_git_blob_sha": "36d3a44695c7b35283c66c47b77cf0b68e943e64",
+      "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+      "source_identity_proof": "GitHub CI source_hash.py measured the normalized SHA before any D044 local compile/test outcome.",
+      "entry": "Prior completed 20-D1-bar extreme whose most recent occurrence is >=4 sessions old; current executable penetration; fixed 5-trade-tick same-day re-entry after executable reversal crossing; source-style stop 1 tick beyond current day executable excursion.",
+      "management": "No TP/BE/partial/trailing/re-entry. Structural stop or first executable H24 liquidation. H24 is Guardian reference and not claimed source management.",
+      "universe": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
+      "tester_model": 0,
+      "trade_path": "NATIVE_REQUIRED",
+      "smoke_window": "2023-10-02 through 2023-10-31; USDJPY/XAUUSD/BTCUSD; engineering only",
+      "development_window": "2024-01-02 through 2025-12-31; LOCKED until smoke pass",
+      "confirmation_window": "2026-01-02 through 2026-06-30; UNOPENED until every DEV gate passes",
+      "development_count_gates": "aggregate>=120 and each_symbol>=10, event-frequency calibrated before any D044 outcome",
+      "source_boundary": "Core rules are source-aligned from published Street Smarts transcriptions; V0 is not a claimed exact full-book replication because the source management is discretionary and D044 uses a deterministic H24 Guardian reference."
+    },
     "deferred_next_candidates": {
       "D042": "Existing Momentum attribution audit is already sufficient to reject the current D017 alpha family across BTCUSD, ETHUSD, EURUSD, GBPUSD, USDJPY, XAUUSD and USDCAD; do not spend a new long backtest merely to rename it D042.",
-      "D043": "Legacy RSI raw entry edge is already rejected across BTC, ETH, XAU and EUR. Exact native-manager replay remains optional legacy preservation work, not current priority.",
-      "D044": "UNBLOCKED: original Street Smarts Turtle Soup entry rules recovered. New 20-day extreme; prior 20-day extreme at least four trading sessions earlier; same-day reversal entry 5-10 ticks beyond the prior extreme; initial stop one tick beyond today's excursion extreme. Source management is discretionary trailing/re-entry, so Guardian must preregister a separate deterministic entry-alpha reference rather than claim a full mechanical replication."
+      "D043": "Legacy RSI raw entry edge is already rejected across BTC, ETH, XAU and EUR. Exact native-manager replay remains optional legacy preservation work, not current priority."
     },
     "next_strategy_drafts": "research/campaigns/D040_D045_NEXT_SIX_STRATEGY_DRAFTS_2026_09_07.md"
   },
@@ -171,7 +190,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "D046_CLOSED_NEXT_D044_PREREGISTRATION",
+    "status": "D044_READY_SMOKE_TURTLE_SOUP_TICK_PATH",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -203,6 +222,7 @@
       "D046_PAIRED_UTC_DAY_BPS_SCORER",
       "D046_MONTH_BLOCK_BOOTSTRAP",
       "D046_SPECIALIZED_ONE_COMMAND_WORKFLOW",
+      "D044_TURTLE_SOUP_H24_TICK_PATH_HARNESS",
       "VERDICT_RECEIPT",
       "INVALID_RUN_DIAGNOSTIC",
       "MT5_UTF16_CSV_DECODE",
@@ -222,8 +242,9 @@
       "RICH_EVENT_PAYLOAD_COMPACTION"
     ],
     "planned_stages": [
-      "D044_TURTLE_SOUP_ENTRY_ALPHA_PREREGISTRATION",
-      "D044_COMPLETE_SOURCE_AND_SMOKE",
+      "D044_ENGINEERING_SMOKE",
+      "D044_FROZEN_2024_2025_DEV_IF_SMOKE_PASS",
+      "D044_UNTOUCHED_2026_H1_CONFIRMATION_ONLY_IF_DEV_PASS",
       "PROSPECTIVE_BINANCE_BYBIT_OI_SLOPE_ATR_CONTEXT_ON_FRESH_DATA"
     ],
     "reference_tester_model": 0,
@@ -235,8 +256,8 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D046_CLOSEOUT_CI",
-    "local_mt5_status": "D046_DEVELOPMENT_COMPLETE_INCONCLUSIVE_COUNT_513_PAIRED_STRONGLY_NEGATIVE_NO_CONFIRMATION",
+    "github_ci_status": "PENDING_D044_READY_SMOKE_CI",
+    "local_mt5_status": "D044_NOT_YET_RUN",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; specialized scorers are allowed only when required by a frozen scientific design; post-verdict archive-tool failures never invalidate valid science or trigger an MT5 rerun; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
   },
