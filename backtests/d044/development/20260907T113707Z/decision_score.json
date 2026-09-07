@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-09-07T11:45:45.430031+00:00",
+  "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+  "manifest_path": "research\\experiments\\D044.json",
+  "manifest_source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+  "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113707Z\\batch.json",
+  "stage": "development",
+  "metrics": {
+    "aggregate_n": 192,
+    "per_symbol_n": {
+      "BTCUSD": 34,
+      "ETHUSD": 31,
+      "EURUSD": 31,
+      "GBPUSD": 37,
+      "USDJPY": 28,
+      "XAUUSD": 31
+    },
+    "aggregate_mean_net_r": -0.8630031731250001,
+    "aggregate_pf": 0.3967689013765851,
+    "aggregate_pf_infinite": false,
+    "positive_symbols": [],
+    "positive_symbols_n": 0,
+    "per_symbol_total_net_r": {
+      "BTCUSD": -16.01335154,
+      "ETHUSD": -4.944957310000003,
+      "EURUSD": -36.73975315,
+      "GBPUSD": -47.39792728,
+      "USDJPY": -42.55876396,
+      "XAUUSD": -18.041856
+    },
+    "aggregate_total_net_r": -165.69660924000002,
+    "aggregate_total_stress_net_r": -209.26286371,
+    "year_total_net_r": {
+      "2024": -30.09993157,
+      "2025": -135.59667767
+    },
+    "max_positive_symbol_contribution_share": 0.0,
+    "integrity_events": 0
+  },
+  "gates": {
+    "aggregate_n_min": true,
+    "each_symbol_n_min": true,
+    "aggregate_mean_net_r_min": false,
+    "aggregate_pf_min": false,
+    "positive_symbols_min": false,
+    "aggregate_2024_positive": false,
+    "aggregate_2025_positive": false,
+    "aggregate_positive_at_commission_stress": false,
+    "max_positive_symbol_contribution_share": true,
+    "integrity_events_max": true
+  },
+  "all_gates_pass": false,
+  "verdict": "REJECT_V0",
+  "confirmation_opened": false,
+  "autosync_used": false
+}
