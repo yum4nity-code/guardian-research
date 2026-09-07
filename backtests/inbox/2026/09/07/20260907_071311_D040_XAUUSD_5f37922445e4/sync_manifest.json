@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_071311_D040_XAUUSD_5f37922445e4",
+    "fingerprint":  "5f37922445e4d0c6a68458f4c44072c91e418b6824458bec6929679704e0cbf0",
+    "synced_at_utc":  "2026-09-07T07:15:41.2843993Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D040_NR4_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "RUN",
+                       "symbol":  "XAUUSD",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  34,
+                       "published_trades_rows":  34
+                   },
+    "files":  [
+                  {
+                      "name":  "D040_V100_RUN_XAUUSD_STATS.csv",
+                      "source_sha256":  "2e0087f529edab9d8f0b484b127a28346d950793f1c2677185461a6ef8c1ce08",
+                      "published_sha256":  "a3c06a9178154080ef166329b2df4749f29f353e9dcdc32b2247892644c4b8e3",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D040_V100_RUN_XAUUSD_TRADES.csv",
+                      "source_sha256":  "4b54124516ea23ee1d025a82f286c922bd7306243a498673d8704a4b7a885abe",
+                      "published_sha256":  "6696b690fae24a50dd08a1315a9f4173cc673c9f0e3d59ee6bd6860908a861da",
+                      "sanitized":  false
+                  }
+              ]
+}
