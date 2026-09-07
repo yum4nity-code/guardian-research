@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T19:20:00+01:00",
+  "updated_at": "2026-09-07T19:35:00+01:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,17 +8,17 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "DETERMINISTIC_RUNNER_ACTIVE_D054_ORB30_CORE3_CONFIRMATION",
+    "status": "DETERMINISTIC_RUNNER_D054_CLOSED_ORB30_REVIEW",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "D053_DESCRIPTIVE_AUDIT_THEN_D054_INDEPENDENT_JUL_AUG2026_CONFIRMATION",
+    "next_phase": "D054_CLOSED_REVIEW_D053_D054_FOR_NEW_PROSPECTIVE_HYPOTHESIS",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
     "experiment_manifest": "research/experiments/D054.json",
-    "status": "CANDIDATE_CONFIRM",
+    "status": "UNCONFIRMED",
     "strategy_family": "opening-range breakout / D053-derived Core-3 independent confirmation",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md",
@@ -26,7 +26,7 @@
       "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "Run one frozen program: py -3 .\\research\\runner\\d054_orb30_core3_run.py. It first audits only already-seen D053 2024-2025 CSVs without MT5 or rule changes, then compiles the exact D053 v1.01 source, runs engineering smoke on SPX500/NDX100/US30, and only after clean smoke opens the preregistered untouched Jul-Aug 2026 D054 confirmation on those same three symbols. No 2024-2025 rerun and no management/parameter optimization.",
+    "next_action": "Do not rerun or rescue D054 on Jul-Aug 2026. Review the already-published D053 descriptive audit together with the strongly negative D054 independent confirmation, then formulate any D055 as a new preregistered hypothesis evaluated only on a new untouched/prospective evidence boundary.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -45,11 +45,13 @@
       "D050": "MARKET_TRANSPORT_COMPARATOR_NO_BROAD_PASS_NR4",
       "D051": "UNCONFIRMED_2026_H1_NR7_INDEX_CLUSTER",
       "D052": "NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY",
-      "D053": "REJECT_V0_11_OF_12_GATES_BOOTSTRAP_LOWER_BOUND_ONLY"
+      "D053": "REJECT_V0_11_OF_12_GATES_BOOTSTRAP_LOWER_BOUND_ONLY",
+      "D054": "UNCONFIRMED_CORE3_JUL_AUG2026_STRONGLY_NEGATIVE"
     },
     "d053_orb30_closeout": {
       "formal_status": "D053_REJECT_V0",
       "development_event": "backtests/d053/live/events/development/d053-development-score/20260907T162026Z",
+      "descriptive_audit_event": "backtests/d053/live/events/development/d053-descriptive-audit/20260907T182547Z",
       "closeout": "reports/research/D053_US_INDEX_ORB30_DEV_CLOSEOUT_20260907.md",
       "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
       "n": 2042,
@@ -68,16 +70,35 @@
     },
     "d054_core3": {
       "origin": "Derived explicitly from D053 discovery: SPX500/NDX100/US30 were independently positive; US2000 was negative. D053 verdict remains unchanged.",
+      "formal_status": "D054_UNCONFIRMED_CLOSE",
       "preregistration_git_blob_sha": "2c1bb149664a9e4153c6f6cb8ae59ce1e874da57",
       "exact_source_reuse": "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5",
       "source_git_blob_sha": "7da58ecf8968d6814b634be0ee0043b9616fb6c6",
       "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
       "universe": ["SPX500", "NDX100", "US30"],
       "discovery_period": "2024-2025 already seen in D053; never reused as D054 OOS",
-      "audit": "D053 descriptive-only, frozen D054 rules cannot change from it",
-      "smoke": "2023-10-02 through 2023-10-31; engineering only",
-      "confirmation": "2026-07-01 through 2026-08-31; untouched before D054",
-      "confirmation_gates": "n>=100; each>=25; mean>0; PF>=1.05; total>0; stress>0; >=2/3 symbols positive; July>0; August>0; LONG mean>0; SHORT mean>0; day-block bootstrap lower95>0; max positive-symbol contribution share<=0.70; integrity0",
+      "audit": "D053 descriptive-only; frozen D054 rules were not changed from it",
+      "smoke_event": "backtests/d054/live/events/smoke/d054-smoke-pass/20260907T182653Z",
+      "confirmation_event": "backtests/d054/live/events/confirmation/d054-confirmation-score/20260907T182809Z",
+      "closeout": "reports/research/D054_ORB30_CORE3_CONFIRMATION_CLOSEOUT_20260907.md",
+      "confirmation_window": "2026-07-01 through 2026-08-31",
+      "n": 127,
+      "mean_net_r": -0.19933436488188977,
+      "pf": 0.5596506509945182,
+      "total_net_r": -25.31546434,
+      "stress_total_net_r": -26.34219435,
+      "spx500_total_r": -6.05387533,
+      "ndx100_total_r": -9.20483891,
+      "us30_total_r": -10.0567501,
+      "positive_symbols_n": 0,
+      "july_total_r": -18.95205978,
+      "august_total_r": -6.36340456,
+      "long_total_r": -12.1300485,
+      "short_total_r": -13.18541584,
+      "bootstrap_lower_95": -0.36852913643511626,
+      "bootstrap_upper_95": -0.017671191858455268,
+      "integrity_events": 0,
+      "scientific_interpretation": "Independent holdout strongly rejects persistence of the exact D053/D054 ORB30 Core-3 baseline: all three markets, both months and both directions were negative, and the entire day-block bootstrap 95% interval was below zero.",
       "operator_entrypoint": "research/runner/d054_orb30_core3_run.py",
       "workflow": "research/runner/d054_orb30_core3_workflow.py",
       "audit_tool": "research/runner/d053_orb30_deep_audit.py"
@@ -100,7 +121,7 @@
     "migration_policy": "Do not preserve or extend v1/v2 behavior. Research evidence is published by deterministic isolated-clone result transport; broader AutoSync v3 remains deferred.",
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "PROVEN_END_TO_END_THROUGH_D053",
+    "research_results_status": "PROVEN_END_TO_END_THROUGH_D054",
     "automatic_event_transport": {
       "status": "ACTIVE_PROVEN",
       "module": "research/runner/result_transport.py",
@@ -112,7 +133,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "D054_READY_AUDIT_SMOKE_CONFIRM",
+    "status": "D054_CLOSED_READY_NEXT_HYPOTHESIS_DESIGN",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -137,8 +158,8 @@
       "RESILIENT_FAILURE_PUBLISH"
     ],
     "planned_stages": [
-      "IF_D054_CONFIRMS_PROSPECTIVE_FORWARD_ORB_AND_SEPARATE_MANAGEMENT_LAB",
-      "IF_AUDIT_SUPPORTS_DST_HYPOTHESIS_PREREGISTER_D055_WITH_NEW_EVIDENCE_BOUNDARY"
+      "REVIEW_D053_D054_FOR_NEW_HYPOTHESIS_ONLY",
+      "PREREGISTER_D055_ONLY_ON_NEW_UNTOUCHED_OR_PROSPECTIVE_EVIDENCE"
     ],
     "reference_tester_model": 0,
     "fast_tester_model_candidate": null,
@@ -146,9 +167,9 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; keep MT5 sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D054_STRICT_STATIC_CI",
-    "local_mt5_status": "D054_NOT_YET_RUN",
-    "principle": "Freeze the derived hypothesis before descriptive audit; never reuse D053 discovery as fresh OOS; one short operator command; automatic evidence publication; no post-hoc rescue."
+    "github_ci_status": "PENDING_D054_CLOSEOUT_STATE_CI",
+    "local_mt5_status": "D054_COMPLETE_UNCONFIRMED",
+    "principle": "No D054 rescue on seen Jul-Aug 2026. Any next ORB work must be a new hypothesis with a new untouched/prospective boundary; one short operator command and automatic evidence publication remain canonical."
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
