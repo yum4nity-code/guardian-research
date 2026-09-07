@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T10:05:00+02:00",
+  "updated_at": "2026-09-07T10:25:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,25 +8,25 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D045_REJECTED_NEXT_CANDIDATE_PREPARATION",
+    "status": "PHASE_3_D041_D032_M2_EXACT_WRAPPER_READY_SMOKE",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_PREPARE_D041_SPECIALIZED_MANAGEMENT_SCORER_OR_NEXT_VALID_CANDIDATE",
+    "next_phase": "PHASE_3_RUN_D041_PRE2024_ENGINEERING_SMOKE_THEN_POST2024_MANAGEMENT_VALIDATION_ONLY_IF_SMOKE_PASSES",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
-    "active_experiment": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
-    "experiment_manifest": "research/experiments/D045.json",
-    "status": "CLOSED_REJECTED",
-    "strategy_family": "Daily Donchian 20/10 trend-following benchmark",
-    "timeframe": "M15",
-    "preregistration": "research/campaigns/D045_D1_DONCHIAN_20_10_BENCHMARK_V0_PREREGISTRATION_2026_09_07.md",
+    "active_experiment": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+    "experiment_manifest": "research/experiments/D041.json",
+    "status": "READY_SMOKE",
+    "strategy_family": "Confirmed Bullish Doji Star H1 entry management validation",
+    "timeframe": "M1",
+    "preregistration": "research/campaigns/D032_M2_DOJI_REALISTIC_MANAGEMENT_POST2024_VALIDATION_PREREGISTRATION_2026_09_05.md",
     "canonical_sources_currently_in_repo": [
-      "research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5"
+      "research/strategies/d041/D041_D032_M2_DojiManagementValidation_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "No MT5 action is required for D045. D045 V0 is scientifically closed REJECT_V0 after the frozen 2024-2025 development score: 145 trades, mean net R 0.0959087233 versus required 0.10; every other frozen gate passed and confirmation remains unopened. Do not waive the near-threshold miss or inspect 2026 for rescue. Next engineering/research work is to prepare the highest-priority remaining draft whose scientific question can be preserved exactly, with D041 preferred if its paired candidate-vs-reference management scorer can be implemented faithfully.",
+    "next_action": "On the MT5 research PC run `git pull` then `py -3 .\\research\\runner\\d041_management_workflow.py D041 --stage smoke`. This is engineering-only on already-seen PRE2024 data and uses the D032-M2 preregistered historical tester limitation Model=1 (1 minute OHLC). Do not inspect smoke profitability or management lift. The wrapper recompiles the exact recovered-lineage source, runs BTCUSD/ETHUSD/DOGUSD, validates deterministic STATS/TRADES integrity and publishes automatically. After completion the user should only say `fini`; the assistant reads `backtests/d041/live/latest.json`. The formal untouched POST2024 >24h management-validation window remains locked until smoke passes.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -53,32 +53,42 @@
       "published_bundle": "backtests/d040/confirmation/20260907T070952Z",
       "policy": "Closed permanently. The seen 2026 H1 sample may not be used to rescue or retune NR4."
     },
-    "d045_contract": {
-      "role": "SLOW_DAILY_TREND_BENCHMARK_NOT_PRIMARY_CHALLENGE_ENGINE",
-      "historical_basis": "Turtle/Donchian System-1 shape: 20-day breakout, 10-day opposite exit, 2N stop",
-      "adaptation_boundary": "No historical prior-winner skip rule, no pyramiding and no portfolio unit allocation in V0; do not call this exact Turtle replication.",
-      "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
-      "source_git_blob_sha": "ce64ac87d0aa940b6728ff6bf61f71efb00cba68",
-      "swap_boundary": "Formal D045 V0 scoring is net ex-swap. No swap/weekend production stress is warranted because DEV failed before confirmation.",
-      "smoke_status": "PASS",
-      "smoke_aggregate_trades": 10,
-      "development_status": "REJECT_V0",
+    "d045_closeout": {
+      "final_verdict": "REJECT_V0",
       "development_n": 145,
       "development_mean_net_r": 0.09590872331034482,
       "development_pf": 1.2011785982494556,
       "development_total_net_r": 13.90676488,
       "development_stress_total_net_r": 13.41851664,
       "development_positive_symbols_n": 5,
-      "development_failed_gates": ["aggregate_mean_net_r_min"],
-      "development_score_event": "backtests/d045/live/events/development/score/20260907T080327Z",
-      "development_rich_event": "backtests/d045/live/events/development/rich-score/20260907T080333Z",
+      "failed_gates": ["aggregate_mean_net_r_min"],
+      "score_event": "backtests/d045/live/events/development/score/20260907T080327Z",
+      "rich_event": "backtests/d045/live/events/development/rich-score/20260907T080333Z",
       "confirmation_status": "UNOPENED",
-      "policy": "Closed permanently. The 0.0959R mean cannot be rounded or waived to the preregistered 0.10R threshold."
+      "policy": "Closed permanently. The observed 0.0959R mean cannot be rounded or waived to the preregistered 0.10R threshold."
+    },
+    "d041_management_validation": {
+      "scientific_identity": "D032-M2 Bullish Doji Star H1 realistic management POST2024 validation",
+      "operational_wrapper_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+      "entry_status": "D032-C1 PRIMARY ENTRY EDGE CONFIRMED PRE2024",
+      "historical_preregistration": "research/campaigns/D032_M2_DOJI_REALISTIC_MANAGEMENT_POST2024_VALIDATION_PREREGISTRATION_2026_09_05.md",
+      "historical_m1_source_filename": "D032_M1_DojiStar_Post24_RunnerDiagnostic_v1_00.mq5",
+      "historical_m1_source_sha256": "6c55da90607d5431b92f9a59b2439ffa2e504b93621be78137dc99ab4fdef583",
+      "historical_source_recovery": "RECOVERED_EXACT_FROM_USER_CHATGPT_FILE_LIBRARY_AND_SHA_MATCHED_2026_09_05_HANDOFF",
+      "wrapper_source_sha256": "2873274f2d67a07dcd67594c41eb2bb9c11ad1353fa2fa1273597d7f567c733f",
+      "formal_candidate": "-3.5 source-R catastrophe stop; no pre24 TP/trail; H24 net<=0 close; H24 net>0 full runner with net-BE + 1.5R trail; H48 timeout",
+      "formal_reference": "same event, no hard stop, full executable BID exit at +24h",
+      "formal_window": "2024-01-01 00:00 through 2026-06-23 23:00 signal timestamps; tester through 2026-06-27",
+      "scorer": "research/runner/paired_management_score.py",
+      "scoring_mode": "D032_M2_PAIRED_MONTH_BLOCK_BOOTSTRAP",
+      "bootstrap": "20,000 month-block resamples, deterministic seed 3202048",
+      "one_command_workflow": "research/runner/d041_management_workflow.py",
+      "persistent_evidence_review": "No D032-M2 result file was found in the repository and no M2 MQ5/result was found in the user file library. This strongly supports that formal M2 POST2024 >24h outcomes remain unopened, but cannot prove absence of an unrecorded local run outside persistent evidence.",
+      "scientific_boundary": "D041 is not a new hypothesis and may not alter D032-M2 thresholds. A pass still requires separate FundedNext swap/weekend/portfolio and real-tick/live-forward work before Guardian integration."
     },
     "deferred_next_candidates": {
-      "D041": "Preferred next if paired candidate-vs-reference management scorer can be implemented exactly to the D032 management question; do not force through generic parent gates.",
-      "D042": "Momentum attribution remains valuable but requires layered L0-L3 attribution reconstruction rather than generic parent scoring.",
-      "D043": "RSI attribution requires exact legacy manager/gate reconstruction.",
+      "D042": "Momentum attribution remains valuable but requires layered L0-L3 attribution reconstruction rather than generic parent scoring; inspect existing META_A1/D17 attribution before creating a duplicate.",
+      "D043": "RSI attribution requires exact legacy manager/gate reconstruction and should first audit existing RSI long-history diagnostics.",
       "D044": "Blocked until one exact historical Turtle Soup rule set is recovered from an authoritative source."
     },
     "next_strategy_drafts": "research/campaigns/D040_D045_NEXT_SIX_STRATEGY_DRAFTS_2026_09_07.md"
@@ -123,12 +133,13 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "END_TO_END_PROVEN_D045_DEV_REJECT_CLOSED",
+    "status": "D041_SPECIALIZED_PAIRED_MANAGEMENT_WORKFLOW_READY_FOR_SMOKE",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
     "entrypoint": "research/runner/guardian_research.py",
     "campaign_entrypoint": "research/runner/campaign.py",
+    "d041_management_entrypoint": "research/runner/d041_management_workflow.py",
     "windows_launcher": "research/runner/Run-GuardianResearch.ps1",
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
     "implemented_stages": [
@@ -147,6 +158,8 @@
       "SEQUENTIAL_MULTI_SYMBOL_BATCH",
       "FROZEN_DEV_GATE_SCORE",
       "FROZEN_CONFIRMATION_GATE_SCORE",
+      "D032_M2_PAIRED_MONTH_BLOCK_BOOTSTRAP",
+      "D041_ONE_COMMAND_MANAGEMENT_WORKFLOW",
       "VERDICT_RECEIPT",
       "INVALID_RUN_DIAGNOSTIC",
       "MT5_UTF16_CSV_DECODE",
@@ -166,21 +179,24 @@
       "RICH_EVENT_PAYLOAD_COMPACTION"
     ],
     "planned_stages": [
-      "D041_SPECIALIZED_PAIRED_MANAGEMENT_SCORER",
-      "D041_EXACT_D032_ENTRY_REPLAY_IF_SCORER_READY",
-      "D042_LAYERED_MOMENTUM_ATTRIBUTION",
-      "D043_LEGACY_RSI_ATTRIBUTION"
+      "D041_LOCAL_COMPILE_AND_PRE2024_ENGINEERING_SMOKE",
+      "D041_D032_M2_POST2024_MANAGEMENT_VALIDATION_ONLY_IF_SMOKE_PASS",
+      "D041_SWAP_WEEKEND_PORTFOLIO_REAL_TICK_BOUNDARY_ONLY_IF_VALIDATED",
+      "D042_EXISTING_ATTRIBUTION_AUDIT_BEFORE_NEW_CODE"
     ],
     "reference_tester_model": 0,
+    "historical_model_exceptions": {
+      "D041": "Model=1 (1 minute OHLC) is explicitly required by the historical D032-M2 preregistration because FundedNext historical real ticks are unavailable for much of the window; positive stop-ordering results remain provisional."
+    },
     "fast_tester_model_candidate": null,
     "fast_model_approved": false,
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D045_CLOSED_STATE_CI",
-    "local_mt5_status": "D045_DEV_COMPLETE_REJECT_V0_NO_CONFIRMATION",
+    "github_ci_status": "PENDING_D041_READY_SMOKE_CI",
+    "local_mt5_status": "D041_NOT_YET_COMPILED_LOCAL",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
-    "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
+    "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; specialized scorers are allowed only when required by a prior frozen scientific design; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
