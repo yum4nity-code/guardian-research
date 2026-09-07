@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-07T07:55:16.1260811Z",
-    "run_id":  "20260907_075320_D045_XAUUSD_072612bef4a1",
-    "path":  "backtests/inbox/2026/09/07/20260907_075320_D045_XAUUSD_072612bef4a1",
-    "fingerprint":  "072612bef4a13bce6d3b660d333044d882410d8842679b87c9f28414b3ce9b55",
+    "synced_at_utc":  "2026-09-07T07:55:46.4825914Z",
+    "run_id":  "20260907_075328_D045_BTCUSD_234237899691",
+    "path":  "backtests/inbox/2026/09/07/20260907_075328_D045_BTCUSD_234237899691",
+    "fingerprint":  "2342378996916949e5dbafb5adc3861e9f56421b9ad1676c2ca6d1b7df7dfc25",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D045_V100_RUN_XAUUSD_STATS.csv",
-                  "D045_V100_RUN_XAUUSD_TRADES.csv",
+                  "D045_V100_RUN_BTCUSD_STATS.csv",
+                  "D045_V100_RUN_BTCUSD_TRADES.csv",
                   "sync_manifest.json"
               ]
 }
