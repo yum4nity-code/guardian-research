@@ -100,13 +100,14 @@ jobs:
           import sys
           sys.path.insert(0, 'research/runner')
           import runner
-          import d053_orb30_index_workflow as d053
+          import d053_orb30_index_run as d053_run
+          d053 = d053_run.d053
           identities = d053.verify_frozen_repository_identity()
           report = runner.plan('D053')
           assert report['source_ready'], report['blockers']
           assert report['experiment_id'] == 'D053-US-INDEX-ORB30-ENTRY-ALPHA-V0'
-          assert identities['source_sha256'] == 'bbd0178f3c71a99802b75db563f06f38a94d4735bc828a78ee8c009dd4900ec8'
-          print('D053_SOURCE_READY', report['source_identity'])
+          assert identities['source_sha256'] == 'd39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad'
+          print('D053_SOURCE_READY_V101', report['source_identity'])
           PY
 
       - name: Validate closed experiment manifests remain coherent
