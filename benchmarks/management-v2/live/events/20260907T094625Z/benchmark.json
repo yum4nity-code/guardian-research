@@ -1,0 +1,2784 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "management-v2",
+  "created_at_utc": "2026-09-07T09:46:25.534056+00:00",
+  "preregistration": "research/management/MANAGEMENT_BENCHMARK_V2_PREREGISTRATION_2026_09_07.md",
+  "stage": "development",
+  "scientific_role": "EXPLORATORY_SECOND_PASS_LATE_PROTECTION_PATH_REPLAY_NOT_CONFIRMATION_GRADE",
+  "v1_is_immutable_seen_evidence": true,
+  "datasets": [
+    {
+      "identifier": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "manifest_path": "research\\experiments\\D038.json",
+      "stage": "development",
+      "compact_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260906T230626Z\\trades_compact.csv",
+      "compact_sha256": "5fa350aec027af9c6c1432e3c5bcfa733cd0e988945e652b8c2b096a37e48859",
+      "rows": 459
+    },
+    {
+      "identifier": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "manifest_path": "research\\experiments\\D039.json",
+      "stage": "development",
+      "compact_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D039-INSIDE-DAY-BREAKOUT-V0\\development\\20260907T063007Z\\trades_compact.csv",
+      "compact_sha256": "2e6065395112a8adabf53b9c952f890f95dda375c70a42bae6a4e18d54511c7d",
+      "rows": 441
+    },
+    {
+      "identifier": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "manifest_path": "research\\experiments\\D040.json",
+      "stage": "development",
+      "compact_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T070216Z\\trades_compact.csv",
+      "compact_sha256": "6d33d2b8aa0f66e3eb1ac3d6492c49dcf107a38e411ffe8d67b4053c616d900a",
+      "rows": 758
+    },
+    {
+      "identifier": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "manifest_path": "research\\experiments\\D045.json",
+      "stage": "development",
+      "compact_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T080333Z\\trades_compact.csv",
+      "compact_sha256": "e6aaa1e7d02ea7e1cf95a3477f2c86e6e52a393fb49e11f243130bdaefde766d",
+      "rows": 145
+    }
+  ],
+  "rules": [
+    {
+      "name": "BASELINE_ORIGINAL",
+      "kind": "baseline"
+    },
+    {
+      "name": "BE_AFTER_3R",
+      "kind": "floor",
+      "milestone": 3.0,
+      "suffix": "3r",
+      "floor": 0.0
+    },
+    {
+      "name": "LOCK1_AFTER_2R",
+      "kind": "floor",
+      "milestone": 2.0,
+      "suffix": "2r",
+      "floor": 1.0
+    },
+    {
+      "name": "LOCK1_AFTER_3R",
+      "kind": "floor",
+      "milestone": 3.0,
+      "suffix": "3r",
+      "floor": 1.0
+    },
+    {
+      "name": "LOCK2_AFTER_3R",
+      "kind": "floor",
+      "milestone": 3.0,
+      "suffix": "3r",
+      "floor": 2.0
+    },
+    {
+      "name": "P25_AT_2R_REST_ORIGINAL",
+      "kind": "partial",
+      "milestone": 2.0,
+      "suffix": "2r",
+      "fraction": 0.25
+    },
+    {
+      "name": "P25_AT_3R_REST_ORIGINAL",
+      "kind": "partial",
+      "milestone": 3.0,
+      "suffix": "3r",
+      "fraction": 0.25
+    },
+    {
+      "name": "P25_AT_2R_LOCK1_REST",
+      "kind": "partial_floor",
+      "milestone": 2.0,
+      "suffix": "2r",
+      "fraction": 0.25,
+      "floor": 1.0
+    },
+    {
+      "name": "P25_AT_3R_LOCK2_REST",
+      "kind": "partial_floor",
+      "milestone": 3.0,
+      "suffix": "3r",
+      "fraction": 0.25,
+      "floor": 2.0
+    },
+    {
+      "name": "SL1_TP5",
+      "kind": "fixed",
+      "sl": 1.0,
+      "tp": 5.0,
+      "suffix": "5r"
+    }
+  ],
+  "matrix": [
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "BASELINE_ORIGINAL",
+      "rule_kind": "baseline",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.20214501416122002,
+        "median": -0.00775194,
+        "total": 92.7845615,
+        "profit_factor": {
+          "value": 1.6468581706373735,
+          "infinite": false
+        },
+        "win_rate": 0.49673202614379086
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.17949124734204794,
+        "median": -0.03931039,
+        "total": 82.38648253000001,
+        "profit_factor": {
+          "value": 1.5549236187592443,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.16816436393246187,
+        "median": -0.049342715,
+        "total": 77.187443045,
+        "profit_factor": {
+          "value": 1.511104253629247,
+          "infinite": false
+        },
+        "win_rate": 0.485838779956427
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -1.7429193713923378e-10,
+      "total_net_delta_vs_baseline": -7.999999914690831e-08,
+      "classification_counts": {
+        "ORIGINAL_EXIT": 459
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "BE_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.20214501416122002,
+        "median": -0.00775194,
+        "total": 92.7845615,
+        "profit_factor": {
+          "value": 1.6468581706373735,
+          "infinite": false
+        },
+        "win_rate": 0.49673202614379086
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.17949124734204794,
+        "median": -0.03931039,
+        "total": 82.38648253000001,
+        "profit_factor": {
+          "value": 1.5549236187592443,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.16816436393246187,
+        "median": -0.049342715,
+        "total": 77.187443045,
+        "profit_factor": {
+          "value": 1.511104253629247,
+          "infinite": false
+        },
+        "win_rate": 0.485838779956427
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -1.7429193713923378e-10,
+      "total_net_delta_vs_baseline": -7.999999914690831e-08,
+      "classification_counts": {
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 11,
+        "ORIGINAL_EXIT_NO_MILESTONE": 448
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "LOCK1_AFTER_2R",
+      "rule_kind": "floor",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.1506950780392157,
+        "median": -0.00027931,
+        "total": 69.16904082,
+        "profit_factor": {
+          "value": 1.4856067366916244,
+          "infinite": false
+        },
+        "win_rate": 0.4989106753812636
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.12804131122004356,
+        "median": -0.03820511,
+        "total": 58.77096185,
+        "profit_factor": {
+          "value": 1.3986861148403726,
+          "infinite": false
+        },
+        "win_rate": 0.49455337690631807
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.11671442781045752,
+        "median": -0.039895715,
+        "total": 53.571922365,
+        "profit_factor": {
+          "value": 1.3572849171684171,
+          "infinite": false
+        },
+        "win_rate": 0.4880174291938998
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -0.051449936296296295,
+      "total_net_delta_vs_baseline": -23.61552076,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 8,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 32,
+        "ORIGINAL_EXIT_NO_MILESTONE": 419
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "LOCK1_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.15029316230936818,
+        "median": -0.00775194,
+        "total": 68.9845615,
+        "profit_factor": {
+          "value": 1.4809337516146086,
+          "infinite": false
+        },
+        "win_rate": 0.49673202614379086
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.1276393954901961,
+        "median": -0.03931039,
+        "total": 58.586482530000005,
+        "profit_factor": {
+          "value": 1.3946159842918937,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.11631251208061001,
+        "median": -0.049342715,
+        "total": 53.387443045,
+        "profit_factor": {
+          "value": 1.353510210394982,
+          "infinite": false
+        },
+        "win_rate": 0.485838779956427
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -0.05185185202614379,
+      "total_net_delta_vs_baseline": -23.80000008,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 1,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 10,
+        "ORIGINAL_EXIT_NO_MILESTONE": 448
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "LOCK2_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.14231398697167755,
+        "median": -0.00775194,
+        "total": 65.32212002,
+        "profit_factor": {
+          "value": 1.4554006224224292,
+          "infinite": false
+        },
+        "win_rate": 0.49673202614379086
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.11966022015250545,
+        "median": -0.03931039,
+        "total": 54.92404105,
+        "profit_factor": {
+          "value": 1.3699471889123178,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.1083333367429194,
+        "median": -0.049342715,
+        "total": 49.725001565,
+        "profit_factor": {
+          "value": 1.3292589935486763,
+          "infinite": false
+        },
+        "win_rate": 0.485838779956427
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -0.05983102736383443,
+      "total_net_delta_vs_baseline": -27.462441560000002,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 7,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 4,
+        "ORIGINAL_EXIT_NO_MILESTONE": 448
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_2R_REST_ORIGINAL",
+      "rule_kind": "partial",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.18848042450435729,
+        "median": -0.00775194,
+        "total": 86.5125148475,
+        "profit_factor": {
+          "value": 1.6063024993156267,
+          "infinite": false
+        },
+        "win_rate": 0.49673202614379086
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.16582665768518517,
+        "median": -0.03931039,
+        "total": 76.1144358775,
+        "profit_factor": {
+          "value": 1.5152809381171686,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.15449977427559913,
+        "median": -0.049342715,
+        "total": 70.9153963925,
+        "profit_factor": {
+          "value": 1.4719172379267365,
+          "infinite": false
+        },
+        "win_rate": 0.485838779956427
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -0.013664589831154681,
+      "total_net_delta_vs_baseline": -6.272046732499999,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 40,
+        "ORIGINAL_EXIT_NO_MILESTONE": 419
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_3R_REST_ORIGINAL",
+      "rule_kind": "partial",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.18990251711873637,
+        "median": -0.00775194,
+        "total": 87.1652553575,
+        "profit_factor": {
+          "value": 1.607682535889249,
+          "infinite": false
+        },
+        "win_rate": 0.49673202614379086
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.16724875029956426,
+        "median": -0.03931039,
+        "total": 76.7671763875,
+        "profit_factor": {
+          "value": 1.517074136614201,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.15592186688997822,
+        "median": -0.049342715,
+        "total": 71.5681369025,
+        "profit_factor": {
+          "value": 1.473895464756654,
+          "infinite": false
+        },
+        "win_rate": 0.485838779956427
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -0.012242497216775597,
+      "total_net_delta_vs_baseline": -5.619306222499999,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 11,
+        "ORIGINAL_EXIT_NO_MILESTONE": 448
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_2R_LOCK1_REST",
+      "rule_kind": "partial_floor",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.14989297241285404,
+        "median": -0.00027931,
+        "total": 68.8008743375,
+        "profit_factor": {
+          "value": 1.483021994702917,
+          "infinite": false
+        },
+        "win_rate": 0.4989106753812636
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.12723920559368193,
+        "median": -0.03820511,
+        "total": 58.402795367500005,
+        "profit_factor": {
+          "value": 1.3961885742199382,
+          "infinite": false
+        },
+        "win_rate": 0.49455337690631807
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.11591232218409586,
+        "median": -0.039895715,
+        "total": 53.2037558825,
+        "profit_factor": {
+          "value": 1.3548295202851772,
+          "infinite": false
+        },
+        "win_rate": 0.4880174291938998
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -0.052252041922657956,
+      "total_net_delta_vs_baseline": -23.9836872425,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_FLOOR_PROXY": 8,
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 32,
+        "ORIGINAL_EXIT_NO_MILESTONE": 419
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_3R_LOCK2_REST",
+      "rule_kind": "partial_floor",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.14502924672657952,
+        "median": -0.00775194,
+        "total": 66.5684242475,
+        "profit_factor": {
+          "value": 1.4640893747280406,
+          "infinite": false
+        },
+        "win_rate": 0.49673202614379086
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.12237547990740741,
+        "median": -0.03931039,
+        "total": 56.1703452775,
+        "profit_factor": {
+          "value": 1.3783418142290063,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.11104859649782134,
+        "median": -0.049342715,
+        "total": 50.9713057925,
+        "profit_factor": {
+          "value": 1.3375115196962257,
+          "infinite": false
+        },
+        "win_rate": 0.485838779956427
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -0.057115767608932465,
+      "total_net_delta_vs_baseline": -26.2161373325,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_FLOOR_PROXY": 7,
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 4,
+        "ORIGINAL_EXIT_NO_MILESTONE": 448
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D038",
+      "experiment_id": "D038-NR7-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "SL1_TP5",
+      "rule_kind": "fixed",
+      "input_rows": 459,
+      "eligible_rows": 459,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 459,
+        "mean": 0.1560258039869281,
+        "median": -0.00775194,
+        "total": 71.61584403,
+        "profit_factor": {
+          "value": 1.4992780383824658,
+          "infinite": false
+        },
+        "win_rate": 0.49673202614379086
+      },
+      "net_r_proxy": {
+        "n": 459,
+        "mean": 0.133372037167756,
+        "median": -0.03931039,
+        "total": 61.217765060000005,
+        "profit_factor": {
+          "value": 1.4123392900901948,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 459,
+        "mean": 0.12204515375816993,
+        "median": -0.049342715,
+        "total": 56.018725575,
+        "profit_factor": {
+          "value": 1.3709335067308808,
+          "infinite": false
+        },
+        "win_rate": 0.485838779956427
+      },
+      "baseline_net_r_same_rows": {
+        "n": 459,
+        "mean": 0.17949124751633988,
+        "median": -0.03931038,
+        "total": 82.38648261,
+        "profit_factor": {
+          "value": 1.5549236197092462,
+          "infinite": false
+        },
+        "win_rate": 0.4923747276688453
+      },
+      "mean_net_delta_vs_baseline": -0.04611921034858388,
+      "total_net_delta_vs_baseline": -21.16871755,
+      "classification_counts": {
+        "LATE_TP_THRESHOLD_PROXY": 2,
+        "ORIGINAL_1R_STOP_FILL": 96,
+        "ORIGINAL_EXIT_NO_THRESHOLD": 361
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "BASELINE_ORIGINAL",
+      "rule_kind": "baseline",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.1685844263718821,
+        "median": -0.00438142,
+        "total": 74.34573203000001,
+        "profit_factor": {
+          "value": 1.6020511898369068,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.516331568270233,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.1397563970521542,
+        "median": -0.015471544999999996,
+        "total": 61.6325711,
+        "profit_factor": {
+          "value": 1.4754558989643138,
+          "infinite": false
+        },
+        "win_rate": 0.4943310657596372
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": 3.3534053588894062e-18,
+      "total_net_delta_vs_baseline": 1.478851763270228e-15,
+      "classification_counts": {
+        "ORIGINAL_EXIT": 441
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "BE_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.1685844263718821,
+        "median": -0.00438142,
+        "total": 74.34573203000001,
+        "profit_factor": {
+          "value": 1.6020511898369068,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.516331568270233,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.1397563970521542,
+        "median": -0.015471544999999996,
+        "total": 61.6325711,
+        "profit_factor": {
+          "value": 1.4754558989643138,
+          "infinite": false
+        },
+        "win_rate": 0.4943310657596372
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": 3.3534053588894062e-18,
+      "total_net_delta_vs_baseline": 1.478851763270228e-15,
+      "classification_counts": {
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 9,
+        "ORIGINAL_EXIT_NO_MILESTONE": 432
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "LOCK1_AFTER_2R",
+      "rule_kind": "floor",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.1167969266893424,
+        "median": 0.0059312,
+        "total": 51.50744467,
+        "profit_factor": {
+          "value": 1.4205136353079602,
+          "infinite": false
+        },
+        "win_rate": 0.5011337868480725
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.09757824047619049,
+        "median": -0.0031896800000000003,
+        "total": 43.032004050000005,
+        "profit_factor": {
+          "value": 1.340118309501033,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.08796889736961451,
+        "median": -0.014783595,
+        "total": 38.79428374,
+        "profit_factor": {
+          "value": 1.3017855645516665,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": -0.05178749968253968,
+      "total_net_delta_vs_baseline": -22.83828736,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 4,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 20,
+        "ORIGINAL_EXIT_NO_MILESTONE": 417
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "LOCK1_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.11461617240362812,
+        "median": -0.00438142,
+        "total": 50.54573203,
+        "profit_factor": {
+          "value": 1.40931896531141,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.0953974861904762,
+        "median": -0.01318374,
+        "total": 42.07029141,
+        "profit_factor": {
+          "value": 1.3297726346176948,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.08578814308390023,
+        "median": -0.015471544999999996,
+        "total": 37.8325711,
+        "profit_factor": {
+          "value": 1.291854108654601,
+          "infinite": false
+        },
+        "win_rate": 0.4943310657596372
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": -0.05396825396825397,
+      "total_net_delta_vs_baseline": -23.8,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 1,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 8,
+        "ORIGINAL_EXIT_NO_MILESTONE": 432
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "LOCK2_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.10631131643990929,
+        "median": -0.00438142,
+        "total": 46.88329055,
+        "profit_factor": {
+          "value": 1.379660541209105,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.08709263022675737,
+        "median": -0.01318374,
+        "total": 38.40784993,
+        "profit_factor": {
+          "value": 1.3010641817994753,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.0774832871201814,
+        "median": -0.015471544999999996,
+        "total": 34.17012962,
+        "profit_factor": {
+          "value": 1.2636007131658382,
+          "infinite": false
+        },
+        "win_rate": 0.4943310657596372
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": -0.062273109931972784,
+      "total_net_delta_vs_baseline": -27.46244148,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 7,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 2,
+        "ORIGINAL_EXIT_NO_MILESTONE": 432
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_2R_REST_ORIGINAL",
+      "rule_kind": "partial",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.15339450135487528,
+        "median": -0.00438142,
+        "total": 67.6469750975,
+        "profit_factor": {
+          "value": 1.5511525903993373,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.13417581514172336,
+        "median": -0.01318374,
+        "total": 59.1715344775,
+        "profit_factor": {
+          "value": 1.4665659213010134,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.1245664720351474,
+        "median": -0.015471544999999996,
+        "total": 54.9338141675,
+        "profit_factor": {
+          "value": 1.4262457712660297,
+          "infinite": false
+        },
+        "win_rate": 0.4943310657596372
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": -0.015189925017006797,
+      "total_net_delta_vs_baseline": -6.698756932499998,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 24,
+        "ORIGINAL_EXIT_NO_MILESTONE": 417
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_3R_REST_ORIGINAL",
+      "rule_kind": "partial",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.15594436689342403,
+        "median": -0.00438142,
+        "total": 68.7714658,
+        "profit_factor": {
+          "value": 1.5569108230047533,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.1367256806802721,
+        "median": -0.01318374,
+        "total": 60.29602518,
+        "profit_factor": {
+          "value": 1.4726370655910668,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.12711633757369614,
+        "median": -0.015471544999999996,
+        "total": 56.05830487,
+        "profit_factor": {
+          "value": 1.4324539973050292,
+          "infinite": false
+        },
+        "win_rate": 0.4943310657596372
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": -0.012640059478458046,
+      "total_net_delta_vs_baseline": -5.574266229999998,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 9,
+        "ORIGINAL_EXIT_NO_MILESTONE": 432
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_2R_LOCK1_REST",
+      "rule_kind": "partial_floor",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.11455387659297053,
+        "median": 0.0059312,
+        "total": 50.518259577500004,
+        "profit_factor": {
+          "value": 1.4124377965257289,
+          "infinite": false
+        },
+        "win_rate": 0.5011337868480725
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.09533519037981861,
+        "median": -0.0031896800000000003,
+        "total": 42.0428189575,
+        "profit_factor": {
+          "value": 1.3322999434064906,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.08572584727324263,
+        "median": -0.014783595,
+        "total": 37.8050986475,
+        "profit_factor": {
+          "value": 1.294090570526596,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": -0.054030549778911564,
+      "total_net_delta_vs_baseline": -23.8274724525,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_FLOOR_PROXY": 4,
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 20,
+        "ORIGINAL_EXIT_NO_MILESTONE": 417
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_3R_LOCK2_REST",
+      "rule_kind": "partial_floor",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.10923953444444444,
+        "median": -0.00438142,
+        "total": 48.17463469,
+        "profit_factor": {
+          "value": 1.390117836533902,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.09002084823129251,
+        "median": -0.01318374,
+        "total": 39.69919407,
+        "profit_factor": {
+          "value": 1.3111865257379987,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.08041150512471655,
+        "median": -0.015471544999999996,
+        "total": 35.46147376,
+        "profit_factor": {
+          "value": 1.2735626079561724,
+          "infinite": false
+        },
+        "win_rate": 0.4943310657596372
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": -0.05934489192743764,
+      "total_net_delta_vs_baseline": -26.17109734,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_FLOOR_PROXY": 7,
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 2,
+        "ORIGINAL_EXIT_NO_MILESTONE": 432
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D039",
+      "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "SL1_TP5",
+      "rule_kind": "fixed",
+      "input_rows": 441,
+      "eligible_rows": 441,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 441,
+        "mean": 0.12058279945578232,
+        "median": -0.00438142,
+        "total": 53.17701456,
+        "profit_factor": {
+          "value": 1.430627071839224,
+          "infinite": false
+        },
+        "win_rate": 0.4988662131519274
+      },
+      "net_r_proxy": {
+        "n": 441,
+        "mean": 0.1013641132426304,
+        "median": -0.01318374,
+        "total": 44.70157394,
+        "profit_factor": {
+          "value": 1.3503982339006928,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 441,
+        "mean": 0.09175477013605443,
+        "median": -0.015471544999999996,
+        "total": 40.46385363,
+        "profit_factor": {
+          "value": 1.312152771819251,
+          "infinite": false
+        },
+        "win_rate": 0.4943310657596372
+      },
+      "baseline_net_r_same_rows": {
+        "n": 441,
+        "mean": 0.14936574015873016,
+        "median": -0.01318374,
+        "total": 65.87029141000001,
+        "profit_factor": {
+          "value": 1.5163315683916527,
+          "infinite": false
+        },
+        "win_rate": 0.4965986394557823
+      },
+      "mean_net_delta_vs_baseline": -0.04800162691609978,
+      "total_net_delta_vs_baseline": -21.16871747,
+      "classification_counts": {
+        "LATE_TP_THRESHOLD_PROXY": 2,
+        "ORIGINAL_1R_STOP_FILL": 79,
+        "ORIGINAL_EXIT_NO_THRESHOLD": 360
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "BASELINE_ORIGINAL",
+      "rule_kind": "baseline",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.1351162297757256,
+        "median": -0.031080265,
+        "total": 102.41810217,
+        "profit_factor": {
+          "value": 1.4474866805652276,
+          "infinite": false
+        },
+        "win_rate": 0.48548812664907653
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.1146741082585752,
+        "median": -0.051591055,
+        "total": 86.92297406,
+        "profit_factor": {
+          "value": 1.3672947793409767,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.1044530475,
+        "median": -0.0575562425,
+        "total": 79.175410005,
+        "profit_factor": {
+          "value": 1.3290780429084041,
+          "infinite": false
+        },
+        "win_rate": 0.4762532981530343
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -6.596306118653122e-11,
+      "total_net_delta_vs_baseline": -5.000000037939066e-08,
+      "classification_counts": {
+        "ORIGINAL_EXIT": 758
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "BE_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.1351162297757256,
+        "median": -0.031080265,
+        "total": 102.41810217,
+        "profit_factor": {
+          "value": 1.4474866805652276,
+          "infinite": false
+        },
+        "win_rate": 0.48548812664907653
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.1146741082585752,
+        "median": -0.051591055,
+        "total": 86.92297406,
+        "profit_factor": {
+          "value": 1.3672947793409767,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.1044530475,
+        "median": -0.0575562425,
+        "total": 79.175410005,
+        "profit_factor": {
+          "value": 1.3290780429084041,
+          "infinite": false
+        },
+        "win_rate": 0.4762532981530343
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -6.596306118653122e-11,
+      "total_net_delta_vs_baseline": -5.000000037939066e-08,
+      "classification_counts": {
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 13,
+        "ORIGINAL_EXIT_NO_MILESTONE": 745
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "LOCK1_AFTER_2R",
+      "rule_kind": "floor",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.10337231067282322,
+        "median": -0.026760995000000003,
+        "total": 78.35621149,
+        "profit_factor": {
+          "value": 1.343858126253284,
+          "infinite": false
+        },
+        "win_rate": 0.4868073878627968
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.08293018915567282,
+        "median": -0.047931835,
+        "total": 62.861083380000004,
+        "profit_factor": {
+          "value": 1.2668078567156325,
+          "infinite": false
+        },
+        "win_rate": 0.4841688654353562
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.07270912839709763,
+        "median": -0.0556170325,
+        "total": 55.113519325,
+        "profit_factor": {
+          "value": 1.2301013305877897,
+          "infinite": false
+        },
+        "win_rate": 0.47757255936675463
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -0.03174391916886544,
+      "total_net_delta_vs_baseline": -24.061890730000002,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 10,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 38,
+        "ORIGINAL_EXIT_NO_MILESTONE": 710
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "LOCK1_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.10371781288918205,
+        "median": -0.031080265,
+        "total": 78.61810217,
+        "profit_factor": {
+          "value": 1.343499370003911,
+          "infinite": false
+        },
+        "win_rate": 0.48548812664907653
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.08327569137203167,
+        "median": -0.051591055,
+        "total": 63.122974060000004,
+        "profit_factor": {
+          "value": 1.2667273995101713,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.07305463061345646,
+        "median": -0.0575562425,
+        "total": 55.375410005,
+        "profit_factor": {
+          "value": 1.230157716247318,
+          "infinite": false
+        },
+        "win_rate": 0.4762532981530343
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -0.0313984169525066,
+      "total_net_delta_vs_baseline": -23.80000005,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 1,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 12,
+        "ORIGINAL_EXIT_NO_MILESTONE": 745
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "LOCK2_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.09888609589709763,
+        "median": -0.031080265,
+        "total": 74.95566069,
+        "profit_factor": {
+          "value": 1.327497376743684,
+          "infinite": false
+        },
+        "win_rate": 0.48548812664907653
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.07844397437994723,
+        "median": -0.051591055,
+        "total": 59.46053258,
+        "profit_factor": {
+          "value": 1.2512516791981019,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.06822291362137203,
+        "median": -0.0575562425,
+        "total": 51.712968525,
+        "profit_factor": {
+          "value": 1.2149354512230026,
+          "infinite": false
+        },
+        "win_rate": 0.4762532981530343
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -0.036230133944591035,
+      "total_net_delta_vs_baseline": -27.462441530000003,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 7,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 6,
+        "ORIGINAL_EXIT_NO_MILESTONE": 745
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_2R_REST_ORIGINAL",
+      "rule_kind": "partial",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.1259251700065963,
+        "median": -0.031080265,
+        "total": 95.451278865,
+        "profit_factor": {
+          "value": 1.418418443066037,
+          "infinite": false
+        },
+        "win_rate": 0.48548812664907653
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.10548304848944591,
+        "median": -0.051591055,
+        "total": 79.956150755,
+        "profit_factor": {
+          "value": 1.338930593991024,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.0952619877308707,
+        "median": -0.0575562425,
+        "total": 72.2085867,
+        "profit_factor": {
+          "value": 1.3010603281650917,
+          "infinite": false
+        },
+        "win_rate": 0.4762532981530343
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -0.009191059835092347,
+      "total_net_delta_vs_baseline": -6.966823355,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 48,
+        "ORIGINAL_EXIT_NO_MILESTONE": 710
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_3R_REST_ORIGINAL",
+      "rule_kind": "partial",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.1272581366094987,
+        "median": -0.031080265,
+        "total": 96.46166755,
+        "profit_factor": {
+          "value": 1.421461738688416,
+          "infinite": false
+        },
+        "win_rate": 0.48548812664907653
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.1068160150923483,
+        "median": -0.051591055,
+        "total": 80.96653944,
+        "profit_factor": {
+          "value": 1.3421257447667374,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.0965949543337731,
+        "median": -0.0575562425,
+        "total": 73.21897538500001,
+        "profit_factor": {
+          "value": 1.3043212169274878,
+          "infinite": false
+        },
+        "win_rate": 0.4762532981530343
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -0.007858093232189974,
+      "total_net_delta_vs_baseline": -5.95643467,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 13,
+        "ORIGINAL_EXIT_NO_MILESTONE": 745
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_2R_LOCK1_REST",
+      "rule_kind": "partial_floor",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.10211723067941952,
+        "median": -0.026760995000000003,
+        "total": 77.404860855,
+        "profit_factor": {
+          "value": 1.339683222432127,
+          "infinite": false
+        },
+        "win_rate": 0.4868073878627968
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.08167510916226912,
+        "median": -0.047931835,
+        "total": 61.909732745,
+        "profit_factor": {
+          "value": 1.262769939927355,
+          "infinite": false
+        },
+        "win_rate": 0.4841688654353562
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.07145404840369393,
+        "median": -0.0556170325,
+        "total": 54.16216869,
+        "profit_factor": {
+          "value": 1.226129400476084,
+          "infinite": false
+        },
+        "win_rate": 0.47757255936675463
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -0.03299899916226913,
+      "total_net_delta_vs_baseline": -25.013241365000003,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_FLOOR_PROXY": 10,
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 38,
+        "ORIGINAL_EXIT_NO_MILESTONE": 710
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "P25_AT_3R_LOCK2_REST",
+      "rule_kind": "partial_floor",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.10008553620052771,
+        "median": -0.031080265,
+        "total": 75.86483644,
+        "profit_factor": {
+          "value": 1.3314697608222583,
+          "infinite": false
+        },
+        "win_rate": 0.48548812664907653
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.07964341468337731,
+        "median": -0.051591055,
+        "total": 60.36970833,
+        "profit_factor": {
+          "value": 1.255093419659581,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.06942235392480212,
+        "median": -0.0575562425,
+        "total": 52.622144275000004,
+        "profit_factor": {
+          "value": 1.2187142731634368,
+          "infinite": false
+        },
+        "win_rate": 0.4762532981530343
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -0.03503069364116095,
+      "total_net_delta_vs_baseline": -26.553265780000004,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_FLOOR_PROXY": 7,
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 6,
+        "ORIGINAL_EXIT_NO_MILESTONE": 745
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D040",
+      "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "stage": "development",
+      "rule": "SL1_TP5",
+      "rule_kind": "fixed",
+      "input_rows": 758,
+      "eligible_rows": 758,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 758,
+        "mean": 0.10812037507915567,
+        "median": -0.031080265,
+        "total": 81.95524431,
+        "profit_factor": {
+          "value": 1.3580800605963246,
+          "infinite": false
+        },
+        "win_rate": 0.48548812664907653
+      },
+      "net_r_proxy": {
+        "n": 758,
+        "mean": 0.08767825356200527,
+        "median": -0.051591055,
+        "total": 66.4601162,
+        "profit_factor": {
+          "value": 1.2808285609027248,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 758,
+        "mean": 0.07745719280343008,
+        "median": -0.0575562425,
+        "total": 58.712552145000004,
+        "profit_factor": {
+          "value": 1.2440279343398926,
+          "infinite": false
+        },
+        "win_rate": 0.4762532981530343
+      },
+      "baseline_net_r_same_rows": {
+        "n": 758,
+        "mean": 0.11467410832453825,
+        "median": -0.05159105,
+        "total": 86.92297411,
+        "profit_factor": {
+          "value": 1.3672947796298534,
+          "infinite": false
+        },
+        "win_rate": 0.48284960422163586
+      },
+      "mean_net_delta_vs_baseline": -0.02699585476253298,
+      "total_net_delta_vs_baseline": -20.46285791,
+      "classification_counts": {
+        "LATE_TP_THRESHOLD_PROXY": 3,
+        "ORIGINAL_1R_STOP_FILL": 147,
+        "ORIGINAL_EXIT_NO_THRESHOLD": 608
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "BASELINE_ORIGINAL",
+      "rule_kind": "baseline",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.1026431807586207,
+        "median": -0.53812859,
+        "total": 14.88326121,
+        "profit_factor": {
+          "value": 1.2172183881524956,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.09590872268965518,
+        "median": -0.54444154,
+        "total": 13.906764790000002,
+        "profit_factor": {
+          "value": 1.201178596801979,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.09254149365517243,
+        "median": -0.547598015,
+        "total": 13.418516580000002,
+        "profit_factor": {
+          "value": 1.1932596364171653,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": -6.206896379231836e-10,
+      "total_net_delta_vs_baseline": -8.999999749886162e-08,
+      "classification_counts": {
+        "ORIGINAL_EXIT": 145
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "BE_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.1026431807586207,
+        "median": -0.53812859,
+        "total": 14.88326121,
+        "profit_factor": {
+          "value": 1.2172183881524956,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.09590872268965518,
+        "median": -0.54444154,
+        "total": 13.906764790000002,
+        "profit_factor": {
+          "value": 1.201178596801979,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.09254149365517243,
+        "median": -0.547598015,
+        "total": 13.418516580000002,
+        "profit_factor": {
+          "value": 1.1932596364171653,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": -6.206896379231836e-10,
+      "total_net_delta_vs_baseline": -8.999999749886162e-08,
+      "classification_counts": {
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 17,
+        "ORIGINAL_EXIT_NO_MILESTONE": 128
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "LOCK1_AFTER_2R",
+      "rule_kind": "floor",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.10901889131034483,
+        "median": -0.53812859,
+        "total": 15.80773924,
+        "profit_factor": {
+          "value": 1.2307109705056207,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.10228443324137933,
+        "median": -0.54444154,
+        "total": 14.831242820000002,
+        "profit_factor": {
+          "value": 1.214552317840491,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.09891720420689656,
+        "median": -0.547598015,
+        "total": 14.342994610000002,
+        "profit_factor": {
+          "value": 1.206574393446251,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": 0.0063757099310345015,
+      "total_net_delta_vs_baseline": 0.9244779400000027,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 10,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 23,
+        "ORIGINAL_EXIT_NO_MILESTONE": 112
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "LOCK1_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.10546569027586207,
+        "median": -0.53812859,
+        "total": 15.29252509,
+        "profit_factor": {
+          "value": 1.223191517232761,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.09873123220689656,
+        "median": -0.54444154,
+        "total": 14.316028670000001,
+        "profit_factor": {
+          "value": 1.2070991063053353,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.09536400317241381,
+        "median": -0.547598015,
+        "total": 13.827780460000001,
+        "profit_factor": {
+          "value": 1.1991540427157996,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": 0.0028225088965517413,
+      "total_net_delta_vs_baseline": 0.4092637900000025,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 1,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 16,
+        "ORIGINAL_EXIT_NO_MILESTONE": 128
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "LOCK2_AFTER_3R",
+      "rule_kind": "floor",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.11843187496551724,
+        "median": -0.53812859,
+        "total": 17.17262187,
+        "profit_factor": {
+          "value": 1.250631174869617,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.11169741689655173,
+        "median": -0.54444154,
+        "total": 16.19612545,
+        "profit_factor": {
+          "value": 1.2342970375110387,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.10833018786206898,
+        "median": -0.547598015,
+        "total": 15.707877240000002,
+        "profit_factor": {
+          "value": 1.226232059720559,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": 0.015788693586206912,
+      "total_net_delta_vs_baseline": 2.289360570000002,
+      "classification_counts": {
+        "LATE_FLOOR_THRESHOLD_PROXY": 6,
+        "ORIGINAL_EXIT_NO_FLOOR_RETRACE": 11,
+        "ORIGINAL_EXIT_NO_MILESTONE": 128
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "P25_AT_2R_REST_ORIGINAL",
+      "rule_kind": "partial",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.08975144189655172,
+        "median": -0.53812859,
+        "total": 13.013959075,
+        "profit_factor": {
+          "value": 1.1899362763219314,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.08301698382758622,
+        "median": -0.54444154,
+        "total": 12.037462655000002,
+        "profit_factor": {
+          "value": 1.174136823521348,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.07964975479310346,
+        "median": -0.547598015,
+        "total": 11.549214445000002,
+        "profit_factor": {
+          "value": 1.1663370888456714,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": -0.012891739482758601,
+      "total_net_delta_vs_baseline": -1.869302224999997,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 33,
+        "ORIGINAL_EXIT_NO_MILESTONE": 112
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "P25_AT_3R_REST_ORIGINAL",
+      "rule_kind": "partial",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.09281691048275863,
+        "median": -0.53812859,
+        "total": 13.458452020000001,
+        "profit_factor": {
+          "value": 1.196423566956405,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.08608245241379313,
+        "median": -0.54444154,
+        "total": 12.481955600000003,
+        "profit_factor": {
+          "value": 1.1805669651332762,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.08271522337931035,
+        "median": -0.547598015,
+        "total": 11.99370739,
+        "profit_factor": {
+          "value": 1.1727388803126009,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": -0.009826270896551706,
+      "total_net_delta_vs_baseline": -1.4248092799999974,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 17,
+        "ORIGINAL_EXIT_NO_MILESTONE": 128
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "P25_AT_2R_LOCK1_REST",
+      "rule_kind": "partial_floor",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.09453322481034483,
+        "median": -0.53812859,
+        "total": 13.707317597500001,
+        "profit_factor": {
+          "value": 1.2000557130867753,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.08779876674137933,
+        "median": -0.54444154,
+        "total": 12.730821177500003,
+        "profit_factor": {
+          "value": 1.1841671143002317,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.08443153770689656,
+        "median": -0.547598015,
+        "total": 12.242572967500001,
+        "profit_factor": {
+          "value": 1.1763231566174857,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": -0.0081099565689655,
+      "total_net_delta_vs_baseline": -1.1759437024999975,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_FLOOR_PROXY": 10,
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 23,
+        "ORIGINAL_EXIT_NO_MILESTONE": 112
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "P25_AT_3R_LOCK2_REST",
+      "rule_kind": "partial_floor",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.10465843113793104,
+        "median": -0.53812859,
+        "total": 15.175472515000001,
+        "profit_factor": {
+          "value": 1.221483156994246,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.09792397306896554,
+        "median": -0.54444154,
+        "total": 14.198976095000003,
+        "profit_factor": {
+          "value": 1.205405795665071,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.09455674403448276,
+        "median": -0.547598015,
+        "total": 13.710727885,
+        "profit_factor": {
+          "value": 1.197468197790146,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": 0.0020152497586207094,
+      "total_net_delta_vs_baseline": 0.29221121500000286,
+      "classification_counts": {
+        "LATE_PARTIAL_PLUS_FLOOR_PROXY": 6,
+        "LATE_PARTIAL_PLUS_ORIGINAL_REMAINDER": 11,
+        "ORIGINAL_EXIT_NO_MILESTONE": 128
+      },
+      "confirmation_grade": false
+    },
+    {
+      "dataset": "D045",
+      "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+      "stage": "development",
+      "rule": "SL1_TP5",
+      "rule_kind": "fixed",
+      "input_rows": 145,
+      "eligible_rows": 145,
+      "excluded_rows": 0,
+      "gross_r_proxy": {
+        "n": 145,
+        "mean": 0.11364543613793104,
+        "median": -0.53812859,
+        "total": 16.47858824,
+        "profit_factor": {
+          "value": 1.241695053711288,
+          "infinite": false
+        },
+        "win_rate": 0.38620689655172413
+      },
+      "net_r_proxy": {
+        "n": 145,
+        "mean": 0.10691097806896553,
+        "median": -0.54444154,
+        "total": 15.502091820000002,
+        "profit_factor": {
+          "value": 1.225359706250832,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "commission_stress_1_5x_r_proxy": {
+        "n": 145,
+        "mean": 0.10354374903448277,
+        "median": -0.547598015,
+        "total": 15.013843610000002,
+        "profit_factor": {
+          "value": 1.2172948438278666,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "baseline_net_r_same_rows": {
+        "n": 145,
+        "mean": 0.09590872331034482,
+        "median": -0.54444154,
+        "total": 13.906764879999999,
+        "profit_factor": {
+          "value": 1.2011785982494556,
+          "infinite": false
+        },
+        "win_rate": 0.3793103448275862
+      },
+      "mean_net_delta_vs_baseline": 0.011002254758620711,
+      "total_net_delta_vs_baseline": 1.595326940000003,
+      "classification_counts": {
+        "LATE_TP_THRESHOLD_PROXY": 8,
+        "ORIGINAL_1R_STOP_FILL": 31,
+        "ORIGINAL_EXIT_NO_THRESHOLD": 104,
+        "SL_THRESHOLD_PROXY": 2
+      },
+      "confirmation_grade": false
+    }
+  ],
+  "cross_family_ranking": [
+    {
+      "rule": "BE_AFTER_3R",
+      "families_evaluated": 4,
+      "families_improved": 1,
+      "families_degraded": 3,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -2.152361582238858e-10,
+      "median_family_delta_r": -1.201274991628825e-10,
+      "worst_family_delta_r": -6.206896379231836e-10,
+      "best_family_delta_r": 3.3534053588894062e-18,
+      "pooled_trade_weighted_mean_delta_r": -1.2201885498963328e-10,
+      "pooled_total_delta_r": -2.1999999554630882e-07,
+      "family_deltas": {
+        "D038": -1.7429193713923378e-10,
+        "D039": 3.3534053588894062e-18,
+        "D040": -6.596306118653122e-11,
+        "D045": -6.206896379231836e-10
+      },
+      "confirmation_grade": false,
+      "rank": 1
+    },
+    {
+      "rule": "SL1_TP5",
+      "families_evaluated": 4,
+      "families_improved": 1,
+      "families_degraded": 3,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.027528609317148983,
+      "median_family_delta_r": -0.03655753255555843,
+      "worst_family_delta_r": -0.04800162691609978,
+      "best_family_delta_r": 0.011002254758620711,
+      "pooled_trade_weighted_mean_delta_r": -0.033946181913477536,
+      "pooled_total_delta_r": -61.20496599,
+      "family_deltas": {
+        "D038": -0.04611921034858388,
+        "D039": -0.04800162691609978,
+        "D040": -0.02699585476253298,
+        "D045": 0.011002254758620711
+      },
+      "confirmation_grade": false,
+      "rank": 2
+    },
+    {
+      "rule": "LOCK1_AFTER_2R",
+      "families_evaluated": 4,
+      "families_improved": 1,
+      "families_degraded": 3,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.032151411304166724,
+      "median_family_delta_r": -0.04159692773258086,
+      "worst_family_delta_r": -0.05178749968253968,
+      "best_family_delta_r": 0.0063757099310345015,
+      "pooled_trade_weighted_mean_delta_r": -0.038597460293954514,
+      "pooled_total_delta_r": -69.59122090999999,
+      "family_deltas": {
+        "D038": -0.051449936296296295,
+        "D039": -0.05178749968253968,
+        "D040": -0.03174391916886544,
+        "D045": 0.0063757099310345015
+      },
+      "confirmation_grade": false,
+      "rank": 3
+    },
+    {
+      "rule": "LOCK1_AFTER_3R",
+      "families_evaluated": 4,
+      "families_improved": 1,
+      "families_degraded": 3,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.033599003512588155,
+      "median_family_delta_r": -0.0416251344893252,
+      "worst_family_delta_r": -0.05396825396825397,
+      "best_family_delta_r": 0.0028225088965517413,
+      "pooled_trade_weighted_mean_delta_r": -0.03937367517470882,
+      "pooled_total_delta_r": -70.99073634,
+      "family_deltas": {
+        "D038": -0.05185185202614379,
+        "D039": -0.05396825396825397,
+        "D040": -0.0313984169525066,
+        "D045": 0.0028225088965517413
+      },
+      "confirmation_grade": false,
+      "rank": 4
+    },
+    {
+      "rule": "P25_AT_3R_LOCK2_REST",
+      "families_evaluated": 4,
+      "families_improved": 1,
+      "families_degraded": 3,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.03736902585472759,
+      "median_family_delta_r": -0.04607323062504671,
+      "worst_family_delta_r": -0.05934489192743764,
+      "best_family_delta_r": 0.0020152497586207094,
+      "pooled_trade_weighted_mean_delta_r": -0.043620792699667225,
+      "pooled_total_delta_r": -78.64828923750001,
+      "family_deltas": {
+        "D038": -0.057115767608932465,
+        "D039": -0.05934489192743764,
+        "D040": -0.03503069364116095,
+        "D045": 0.0020152497586207094
+      },
+      "confirmation_grade": false,
+      "rank": 5
+    },
+    {
+      "rule": "LOCK2_AFTER_3R",
+      "families_evaluated": 4,
+      "families_improved": 1,
+      "families_degraded": 3,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.03563639441354784,
+      "median_family_delta_r": -0.04803058065421273,
+      "worst_family_delta_r": -0.062273109931972784,
+      "best_family_delta_r": 0.015788693586206912,
+      "pooled_trade_weighted_mean_delta_r": -0.04442482750970605,
+      "pooled_total_delta_r": -80.097964,
+      "family_deltas": {
+        "D038": -0.05983102736383443,
+        "D039": -0.062273109931972784,
+        "D040": -0.036230133944591035,
+        "D045": 0.015788693586206912
+      },
+      "confirmation_grade": false,
+      "rank": 6
+    },
+    {
+      "rule": "P25_AT_3R_REST_ORIGINAL",
+      "families_evaluated": 4,
+      "families_improved": 0,
+      "families_degraded": 4,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.010641730205993832,
+      "median_family_delta_r": -0.01103438405666365,
+      "worst_family_delta_r": -0.012640059478458046,
+      "best_family_delta_r": -0.007858093232189974,
+      "pooled_trade_weighted_mean_delta_r": -0.010302172158901828,
+      "pooled_total_delta_r": -18.574816402499994,
+      "family_deltas": {
+        "D038": -0.012242497216775597,
+        "D039": -0.012640059478458046,
+        "D040": -0.007858093232189974,
+        "D045": -0.009826270896551706
+      },
+      "confirmation_grade": false,
+      "rank": 7
+    },
+    {
+      "rule": "P25_AT_2R_REST_ORIGINAL",
+      "families_evaluated": 4,
+      "families_improved": 0,
+      "families_degraded": 4,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.012734328541503106,
+      "median_family_delta_r": -0.01327816465695664,
+      "worst_family_delta_r": -0.015189925017006797,
+      "best_family_delta_r": -0.009191059835092347,
+      "pooled_trade_weighted_mean_delta_r": -0.012094802687188015,
+      "pooled_total_delta_r": -21.806929244999992,
+      "family_deltas": {
+        "D038": -0.013664589831154681,
+        "D039": -0.015189925017006797,
+        "D040": -0.009191059835092347,
+        "D045": -0.012891739482758601
+      },
+      "confirmation_grade": false,
+      "rank": 8
+    },
+    {
+      "rule": "P25_AT_2R_LOCK1_REST",
+      "families_evaluated": 4,
+      "families_improved": 0,
+      "families_degraded": 4,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.036847886858201034,
+      "median_family_delta_r": -0.042625520542463546,
+      "worst_family_delta_r": -0.054030549778911564,
+      "best_family_delta_r": -0.0081099565689655,
+      "pooled_trade_weighted_mean_delta_r": -0.04104289781613976,
+      "pooled_total_delta_r": -74.00034476249999,
+      "family_deltas": {
+        "D038": -0.052252041922657956,
+        "D039": -0.054030549778911564,
+        "D040": -0.03299899916226913,
+        "D045": -0.0081099565689655
+      },
+      "confirmation_grade": false,
+      "rank": 9
+    }
+  ],
+  "limitations": {
+    "threshold_fill_proxy": true,
+    "original_roundturn_commission_r_reused": true,
+    "continuous_trailing_supported": false,
+    "time_exit_supported": false,
+    "exact_2_5r_partial_supported": false,
+    "wider_than_original_stop_supported": false,
+    "parent_verdicts_changed": false,
+    "confirmation_grade": false
+  },
+  "autosync_used": false,
+  "fingerprint_sha256": "475cfd14ed408efd06ca3381563c6ed54fc335edabc65ff5c6582c293f30840f"
+}

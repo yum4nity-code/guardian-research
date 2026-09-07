@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-07T09:46:27.886764+00:00",
+  "benchmark_id": "management-v2",
+  "event_id": "20260907T094625Z",
+  "event_path": "benchmarks/management-v2/live/events/20260907T094625Z",
+  "status": "MANAGEMENT_BENCHMARK_V2_COMPLETE",
+  "fingerprint_sha256": "475cfd14ed408efd06ca3381563c6ed54fc335edabc65ff5c6582c293f30840f",
+  "autosync_used": false
+}
