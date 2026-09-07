@@ -15,8 +15,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0**
-- State: **READY_DEV**
-- Next action: **On the MT5 research PC run `git pull` then `py -3 .\research\runner\d041_management_workflow.py D041 --stage development`. In D041 this runner stage name is only an orchestration label: scientifically it is the already-preregistered D032-M2 POST2024 MANAGEMENT VALIDATION, not a new development/tuning sample. The exact source and all gates remain frozen. It runs BTCUSD/ETHUSD/DOGUSD sequentially with Model=1 as preregistered, then applies the specialized paired month-block bootstrap scorer and publishes automatically. Do not inspect or modify thresholds mid-run. After completion the user should only say `fini`; the assistant reads `backtests/d041/live/latest.json` and the score/finalize events.**
+- State: **CLOSED_REJECTED_MANAGEMENT**
+- Next action: **No MT5 action is required for D041. The preregistered D032-M2 POST2024 management validation is permanently REJECT_MANAGEMENT: 77 eligible paired events, reference mean +0.666436R, candidate mean +0.328383R, paired candidate-minus-reference mean -0.338054R, 0/3 positive-delta symbols, and deterministic month-block bootstrap 95% interval [-0.533035R, -0.121697R]. The final 'decision score does not match experiment/stage' message occurred only after the valid score and paired analytics were published, when the specialized workflow incorrectly called the generic strategy bundle publisher. Do not rerun MT5 for D041. Next work is to audit existing D042/Momentum attribution evidence before creating new code or tests.**
 
 ## Canonical operator UX
 
@@ -32,7 +32,7 @@ Read only what is needed, in this order:
 - Guardian Core baseline: **v12.01** — do not modify during this research refactor.
 - Legacy AutoSync: **UNTRUSTED_NEVER_RELIABLY_WORKED** — reference only, never fallback.
 - AutoSync target: **AUTOSYNC_V3_FROM_SCRATCH**.
-- Closed experiments: D017=REJECTED_ALPHA_FAMILY, D023=REJECTED_UNTOUCHED_CONFIRMATION, D036=REJECTED_V0, D037=REJECTED_V0, D038=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D039=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D040=UNCONFIRMED_2026_H1_ARCHIVED, D045=REJECTED_V0_MEAN_GATE_ONLY_RICH_PATH_RETAINED.
+- Closed experiments: D017=REJECTED_ALPHA_FAMILY, D023=REJECTED_UNTOUCHED_CONFIRMATION, D036=REJECTED_V0, D037=REJECTED_V0, D038=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D039=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D040=UNCONFIRMED_2026_H1_ARCHIVED, D041=REJECTED_MANAGEMENT_D032_M2_POST2024, D045=REJECTED_V0_MEAN_GATE_ONLY_RICH_PATH_RETAINED.
 
 If this file ever disagrees with `GUARDIAN_STATE.json`, the state file wins and this file must be regenerated with:
 
