@@ -2,22 +2,22 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T12:58:00+02:00",
-  "active_primary": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+  "updated_at": "2026-09-07T13:24:00+02:00",
+  "active_primary": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
   "items": [
     {
-      "id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+      "id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
       "priority": 0,
-      "status": "CLOSED_INCONCLUSIVE_COUNT_NO_CONFIRMATION",
+      "status": "READY_SMOKE",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "No further MT5 action for D046. Formal verdict remains INCONCLUSIVE_COUNT because the frozen 600-day gate was unattainable on the observed weekday-style FundedNext BTC calendar (513 paired days), but every substantive economic gate failed strongly: PRE short -13.44 bps/day, POST long -8.89 bps/day, combined -22.33 bps/day, PF 0.394, both 2024 and 2025 negative, stress negative, bootstrap 95% interval fully negative. Keep 2026 H1 unopened and do not retune D046. Next science is D044 Turtle Soup: exact Street Smarts entry rules have now been recovered; build a separately preregistered Guardian entry-alpha screen without pretending to replicate the book's discretionary trailing management.",
-      "manifest": "research/experiments/D046.json"
+      "goal": "Run D044 engineering smoke only: git pull then py -3 .\\research\\runner\\guardian_research.py campaign D044 --stage smoke --no-finalize. Smoke is October 2023 on USDJPY, XAUUSD and BTCUSD and is engineering-only. The campaign must compile the frozen source, run Model0 sequentially, validate lifecycle and native Trade Path, and auto-publish evidence. Do not interpret smoke profitability. If smoke passes, move the unchanged source to the frozen 2024-2025 development stage.",
+      "manifest": "research/experiments/D044.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "D046_CLOSED_NEXT_D044_PREREGISTRATION",
+      "status": "D044_READY_SMOKE_TURTLE_SOUP_TICK_PATH",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
       "goal": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; specialized scorers are allowed only when required by a frozen scientific design; post-verdict archive-tool failures never invalidate valid science or trigger an MT5 rerun; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
