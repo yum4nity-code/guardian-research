@@ -41,6 +41,8 @@ jobs:
           research/runner/d041_management_workflow.py
           research/runner/d046_expiry_score.py
           research/runner/d046_expiry_workflow.py
+          research/runner/d051_nr7_index_confirmation.py
+          research/runner/d052_management_alpha_workflow.py
           research/runner/management_benchmark.py
           research/runner/management_benchmark_offline.py
           research/runner/management_benchmark_v2.py
@@ -57,6 +59,7 @@ jobs:
           research/runner/test_management_benchmark.py
           research/runner/test_management_benchmark_v2.py
           research/runner/test_market_transport_lab_v1.py
+          research/runner/test_d052_management_alpha.py
 
       - name: Parse Windows PowerShell tools
         shell: pwsh
@@ -99,47 +102,26 @@ jobs:
           print('D044_SOURCE_READY', report['source_identity'])
           PY
 
-      - name: Validate closed D046 manifest remains coherent
-        run: python research/runner/experiment.py validate D046
+      - name: Validate closed experiment manifests remain coherent
+        run: |
+          python research/runner/experiment.py validate D046
+          python research/runner/experiment.py validate D041
+          python research/runner/experiment.py validate D045
+          python research/runner/experiment.py validate D040
+          python research/runner/experiment.py validate D039
+          python research/runner/experiment.py validate D038
 
-      - name: Validate closed D041 manifest remains coherent
-        run: python research/runner/experiment.py validate D041
-
-      - name: Validate closed D045 manifest remains coherent
-        run: python research/runner/experiment.py validate D045
-
-      - name: Validate closed D040 manifest remains coherent
-        run: python research/runner/experiment.py validate D040
-
-      - name: Validate closed D039 manifest remains coherent
-        run: python research/runner/experiment.py validate D039
-
-      - name: Validate closed D038 manifest remains coherent
-        run: python research/runner/experiment.py validate D038
-
-      - name: Report D037 v1.02 historical source identity
-        run: python research/runner/source_hash.py research/strategies/d037/D037_Williams_M15_v1_02.mq5
-
-      - name: Report D038 v1.00 closed source identity
-        run: python research/runner/source_hash.py research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5
-
-      - name: Report D039 v1.00 closed source identity
-        run: python research/runner/source_hash.py research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5
-
-      - name: Report D040 v1.00 closed source identity
-        run: python research/runner/source_hash.py research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5
-
-      - name: Report D044 v1.00 frozen source identity
-        run: python research/runner/source_hash.py research/strategies/d044/D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5
-
-      - name: Report D045 v1.00 closed source identity
-        run: python research/runner/source_hash.py research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5
-
-      - name: Report D041 v1.00 frozen source identity
-        run: python research/runner/source_hash.py research/strategies/d041/D041_D032_M2_DojiManagementValidation_v1_00.mq5
-
-      - name: Report D046 v1.00 frozen source identity
-        run: python research/runner/source_hash.py research/strategies/d046/D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5
+      - name: Report frozen source identities
+        run: |
+          python research/runner/source_hash.py research/strategies/d037/D037_Williams_M15_v1_02.mq5
+          python research/runner/source_hash.py research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5
+          python research/runner/source_hash.py research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5
+          python research/runner/source_hash.py research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5
+          python research/runner/source_hash.py research/strategies/d044/D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5
+          python research/runner/source_hash.py research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5
+          python research/runner/source_hash.py research/strategies/d041/D041_D032_M2_DojiManagementValidation_v1_00.mq5
+          python research/runner/source_hash.py research/strategies/d046/D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5
+          python research/runner/source_hash.py research/strategies/d052/D052_ManagementAsAlpha_PairedNull_M15_v1_00.mq5
 
       - name: Run regression tests
         run: |
@@ -154,3 +136,4 @@ jobs:
           python research/runner/test_management_benchmark.py
           python research/runner/test_management_benchmark_v2.py
           python research/runner/test_market_transport_lab_v1.py
+          python research/runner/test_d052_management_alpha.py
