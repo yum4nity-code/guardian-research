@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
-  "strategy_family": "opening-range breakout / derived Core-3 independent confirmation",
+  "strategy_family": "opening-range breakout / D053-derived Core-3 independent confirmation",
   "status": "CANDIDATE_CONFIRM",
-  "hypothesis": "The exact D053 v1.01 ORB30 rule has positive robust out-of-sample expectancy during Jul-Aug 2026 on the D053-derived Core-3 cluster SPX500, NDX100 and US30.",
+  "hypothesis": "The exact D053 v1.01 ORB30 rule retains positive, temporally stable post-cost expectancy on the D053-derived Core-3 universe SPX500, NDX100 and US30 in untouched Jul-Aug 2026.",
   "preregistration": {
-    "path": "research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md",
-    "git_blob_sha": "19ecf99440414d214fd1399692dfa786c569e563",
+    "path": "research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md",
+    "git_blob_sha": "2c1bb149664a9e4153c6f6cb8ae59ce1e874da57",
     "frozen_before_result_inspection": true,
     "execution_deviations": [
-      "D054 is confirmation-only: 2024-2025 discovery occurred in D053 and is not rerun as fresh D054 development.",
+      "D054 is a D053-derived market-selection hypothesis; SPX500/NDX100/US30 were chosen because they were the three positive D053 markets, so only untouched Jul-Aug 2026 is confirmatory evidence.",
       "D054 deliberately reuses exact D053 v1.01 source bytes; the source allowlist is a superset, while D054 execution is frozen to SPX500/NDX100/US30.",
-      "D053 descriptive audit may run before D054 confirmation but D054 rules/gates/universe were frozen first."
+      "A D053 descriptive audit may run before D054 confirmation, but D054 rules, gates and universe were frozen first and cannot change from that audit."
     ]
   },
   "source": {
@@ -57,7 +57,7 @@
     "spread_source": "Strategy Tester executable ASK/BID ticks, exact D053 v1.01 implementation",
     "commission_stress_multiplier": 1.5,
     "explicit_index_commission": "0, unchanged from D053",
-    "swap": "excluded; same-session liquidation"
+    "swap": "excluded; same-session liquidation with unchanged SESSION_END fallback"
   },
   "stages": {
     "smoke": {
@@ -94,13 +94,18 @@
       "status": "UNOPENED",
       "gates": {
         "aggregate_n_min": 100,
-        "each_symbol_n_min": 20,
+        "each_symbol_n_min": 25,
         "aggregate_mean_net_r_positive": true,
         "aggregate_pf_min": 1.05,
         "aggregate_total_net_r_positive": true,
         "spread_stress_total_positive": true,
-        "positive_symbols_required": 3,
+        "positive_symbols_min": 2,
+        "july_total_positive": true,
+        "august_total_positive": true,
+        "long_mean_positive": true,
+        "short_mean_positive": true,
         "day_block_bootstrap_lower_95_positive": true,
+        "max_positive_symbol_contribution_share": 0.7,
         "integrity_events_max": 0
       },
       "result_paths": []
