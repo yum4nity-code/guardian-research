@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T06:30:02.626481+00:00",
+  "updated_at_utc": "2026-09-07T06:30:12.654211+00:00",
   "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
   "stage": "development",
-  "kind": "score",
-  "event_id": "20260907T062954Z",
-  "event_path": "backtests/d039/live/events/development/score/20260907T062954Z",
-  "event_fingerprint_sha256": "d8f96c029f4e58029d426f4840a4b15ec8b92880f53029575d7058a5c1453cd0",
+  "kind": "rich-score",
+  "event_id": "20260907T063007Z",
+  "event_path": "backtests/d039/live/events/development/rich-score/20260907T063007Z",
+  "event_fingerprint_sha256": "ff426fa6977b1d9ffdc3f22366ec2231040907f285f0fa828a8fd4816a8b8c96",
   "status": null,
   "autosync_used": false
 }
