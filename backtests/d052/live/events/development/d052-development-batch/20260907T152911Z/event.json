@@ -1,0 +1,554 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T15:29:14.338433+00:00",
+  "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+  "stage": "development",
+  "kind": "d052-development-batch",
+  "event_id": "20260907T152911Z",
+  "event_fingerprint_sha256": "fa908a0e3af4c28ed29decac42fd0e719b2ccc1103684dfb4d534d36907552ec",
+  "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+  "payload": {
+    "schema_version": 1,
+    "status": "D052_BATCH_PASS_INTEGRITY",
+    "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+    "stage": "development",
+    "symbols": [
+      "EURUSD",
+      "GBPUSD",
+      "USDJPY",
+      "AUDUSD",
+      "USDCAD",
+      "USDCHF",
+      "SPX500",
+      "NDX100",
+      "GER30",
+      "US30",
+      "XAUUSD",
+      "XAGUSD"
+    ],
+    "from": "2024-01-02",
+    "to": "2025-12-31",
+    "execution_mode": "SEQUENTIAL_ONE_MT5_RUN_PER_SYMBOL_ALL_MANAGEMENTS_PARALLEL_VIRTUAL",
+    "tester_model": 0,
+    "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+    "tests": [
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "EURUSD",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T14:41:53.672193+00:00",
+        "finished_at_utc": "2026-09-07T14:43:27.112847+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144153Z_EURUSD_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d052\\development\\EURUSD\\20260907T144153Z\\D052_V100_RUN_EURUSD_STATS.csv",
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d052\\development\\EURUSD\\20260907T144153Z\\D052_V100_RUN_EURUSD_RESULTS.csv"
+        ],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144153Z_EURUSD_M0\\D052_V100_RUN_EURUSD_STATS.csv",
+          "sha256": "49a2808b82ff14d564b3e40d41f67e88993fed0ad1750bbbd8da19c2d43160d0"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144153Z_EURUSD_M0\\D052_V100_RUN_EURUSD_RESULTS.csv",
+          "sha256": "6c16128f6e6966edca809488831f56d10b9e2f6afed73f9babfd3cffe090d915"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "EURUSD",
+          "paired_events": 516,
+          "virtual_rows": 12384,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "GBPUSD",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T14:43:27.343820+00:00",
+        "finished_at_utc": "2026-09-07T14:45:19.865551+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144327Z_GBPUSD_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144327Z_GBPUSD_M0\\D052_V100_RUN_GBPUSD_STATS.csv",
+          "sha256": "723f4e78fe92c348d9eea826a77b11dd2fe76380c355924ecf612444eb37ad37"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144327Z_GBPUSD_M0\\D052_V100_RUN_GBPUSD_RESULTS.csv",
+          "sha256": "7170b13c7e674490fdfa93f1f5d2f0ae2e24a350f29dcd8127699544711ed6f4"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "GBPUSD",
+          "paired_events": 516,
+          "virtual_rows": 12384,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "USDJPY",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T14:45:20.085923+00:00",
+        "finished_at_utc": "2026-09-07T14:48:30.040307+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144520Z_USDJPY_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144520Z_USDJPY_M0\\D052_V100_RUN_USDJPY_STATS.csv",
+          "sha256": "78f003d0b09a01fec9343e71029837e854bc154778245be44b4c446489dc9d34"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144520Z_USDJPY_M0\\D052_V100_RUN_USDJPY_RESULTS.csv",
+          "sha256": "f7ea7a263282292e8bfb6e0cca9d6eea1b94778d34ddd58b5bef327ffff8f1ed"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "USDJPY",
+          "paired_events": 516,
+          "virtual_rows": 12384,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "AUDUSD",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T14:48:30.261266+00:00",
+        "finished_at_utc": "2026-09-07T14:50:04.701798+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144830Z_AUDUSD_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144830Z_AUDUSD_M0\\D052_V100_RUN_AUDUSD_STATS.csv",
+          "sha256": "ed879fb6b12c9a5a9da50b3f7fac9fcbce3ca78d8144e6c02395d8b76bbb9dde"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T144830Z_AUDUSD_M0\\D052_V100_RUN_AUDUSD_RESULTS.csv",
+          "sha256": "c58ca332604a369cfb1657f9ddd960281a99c5b63bacf33080b7e8ef7cdebd9b"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "AUDUSD",
+          "paired_events": 516,
+          "virtual_rows": 12384,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "USDCAD",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T14:50:04.934812+00:00",
+        "finished_at_utc": "2026-09-07T14:52:41.857050+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T145004Z_USDCAD_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T145004Z_USDCAD_M0\\D052_V100_RUN_USDCAD_STATS.csv",
+          "sha256": "e37b9104fe79ed624af90fefc7e5c2dd2003fcbb052aacde19082b616080be2a"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T145004Z_USDCAD_M0\\D052_V100_RUN_USDCAD_RESULTS.csv",
+          "sha256": "e43ee82c7d77108831d0f13ea6bec44ffda05727ec73acc5b462fd74ee792f12"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "USDCAD",
+          "paired_events": 516,
+          "virtual_rows": 12384,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "USDCHF",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T14:52:42.202408+00:00",
+        "finished_at_utc": "2026-09-07T14:56:55.747881+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T145242Z_USDCHF_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T145242Z_USDCHF_M0\\D052_V100_RUN_USDCHF_STATS.csv",
+          "sha256": "520f8bec024f71d04dbde26eee5161928f27d591e12cbe27f39b4fd871f1f5ee"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T145242Z_USDCHF_M0\\D052_V100_RUN_USDCHF_RESULTS.csv",
+          "sha256": "dd95106fb542a8007832187b1a6c37f22c3770320542daad0068774071e2fb0e"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "USDCHF",
+          "paired_events": 516,
+          "virtual_rows": 12384,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "SPX500",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T14:56:56.123926+00:00",
+        "finished_at_utc": "2026-09-07T15:03:02.512170+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T145656Z_SPX500_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d052\\development\\SPX500\\20260907T145656Z\\D052_V100_RUN_SPX500_STATS.csv",
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d052\\development\\SPX500\\20260907T145656Z\\D052_V100_RUN_SPX500_RESULTS.csv"
+        ],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T145656Z_SPX500_M0\\D052_V100_RUN_SPX500_STATS.csv",
+          "sha256": "8f2f6ebe798c0565ea7486642f97bed83a11ce0b86b663983726bdbed67291c6"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T145656Z_SPX500_M0\\D052_V100_RUN_SPX500_RESULTS.csv",
+          "sha256": "9d6619954331eb338b77324a693159968db2132f4163581417b7d5fdc5aadb6f"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "SPX500",
+          "paired_events": 513,
+          "virtual_rows": 12312,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 2,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "NDX100",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T15:03:02.874118+00:00",
+        "finished_at_utc": "2026-09-07T15:11:16.832493+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T150302Z_NDX100_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T150302Z_NDX100_M0\\D052_V100_RUN_NDX100_STATS.csv",
+          "sha256": "0b560365ef05d1c462a18a54422f79770f3de3dadd3c8913a8bdb2a56ac2b077"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T150302Z_NDX100_M0\\D052_V100_RUN_NDX100_RESULTS.csv",
+          "sha256": "70fb93888abadecf51f8ae999e86f2510abd83e7dc04dff40a6d5229d6310fe8"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "NDX100",
+          "paired_events": 514,
+          "virtual_rows": 12336,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "GER30",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T15:11:17.173075+00:00",
+        "finished_at_utc": "2026-09-07T15:15:06.427713+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T151117Z_GER30_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T151117Z_GER30_M0\\D052_V100_RUN_GER30_STATS.csv",
+          "sha256": "840d9604888638e68f0b85ef7b40f1ae36c20403765ffb82fb6fd90a6e451d19"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T151117Z_GER30_M0\\D052_V100_RUN_GER30_RESULTS.csv",
+          "sha256": "7a962f87be45df07e645ef03b59f2d75c5f4537b2400b2e805607c88d19774b6"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "GER30",
+          "paired_events": 506,
+          "virtual_rows": 12144,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "US30",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T15:15:06.827395+00:00",
+        "finished_at_utc": "2026-09-07T15:21:58.137871+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T151506Z_US30_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T151506Z_US30_M0\\D052_V100_RUN_US30_STATS.csv",
+          "sha256": "fdd7cb77e786955350d51d1ef52295e181173d6daeed578c2a2b9128a9771160"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T151506Z_US30_M0\\D052_V100_RUN_US30_RESULTS.csv",
+          "sha256": "f53efb59b56581422abc36c2470cf9f7a073db1469141a8bc68291b8181a1fd9"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "US30",
+          "paired_events": 514,
+          "virtual_rows": 12336,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "XAUUSD",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T15:21:58.514300+00:00",
+        "finished_at_utc": "2026-09-07T15:27:26.541297+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T152158Z_XAUUSD_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d052\\development\\XAUUSD\\20260907T152158Z\\D052_V100_RUN_XAUUSD_STATS.csv",
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d052\\development\\XAUUSD\\20260907T152158Z\\D052_V100_RUN_XAUUSD_RESULTS.csv"
+        ],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T152158Z_XAUUSD_M0\\D052_V100_RUN_XAUUSD_STATS.csv",
+          "sha256": "b0df58f7a30bf9cd98063aa8b59ffb17342221244540ddd86dda7ea0405a7bf8"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T152158Z_XAUUSD_M0\\D052_V100_RUN_XAUUSD_RESULTS.csv",
+          "sha256": "d9078ee7deb4991b1323d87fcde90301a3b763032b8d73f2987b56dd8bc6009d"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "XAUUSD",
+          "paired_events": 502,
+          "virtual_rows": 12048,
+          "reference_unusable_days": 14,
+          "schedule_missed_days": 0,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+        "stage": "development",
+        "symbol": "XAGUSD",
+        "from": "2024-01-02",
+        "to": "2025-12-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T15:27:26.772399+00:00",
+        "finished_at_utc": "2026-09-07T15:29:11.417094+00:00",
+        "terminal_exit_code": 0,
+        "command": [
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T152726Z_XAGUSD_M0\\tester.ini",
+          "/portable"
+        ],
+        "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+        "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+        "quarantined_stale_outputs": [],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T152726Z_XAGUSD_M0\\D052_V100_RUN_XAGUSD_STATS.csv",
+          "sha256": "14486ee0c166db1a6e38867ab39eed6b6d2f33819166cc5a0609c7021a95723c"
+        },
+        "results": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\development\\20260907T152726Z_XAGUSD_M0\\D052_V100_RUN_XAGUSD_RESULTS.csv",
+          "sha256": "496b9c647c6e4f55a1796e0de17722d075c940cd0497e59ac1c156653fe05d07"
+        },
+        "integrity": {
+          "status": "D052_SYMBOL_PASS_INTEGRITY",
+          "symbol": "XAGUSD",
+          "paired_events": 514,
+          "virtual_rows": 12336,
+          "reference_unusable_days": 0,
+          "schedule_missed_days": 1,
+          "invalid_price": 0,
+          "invalid_risk": 0,
+          "pnl_calc_failures": 0
+        },
+        "autosync_used": false
+      }
+    ],
+    "autosync_used": false,
+    "finished_at_utc": "2026-09-07T15:29:11.638343+00:00",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\d052\\development\\20260907T144153Z\\batch.json",
+    "local_path": "D:\\MT5_Backtests\\guardian-runner\\d052\\development-batch\\20260907T152911Z\\development-batch.json"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\d052\\development\\20260907T144153Z\\batch.json",
+      "exists": true,
+      "sha256": "2c5cc32f421454892d00b45caad95c5c6d2d6d284cef1d4d2cfe70796e5d6bf7",
+      "bytes": 24433,
+      "published_as": "batch.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}

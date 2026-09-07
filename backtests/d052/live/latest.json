@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T14:41:50.903970+00:00",
+  "updated_at_utc": "2026-09-07T15:29:14.339493+00:00",
   "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
-  "stage": "smoke",
-  "kind": "d052-smoke-pass",
-  "event_id": "20260907T144148Z",
-  "event_path": "backtests/d052/live/events/smoke/d052-smoke-pass/20260907T144148Z",
-  "event_fingerprint_sha256": "2a5aabc74f3cfc8a95875306e241fd17a8eece80d6e7e90fe81b3cb39c584154",
+  "stage": "development",
+  "kind": "d052-development-batch",
+  "event_id": "20260907T152911Z",
+  "event_path": "backtests/d052/live/events/development/d052-development-batch/20260907T152911Z",
+  "event_fingerprint_sha256": "fa908a0e3af4c28ed29decac42fd0e719b2ccc1103684dfb4d534d36907552ec",
   "status": "D052_BATCH_PASS_INTEGRITY",
   "autosync_used": false
 }
