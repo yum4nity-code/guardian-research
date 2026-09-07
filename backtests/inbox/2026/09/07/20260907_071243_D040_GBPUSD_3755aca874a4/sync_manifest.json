@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_071243_D040_GBPUSD_3755aca874a4",
+    "fingerprint":  "3755aca874a4e402a53767aed2648bf0177c6ab78a5672dfb9f5ac76c3edcd74",
+    "synced_at_utc":  "2026-09-07T07:13:45.4606059Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D040_NR4_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "RUN",
+                       "symbol":  "GBPUSD",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  30,
+                       "published_trades_rows":  30
+                   },
+    "files":  [
+                  {
+                      "name":  "D040_V100_RUN_GBPUSD_STATS.csv",
+                      "source_sha256":  "fd24fad0371a53af6a2c9ed3fef5f22f4eae96722ea5e8eb58816bad4f721dec",
+                      "published_sha256":  "9c765c3f17e1ba3e09a3942ee2c2d3e58283246a0bdb6fc64658bd9850803bf9",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D040_V100_RUN_GBPUSD_TRADES.csv",
+                      "source_sha256":  "4139de74b4f2c36aeb765a8aa1ede98ae2f530dfb733b380534c470a31cab0fd",
+                      "published_sha256":  "eab1707949830447b4f8da8dedb2cd51e5f206655b152e5c4ae8e402b1194fe1",
+                      "sanitized":  false
+                  }
+              ]
+}
