@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "status": "D053_BATCH_PASS_INTEGRITY",
+  "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+  "stage": "development",
+  "symbols": [
+    "SPX500",
+    "NDX100",
+    "US30",
+    "US2000"
+  ],
+  "from": "2024-01-02",
+  "to": "2025-12-31",
+  "execution_mode": "SEQUENTIAL_ONE_MT5_RUN_PER_SYMBOL_MODEL0",
+  "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+  "tests": [
+    {
+      "schema_version": 1,
+      "status": "D053_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+      "stage": "development",
+      "symbol": "SPX500",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T16:18:27.905043+00:00",
+      "finished_at_utc": "2026-09-07T16:18:55.844066+00:00",
+      "terminal_exit_code": 0,
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+      "ex5_sha256": "b553955426235e9808d0ef2f588929a33c29549a3b70309943141012a2d27464",
+      "quarantined_stale_outputs": [
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\development\\SPX500\\20260907T161827Z\\D053_V100_RUN_SPX500_STATS.csv",
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\development\\SPX500\\20260907T161827Z\\D053_V100_RUN_SPX500_TRADES.csv"
+      ],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D053-US-INDEX-ORB30-ENTRY-ALPHA-V0\\development\\20260907T161827Z_SPX500_M0\\D053_V100_RUN_SPX500_STATS.csv",
+        "sha256": "02875d565cc6f8309bdae75ed0f08af0ff12c97e76fd004e58867e392e792fe8"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D053-US-INDEX-ORB30-ENTRY-ALPHA-V0\\development\\20260907T161827Z_SPX500_M0\\D053_V100_RUN_SPX500_TRADES.csv",
+        "sha256": "97ea1a24b4254a88a9f050bacc1a82bda8fb60e29252cd3d812f89038adbb7a9"
+      },
+      "integrity": {
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "symbol": "SPX500",
+        "range_days": 513,
+        "trades": 511,
+        "ambiguous_days": 0,
+        "range_unusable_days": 0,
+        "integrity_events": 0
+      },
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "D053_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+      "stage": "development",
+      "symbol": "NDX100",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T16:18:55.905115+00:00",
+      "finished_at_utc": "2026-09-07T16:19:33.953535+00:00",
+      "terminal_exit_code": 0,
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+      "ex5_sha256": "b553955426235e9808d0ef2f588929a33c29549a3b70309943141012a2d27464",
+      "quarantined_stale_outputs": [
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\development\\NDX100\\20260907T161855Z\\D053_V100_RUN_NDX100_STATS.csv",
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\development\\NDX100\\20260907T161855Z\\D053_V100_RUN_NDX100_TRADES.csv"
+      ],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D053-US-INDEX-ORB30-ENTRY-ALPHA-V0\\development\\20260907T161855Z_NDX100_M0\\D053_V100_RUN_NDX100_STATS.csv",
+        "sha256": "3e1e44dd2597b438a2154afe715329e5e929a2b3903de920623b2e960088a9da"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D053-US-INDEX-ORB30-ENTRY-ALPHA-V0\\development\\20260907T161855Z_NDX100_M0\\D053_V100_RUN_NDX100_TRADES.csv",
+        "sha256": "007fc477d49d57b06c9d8810853bc160a21e19fea7b0c6f889373637ee6e871a"
+      },
+      "integrity": {
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "symbol": "NDX100",
+        "range_days": 513,
+        "trades": 512,
+        "ambiguous_days": 0,
+        "range_unusable_days": 0,
+        "integrity_events": 0
+      },
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "D053_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+      "stage": "development",
+      "symbol": "US30",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T16:19:34.028988+00:00",
+      "finished_at_utc": "2026-09-07T16:20:05.059179+00:00",
+      "terminal_exit_code": 0,
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+      "ex5_sha256": "b553955426235e9808d0ef2f588929a33c29549a3b70309943141012a2d27464",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D053-US-INDEX-ORB30-ENTRY-ALPHA-V0\\development\\20260907T161934Z_US30_M0\\D053_V100_RUN_US30_STATS.csv",
+        "sha256": "e56e64d4da6e64d50aa1ee2f452520a6d77471f24ec911acdc266d6dec9e4d8a"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D053-US-INDEX-ORB30-ENTRY-ALPHA-V0\\development\\20260907T161934Z_US30_M0\\D053_V100_RUN_US30_TRADES.csv",
+        "sha256": "3e0287f39b6e1774206d88e938f76ef95cd7f25744dc8d95f8b56207580c42e7"
+      },
+      "integrity": {
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "symbol": "US30",
+        "range_days": 513,
+        "trades": 509,
+        "ambiguous_days": 0,
+        "range_unusable_days": 0,
+        "integrity_events": 0
+      },
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "D053_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+      "stage": "development",
+      "symbol": "US2000",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T16:20:05.126671+00:00",
+      "finished_at_utc": "2026-09-07T16:20:20.952977+00:00",
+      "terminal_exit_code": 0,
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+      "ex5_sha256": "b553955426235e9808d0ef2f588929a33c29549a3b70309943141012a2d27464",
+      "quarantined_stale_outputs": [
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\development\\US2000\\20260907T162005Z\\D053_V100_RUN_US2000_STATS.csv",
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\development\\US2000\\20260907T162005Z\\D053_V100_RUN_US2000_TRADES.csv"
+      ],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D053-US-INDEX-ORB30-ENTRY-ALPHA-V0\\development\\20260907T162005Z_US2000_M0\\D053_V100_RUN_US2000_STATS.csv",
+        "sha256": "7802fd5bcf1f3527c0b651fa33eabeeba922723f20f92fe5408eeae7e73cd436"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D053-US-INDEX-ORB30-ENTRY-ALPHA-V0\\development\\20260907T162005Z_US2000_M0\\D053_V100_RUN_US2000_TRADES.csv",
+        "sha256": "08aba30eb2cd4b2aefd54df42a6bf00145f3b68cc73cd976ba5e6cd5b6864ccf"
+      },
+      "integrity": {
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "symbol": "US2000",
+        "range_days": 511,
+        "trades": 510,
+        "ambiguous_days": 0,
+        "range_unusable_days": 0,
+        "integrity_events": 0
+      },
+      "autosync_used": false
+    }
+  ],
+  "autosync_used": false,
+  "finished_at_utc": "2026-09-07T16:20:21.007039+00:00",
+  "batch_path": "D:\\MT5_Backtests\\guardian-runner\\d053\\development\\20260907T161827Z\\batch.json"
+}
