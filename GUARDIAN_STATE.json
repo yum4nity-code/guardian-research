@@ -193,7 +193,7 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D041_READY_SMOKE_CI",
+    "github_ci_status": "PASS_D041_READY_SMOKE_CI_RUN_34101230405",
     "local_mt5_status": "D041_NOT_YET_COMPILED_LOCAL",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; specialized scorers are allowed only when required by a prior frozen scientific design; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
