@@ -1,0 +1,92 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T11:46:00.270226+00:00",
+  "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+  "stage": "development",
+  "kind": "rich-score",
+  "event_id": "20260907T114555Z",
+  "event_fingerprint_sha256": "275c29871cd6553f4bc406b420cad21795bfac28d214e971908c4f1aca5b796f",
+  "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+  "payload": {
+    "schema_version": 2,
+    "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+    "stage": "development",
+    "role": "DESCRIPTIVE_ANALYTICS_ONLY_DOES_NOT_CHANGE_DECISION_VERDICT",
+    "rich_score_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114555Z\\rich_score.json",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113707Z\\batch.json",
+    "scope": {
+      "trades": 192,
+      "symbols": [
+        "BTCUSD",
+        "ETHUSD",
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY",
+        "XAUUSD"
+      ],
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "timeframe": "M15",
+      "tester_model": 0
+    },
+    "net_r_summary": {
+      "n": 192,
+      "mean": -0.8630031731250001,
+      "median": -1.2785256399999998,
+      "profit_factor": {
+        "value": 0.3967689013765851,
+        "infinite": false
+      },
+      "total_r": -165.69660924000002,
+      "win_rate": 0.09375
+    },
+    "commission_stress_summary": {
+      "mean": -1.0899107484895834,
+      "profit_factor": {
+        "value": 0.3399386276672964,
+        "infinite": false
+      },
+      "total_r": -209.26286371
+    },
+    "trade_path_summary": {
+      "available": true,
+      "trades": 192,
+      "path_ambiguous_rows": 0,
+      "milestone_touch": null
+    },
+    "compact_trades": {
+      "path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114555Z\\trades_compact.csv",
+      "sha256": "18cac8bcf3fe01568872b84c3e86ab6c51b94bad9c39361fdabb4d9299e77b28",
+      "bytes": 99012,
+      "rows": 192,
+      "includes_native_trade_path_fields": true
+    },
+    "autosync_used": false
+  },
+  "payload_compacted": true,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113707Z\\batch.json",
+      "exists": true,
+      "sha256": "18135ae2a616ac35146a762c0dd2211dc345a9096e7ef005f0802debd7d19f6d",
+      "bytes": 15121,
+      "published_as": "batch.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114555Z\\rich_score.json",
+      "exists": true,
+      "sha256": "aa32f03403743fa4a26d250cb5f1c7a1f1e345586cdaba7e884af028da3f25d0",
+      "bytes": 302341,
+      "published_as": "rich_score.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114555Z\\trades_compact.csv",
+      "exists": true,
+      "sha256": "18cac8bcf3fe01568872b84c3e86ab6c51b94bad9c39361fdabb4d9299e77b28",
+      "bytes": 99012,
+      "published_as": "trades_compact.csv"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
