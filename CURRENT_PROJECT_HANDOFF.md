@@ -1,201 +1,144 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-06 Europe/Paris
-Status: **ACTIVE / D036 DONCHIAN H1 V0 PREREGISTERED / HARNESS V1.00 STATIC-AUDITED / GENERIC AUTOSYNC V2.01 STATIC-AUDITED / LOCAL COMPILE+SMOKE PENDING**
+Last updated: 2026-09-07 Europe/Paris
+Status: **ACTIVE / D053 REJECTED / D054 UNCONFIRMED-CLOSED / NO CURRENT ALPHA P0 PROMOTED / CHALLENGE PROBABILITY LAB V1.00 AVAILABLE**
 
 ## Canonical resume
 
 Read first:
-1. `CURRENT_QUEUE.json`
-2. this file
-3. `START_HERE_NEXT_AI.md`
-4. `GUARDIAN_MASTER_MANDATE.md`
+1. this file;
+2. latest `backtest-results` branch state for the newest Dxxx campaign;
+3. `START_HERE_NEXT_AI.md` and `GUARDIAN_MASTER_MANDATE.md` for governance;
+4. `CURRENT_QUEUE.json` only with the warning below.
 
-Do not reopen rejected families merely because they remain in historical documents.
+### Important metadata warning
 
-## Active P0 — D036 Donchian / Turtle-inspired Trend Breakout H1 V0
+`CURRENT_QUEUE.json` on `main` still reflects the older Sep-6 D036 state and must not override newer run evidence. The `backtest-results` branch is newer and is the source of truth for the most recent experiment outcomes until queue reconciliation is performed.
 
-Preregistration:
-`research/campaigns/D036_DONCHIAN_TREND_BREAKOUT_H1_V0_PREREGISTRATION_2026_09_06.md`
+Do not reopen rejected families merely because they remain in older handoffs/queue entries.
 
-MT5 no-order harness:
-`research/strategies/d036/D036_DonchianTrendBreakout_H1_v1_00_FUNDEDNEXT_HARNESS_20260906.mq5`
+## Latest research state observed on 2026-09-07
 
-Scorer:
-`research/analysis/analyze_d036_donchian_v0_v1_01.py`
+### D053 — US Index ORB30 Entry Alpha V0
 
-Static audit:
-`research/results/D036_V100_AND_AUTOSYNC_V201_STATIC_AUDIT_2026_09_06.md`
+Latest mirrored event:
+- experiment: `D053-US-INDEX-ORB30-ENTRY-ALPHA-V0`;
+- stage: development;
+- latest audit status: `D053_DESCRIPTIVE_AUDIT_COMPLETE_NO_VERDICT_CHANGE`;
+- the audit explicitly records the formal verdict as `D053_REJECT_V0`.
 
-### Frozen strategy
+The descriptive audit is post-verdict evidence only. Do not mine its weekday/symbol/latency breakdowns into a same-sample rescue.
 
-Exactly six markets:
-- BTCUSD
-- ETHUSD
-- EURUSD
-- GBPUSD
-- USDJPY
-- XAUUSD
+### D054 — ORB30 Core3 Jul-Aug 2026 Confirmation V0
 
-Tester timeframe: H1.
+Latest mirrored event:
+- experiment: `D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0`;
+- stage: confirmation;
+- latest status: `D054_UNCONFIRMED_CLOSE`.
 
-Signal at closed bar S:
-- LONG iff close(S) > highest HIGH of the preceding 20 complete H1 bars;
-- SHORT iff close(S) < lowest LOW of the preceding 20 complete H1 bars;
-- enter next H1 open on executable spread side.
+Therefore D054 is closed/unconfirmed, not promoted. No D055 campaign was present in `backtest-results` when this handoff was reconciled.
 
-Initial stop:
-- exactly 2.0 × MT5 ATR(20) measured at signal bar S.
+### Consequence
 
-Exit:
-- protective initial stop, or
-- opposite 10-complete-H1-bar Donchian channel;
-- gap beyond threshold fills at worse executable bar-open price;
-- if stop and channel are both touched in one OHLC bar and order is ambiguous, take the economically worse valid exit.
+The old D036 P0 text previously in this file was stale relative to D037-D054 work already present in `backtest-results`. D036 remains historical evidence in its own campaign/results files; it is no longer the canonical current P0 here.
 
-No pyramiding, TP, time exit, BE, trailing ATR, RSI, EMA, ADX, news/day/direction filters or parameter search.
-One open D036 position per symbol max. Same-bar exit + opposite 20-bar signal may reverse at the next H1 open.
+The next alpha action is to select/preregister a genuinely independent next family rather than rescue D053/D054 on inspected data.
 
-This is explicitly a **Turtle-inspired intraday adaptation**, not a claim to reproduce the historical Turtle system verbatim.
+## New research infrastructure — Challenge Probability Lab v1.00
 
-### FundedNext frozen costs — Stellar 1-Step / 2-Step
+Purpose:
 
-- Forex: USD 5/lot/side.
-- Metals: 0.0016% × lot × contract size × execution price, per side.
-- Crypto: 0.04% × lot × contract size × execution price, per side.
-- Spread is tester MqlRates executable-side spread.
-- Net R uses 1-lot `OrderCalcProfit` money P/L / initial-stop money risk.
-- Harness emits baseline net R and net R with commission ×1.5 per trade.
-- USD account currency required for valid frozen cost accounting.
+> Estimate the probability that a strategy/portfolio reaches the challenge profit target before a daily or overall drawdown rule is breached, across a frozen risk grid.
 
-## D036 data sequence — frozen before outcomes
+This solves a different problem from PF, expectancy or generic bootstrap: it optimizes **probability of passing the challenge**, not terminal profit.
 
-### 1. Compile gate
-Real FundedNext MetaEditor compile of exact v1.00 source: **0 errors / 0 warnings required**.
+### Files
 
-### 2. Smoke gate — no alpha scoring
-Period: `2025-03-03` through `2025-03-31`.
-Run exactly one representative symbol per FundedNext commission class:
-- USDJPY — Forex
-- XAUUSD — Metal
-- BTCUSD — Crypto
+- engine: `research/challenge_probability_lab/challenge_probability_lab_v1_00.py`
+- tests: `research/challenge_probability_lab/test_challenge_probability_lab_v1_00.py`
+- generic profile: `research/challenge_probability_lab/guardian_reference_profile_v1_00.json`
+- documentation: `research/challenge_probability_lab/README.md`
+- validation report: `research/results/CHALLENGE_PROBABILITY_LAB_V1_00_IMPLEMENTATION_REPORT_2026_09_07.md`
 
-Input stage must remain `D036_SMOKE_MAR2025`.
-Purpose only: output lifecycle, channel chronology, ATR/stop logic, executable spread side and three commission classes.
+Validated engine Git blob:
+`0fbe86213b5d42dd4d8a6202e4e246ae2ed6ee75`
 
-Require:
-- STATS ordered INIT -> READY -> FINAL;
-- `trades_opened == trades_closed == csv_trade_rows == physical TRADES rows`;
-- no PUBLICSAFE leak after AutoSync;
-- plausible signal/entry chronology and cost values in all three classes.
+Validated test Git blob:
+`800808538f1c2013cabb3a48c3ddaa787fb81853`
 
-### 3. Development / cheap-fail sample
-Only after smoke PASS:
-- `2024-01-02` through `2025-12-31`;
-- all six symbols;
-- stage `D036_DEV_2024_2025`.
+### v1.00 risk grid
 
-Frozen continuation gates — all required:
-- aggregate n >= 180;
-- each symbol n >= 20;
-- aggregate mean net R >= +0.08R/trade;
-- aggregate net PF >= 1.15;
-- >=4/6 symbols positive total net R;
-- aggregate 2024 positive and aggregate 2025 positive;
-- aggregate remains positive at 1.5× commission;
-- no single symbol >60% of positive-symbol net-R contribution.
+- 0.10%
+- 0.15%
+- 0.20%
+- 0.25%
+- 0.33%
+- 0.50%
 
-Any fail => **REJECT_V0**, no parameter/timeframe/direction rescue on opened 2024-2025 data.
+per trade.
 
-### 4. Untouched confirmation — HARD LOCK until development passes
-- `2026-01-02` through `2026-06-30`;
-- all six same symbols;
-- same code/semantics/cost model;
-- stage `D036_CONFIRM_2026_H1`.
+### Simulation method
 
-Frozen confirmation gates — all required:
-- aggregate n >=45;
-- mean net R >0;
-- PF >=1.10;
-- >=3/6 symbols positive total net R;
-- positive aggregate at 1.5× commission.
+- consumes one or more real trade CSVs with realised R;
+- groups the observed process by calendar/challenge day;
+- supports explicit `--day-column` for a prop-firm-normalized day key;
+- circular moving-block bootstrap of contiguous days (default 5 days), not iid trade shuffle;
+- common sampled day paths across risk levels for paired comparison;
+- initial/reference-capital risk sizing by default, with current-balance option;
+- configurable target, daily loss, max loss and static/trailing-EOD overall-loss anchor;
+- explicit timeout horizon;
+- optional signed adverse-R column for stronger intratrade DD checking;
+- deterministic seed and input SHA256 provenance.
 
-Do not inspect 2026-H1 to rescue a failed development result.
+### Output per risk
 
-## Reporting requirement for D036
+- pass probability + Wilson 95% CI;
+- daily-DD violation probability;
+- max-DD violation probability;
+- any-DD violation probability;
+- timeout probability;
+- median/P25/P75/P90 days to pass;
+- median/P90 trades to pass;
+- typical/bad max-DD distribution (median/P90/P95/P99/worst observed);
+- risk selected specifically for maximum pass probability.
 
-Do not return only `N / expectancy / PF`.
+Each run writes JSON, CSV and Markdown.
 
-Each scored D036 result must include:
-- aggregate + per-symbol N, total/mean/median net R, win rate, PF;
-- long vs short contribution;
-- year contribution on development;
-- stop vs channel exit share;
-- strongest/weakest symbol and profit concentration;
-- max gain/loss and largest losing streak where available;
-- baseline vs 1.5× commission stress;
-- stability/failure-mode interpretation;
-- explicit decision and next action.
+### Validation
 
-Keep the concise top line, but follow it with the richer diagnostic.
+- Python compile check: PASS.
+- Unit tests: 8/8 PASS.
+- Real Guardian CSV-schema smoke: PASS using an 18-row excerpt from D037 `trades_compact.csv` solely as an integration check.
+- No alpha/performance conclusion is allowed from that tiny smoke sample.
 
-## Generic GitHub AutoSync — v2.01
+### Exactness boundary
 
-Active prepared watcher:
-`automation/Guardian_Backtest_CSV_AutoSync_v2_01_GENERIC_PUBLICSAFE.ps1`
+Without synchronized floating-equity data, v1.00 is an **atomic/closed-equity challenge simulator**, not an exact reconstruction of prop-firm floating DD.
 
-Purpose: replace the D023-specific watcher with one persistent transport contract for future `Dxxx` harnesses.
+Ordinary `net_r` can miss an intratrade breach or a breach caused by concurrent open positions. A signed adverse-R column improves the check but still cannot reconstruct simultaneous portfolio excursions.
 
-On install it:
-- stops/removes D023 v1.04 and generic v2.00 startup/PID state;
-- installs one Windows Startup watcher;
-- ignores historical CSVs older than installation time;
-- watches new `Dxxx_V..._STATS.csv` + exact `_TRADES.csv` companion pairs;
-- waits for stable files;
-- requires INIT -> READY -> FINAL;
-- validates source/version/symbol/timeframe, closed/CSV/physical rows and opened==closed when exposed;
-- hashes before/after validation;
-- redacts Windows username paths and blocks obvious secret/email leakage;
-- uses native-Git exit-code handling inherited from the runtime-proven v1.04 fix;
-- uses deterministic run identity and recovers push-before-state crashes;
-- writes health/log/state/PID under `D:\MT5_Backtests`.
+Preferred future harness/export enrichment:
+1. normalized `challenge_day`;
+2. signed MAE/adverse R;
+3. ideally synchronized portfolio floating-equity / mark-to-market snapshots.
 
-v2.01 is static-audited here but not yet Windows-runtime validated. After its first local install, only one health check is required. Normal later backtests must not require `-Once`.
+Never report atomic DD probabilities as exact floating-equity compliance probabilities when those fields are absent.
 
-## Local execution paths
+### Scientific boundary
 
-Canonical Git repo/source/versioning:
-`D:\MT5_Backtests\guardian-research`
-
-FundedNext MT5 compilation/backtest EA folder:
-`D:\MT5_FundedNext\MQL5\Experts\GuardianReasearch`
-
-All FundedNext backtest `.mq5` execution copies go in that `GuardianReasearch` folder unless the user explicitly changes this convention.
-
-## Closed alpha families — do not rescue
-
-### D023 USDJPY London ORB
-Untouched 2023: n=195, total -38.644330R, mean -0.198176R, PF 0.708428, 1/5 gates. **REJECTED / UNCONFIRMED.** Preserve evidence only.
-
-### D17 Momentum
-Closed after broad seven-market attribution. Preserve lineage and Manager Evidence Ledger only.
-
-D022, D027, D028 and D029 are reconciled as closed/rejected legacy families in `CURRENT_QUEUE.json`; do not blindly relaunch them.
+The Challenge Lab is downstream infrastructure. It must not be used to rescue a strategy that failed its alpha/OOS gates. Risk changes the challenge path; it does not create expectancy.
 
 ## Guardian production / compliance separation
 
-Guardian Core v12.01 remains the stable compile-validated pure infrastructure baseline. Keep strategy research out of Core.
+Guardian Core v12.01 remains the compile-validated pure infrastructure baseline. No Challenge Lab work changed `production/guardian/` or live trading semantics.
 
-FundedNext request/retry hyperactivity remains a separate P1/P0 compliance-runtime problem. FundedNext AUTO stays OFF until request budgeting/dedup/backoff is bounded. Do not mix that issue into D036 alpha scoring.
+FundedNext request/retry hyperactivity remains separate compliance/runtime work. Do not mix it into strategy alpha or Challenge Lab scoring.
 
-## Next safe action
+## Next safe actions
 
-1. sync repo locally;
-2. install Generic AutoSync v2.01 once and verify health;
-3. copy exact D036 v1.00 source into the FundedNext `GuardianReasearch` execution folder;
-4. compile 0 errors / 0 warnings;
-5. if compile passes, run the three March-2025 smoke symbols only;
-6. allow AutoSync to publish automatically;
-7. audit smoke before opening 2024-2025 development.
-
-No 2024-2025 alpha run before compile + smoke PASS.
+1. Keep D053 and D054 closed; do not same-sample rescue them.
+2. Reconcile `CURRENT_QUEUE.json` when the next independent alpha family is selected/preregistered.
+3. For the next strategy that actually survives its alpha/OOS gates, run Challenge Probability Lab on its frozen trade history with the six default risk levels.
+4. Prefer 20,000+ Monte-Carlo paths for decision runs; keep seed, block length, profile, input trades and horizon frozen when comparing risks.
+5. Extend future standardized trade exports with a normalized challenge-day key and adverse excursion / floating-equity evidence so the Lab can evolve toward exact daily-DD simulation.
+6. Keep Guardian Core v12.01 stable unless a separate production change is explicitly justified and validated.
