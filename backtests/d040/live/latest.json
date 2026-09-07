@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T07:01:13.744644+00:00",
+  "updated_at_utc": "2026-09-07T07:01:22.192645+00:00",
   "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "stage": "development",
   "kind": "trade-path",
-  "event_id": "20260907T065356Z_BTCUSD_M0",
-  "event_path": "backtests/d040/live/events/development/trade-path/20260907T065356Z_BTCUSD_M0",
-  "event_fingerprint_sha256": "9df4bf021fea0595f4782e5dfff3bf60ec6c183d04480080bb24fb3174165e19",
+  "event_id": "20260907T065518Z_ETHUSD_M0",
+  "event_path": "backtests/d040/live/events/development/trade-path/20260907T065518Z_ETHUSD_M0",
+  "event_fingerprint_sha256": "e69eccbe991824ebda0dc4c555b9f774ee4c8f587787e1f05b5becf0096f0dc6",
   "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
