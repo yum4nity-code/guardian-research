@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T07:15:03.808219+00:00",
+  "updated_at_utc": "2026-09-07T07:15:13.237238+00:00",
   "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "stage": "confirmation",
   "kind": "trade-path",
-  "event_id": "20260907T071246Z_USDJPY_M0",
-  "event_path": "backtests/d040/live/events/confirmation/trade-path/20260907T071246Z_USDJPY_M0",
-  "event_fingerprint_sha256": "51e35c7fa857755148addb0d5729725fda4ca1c551222871f3da757d5ffaf346",
+  "event_id": "20260907T071304Z_XAUUSD_M0",
+  "event_path": "backtests/d040/live/events/confirmation/trade-path/20260907T071304Z_XAUUSD_M0",
+  "event_fingerprint_sha256": "c81da5bad5a2b46723a83fbe618293b045e46069d3958c14e71225ebc83fd7a1",
   "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
