@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
   "strategy_family": "opening-range breakout / D053-derived Core-3 independent confirmation",
-  "status": "CANDIDATE_CONFIRM",
+  "status": "UNCONFIRMED",
   "hypothesis": "The exact D053 v1.01 ORB30 rule retains positive, temporally stable post-cost expectancy on the D053-derived Core-3 universe SPX500, NDX100 and US30 in untouched Jul-Aug 2026.",
   "preregistration": {
     "path": "research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md",
@@ -11,7 +11,7 @@
     "execution_deviations": [
       "D054 is a D053-derived market-selection hypothesis; SPX500/NDX100/US30 were chosen because they were the three positive D053 markets, so only untouched Jul-Aug 2026 is confirmatory evidence.",
       "D054 deliberately reuses exact D053 v1.01 source bytes; the source allowlist is a superset, while D054 execution is frozen to SPX500/NDX100/US30.",
-      "A D053 descriptive audit may run before D054 confirmation, but D054 rules, gates and universe were frozen first and cannot change from that audit."
+      "A D053 descriptive audit ran before D054 confirmation, but D054 rules, gates and universe were frozen first and did not change from that audit."
     ]
   },
   "source": {
@@ -65,14 +65,16 @@
       "from": "2023-10-02",
       "to": "2023-10-31",
       "symbols": ["SPX500", "NDX100", "US30"],
-      "status": "READY",
+      "status": "PASS",
       "gates": {
         "engineering_only": true,
         "each_symbol_range_days_min": 1,
         "each_symbol_closed_trades_min": 1,
         "integrity_events_max": 0
       },
-      "result_paths": []
+      "result_paths": [
+        "backtests/d054/live/events/smoke/d054-smoke-pass/20260907T182653Z"
+      ]
     },
     "development": {
       "stage_name": "D054_DISCOVERY_IN_D053_2024_2025",
@@ -91,7 +93,7 @@
       "from": "2026-07-01",
       "to": "2026-08-31",
       "symbols": ["SPX500", "NDX100", "US30"],
-      "status": "UNOPENED",
+      "status": "FAIL",
       "gates": {
         "aggregate_n_min": 100,
         "each_symbol_n_min": 25,
@@ -108,7 +110,9 @@
         "max_positive_symbol_contribution_share": 0.7,
         "integrity_events_max": 0
       },
-      "result_paths": []
+      "result_paths": [
+        "backtests/d054/live/events/confirmation/d054-confirmation-score/20260907T182809Z"
+      ]
     }
   },
   "decision_policy": {
@@ -117,13 +121,31 @@
     "invalid_run_is_not_strategy_reject": true
   },
   "results": {
-    "compile": null,
-    "smoke": null,
+    "compile": {
+      "status": "PASS",
+      "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad"
+    },
+    "smoke": {
+      "status": "PASS",
+      "source": "backtests/d054/live/events/smoke/d054-smoke-pass/20260907T182653Z"
+    },
     "development": {
       "status": "DISCOVERY_PROVENANCE_ONLY_D053_NOT_D054_OOS",
       "source": "backtests/d053/live/events/development/d053-development-score/20260907T162026Z"
     },
-    "confirmation": null,
-    "final_verdict": null
+    "confirmation": {
+      "status": "D054_UNCONFIRMED_CLOSE",
+      "source": "backtests/d054/live/events/confirmation/d054-confirmation-score/20260907T182809Z",
+      "aggregate_n": 127,
+      "aggregate_mean_net_r": -0.19933436488188977,
+      "aggregate_pf": 0.5596506509945182,
+      "aggregate_total_net_r": -25.31546434,
+      "spread_stress_total_net_r": -26.34219435,
+      "positive_symbols_n": 0,
+      "bootstrap_lower_95": -0.36852913643511626,
+      "bootstrap_upper_95": -0.017671191858455268,
+      "integrity_events": 0
+    },
+    "final_verdict": "D054_UNCONFIRMED_CLOSE"
   }
 }
