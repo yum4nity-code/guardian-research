@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T08:38:28.946766+00:00",
+  "updated_at_utc": "2026-09-07T08:42:53.975560+00:00",
   "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
   "stage": "smoke",
-  "kind": "campaign",
-  "event_id": "20260907T083823Z",
-  "event_path": "backtests/d041/live/events/smoke/campaign/20260907T083823Z",
-  "event_fingerprint_sha256": "6c70df73f1f7193ff02ca262756327801f64bc30b1b480978826e628a4047fa0",
-  "status": "CAMPAIGN_COMPLETE_WITH_ENGINEERING_FAILURES",
+  "kind": "batch",
+  "event_id": "20260907T084218Z",
+  "event_path": "backtests/d041/live/events/smoke/batch/20260907T084218Z",
+  "event_fingerprint_sha256": "7ba68d7c6beb14864b20586cddb42be50661926a09417b90f65a8314709edfd7",
+  "status": "BATCH_PASS_INTEGRITY",
   "autosync_used": false
 }
