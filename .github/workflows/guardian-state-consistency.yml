@@ -39,6 +39,12 @@ jobs:
           research/runner/trade_path_validate.py
           research/runner/paired_management_score.py
           research/runner/d041_management_workflow.py
+          research/runner/d046_expiry_score.py
+          research/runner/d046_expiry_workflow.py
+          research/runner/management_benchmark.py
+          research/runner/management_benchmark_offline.py
+          research/runner/management_benchmark_v2.py
+          research/runner/management_benchmark_v2_offline.py
           research/runner/test_state_tools.py
           research/runner/test_runner_contract.py
           research/runner/test_trade_path_validate.py
@@ -46,6 +52,9 @@ jobs:
           research/runner/test_campaign_transport.py
           research/runner/test_confirmation_rich_v2.py
           research/runner/test_paired_management_score.py
+          research/runner/test_d046_expiry_score.py
+          research/runner/test_management_benchmark.py
+          research/runner/test_management_benchmark_v2.py
 
       - name: Parse Windows PowerShell tools
         shell: pwsh
@@ -71,14 +80,25 @@ jobs:
       - name: Validate authoritative state and generated views
         run: python research/runner/state_tools.py validate
 
-      - name: Validate active D041 experiment contract
+      - name: Validate active D046 experiment contract
+        run: python research/runner/experiment.py validate D046
+
+      - name: Verify active D046 manifest is execution-ready
+        run: python research/runner/experiment.py ready D046
+
+      - name: Verify active D046 source identity and runner plan
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, 'research/runner')
+          import runner
+          report = runner.plan('D046')
+          assert report['source_ready'], report['blockers']
+          print('D046_SOURCE_READY', report['source_identity'])
+          PY
+
+      - name: Validate closed D041 manifest remains coherent
         run: python research/runner/experiment.py validate D041
-
-      - name: Verify active D041 source is execution-ready
-        run: python research/runner/experiment.py ready D041
-
-      - name: Exercise active D041 runner planning without MT5
-        run: python research/runner/guardian_research.py plan D041
 
       - name: Validate closed D045 manifest remains coherent
         run: python research/runner/experiment.py validate D045
@@ -110,6 +130,9 @@ jobs:
       - name: Report D041 v1.00 frozen source identity
         run: python research/runner/source_hash.py research/strategies/d041/D041_D032_M2_DojiManagementValidation_v1_00.mq5
 
+      - name: Report D046 v1.00 frozen source identity
+        run: python research/runner/source_hash.py research/strategies/d046/D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5
+
       - name: Run regression tests
         run: |
           python research/runner/test_state_tools.py
@@ -119,3 +142,6 @@ jobs:
           python research/runner/test_campaign_transport.py
           python research/runner/test_confirmation_rich_v2.py
           python research/runner/test_paired_management_score.py
+          python research/runner/test_d046_expiry_score.py
+          python research/runner/test_management_benchmark.py
+          python research/runner/test_management_benchmark_v2.py
