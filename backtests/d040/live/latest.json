@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-07T06:46:01.272037+00:00",
+  "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "smoke",
+  "kind": "batch",
+  "event_id": "20260907T064532Z",
+  "event_path": "backtests/d040/live/events/smoke/batch/20260907T064532Z",
+  "event_fingerprint_sha256": "7ab3106ea1070889bea3d9d12e916435a179688eb105fb508f1fc1653af97111",
+  "status": "BATCH_PASS_INTEGRITY",
+  "autosync_used": false
+}
