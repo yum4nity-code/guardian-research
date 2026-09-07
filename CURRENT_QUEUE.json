@@ -2,25 +2,25 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T16:35:00+01:00",
-  "active_primary": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+  "updated_at": "2026-09-07T16:45:00+01:00",
+  "active_primary": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
   "items": [
     {
-      "id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+      "id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
       "priority": 0,
-      "status": "CLOSED_NO_MANAGEMENT_ALPHA",
+      "status": "READY_SMOKE",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "D052 is closed. Do not open its Jul-Aug 2026 holdout and do not retune its management family. Return priority to entry/context alpha. Prepare the next fresh preregistered entry-alpha experiment before any new MT5 outcome; management remains risk/execution engineering, not an assumed source of edge.",
-      "manifest": "research/experiments/D052.json"
+      "goal": "Run the frozen D053 unattended workflow: git pull then py -3 .\\research\\runner\\d053_orb30_index_run.py. It verifies frozen identities, compiles, runs October-2023 engineering smoke on SPX500/NDX100/US2000, and only if smoke passes runs unchanged 2024-2025 DEV on SPX500/NDX100/US30/US2000, scores frozen ORB30 gates and publishes evidence. Jul-Aug 2026 holdout must remain unopened in this command.",
+      "manifest": "research/experiments/D053.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "D052_COMPLETE_READY_NEXT_ENTRY_ALPHA_DESIGN",
+      "status": "D053_READY_SMOKE_THEN_DEV",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
-      "goal": "One frozen preregistration + source identity + deterministic local execution + specialized score + automatic evidence publication. The user should normally run one short PowerShell block and reply `fini`; transport failure alone never justifies repeating valid MT5 science."
+      "goal": "One frozen preregistration + source identity + deterministic local execution + specialized score + automatic evidence publication. User normally runs one short PowerShell block and replies `fini`; transport failure alone never justifies repeating valid MT5 science."
     },
     {
       "id": "AUTOSYNC_V3_FROM_SCRATCH",
