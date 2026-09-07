@@ -79,5 +79,5 @@
       "goal": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
     }
   ],
-  "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. Canonical operator UX: docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md. No operational item may wait on Codex."
+  "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. No operational item may wait on Codex."
 }
