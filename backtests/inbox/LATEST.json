@@ -1,13 +1,13 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-07T06:58:22.0825980Z",
-    "run_id":  "20260907_065755_D040_GBPUSD_6d068cc52029",
-    "path":  "backtests/inbox/2026/09/07/20260907_065755_D040_GBPUSD_6d068cc52029",
-    "fingerprint":  "6d068cc52029bf57130dcc22ec4df1319ca4a54a396f2b0f13bdd1be633b9723",
+    "synced_at_utc":  "2026-09-07T06:59:32.5083646Z",
+    "run_id":  "20260907_065901_D040_USDJPY_5e681fbb4022",
+    "path":  "backtests/inbox/2026/09/07/20260907_065901_D040_USDJPY_5e681fbb4022",
+    "fingerprint":  "5e681fbb4022ba46c70a5ecd249036583427852246d9c1504747afcb12dd572b",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
-                  "D040_V100_RUN_GBPUSD_STATS.csv",
-                  "D040_V100_RUN_GBPUSD_TRADES.csv",
+                  "D040_V100_RUN_USDJPY_STATS.csv",
+                  "D040_V100_RUN_USDJPY_TRADES.csv",
                   "sync_manifest.json"
               ]
 }
