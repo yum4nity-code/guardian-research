@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "strategy_family": "Strict NR4 volatility contraction breakout",
-  "status": "READY_CONFIRM",
+  "status": "CLOSED_UNCONFIRMED",
   "hypothesis": "Can a strict D-1 NR4 contraction followed by the next broker day's first executable break of the NR4 range produce enough trades to clear the frozen frequency gate while retaining positive, broad and cost-robust intraday edge across the six-market Guardian/FundedNext universe?",
   "preregistration": {
     "path": "research/campaigns/D040_NR4_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md",
@@ -24,10 +24,11 @@
       "Only the frozen contraction predicate is changed: D-1 range must be strictly smaller than D-2, D-3 and D-4",
       "D040 is a Guardian breakout-of-NR4-high/low adaptation and is not claimed to replicate Crabel's original opening-range-breakout entry convention",
       "source identity independently reported by GitHub CI as b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c before local compilation",
-      "local smoke campaign compiled the exact frozen source and produced EX5 SHA 105fda4254fe966aabc7c8b29433a087bd4a7748309f0a673e83ab5dd7b8c1b9",
       "October 2023 engineering smoke passed on USDJPY, XAUUSD and BTCUSD with 11 total trades, clean lifecycle/integrity and native Trade Path validation; smoke profitability was not used for alpha selection",
       "2024-2025 development passed every frozen gate with 758 trades, mean net R 0.1146741083, PF 1.3672947796, all six symbols positive, both calendar years positive, stress total +79.17541016R and zero integrity events",
-      "prospective 2026-01-02..2026-06-30 confirmation was opened only after the frozen development verdict CANDIDATE_CONFIRM; no strategy semantics changed"
+      "prospective 2026-01-02..2026-06-30 confirmation was opened only after the frozen development verdict CANDIDATE_CONFIRM; no strategy semantics changed",
+      "2026 H1 confirmation batch and all six native Trade Path validators passed integrity; the frozen scorer returned UNCONFIRMED because PF 1.0309836077 missed 1.08 and commission x1.5 stress total was -0.16245865R",
+      "post-decision rich analytics failed only because rich_score.py still restricted itself to development; this tooling limitation occurred after the authoritative score and does not invalidate the UNCONFIRMED verdict or require an MT5 rerun"
     ]
   },
   "execution": {
@@ -110,7 +111,7 @@
       "from": "2026-01-02",
       "to": "2026-06-30",
       "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
-      "status": "READY",
+      "status": "UNCONFIRMED",
       "gates": {
         "aggregate_n_min": 120,
         "aggregate_mean_net_r_strictly_positive": true,
@@ -120,7 +121,11 @@
         "integrity_events_max": 0,
         "failure_verdict": "UNCONFIRMED"
       },
-      "result_paths": []
+      "result_paths": [
+        "backtests/d040/live/events/confirmation/batch/20260907T070952Z",
+        "backtests/d040/live/events/confirmation/score/20260907T071519Z",
+        "backtests/d040/live/events/confirmation/campaign/20260907T071540Z"
+      ]
     }
   },
   "decision_policy": {
@@ -131,18 +136,14 @@
   "results": {
     "compile": {
       "status": "COMPILE_PASS",
-      "created_at_utc": "2026-09-07T06:45:28Z",
       "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
-      "ex5_sha256": "105fda4254fe966aabc7c8b29433a087bd4a7748309f0a673e83ab5dd7b8c1b9",
-      "campaign_event": "backtests/d040/live/events/smoke/campaign/20260907T064619Z"
+      "smoke_ex5_sha256": "105fda4254fe966aabc7c8b29433a087bd4a7748309f0a673e83ab5dd7b8c1b9",
+      "confirmation_ex5_sha256": "e02f349abe84e4ae29d76f81da1511b6b4e58fd69e85e0514b19fc0d4c0580cc"
     },
     "smoke": {
       "status": "PASS",
       "science_role": "ENGINEERING_ONLY_NO_ALPHA_VERDICT",
-      "campaign_status": "CAMPAIGN_PASS",
-      "batch_status": "BATCH_PASS_INTEGRITY",
       "aggregate_trades": 11,
-      "symbols": {"USDJPY": 2, "XAUUSD": 3, "BTCUSD": 6},
       "trade_path_status": "TRADE_PATH_PASS_ALL",
       "event_path": "backtests/d040/live/events/smoke/campaign/20260907T064619Z"
     },
@@ -161,13 +162,30 @@
       "score_event": "backtests/d040/live/events/development/score/20260907T070206Z"
     },
     "rich_analytics": {
-      "status": "PASS",
-      "event": "backtests/d040/live/events/development/rich-score/20260907T070216Z",
-      "trades": 758,
-      "native_trade_path": true,
-      "path_ambiguous_rows": 0
+      "development_status": "PASS",
+      "development_event": "backtests/d040/live/events/development/rich-score/20260907T070216Z",
+      "confirmation_status": "NOT_GENERATED_TOOLING_LIMIT_AFTER_FROZEN_SCORE",
+      "confirmation_error": "v1 rich scorer currently supports development only"
     },
-    "confirmation": null,
-    "final_verdict": "CANDIDATE_CONFIRM"
+    "confirmation": {
+      "status": "UNCONFIRMED",
+      "verdict": "UNCONFIRMED",
+      "all_gates_pass": false,
+      "aggregate_n": 191,
+      "per_symbol_n": {"BTCUSD": 32, "ETHUSD": 33, "EURUSD": 30, "GBPUSD": 31, "USDJPY": 33, "XAUUSD": 32},
+      "aggregate_mean_net_r": 0.009644011675392677,
+      "aggregate_pf": 1.0309836076821384,
+      "positive_symbols": ["BTCUSD", "GBPUSD", "XAUUSD"],
+      "positive_symbols_n": 3,
+      "per_symbol_total_net_r": {"BTCUSD": 5.38630573, "ETHUSD": -1.96832422, "EURUSD": -4.28421602, "GBPUSD": 2.08902919, "USDJPY": -0.59417846, "XAUUSD": 1.21339001},
+      "aggregate_total_net_r": 1.84200623,
+      "aggregate_total_stress_net_r": -0.16245865,
+      "integrity_events": 0,
+      "failed_gates": ["aggregate_pf_min", "aggregate_positive_at_commission_stress"],
+      "score_event": "backtests/d040/live/events/confirmation/score/20260907T071519Z",
+      "trade_path_status": "TRADE_PATH_PASS_ALL",
+      "closeout_report": "reports/research/D040_NR4_CONFIRMATION_CLOSEOUT_20260907.md"
+    },
+    "final_verdict": "UNCONFIRMED"
   }
 }
