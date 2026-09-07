@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T13:57:10.886479+00:00",
+  "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+  "stage": "confirmation",
+  "kind": "source-identity-pre-run",
+  "event_id": "20260907T135708Z",
+  "event_fingerprint_sha256": "77c53eca69dc0b3d3b59d472bed56dc5cac18696f9ca382174dfedbf3d3164a9",
+  "source_sha256": "07ac865e418685f5e6c6e8bf4f13b4cb13eb4f3458787b8b4c39a9d225658afd",
+  "payload": {
+    "schema_version": 1,
+    "status": "D051_SOURCE_IDENTITY_FROZEN_PRE_RUN",
+    "created_at_utc": "2026-09-07T13:57:08.465700+00:00",
+    "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+    "stage": "confirmation",
+    "source_sha256": "07ac865e418685f5e6c6e8bf4f13b4cb13eb4f3458787b8b4c39a9d225658afd",
+    "source_provenance": {
+      "parent": "D038",
+      "parent_source": "research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5",
+      "parent_source_sha256": "e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8",
+      "d047_generated_source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "d051_generated_source": "local/d051_generated/D051_NR7_EquityIndex_Confirmation_M15_v1_00.mq5",
+      "d051_generated_source_sha256": "07ac865e418685f5e6c6e8bf4f13b4cb13eb4f3458787b8b4c39a9d225658afd",
+      "patch_contract": "D047_EXACT_SEMANTICS_EVIDENCE_IDENTITY_ONLY"
+    },
+    "preregistration": "research/campaigns/D051_NR7_EQUITY_INDEX_CLUSTER_CONFIRMATION_V0_PREREGISTRATION_2026_09_07.md",
+    "symbols": [
+      "SPX500",
+      "NDX100",
+      "GER30",
+      "US30"
+    ],
+    "window": {
+      "from": "2026-01-02",
+      "to": "2026-06-30"
+    },
+    "autosync_used": false
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}

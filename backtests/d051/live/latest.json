@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-07T13:57:10.887208+00:00",
+  "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+  "stage": "confirmation",
+  "kind": "source-identity-pre-run",
+  "event_id": "20260907T135708Z",
+  "event_path": "backtests/d051/live/events/confirmation/source-identity-pre-run/20260907T135708Z",
+  "event_fingerprint_sha256": "77c53eca69dc0b3d3b59d472bed56dc5cac18696f9ca382174dfedbf3d3164a9",
+  "status": "D051_SOURCE_IDENTITY_FROZEN_PRE_RUN",
+  "autosync_used": false
+}
