@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T16:17:56.650578+00:00",
+  "updated_at_utc": "2026-09-07T16:18:25.145659+00:00",
   "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
   "stage": "smoke",
-  "kind": "d053-source-freeze",
-  "event_id": "20260907T161754Z",
-  "event_path": "backtests/d053/live/events/smoke/d053-source-freeze/20260907T161754Z",
-  "event_fingerprint_sha256": "7ce77fdd2e5c99c05251dc7f90366c7dfa7c5bf0a522a999cb4d6ceb510cd3b8",
-  "status": "D053_SOURCE_IDENTITY_FROZEN_BEFORE_MT5_OUTCOME",
+  "kind": "d053-smoke-pass",
+  "event_id": "20260907T161822Z",
+  "event_path": "backtests/d053/live/events/smoke/d053-smoke-pass/20260907T161822Z",
+  "event_fingerprint_sha256": "8bd01f30de81c70ec116aa4ba9266020dad2ba12956cfda83cc95e6bf95a194e",
+  "status": "D053_BATCH_PASS_INTEGRITY",
   "autosync_used": false
 }
