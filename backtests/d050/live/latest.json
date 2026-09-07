@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T13:05:54.816828+00:00",
+  "updated_at_utc": "2026-09-07T13:06:09.584008+00:00",
   "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
   "stage": "development",
-  "kind": "market-transport-batch",
-  "event_id": "20260907T130545Z",
-  "event_path": "backtests/d050/live/events/development/market-transport-batch/20260907T130545Z",
-  "event_fingerprint_sha256": "c10b2d0bb1f496f9e2085b387de471630cbd7f5b1e2d5dda8ef6ce56b614609a",
-  "status": "BATCH_PASS_INTEGRITY",
+  "kind": "market-transport-score",
+  "event_id": "20260907T130558Z",
+  "event_path": "backtests/d050/live/events/development/market-transport-score/20260907T130558Z",
+  "event_fingerprint_sha256": "9057d561d4348e1750375e97354ec7bb67cd4857373bb63815185b9b987039eb",
+  "status": "MARKET_TRANSPORT_SCORE_PASS",
   "autosync_used": false
 }

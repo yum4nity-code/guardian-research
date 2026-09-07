@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T13:06:09.582884+00:00",
+  "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+  "stage": "development",
+  "kind": "market-transport-score",
+  "event_id": "20260907T130558Z",
+  "event_fingerprint_sha256": "9057d561d4348e1750375e97354ec7bb67cd4857373bb63815185b9b987039eb",
+  "source_sha256": "20af04522306dc935c9e5132caf50069b294149e04dc1f225a7d3b78055864de",
+  "payload": {
+    "schema_version": 1,
+    "status": "MARKET_TRANSPORT_SCORE_PASS",
+    "created_at_utc": "2026-09-07T13:05:58.924857+00:00",
+    "lab": "MARKET_TRANSPORT_V1",
+    "parent": "D040",
+    "transport_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+    "role": "COMPARATOR",
+    "stage": "development",
+    "metrics": {
+      "aggregate_n": 1567,
+      "per_symbol_n": {
+        "AUDUSD": 134,
+        "USDCAD": 142,
+        "USDCHF": 126,
+        "EURJPY": 133,
+        "GBPJPY": 132,
+        "AUDJPY": 135,
+        "SPX500": 127,
+        "NDX100": 118,
+        "GER30": 132,
+        "US30": 138,
+        "XAGUSD": 113,
+        "XPTUSD": 137
+      },
+      "qualified_symbols_n": 12,
+      "qualified_symbol_n_min": 30,
+      "aggregate_mean_net_r": -0.04992936705807275,
+      "aggregate_pf": 0.8615253025149524,
+      "aggregate_pf_infinite": false,
+      "positive_symbols": [
+        "SPX500",
+        "NDX100",
+        "GER30",
+        "XAGUSD"
+      ],
+      "positive_symbols_n": 4,
+      "per_symbol_total_net_r": {
+        "AUDUSD": -23.49546652999999,
+        "USDCAD": -17.329430970000004,
+        "USDCHF": -6.1659039,
+        "EURJPY": -3.9501536500000007,
+        "GBPJPY": -8.94151144,
+        "AUDJPY": -12.103785769999991,
+        "SPX500": 5.166611389999998,
+        "NDX100": 3.3462594099999983,
+        "GER30": 15.71034552,
+        "US30": -6.866932540000008,
+        "XAGUSD": 12.644792580000003,
+        "XPTUSD": -36.25414227999999
+      },
+      "aggregate_total_net_r": -78.23931818,
+      "aggregate_total_stress_net_r": -88.26706159,
+      "year_total_net_r": {
+        "2024": -35.70445352999999,
+        "2025": -42.534864649999946
+      },
+      "max_positive_symbol_contribution_share": 0.42612405683779686,
+      "integrity_events": 0
+    },
+    "gates": {
+      "aggregate_n_min": true,
+      "qualified_symbols_min": true,
+      "aggregate_mean_net_r_positive": false,
+      "aggregate_pf_min": false,
+      "positive_symbols_min": false,
+      "aggregate_2024_positive": false,
+      "aggregate_2025_positive": false,
+      "aggregate_positive_at_commission_stress": false,
+      "max_positive_symbol_contribution_share": false,
+      "integrity_events_max": true
+    },
+    "all_gates_pass": false,
+    "verdict": "COMPARATOR_NO_BROAD_PASS",
+    "parent_verdict_unchanged": true,
+    "autosync_used": false,
+    "source_provenance": {
+      "parent_key": "D040",
+      "parent_source": "research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5",
+      "parent_source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+      "generated_source": "local\\market_transport_v1_generated\\MTL_V1_D040_NR4_TickPath_M15_v1_00.mq5",
+      "generated_source_sha256": "20af04522306dc935c9e5132caf50069b294149e04dc1f225a7d3b78055864de",
+      "patch_contract": "ALLOWLIST_ASSETCLASS_COMMISSION_AND_EVIDENCE_IDENTITY_ONLY"
+    },
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\development\\20260907T125023Z\\batch.json",
+    "batch_transport": {
+      "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\development\\market-transport-batch\\20260907T130545Z.json",
+      "status": "EVENT_PUBLISH_PASS",
+      "branch": "backtest-results",
+      "event_path": "backtests/d050/live/events/development/market-transport-batch/20260907T130545Z",
+      "latest_path": "backtests/d050/live/latest.json",
+      "event_id": "20260907T130545Z",
+      "event_fingerprint_sha256": "c10b2d0bb1f496f9e2085b387de471630cbd7f5b1e2d5dda8ef6ce56b614609a",
+      "commit_sha": "436b05f92e179451418c8eda8355fd479b265f07",
+      "payload_compacted": false,
+      "autosync_used": false
+    },
+    "verdict_path": "D:\\MT5_Backtests\\guardian-runner\\market_transport\\v1\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\development\\20260907T130558Z\\score.json"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\development\\20260907T125023Z\\batch.json",
+      "exists": true,
+      "sha256": "97188f10d327e7301e81a6222a8b23163bce8fad611a7eb84e63f563d7423ee9",
+      "bytes": 29001,
+      "published_as": "batch.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\market_transport\\v1\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\development\\20260907T130558Z\\score.json",
+      "exists": true,
+      "sha256": "e2c758dd08f35b25b2a04b4f09fa88d685c26b123f8e52035e7ed4651bfcf37a",
+      "bytes": 3656,
+      "published_as": "score.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
