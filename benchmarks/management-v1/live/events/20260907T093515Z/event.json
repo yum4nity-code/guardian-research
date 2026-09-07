@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "management-v1",
+  "event_id": "20260907T093515Z",
+  "status": "MANAGEMENT_BENCHMARK_V1_COMPLETE",
+  "fingerprint_sha256": "af9d222b2263aa2781347cc8202e12198d425e8a0ca556e75084581b6df66b71",
+  "top_rules": [
+    {
+      "rule": "BE_AFTER_2R",
+      "families_evaluated": 4,
+      "families_improved": 3,
+      "families_degraded": 1,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": 0.0014419683996165552,
+      "median_family_delta_r": 0.0017496802048160229,
+      "worst_family_delta_r": -6.206896379231836e-10,
+      "best_family_delta_r": 0.002268513809523813,
+      "pooled_trade_weighted_mean_delta_r": 0.001664583222407102,
+      "pooled_total_delta_r": 3.0012435500000048,
+      "family_deltas": {
+        "D038": 0.002179552309368194,
+        "D039": 0.002268513809523813,
+        "D040": 0.001319808100263852,
+        "D045": -6.206896379231836e-10
+      },
+      "confirmation_grade": false,
+      "rank": 1
+    },
+    {
+      "rule": "BE_AFTER_1R",
+      "families_evaluated": 4,
+      "families_improved": 1,
+      "families_degraded": 3,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.03245784326183662,
+      "median_family_delta_r": -0.04440127708173096,
+      "worst_family_delta_r": -0.05622575591836734,
+      "best_family_delta_r": 0.015196937034482778,
+      "pooled_trade_weighted_mean_delta_r": -0.04083541169717138,
+      "pooled_total_delta_r": -73.62624729,
+      "family_deltas": {
+        "D038": -0.054441776775599124,
+        "D039": -0.05622575591836734,
+        "D040": -0.0343607773878628,
+        "D045": 0.015196937034482778
+      },
+      "confirmation_grade": false,
+      "rank": 2
+    },
+    {
+      "rule": "P50_AT_2R_REST_ORIGINAL",
+      "families_evaluated": 4,
+      "families_improved": 0,
+      "families_degraded": 4,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.02546865686777006,
+      "median_family_delta_r": -0.0265563289164225,
+      "worst_family_delta_r": -0.0303798500340136,
+      "best_family_delta_r": -0.018382119604221637,
+      "pooled_trade_weighted_mean_delta_r": -0.02418960525235718,
+      "pooled_total_delta_r": -43.613858269999994,
+      "family_deltas": {
+        "D038": -0.02732917948801743,
+        "D039": -0.0303798500340136,
+        "D040": -0.018382119604221637,
+        "D045": -0.02578347834482757
+      },
+      "confirmation_grade": false,
+      "rank": 3
+    },
+    {
+      "rule": "SL1_TP3",
+      "families_evaluated": 4,
+      "families_improved": 0,
+      "families_degraded": 4,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.04198373348861168,
+      "median_family_delta_r": -0.0429711616548719,
+      "worst_family_delta_r": -0.0505602379138322,
+      "best_family_delta_r": -0.03143237273087072,
+      "pooled_trade_weighted_mean_delta_r": -0.041021085230171936,
+      "pooled_total_delta_r": -73.96101667,
+      "family_deltas": {
+        "D038": -0.04896998834422658,
+        "D039": -0.0505602379138322,
+        "D040": -0.03143237273087072,
+        "D045": -0.03697233496551723
+      },
+      "confirmation_grade": false,
+      "rank": 4
+    },
+    {
+      "rule": "P50_AT_1R_REST_ORIGINAL",
+      "families_evaluated": 4,
+      "families_improved": 0,
+      "families_degraded": 4,
+      "families_flat": 0,
+      "equal_family_mean_delta_r": -0.0423982439096908,
+      "median_family_delta_r": -0.04218112542267963,
+      "worst_family_delta_r": -0.05579929582788671,
+      "best_family_delta_r": -0.029431428965517235,
+      "pooled_trade_weighted_mean_delta_r": -0.04467317858569052,
+      "pooled_total_delta_r": -80.54574099,
+      "family_deltas": {
+        "D038": -0.05579929582788671,
+        "D039": -0.0418936250340136,
+        "D040": -0.04246862581134565,
+        "D045": -0.029431428965517235
+      },
+      "confirmation_grade": false,
+      "rank": 5
+    }
+  ],
+  "files": {
+    "benchmark.json": {
+      "sha256": "4c20652cf55999abd018e7da9f7d9d038c3420634d9ea6706f3876082c68054e",
+      "bytes": 101151
+    },
+    "rule_matrix.csv": {
+      "sha256": "3f883b647410c016716862d90e6a15d5e96f75abd539a101d4ebe0de68d0f4bc",
+      "bytes": 10189
+    },
+    "SUMMARY.md": {
+      "sha256": "49aecab47f1a9126c582af8260aaba059c426073f9b565b4299789dbfc656dda",
+      "bytes": 1347
+    }
+  },
+  "autosync_used": false
+}
