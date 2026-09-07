@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T08:38:28.946080+00:00",
+  "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+  "stage": "smoke",
+  "kind": "campaign",
+  "event_id": "20260907T083823Z",
+  "event_fingerprint_sha256": "6c70df73f1f7193ff02ca262756327801f64bc30b1b480978826e628a4047fa0",
+  "source_sha256": "2873274f2d67a07dcd67594c41eb2bb9c11ad1353fa2fa1273597d7f567c733f",
+  "payload": {
+    "schema_version": 2,
+    "campaign_id": "20260907T083813Z",
+    "status": "CAMPAIGN_COMPLETE_WITH_ENGINEERING_FAILURES",
+    "stage": "smoke",
+    "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+    "parallel_mt5": false,
+    "continue_after_scientific_reject": true,
+    "continue_after_experiment_engineering_failure": true,
+    "finalize_development": false,
+    "finalize_scored_stage": false,
+    "experiments_requested": [
+      "D041"
+    ],
+    "started_at_utc": "2026-09-07T08:38:13.111206+00:00",
+    "experiments": [
+      {
+        "identifier": "D041",
+        "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+        "stage": "smoke",
+        "started_at_utc": "2026-09-07T08:38:13.146828+00:00",
+        "status": "EXPERIMENT_ENGINEERING_FAILURE",
+        "error": "execution blocked: source identity SHA mismatch: mode=UTF8_TEXT_LF_NORMALIZED manifest=2873274f2d67a07dcd67594c41eb2bb9c11ad1353fa2fa1273597d7f567c733f actual=36104319f5827c65f343a4accb2344e019eef1887a6c45b491615c6a308618be raw_bytes=36104319f5827c65f343a4accb2344e019eef1887a6c45b491615c6a308618be path=research/strategies/d041/D041_D032_M2_DojiManagementValidation_v1_00.mq5",
+        "failure_transport": {
+          "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\smoke\\campaign-failure\\20260907T083813Z.json",
+          "status": "EVENT_PUBLISH_PASS",
+          "branch": "backtest-results",
+          "event_path": "backtests/d041/live/events/smoke/campaign-failure/20260907T083813Z",
+          "latest_path": "backtests/d041/live/latest.json",
+          "event_id": "20260907T083813Z",
+          "event_fingerprint_sha256": "129b97cf4d9b8fe38fb7b1028d6e57d3624a2ba954bdfb7c09437f93b38dc7a2",
+          "commit_sha": "2894c733b16cc979156fe7c3beb6f8c8d4662272",
+          "payload_compacted": false,
+          "autosync_used": false
+        },
+        "finished_at_utc": "2026-09-07T08:38:23.623876+00:00"
+      }
+    ],
+    "autosync_used": false,
+    "engineering_failures": 1,
+    "post_decision_analytics_failures": 0,
+    "scientific_rejections": 0,
+    "finished_at_utc": "2026-09-07T08:38:23.626361+00:00",
+    "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T083813Z\\campaign.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
