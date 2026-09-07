@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T10:55:16.931279+00:00",
+  "updated_at_utc": "2026-09-07T10:55:22.244216+00:00",
   "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
   "stage": "development",
-  "kind": "batch",
-  "event_id": "20260907T105443Z",
-  "event_path": "backtests/d046/live/events/development/batch/20260907T105443Z",
-  "event_fingerprint_sha256": "410fb4c4b4ed6f0f281d9ed1ec4a4e2a675419c9a57a0e2c4f3c37d6bba8d779",
-  "status": "BATCH_PASS_INTEGRITY",
+  "kind": "campaign",
+  "event_id": "20260907T105519Z",
+  "event_path": "backtests/d046/live/events/development/campaign/20260907T105519Z",
+  "event_fingerprint_sha256": "cc70d902fb2ac6b36c86c9debe53dda4715cc9ae3b8b401f656a3ff77a938f50",
+  "status": "CAMPAIGN_PASS",
   "autosync_used": false
 }
