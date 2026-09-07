@@ -1,0 +1,114 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T12:08:46.192903+00:00",
+  "experiment_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+  "stage": "smoke",
+  "kind": "market-transport-smoke",
+  "event_id": "20260907T120836Z",
+  "event_fingerprint_sha256": "dcc84e6ba28b70a4664602015d19fa69b0257e1dec07aa553797a922948de406",
+  "source_sha256": "20af04522306dc935c9e5132caf50069b294149e04dc1f225a7d3b78055864de",
+  "payload": {
+    "schema_version": 1,
+    "status": "MARKET_TRANSPORT_SMOKE_PASS",
+    "created_at_utc": "2026-09-07T12:08:36.747912+00:00",
+    "lab": "MARKET_TRANSPORT_V1",
+    "parent": "D040",
+    "transport_id": "D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1",
+    "source_provenance": {
+      "parent_key": "D040",
+      "parent_source": "research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5",
+      "parent_source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+      "generated_source": "local\\market_transport_v1_generated\\MTL_V1_D040_NR4_TickPath_M15_v1_00.mq5",
+      "generated_source_sha256": "20af04522306dc935c9e5132caf50069b294149e04dc1f225a7d3b78055864de",
+      "patch_contract": "ALLOWLIST_ASSETCLASS_COMMISSION_AND_EVIDENCE_IDENTITY_ONLY"
+    },
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120757Z\\batch.json",
+    "symbols": [
+      "AUDUSD",
+      "SPX500",
+      "XAGUSD"
+    ],
+    "trade_path": [
+      {
+        "symbol": "AUDUSD",
+        "status": "TRADE_PATH_PASS",
+        "trades": 6,
+        "path_rows": 6,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 2,
+          "1R": 0,
+          "2R": 0,
+          "3R": 0,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      {
+        "symbol": "SPX500",
+        "status": "TRADE_PATH_PASS",
+        "trades": 4,
+        "path_rows": 4,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 2,
+          "1R": 0,
+          "2R": 0,
+          "3R": 0,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      {
+        "symbol": "XAGUSD",
+        "status": "TRADE_PATH_PASS",
+        "trades": 5,
+        "path_rows": 5,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 4,
+          "1R": 1,
+          "2R": 0,
+          "3R": 0,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      }
+    ],
+    "batch_transport": {
+      "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\market-transport-batch\\20260907T120827Z.json",
+      "status": "EVENT_PUBLISH_PASS",
+      "branch": "backtest-results",
+      "event_path": "backtests/d050/live/events/smoke/market-transport-batch/20260907T120827Z",
+      "latest_path": "backtests/d050/live/latest.json",
+      "event_id": "20260907T120827Z",
+      "event_fingerprint_sha256": "60eb13d71abd7aa066f3447d0a30e56f80af68ab0f8ddaf255d755a1ab2221e9",
+      "commit_sha": "fe47f0dd27a6baa0f0ef385abb8cd86d1cfcd312",
+      "payload_compacted": false,
+      "autosync_used": false
+    },
+    "autosync_used": false,
+    "smoke_path": "D:\\MT5_Backtests\\guardian-runner\\market_transport\\v1\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120836Z\\smoke.json"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D050-MARKET-TRANSPORT-NR4-COMPARATOR-V1\\smoke\\20260907T120757Z\\batch.json",
+      "exists": true,
+      "sha256": "f8afc5becb6dc6b397e38c7cc29ff287011dc9f7fceee58f20b82d8233867bd8",
+      "bytes": 7236,
+      "published_as": "batch.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
