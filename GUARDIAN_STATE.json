@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T09:24:00+02:00",
+  "updated_at": "2026-09-07T09:44:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,92 +8,68 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D040_UNCONFIRMED_ANALYTICS_RECOVERY_READY",
+    "status": "PHASE_3_D040_ARCHIVED_D045_READY_SMOKE",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_FINALIZE_D040_EXISTING_CONFIRMATION_EVIDENCE_NO_MT5_THEN_PROMOTE_NEXT_CANDIDATE",
+    "next_phase": "PHASE_3_RUN_D045_ENGINEERING_SMOKE_THEN_DEV_ONLY_IF_SMOKE_PASSES",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
-    "active_experiment": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
-    "experiment_manifest": "research/experiments/D040.json",
-    "status": "CLOSED_UNCONFIRMED_ANALYTICS_RECOVERY_READY",
-    "strategy_family": "Strict NR4 volatility contraction breakout",
+    "active_experiment": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+    "experiment_manifest": "research/experiments/D045.json",
+    "status": "READY_SMOKE",
+    "strategy_family": "Daily Donchian 20/10 trend-following benchmark",
     "timeframe": "M15",
-    "preregistration": "research/campaigns/D040_NR4_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md",
+    "preregistration": "research/campaigns/D045_D1_DONCHIAN_20_10_BENCHMARK_V0_PREREGISTRATION_2026_09_07.md",
     "canonical_sources_currently_in_repo": [
-      "research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5"
+      "research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "On the research PC run `git pull` then `py -3 .\\research\\runner\\guardian_research.py finalize D040 --stage confirmation`. This command MUST NOT launch MT5: D040 is already scientifically CLOSED / UNCONFIRMED from the valid 191-trade 2026 H1 batch and frozen score. It only regenerates the same frozen confirmation verdict from existing evidence, computes the previously-missing descriptive rich analytics with rich_score_v2, and publishes the archival bundle. Do not rescue or retune D040. After completion the user should only say `fini`; the assistant reads GitHub and then removes D040 from the active queue.",
+    "next_action": "On the MT5 research PC run `git pull` then `py -3 .\\research\\runner\\guardian_research.py campaign D045 --stage smoke`. Smoke is engineering-only on USDJPY/XAUUSD/BTCUSD for 2023-08-01..2023-10-31 in Model=0. Do not inspect smoke profitability. The campaign recompiles the exact frozen D045 source, runs the three smoke symbols, validates native Trade Path and publishes automatically. After completion the user should only say `fini`; the assistant reads `backtests/d045/live/latest.json`. Development remains locked until smoke engineering integrity passes.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
       "D036": "REJECTED_V0",
       "D037": "REJECTED_V0",
       "D038": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED",
-      "D039": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
+      "D039": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED",
+      "D040": "UNCONFIRMED_2026_H1_ARCHIVED"
     },
-    "contraction_family_evidence": {
-      "D038_NR7": {
-        "verdict": "REJECT_V0",
-        "failed_gates": ["aggregate_n_min"],
-        "aggregate_n": 459,
-        "aggregate_mean_net_r": 0.17949124751633988,
-        "aggregate_pf": 1.5549236197092462,
-        "aggregate_total_net_r": 82.38648261,
-        "stress_total_net_r": 77.18744327,
-        "positive_symbols_n": 5,
-        "confirmation_opened": false
-      },
-      "D039_INSIDE_DAY": {
-        "verdict": "REJECT_V0",
-        "failed_gates": ["aggregate_n_min"],
-        "aggregate_n": 441,
-        "aggregate_mean_net_r": 0.14936574015873016,
-        "aggregate_pf": 1.5163315683916527,
-        "aggregate_total_net_r": 65.87029141000001,
-        "stress_total_net_r": 61.6325712,
-        "positive_symbols_n": 5,
-        "confirmation_opened": false,
-        "score_event": "backtests/d039/live/events/development/score/20260907T062954Z",
-        "rich_event": "backtests/d039/live/events/development/rich-score/20260907T063007Z"
-      },
-      "D040_NR4": {
-        "development_verdict": "CANDIDATE_CONFIRM",
-        "all_dev_gates_pass": true,
-        "development_n": 758,
-        "development_mean_net_r": 0.11467410832453825,
-        "development_pf": 1.3672947796298534,
-        "development_total_net_r": 86.92297411,
-        "development_stress_total_net_r": 79.17541016,
-        "development_positive_symbols_n": 6,
-        "confirmation_opened": true,
-        "confirmation_verdict": "UNCONFIRMED",
-        "confirmation_all_gates_pass": false,
-        "confirmation_n": 191,
-        "confirmation_mean_net_r": 0.009644011675392677,
-        "confirmation_pf": 1.0309836076821384,
-        "confirmation_total_net_r": 1.84200623,
-        "confirmation_stress_total_net_r": -0.16245865,
-        "confirmation_positive_symbols_n": 3,
-        "confirmation_failed_gates": ["aggregate_pf_min", "aggregate_positive_at_commission_stress"],
-        "integrity_events": 0,
-        "confirmation_score_event": "backtests/d040/live/events/confirmation/score/20260907T071519Z",
-        "closeout_report": "reports/research/D040_NR4_CONFIRMATION_CLOSEOUT_20260907.md",
-        "policy": "D040 V0 is closed UNCONFIRMED. The now-seen 2026 H1 sample may not be used to retune or rescue NR4."
-      }
+    "d040_closeout": {
+      "final_verdict": "UNCONFIRMED",
+      "development_n": 758,
+      "development_mean_net_r": 0.11467410832453825,
+      "development_pf": 1.3672947796298534,
+      "confirmation_n": 191,
+      "confirmation_mean_net_r": 0.009644011675392677,
+      "confirmation_pf": 1.0309836076821384,
+      "confirmation_total_net_r": 1.84200623,
+      "confirmation_stress_total_net_r": -0.16245865,
+      "failed_gates": ["aggregate_pf_min", "aggregate_positive_at_commission_stress"],
+      "finalize_status": "FINALIZE_PASS",
+      "finalize_event": "backtests/d040/live/events/confirmation/finalize/20260907T073113Z",
+      "published_bundle": "backtests/d040/confirmation/20260907T070952Z",
+      "policy": "Closed permanently. The seen 2026 H1 sample may not be used to rescue or retune NR4."
     },
-    "d038_followup": {
-      "v0_verdict": "REJECT_V0",
-      "confirmation_opened": false,
-      "closeout_report": "reports/research/D038_DEV_FINAL_RICH_CLOSEOUT_20260907.md",
-      "exit_lab_e1": "research/campaigns/D038_EXIT_LAB_E1_BE_AFTER_1R_2026_09_07.md",
-      "policy": "Exit Lab is a separate management hypothesis and may not rescue or relabel D038 V0."
+    "d045_contract": {
+      "role": "SLOW_DAILY_TREND_BENCHMARK_NOT_PRIMARY_CHALLENGE_ENGINE",
+      "historical_basis": "Turtle/Donchian System-1 shape: 20-day breakout, 10-day opposite exit, 2N stop",
+      "adaptation_boundary": "No historical prior-winner skip rule, no pyramiding and no portfolio unit allocation in V0; do not call this exact Turtle replication.",
+      "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+      "source_git_blob_sha": "ce64ac87d0aa940b6728ff6bf61f71efb00cba68",
+      "swap_boundary": "Formal D045 V0 scoring is net ex-swap. Separate preregistered FundedNext swap/weekend stress is mandatory before production classification.",
+      "smoke_status": "READY",
+      "development_status": "LOCKED",
+      "confirmation_status": "UNOPENED"
     },
-    "next_strategy_drafts": "research/campaigns/D040_D045_NEXT_SIX_STRATEGY_DRAFTS_2026_09_07.md",
-    "next_candidate_selection_note": "D041 Doji management requires a paired candidate-vs-reference scorer matching its existing preregistration; do not force it through the generic score gates. Prefer a different draft first if it can enter the generic deterministic pipeline without changing its scientific question."
+    "deferred_next_candidates": {
+      "D041": "Requires paired candidate-vs-reference management scorer matching D032 management preregistration; do not force through generic score gates.",
+      "D042": "Momentum attribution remains valuable but requires layered L0-L3 attribution reconstruction rather than generic parent scoring.",
+      "D043": "RSI attribution requires exact legacy manager/gate reconstruction.",
+      "D044": "Blocked until one exact historical Turtle Soup rule set is recovered from an authoritative source."
+    },
+    "next_strategy_drafts": "research/campaigns/D040_D045_NEXT_SIX_STRATEGY_DRAFTS_2026_09_07.md"
   },
   "production": {
     "guardian_core": {
@@ -113,11 +89,11 @@
     "trusted_runtime_installed_version": null,
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "PROVEN_THROUGH_D040_PROSPECTIVE_CONFIRMATION_SCORE; D040_CONFIRMATION_RICH_ARCHIVE_PENDING_NO_MT5_RECOVERY",
+    "research_results_status": "PROVEN_END_TO_END_THROUGH_D040_CONFIRMATION_FINALIZE",
     "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
-    "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. Final bundles and automatic command-event transport use isolated temporary clones and never mutate the active working tree. A network/push failure never invalidates already-valid local scientific evidence and never requires an MT5 rerun by itself.",
+    "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes through isolated temporary clones. Large raws stay local with SHA256/bytes metadata. Transport failure never invalidates valid local scientific evidence and never requires an MT5 rerun by itself.",
     "automatic_event_transport": {
-      "status": "PROVEN_D038_D039_D040_DEVELOPMENT_AND_D040_CONFIRMATION_BATCH_PATH_SCORE",
+      "status": "PROVEN_D038_D039_D040_FULL_PIPELINES",
       "module": "research/runner/result_transport.py",
       "branch": "backtest-results",
       "latest_pointer_template": "backtests/<d0xx>/live/latest.json",
@@ -131,20 +107,11 @@
       "inspector": "research/runner/Inspect-LegacyResultTransport.ps1",
       "reason": "Legacy Guardian Backtest Bot duplicate commits were observed while the new runner transport was already working.",
       "safety": "Identify the actual scheduled task/process and command line before disabling it; do not guess or use it as fallback."
-    },
-    "d040_confirmation_transport_proof": {
-      "batch_status": "BATCH_PASS_INTEGRITY",
-      "trade_path_status": "TRADE_PATH_PASS_ALL",
-      "score_status": "UNCONFIRMED",
-      "score_event": "backtests/d040/live/events/confirmation/score/20260907T071519Z",
-      "campaign_event": "backtests/d040/live/events/confirmation/campaign/20260907T071540Z",
-      "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
-      "post_score_issue": "Old rich_score.py rejected confirmation stage; fixed by rich_score_v2 without rerunning MT5."
     }
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "END_TO_END_PROVEN_WITH_SEQUENTIAL_MULTI_STRATEGY_CAMPAIGN_MODE_AND_STAGE_GENERIC_POST_DECISION_ANALYTICS",
+    "status": "END_TO_END_PROVEN_D045_READY_SMOKE",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -172,7 +139,6 @@
       "INVALID_RUN_DIAGNOSTIC",
       "MT5_UTF16_CSV_DECODE",
       "SOURCE_IDENTITY_REPORT",
-      "RICH_ANALYTICS_SCORE",
       "RICH_ANALYTICS_DEV_AND_CONFIRMATION_V2",
       "POST_DECISION_ANALYTICS_FAILURE_CLASSIFICATION",
       "COMPACT_RESULT_BUNDLE",
@@ -185,15 +151,14 @@
       "STABLE_LIVE_RESULT_POINTER",
       "SEQUENTIAL_MULTI_STRATEGY_CAMPAIGN",
       "UNIFIED_CAMPAIGN_CLI",
-      "RICH_EVENT_PAYLOAD_COMPACTION",
-      "READ_ONLY_LEGACY_TRANSPORT_INSPECTOR",
-      "AUTOMATIC_CONFIRMATION_FINALIZATION"
+      "RICH_EVENT_PAYLOAD_COMPACTION"
     ],
     "planned_stages": [
-      "D040_CONFIRMATION_RICH_ARCHIVE_FROM_EXISTING_BATCH_NO_MT5",
-      "D041_SPECIALIZED_PAIRED_MANAGEMENT_SCORER_OR_DEFER",
-      "D042_D045_PROMOTE_NEXT_GENERIC_PIPELINE_COMPATIBLE_CANDIDATE",
-      "D038_EXIT_LAB_E1_EXACT_REPLAY_IF_PRIORITIZED"
+      "D045_LOCAL_COMPILE_AND_ENGINEERING_SMOKE",
+      "D045_DEV_2024_2025_ONLY_IF_SMOKE_PASS",
+      "D045_CONFIRM_2026_H1_ONLY_IF_DEV_PASS",
+      "D041_SPECIALIZED_PAIRED_MANAGEMENT_SCORER",
+      "D042_LAYERED_MOMENTUM_ATTRIBUTION"
     ],
     "reference_tester_model": 0,
     "fast_tester_model_candidate": null,
@@ -201,39 +166,10 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D040_UNCONFIRMED_ANALYTICS_RECOVERY_CI",
-    "local_mt5_status": "D040_CONFIRMATION_COMPLETE_UNCONFIRMED_NO_RERUN_REQUIRED",
+    "github_ci_status": "PENDING_D045_ACTIVE_STATE_CI",
+    "local_mt5_status": "D045_NOT_YET_COMPILED_LOCAL",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
-    "ergonomics_speed_audit": "docs/RESEARCH_RUNNER_ERGONOMICS_SPEED_AUDIT_2026_09_07.md",
-    "canonical_d040": {
-      "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
-      "source_identity_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
-      "git_blob_sha": "b755615526b67ac358beaf88a048864755c04db3",
-      "source_version": "1.00",
-      "ci_identity_report_pass": true,
-      "native_trade_path": true,
-      "smoke_status": "PASS",
-      "development_status": "PASS",
-      "development_verdict": "CANDIDATE_CONFIRM",
-      "development_aggregate_n": 758,
-      "development_mean_net_r": 0.11467410832453825,
-      "development_pf": 1.3672947796298534,
-      "development_total_net_r": 86.92297411,
-      "development_stress_total_net_r": 79.17541016,
-      "development_positive_symbols_n": 6,
-      "confirmation_period": "2026-01-02..2026-06-30",
-      "confirmation_status": "UNCONFIRMED",
-      "confirmation_aggregate_n": 191,
-      "confirmation_mean_net_r": 0.009644011675392677,
-      "confirmation_pf": 1.0309836076821384,
-      "confirmation_total_net_r": 1.84200623,
-      "confirmation_stress_total_net_r": -0.16245865,
-      "confirmation_positive_symbols_n": 3,
-      "confirmation_failed_gates": ["aggregate_pf_min", "aggregate_positive_at_commission_stress"],
-      "confirmation_score_event": "backtests/d040/live/events/confirmation/score/20260907T071519Z",
-      "final_verdict": "UNCONFIRMED"
-    },
-    "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; several ready experiments may be run unattended through sequential campaign mode; preserve the canonical PowerShell-first operator workflow so the user normally only runs one command block and replies `fini`"
+    "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
