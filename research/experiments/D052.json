@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+  "strategy_family": "management-as-alpha paired direction-neutral null-entry lab",
+  "status": "READY_SMOKE",
+  "hypothesis": "Can one frozen mechanical management rule create robust positive expectancy after costs on simultaneous LONG+SHORT price-independent null entries across 12 liquid markets?",
+  "preregistration": {
+    "path": "research/campaigns/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_ENTRY_V0_PREREGISTRATION_2026_09_07.md",
+    "git_blob_sha": "faa986bb7460806ccc7b5423ba8a697f7569de8e",
+    "frozen_before_result_inspection": true,
+    "execution_deviations": [
+      "Specialized D052 runner validates paired virtual-management rows rather than generic one-row-per-trade lifecycle.",
+      "One MT5 symbol run simulates all frozen management variants on identical paired entries."
+    ]
+  },
+  "source": {
+    "canonical_path": "research/strategies/d052/D052_ManagementAsAlpha_PairedNull_M15_v1_00.mq5",
+    "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+    "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+    "git_blob_sha": "98ca64ebe2c8e21f2579e9f4cc804b8848d6325b",
+    "version": "1.00",
+    "complete_repository_source": true,
+    "strategy_semantics_frozen": true,
+    "engineering_lineage": [
+      "Preregistration frozen before source outcome inspection",
+      "Source Git blob 98ca64ebe2c8e21f2579e9f4cc804b8848d6325b",
+      "Normalized source SHA measured by GitHub CI before local MT5 execution: 009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275"
+    ]
+  },
+  "execution": {
+    "timeframe": "M15",
+    "reference_timeframes": ["D1"],
+    "symbols": [
+      "EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "USDCAD", "USDCHF",
+      "SPX500", "NDX100", "GER30", "US30", "XAUUSD", "XAGUSD"
+    ],
+    "account_currency": "USD",
+    "prop_firm_profile": "FUNDEDNEXT_D052_MANAGEMENT_NULL_V0"
+  },
+  "runner_contract": {
+    "expert_relative_path": "GuardianResearch\\D052_ManagementAsAlpha_PairedNull_M15_v1_00",
+    "default_stage": "development",
+    "stage_selection": "TESTER_DATE_RANGE_ONLY",
+    "tester_model_reference": 0,
+    "tester_model_fast_candidate": null,
+    "output": {
+      "location": "FILE_COMMON",
+      "stats_template": "D052_V100_{stage_token}_{symbol_clean}_STATS.csv",
+      "trades_template": "D052_V100_{stage_token}_{symbol_clean}_RESULTS.csv",
+      "stage_tokens": {
+        "smoke": "RUN",
+        "development": "RUN",
+        "confirmation": "RUN"
+      }
+    }
+  },
+  "cost_model": {
+    "name": "D052_PARENT_COMPARABLE_INTRADAY",
+    "spread_source": "tester executable bid/ask ticks",
+    "commission_stress_multiplier": 1.5,
+    "forex": "USD 5 per lot per side",
+    "indices": "zero explicit commission; executable spread retained",
+    "metals": "0.0016% notional per side",
+    "swap": "excluded; normal D052 rows close before broker-day change"
+  },
+  "stages": {
+    "smoke": {
+      "stage_name": "D052_SMOKE_OCT2023",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "symbols": ["EURUSD", "SPX500", "XAUUSD"],
+      "status": "READY",
+      "gates": {
+        "engineering_only": true,
+        "paired_matrix_integrity_required": true
+      },
+      "result_paths": []
+    },
+    "development": {
+      "stage_name": "D052_DEV_2024_2025",
+      "from": "2024-01-02",
+      "to": "2025-12-31",
+      "symbols": [
+        "EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "USDCAD", "USDCHF",
+        "SPX500", "NDX100", "GER30", "US30", "XAUUSD", "XAGUSD"
+      ],
+      "status": "LOCKED_UNTIL_SMOKE_PASS",
+      "gates": {
+        "aggregate_n_min": 8000,
+        "each_symbol_n_min": 600,
+        "aggregate_mean_net_r_strictly_positive": true,
+        "aggregate_pf_min": 1.05,
+        "aggregate_total_net_r_positive": true,
+        "aggregate_positive_at_commission_stress": true,
+        "long_mean_net_r_positive": true,
+        "short_mean_net_r_positive": true,
+        "positive_symbols_min": 9,
+        "aggregate_2024_positive": true,
+        "aggregate_2025_positive": true,
+        "paired_mean_delta_vs_reference_positive": true,
+        "bootstrap_absolute_mean_lower_95_positive": true,
+        "bootstrap_paired_delta_lower_95_positive": true,
+        "max_positive_symbol_contribution_share": 0.25,
+        "integrity_events_max": 0
+      },
+      "result_paths": []
+    },
+    "confirmation": {
+      "stage_name": "D052_HOLDOUT_JUL_AUG2026",
+      "from": "2026-07-01",
+      "to": "2026-08-31",
+      "symbols": [
+        "EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "USDCAD", "USDCHF",
+        "SPX500", "NDX100", "GER30", "US30", "XAUUSD", "XAGUSD"
+      ],
+      "status": "UNOPENED",
+      "gates": {
+        "locked_until_single_dev_candidate_passes_all_frozen_gates": true,
+        "aggregate_n_min": 800,
+        "each_symbol_n_min": 60,
+        "aggregate_mean_net_r_strictly_positive": true,
+        "aggregate_pf_min": 1.05,
+        "aggregate_total_net_r_positive": true,
+        "aggregate_positive_at_commission_stress": true,
+        "long_mean_net_r_positive": true,
+        "short_mean_net_r_positive": true,
+        "positive_symbols_min": 9,
+        "paired_mean_delta_vs_reference_positive": true,
+        "bootstrap_absolute_mean_lower_95_positive": true,
+        "bootstrap_paired_delta_lower_95_positive": true,
+        "max_positive_symbol_contribution_share": 0.30,
+        "integrity_events_max": 0
+      },
+      "result_paths": []
+    }
+  },
+  "decision_policy": {
+    "no_posthoc_rescue": true,
+    "confirmation_locked_until_dev_pass": true,
+    "invalid_run_is_not_strategy_reject": true
+  },
+  "results": {
+    "compile": null,
+    "smoke": null,
+    "development": null,
+    "confirmation": null,
+    "final_verdict": null
+  }
+}
