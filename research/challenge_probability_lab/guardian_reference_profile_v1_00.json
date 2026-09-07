@@ -1,0 +1,13 @@
+{
+  "profile_name": "GUARDIAN_REFERENCE_STATIC_5_10_TARGET10",
+  "note": "Generic research profile aligned with Guardian's historical 5% daily / 10% max static-loss model. Verify the actual prop-firm programme before using results operationally.",
+  "initial_balance": 100000.0,
+  "profit_target_pct": 10.0,
+  "daily_loss_pct": 5.0,
+  "max_loss_pct": 10.0,
+  "max_days": 730,
+  "block_days": 5,
+  "risk_basis": "initial",
+  "max_loss_anchor": "initial",
+  "risk_levels_pct": [0.10, 0.15, 0.20, 0.25, 0.33, 0.50]
+}
