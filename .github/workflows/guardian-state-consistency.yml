@@ -93,29 +93,38 @@ jobs:
       - name: Validate authoritative state and generated views
         run: python research/runner/state_tools.py validate
 
-      - name: Validate active D054 experiment contract
-        run: |
-          python research/runner/experiment.py validate D054
-          python research/runner/experiment.py ready D054
+      - name: Validate closed D054 experiment contract
+        run: python research/runner/experiment.py validate D054
 
-      - name: Verify active D054 exact-source identity and runner plan
+      - name: Verify closed D054 source identity and frozen verdict contract
         run: |
           python - <<'PY'
           import sys
           sys.path.insert(0, 'research/runner')
+          import experiment
           import runner
           import d054_orb30_core3_workflow as d054
-          identities = d054.verify_frozen_repository_identity()
+
+          _, manifest = experiment.load_manifest('D054')
           report = runner.plan('D054')
+          source_sha = runner.source_identity_sha256(d054.ROOT / d054.SOURCE, runner.SOURCE_SHA_MODE_TEXT_LF)
+
           assert report['source_ready'], report['blockers']
           assert report['experiment_id'] == 'D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0'
           assert report['execution']['symbols'] == ['SPX500', 'NDX100', 'US30']
-          assert identities['source_sha256'] == 'd39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad'
-          print('D054_SOURCE_READY_EXACT_D053_V101', report['source_identity'])
+          assert source_sha == 'd39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad'
+          assert d054.git_blob_sha(d054.PREREG) == d054.EXPECTED_PREREG_BLOB
+          assert d054.git_blob_sha(d054.SOURCE) == d054.EXPECTED_SOURCE_BLOB
+          assert manifest['status'] == 'UNCONFIRMED'
+          assert manifest['stages']['confirmation']['status'] == 'FAIL'
+          assert manifest['stages']['confirmation']['gates'] == d054.FROZEN_CONFIRMATION_GATES
+          assert manifest['results']['final_verdict'] == 'D054_UNCONFIRMED_CLOSE'
+          print('D054_CLOSED_IDENTITY_AND_VERDICT_OK', report['source_identity'])
           PY
 
       - name: Validate closed experiment manifests remain coherent
         run: |
+          python research/runner/experiment.py validate D054
           python research/runner/experiment.py validate D053
           python research/runner/experiment.py validate D052
           python research/runner/experiment.py validate D046
