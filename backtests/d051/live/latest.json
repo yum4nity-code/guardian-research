@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T13:59:29.724857+00:00",
+  "updated_at_utc": "2026-09-07T13:59:34.934395+00:00",
   "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
   "stage": "confirmation",
-  "kind": "d051-confirm-batch",
-  "event_id": "20260907T135927Z",
-  "event_path": "backtests/d051/live/events/confirmation/d051-confirm-batch/20260907T135927Z",
-  "event_fingerprint_sha256": "69b7453470a111fb2cf841adee714bf24d844bfe93bc4969484f178e8b15e9aa",
-  "status": "BATCH_PASS_INTEGRITY",
+  "kind": "d051-confirm-score",
+  "event_id": "20260907T135932Z",
+  "event_path": "backtests/d051/live/events/confirmation/d051-confirm-score/20260907T135932Z",
+  "event_fingerprint_sha256": "ad1c0ec7f56ac6a5e4ee6526dd7a94ada01ea588c9c7de27a492d8065eb1ad6a",
+  "status": "D051_UNCONFIRMED_CLOSE",
   "autosync_used": false
 }

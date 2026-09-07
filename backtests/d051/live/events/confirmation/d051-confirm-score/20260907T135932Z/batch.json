@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "status": "BATCH_PASS_INTEGRITY",
+  "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+  "manifest_path": "local\\d051_generated\\D051.json",
+  "stage": "confirmation",
+  "symbols": [
+    "SPX500",
+    "NDX100",
+    "GER30",
+    "US30"
+  ],
+  "started_at_utc": "2026-09-07T13:57:15.606028+00:00",
+  "execution_mode": "SEQUENTIAL",
+  "tester_model": 0,
+  "tests": [
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+      "manifest_path": "local\\d051_generated\\D051.json",
+      "stage": "confirmation",
+      "symbol": "SPX500",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T13:57:15.622636+00:00",
+      "finished_at_utc": "2026-09-07T13:57:41.705528+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135715Z_SPX500_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\20260907T135713Z\\build.json",
+      "source_sha256": "07ac865e418685f5e6c6e8bf4f13b4cb13eb4f3458787b8b4c39a9d225658afd",
+      "ex5_sha256": "3515b2ce08ea8d30e11a545e67803ba498207fd1f14f6f29d78abac54886b1e7",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135715Z_SPX500_M0\\D051_V100_RUN_SPX500_STATS.csv",
+        "sha256": "34b780e9d9ccbce85fec9745c2f425a8602ea6d02a785ea47bf629d138a40af9"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135715Z_SPX500_M0\\D051_V100_RUN_SPX500_TRADES.csv",
+        "sha256": "c86cf1926b6e19d4df5322077a467af5c751d86f961d5e748af18e9724aa85e1"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D051_NR7_EquityIndex_Confirmation_M15_v1_00.mq5",
+        "source_version": "1.00-D051",
+        "run_stage": "RUN",
+        "symbol": "SPX500",
+        "trades": 14,
+        "trades_opened": 14,
+        "trades_closed": 14,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+      "manifest_path": "local\\d051_generated\\D051.json",
+      "stage": "confirmation",
+      "symbol": "NDX100",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T13:57:41.754809+00:00",
+      "finished_at_utc": "2026-09-07T13:58:40.012872+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135741Z_NDX100_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\20260907T135713Z\\build.json",
+      "source_sha256": "07ac865e418685f5e6c6e8bf4f13b4cb13eb4f3458787b8b4c39a9d225658afd",
+      "ex5_sha256": "3515b2ce08ea8d30e11a545e67803ba498207fd1f14f6f29d78abac54886b1e7",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135741Z_NDX100_M0\\D051_V100_RUN_NDX100_STATS.csv",
+        "sha256": "edda96b8ea97d67b752e37d5c38134a0ad723144d6bc3e1c23bdb28ec5ce53eb"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135741Z_NDX100_M0\\D051_V100_RUN_NDX100_TRADES.csv",
+        "sha256": "5a0a2796e40b97ad675039637addf55f878c8405c51cbada14f0c6790a67c1c6"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D051_NR7_EquityIndex_Confirmation_M15_v1_00.mq5",
+        "source_version": "1.00-D051",
+        "run_stage": "RUN",
+        "symbol": "NDX100",
+        "trades": 10,
+        "trades_opened": 10,
+        "trades_closed": 10,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+      "manifest_path": "local\\d051_generated\\D051.json",
+      "stage": "confirmation",
+      "symbol": "GER30",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T13:58:40.071267+00:00",
+      "finished_at_utc": "2026-09-07T13:58:56.948258+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135840Z_GER30_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\20260907T135713Z\\build.json",
+      "source_sha256": "07ac865e418685f5e6c6e8bf4f13b4cb13eb4f3458787b8b4c39a9d225658afd",
+      "ex5_sha256": "3515b2ce08ea8d30e11a545e67803ba498207fd1f14f6f29d78abac54886b1e7",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135840Z_GER30_M0\\D051_V100_RUN_GER30_STATS.csv",
+        "sha256": "7e3fe13c964e27c0187dac33eaf73ffb6b38bac672d4d77012279d3481b8273a"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135840Z_GER30_M0\\D051_V100_RUN_GER30_TRADES.csv",
+        "sha256": "5893e68a28843e4d18d6b51a36101b9f59532c82a6f7644f57d579f2f2d3ff86"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D051_NR7_EquityIndex_Confirmation_M15_v1_00.mq5",
+        "source_version": "1.00-D051",
+        "run_stage": "RUN",
+        "symbol": "GER30",
+        "trades": 17,
+        "trades_opened": 17,
+        "trades_closed": 17,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+      "manifest_path": "local\\d051_generated\\D051.json",
+      "stage": "confirmation",
+      "symbol": "US30",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T13:58:56.993011+00:00",
+      "finished_at_utc": "2026-09-07T13:59:27.048081+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135856Z_US30_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\20260907T135713Z\\build.json",
+      "source_sha256": "07ac865e418685f5e6c6e8bf4f13b4cb13eb4f3458787b8b4c39a9d225658afd",
+      "ex5_sha256": "3515b2ce08ea8d30e11a545e67803ba498207fd1f14f6f29d78abac54886b1e7",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135856Z_US30_M0\\D051_V100_RUN_US30_STATS.csv",
+        "sha256": "136394514c903d878e9ef1cd778c749f4fd5bc8c26bb492a0fdcd1644cd4324a"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135856Z_US30_M0\\D051_V100_RUN_US30_TRADES.csv",
+        "sha256": "1b5a6e3d47ddaaf86dbaaedda4e73ca54a8eed071de52cfe091130223e576628"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "D051_NR7_EquityIndex_Confirmation_M15_v1_00.mq5",
+        "source_version": "1.00-D051",
+        "run_stage": "RUN",
+        "symbol": "US30",
+        "trades": 20,
+        "trades_opened": 20,
+        "trades_closed": 20,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    }
+  ],
+  "autosync_used": false,
+  "finished_at_utc": "2026-09-07T13:59:27.093668+00:00"
+}

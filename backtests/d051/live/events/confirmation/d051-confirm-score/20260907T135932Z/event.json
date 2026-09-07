@@ -1,0 +1,186 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T13:59:34.933752+00:00",
+  "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+  "stage": "confirmation",
+  "kind": "d051-confirm-score",
+  "event_id": "20260907T135932Z",
+  "event_fingerprint_sha256": "ad1c0ec7f56ac6a5e4ee6526dd7a94ada01ea588c9c7de27a492d8065eb1ad6a",
+  "source_sha256": "07ac865e418685f5e6c6e8bf4f13b4cb13eb4f3458787b8b4c39a9d225658afd",
+  "payload": {
+    "schema_version": 1,
+    "status": "D051_UNCONFIRMED_CLOSE",
+    "created_at_utc": "2026-09-07T13:59:32.513190+00:00",
+    "experiment_id": "D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0",
+    "stage": "confirmation",
+    "verdict": "D051_UNCONFIRMED_CLOSE",
+    "all_gates_pass": false,
+    "metrics": {
+      "aggregate_n": 61,
+      "per_symbol_n": {
+        "SPX500": 14,
+        "NDX100": 10,
+        "GER30": 17,
+        "US30": 20
+      },
+      "aggregate_mean_net_r": -0.04297371016393443,
+      "aggregate_pf": 0.8784327733519505,
+      "aggregate_pf_infinite": false,
+      "aggregate_total_net_r": -2.62139632,
+      "aggregate_total_stress_net_r": -2.62139632,
+      "positive_symbols": [
+        "NDX100",
+        "US30"
+      ],
+      "positive_symbols_n": 2,
+      "per_symbol_total_net_r": {
+        "SPX500": -3.3765452699999994,
+        "NDX100": 2.38774232,
+        "GER30": -4.106636010000001,
+        "US30": 2.4740426399999995
+      },
+      "max_positive_symbol_contribution_share": 0.5088753740354653,
+      "integrity_events": 0
+    },
+    "gates": {
+      "aggregate_n_min": true,
+      "each_symbol_n_min": true,
+      "aggregate_mean_net_r_positive": false,
+      "aggregate_pf_min": false,
+      "positive_symbols_min": false,
+      "aggregate_total_net_r_positive": false,
+      "max_positive_symbol_contribution_share": true,
+      "integrity_events_max": true
+    },
+    "trade_path": [
+      {
+        "symbol": "SPX500",
+        "status": "TRADE_PATH_PASS",
+        "trades": 14,
+        "path_rows": 14,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 6,
+          "1R": 4,
+          "2R": 0,
+          "3R": 0,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      {
+        "symbol": "NDX100",
+        "status": "TRADE_PATH_PASS",
+        "trades": 10,
+        "path_rows": 10,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 7,
+          "1R": 5,
+          "2R": 1,
+          "3R": 0,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      {
+        "symbol": "GER30",
+        "status": "TRADE_PATH_PASS",
+        "trades": 17,
+        "path_rows": 17,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 7,
+          "1R": 1,
+          "2R": 0,
+          "3R": 0,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      {
+        "symbol": "US30",
+        "status": "TRADE_PATH_PASS",
+        "trades": 20,
+        "path_rows": 20,
+        "path_calc_failures": 0,
+        "required_columns": 36,
+        "reached_counts": {
+          "0.5R": 13,
+          "1R": 6,
+          "2R": 1,
+          "3R": 1,
+          "5R": 0
+        },
+        "path_ambiguous_rows": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      }
+    ],
+    "source_provenance": {
+      "parent": "D038",
+      "parent_source": "research/strategies/d038/D038_NR7_TickPath_M15_v1_00.mq5",
+      "parent_source_sha256": "e99bbe8817ed0e2c74c9aa757e8dbc5877fe0f2a5d7cd660112bf242cda79eb8",
+      "d047_generated_source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "d051_generated_source": "local/d051_generated/D051_NR7_EquityIndex_Confirmation_M15_v1_00.mq5",
+      "d051_generated_source_sha256": "07ac865e418685f5e6c6e8bf4f13b4cb13eb4f3458787b8b4c39a9d225658afd",
+      "patch_contract": "D047_EXACT_SEMANTICS_EVIDENCE_IDENTITY_ONLY"
+    },
+    "parent_d038_verdict_unchanged": true,
+    "d047_broad_transport_verdict_unchanged": true,
+    "reserved_holdout": {
+      "status": "LOCKED_UNLESS_CONFIRM_PASS",
+      "from": "2026-07-01",
+      "to": "2026-08-31",
+      "symbols": [
+        "SPX500",
+        "NDX100",
+        "GER30",
+        "US30"
+      ]
+    },
+    "autosync_used": false,
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135715Z\\batch.json",
+    "batch_transport": {
+      "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\d051-confirm-batch\\20260907T135927Z.json",
+      "status": "EVENT_PUBLISH_PASS",
+      "branch": "backtest-results",
+      "event_path": "backtests/d051/live/events/confirmation/d051-confirm-batch/20260907T135927Z",
+      "latest_path": "backtests/d051/live/latest.json",
+      "event_id": "20260907T135927Z",
+      "event_fingerprint_sha256": "69b7453470a111fb2cf841adee714bf24d844bfe93bc4969484f178e8b15e9aa",
+      "commit_sha": "e338712782d7f4e8ea54d0cc33f23bfc735d835b",
+      "payload_compacted": false,
+      "autosync_used": false
+    },
+    "verdict_path": "D:\\MT5_Backtests\\guardian-runner\\d051\\confirmation\\20260907T135932Z\\score.json"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D051-NR7-EQUITY-INDEX-CLUSTER-CONFIRMATION-V0\\confirmation\\20260907T135715Z\\batch.json",
+      "exists": true,
+      "sha256": "02c914ba8f1353e9b9d1c16f18cadb9dbc3dc18e09edcd7dc00f61e225ebf0d3",
+      "bytes": 9470,
+      "published_as": "batch.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\d051\\confirmation\\20260907T135932Z\\score.json",
+      "exists": true,
+      "sha256": "ac672daf47cf49cc8f591933956c04d6fcad8a5e79a610bc595da1d0d36e8a8b",
+      "bytes": 4869,
+      "published_as": "score.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
