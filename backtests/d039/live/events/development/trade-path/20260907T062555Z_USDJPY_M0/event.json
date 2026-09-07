@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T06:29:43.519704+00:00",
+  "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+  "stage": "development",
+  "kind": "trade-path",
+  "event_id": "20260907T062555Z_USDJPY_M0",
+  "event_fingerprint_sha256": "bfef08f4b21e0ed6bc2d39ec80c4e3369bccc53e3386607cf7773d568f70d171",
+  "source_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+  "payload": {
+    "schema_version": 1,
+    "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+    "stage": "development",
+    "symbol": "USDJPY",
+    "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\development\\20260907T062555Z_USDJPY_M0",
+    "status": "TRADE_PATH_PASS",
+    "trades": 78,
+    "path_rows": 78,
+    "path_calc_failures": 0,
+    "required_columns": 36,
+    "reached_counts": {
+      "0.5R": 43,
+      "1R": 19,
+      "2R": 3,
+      "3R": 2,
+      "5R": 1
+    },
+    "path_ambiguous_rows": 0,
+    "stats_encoding": "utf-16",
+    "trades_encoding": "utf-16"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
