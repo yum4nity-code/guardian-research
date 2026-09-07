@@ -14,8 +14,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D039-INSIDE-DAY-BREAKOUT-V0**
-- State: **READY_SMOKE**
-- Next action: **On return to the MT5 research PC, pull the refactor branch and run `py -3 .\research\runner\guardian_research.py compile D039`. D039 is preregistered, source-complete and SHA-frozen but has not yet received local MetaEditor compile proof. If compile is 0 errors / 0 warnings with trusted EX5 receipt, run `py -3 .\research\runner\guardian_research.py campaign D039 --stage smoke --no-finalize` to execute the three-market October-2023 engineering smoke and native Trade Path validation in one unattended command. Do not open D039 development until smoke passes. The assistant can read the automatically published GitHub evidence after the user says only `fini`.**
+- State: **READY_DEV**
+- Next action: **On the MT5 research PC, pull the refactor branch and run `py -3 .\research\runner\guardian_research.py campaign D039 --stage development`. D039 smoke is now engineering-PASS: compile PASS, 10 total smoke trades across USDJPY/XAUUSD/BTCUSD, zero integrity failures and native Trade Path PASS on all three. The development command recompiles the frozen source, runs the six-market 2024-01-02..2025-12-31 Model=0 batch, validates Trade Path, applies the frozen decision gates, computes rich analytics and publishes the compact result bundle automatically. Scientific rejection does not trigger any rescue. Confirmation remains unopened unless every development gate passes. After completion the user only needs to say `fini`.**
 
 ## Operational truths
 
