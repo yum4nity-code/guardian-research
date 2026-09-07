@@ -2,25 +2,25 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T09:24:00+02:00",
-  "active_primary": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "updated_at": "2026-09-07T09:44:00+02:00",
+  "active_primary": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "items": [
     {
-      "id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+      "id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
       "priority": 0,
-      "status": "CLOSED_UNCONFIRMED_ANALYTICS_RECOVERY_READY",
+      "status": "READY_SMOKE",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "On the research PC run `git pull` then `py -3 .\\research\\runner\\guardian_research.py finalize D040 --stage confirmation`. This command MUST NOT launch MT5: D040 is already scientifically CLOSED / UNCONFIRMED from the valid 191-trade 2026 H1 batch and frozen score. It only regenerates the same frozen confirmation verdict from existing evidence, computes the previously-missing descriptive rich analytics with rich_score_v2, and publishes the archival bundle. Do not rescue or retune D040. After completion the user should only say `fini`; the assistant reads GitHub and then removes D040 from the active queue.",
-      "manifest": "research/experiments/D040.json"
+      "goal": "On the MT5 research PC run `git pull` then `py -3 .\\research\\runner\\guardian_research.py campaign D045 --stage smoke`. Smoke is engineering-only on USDJPY/XAUUSD/BTCUSD for 2023-08-01..2023-10-31 in Model=0. Do not inspect smoke profitability. The campaign recompiles the exact frozen D045 source, runs the three smoke symbols, validates native Trade Path and publishes automatically. After completion the user should only say `fini`; the assistant reads `backtests/d045/live/latest.json`. Development remains locked until smoke engineering integrity passes.",
+      "manifest": "research/experiments/D045.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "END_TO_END_PROVEN_WITH_SEQUENTIAL_MULTI_STRATEGY_CAMPAIGN_MODE_AND_STAGE_GENERIC_POST_DECISION_ANALYTICS",
+      "status": "END_TO_END_PROVEN_D045_READY_SMOKE",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
-      "goal": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; several ready experiments may be run unattended through sequential campaign mode; preserve the canonical PowerShell-first operator workflow so the user normally only runs one command block and replies `fini`"
+      "goal": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
     },
     {
       "id": "AUTOSYNC_V3_FROM_SCRATCH",
@@ -77,6 +77,14 @@
       "owner": "HISTORICAL",
       "type": "closed_research",
       "goal": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
+    },
+    {
+      "id": "D040",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "UNCONFIRMED_2026_H1_ARCHIVED"
     }
   ],
   "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. Canonical operator UX: docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md. No operational item may wait on Codex."
