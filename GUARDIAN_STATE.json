@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T07:42:00+01:00",
+  "updated_at": "2026-09-07T08:50:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,24 +8,25 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D039_CLOSED_D040_READY_SMOKE_CAMPAIGN_MODE_PROVEN",
+    "status": "PHASE_3_D040_SMOKE_PASS_DEV_READY_CANONICAL_OPERATOR_WORKFLOW_DOCUMENTED",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_COMPILE_AND_SMOKE_D040_NR4",
+    "next_phase": "PHASE_3_RUN_D040_DEVELOPMENT_THEN_PROMOTE_D041_D045",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
     "experiment_manifest": "research/experiments/D040.json",
-    "status": "READY_SMOKE",
+    "status": "READY_DEV",
     "strategy_family": "Strict NR4 volatility contraction breakout",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D040_NR4_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md",
     "canonical_sources_currently_in_repo": [
       "research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5"
     ],
-    "next_action": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py compile D040`. D040 is preregistered, source-complete and CI-SHA-frozen. If local MetaEditor compilation is accepted with 0 errors / 0 warnings and a trusted EX5 receipt, run `py -3 .\\research\\runner\\guardian_research.py campaign D040 --stage smoke --no-finalize`. Smoke is engineering-only on USDJPY/XAUUSD/BTCUSD for 2023-10-02..2023-10-31. Do not inspect smoke alpha and do not open DEV until lifecycle + native Trade Path pass. After completion the user only needs to say `fini`; the assistant reads GitHub evidence.",
+    "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
+    "next_action": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py campaign D040 --stage development`. D040 smoke is engineering-PASS: compile PASS, 11 total smoke trades across USDJPY/XAUUSD/BTCUSD, zero integrity failures and native Trade Path PASS on all three. The development campaign recompiles the exact frozen source, runs all six markets for 2024-01-02..2025-12-31 in Model=0, validates Trade Path, applies frozen gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and continues.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -88,11 +89,11 @@
     "trusted_runtime_installed_version": null,
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "PROVEN_END_TO_END_D038_D039_WITH_STABLE_LATEST_POINTER_AND_COMPACT_RICH_EVENTS",
+    "research_results_status": "PROVEN_END_TO_END_D038_D039_AND_D040_SMOKE_WITH_STABLE_LATEST_POINTER_AND_COMPACT_RICH_EVENTS",
     "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
     "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes. Large raws stay on the PC with SHA256 and byte sizes recorded. Final bundles and automatic command-event transport use isolated temporary clones and never mutate the active working tree. A network/push failure never invalidates already-valid local scientific evidence and never requires an MT5 rerun by itself.",
     "automatic_event_transport": {
-      "status": "PROVEN_D038_AND_D039_FULL_DEVELOPMENT_PIPELINES",
+      "status": "PROVEN_D038_D039_FULL_DEVELOPMENT_AND_D040_SMOKE",
       "module": "research/runner/result_transport.py",
       "branch": "backtest-results",
       "latest_pointer_template": "backtests/<d0xx>/live/latest.json",
@@ -106,6 +107,12 @@
       "inspector": "research/runner/Inspect-LegacyResultTransport.ps1",
       "reason": "Legacy Guardian Backtest Bot duplicate commits were observed while the new runner transport was already working.",
       "safety": "Identify the actual scheduled task/process and command line before disabling it; do not guess or use it as fallback."
+    },
+    "d040_smoke_transport_proof": {
+      "status": "PASS",
+      "campaign_event": "backtests/d040/live/events/smoke/campaign/20260907T064619Z",
+      "campaign_status": "CAMPAIGN_PASS",
+      "compile_ex5_sha256": "105fda4254fe966aabc7c8b29433a087bd4a7748309f0a673e83ab5dd7b8c1b9"
     }
   },
   "runner": {
@@ -117,6 +124,7 @@
     "entrypoint": "research/runner/guardian_research.py",
     "campaign_entrypoint": "research/runner/campaign.py",
     "windows_launcher": "research/runner/Run-GuardianResearch.ps1",
+    "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
     "implemented_stages": [
       "STATE_VALIDATE",
       "MANIFEST_VALIDATE",
@@ -151,10 +159,10 @@
       "READ_ONLY_LEGACY_TRANSPORT_INSPECTOR"
     ],
     "planned_stages": [
-      "D040_LOCAL_COMPILE",
-      "D040_THREE_MARKET_ENGINEERING_SMOKE",
-      "D040_NATIVE_TRADE_PATH_VALIDATION",
-      "D040_DEV_ONLY_IF_SMOKE_PASS",
+      "D040_SIX_MARKET_DEVELOPMENT",
+      "D040_DEV_TRADE_PATH_VALIDATION",
+      "D040_DEV_SCORE_RICH_ANALYTICS_PUBLISH",
+      "D040_CONFIRMATION_ONLY_IF_ALL_DEV_GATES_PASS",
       "D038_EXIT_LAB_E1_EXACT_REPLAY_IF_PRIORITIZED",
       "D041_D045_PROMOTE_SELECTED_DRAFTS_TO_PREREG_SOURCE_MANIFEST"
     ],
@@ -164,8 +172,8 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D040_ACTIVE_STATE_CI",
-    "local_mt5_status": "D039_CLOSED_D040_AWAITING_LOCAL_COMPILE",
+    "github_ci_status": "PENDING_D040_DEV_READY_STATE_CI",
+    "local_mt5_status": "D040_SMOKE_PASS_DEV_READY",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "ergonomics_speed_audit": "docs/RESEARCH_RUNNER_ERGONOMICS_SPEED_AUDIT_2026_09_07.md",
     "canonical_d040": {
@@ -174,17 +182,21 @@
       "git_blob_sha": "b755615526b67ac358beaf88a048864755c04db3",
       "source_version": "1.00",
       "ci_identity_report_pass": true,
-      "local_compile_status": "NOT_RUN_YET",
+      "local_compile_status": "COMPILE_PASS",
+      "local_ex5_sha256": "105fda4254fe966aabc7c8b29433a087bd4a7748309f0a673e83ab5dd7b8c1b9",
       "native_trade_path": true,
       "smoke_period": "2023-10-02..2023-10-31",
       "smoke_symbols": ["USDJPY", "XAUUSD", "BTCUSD"],
-      "smoke_status": "READY_AFTER_COMPILE",
+      "smoke_status": "PASS",
+      "smoke_aggregate_trades": 11,
+      "smoke_trade_path_status": "TRADE_PATH_PASS_ALL",
+      "smoke_campaign_event": "backtests/d040/live/events/smoke/campaign/20260907T064619Z",
       "development_period": "2024-01-02..2025-12-31",
-      "development_status": "LOCKED_UNTIL_SMOKE_PASS",
+      "development_status": "READY",
       "confirmation_period": "2026-01-02..2026-06-30",
       "confirmation_status": "UNOPENED"
     },
-    "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; several ready experiments may be run unattended through sequential campaign mode"
+    "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; several ready experiments may be run unattended through sequential campaign mode; preserve the canonical PowerShell-first operator workflow so the user normally only runs one command block and replies `fini`"
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
