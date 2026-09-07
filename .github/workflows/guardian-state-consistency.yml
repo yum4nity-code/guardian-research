@@ -68,6 +68,15 @@ jobs:
       - name: Validate authoritative state and generated views
         run: python research/runner/state_tools.py validate
 
+      - name: Validate active D045 experiment contract
+        run: python research/runner/experiment.py validate D045
+
+      - name: Verify active D045 source is execution-ready
+        run: python research/runner/experiment.py ready D045
+
+      - name: Exercise active D045 runner planning without MT5
+        run: python research/runner/guardian_research.py plan D045
+
       - name: Validate closed D040 manifest remains coherent
         run: python research/runner/experiment.py validate D040
 
