@@ -87,6 +87,9 @@ jobs:
       - name: Report D039 v1.00 active source identity
         run: python research/runner/source_hash.py research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5
 
+      - name: Report D040 v1.00 candidate source identity
+        run: python research/runner/source_hash.py research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5
+
       - name: Run regression tests
         run: |
           python research/runner/test_state_tools.py
