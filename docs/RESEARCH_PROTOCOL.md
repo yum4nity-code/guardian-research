@@ -1,7 +1,9 @@
 # Research Protocol
 
 ## Chaîne de travail
-IDEA -> RESEARCH -> PROTOTYPE -> BACKTEST -> ROBUSTNESS -> STAT VALIDATION -> RED TEAM -> PRODUCTION CANDIDATE -> CHATGPT AUDIT -> GUARDIAN INTEGRATION -> NON-REGRESSION -> DEPLOY.
+IDEA -> RESEARCH -> PROTOTYPE -> BACKTEST -> ROBUSTNESS -> STAT VALIDATION / OOS -> RED TEAM -> CHALLENGE PROBABILITY LAB -> PRODUCTION CANDIDATE -> CHATGPT AUDIT -> GUARDIAN INTEGRATION -> NON-REGRESSION -> DEPLOY.
+
+Le **Challenge Probability Lab est strictement downstream** : il ne s'exécute automatiquement qu'après validation/OOS/confirmation réussie et red-team acceptable. Il optimise le risque pour **passer le challenge**, jamais pour sauver une stratégie rejetée ni pour fabriquer de l'alpha.
 
 ## Rôles
 - Codex : directeur du labo. Planifie MiMo/MT5, formule et documente les hypothèses, code librement dans `research/`, collecte les résultats, red-team les stratégies, décide des campagnes suivantes.
@@ -16,6 +18,7 @@ IDEA -> RESEARCH -> PROTOTYPE -> BACKTEST -> ROBUSTNESS -> STAT VALIDATION -> RE
 - Conserver le nombre de trials et les familles de trials corrélées.
 - Tester coûts réalistes et stressés, autres périodes, perturbations de paramètres et dépendance aux meilleurs jours/trades.
 - Une stratégie rejetée ne revient en recherche que sur nouvelle hypothèse explicitement documentée.
+- Le sizing du Challenge Probability Lab est une décision **post-alpha**. Une hausse/baisse de risque ne peut jamais transformer un verdict alpha/OOS négatif en candidat valide.
 
 ## Fidélité à l'évidence externe — exigence obligatoire
 - Ne plus employer « stratégie prouvée » pour une simple famille documentée puis librement adaptée.
@@ -46,11 +49,24 @@ IDEA -> RESEARCH -> PROTOTYPE -> BACKTEST -> ROBUSTNESS -> STAT VALIDATION -> RE
 - Les coûts réalistes et stressés restent séparés de la qualité brute de l'entrée : fournir brut, coûts, net et stress de coûts.
 - Les diagnostics de type London/NR7/ORB/TSMOM futurs doivent produire des CSV auditables dans `FILE_COMMON` et, si zéro trade ou problème de données, un diagnostic explicite plutôt qu'un fichier silencieusement vide.
 
+## Contrat obligatoire pour le Challenge Probability Lab
+- Toute nouvelle stratégie destinée à pouvoir atteindre l'étape challenge doit suivre `research/challenge_probability_lab/CHALLENGE_TRADE_EXPORT_CONTRACT_V1.md`.
+- Le fichier trades final/OOS doit contenir au minimum `run_stage`, `symbol`, `entry_time`, `exit_time`, `net_r`, `challenge_day`, `adverse_r`.
+- `challenge_day` est une clé `YYYYMMDD` calculée selon la vraie frontière journalière du programme prop-firm simulé. Ne pas remplacer silencieusement cette règle par la date brute de l'entrée.
+- `adverse_r` est l'excursion adverse individuelle signée en R et doit être `<= 0`. Un ancien `MAE_R` positif ne devient pas `adverse_r` sans conversion explicite/documentée.
+- Le manifeste de run doit documenter `challenge_day_basis`, `r_denominator`, le coût inclus dans `net_r`, le coût inclus dans `adverse_r`, `floating_equity_available` et `challenge_export_contract=GUARDIAN_CHALLENGE_TRADE_EXPORT_V1`.
+- Le scorer de confirmation/OOS doit écrire explicitement `challenge_lab_eligible: true` uniquement si les gates alpha/OOS/robustesse prévues sont réellement passées. Pour un rejet/non-confirmé, écrire `false` ou échouer fermé.
+- Après un verdict éligible, `post_validation_challenge_gate_v1_00.py` doit être lancé automatiquement sans demander à l'utilisateur. Le défaut de décision est **20 000 chemins par risque** sur la grille gelée `0.10 / 0.15 / 0.20 / 0.25 / 0.33 / 0.50 %`, sauf protocole de campagne gelé autrement avant résultat.
+- Le gate doit produire `challenge_gate_manifest.json` + rapports JSON/CSV/Markdown et conserver le niveau de fidélité DD (`ATOMIC_CLOSED_EQUITY` ou `ATOMIC_PLUS_INDIVIDUAL_ADVERSE_R`).
+- Les anciens CSV validés dépourvus du contrat canonique ne sont autorisés qu'avec l'escape hatch explicite `--allow-legacy-atomic-export`; leur résultat reste lower-fidelity et ne doit jamais être présenté comme une reconstruction exacte du floating DD.
+- Même avec `adverse_r`, les excursions simultanées de positions qui se chevauchent restent imparfaites sans snapshots mark-to-market portefeuille. Le futur niveau exact est un flux synchronisé d'equity/floating P&L.
+
 ## Standard des dossiers de backtest MT5
 - Chaque backtest doit créer son propre dossier reconnaissable sous `FILE_COMMON\\GuardianResearch\\SETUP_SCANS\\`.
 - Arborescence standard : `<strategy_id>\\<symbol>\\RUN_<first_simulated_tick>_<unique_suffix>\\` ; un `InpRunTag` facultatif peut remplacer le tag automatique.
 - Chaque dossier de run doit contenir au minimum : `EVENTS.csv`, `SUMMARY.csv`, `RUN_INFO.csv`.
 - `RUN_INFO.csv` doit inclure l'identifiant de stratégie, la classification de réplication, le symbole, le timeframe de signal, le timeframe du testeur, la source primaire, les paramètres gelés, la date du premier/dernier tick traité et l'indication `guardian_used` / `orders_sent`.
+- Pour les runs susceptibles d'atteindre le Challenge Lab, `RUN_INFO.csv`/manifest doit également transporter les métadonnées du contrat challenge décrites ci-dessus.
 - Ne pas concaténer silencieusement plusieurs backtests dans le même CSV. Un run = un dossier.
 
 ## Transfert vers CFD
