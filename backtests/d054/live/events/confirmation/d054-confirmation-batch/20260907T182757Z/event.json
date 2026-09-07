@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T18:28:04.273455+00:00",
+  "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+  "stage": "confirmation",
+  "kind": "d054-confirmation-batch",
+  "event_id": "20260907T182757Z",
+  "event_fingerprint_sha256": "c937f232902fed3ba17afbd1e721bab6cfe63213e8066f7b4d051d44ae923550",
+  "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+  "payload": {
+    "schema_version": 1,
+    "status": "D054_BATCH_PASS_INTEGRITY",
+    "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+    "stage": "confirmation",
+    "symbols": [
+      "SPX500",
+      "NDX100",
+      "US30"
+    ],
+    "from": "2026-07-01",
+    "to": "2026-08-31",
+    "execution_mode": "SEQUENTIAL_ONE_MT5_RUN_PER_SYMBOL_MODEL0_EXACT_D053_V101_SOURCE",
+    "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+    "tests": [
+      {
+        "schema_version": 1,
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+        "stage": "confirmation",
+        "symbol": "SPX500",
+        "from": "2026-07-01",
+        "to": "2026-08-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T18:27:04.407845+00:00",
+        "finished_at_utc": "2026-09-07T18:27:16.744433+00:00",
+        "terminal_exit_code": 0,
+        "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+        "ex5_sha256": "5093702919aeebaaa0680fbcdf2e4a0ad23b1fc8468c0f1663d5902b76317fe3",
+        "quarantined_stale_outputs": [
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\confirmation\\SPX500\\20260907T182704Z\\D053_V100_RUN_SPX500_STATS.csv",
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\confirmation\\SPX500\\20260907T182704Z\\D053_V100_RUN_SPX500_TRADES.csv"
+        ],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\confirmation\\20260907T182704Z_SPX500_M0\\D053_V100_RUN_SPX500_STATS.csv",
+          "sha256": "4ff93c1aad19ca08795c5db5b3a95107e49793646abcfc70af7519da18af7110"
+        },
+        "trades": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\confirmation\\20260907T182704Z_SPX500_M0\\D053_V100_RUN_SPX500_TRADES.csv",
+          "sha256": "0e50ae671c96ff8e22ac7df64b55fdb8456fa3c94631aa275402767e548958d8"
+        },
+        "integrity": {
+          "status": "D053_SYMBOL_PASS_INTEGRITY",
+          "symbol": "SPX500",
+          "range_days": 43,
+          "trades": 43,
+          "ambiguous_days": 0,
+          "range_unusable_days": 0,
+          "integrity_events": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+        "stage": "confirmation",
+        "symbol": "NDX100",
+        "from": "2026-07-01",
+        "to": "2026-08-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T18:27:16.806940+00:00",
+        "finished_at_utc": "2026-09-07T18:27:44.120561+00:00",
+        "terminal_exit_code": 0,
+        "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+        "ex5_sha256": "5093702919aeebaaa0680fbcdf2e4a0ad23b1fc8468c0f1663d5902b76317fe3",
+        "quarantined_stale_outputs": [
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\confirmation\\NDX100\\20260907T182716Z\\D053_V100_RUN_NDX100_STATS.csv",
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\confirmation\\NDX100\\20260907T182716Z\\D053_V100_RUN_NDX100_TRADES.csv"
+        ],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\confirmation\\20260907T182716Z_NDX100_M0\\D053_V100_RUN_NDX100_STATS.csv",
+          "sha256": "c79cab1d1f8d8befb9052667b5034b92a71191da14b67a6d32204e8ac5739035"
+        },
+        "trades": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\confirmation\\20260907T182716Z_NDX100_M0\\D053_V100_RUN_NDX100_TRADES.csv",
+          "sha256": "1a4f4623a7856baaab0174fed056eb32f447075da9e1e3200be34caf8d0876a3"
+        },
+        "integrity": {
+          "status": "D053_SYMBOL_PASS_INTEGRITY",
+          "symbol": "NDX100",
+          "range_days": 43,
+          "trades": 42,
+          "ambiguous_days": 0,
+          "range_unusable_days": 0,
+          "integrity_events": 0
+        },
+        "autosync_used": false
+      },
+      {
+        "schema_version": 1,
+        "status": "D053_SYMBOL_PASS_INTEGRITY",
+        "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+        "stage": "confirmation",
+        "symbol": "US30",
+        "from": "2026-07-01",
+        "to": "2026-08-31",
+        "tester_model": 0,
+        "started_at_utc": "2026-09-07T18:27:44.187752+00:00",
+        "finished_at_utc": "2026-09-07T18:27:57.460294+00:00",
+        "terminal_exit_code": 0,
+        "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+        "ex5_sha256": "5093702919aeebaaa0680fbcdf2e4a0ad23b1fc8468c0f1663d5902b76317fe3",
+        "quarantined_stale_outputs": [
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\confirmation\\US30\\20260907T182744Z\\D053_V100_RUN_US30_STATS.csv",
+          "D:\\MT5_Backtests\\guardian-runner\\quarantine\\d053\\confirmation\\US30\\20260907T182744Z\\D053_V100_RUN_US30_TRADES.csv"
+        ],
+        "stats": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\confirmation\\20260907T182744Z_US30_M0\\D053_V100_RUN_US30_STATS.csv",
+          "sha256": "7e428cf6031fa6d4bb478176fb4072c66968a6c7e5f08042a76bac3c78691cc0"
+        },
+        "trades": {
+          "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\confirmation\\20260907T182744Z_US30_M0\\D053_V100_RUN_US30_TRADES.csv",
+          "sha256": "57e7c552c6b727b016b772bbe062ed4d66100d9377874f4ed13831e23dcc2d7a"
+        },
+        "integrity": {
+          "status": "D053_SYMBOL_PASS_INTEGRITY",
+          "symbol": "US30",
+          "range_days": 43,
+          "trades": 42,
+          "ambiguous_days": 0,
+          "range_unusable_days": 0,
+          "integrity_events": 0
+        },
+        "autosync_used": false
+      }
+    ],
+    "autosync_used": false,
+    "finished_at_utc": "2026-09-07T18:27:57.512821+00:00",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\d054\\confirmation\\20260907T182704Z\\batch.json",
+    "local_path": "D:\\MT5_Backtests\\guardian-runner\\d054\\confirmation-batch\\20260907T182757Z\\confirmation-batch.json"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\d054\\confirmation\\20260907T182704Z\\batch.json",
+      "exists": true,
+      "sha256": "373b13f01e9e7395ef817e55834dfc34b35ae8a60d97c7fcfc6ebf001073ffaf",
+      "bytes": 6161,
+      "published_as": "batch.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
