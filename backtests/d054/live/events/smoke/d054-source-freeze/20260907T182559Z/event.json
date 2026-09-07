@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T18:26:05.842406+00:00",
+  "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+  "stage": "smoke",
+  "kind": "d054-source-freeze",
+  "event_id": "20260907T182559Z",
+  "event_fingerprint_sha256": "66151784a05cb2fd178bbb5c8b817443e480b5a4376ff0c2438a041babadbf06",
+  "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+  "payload": {
+    "schema_version": 1,
+    "status": "D054_FROZEN_BEFORE_HOLDOUT",
+    "created_at_utc": "2026-09-07T18:25:59.477716+00:00",
+    "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+    "preregistration": "research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md",
+    "preregistration_git_blob_sha": "2c1bb149664a9e4153c6f6cb8ae59ce1e874da57",
+    "source": "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5",
+    "source_git_blob_sha": "7da58ecf8968d6814b634be0ee0043b9616fb6c6",
+    "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+    "symbols": [
+      "SPX500",
+      "NDX100",
+      "US30"
+    ],
+    "holdout": [
+      "2026-07-01",
+      "2026-08-31"
+    ],
+    "confirmation_gate_contract": {
+      "aggregate_n_min": 100,
+      "each_symbol_n_min": 25,
+      "aggregate_mean_net_r_positive": true,
+      "aggregate_pf_min": 1.05,
+      "aggregate_total_net_r_positive": true,
+      "spread_stress_total_positive": true,
+      "positive_symbols_min": 2,
+      "july_total_positive": true,
+      "august_total_positive": true,
+      "long_mean_positive": true,
+      "short_mean_positive": true,
+      "day_block_bootstrap_lower_95_positive": true,
+      "max_positive_symbol_contribution_share": 0.7,
+      "integrity_events_max": 0
+    },
+    "exact_d053_v101_source_reuse": true,
+    "autosync_used": false,
+    "local_path": "D:\\MT5_Backtests\\guardian-runner\\d054\\source-freeze\\20260907T182559Z\\source-freeze.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
