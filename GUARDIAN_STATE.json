@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T12:21:00+02:00",
+  "updated_at": "2026-09-07T12:29:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,17 +8,17 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D046_EXPIRY_SCREEN_READY_SMOKE",
+    "status": "PHASE_3_D046_SMOKE_PASS_READY_DEVELOPMENT",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_D046_ENGINEERING_SMOKE_THEN_FROZEN_2024_2025_SCREEN_IF_PASS",
+    "next_phase": "PHASE_3_D046_FROZEN_2024_2025_UNCONDITIONAL_SCREEN",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
     "experiment_manifest": "research/experiments/D046.json",
-    "status": "READY_SMOKE",
+    "status": "READY_DEVELOPMENT",
     "strategy_family": "BTC Deribit 08:00 UTC option-expiry reversal unconditional screen",
     "timeframe": "M1",
     "preregistration": "research/campaigns/D046_BTC_DERIBIT_08UTC_EXPIRY_REVERSAL_SCREEN_V0_PREREGISTRATION_2026_09_07.md",
@@ -26,7 +26,7 @@
       "research/strategies/d046/D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "Run D046 engineering smoke only: git pull then py -3 .\\research\\runner\\d046_expiry_workflow.py D046 --stage smoke. Smoke is December 2023 engineering-only and must not be interpreted for profitability. If smoke passes, update manifest/state to READY development before opening the frozen 2024-2025 unconditional screen. Binance/Bybit live OI and slope-ATR telemetry remain separate prospective context and must not be inserted into D046-A post hoc.",
+    "next_action": "Run the frozen D046 development screen only: git pull then py -3 .\\research\\runner\\d046_expiry_workflow.py D046 --stage development. This opens the preregistered 2024-01-01 through 2025-12-31 unconditional BTC 07:00-08:00 UTC short plus 08:00-09:00 UTC long screen. The scorer publishes the bps verdict automatically. Do not add Binance/Bybit OI, slope-ATR, weekdays, volatility filters or alternative times to D046-A after seeing results.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -125,14 +125,21 @@
     },
     "d046_expiry_screen": {
       "scientific_role": "UNCONDITIONAL LOW-COST SCREEN BEFORE HISTORICAL DERIBIT ATM-OI ACQUISITION",
-      "status": "READY_SMOKE",
+      "status": "READY_DEVELOPMENT",
       "preregistration": "research/campaigns/D046_BTC_DERIBIT_08UTC_EXPIRY_REVERSAL_SCREEN_V0_PREREGISTRATION_2026_09_07.md",
       "source": "research/strategies/d046/D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5",
       "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
       "scorer": "research/runner/d046_expiry_score.py",
       "workflow": "research/runner/d046_expiry_workflow.py",
       "smoke_window": "2023-12-01 through 2023-12-31 engineering-only",
-      "development_window": "2024-01-01 through 2025-12-31 frozen and LOCKED until smoke pass",
+      "smoke_status": "PASS",
+      "smoke_event": "backtests/d046/live/events/smoke/expiry-smoke/20260907T102605Z",
+      "smoke_paired_days": 21,
+      "smoke_legs": 42,
+      "smoke_ineligible_rows": 0,
+      "smoke_unpaired_eligible_days": 0,
+      "smoke_integrity_failures": 0,
+      "development_window": "2024-01-01 through 2025-12-31 frozen and READY after engineering smoke pass",
       "confirmation_window": "2026-01-01 through 2026-06-30 UNOPENED",
       "signal": "PRE_SHORT first executable 07:00 UTC to 08:00 UTC; POST_LONG first executable 08:00 UTC to 09:00 UTC",
       "costs": "executable BID/ASK plus 4 bps per side FundedNext crypto commission; 1.5x stress",
@@ -165,11 +172,11 @@
     "trusted_runtime_installed_version": null,
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "PROVEN_END_TO_END_THROUGH_D045_AND_D041_VALID_SCORE_EVENTS",
+    "research_results_status": "PROVEN_END_TO_END_THROUGH_D046_SMOKE",
     "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
     "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes through isolated temporary clones. Large raws stay local with SHA256/bytes metadata. Transport failure never invalidates valid local scientific evidence and never requires an MT5 rerun by itself.",
     "automatic_event_transport": {
-      "status": "PROVEN_D038_D039_D040_FULL_PIPELINES_D045_DEV_D041_SMOKE_AND_PAIRED_SCORE",
+      "status": "PROVEN_THROUGH_D046_SMOKE",
       "module": "research/runner/result_transport.py",
       "branch": "backtest-results",
       "latest_pointer_template": "backtests/<d0xx>/live/latest.json",
@@ -187,7 +194,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "D046_READY_SMOKE_SPECIALIZED_EXPIRY_WORKFLOW",
+    "status": "D046_SMOKE_PASS_READY_DEVELOPMENT",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -238,8 +245,8 @@
       "RICH_EVENT_PAYLOAD_COMPACTION"
     ],
     "planned_stages": [
-      "D046_ENGINEERING_SMOKE",
-      "D046_FROZEN_2024_2025_UNCONDITIONAL_SCREEN_IF_SMOKE_PASS",
+      "D046_FROZEN_2024_2025_UNCONDITIONAL_SCREEN",
+      "D046_UNTOUCHED_2026_H1_CONFIRMATION_ONLY_IF_DEV_PASS",
       "D046_HISTORICAL_DERIBIT_ATM_OI_ATTRIBUTION_ONLY_IF_ECONOMICALLY_JUSTIFIED",
       "PROSPECTIVE_BINANCE_BYBIT_OI_SLOPE_ATR_CONTEXT_ON_FRESH_DATA"
     ],
@@ -252,8 +259,8 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D046_READY_SMOKE_CI",
-    "local_mt5_status": "D046_NOT_YET_RUN",
+    "github_ci_status": "PENDING_D046_READY_DEVELOPMENT_CI",
+    "local_mt5_status": "D046_SMOKE_PASS_21_PAIRED_DAYS_42_LEGS_INTEGRITY_PASS",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; specialized scorers are allowed only when required by a frozen scientific design; post-verdict archive-tool failures never invalidate valid science or trigger an MT5 rerun; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
   },
