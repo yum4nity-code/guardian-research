@@ -8,15 +8,15 @@ Read only what is needed, in this order:
 1. `GUARDIAN_STATE.json`
 2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
 3. `GUARDIAN_MASTER_MANDATE.md`
-4. `research/experiments/D046.json`
-5. `research/campaigns/D046_BTC_DERIBIT_08UTC_EXPIRY_REVERSAL_SCREEN_V0_PREREGISTRATION_2026_09_07.md`
+4. `research/experiments/D044.json`
+5. `research/campaigns/D044_TURTLE_SOUP_20D_FAILED_BREAK_REVERSAL_V0_PREREGISTRATION_2026_09_07.md`
 6. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
 
 ## Current P0
 
-- Experiment: **D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0**
-- State: **CLOSED_INCONCLUSIVE_COUNT_NO_CONFIRMATION**
-- Next action: **No further MT5 action for D046. Formal verdict remains INCONCLUSIVE_COUNT because the frozen 600-day gate was unattainable on the observed weekday-style FundedNext BTC calendar (513 paired days), but every substantive economic gate failed strongly: PRE short -13.44 bps/day, POST long -8.89 bps/day, combined -22.33 bps/day, PF 0.394, both 2024 and 2025 negative, stress negative, bootstrap 95% interval fully negative. Keep 2026 H1 unopened and do not retune D046. Next science is D044 Turtle Soup: exact Street Smarts entry rules have now been recovered; build a separately preregistered Guardian entry-alpha screen without pretending to replicate the book's discretionary trailing management.**
+- Experiment: **D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0**
+- State: **READY_SMOKE**
+- Next action: **Run D044 engineering smoke only: git pull then py -3 .\research\runner\guardian_research.py campaign D044 --stage smoke --no-finalize. Smoke is October 2023 on USDJPY, XAUUSD and BTCUSD and is engineering-only. The campaign must compile the frozen source, run Model0 sequentially, validate lifecycle and native Trade Path, and auto-publish evidence. Do not interpret smoke profitability. If smoke passes, move the unchanged source to the frozen 2024-2025 development stage.**
 
 ## Canonical operator UX
 
