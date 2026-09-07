@@ -1,0 +1,589 @@
+{
+  "schema_version": 1,
+  "status": "BATCH_PASS_INTEGRITY",
+  "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+  "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+  "stage": "development",
+  "symbols": [
+    "AUDUSD",
+    "USDCAD",
+    "USDCHF",
+    "EURJPY",
+    "GBPJPY",
+    "AUDJPY",
+    "SPX500",
+    "NDX100",
+    "GER30",
+    "US30",
+    "XAGUSD",
+    "XPTUSD"
+  ],
+  "started_at_utc": "2026-09-07T12:13:58.175430+00:00",
+  "execution_mode": "SEQUENTIAL",
+  "tester_model": 0,
+  "tests": [
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "AUDUSD",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:13:58.212931+00:00",
+      "finished_at_utc": "2026-09-07T12:14:38.601238+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121358Z_AUDUSD_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\AUDUSD\\20260907T121358Z\\D038_V100_RUN_AUDUSD_STATS.csv",
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\AUDUSD\\20260907T121358Z\\D038_V100_RUN_AUDUSD_TRADES.csv"
+      ],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121358Z_AUDUSD_M0\\D038_V100_RUN_AUDUSD_STATS.csv",
+        "sha256": "f35f51e8651e2187e4dc4de1bc3064e61a2469bce9ab98a3db93c88f0a3a82cc"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121358Z_AUDUSD_M0\\D038_V100_RUN_AUDUSD_TRADES.csv",
+        "sha256": "fbaf591dbd2f6ad875e4683e8e93f5d35ac72f4a96d220ac91ce5685af6a5ad7"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "AUDUSD",
+        "trades": 78,
+        "trades_opened": 78,
+        "trades_closed": 78,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "USDCAD",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:14:38.743292+00:00",
+      "finished_at_utc": "2026-09-07T12:15:22.158554+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121438Z_USDCAD_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121438Z_USDCAD_M0\\D038_V100_RUN_USDCAD_STATS.csv",
+        "sha256": "0cceb6f556870965fabaf4aaf1a0e3a2bd0db41f1a50acc036d00816df498637"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121438Z_USDCAD_M0\\D038_V100_RUN_USDCAD_TRADES.csv",
+        "sha256": "65240bb335d3c3d58aa7477eb5782eea0c24e68b5e89c26d09c7138a4154070d"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "USDCAD",
+        "trades": 80,
+        "trades_opened": 80,
+        "trades_closed": 80,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "USDCHF",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:15:22.224627+00:00",
+      "finished_at_utc": "2026-09-07T12:16:11.759462+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121522Z_USDCHF_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121522Z_USDCHF_M0\\D038_V100_RUN_USDCHF_STATS.csv",
+        "sha256": "6687e83672d4791cd96bd4603fb5d9acfa5b3c52d3c7d2b5c19fc732f788c99d"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121522Z_USDCHF_M0\\D038_V100_RUN_USDCHF_TRADES.csv",
+        "sha256": "3166569f2dcb4fa58bb113fabbea6911e75ebe8523e4f62bb66f89aa229359f9"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "USDCHF",
+        "trades": 82,
+        "trades_opened": 82,
+        "trades_closed": 82,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "EURJPY",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:16:11.830962+00:00",
+      "finished_at_utc": "2026-09-07T12:18:10.919229+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121611Z_EURJPY_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121611Z_EURJPY_M0\\D038_V100_RUN_EURJPY_STATS.csv",
+        "sha256": "363f52f0db9c986e4a363e34a792de8ac8fba8fe05499b92d44e072e0a239921"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121611Z_EURJPY_M0\\D038_V100_RUN_EURJPY_TRADES.csv",
+        "sha256": "4e5da97ab8178233f1774c3b4a1a0a878070dac6da24fb08726b6113d8d1e1f9"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "EURJPY",
+        "trades": 75,
+        "trades_opened": 75,
+        "trades_closed": 75,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "GBPJPY",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:18:10.985389+00:00",
+      "finished_at_utc": "2026-09-07T12:19:38.621349+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121810Z_GBPJPY_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121810Z_GBPJPY_M0\\D038_V100_RUN_GBPJPY_STATS.csv",
+        "sha256": "18dbd2ae6f4d4fbbc072bd6f772ee534d0f34c02a54f5302a857a21ba7f78fc0"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121810Z_GBPJPY_M0\\D038_V100_RUN_GBPJPY_TRADES.csv",
+        "sha256": "94cab76530559f5f5b8c131a4cce0fdc7443ccf68f542702bc7fdc2904cb3741"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "GBPJPY",
+        "trades": 76,
+        "trades_opened": 76,
+        "trades_closed": 76,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "AUDJPY",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:19:38.690855+00:00",
+      "finished_at_utc": "2026-09-07T12:20:26.909890+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121938Z_AUDJPY_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121938Z_AUDJPY_M0\\D038_V100_RUN_AUDJPY_STATS.csv",
+        "sha256": "df08d13d9316ae7413604ffee6674200b8fc31d3b9397df8a96c9097ac2c2d94"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T121938Z_AUDJPY_M0\\D038_V100_RUN_AUDJPY_TRADES.csv",
+        "sha256": "7e4a59728b8bcf26f5bce965aa6618cc208c4914e412fab50c27e49f4cf8a9bc"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "AUDJPY",
+        "trades": 73,
+        "trades_opened": 73,
+        "trades_closed": 73,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "SPX500",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:20:26.970785+00:00",
+      "finished_at_utc": "2026-09-07T12:21:11.088918+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122026Z_SPX500_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\SPX500\\20260907T122026Z\\D038_V100_RUN_SPX500_STATS.csv",
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\SPX500\\20260907T122026Z\\D038_V100_RUN_SPX500_TRADES.csv"
+      ],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122026Z_SPX500_M0\\D038_V100_RUN_SPX500_STATS.csv",
+        "sha256": "de4975253428f785badade5340f25e07fb0411a473e46e07b7fce66272958955"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122026Z_SPX500_M0\\D038_V100_RUN_SPX500_TRADES.csv",
+        "sha256": "8220be4963319424cf02b28d8b273d02bc93a29783d47365f3c96961f6271be6"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "SPX500",
+        "trades": 76,
+        "trades_opened": 76,
+        "trades_closed": 76,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "NDX100",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:21:11.144645+00:00",
+      "finished_at_utc": "2026-09-07T12:22:17.459421+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122111Z_NDX100_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122111Z_NDX100_M0\\D038_V100_RUN_NDX100_STATS.csv",
+        "sha256": "88ed17bea67bf553e7cdcb58745afc60a08d629f82f9f7b3341c852f10719300"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122111Z_NDX100_M0\\D038_V100_RUN_NDX100_TRADES.csv",
+        "sha256": "8b9f6045fd5ff5379fd84d8a1e4f1c4eba1913c01a60f6371b7aa12582f6af78"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "NDX100",
+        "trades": 67,
+        "trades_opened": 67,
+        "trades_closed": 67,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "GER30",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:22:17.520634+00:00",
+      "finished_at_utc": "2026-09-07T12:22:49.473169+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122217Z_GER30_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122217Z_GER30_M0\\D038_V100_RUN_GER30_STATS.csv",
+        "sha256": "f55ec61fce65c700e3c89c738ff9a8c319c3cbc25526a092c35c27bd95b462a7"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122217Z_GER30_M0\\D038_V100_RUN_GER30_TRADES.csv",
+        "sha256": "ca12bdc8715e3d72a784e3b4fb05a0d9c14979887866265d3ec4bb2f59fa5a40"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "GER30",
+        "trades": 78,
+        "trades_opened": 78,
+        "trades_closed": 78,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "US30",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:22:49.541205+00:00",
+      "finished_at_utc": "2026-09-07T12:23:43.647026+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122249Z_US30_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122249Z_US30_M0\\D038_V100_RUN_US30_STATS.csv",
+        "sha256": "b2c39c101f95239972d85298f32ce8517b948d59be92a1910a39d2450a7ad391"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122249Z_US30_M0\\D038_V100_RUN_US30_TRADES.csv",
+        "sha256": "187d898c3c4efec7d5ac2578c988621102fff82c02edeb3a0dd564af0481a27a"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "US30",
+        "trades": 78,
+        "trades_opened": 78,
+        "trades_closed": 78,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "XAGUSD",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:23:43.706696+00:00",
+      "finished_at_utc": "2026-09-07T12:24:13.653303+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122343Z_XAGUSD_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\XAGUSD\\20260907T122343Z\\D038_V100_RUN_XAGUSD_STATS.csv",
+        "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\XAGUSD\\20260907T122343Z\\D038_V100_RUN_XAGUSD_TRADES.csv"
+      ],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122343Z_XAGUSD_M0\\D038_V100_RUN_XAGUSD_STATS.csv",
+        "sha256": "b766f49bc6f80fe205d944376026ed7c058113be012ef243e0145b7536f9cf94"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122343Z_XAGUSD_M0\\D038_V100_RUN_XAGUSD_TRADES.csv",
+        "sha256": "d8b0fb795c5760a6f88f743ce6284bfe4575ef514df4fa133d767ca1be4a8484"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "XAGUSD",
+        "trades": 68,
+        "trades_opened": 68,
+        "trades_closed": 68,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "TEST_PASS_INTEGRITY",
+      "experiment_id": "D047-MARKET-TRANSPORT-NR7-V1",
+      "manifest_path": "local\\market_transport_v1_generated\\D047-MARKET-TRANSPORT-NR7-V1_development.json",
+      "stage": "development",
+      "symbol": "XPTUSD",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T12:24:13.722052+00:00",
+      "finished_at_utc": "2026-09-07T12:24:40.710391+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122413Z_XPTUSD_M0\\tester.ini",
+        "/portable"
+      ],
+      "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D047-MARKET-TRANSPORT-NR7-V1\\20260907T121355Z\\build.json",
+      "source_sha256": "8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6",
+      "ex5_sha256": "e72e80bb23abe77c6903012c788159cde0f91c567ed15b8c89900896a6c61479",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122413Z_XPTUSD_M0\\D038_V100_RUN_XPTUSD_STATS.csv",
+        "sha256": "aa63227ba9f4a9e34968cc86409131ef2da8c8cdef465afcb06d757e5ddb1caf"
+      },
+      "trades": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D047-MARKET-TRANSPORT-NR7-V1\\development\\20260907T122413Z_XPTUSD_M0\\D038_V100_RUN_XPTUSD_TRADES.csv",
+        "sha256": "0da0ecdb5e6c259404745fa033061af84f1afb8915b61a10a4be0986103f09d9"
+      },
+      "integrity": {
+        "final_status": "FINAL",
+        "source_name": "MTL_V1_D038_NR7_TickPath_M15_v1_00.mq5",
+        "source_version": "1.00-MTL1",
+        "run_stage": "RUN",
+        "symbol": "XPTUSD",
+        "trades": 72,
+        "trades_opened": 72,
+        "trades_closed": 72,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0,
+        "stats_encoding": "utf-16",
+        "trades_encoding": "utf-16"
+      },
+      "recovered_after_parser_failure": false,
+      "autosync_used": false
+    }
+  ],
+  "autosync_used": false,
+  "finished_at_utc": "2026-09-07T12:24:40.758036+00:00"
+}
