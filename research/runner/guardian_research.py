@@ -13,10 +13,13 @@ import diagnostics
 import experiment
 import publisher
 import result_transport
-import rich_score
+import rich_score_v2 as rich_score
 import runner
 import score
 import tester
+
+
+SCORED_STAGES = ("development", "confirmation")
 
 
 def _with_transport(identifier: str, stage: str, kind: str, payload: dict) -> dict:
@@ -57,8 +60,6 @@ def _publish_failure_diagnostic(args: argparse.Namespace, original_error: Except
 
 
 def pipeline_run(identifier: str) -> dict:
-    # Compile always runs first. This deliberately creates a fresh trusted EX5
-    # receipt instead of reusing an old binary merely because one exists.
     compile_rc = runner.cmd_compile(identifier)
     if compile_rc != 0:
         raise runner.RunnerError("compile stage failed")
@@ -67,9 +68,9 @@ def pipeline_run(identifier: str) -> dict:
     stage = manifest["runner_contract"]["default_stage"]
     batch_result = batch.run_batch(identifier, stage)
     batch_result = _with_transport(identifier, stage, "batch", batch_result)
-    if stage != "development":
+    if stage not in SCORED_STAGES:
         return {
-            "status": "BATCH_COMPLETE_SCORER_NOT_IMPLEMENTED_FOR_STAGE",
+            "status": "BATCH_COMPLETE_UNSCORED_STAGE",
             "stage": stage,
             "batch": batch_result,
         }
@@ -146,32 +147,32 @@ def main() -> int:
 
     s = sub.add_parser("score")
     s.add_argument("experiment")
-    s.add_argument("--stage", default="development", choices=("development",))
+    s.add_argument("--stage", default="development", choices=SCORED_STAGES)
     s.add_argument("--batch")
 
     rs = sub.add_parser("rich-score")
     rs.add_argument("experiment")
-    rs.add_argument("--stage", default="development", choices=("development",))
+    rs.add_argument("--stage", default="development", choices=SCORED_STAGES)
     rs.add_argument("--batch")
 
     pub = sub.add_parser("publish")
     pub.add_argument("experiment")
-    pub.add_argument("--stage", default="development", choices=("development",))
+    pub.add_argument("--stage", default="development", choices=SCORED_STAGES)
     pub.add_argument("--decision")
     pub.add_argument("--rich")
 
     final = sub.add_parser("finalize")
     final.add_argument("experiment")
-    final.add_argument("--stage", default="development", choices=("development",))
+    final.add_argument("--stage", default="development", choices=SCORED_STAGES)
     final.add_argument("--batch")
 
     multi = sub.add_parser("campaign")
-    multi.add_argument("experiments", nargs="+", help="D039 D040 ...")
+    multi.add_argument("experiments", nargs="+", help="D040 D041 ...")
     multi.add_argument("--stage", default="smoke", choices=("smoke", "development", "confirmation"))
     multi.add_argument(
         "--no-finalize",
         action="store_true",
-        help="For development, stop after batch/path validation instead of score/rich/publish",
+        help="For development/confirmation, stop after batch/path validation instead of score/rich/publish",
     )
 
     args = parser.parse_args()
