@@ -40,10 +40,7 @@ def utc_stamp() -> str:
 
 
 def _path_supported_from_manifest(manifest: dict[str, Any]) -> bool:
-    """Return True only when native Trade Path is explicitly required by smoke gates.
-
-    Do not infer capability from an experiment number or source filename.
-    """
+    """Return True only when native Trade Path is explicitly required by smoke gates."""
     smoke_gates = manifest.get("stages", {}).get("smoke", {}).get("gates", {})
     return bool(
         smoke_gates.get("trade_path_fields_present_and_parseable")
@@ -79,6 +76,10 @@ def _validate_paths(identifier: str, stage: str, symbols: list[str]) -> dict[str
     }
 
 
+def _stage_is_scored(stage: str, finalize_scored_stage: bool) -> bool:
+    return finalize_scored_stage and stage in {"development", "confirmation"}
+
+
 def run_experiment(identifier: str, stage: str, finalize_development: bool) -> dict[str, Any]:
     _, _, manifest = runner.load_context(identifier)
     started = datetime.now(timezone.utc).isoformat()
@@ -105,7 +106,7 @@ def run_experiment(identifier: str, stage: str, finalize_development: bool) -> d
                 "symbols": stage_symbols,
             }
 
-        if stage == "development" and finalize_development:
+        if _stage_is_scored(stage, finalize_development):
             decision = score.score(identifier, stage, batch_result["batch_path"])
             decision["github_transport"] = result_transport.safe_publish_event(identifier, stage, "score", decision)
             result["decision"] = {
@@ -134,8 +135,6 @@ def run_experiment(identifier: str, stage: str, finalize_development: bool) -> d
             result["status"] = "EXPERIMENT_STAGE_PASS"
 
     except Exception as exc:
-        # Engineering/integrity failure is experiment-local. Never rerun MT5
-        # automatically merely to diagnose or transmit a failure.
         result["status"] = "EXPERIMENT_ENGINEERING_FAILURE"
         result["error"] = str(exc)
         try:
@@ -175,6 +174,7 @@ def run_campaign(identifiers: list[str], stage: str, finalize_development: bool 
         "continue_after_scientific_reject": True,
         "continue_after_experiment_engineering_failure": True,
         "finalize_development": bool(finalize_development),
+        "finalize_scored_stage": bool(finalize_development),
         "experiments_requested": identifiers,
         "started_at_utc": datetime.now(timezone.utc).isoformat(),
         "experiments": [],
@@ -197,8 +197,6 @@ def run_campaign(identifiers: list[str], stage: str, finalize_development: bool 
     payload["campaign_receipt"] = str(receipt_path)
     runner.write_receipt(receipt_path, payload)
 
-    # Campaign transport is intentionally best-effort. Per-experiment evidence
-    # has already been published through the normal isolated transport.
     payload["github_transport"] = result_transport.safe_publish_event(
         identifiers[0], stage, "campaign", payload
     )
@@ -208,12 +206,12 @@ def run_campaign(identifiers: list[str], stage: str, finalize_development: bool 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run several frozen Guardian experiments sequentially")
-    parser.add_argument("experiments", nargs="+", help="D039 D040 ...")
+    parser.add_argument("experiments", nargs="+", help="D040 D041 ...")
     parser.add_argument("--stage", default="smoke", choices=("smoke", "development", "confirmation"))
     parser.add_argument(
         "--no-finalize",
         action="store_true",
-        help="For development, stop after batch/path validation instead of score/rich/publish",
+        help="For development/confirmation, stop after batch/path validation instead of score/rich/publish",
     )
     args = parser.parse_args()
     try:
