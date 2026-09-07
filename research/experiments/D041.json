@@ -16,7 +16,7 @@
   },
   "source": {
     "canonical_path": "research/strategies/d041/D041_D032_M2_DojiManagementValidation_v1_00.mq5",
-    "source_sha256": "2873274f2d67a07dcd67594c41eb2bb9c11ad1353fa2fa1273597d7f567c733f",
+    "source_sha256": "36104319f5827c65f343a4accb2344e019eef1887a6c45b491615c6a308618be",
     "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
     "git_blob_sha": "2759f3ac53edd28b59cba70f05001a7b7c89016e",
     "version": "1.00",
@@ -27,7 +27,8 @@
       "D041 retains the exact D032-M1 Bullish Doji Star numerical signal, strict 144h SMA downtrend, executable ASK entry and source 1R=2*sigma24 calculations.",
       "Only the already-frozen D032-M2 management is formal: -3.5 source-R catastrophe stop, H24 non-positive close, H24 positive 1.5R runner with net-BE floor, H48 timeout.",
       "Old M1 alternative trail diagnostics are not emitted on POST2024 by D041, avoiding unnecessary contamination of other management hypotheses.",
-      "Standard runner STATS/TRADES outputs were added without changing entry or candidate semantics."
+      "Standard runner STATS/TRADES outputs were added without changing entry or candidate semantics.",
+      "The first smoke attempt on 2026-09-07 was blocked before MetaEditor/MT5 by the source-identity guard because the manifest contained an incorrectly transcribed normalized SHA (2873274f...). The runner measured the unchanged canonical source as 36104319f...; this manifest-only provenance correction was made before any D041 backtest executed."
     ]
   },
   "execution": {
