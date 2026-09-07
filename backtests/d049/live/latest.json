@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T13:37:25.827150+00:00",
+  "updated_at_utc": "2026-09-07T13:43:26.376137+00:00",
   "experiment_id": "D049-MARKET-TRANSPORT-DONCHIAN20-10-V1",
   "stage": "development",
-  "kind": "market-transport-engineering-incomplete",
-  "event_id": "20260907T133717Z",
-  "event_path": "backtests/d049/live/events/development/market-transport-engineering-incomplete/20260907T133717Z",
-  "event_fingerprint_sha256": "eeba68b6b2a344e2177bfc01a6af4b8eb034e010aa6052f31b16aa8b5b9cf095",
-  "status": "MARKET_TRANSPORT_ENGINEERING_INCOMPLETE",
+  "kind": "market-transport-descriptive-11-valid",
+  "event_id": "20260907T134317Z",
+  "event_path": "backtests/d049/live/events/development/market-transport-descriptive-11-valid/20260907T134317Z",
+  "event_fingerprint_sha256": "eaad1d63a72fc8fcb06f2e86b4f75ee62b24148fb6f37b18aeb2a812eb4b5864",
+  "status": "D049_DESCRIPTIVE_11_VALID_MARKETS",
   "autosync_used": false
 }

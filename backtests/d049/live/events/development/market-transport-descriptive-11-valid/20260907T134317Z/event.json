@@ -1,0 +1,103 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T13:43:26.375319+00:00",
+  "experiment_id": "D049-MARKET-TRANSPORT-DONCHIAN20-10-V1",
+  "stage": "development",
+  "kind": "market-transport-descriptive-11-valid",
+  "event_id": "20260907T134317Z",
+  "event_fingerprint_sha256": "eaad1d63a72fc8fcb06f2e86b4f75ee62b24148fb6f37b18aeb2a812eb4b5864",
+  "source_sha256": "3797c87c3c8f726f937cbc6f284060590e66571666bcf85880960fd28d35da86",
+  "payload": {
+    "schema_version": 1,
+    "status": "D049_DESCRIPTIVE_11_VALID_MARKETS",
+    "created_at_utc": "2026-09-07T13:39:28.856727+00:00",
+    "lab": "MARKET_TRANSPORT_V1",
+    "parent": "D045",
+    "transport_id": "D049-MARKET-TRANSPORT-DONCHIAN20-10-V1",
+    "stage": "development",
+    "formal_status": "MARKET_TRANSPORT_ENGINEERING_INCOMPLETE",
+    "formal_verdict": null,
+    "formal_gate_evaluation_skipped": true,
+    "reason": "Frozen 12-symbol universe incomplete because XPTUSD repeatedly ends FINAL_INVALID_REFERENCE; 11-market metrics are descriptive only.",
+    "failed_symbol": "XPTUSD",
+    "valid_symbols": [
+      "AUDUSD",
+      "USDCAD",
+      "USDCHF",
+      "EURJPY",
+      "GBPJPY",
+      "AUDJPY",
+      "SPX500",
+      "NDX100",
+      "GER30",
+      "US30",
+      "XAGUSD"
+    ],
+    "metrics_11_valid_only": {
+      "aggregate_n": 276,
+      "per_symbol_n": {
+        "AUDUSD": 28,
+        "USDCAD": 29,
+        "USDCHF": 23,
+        "EURJPY": 23,
+        "GBPJPY": 22,
+        "AUDJPY": 26,
+        "SPX500": 24,
+        "NDX100": 23,
+        "GER30": 27,
+        "US30": 27,
+        "XAGUSD": 24
+      },
+      "aggregate_mean_net_r": -0.01987144155797101,
+      "aggregate_pf": 0.9557845726251133,
+      "aggregate_pf_infinite": false,
+      "aggregate_total_net_r": -5.484517869999999,
+      "aggregate_total_stress_net_r": -6.0986411799999996,
+      "year_total_net_r": {
+        "2024": 6.2995451900000035,
+        "2025": -11.78406305999997
+      },
+      "positive_symbols": [
+        "USDCHF",
+        "EURJPY",
+        "GBPJPY",
+        "SPX500",
+        "XAGUSD"
+      ],
+      "positive_symbols_n": 5,
+      "per_symbol_total_net_r": {
+        "AUDUSD": -11.35038387,
+        "USDCAD": -5.678650100000002,
+        "USDCHF": 4.53829327,
+        "EURJPY": 2.52437677,
+        "GBPJPY": 2.590043609999999,
+        "AUDJPY": -2.0913547999999995,
+        "SPX500": 2.6452924099999984,
+        "NDX100": -0.04333867999999974,
+        "GER30": -2.4427857400000006,
+        "US30": -3.8879973799999994,
+        "XAGUSD": 7.71198664
+      },
+      "max_positive_symbol_contribution_share": 0.38540676928882645,
+      "integrity_events": 0
+    },
+    "source_partial_batch": "D:\\MT5_Backtests\\guardian-runner\\batches\\D049-MARKET-TRANSPORT-DONCHIAN20-10-V1\\development\\20260907T130942Z\\batch.json",
+    "source_provenance": {
+      "parent_key": "D045",
+      "parent_source": "research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+      "parent_source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+      "generated_source": "local\\market_transport_v1_generated\\MTL_V1_D045_Donchian20_10_TickPath_M15_v1_00.mq5",
+      "generated_source_sha256": "3797c87c3c8f726f937cbc6f284060590e66571666bcf85880960fd28d35da86",
+      "patch_contract": "ALLOWLIST_ASSETCLASS_COMMISSION_AND_EVIDENCE_IDENTITY_ONLY"
+    },
+    "parent_verdict_unchanged": true,
+    "scientific_semantics_changed": false,
+    "xptusd_not_dropped_from_formal_universe": true,
+    "autosync_used": false,
+    "local_path": "D:\\MT5_Backtests\\guardian-runner\\market_transport\\v1\\D049-MARKET-TRANSPORT-DONCHIAN20-10-V1\\development\\20260907T133928Z\\descriptive-11-valid.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
