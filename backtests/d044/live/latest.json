@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T11:36:12.877157+00:00",
+  "updated_at_utc": "2026-09-07T11:44:37.504962+00:00",
   "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
   "stage": "development",
-  "kind": "campaign",
-  "event_id": "20260907T113608Z",
-  "event_path": "backtests/d044/live/events/development/campaign/20260907T113608Z",
-  "event_fingerprint_sha256": "8c69a3977a170a7ad6e78613ea3f9eca471bf7873c0f1c4163d3bfb8d3c462c7",
-  "status": "CAMPAIGN_COMPLETE_WITH_ENGINEERING_FAILURES",
+  "kind": "trade-path",
+  "event_id": "20260907T113707Z_BTCUSD_M0",
+  "event_path": "backtests/d044/live/events/development/trade-path/20260907T113707Z_BTCUSD_M0",
+  "event_fingerprint_sha256": "62ff8d103fc975a9dc2a98f480f67b6c4ef238e241b3310296f2b176373c918e",
+  "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
