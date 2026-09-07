@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_113933_D044_ETHUSD_63c0dbd3002c",
+    "fingerprint":  "63c0dbd3002c5aa3fd139eb8ab9ca802ec966cf3f0d39130ad8b5148edd7d483",
+    "synced_at_utc":  "2026-09-07T11:41:49.3168808Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "RUN",
+                       "symbol":  "ETHUSD",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  31,
+                       "published_trades_rows":  31
+                   },
+    "files":  [
+                  {
+                      "name":  "D044_V100_RUN_ETHUSD_STATS.csv",
+                      "source_sha256":  "fd4ffcc7f6bcb474132d4019a44b0a4f69d6eaa4eb27f865b4a714fd3eed9140",
+                      "published_sha256":  "4f0d788e6b054572392a0e6fb808f73fbd73f45e0467a3407f89a1fffa018054",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D044_V100_RUN_ETHUSD_TRADES.csv",
+                      "source_sha256":  "39cd90e6d69f096fd2aee2c6541e6778b9d01d2694a4b3b252b9ac66ff9e4ab7",
+                      "published_sha256":  "d1444969a9776206bdd9bded5c1d97e80356e4627e588693e5eadc8f2abe1622",
+                      "sanitized":  false
+                  }
+              ]
+}
