@@ -6,16 +6,25 @@
 Read only what is needed, in this order:
 
 1. `GUARDIAN_STATE.json`
-2. `GUARDIAN_MASTER_MANDATE.md`
-3. `research/experiments/D040.json`
-4. `research/campaigns/D040_NR4_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md`
-5. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
+2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
+3. `GUARDIAN_MASTER_MANDATE.md`
+4. `research/experiments/D040.json`
+5. `research/campaigns/D040_NR4_VOLATILITY_CONTRACTION_BREAKOUT_V0_PREREGISTRATION_2026_09_07.md`
+6. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
 
 ## Current P0
 
 - Experiment: **D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0**
-- State: **READY_SMOKE**
-- Next action: **On the MT5 research PC, pull the refactor branch and run `py -3 .\research\runner\guardian_research.py compile D040`. D040 is preregistered, source-complete and CI-SHA-frozen. If local MetaEditor compilation is accepted with 0 errors / 0 warnings and a trusted EX5 receipt, run `py -3 .\research\runner\guardian_research.py campaign D040 --stage smoke --no-finalize`. Smoke is engineering-only on USDJPY/XAUUSD/BTCUSD for 2023-10-02..2023-10-31. Do not inspect smoke alpha and do not open DEV until lifecycle + native Trade Path pass. After completion the user only needs to say `fini`; the assistant reads GitHub evidence.**
+- State: **READY_DEV**
+- Next action: **On the MT5 research PC, pull the refactor branch and run `py -3 .\research\runner\guardian_research.py campaign D040 --stage development`. D040 smoke is engineering-PASS: compile PASS, 11 total smoke trades across USDJPY/XAUUSD/BTCUSD, zero integrity failures and native Trade Path PASS on all three. The development campaign recompiles the exact frozen source, runs all six markets for 2024-01-02..2025-12-31 in Model=0, validates Trade Path, applies frozen gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and continues.**
+
+## Canonical operator UX
+
+- Prefer one short PowerShell command block.
+- The runner publishes results automatically to `backtest-results`.
+- The user normally responds only **`fini`**.
+- The assistant then retrieves GitHub evidence, updates state, and gives the next minimal command.
+- Do not ask the user to paste logs/JSON when automatic transport succeeded.
 
 ## Operational truths
 
