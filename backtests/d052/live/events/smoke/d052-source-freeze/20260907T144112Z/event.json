@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T14:41:15.174674+00:00",
+  "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+  "stage": "smoke",
+  "kind": "d052-source-freeze",
+  "event_id": "20260907T144112Z",
+  "event_fingerprint_sha256": "77d399227ca98b3ef5100f2efc6e1871b14c4749144d7ae264caf02fb18a8673",
+  "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+  "payload": {
+    "schema_version": 1,
+    "status": "D052_SOURCE_IDENTITY_FROZEN_BEFORE_MT5_OUTCOME",
+    "created_at_utc": "2026-09-07T14:41:12.740450+00:00",
+    "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+    "preregistration": "research/campaigns/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_ENTRY_V0_PREREGISTRATION_2026_09_07.md",
+    "preregistration_git_blob_sha": "faa986bb7460806ccc7b5423ba8a697f7569de8e",
+    "source": "research/strategies/d052/D052_ManagementAsAlpha_PairedNull_M15_v1_00.mq5",
+    "source_git_blob_sha": "98ca64ebe2c8e21f2579e9f4cc804b8848d6325b",
+    "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+    "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+    "managements": [
+      "REF_EOD_NO_STOP",
+      "SL1_EOD",
+      "SL1_TP1",
+      "SL1_TP2",
+      "SL1_TP3",
+      "SL1_BE_AFTER_1R_EOD",
+      "SL1_BE_AFTER_2R_EOD",
+      "SL1_P50_AT_1R_BE_REST",
+      "SL1_P40_AT_2_5R_BE_REST",
+      "SL1_TRAIL1_AFTER_1R",
+      "SL1_TRAIL1_5_AFTER_2R",
+      "SL1_P50_AT_1R_TRAIL1_REST"
+    ],
+    "symbols": [
+      "EURUSD",
+      "GBPUSD",
+      "USDJPY",
+      "AUDUSD",
+      "USDCAD",
+      "USDCHF",
+      "SPX500",
+      "NDX100",
+      "GER30",
+      "US30",
+      "XAUUSD",
+      "XAGUSD"
+    ],
+    "smoke_window": [
+      "2023-10-02",
+      "2023-10-31"
+    ],
+    "development_window": [
+      "2024-01-02",
+      "2025-12-31"
+    ],
+    "holdout_window_locked_unopened": [
+      "2026-07-01",
+      "2026-08-31"
+    ],
+    "autosync_used": false,
+    "local_path": "D:\\MT5_Backtests\\guardian-runner\\d052\\source-freeze\\20260907T144112Z\\source-freeze.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
