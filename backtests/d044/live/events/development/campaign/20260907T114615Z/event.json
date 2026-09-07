@@ -1,0 +1,633 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T11:46:21.133161+00:00",
+  "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+  "stage": "development",
+  "kind": "campaign",
+  "event_id": "20260907T114615Z",
+  "event_fingerprint_sha256": "6d8950e120e55013c39075b5f7fadc62f455c9664442c0efba06e25d28d9a825",
+  "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+  "payload": {
+    "schema_version": 2,
+    "campaign_id": "20260907T113705Z",
+    "status": "CAMPAIGN_PASS",
+    "stage": "development",
+    "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+    "parallel_mt5": false,
+    "continue_after_scientific_reject": true,
+    "continue_after_experiment_engineering_failure": true,
+    "finalize_development": true,
+    "finalize_scored_stage": true,
+    "experiments_requested": [
+      "D044"
+    ],
+    "started_at_utc": "2026-09-07T11:37:05.048384+00:00",
+    "experiments": [
+      {
+        "identifier": "D044",
+        "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+        "stage": "development",
+        "started_at_utc": "2026-09-07T11:37:05.071052+00:00",
+        "status": "EXPERIMENT_FINALIZED",
+        "compile": {
+          "status": "COMPILE_PASS",
+          "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\20260907T113705Z\\build.json",
+          "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+          "ex5_sha256": "648f1517d8fec0bde89a24cdb200c3af79191b88a83640664fab715706abe6bf"
+        },
+        "batch": {
+          "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113707Z\\batch.json",
+          "schema_version": 1,
+          "status": "BATCH_PASS_INTEGRITY",
+          "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+          "manifest_path": "research\\experiments\\D044.json",
+          "stage": "development",
+          "symbols": [
+            "BTCUSD",
+            "ETHUSD",
+            "EURUSD",
+            "GBPUSD",
+            "USDJPY",
+            "XAUUSD"
+          ],
+          "started_at_utc": "2026-09-07T11:37:07.933056+00:00",
+          "execution_mode": "SEQUENTIAL",
+          "tester_model": 0,
+          "tests": [
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "manifest_path": "research\\experiments\\D044.json",
+              "stage": "development",
+              "symbol": "BTCUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T11:37:07.949182+00:00",
+              "finished_at_utc": "2026-09-07T11:38:26.616941+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113707Z_BTCUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\20260907T113705Z\\build.json",
+              "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+              "ex5_sha256": "648f1517d8fec0bde89a24cdb200c3af79191b88a83640664fab715706abe6bf",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\BTCUSD\\20260907T113707Z\\D044_V100_RUN_BTCUSD_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\BTCUSD\\20260907T113707Z\\D044_V100_RUN_BTCUSD_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113707Z_BTCUSD_M0\\D044_V100_RUN_BTCUSD_STATS.csv",
+                "sha256": "b57d8742db5f0e5e73f6cc0ec6d8e86abac8903f9d543d1df4011dc86fd4d433"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113707Z_BTCUSD_M0\\D044_V100_RUN_BTCUSD_TRADES.csv",
+                "sha256": "0a73d60758929f12951312331e14d250912bef6a8ca57257423a4c983c3d5d03"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "BTCUSD",
+                "trades": 34,
+                "trades_opened": 34,
+                "trades_closed": 34,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "manifest_path": "research\\experiments\\D044.json",
+              "stage": "development",
+              "symbol": "ETHUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T11:38:26.693088+00:00",
+              "finished_at_utc": "2026-09-07T11:39:37.725811+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113826Z_ETHUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\20260907T113705Z\\build.json",
+              "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+              "ex5_sha256": "648f1517d8fec0bde89a24cdb200c3af79191b88a83640664fab715706abe6bf",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113826Z_ETHUSD_M0\\D044_V100_RUN_ETHUSD_STATS.csv",
+                "sha256": "fd4ffcc7f6bcb474132d4019a44b0a4f69d6eaa4eb27f865b4a714fd3eed9140"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113826Z_ETHUSD_M0\\D044_V100_RUN_ETHUSD_TRADES.csv",
+                "sha256": "39cd90e6d69f096fd2aee2c6541e6778b9d01d2694a4b3b252b9ac66ff9e4ab7"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "ETHUSD",
+                "trades": 31,
+                "trades_opened": 31,
+                "trades_closed": 31,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "manifest_path": "research\\experiments\\D044.json",
+              "stage": "development",
+              "symbol": "EURUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T11:39:37.820379+00:00",
+              "finished_at_utc": "2026-09-07T11:40:23.433135+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113937Z_EURUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\20260907T113705Z\\build.json",
+              "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+              "ex5_sha256": "648f1517d8fec0bde89a24cdb200c3af79191b88a83640664fab715706abe6bf",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113937Z_EURUSD_M0\\D044_V100_RUN_EURUSD_STATS.csv",
+                "sha256": "9ffe5ecc6289ebd0d0845eae06fe82ffa96fc145aa830e83d6c677be2febf83f"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113937Z_EURUSD_M0\\D044_V100_RUN_EURUSD_TRADES.csv",
+                "sha256": "5f44d8957dfefe5287244bc264b01d4b493a5f959b615a326a8cba8269ead920"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "EURUSD",
+                "trades": 31,
+                "trades_opened": 31,
+                "trades_closed": 31,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "manifest_path": "research\\experiments\\D044.json",
+              "stage": "development",
+              "symbol": "GBPUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T11:40:23.507627+00:00",
+              "finished_at_utc": "2026-09-07T11:41:15.200789+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114023Z_GBPUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\20260907T113705Z\\build.json",
+              "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+              "ex5_sha256": "648f1517d8fec0bde89a24cdb200c3af79191b88a83640664fab715706abe6bf",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114023Z_GBPUSD_M0\\D044_V100_RUN_GBPUSD_STATS.csv",
+                "sha256": "9ba3a3095a79ed8c4d2cbed94f7faec326dfa94698f434047566323275472692"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114023Z_GBPUSD_M0\\D044_V100_RUN_GBPUSD_TRADES.csv",
+                "sha256": "89ae457bae40c72af8d5a9eb146dbae900ae1a0c9dede6ad1c29d34f71dc877e"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "GBPUSD",
+                "trades": 37,
+                "trades_opened": 37,
+                "trades_closed": 37,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "manifest_path": "research\\experiments\\D044.json",
+              "stage": "development",
+              "symbol": "USDJPY",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T11:41:15.269868+00:00",
+              "finished_at_utc": "2026-09-07T11:42:24.962708+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114115Z_USDJPY_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\20260907T113705Z\\build.json",
+              "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+              "ex5_sha256": "648f1517d8fec0bde89a24cdb200c3af79191b88a83640664fab715706abe6bf",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\USDJPY\\20260907T114115Z\\D044_V100_RUN_USDJPY_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\USDJPY\\20260907T114115Z\\D044_V100_RUN_USDJPY_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114115Z_USDJPY_M0\\D044_V100_RUN_USDJPY_STATS.csv",
+                "sha256": "201ad59985c64d9743db0fbb6ecfd1722d49b87f72cd836058195a44f133c602"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114115Z_USDJPY_M0\\D044_V100_RUN_USDJPY_TRADES.csv",
+                "sha256": "66ef41c8a06d29a899965162e2b4cf562ae435e9d0433c4de8ac8f698b911fe2"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "USDJPY",
+                "trades": 28,
+                "trades_opened": 28,
+                "trades_closed": 28,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "manifest_path": "research\\experiments\\D044.json",
+              "stage": "development",
+              "symbol": "XAUUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T11:42:25.041920+00:00",
+              "finished_at_utc": "2026-09-07T11:44:23.239781+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114225Z_XAUUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\20260907T113705Z\\build.json",
+              "source_sha256": "98f4b6d2f2ca0e48a6d795a2409f3cf05c936a9c882316420ee578f82ed0a1f0",
+              "ex5_sha256": "648f1517d8fec0bde89a24cdb200c3af79191b88a83640664fab715706abe6bf",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\XAUUSD\\20260907T114225Z\\D044_V100_RUN_XAUUSD_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\XAUUSD\\20260907T114225Z\\D044_V100_RUN_XAUUSD_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114225Z_XAUUSD_M0\\D044_V100_RUN_XAUUSD_STATS.csv",
+                "sha256": "ee75c7d33fd7842b067e6d6956a6ff9249fbd6dd5bea42ce43bd75e0f8bf1cb3"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114225Z_XAUUSD_M0\\D044_V100_RUN_XAUUSD_TRADES.csv",
+                "sha256": "f19d31c8a658a95f836fc169303aca7f4ff25d0e8438a774491b9627073f42c4"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "XAUUSD",
+                "trades": 31,
+                "trades_opened": 31,
+                "trades_closed": 31,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            }
+          ],
+          "autosync_used": false,
+          "finished_at_utc": "2026-09-07T11:44:23.314181+00:00",
+          "github_transport": {
+            "status": "EVENT_PUBLISH_FAILED_LOCAL_RESULT_PRESERVED",
+            "error": "git command failed rc=1: git push origin HEAD:backtest-results | To https://github.com/yum4nity-code/guardian-research.git\n ! [rejected]        HEAD -> backtest-results (fetch first)\nerror: failed to push some refs to 'https://github.com/yum4nity-code/guardian-research.git'\nhint: Updates were rejected because the remote contains work that you do not\nhint: have locally. This is usually caused by another repository pushing to\nhint: the same ref. If you want to integrate the remote changes, use\nhint: 'git pull' before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.",
+            "branch": "backtest-results",
+            "autosync_used": false
+          }
+        },
+        "trade_path": {
+          "status": "TRADE_PATH_PASS_ALL",
+          "symbols": [
+            "BTCUSD",
+            "ETHUSD",
+            "EURUSD",
+            "GBPUSD",
+            "USDJPY",
+            "XAUUSD"
+          ],
+          "results": [
+            {
+              "schema_version": 1,
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "stage": "development",
+              "symbol": "BTCUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113707Z_BTCUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 34,
+              "path_rows": 34,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 25,
+                "1R": 19,
+                "2R": 16,
+                "3R": 12,
+                "5R": 7
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\trade-path\\20260907T113707Z_BTCUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d044/live/events/development/trade-path/20260907T113707Z_BTCUSD_M0",
+                "latest_path": "backtests/d044/live/latest.json",
+                "event_id": "20260907T113707Z_BTCUSD_M0",
+                "event_fingerprint_sha256": "62ff8d103fc975a9dc2a98f480f67b6c4ef238e241b3310296f2b176373c918e",
+                "commit_sha": "58f09c5644d4f091d7ed133d70dc950825d3ca15",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "stage": "development",
+              "symbol": "ETHUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113826Z_ETHUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 31,
+              "path_rows": 31,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 20,
+                "1R": 18,
+                "2R": 15,
+                "3R": 12,
+                "5R": 7
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\trade-path\\20260907T113826Z_ETHUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d044/live/events/development/trade-path/20260907T113826Z_ETHUSD_M0",
+                "latest_path": "backtests/d044/live/latest.json",
+                "event_id": "20260907T113826Z_ETHUSD_M0",
+                "event_fingerprint_sha256": "f32ce6339ddb0abbda8d3603eb1c3b7f6686974b6ba30872d761ce7ffa8ba257",
+                "commit_sha": "1055cd4507228b7222b06e8596ef215be9ecff40",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "stage": "development",
+              "symbol": "EURUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113937Z_EURUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 31,
+              "path_rows": 31,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 19,
+                "1R": 13,
+                "2R": 9,
+                "3R": 5,
+                "5R": 2
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\trade-path\\20260907T113937Z_EURUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d044/live/events/development/trade-path/20260907T113937Z_EURUSD_M0",
+                "latest_path": "backtests/d044/live/latest.json",
+                "event_id": "20260907T113937Z_EURUSD_M0",
+                "event_fingerprint_sha256": "bb378ac9a5754d0e3158a0bd77cb8542d231c4da9112ff61ebbb028be84eee42",
+                "commit_sha": "335272ba83a06e23e8171c787a3a4bd979ae03db",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "stage": "development",
+              "symbol": "GBPUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114023Z_GBPUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 37,
+              "path_rows": 37,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 26,
+                "1R": 24,
+                "2R": 14,
+                "3R": 9,
+                "5R": 5
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\trade-path\\20260907T114023Z_GBPUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d044/live/events/development/trade-path/20260907T114023Z_GBPUSD_M0",
+                "latest_path": "backtests/d044/live/latest.json",
+                "event_id": "20260907T114023Z_GBPUSD_M0",
+                "event_fingerprint_sha256": "1b9cc54f8cc787d15983ce903fd8d9336f6e41df7ec52cdf1137932bdf16107e",
+                "commit_sha": "511cebb9fdc3015d065a65d8917022c50360c766",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "stage": "development",
+              "symbol": "USDJPY",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114115Z_USDJPY_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 28,
+              "path_rows": 28,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 19,
+                "1R": 14,
+                "2R": 9,
+                "3R": 8,
+                "5R": 6
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\trade-path\\20260907T114115Z_USDJPY_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d044/live/events/development/trade-path/20260907T114115Z_USDJPY_M0",
+                "latest_path": "backtests/d044/live/latest.json",
+                "event_id": "20260907T114115Z_USDJPY_M0",
+                "event_fingerprint_sha256": "c80db03c7165347e4e92f1ba9045c2a953d2ee6b509577c8cdb93dbaa9a13791",
+                "commit_sha": "3b166cf35f09e62efc215078d458f52aea6fca5c",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+              "stage": "development",
+              "symbol": "XAUUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114225Z_XAUUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 31,
+              "path_rows": 31,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 19,
+                "1R": 15,
+                "2R": 9,
+                "3R": 6,
+                "5R": 3
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\trade-path\\20260907T114225Z_XAUUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d044/live/events/development/trade-path/20260907T114225Z_XAUUSD_M0",
+                "latest_path": "backtests/d044/live/latest.json",
+                "event_id": "20260907T114225Z_XAUUSD_M0",
+                "event_fingerprint_sha256": "018f65889567679e4d0bbabedae412bb09c754257cd565a884ef9320fe49f098",
+                "commit_sha": "7000d5e64ff185b3d116c336cb92333a76fd9b08",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            }
+          ]
+        },
+        "decision": {
+          "verdict": "REJECT_V0",
+          "all_gates_pass": false,
+          "verdict_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114545Z\\verdict.json",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\score\\20260907T114545Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d044/live/events/development/score/20260907T114545Z",
+            "latest_path": "backtests/d044/live/latest.json",
+            "event_id": "20260907T114545Z",
+            "event_fingerprint_sha256": "a6c615985101454a210c858ccaa5c5ce6f94f1b710ec04673397f150c292acc1",
+            "commit_sha": "129374fe3aafb8edcd8f44279c1450844fd1c1bb",
+            "payload_compacted": false,
+            "autosync_used": false
+          }
+        },
+        "rich_score": {
+          "rich_score_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114555Z\\rich_score.json",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\rich-score\\20260907T114555Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d044/live/events/development/rich-score/20260907T114555Z",
+            "latest_path": "backtests/d044/live/latest.json",
+            "event_id": "20260907T114555Z",
+            "event_fingerprint_sha256": "275c29871cd6553f4bc406b420cad21795bfac28d214e971908c4f1aca5b796f",
+            "commit_sha": "e20936739539367b29d1a038162e0e46159a1ab7",
+            "payload_compacted": true,
+            "autosync_used": false
+          }
+        },
+        "bundle": {
+          "publish_receipt": "D:\\MT5_Backtests\\guardian-runner\\publish_receipts\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T113707Z.json",
+          "schema_version": 1,
+          "status": "PUBLISH_PASS",
+          "created_at_utc": "2026-09-07T11:46:15.455848+00:00",
+          "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
+          "stage": "development",
+          "branch": "backtest-results",
+          "target_path": "backtests/d044/development/20260907T113707Z",
+          "batch_run_id": "20260907T113707Z",
+          "result_fingerprint_sha256": "05710a57f03016a3eca89fbe89d9776c45fb4d779b4c8477f0741772278d7f43",
+          "commit_sha": "ac5b4ea266a32988536c95b6715fe79953436313",
+          "bundle_dir": "D:\\MT5_Backtests\\guardian-runner\\publish_bundles\\D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0\\development\\20260907T114605Z",
+          "decision_verdict": "REJECT_V0",
+          "compact_trades_included": true,
+          "transport": "ISOLATED_GIT_CLONE_PUBLISHER",
+          "autosync_used": false
+        },
+        "finished_at_utc": "2026-09-07T11:46:15.459058+00:00"
+      }
+    ],
+    "autosync_used": false,
+    "engineering_failures": 0,
+    "post_decision_analytics_failures": 0,
+    "scientific_rejections": 1,
+    "finished_at_utc": "2026-09-07T11:46:15.461547+00:00",
+    "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T113705Z\\campaign.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}

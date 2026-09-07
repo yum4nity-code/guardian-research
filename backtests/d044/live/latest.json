@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T11:46:00.271947+00:00",
+  "updated_at_utc": "2026-09-07T11:46:21.134178+00:00",
   "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
   "stage": "development",
-  "kind": "rich-score",
-  "event_id": "20260907T114555Z",
-  "event_path": "backtests/d044/live/events/development/rich-score/20260907T114555Z",
-  "event_fingerprint_sha256": "275c29871cd6553f4bc406b420cad21795bfac28d214e971908c4f1aca5b796f",
-  "status": null,
+  "kind": "campaign",
+  "event_id": "20260907T114615Z",
+  "event_path": "backtests/d044/live/events/development/campaign/20260907T114615Z",
+  "event_fingerprint_sha256": "6d8950e120e55013c39075b5f7fadc62f455c9664442c0efba06e25d28d9a825",
+  "status": "CAMPAIGN_PASS",
   "autosync_used": false
 }
