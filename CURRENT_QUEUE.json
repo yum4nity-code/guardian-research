@@ -2,25 +2,25 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T19:20:00+01:00",
+  "updated_at": "2026-09-07T19:35:00+01:00",
   "active_primary": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
   "items": [
     {
       "id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
       "priority": 0,
-      "status": "CANDIDATE_CONFIRM",
+      "status": "UNCONFIRMED",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "Run one frozen program: py -3 .\\research\\runner\\d054_orb30_core3_run.py. It first audits only already-seen D053 2024-2025 CSVs without MT5 or rule changes, then compiles the exact D053 v1.01 source, runs engineering smoke on SPX500/NDX100/US30, and only after clean smoke opens the preregistered untouched Jul-Aug 2026 D054 confirmation on those same three symbols. No 2024-2025 rerun and no management/parameter optimization.",
+      "goal": "Do not rerun or rescue D054 on Jul-Aug 2026. Review the already-published D053 descriptive audit together with the strongly negative D054 independent confirmation, then formulate any D055 as a new preregistered hypothesis evaluated only on a new untouched/prospective evidence boundary.",
       "manifest": "research/experiments/D054.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "D054_READY_AUDIT_SMOKE_CONFIRM",
+      "status": "D054_CLOSED_READY_NEXT_HYPOTHESIS_DESIGN",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
-      "goal": "Freeze the derived hypothesis before descriptive audit; never reuse D053 discovery as fresh OOS; one short operator command; automatic evidence publication; no post-hoc rescue."
+      "goal": "No D054 rescue on seen Jul-Aug 2026. Any next ORB work must be a new hypothesis with a new untouched/prospective boundary; one short operator command and automatic evidence publication remain canonical."
     },
     {
       "id": "AUTOSYNC_V3_FROM_SCRATCH",
@@ -173,6 +173,14 @@
       "owner": "HISTORICAL",
       "type": "closed_research",
       "goal": "REJECT_V0_11_OF_12_GATES_BOOTSTRAP_LOWER_BOUND_ONLY"
+    },
+    {
+      "id": "D054",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "UNCONFIRMED_CORE3_JUL_AUG2026_STRONGLY_NEGATIVE"
     }
   ],
   "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. Canonical operator UX: docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md. No operational item may wait on Codex."
