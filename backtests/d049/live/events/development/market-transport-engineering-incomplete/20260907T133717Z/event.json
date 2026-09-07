@@ -1,0 +1,39 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T13:37:25.826450+00:00",
+  "experiment_id": "D049-MARKET-TRANSPORT-DONCHIAN20-10-V1",
+  "stage": "development",
+  "kind": "market-transport-engineering-incomplete",
+  "event_id": "20260907T133717Z",
+  "event_fingerprint_sha256": "eeba68b6b2a344e2177bfc01a6af4b8eb034e010aa6052f31b16aa8b5b9cf095",
+  "source_sha256": "3797c87c3c8f726f937cbc6f284060590e66571666bcf85880960fd28d35da86",
+  "payload": {
+    "schema_version": 1,
+    "status": "MARKET_TRANSPORT_ENGINEERING_INCOMPLETE",
+    "created_at_utc": "2026-09-07T13:37:17.857242+00:00",
+    "lab": "MARKET_TRANSPORT_V1",
+    "parent": "D045",
+    "transport_id": "D049-MARKET-TRANSPORT-DONCHIAN20-10-V1",
+    "stage": "development",
+    "failed_symbol": "XPTUSD",
+    "reused_completed_tests_available": 11,
+    "source_partial_batch": "D:\\MT5_Backtests\\guardian-runner\\batches\\D049-MARKET-TRANSPORT-DONCHIAN20-10-V1\\development\\20260907T130942Z\\batch.json",
+    "error": "run did not finish cleanly; final status=FINAL_INVALID_REFERENCE fatal=FINAL_INVALID_REFERENCE",
+    "source_provenance": {
+      "parent_key": "D045",
+      "parent_source": "research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5",
+      "parent_source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+      "generated_source": "local\\market_transport_v1_generated\\MTL_V1_D045_Donchian20_10_TickPath_M15_v1_00.mq5",
+      "generated_source_sha256": "3797c87c3c8f726f937cbc6f284060590e66571666bcf85880960fd28d35da86",
+      "patch_contract": "ALLOWLIST_ASSETCLASS_COMMISSION_AND_EVIDENCE_IDENTITY_ONLY"
+    },
+    "parent_verdict_unchanged": true,
+    "scientific_semantics_changed": false,
+    "autosync_used": false,
+    "local_path": "D:\\MT5_Backtests\\guardian-runner\\market_transport\\v1\\D049-MARKET-TRANSPORT-DONCHIAN20-10-V1\\development\\20260907T133717Z\\engineering-incomplete.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
