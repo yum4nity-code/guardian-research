@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T10:58:00+02:00",
+  "updated_at": "2026-09-07T12:21:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,25 +8,25 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D041_REJECTED_MANAGEMENT_NEXT_CANDIDATE_PREPARATION",
+    "status": "PHASE_3_D046_EXPIRY_SCREEN_READY_SMOKE",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_AUDIT_EXISTING_D042_MOMENTUM_ATTRIBUTION_EVIDENCE_BEFORE_NEW_CODE",
+    "next_phase": "PHASE_3_D046_ENGINEERING_SMOKE_THEN_FROZEN_2024_2025_SCREEN_IF_PASS",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
-    "active_experiment": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
-    "experiment_manifest": "research/experiments/D041.json",
-    "status": "CLOSED_REJECTED_MANAGEMENT",
-    "strategy_family": "Confirmed Bullish Doji Star H1 entry management validation",
+    "active_experiment": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+    "experiment_manifest": "research/experiments/D046.json",
+    "status": "READY_SMOKE",
+    "strategy_family": "BTC Deribit 08:00 UTC option-expiry reversal unconditional screen",
     "timeframe": "M1",
-    "preregistration": "research/campaigns/D032_M2_DOJI_REALISTIC_MANAGEMENT_POST2024_VALIDATION_PREREGISTRATION_2026_09_05.md",
+    "preregistration": "research/campaigns/D046_BTC_DERIBIT_08UTC_EXPIRY_REVERSAL_SCREEN_V0_PREREGISTRATION_2026_09_07.md",
     "canonical_sources_currently_in_repo": [
-      "research/strategies/d041/D041_D032_M2_DojiManagementValidation_v1_00.mq5"
+      "research/strategies/d046/D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "No MT5 action is required for D041. The preregistered D032-M2 POST2024 management validation is permanently REJECT_MANAGEMENT: 77 eligible paired events, reference mean +0.666436R, candidate mean +0.328383R, paired candidate-minus-reference mean -0.338054R, 0/3 positive-delta symbols, and deterministic month-block bootstrap 95% interval [-0.533035R, -0.121697R]. The final 'decision score does not match experiment/stage' message occurred only after the valid score and paired analytics were published, when the specialized workflow incorrectly called the generic strategy bundle publisher. Do not rerun MT5 for D041. Next work is to audit existing D042/Momentum attribution evidence before creating new code or tests.",
+    "next_action": "Run D046 engineering smoke only: git pull then py -3 .\\research\\runner\\d046_expiry_workflow.py D046 --stage smoke. Smoke is December 2023 engineering-only and must not be interpreted for profitability. If smoke passes, update manifest/state to READY development before opening the frozen 2024-2025 unconditional screen. Binance/Bybit live OI and slope-ATR telemetry remain separate prospective context and must not be inserted into D046-A post hoc.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -123,9 +123,26 @@
       "closeout": "reports/research/D041_D032_M2_POST2024_MANAGEMENT_VALIDATION_CLOSEOUT_20260907.md",
       "policy": "D032-M2 management candidate is permanently rejected on this POST2024 validation. Do not retune this candidate on the seen sample and call it confirmation. This does not revoke the previously confirmed D032 entry edge."
     },
+    "d046_expiry_screen": {
+      "scientific_role": "UNCONDITIONAL LOW-COST SCREEN BEFORE HISTORICAL DERIBIT ATM-OI ACQUISITION",
+      "status": "READY_SMOKE",
+      "preregistration": "research/campaigns/D046_BTC_DERIBIT_08UTC_EXPIRY_REVERSAL_SCREEN_V0_PREREGISTRATION_2026_09_07.md",
+      "source": "research/strategies/d046/D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5",
+      "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
+      "scorer": "research/runner/d046_expiry_score.py",
+      "workflow": "research/runner/d046_expiry_workflow.py",
+      "smoke_window": "2023-12-01 through 2023-12-31 engineering-only",
+      "development_window": "2024-01-01 through 2025-12-31 frozen and LOCKED until smoke pass",
+      "confirmation_window": "2026-01-01 through 2026-06-30 UNOPENED",
+      "signal": "PRE_SHORT first executable 07:00 UTC to 08:00 UTC; POST_LONG first executable 08:00 UTC to 09:00 UTC",
+      "costs": "executable BID/ASK plus 4 bps per side FundedNext crypto commission; 1.5x stress",
+      "server_utc_policy": "Frozen GMT+2/GMT+3 FundedNext mapping with transition-date exclusions; never infer UTC from TimeGMT() in tester",
+      "high_oi_boundary": "D046-A does not test historical Deribit high-ATM-OI conditioning. Failure rejects only the unconditional screen; pass only justifies the separate OI-gated research step.",
+      "prospective_context": "Existing Binance/Bybit live OI and slope-ATR collectors may be useful later as fresh forward explanatory variables. They are not substitutes for Deribit option OI and may not be added to D046-A after results are seen."
+    },
     "deferred_next_candidates": {
-      "D042": "NEXT: audit existing Momentum/META_A1/D17 attribution evidence before new code. The question remains whether the old BTC SELL performance came from intrinsic signal quality, native manager, local gates, or Guardian selection layers.",
-      "D043": "RSI attribution requires exact legacy manager/gate reconstruction and should first audit existing RSI long-history diagnostics.",
+      "D042": "Existing Momentum attribution audit is already sufficient to reject the current D017 alpha family across BTCUSD, ETHUSD, EURUSD, GBPUSD, USDJPY, XAUUSD and USDCAD; do not spend a new long backtest merely to rename it D042.",
+      "D043": "Legacy RSI raw entry edge is already rejected across BTC, ETH, XAU and EUR. Exact native-manager replay remains optional legacy preservation work, not current priority.",
       "D044": "Blocked until one exact historical Turtle Soup rule set is recovered from an authoritative source."
     },
     "next_strategy_drafts": "research/campaigns/D040_D045_NEXT_SIX_STRATEGY_DRAFTS_2026_09_07.md"
@@ -170,13 +187,14 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "D041_REJECTED_SPECIALIZED_WORKFLOW_FIXED_NEXT_ATTRIBUTION_AUDIT",
+    "status": "D046_READY_SMOKE_SPECIALIZED_EXPIRY_WORKFLOW",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
     "entrypoint": "research/runner/guardian_research.py",
     "campaign_entrypoint": "research/runner/campaign.py",
     "d041_management_entrypoint": "research/runner/d041_management_workflow.py",
+    "d046_expiry_entrypoint": "research/runner/d046_expiry_workflow.py",
     "windows_launcher": "research/runner/Run-GuardianResearch.ps1",
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
     "implemented_stages": [
@@ -198,6 +216,9 @@
       "D032_M2_PAIRED_MONTH_BLOCK_BOOTSTRAP",
       "D041_ONE_COMMAND_MANAGEMENT_WORKFLOW",
       "D041_SPECIALIZED_POST_SCORE_ARCHIVE_WITHOUT_GENERIC_PUBLISHER",
+      "D046_PAIRED_UTC_DAY_BPS_SCORER",
+      "D046_MONTH_BLOCK_BOOTSTRAP",
+      "D046_SPECIALIZED_ONE_COMMAND_WORKFLOW",
       "VERDICT_RECEIPT",
       "INVALID_RUN_DIAGNOSTIC",
       "MT5_UTF16_CSV_DECODE",
@@ -217,9 +238,10 @@
       "RICH_EVENT_PAYLOAD_COMPACTION"
     ],
     "planned_stages": [
-      "D042_EXISTING_MOMENTUM_ATTRIBUTION_AUDIT_BEFORE_NEW_CODE",
-      "D042_LAYERED_L0_L3_ATTRIBUTION_ONLY_IF_NOT_ALREADY_ANSWERED",
-      "D043_LEGACY_RSI_ATTRIBUTION_AUDIT"
+      "D046_ENGINEERING_SMOKE",
+      "D046_FROZEN_2024_2025_UNCONDITIONAL_SCREEN_IF_SMOKE_PASS",
+      "D046_HISTORICAL_DERIBIT_ATM_OI_ATTRIBUTION_ONLY_IF_ECONOMICALLY_JUSTIFIED",
+      "PROSPECTIVE_BINANCE_BYBIT_OI_SLOPE_ATR_CONTEXT_ON_FRESH_DATA"
     ],
     "reference_tester_model": 0,
     "historical_model_exceptions": {
@@ -230,10 +252,10 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D041_CLOSED_STATE_CI",
-    "local_mt5_status": "D041_POST2024_VALIDATION_COMPLETE_REJECT_MANAGEMENT_NO_RERUN",
+    "github_ci_status": "PENDING_D046_READY_SMOKE_CI",
+    "local_mt5_status": "D046_NOT_YET_RUN",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
-    "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; specialized scorers are allowed only when required by a prior frozen scientific design; post-verdict archive-tool failures never invalidate valid science or trigger an MT5 rerun; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
+    "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; specialized scorers are allowed only when required by a frozen scientific design; post-verdict archive-tool failures never invalidate valid science or trigger an MT5 rerun; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
   },
   "non_guardian_projects": {
     "maman_70_santorin": {
