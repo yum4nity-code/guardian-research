@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T18:28:16.099205+00:00",
+  "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+  "stage": "confirmation",
+  "kind": "d054-confirmation-score",
+  "event_id": "20260907T182809Z",
+  "event_fingerprint_sha256": "0ec08b737bf4700242b3628e0a3097473e51c04ecf8ed34fb291438b1a4613cc",
+  "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+  "payload": {
+    "schema_version": 1,
+    "status": "D054_UNCONFIRMED_CLOSE",
+    "created_at_utc": "2026-09-07T18:28:09.510891+00:00",
+    "experiment_id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+    "stage": "confirmation",
+    "metrics": {
+      "aggregate_n": 127,
+      "aggregate_mean_net_r": -0.19933436488188977,
+      "aggregate_pf": 0.5596506509945182,
+      "aggregate_pf_infinite": false,
+      "aggregate_total_net_r": -25.315464340000002,
+      "spread_stress_total_net_r": -26.34219435,
+      "per_symbol_n": {
+        "SPX500": 43,
+        "NDX100": 42,
+        "US30": 42
+      },
+      "per_symbol_total_net_r": {
+        "SPX500": -6.05387533,
+        "NDX100": -9.20483891,
+        "US30": -10.0567501
+      },
+      "positive_symbols": [],
+      "positive_symbols_n": 0,
+      "max_positive_symbol_contribution_share": 0.0,
+      "month_total_net_r": {
+        "202607": -18.95205978,
+        "202608": -6.36340456
+      },
+      "side": {
+        "LONG": {
+          "n": 61,
+          "mean_net_r": -0.19885325409836063,
+          "total_net_r": -12.1300485
+        },
+        "SHORT": {
+          "n": 66,
+          "mean_net_r": -0.1997790278787879,
+          "total_net_r": -13.185415840000001
+        }
+      },
+      "day_block_bootstrap": {
+        "lower_95": -0.36852913643511626,
+        "median": -0.20056735949612403,
+        "upper_95": -0.017671191858455268,
+        "reps": 20000,
+        "blocks": 43,
+        "seed": 540054
+      },
+      "path_descriptive": {
+        "mean_mfe_r": 0.6498560048031496,
+        "mean_mae_r": 0.6521012203149607
+      },
+      "integrity_events": 0
+    },
+    "gates": {
+      "aggregate_n_min": true,
+      "each_symbol_n_min": true,
+      "aggregate_mean_net_r_positive": false,
+      "aggregate_pf_min": false,
+      "aggregate_total_net_r_positive": false,
+      "spread_stress_total_positive": false,
+      "positive_symbols_min": false,
+      "july_total_positive": false,
+      "august_total_positive": false,
+      "long_mean_positive": false,
+      "short_mean_positive": false,
+      "day_block_bootstrap_lower_95_positive": false,
+      "max_positive_symbol_contribution_share": true,
+      "integrity_events_max": true
+    },
+    "all_gates_pass": false,
+    "frozen_gate_contract": {
+      "aggregate_n_min": 100,
+      "each_symbol_n_min": 25,
+      "aggregate_mean_net_r_positive": true,
+      "aggregate_pf_min": 1.05,
+      "aggregate_total_net_r_positive": true,
+      "spread_stress_total_positive": true,
+      "positive_symbols_min": 2,
+      "july_total_positive": true,
+      "august_total_positive": true,
+      "long_mean_positive": true,
+      "short_mean_positive": true,
+      "day_block_bootstrap_lower_95_positive": true,
+      "max_positive_symbol_contribution_share": 0.7,
+      "integrity_events_max": 0
+    },
+    "d053_verdict_unchanged": "D053_REJECT_V0",
+    "discovery_period_reused_as_oos": false,
+    "posthoc_symbol_or_direction_deletion": false,
+    "autosync_used": false,
+    "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\d054\\confirmation\\20260907T182704Z\\batch.json",
+    "batch_transport": {
+      "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0\\confirmation\\d054-confirmation-batch\\20260907T182757Z.json",
+      "status": "EVENT_PUBLISH_PASS",
+      "branch": "backtest-results",
+      "event_path": "backtests/d054/live/events/confirmation/d054-confirmation-batch/20260907T182757Z",
+      "latest_path": "backtests/d054/live/latest.json",
+      "event_id": "20260907T182757Z",
+      "event_fingerprint_sha256": "c937f232902fed3ba17afbd1e721bab6cfe63213e8066f7b4d051d44ae923550",
+      "commit_sha": "9efb0d6c4716919fb1f9ef9815c3f007c6560407",
+      "payload_compacted": false,
+      "autosync_used": false
+    },
+    "score_path": "D:\\MT5_Backtests\\guardian-runner\\d054\\confirmation-score\\20260907T182809Z\\confirmation-score.json"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\d054\\confirmation\\20260907T182704Z\\batch.json",
+      "exists": true,
+      "sha256": "373b13f01e9e7395ef817e55834dfc34b35ae8a60d97c7fcfc6ebf001073ffaf",
+      "bytes": 6161,
+      "published_as": "batch.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
