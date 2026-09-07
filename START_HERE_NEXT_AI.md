@@ -8,15 +8,15 @@ Read only what is needed, in this order:
 1. `GUARDIAN_STATE.json`
 2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
 3. `GUARDIAN_MASTER_MANDATE.md`
-4. `research/experiments/D045.json`
-5. `research/campaigns/D045_D1_DONCHIAN_20_10_BENCHMARK_V0_PREREGISTRATION_2026_09_07.md`
+4. `research/experiments/D041.json`
+5. `research/campaigns/D032_M2_DOJI_REALISTIC_MANAGEMENT_POST2024_VALIDATION_PREREGISTRATION_2026_09_05.md`
 6. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
 
 ## Current P0
 
-- Experiment: **D045-D1-DONCHIAN-20-10-BENCHMARK-V0**
-- State: **CLOSED_REJECTED**
-- Next action: **No MT5 action is required for D045. D045 V0 is scientifically closed REJECT_V0 after the frozen 2024-2025 development score: 145 trades, mean net R 0.0959087233 versus required 0.10; every other frozen gate passed and confirmation remains unopened. Do not waive the near-threshold miss or inspect 2026 for rescue. Next engineering/research work is to prepare the highest-priority remaining draft whose scientific question can be preserved exactly, with D041 preferred if its paired candidate-vs-reference management scorer can be implemented faithfully.**
+- Experiment: **D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0**
+- State: **READY_SMOKE**
+- Next action: **On the MT5 research PC run `git pull` then `py -3 .\research\runner\d041_management_workflow.py D041 --stage smoke`. This is engineering-only on already-seen PRE2024 data and uses the D032-M2 preregistered historical tester limitation Model=1 (1 minute OHLC). Do not inspect smoke profitability or management lift. The wrapper recompiles the exact recovered-lineage source, runs BTCUSD/ETHUSD/DOGUSD, validates deterministic STATS/TRADES integrity and publishes automatically. After completion the user should only say `fini`; the assistant reads `backtests/d041/live/latest.json`. The formal untouched POST2024 >24h management-validation window remains locked until smoke passes.**
 
 ## Canonical operator UX
 
