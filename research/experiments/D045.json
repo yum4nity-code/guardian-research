@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "strategy_family": "Daily Donchian 20/10 trend-following benchmark",
-  "status": "READY_DEV",
+  "status": "REJECTED",
   "hypothesis": "Can a frozen D1 20-day executable breakout with 10-day opposite-channel exit and 2N protective stop produce a broad, positive and commission-robust net-ex-swap trend-following edge across the six-market Guardian/FundedNext CFD universe?",
   "preregistration": {
     "path": "research/campaigns/D045_D1_DONCHIAN_20_10_BENCHMARK_V0_PREREGISTRATION_2026_09_07.md",
@@ -21,11 +21,11 @@
     "engineering_lineage": [
       "D045 is a Guardian benchmark adaptation of the documented Turtle/Donchian System-1 shape, not an exact historical replication",
       "Frozen before D045 results: prior completed 20 D1 highs/lows for entry, prior completed 10 D1 opposite channel for exit, previous completed D1 ATR20 as N20, 2N hard stop",
-      "Historical prior-winner skip rule, pyramiding and portfolio unit limits are intentionally omitted in V0 before result inspection",
-      "Virtual execution uses actual tester ASK/BID ticks, frozen FundedNext commission model and native Trade Path telemetry",
-      "Positions may span days/weekends; exact historical swap is excluded and a separate swap/weekend stress is mandatory before any production classification",
-      "GitHub CI independently reported normalized source identity 2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723 before local MT5 compilation",
-      "2023-08-01..2023-10-31 engineering smoke passed on USDJPY, XAUUSD and BTCUSD with 10 total trades, clean lifecycle/integrity and native Trade Path validation; smoke profitability was not used for alpha selection"
+      "Historical prior-winner skip rule, pyramiding and portfolio unit limits were intentionally omitted in V0 before result inspection",
+      "Virtual execution used actual tester ASK/BID ticks, frozen FundedNext commission model and native Trade Path telemetry",
+      "2023-08-01..2023-10-31 engineering smoke passed on USDJPY, XAUUSD and BTCUSD with 10 total trades, clean lifecycle/integrity and native Trade Path validation",
+      "2024-2025 DEV produced 145 trades and passed every frozen gate except aggregate mean net R: 0.0959087233 versus required 0.10; frozen verdict is REJECT_V0 and confirmation remains unopened",
+      "The near-threshold miss may not be waived or rescued after outcome inspection"
     ]
   },
   "execution": {
@@ -45,11 +45,7 @@
       "location": "FILE_COMMON",
       "stats_template": "D045_V100_{stage_token}_{symbol_clean}_STATS.csv",
       "trades_template": "D045_V100_{stage_token}_{symbol_clean}_TRADES.csv",
-      "stage_tokens": {
-        "smoke": "RUN",
-        "development": "RUN",
-        "confirmation": "RUN"
-      }
+      "stage_tokens": {"smoke": "RUN", "development": "RUN", "confirmation": "RUN"}
     }
   },
   "cost_model": {
@@ -85,7 +81,7 @@
       "from": "2024-01-02",
       "to": "2025-12-31",
       "symbols": ["BTCUSD", "ETHUSD", "EURUSD", "GBPUSD", "USDJPY", "XAUUSD"],
-      "status": "READY",
+      "status": "FAIL",
       "gates": {
         "aggregate_n_min": 120,
         "each_symbol_n_min": 10,
@@ -99,7 +95,11 @@
         "integrity_events_max": 0,
         "failure_verdict": "REJECT_V0"
       },
-      "result_paths": []
+      "result_paths": [
+        "backtests/d045/live/events/development/score/20260907T080327Z",
+        "backtests/d045/live/events/development/rich-score/20260907T080333Z",
+        "backtests/d045/live/events/development/campaign/20260907T080344Z"
+      ]
     },
     "confirmation": {
       "stage_name": "D045_CONFIRM_2026_H1",
@@ -128,22 +128,41 @@
     "compile": {
       "status": "COMPILE_PASS",
       "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
-      "ex5_sha256": "02626a1e0878b2ee034d8bce477f218745acf8ffc21414338658f7822c856c1f",
-      "campaign_event": "backtests/d045/live/events/smoke/campaign/20260907T075351Z"
+      "development_ex5_sha256": "403cb7ae54246badf3310a896d6ad11f40969f0e29b40d1eb7de68f08518b611"
     },
     "smoke": {
       "status": "PASS",
-      "science_role": "ENGINEERING_ONLY_NO_ALPHA_VERDICT",
-      "campaign_status": "CAMPAIGN_PASS",
-      "batch_status": "BATCH_PASS_INTEGRITY",
       "aggregate_trades": 10,
-      "symbols": {"USDJPY": 3, "XAUUSD": 4, "BTCUSD": 3},
       "trade_path_status": "TRADE_PATH_PASS_ALL",
       "event_path": "backtests/d045/live/events/smoke/campaign/20260907T075351Z"
     },
-    "development": null,
-    "rich_analytics": null,
+    "development": {
+      "status": "FAIL",
+      "verdict": "REJECT_V0",
+      "all_gates_pass": false,
+      "failed_gates": ["aggregate_mean_net_r_min"],
+      "aggregate_n": 145,
+      "per_symbol_n": {"BTCUSD": 25, "ETHUSD": 25, "EURUSD": 23, "GBPUSD": 30, "USDJPY": 21, "XAUUSD": 21},
+      "aggregate_mean_net_r": 0.09590872331034482,
+      "aggregate_pf": 1.2011785982494556,
+      "positive_symbols_n": 5,
+      "per_symbol_total_net_r": {"BTCUSD": 0.20625387, "ETHUSD": 1.72814776, "EURUSD": 1.17234672, "GBPUSD": -8.1486895, "USDJPY": 8.2911561, "XAUUSD": 10.65754993},
+      "aggregate_total_net_r": 13.90676488,
+      "aggregate_total_stress_net_r": 13.41851664,
+      "year_total_net_r": {"2024": 10.98065478, "2025": 2.9261101},
+      "max_positive_symbol_contribution_share": 0.4832160673898571,
+      "integrity_events": 0,
+      "score_event": "backtests/d045/live/events/development/score/20260907T080327Z"
+    },
+    "rich_analytics": {
+      "status": "PASS_DESCRIPTIVE_ONLY",
+      "event": "backtests/d045/live/events/development/rich-score/20260907T080333Z",
+      "median_net_r": -0.54444154,
+      "win_rate": 0.3793103448275862,
+      "trade_path_available": true,
+      "path_ambiguous_rows": 0
+    },
     "confirmation": null,
-    "final_verdict": null
+    "final_verdict": "REJECT_V0"
   }
 }
