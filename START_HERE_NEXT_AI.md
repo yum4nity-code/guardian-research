@@ -8,15 +8,15 @@ Read only what is needed, in this order:
 1. `GUARDIAN_STATE.json`
 2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
 3. `GUARDIAN_MASTER_MANDATE.md`
-4. `research/experiments/D052.json`
-5. `research/campaigns/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_ENTRY_V0_PREREGISTRATION_2026_09_07.md`
+4. `research/experiments/D053.json`
+5. `research/campaigns/D053_US_INDEX_ORB30_ENTRY_ALPHA_V0_PREREGISTRATION_2026_09_07.md`
 6. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
 
 ## Current P0
 
-- Experiment: **D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0**
-- State: **CLOSED_NO_MANAGEMENT_ALPHA**
-- Next action: **D052 is closed. Do not open its Jul-Aug 2026 holdout and do not retune its management family. Return priority to entry/context alpha. Prepare the next fresh preregistered entry-alpha experiment before any new MT5 outcome; management remains risk/execution engineering, not an assumed source of edge.**
+- Experiment: **D053-US-INDEX-ORB30-ENTRY-ALPHA-V0**
+- State: **READY_SMOKE**
+- Next action: **Run the frozen D053 unattended workflow: git pull then py -3 .\research\runner\d053_orb30_index_run.py. It verifies frozen identities, compiles, runs October-2023 engineering smoke on SPX500/NDX100/US2000, and only if smoke passes runs unchanged 2024-2025 DEV on SPX500/NDX100/US30/US2000, scores frozen ORB30 gates and publishes evidence. Jul-Aug 2026 holdout must remain unopened in this command.**
 
 ## Canonical operator UX
 
