@@ -124,6 +124,9 @@ jobs:
       - name: Report D040 v1.00 closed source identity
         run: python research/runner/source_hash.py research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5
 
+      - name: Report D044 v1.00 candidate source identity
+        run: python research/runner/source_hash.py research/strategies/d044/D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5
+
       - name: Report D045 v1.00 closed source identity
         run: python research/runner/source_hash.py research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5
 
