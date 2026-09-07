@@ -1,0 +1,637 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T07:02:38.461745+00:00",
+  "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "development",
+  "kind": "campaign",
+  "event_id": "20260907T070234Z",
+  "event_fingerprint_sha256": "b69fb8a3ce428a06ac498a5dc3cc3f89e73629ff1f9ac201b596e00c819b280d",
+  "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+  "payload": {
+    "schema_version": 1,
+    "campaign_id": "20260907T065354Z",
+    "status": "CAMPAIGN_PASS",
+    "stage": "development",
+    "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+    "parallel_mt5": false,
+    "continue_after_scientific_reject": true,
+    "continue_after_experiment_engineering_failure": true,
+    "finalize_development": true,
+    "experiments_requested": [
+      "D040"
+    ],
+    "started_at_utc": "2026-09-07T06:53:54.226374+00:00",
+    "experiments": [
+      {
+        "identifier": "D040",
+        "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+        "stage": "development",
+        "started_at_utc": "2026-09-07T06:53:54.283553+00:00",
+        "status": "EXPERIMENT_FINALIZED",
+        "compile": {
+          "status": "COMPILE_PASS",
+          "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\20260907T065354Z\\build.json",
+          "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+          "ex5_sha256": "7edb7854cf9511d73703a4cd1884649d7a26fedc9182c660c546353e26859542"
+        },
+        "batch": {
+          "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065356Z\\batch.json",
+          "schema_version": 1,
+          "status": "BATCH_PASS_INTEGRITY",
+          "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+          "manifest_path": "research\\experiments\\D040.json",
+          "stage": "development",
+          "symbols": [
+            "BTCUSD",
+            "ETHUSD",
+            "EURUSD",
+            "GBPUSD",
+            "USDJPY",
+            "XAUUSD"
+          ],
+          "started_at_utc": "2026-09-07T06:53:56.896419+00:00",
+          "execution_mode": "SEQUENTIAL",
+          "tester_model": 0,
+          "tests": [
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "manifest_path": "research\\experiments\\D040.json",
+              "stage": "development",
+              "symbol": "BTCUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T06:53:56.912832+00:00",
+              "finished_at_utc": "2026-09-07T06:55:18.339176+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065356Z_BTCUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\20260907T065354Z\\build.json",
+              "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+              "ex5_sha256": "7edb7854cf9511d73703a4cd1884649d7a26fedc9182c660c546353e26859542",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\BTCUSD\\20260907T065356Z\\D040_V100_RUN_BTCUSD_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\BTCUSD\\20260907T065356Z\\D040_V100_RUN_BTCUSD_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065356Z_BTCUSD_M0\\D040_V100_RUN_BTCUSD_STATS.csv",
+                "sha256": "3446a9eaeb4f10c371656ab6f0822a6c174fc00948b337a3739db98b3afbf4f8"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065356Z_BTCUSD_M0\\D040_V100_RUN_BTCUSD_TRADES.csv",
+                "sha256": "4c9de5d64069139a2b901d46092377d230c82e55d70fd1137ba712639267b45f"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D040_NR4_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "BTCUSD",
+                "trades": 125,
+                "trades_opened": 125,
+                "trades_closed": 125,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "manifest_path": "research\\experiments\\D040.json",
+              "stage": "development",
+              "symbol": "ETHUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T06:55:18.416242+00:00",
+              "finished_at_utc": "2026-09-07T06:56:30.326872+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065518Z_ETHUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\20260907T065354Z\\build.json",
+              "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+              "ex5_sha256": "7edb7854cf9511d73703a4cd1884649d7a26fedc9182c660c546353e26859542",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065518Z_ETHUSD_M0\\D040_V100_RUN_ETHUSD_STATS.csv",
+                "sha256": "d3b69298ceec7b7354d80624acb6af6b081e941747e6d73dc91677bcf585d8ff"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065518Z_ETHUSD_M0\\D040_V100_RUN_ETHUSD_TRADES.csv",
+                "sha256": "0854c89af7ec4afcbef35895611f830d0c2f2aadee332369e910d2cf67181f34"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D040_NR4_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "ETHUSD",
+                "trades": 130,
+                "trades_opened": 130,
+                "trades_closed": 130,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "manifest_path": "research\\experiments\\D040.json",
+              "stage": "development",
+              "symbol": "EURUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T06:56:30.399817+00:00",
+              "finished_at_utc": "2026-09-07T06:57:09.567043+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065630Z_EURUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\20260907T065354Z\\build.json",
+              "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+              "ex5_sha256": "7edb7854cf9511d73703a4cd1884649d7a26fedc9182c660c546353e26859542",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065630Z_EURUSD_M0\\D040_V100_RUN_EURUSD_STATS.csv",
+                "sha256": "0e42f18223f09c77fec8ff088ecf055658c4f26b4808e5c4d3d154ef0c638769"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065630Z_EURUSD_M0\\D040_V100_RUN_EURUSD_TRADES.csv",
+                "sha256": "a9fd19a1f7c1ef4a6aba85a81036cd0df42e03d3092151376306a34d9028b4ae"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D040_NR4_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "EURUSD",
+                "trades": 128,
+                "trades_opened": 128,
+                "trades_closed": 128,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "manifest_path": "research\\experiments\\D040.json",
+              "stage": "development",
+              "symbol": "GBPUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T06:57:09.659433+00:00",
+              "finished_at_utc": "2026-09-07T06:57:58.135181+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065709Z_GBPUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\20260907T065354Z\\build.json",
+              "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+              "ex5_sha256": "7edb7854cf9511d73703a4cd1884649d7a26fedc9182c660c546353e26859542",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065709Z_GBPUSD_M0\\D040_V100_RUN_GBPUSD_STATS.csv",
+                "sha256": "0059f952e330c1547ad6ba162c9d83609f1949569d3a7255ac54b81ed5c79459"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065709Z_GBPUSD_M0\\D040_V100_RUN_GBPUSD_TRADES.csv",
+                "sha256": "64c9c93e56361694b15e6c5cf06cc615be02947f8bb65d2a97de5c18f6f91878"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D040_NR4_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "GBPUSD",
+                "trades": 126,
+                "trades_opened": 126,
+                "trades_closed": 126,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "manifest_path": "research\\experiments\\D040.json",
+              "stage": "development",
+              "symbol": "USDJPY",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T06:57:58.207660+00:00",
+              "finished_at_utc": "2026-09-07T06:59:04.833585+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065758Z_USDJPY_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\20260907T065354Z\\build.json",
+              "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+              "ex5_sha256": "7edb7854cf9511d73703a4cd1884649d7a26fedc9182c660c546353e26859542",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\USDJPY\\20260907T065758Z\\D040_V100_RUN_USDJPY_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\USDJPY\\20260907T065758Z\\D040_V100_RUN_USDJPY_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065758Z_USDJPY_M0\\D040_V100_RUN_USDJPY_STATS.csv",
+                "sha256": "e0e96b3476fdbdaddef0464756be5bf00db7cc123febbb215f53c11710820062"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065758Z_USDJPY_M0\\D040_V100_RUN_USDJPY_TRADES.csv",
+                "sha256": "8d44f4c78e6d63947ae3616d441a3bd0c92af51561c5e307a40ade25612ccf12"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D040_NR4_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "USDJPY",
+                "trades": 125,
+                "trades_opened": 125,
+                "trades_closed": 125,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "manifest_path": "research\\experiments\\D040.json",
+              "stage": "development",
+              "symbol": "XAUUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T06:59:04.916771+00:00",
+              "finished_at_utc": "2026-09-07T07:00:59.368181+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065904Z_XAUUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\20260907T065354Z\\build.json",
+              "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+              "ex5_sha256": "7edb7854cf9511d73703a4cd1884649d7a26fedc9182c660c546353e26859542",
+              "quarantined_stale_outputs": [
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\XAUUSD\\20260907T065904Z\\D040_V100_RUN_XAUUSD_STATS.csv",
+                "D:\\MT5_Backtests\\guardian-runner\\quarantine\\stale_outputs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\XAUUSD\\20260907T065904Z\\D040_V100_RUN_XAUUSD_TRADES.csv"
+              ],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065904Z_XAUUSD_M0\\D040_V100_RUN_XAUUSD_STATS.csv",
+                "sha256": "be4e21926dbc2ae5ffd2a62fe7ee0825281d1a4329532c0ed11dc3cae67abdcc"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065904Z_XAUUSD_M0\\D040_V100_RUN_XAUUSD_TRADES.csv",
+                "sha256": "3de27cc02f708725976302a7fa84d47154080c5c60de8c75ef725c6c0c67e21b"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D040_NR4_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "XAUUSD",
+                "trades": 124,
+                "trades_opened": 124,
+                "trades_closed": 124,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            }
+          ],
+          "autosync_used": false,
+          "finished_at_utc": "2026-09-07T07:00:59.436746+00:00",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\batch\\20260907T065356Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d040/live/events/development/batch/20260907T065356Z",
+            "latest_path": "backtests/d040/live/latest.json",
+            "event_id": "20260907T065356Z",
+            "event_fingerprint_sha256": "2b1d994a29918b0988f56c644320528d72a7ff3c96e9a4149023e65fbcc6e45e",
+            "commit_sha": "20b67d32c44bd73a7c42db1feee46cb7a4f7c639",
+            "payload_compacted": false,
+            "autosync_used": false
+          }
+        },
+        "trade_path": {
+          "status": "TRADE_PATH_PASS_ALL",
+          "symbols": [
+            "BTCUSD",
+            "ETHUSD",
+            "EURUSD",
+            "GBPUSD",
+            "USDJPY",
+            "XAUUSD"
+          ],
+          "results": [
+            {
+              "schema_version": 1,
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "stage": "development",
+              "symbol": "BTCUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065356Z_BTCUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 125,
+              "path_rows": 125,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 65,
+                "1R": 39,
+                "2R": 7,
+                "3R": 2,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\trade-path\\20260907T065356Z_BTCUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d040/live/events/development/trade-path/20260907T065356Z_BTCUSD_M0",
+                "latest_path": "backtests/d040/live/latest.json",
+                "event_id": "20260907T065356Z_BTCUSD_M0",
+                "event_fingerprint_sha256": "9df4bf021fea0595f4782e5dfff3bf60ec6c183d04480080bb24fb3174165e19",
+                "commit_sha": "5520c34639ab9e7f5ad559f855fa633816f9eb63",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "stage": "development",
+              "symbol": "ETHUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065518Z_ETHUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 130,
+              "path_rows": 130,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 62,
+                "1R": 28,
+                "2R": 6,
+                "3R": 0,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\trade-path\\20260907T065518Z_ETHUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d040/live/events/development/trade-path/20260907T065518Z_ETHUSD_M0",
+                "latest_path": "backtests/d040/live/latest.json",
+                "event_id": "20260907T065518Z_ETHUSD_M0",
+                "event_fingerprint_sha256": "e69eccbe991824ebda0dc4c555b9f774ee4c8f587787e1f05b5becf0096f0dc6",
+                "commit_sha": "a7f3639644259a474efacb0b25b9c56287a81f48",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "stage": "development",
+              "symbol": "EURUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065630Z_EURUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 128,
+              "path_rows": 128,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 61,
+                "1R": 25,
+                "2R": 8,
+                "3R": 4,
+                "5R": 1
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\trade-path\\20260907T065630Z_EURUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d040/live/events/development/trade-path/20260907T065630Z_EURUSD_M0",
+                "latest_path": "backtests/d040/live/latest.json",
+                "event_id": "20260907T065630Z_EURUSD_M0",
+                "event_fingerprint_sha256": "5188e501bcd857c54ab702e91cce38575bd6813a394317941914e04bc3670263",
+                "commit_sha": "1a65eceba060312aad231e4a5ae6b739628b168e",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "stage": "development",
+              "symbol": "GBPUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065709Z_GBPUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 126,
+              "path_rows": 126,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 60,
+                "1R": 42,
+                "2R": 10,
+                "3R": 2,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\trade-path\\20260907T065709Z_GBPUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d040/live/events/development/trade-path/20260907T065709Z_GBPUSD_M0",
+                "latest_path": "backtests/d040/live/latest.json",
+                "event_id": "20260907T065709Z_GBPUSD_M0",
+                "event_fingerprint_sha256": "fd6b6c4f9b4d0472ca82d9a356bd11cff36614fa857635852bb05b81c55a35ee",
+                "commit_sha": "3eeaeb91694f4d259863cde5c7d402061c5663e4",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "stage": "development",
+              "symbol": "USDJPY",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065758Z_USDJPY_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 125,
+              "path_rows": 125,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 66,
+                "1R": 34,
+                "2R": 13,
+                "3R": 4,
+                "5R": 2
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\trade-path\\20260907T065758Z_USDJPY_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d040/live/events/development/trade-path/20260907T065758Z_USDJPY_M0",
+                "latest_path": "backtests/d040/live/latest.json",
+                "event_id": "20260907T065758Z_USDJPY_M0",
+                "event_fingerprint_sha256": "281add2421335ab694849986725fbcb570748c986c7d1c6242fc5ad1bfcc826d",
+                "commit_sha": "482f670d7d32bba930638d0d349d667ce3814207",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+              "stage": "development",
+              "symbol": "XAUUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065904Z_XAUUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 124,
+              "path_rows": 124,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 67,
+                "1R": 35,
+                "2R": 4,
+                "3R": 1,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\trade-path\\20260907T065904Z_XAUUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d040/live/events/development/trade-path/20260907T065904Z_XAUUSD_M0",
+                "latest_path": "backtests/d040/live/latest.json",
+                "event_id": "20260907T065904Z_XAUUSD_M0",
+                "event_fingerprint_sha256": "480a22b0215457694a9ed2638d7887ca7afed59c0f3574fc86e4d27f6c2f8cba",
+                "commit_sha": "2ae4bea8c219074a7fa7838222ff94f7c4e8dd45",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            }
+          ]
+        },
+        "decision": {
+          "verdict": "CANDIDATE_CONFIRM",
+          "all_gates_pass": true,
+          "verdict_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T070206Z\\verdict.json",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\score\\20260907T070206Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d040/live/events/development/score/20260907T070206Z",
+            "latest_path": "backtests/d040/live/latest.json",
+            "event_id": "20260907T070206Z",
+            "event_fingerprint_sha256": "5c5d1ea0bccc03ce3f5969e74eb9f1ae54caa23d4033c20383e7902d6c7803ec",
+            "commit_sha": "e3bce340404e7360c130caa5be32b43d9dc7cd1e",
+            "payload_compacted": false,
+            "autosync_used": false
+          }
+        },
+        "rich_score": {
+          "rich_score_path": "D:\\MT5_Backtests\\guardian-runner\\rich_scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T070216Z\\rich_score.json",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\rich-score\\20260907T070216Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d040/live/events/development/rich-score/20260907T070216Z",
+            "latest_path": "backtests/d040/live/latest.json",
+            "event_id": "20260907T070216Z",
+            "event_fingerprint_sha256": "4e9028c97a9c564b095359f3d898eea4b6462bbe4bff225bbbe96f208521dac6",
+            "commit_sha": "4ed9d8146a180993c610a634023c2eac21715c78",
+            "payload_compacted": true,
+            "autosync_used": false
+          }
+        },
+        "bundle": {
+          "publish_receipt": "D:\\MT5_Backtests\\guardian-runner\\publish_receipts\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065356Z.json",
+          "schema_version": 1,
+          "status": "PUBLISH_PASS",
+          "created_at_utc": "2026-09-07T07:02:34.972668+00:00",
+          "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+          "stage": "development",
+          "branch": "backtest-results",
+          "target_path": "backtests/d040/development/20260907T065356Z",
+          "batch_run_id": "20260907T065356Z",
+          "result_fingerprint_sha256": "7a98ccb273a0c4fa696cc1aaa2b3f2fcffbfa0524e426da876f85b3602f2e337",
+          "commit_sha": "87ec58f14d8da18299d08481c976f658c951139d",
+          "bundle_dir": "D:\\MT5_Backtests\\guardian-runner\\publish_bundles\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T070224Z",
+          "decision_verdict": "CANDIDATE_CONFIRM",
+          "compact_trades_included": true,
+          "transport": "ISOLATED_GIT_CLONE_PUBLISHER",
+          "autosync_used": false
+        },
+        "finished_at_utc": "2026-09-07T07:02:34.974303+00:00"
+      }
+    ],
+    "autosync_used": false,
+    "engineering_failures": 0,
+    "scientific_rejections": 0,
+    "finished_at_utc": "2026-09-07T07:02:34.976362+00:00",
+    "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T065354Z\\campaign.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
