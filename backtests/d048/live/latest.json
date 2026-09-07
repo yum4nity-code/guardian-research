@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T12:06:38.801768+00:00",
+  "updated_at_utc": "2026-09-07T12:06:51.226302+00:00",
   "experiment_id": "D048-MARKET-TRANSPORT-INSIDE-DAY-V1",
   "stage": "smoke",
-  "kind": "market-transport-batch",
-  "event_id": "20260907T120632Z",
-  "event_path": "backtests/d048/live/events/smoke/market-transport-batch/20260907T120632Z",
-  "event_fingerprint_sha256": "1dd9013a16e92af4acd2d5a5d1feee33e4145adfbf81f8bfefa48b86097fab1c",
-  "status": "BATCH_PASS_INTEGRITY",
+  "kind": "market-transport-smoke",
+  "event_id": "20260907T120644Z",
+  "event_path": "backtests/d048/live/events/smoke/market-transport-smoke/20260907T120644Z",
+  "event_fingerprint_sha256": "2884703d97de6dba1d283b89c2b49372db1a68e5d8dabe9b80451887983e3d76",
+  "status": "MARKET_TRANSPORT_SMOKE_PASS",
   "autosync_used": false
 }
