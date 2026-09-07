@@ -10,19 +10,22 @@
     "frozen_before_result_inspection": true,
     "execution_deviations": [
       "16:30-17:00 is a frozen FundedNext server-time operational anchor, not a claim of exact exchange-local cash-open alignment on every DST transition day.",
-      "Specialized D053 runner validates ORB-specific lifecycle/path fields and uses a frozen 1.5x executable-spread stress."
+      "Specialized D053 runner validates ORB-specific lifecycle/path fields and uses a frozen 1.5x executable-spread stress.",
+      "Engineering amendment research/campaigns/D053_ENGINEERING_AMENDMENT_V101_SESSION_END_2026_09_07.md was frozen after clean smoke but before any completed D053 DEV symbol: if no executable tick exists at/after 22:45 before broker-day change, close at the last executable same-day tick with SESSION_END. No entry, stop, universe, gate, or nominal exit time changed."
     ]
   },
   "source": {
     "canonical_path": "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5",
-    "source_sha256": "bbd0178f3c71a99802b75db563f06f38a94d4735bc828a78ee8c009dd4900ec8",
+    "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
     "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
-    "git_blob_sha": "f60329c6fcb79b308c5a60e74c0512b52481386a",
-    "version": "1.00",
+    "git_blob_sha": "7da58ecf8968d6814b634be0ee0043b9616fb6c6",
+    "version": "1.01",
     "complete_repository_source": true,
     "strategy_semantics_frozen": true,
     "engineering_lineage": [
       "Preregistration committed before D053 source outcome inspection.",
+      "v1.00 compiled and passed engineering smoke; first DEV symbol completed=0 and stopped FINAL_INVALID_LIFECYCLE before any DEV economics were scored.",
+      "v1.01 adds only deterministic same-day SESSION_END fallback for sessions without a 22:45-or-later tick; amendment documented before DEV restart.",
       "Source uses executable ASK/BID ticks; no orders.",
       "Native MFE/MAE path telemetry is descriptive only and cannot alter D053 decision."
     ]
@@ -30,12 +33,7 @@
   "execution": {
     "timeframe": "M15",
     "reference_timeframes": [],
-    "symbols": [
-      "SPX500",
-      "NDX100",
-      "US30",
-      "US2000"
-    ],
+    "symbols": ["SPX500", "NDX100", "US30", "US2000"],
     "account_currency": "USD",
     "prop_firm_profile": "FUNDEDNEXT_D053_US_INDEX_ORB30_V0"
   },
@@ -49,11 +47,7 @@
       "location": "FILE_COMMON",
       "stats_template": "D053_V100_{stage_token}_{symbol_clean}_STATS.csv",
       "trades_template": "D053_V100_{stage_token}_{symbol_clean}_TRADES.csv",
-      "stage_tokens": {
-        "smoke": "RUN",
-        "development": "RUN",
-        "confirmation": "RUN"
-      }
+      "stage_tokens": {"smoke": "RUN", "development": "RUN", "confirmation": "RUN"}
     }
   },
   "cost_model": {
@@ -62,18 +56,14 @@
     "commission_stress_multiplier": 1.5,
     "explicit_index_commission": "0 in V0, consistent with prior Guardian FundedNext index transport treatment",
     "spread_stress": "additional adverse cost equal to 0.25*(entry_spread+exit_spread), equivalent to 1.5x observed round-trip spread penalty relative to mid",
-    "swap": "excluded; frozen intraday liquidation"
+    "swap": "excluded; normal exit is 22:45 same-day, with v1.01 SESSION_END fallback to last executable same-day tick on early/irregular session close"
   },
   "stages": {
     "smoke": {
       "stage_name": "D053_SMOKE_OCT2023",
       "from": "2023-10-02",
       "to": "2023-10-31",
-      "symbols": [
-        "SPX500",
-        "NDX100",
-        "US2000"
-      ],
+      "symbols": ["SPX500", "NDX100", "US2000"],
       "status": "READY",
       "gates": {
         "engineering_only": true,
@@ -87,12 +77,7 @@
       "stage_name": "D053_DEV_2024_2025",
       "from": "2024-01-02",
       "to": "2025-12-31",
-      "symbols": [
-        "SPX500",
-        "NDX100",
-        "US30",
-        "US2000"
-      ],
+      "symbols": ["SPX500", "NDX100", "US30", "US2000"],
       "status": "LOCKED",
       "gates": {
         "aggregate_n_min": 1000,
@@ -114,12 +99,7 @@
       "stage_name": "D053_HOLDOUT_JUL_AUG_2026",
       "from": "2026-07-01",
       "to": "2026-08-31",
-      "symbols": [
-        "SPX500",
-        "NDX100",
-        "US30",
-        "US2000"
-      ],
+      "symbols": ["SPX500", "NDX100", "US30", "US2000"],
       "status": "UNOPENED",
       "gates": {
         "locked_until_all_dev_gates_pass": true,
