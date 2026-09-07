@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "status": "D052_BATCH_PASS_INTEGRITY",
+  "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+  "stage": "smoke",
+  "symbols": [
+    "EURUSD",
+    "SPX500",
+    "XAUUSD"
+  ],
+  "from": "2023-10-02",
+  "to": "2023-10-31",
+  "execution_mode": "SEQUENTIAL_ONE_MT5_RUN_PER_SYMBOL_ALL_MANAGEMENTS_PARALLEL_VIRTUAL",
+  "tester_model": 0,
+  "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+  "tests": [
+    {
+      "schema_version": 1,
+      "status": "D052_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+      "stage": "smoke",
+      "symbol": "EURUSD",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T14:41:19.507046+00:00",
+      "finished_at_utc": "2026-09-07T14:41:28.444402+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\smoke\\20260907T144119Z_EURUSD_M0\\tester.ini",
+        "/portable"
+      ],
+      "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+      "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\smoke\\20260907T144119Z_EURUSD_M0\\D052_V100_RUN_EURUSD_STATS.csv",
+        "sha256": "71bebbc86d795ab3bdfe52db9039898116631d3d294dcd23d54f813e8ff395d9"
+      },
+      "results": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\smoke\\20260907T144119Z_EURUSD_M0\\D052_V100_RUN_EURUSD_RESULTS.csv",
+        "sha256": "940b82cefc35a17f652765d7279b64728c90b07bde514d0100ac9d38affb46af"
+      },
+      "integrity": {
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "symbol": "EURUSD",
+        "paired_events": 21,
+        "virtual_rows": 504,
+        "reference_unusable_days": 0,
+        "schedule_missed_days": 0,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0
+      },
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "D052_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+      "stage": "smoke",
+      "symbol": "SPX500",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T14:41:28.489845+00:00",
+      "finished_at_utc": "2026-09-07T14:41:38.370228+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\smoke\\20260907T144128Z_SPX500_M0\\tester.ini",
+        "/portable"
+      ],
+      "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+      "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\smoke\\20260907T144128Z_SPX500_M0\\D052_V100_RUN_SPX500_STATS.csv",
+        "sha256": "d338f1f97c277c0d64ddb1aedac1905e8e268187357c79d118fb216d2b2edeab"
+      },
+      "results": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\smoke\\20260907T144128Z_SPX500_M0\\D052_V100_RUN_SPX500_RESULTS.csv",
+        "sha256": "dace6e5d17cc49da354f0eb6e525b12e9b0ccfa42415b13c6675956079dbefd8"
+      },
+      "integrity": {
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "symbol": "SPX500",
+        "paired_events": 21,
+        "virtual_rows": 504,
+        "reference_unusable_days": 0,
+        "schedule_missed_days": 0,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0
+      },
+      "autosync_used": false
+    },
+    {
+      "schema_version": 1,
+      "status": "D052_SYMBOL_PASS_INTEGRITY",
+      "experiment_id": "D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0",
+      "stage": "smoke",
+      "symbol": "XAUUSD",
+      "from": "2023-10-02",
+      "to": "2023-10-31",
+      "tester_model": 0,
+      "started_at_utc": "2026-09-07T14:41:38.415206+00:00",
+      "finished_at_utc": "2026-09-07T14:41:48.397481+00:00",
+      "terminal_exit_code": 0,
+      "command": [
+        "D:\\MT5_FundedNext\\terminal64.exe",
+        "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\smoke\\20260907T144138Z_XAUUSD_M0\\tester.ini",
+        "/portable"
+      ],
+      "source_sha256": "009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275",
+      "ex5_sha256": "65fc71fa223416382f7b18e6093152d459507f4cf46716b09dfd4fa20feebdfa",
+      "quarantined_stale_outputs": [],
+      "stats": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\smoke\\20260907T144138Z_XAUUSD_M0\\D052_V100_RUN_XAUUSD_STATS.csv",
+        "sha256": "42ff28c878c76e85350dc8ccea2f0d308396d4c87ebf0dc5fb20d28fb0ed23dc"
+      },
+      "results": {
+        "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0\\smoke\\20260907T144138Z_XAUUSD_M0\\D052_V100_RUN_XAUUSD_RESULTS.csv",
+        "sha256": "62994c61246cce26ad17a25912d30d0605db89db69c5c712ea287cabba303734"
+      },
+      "integrity": {
+        "status": "D052_SYMBOL_PASS_INTEGRITY",
+        "symbol": "XAUUSD",
+        "paired_events": 21,
+        "virtual_rows": 504,
+        "reference_unusable_days": 0,
+        "schedule_missed_days": 0,
+        "invalid_price": 0,
+        "invalid_risk": 0,
+        "pnl_calc_failures": 0
+      },
+      "autosync_used": false
+    }
+  ],
+  "autosync_used": false,
+  "finished_at_utc": "2026-09-07T14:41:48.441515+00:00",
+  "batch_path": "D:\\MT5_Backtests\\guardian-runner\\d052\\smoke\\20260907T144119Z\\batch.json"
+}
