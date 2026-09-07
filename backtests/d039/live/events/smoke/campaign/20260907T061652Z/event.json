@@ -1,0 +1,332 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T06:16:57.351848+00:00",
+  "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+  "stage": "smoke",
+  "kind": "campaign",
+  "event_id": "20260907T061652Z",
+  "event_fingerprint_sha256": "3970d1f947bc3873775df5dbf9314febe8f38586fd2aa6cfe7ab3bc122ba018e",
+  "source_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+  "payload": {
+    "schema_version": 1,
+    "campaign_id": "20260907T061540Z",
+    "status": "CAMPAIGN_PASS",
+    "stage": "smoke",
+    "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+    "parallel_mt5": false,
+    "continue_after_scientific_reject": true,
+    "continue_after_experiment_engineering_failure": true,
+    "finalize_development": false,
+    "experiments_requested": [
+      "D039"
+    ],
+    "started_at_utc": "2026-09-07T06:15:40.138923+00:00",
+    "experiments": [
+      {
+        "identifier": "D039",
+        "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+        "stage": "smoke",
+        "started_at_utc": "2026-09-07T06:15:40.144693+00:00",
+        "status": "EXPERIMENT_STAGE_PASS",
+        "compile": {
+          "status": "COMPILE_PASS",
+          "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D039-INSIDE-DAY-BREAKOUT-V0\\20260907T061540Z\\build.json",
+          "source_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+          "ex5_sha256": "4cc3ed4146909782db109dac2fff8d3564fccf31b132a21c7c221aaf2529e9ea"
+        },
+        "batch": {
+          "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061542Z\\batch.json",
+          "schema_version": 1,
+          "status": "BATCH_PASS_INTEGRITY",
+          "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+          "manifest_path": "research\\experiments\\D039.json",
+          "stage": "smoke",
+          "symbols": [
+            "USDJPY",
+            "XAUUSD",
+            "BTCUSD"
+          ],
+          "started_at_utc": "2026-09-07T06:15:42.996718+00:00",
+          "execution_mode": "SEQUENTIAL",
+          "tester_model": 0,
+          "tests": [
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+              "manifest_path": "research\\experiments\\D039.json",
+              "stage": "smoke",
+              "symbol": "USDJPY",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T06:15:43.007539+00:00",
+              "finished_at_utc": "2026-09-07T06:15:57.516862+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061543Z_USDJPY_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D039-INSIDE-DAY-BREAKOUT-V0\\20260907T061540Z\\build.json",
+              "source_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+              "ex5_sha256": "4cc3ed4146909782db109dac2fff8d3564fccf31b132a21c7c221aaf2529e9ea",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061543Z_USDJPY_M0\\D039_V100_RUN_USDJPY_STATS.csv",
+                "sha256": "8b73b12866b208f95b714d546b74860c2c6079123e9bf18de4ac6c2b4e35739f"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061543Z_USDJPY_M0\\D039_V100_RUN_USDJPY_TRADES.csv",
+                "sha256": "456ddf68b10988517f552a82e38143a51e3c3967ca3f3197880f9692ce8bef7f"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D039_InsideDay_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "USDJPY",
+                "trades": 2,
+                "trades_opened": 2,
+                "trades_closed": 2,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+              "manifest_path": "research\\experiments\\D039.json",
+              "stage": "smoke",
+              "symbol": "XAUUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T06:15:57.592640+00:00",
+              "finished_at_utc": "2026-09-07T06:16:07.864387+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061557Z_XAUUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D039-INSIDE-DAY-BREAKOUT-V0\\20260907T061540Z\\build.json",
+              "source_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+              "ex5_sha256": "4cc3ed4146909782db109dac2fff8d3564fccf31b132a21c7c221aaf2529e9ea",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061557Z_XAUUSD_M0\\D039_V100_RUN_XAUUSD_STATS.csv",
+                "sha256": "b0fc54288f6a14a3a8d2616bf3386643d2a3be3d1fc073d756e7bee4a9ecfcff"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061557Z_XAUUSD_M0\\D039_V100_RUN_XAUUSD_TRADES.csv",
+                "sha256": "a98b01dc89b1481132bc18fd586fee253883bd9ee06320702e772f24ef9bdeb6"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D039_InsideDay_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "XAUUSD",
+                "trades": 2,
+                "trades_opened": 2,
+                "trades_closed": 2,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            },
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+              "manifest_path": "research\\experiments\\D039.json",
+              "stage": "smoke",
+              "symbol": "BTCUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T06:16:07.945814+00:00",
+              "finished_at_utc": "2026-09-07T06:16:18.430043+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061607Z_BTCUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D039-INSIDE-DAY-BREAKOUT-V0\\20260907T061540Z\\build.json",
+              "source_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+              "ex5_sha256": "4cc3ed4146909782db109dac2fff8d3564fccf31b132a21c7c221aaf2529e9ea",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061607Z_BTCUSD_M0\\D039_V100_RUN_BTCUSD_STATS.csv",
+                "sha256": "129320c40f8ff9bc0be0a837e8b8518dd22237c748019317cb26735a7483b310"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061607Z_BTCUSD_M0\\D039_V100_RUN_BTCUSD_TRADES.csv",
+                "sha256": "0fe2222810b90cd77445b011321b17dbb566748072486d4887f92c57e82a8b37"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D039_InsideDay_TickPath_M15_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "BTCUSD",
+                "trades": 6,
+                "trades_opened": 6,
+                "trades_closed": 6,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-16",
+                "trades_encoding": "utf-16"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            }
+          ],
+          "autosync_used": false,
+          "finished_at_utc": "2026-09-07T06:16:18.475937+00:00",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\batch\\20260907T061542Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d039/live/events/smoke/batch/20260907T061542Z",
+            "latest_path": "backtests/d039/live/latest.json",
+            "event_id": "20260907T061542Z",
+            "event_fingerprint_sha256": "6b6509a1c2f3d7b64079843c0dd54cbc9cb767cee49a6fe54edc03f40894f858",
+            "commit_sha": "96757906054ccdeb1ebfeedd66bb493b1ccf1449",
+            "payload_compacted": false,
+            "autosync_used": false
+          }
+        },
+        "trade_path": {
+          "status": "TRADE_PATH_PASS_ALL",
+          "symbols": [
+            "USDJPY",
+            "XAUUSD",
+            "BTCUSD"
+          ],
+          "results": [
+            {
+              "schema_version": 1,
+              "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+              "stage": "smoke",
+              "symbol": "USDJPY",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061543Z_USDJPY_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 2,
+              "path_rows": 2,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 1,
+                "1R": 0,
+                "2R": 0,
+                "3R": 0,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\trade-path\\20260907T061543Z_USDJPY_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d039/live/events/smoke/trade-path/20260907T061543Z_USDJPY_M0",
+                "latest_path": "backtests/d039/live/latest.json",
+                "event_id": "20260907T061543Z_USDJPY_M0",
+                "event_fingerprint_sha256": "93b96955bc3020f9b00acb20b723526f6e7e5e8d539ec4519b17b8105cfe57c3",
+                "commit_sha": "06d19ca101cf03766f59d4763bf998769d5be51c",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+              "stage": "smoke",
+              "symbol": "XAUUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061557Z_XAUUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 2,
+              "path_rows": 2,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 0,
+                "1R": 0,
+                "2R": 0,
+                "3R": 0,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\trade-path\\20260907T061557Z_XAUUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d039/live/events/smoke/trade-path/20260907T061557Z_XAUUSD_M0",
+                "latest_path": "backtests/d039/live/latest.json",
+                "event_id": "20260907T061557Z_XAUUSD_M0",
+                "event_fingerprint_sha256": "afa69d9932a1c63ecb6e12a86987d2a19a9f68267d34f0e5b683e91e4d4fc44c",
+                "commit_sha": "3bb5ddba5e83126025518815244d3010590ea479",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            },
+            {
+              "schema_version": 1,
+              "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+              "stage": "smoke",
+              "symbol": "BTCUSD",
+              "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\20260907T061607Z_BTCUSD_M0",
+              "status": "TRADE_PATH_PASS",
+              "trades": 6,
+              "path_rows": 6,
+              "path_calc_failures": 0,
+              "required_columns": 36,
+              "reached_counts": {
+                "0.5R": 3,
+                "1R": 2,
+                "2R": 1,
+                "3R": 0,
+                "5R": 0
+              },
+              "path_ambiguous_rows": 0,
+              "stats_encoding": "utf-16",
+              "trades_encoding": "utf-16",
+              "github_transport": {
+                "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D039-INSIDE-DAY-BREAKOUT-V0\\smoke\\trade-path\\20260907T061607Z_BTCUSD_M0.json",
+                "status": "EVENT_PUBLISH_PASS",
+                "branch": "backtest-results",
+                "event_path": "backtests/d039/live/events/smoke/trade-path/20260907T061607Z_BTCUSD_M0",
+                "latest_path": "backtests/d039/live/latest.json",
+                "event_id": "20260907T061607Z_BTCUSD_M0",
+                "event_fingerprint_sha256": "5a81292cebcb2ef72cd97c8ac811f91eab6fb160c04330987324c0313aa89db9",
+                "commit_sha": "86631f319a9e42e6e7d9021adb9471edcbadc554",
+                "payload_compacted": false,
+                "autosync_used": false
+              }
+            }
+          ]
+        },
+        "finished_at_utc": "2026-09-07T06:16:52.026537+00:00"
+      }
+    ],
+    "autosync_used": false,
+    "engineering_failures": 0,
+    "scientific_rejections": 0,
+    "finished_at_utc": "2026-09-07T06:16:52.028610+00:00",
+    "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T061540Z\\campaign.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
