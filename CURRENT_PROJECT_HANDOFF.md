@@ -8,7 +8,7 @@ Status: **ACTIVE / D054 ORB30 CORE-3 INDEPENDENT CONFIRMATION READY**
 Read in this order:
 1. `GUARDIAN_STATE.json`
 2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
-3. `research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
+3. `research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
 4. `research/experiments/D054.json`
 5. `research/runner/d054_orb30_core3_run.py`
 6. `research/runner/d054_orb30_core3_workflow.py`
@@ -16,7 +16,11 @@ Read in this order:
 8. `reports/research/D053_US_INDEX_ORB30_DEV_CLOSEOUT_20260907.md`
 9. `GUARDIAN_MASTER_MANDATE.md`
 
-`GUARDIAN_STATE.json`, `START_HERE_NEXT_AI.md` and `CURRENT_QUEUE.json` are authoritative/current.
+`GUARDIAN_STATE.json` is authoritative. `START_HERE_NEXT_AI.md` and `CURRENT_QUEUE.json` are generated compatibility views.
+
+Important: the similarly named older file
+`research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
+is explicitly **SUPERSEDED / DO NOT EXECUTE**.
 
 ## Canonical operator UX
 
@@ -36,18 +40,16 @@ Read in this order:
 - Legacy AutoSync v1/v2 and Guardian Backtest Bot are untrusted historical systems; never fallback.
 - No post-hoc rescue, threshold retune, symbol deletion after results, direction selection after results, or reuse of seen data as OOS.
 
-## D053 closeout — important discovery, formally rejected
+## D053 closeout — economically strong, formally rejected
 
-Experiment:
-`D053-US-INDEX-ORB30-ENTRY-ALPHA-V0`
+Experiment: `D053-US-INDEX-ORB30-ENTRY-ALPHA-V0`
 
 Authoritative DEV event:
 `backtests/d053/live/events/development/d053-development-score/20260907T162026Z`
 
-Formal verdict:
-`D053_REJECT_V0`
+Formal verdict: `D053_REJECT_V0`
 
-D053 2024-2025 result:
+2024-2025 result:
 - n **2,042**
 - mean **+0.061984R/trade**
 - PF **1.1349**
@@ -65,56 +67,58 @@ Per symbol:
 - US30: **+46.21R / 509 trades**
 - US2000: **-4.71R / 510 trades**
 
-D053 passed 11/12 frozen gates. Only failure:
-- month-block bootstrap 95% lower bound required >0;
-- observed lower bound **-0.029041R**.
+D053 passed 11/12 frozen DEV gates. Sole failure:
+- required month-block bootstrap lower95 >0;
+- observed **-0.029041R**.
 
 Therefore D053 remains rejected. Jul-Aug 2026 was **not opened by D053**.
 
 Closeout:
 `reports/research/D053_US_INDEX_ORB30_DEV_CLOSEOUT_20260907.md`
 
-## Why D054 exists
+## D054 scientific boundary
 
-The user explicitly wants to pursue the D053 signal because the economic evidence is unusually strong.
+D054 is a **new derived hypothesis**, not a rewrite or rescue of D053.
 
-D054 is a **new derived hypothesis**, not a rewrite of D053. It was preregistered before the D053 deep audit and before any Jul-Aug 2026 outcome.
-
-The Core-3 choice is openly post-D053 discovery:
+The Core-3 universe is explicitly post-D053 discovery:
 - SPX500
 - NDX100
 - US30
 
-US2000 is excluded from D054 because D053 discovery showed it negative. This is allowed only because D054 pays for that selection on a new untouched holdout; D053 itself remains unchanged.
-
-## Frozen D054
+US2000 is excluded because D053 discovery showed it negative. This selection is permitted only because D054 pays for that selection entirely on untouched Jul-Aug 2026. D053 itself remains unchanged.
 
 Experiment:
 `D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0`
 
-Preregistration:
-`research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
-Git blob:
-`19ecf99440414d214fd1399692dfa786c569e563`
+Authoritative preregistration:
+`research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md`
 
-Exact source reused from D053 v1.01:
+Preregistration Git blob:
+`2c1bb149664a9e4153c6f6cb8ae59ce1e874da57`
+
+Exact D053 v1.01 source reused:
 `research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5`
-Git blob:
+
+Source Git blob:
 `7da58ecf8968d6814b634be0ee0043b9616fb6c6`
-Normalized SHA256:
+
+Normalized source SHA256:
 `d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad`
 
-No D054 trading source fork exists. This deliberately prevents semantic drift.
+No D054 trading-source fork exists. This prevents semantic drift.
 
-Rule remains exact D053 v1.01:
+Exact rule remains D053 v1.01:
+- M15, Model0 / Every tick;
 - FundedNext server OR 16:30–17:00;
 - first breakout +1 trade tick;
-- opposite OR extreme initial stop;
+- opposite OR executable extreme initial stop;
 - one trade/day;
-- no TP/BE/trail/partial/filter;
-- normal exit >=22:45;
-- unchanged `SESSION_END` fallback on early/irregular session close;
-- Model0 / Every tick.
+- no TP, BE, trail, partial or filter;
+- normal liquidation first executable tick >=22:45;
+- unchanged `SESSION_END` fallback if session supplies no 22:45-or-later same-day tick;
+- executable bid/ask;
+- zero explicit index commission;
+- frozen 1.5x spread stress.
 
 ## D053 deep audit
 
@@ -124,48 +128,51 @@ Tool:
 It uses only already-seen local D053 2024-2025 CSVs and launches **zero MT5 backtests**.
 
 It reports:
-- month-by-month result;
+- monthly results and positive/negative month count;
 - rolling 3m/6m stability;
 - symbol and side attribution;
 - weekdays;
 - breakout latency after 17:00;
 - exit reasons;
 - risk-width quartiles;
-- MFE/MAE timing;
+- MFE/MAE and timing;
 - US-vs-Europe DST mismatch proxy.
 
-It is descriptive only. D054 was frozen before this audit and cannot change because of it. Any DST-aligned idea becomes D055 or later.
+It is descriptive only. D054 rules/gates were frozen before this audit and cannot change from it. Any DST-aligned hypothesis must become D055 or later with a new evidence boundary.
 
-## D054 smoke and confirmation
+## D054 execution
 
 Engineering smoke:
 - 2023-10-02 through 2023-10-31
 - SPX500 / NDX100 / US30
-- economics ignored
+- engineering only; economics ignored
 
-Independent holdout:
+Independent confirmation holdout:
 - **2026-07-01 through 2026-08-31**
 - SPX500 / NDX100 / US30
+- untouched before D054
 
-Frozen confirmation gates, all required:
-- aggregate n >=100
-- each symbol n >=20
-- aggregate mean >0
-- PF >=1.05
-- total >0
-- 1.5x spread-stress total >0
-- **3/3 symbols positive**
-- day-block bootstrap 95% lower bound >0
-- integrity 0
+Frozen confirmation gates — **all 14 required**:
+1. aggregate n >=100
+2. each symbol n >=25
+3. aggregate mean net R >0
+4. aggregate PF >=1.05
+5. aggregate total net R >0
+6. 1.5x spread-stress total >0
+7. at least 2/3 symbols positive
+8. July 2026 total >0
+9. August 2026 total >0
+10. LONG mean >0
+11. SHORT mean >0
+12. day-block bootstrap 95% lower bound >0; 20,000 reps; seed 540054
+13. max positive-symbol contribution share <=0.70
+14. integrity events =0
 
-Pass:
-`D054_CONFIRMED_CORE3_ENTRY_ALPHA`
+Pass: `D054_CONFIRMED_CORE3_ENTRY_ALPHA`
 
-Any scientific gate failure:
-`D054_UNCONFIRMED_CLOSE`
+Any scientific gate failure: `D054_UNCONFIRMED_CLOSE`
 
-Engineering failure:
-`D054_ENGINEERING_INCOMPLETE`
+Engineering/data failure: `D054_ENGINEERING_INCOMPLETE` with no scientific verdict.
 
 No second Jul-Aug variant is allowed after seeing D054.
 
@@ -185,26 +192,14 @@ This performs:
 4. 3-symbol engineering smoke;
 5. if clean, opens Jul-Aug 2026 holdout exactly once;
 6. 3-symbol confirmation;
-7. day-block bootstrap and frozen gates;
+7. strict 14-gate score including month, direction, concentration and day-bootstrap stability;
 8. automatic GitHub publication.
 
 No 2024-2025 MT5 rerun.
 
-Then user normally replies only:
-`fini`
+Then user normally replies only: `fini`.
 
-On `fini`, fetch `backtests/d054/live/latest.json` from `backtest-results`, plus the D053 descriptive-audit event under `backtests/d053/live/events/development/d053-descriptive-audit/...`.
-
-## CI
-
-D054 static CI run `34144209615` completed successfully. It validates:
-- authoritative state/generated views;
-- D054 manifest/readiness;
-- exact D053 v1.01 source SHA reuse;
-- frozen Core-3 universe;
-- synthetic D054 PASS and FAIL populations;
-- D053 regression tests;
-- Python tooling.
+On `fini`, fetch `backtests/d054/live/latest.json` from `backtest-results` and the D053 descriptive-audit event under `backtests/d053/live/events/development/d053-descriptive-audit/...`.
 
 ## Local paths
 
