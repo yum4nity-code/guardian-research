@@ -2,22 +2,22 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T09:44:00+02:00",
+  "updated_at": "2026-09-07T09:56:00+02:00",
   "active_primary": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
   "items": [
     {
       "id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
       "priority": 0,
-      "status": "READY_SMOKE",
+      "status": "READY_DEV",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "On the MT5 research PC run `git pull` then `py -3 .\\research\\runner\\guardian_research.py campaign D045 --stage smoke`. Smoke is engineering-only on USDJPY/XAUUSD/BTCUSD for 2023-08-01..2023-10-31 in Model=0. Do not inspect smoke profitability. The campaign recompiles the exact frozen D045 source, runs the three smoke symbols, validates native Trade Path and publishes automatically. After completion the user should only say `fini`; the assistant reads `backtests/d045/live/latest.json`. Development remains locked until smoke engineering integrity passes.",
+      "goal": "On the MT5 research PC run `git pull` then `py -3 .\\research\\runner\\guardian_research.py campaign D045 --stage development`. D045 engineering smoke passed on USDJPY/XAUUSD/BTCUSD with 10 total trades, clean lifecycle/integrity and TRADE_PATH_PASS_ALL. Development is now legitimately opened for the frozen 2024-01-02..2025-12-31 six-market window in Model=0. The campaign recompiles the exact frozen source, runs all six markets, validates Trade Path, applies the frozen development gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d045/live/latest.json` and closes or advances the verdict.",
       "manifest": "research/experiments/D045.json"
     },
     {
       "id": "GUARDIAN_RESEARCH_RUNNER_V1",
       "priority": 1,
-      "status": "END_TO_END_PROVEN_D045_READY_SMOKE",
+      "status": "END_TO_END_PROVEN_D045_SMOKE_PASS_DEV_READY",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
       "goal": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
