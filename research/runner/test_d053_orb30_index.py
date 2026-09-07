@@ -8,7 +8,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "research" / "runner"))
 
-import d053_orb30_index_workflow as d053
+# Import the operator entrypoint so the frozen v1.01 identity overrides are
+# applied exactly as they are during the real local workflow.
+import d053_orb30_index_run as d053_run
+
+d053 = d053_run.d053
 
 
 def row(symbol: str, day: str, side: str, net: float, stress: float) -> dict[str, str]:
@@ -40,6 +44,7 @@ def test_frozen_source_sha() -> None:
     text = path.read_text(encoding="utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
     actual = hashlib.sha256(text.encode("utf-8")).hexdigest()
     assert actual == d053.EXPECTED_SOURCE_SHA256, (actual, d053.EXPECTED_SOURCE_SHA256)
+    assert d053.SOURCE_VERSION == "1.01"
 
 
 def test_positive_population_passes() -> None:
@@ -71,4 +76,4 @@ if __name__ == "__main__":
     test_frozen_source_sha()
     test_positive_population_passes()
     test_negative_population_rejects()
-    print("D053_TESTS_OK")
+    print("D053_TESTS_OK_V101")
