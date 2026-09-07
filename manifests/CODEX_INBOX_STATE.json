@@ -3,6 +3,7 @@
   "last_checked_at": "2026-09-01T08:02:53Z",
   "last_reviewed_commit": "5c0adb06961664dfb24a40e859fb3c11310810aa",
   "unread_notes": [
+    "handoff/chatgpt_to_codex/2026/09/07/CHALLENGE_PROBABILITY_AUTO_POST_VALIDATION_STANDARD.md",
     "handoff/chatgpt_to_codex/2026/09/06/D023_V108_2023_HARNESS_COMPILE_SMOKE_REQUEST_2026_09_06.md",
     "handoff/chatgpt_to_codex/2026/09/01/D017_SIX_MARKET_RESULT_SANITY_BLOCK.md",
     "handoff/chatgpt_to_codex/2026/09/01/FUNDEDNEXT_FREE_TRIAL_EA_OPTION_AWARE_FIX.md",
@@ -30,5 +31,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "P0 UPDATE 2026-09-06: read D023_V108_2023_HARNESS_COMPILE_SMOKE_REQUEST_2026_09_06.md first. D023 v1.08 HARNESSFIX is committed and static-audited only; SHA256 10e86306d87b6d5f1c507ae724c629c972be0f53c3e586f2fd700691fadc1de4. Required next action is real FundedNext MetaEditor compile 0 errors / 0 warnings, then USDJPY M15 Every tick smoke 2023-03-13 through 2023-03-31, direct STATS/TRADES inspection and manual DST/ORB verification. Do NOT run the full 2023 confirmation yet. D17 remains closed as current alpha and Guardian Core v12.01 remains frozen."
+  "notes": "PROCESS UPDATE 2026-09-07: read CHALLENGE_PROBABILITY_AUTO_POST_VALIDATION_STANDARD.md and apply it to the next new Dxxx capable of promotion. Future Lab-ready exports must include canonical challenge_day + signed adverse_r; OOS/confirmation scorers must emit challenge_lab_eligible. If true, run post_validation_challenge_gate_v1_00.py automatically with 20,000 paths/risk by default. Do not run it on closed D053/D054 and do not use risk optimization to rescue failed alpha. Older unread notes remain historical/action context and must be reconciled against current real state before execution."
 }
