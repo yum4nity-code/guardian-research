@@ -15,8 +15,8 @@ Read only what is needed, in this order:
 ## Current P0
 
 - Experiment: **D045-D1-DONCHIAN-20-10-BENCHMARK-V0**
-- State: **READY_DEV**
-- Next action: **On the MT5 research PC run `git pull` then `py -3 .\research\runner\guardian_research.py campaign D045 --stage development`. D045 engineering smoke passed on USDJPY/XAUUSD/BTCUSD with 10 total trades, clean lifecycle/integrity and TRADE_PATH_PASS_ALL. Development is now legitimately opened for the frozen 2024-01-02..2025-12-31 six-market window in Model=0. The campaign recompiles the exact frozen source, runs all six markets, validates Trade Path, applies the frozen development gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d045/live/latest.json` and closes or advances the verdict.**
+- State: **CLOSED_REJECTED**
+- Next action: **No MT5 action is required for D045. D045 V0 is scientifically closed REJECT_V0 after the frozen 2024-2025 development score: 145 trades, mean net R 0.0959087233 versus required 0.10; every other frozen gate passed and confirmation remains unopened. Do not waive the near-threshold miss or inspect 2026 for rescue. Next engineering/research work is to prepare the highest-priority remaining draft whose scientific question can be preserved exactly, with D041 preferred if its paired candidate-vs-reference management scorer can be implemented faithfully.**
 
 ## Canonical operator UX
 
@@ -32,7 +32,7 @@ Read only what is needed, in this order:
 - Guardian Core baseline: **v12.01** — do not modify during this research refactor.
 - Legacy AutoSync: **UNTRUSTED_NEVER_RELIABLY_WORKED** — reference only, never fallback.
 - AutoSync target: **AUTOSYNC_V3_FROM_SCRATCH**.
-- Closed experiments: D017=REJECTED_ALPHA_FAMILY, D023=REJECTED_UNTOUCHED_CONFIRMATION, D036=REJECTED_V0, D037=REJECTED_V0, D038=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D039=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D040=UNCONFIRMED_2026_H1_ARCHIVED.
+- Closed experiments: D017=REJECTED_ALPHA_FAMILY, D023=REJECTED_UNTOUCHED_CONFIRMATION, D036=REJECTED_V0, D037=REJECTED_V0, D038=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D039=REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED, D040=UNCONFIRMED_2026_H1_ARCHIVED, D045=REJECTED_V0_MEAN_GATE_ONLY_RICH_PATH_RETAINED.
 
 If this file ever disagrees with `GUARDIAN_STATE.json`, the state file wins and this file must be regenerated with:
 
