@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T18:35:00+02:00",
+  "updated_at": "2026-09-07T19:20:00+01:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -19,9 +19,9 @@
     "active_experiment": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
     "experiment_manifest": "research/experiments/D054.json",
     "status": "CANDIDATE_CONFIRM",
-    "strategy_family": "opening-range breakout / derived Core-3 independent confirmation",
+    "strategy_family": "opening-range breakout / D053-derived Core-3 independent confirmation",
     "timeframe": "M15",
-    "preregistration": "research/campaigns/D054_ORB30_CORE3_JUL_AUG2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md",
+    "preregistration": "research/campaigns/D054_ORB30_CORE3_JUL_AUG_2026_CONFIRMATION_PREREGISTRATION_2026_09_07.md",
     "canonical_sources_currently_in_repo": [
       "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5"
     ],
@@ -68,7 +68,7 @@
     },
     "d054_core3": {
       "origin": "Derived explicitly from D053 discovery: SPX500/NDX100/US30 were independently positive; US2000 was negative. D053 verdict remains unchanged.",
-      "preregistration_git_blob_sha": "19ecf99440414d214fd1399692dfa786c569e563",
+      "preregistration_git_blob_sha": "2c1bb149664a9e4153c6f6cb8ae59ce1e874da57",
       "exact_source_reuse": "research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5",
       "source_git_blob_sha": "7da58ecf8968d6814b634be0ee0043b9616fb6c6",
       "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
@@ -77,7 +77,7 @@
       "audit": "D053 descriptive-only, frozen D054 rules cannot change from it",
       "smoke": "2023-10-02 through 2023-10-31; engineering only",
       "confirmation": "2026-07-01 through 2026-08-31; untouched before D054",
-      "confirmation_gates": "n>=100; each>=20; mean>0; PF>=1.05; total>0; stress>0; 3/3 symbols positive; day-block bootstrap lower95>0; integrity0",
+      "confirmation_gates": "n>=100; each>=25; mean>0; PF>=1.05; total>0; stress>0; >=2/3 symbols positive; July>0; August>0; LONG mean>0; SHORT mean>0; day-block bootstrap lower95>0; max positive-symbol contribution share<=0.70; integrity0",
       "operator_entrypoint": "research/runner/d054_orb30_core3_run.py",
       "workflow": "research/runner/d054_orb30_core3_workflow.py",
       "audit_tool": "research/runner/d053_orb30_deep_audit.py"
@@ -132,6 +132,7 @@
       "D054_CORE3_ENGINEERING_SMOKE",
       "D054_JUL_AUG2026_CONFIRMATION",
       "D054_DAY_BLOCK_BOOTSTRAP",
+      "D054_MONTH_AND_DIRECTION_STABILITY_GATES",
       "ISOLATED_BACKTEST_RESULTS_PUBLISH",
       "RESILIENT_FAILURE_PUBLISH"
     ],
@@ -145,7 +146,7 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; keep MT5 sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D054_STATIC_CI",
+    "github_ci_status": "PENDING_D054_STRICT_STATIC_CI",
     "local_mt5_status": "D054_NOT_YET_RUN",
     "principle": "Freeze the derived hypothesis before descriptive audit; never reuse D053 discovery as fresh OOS; one short operator command; automatic evidence publication; no post-hoc rescue."
   },
