@@ -1,180 +1,108 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-07 Europe/Paris
-Status: **ACTIVE / MARKET TRANSPORT LAB V1 CLOSED / D051 NR7 INDEX CONFIRMATION READY**
+Status: **ACTIVE / D051 CLOSED UNCONFIRMED / NEXT SCIENCE: MANAGEMENT-AS-ALPHA NULL TEST CANDIDATE**
 
 ## Read this first on a new chat
 
-This file is the freshest human-readable handoff.
+This is the freshest human-readable handoff.
 
 Then read:
 1. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
-2. `reports/research/MARKET_TRANSPORT_LAB_V1_CLOSEOUT_20260907.md`
-3. `research/campaigns/D051_NR7_EQUITY_INDEX_CLUSTER_CONFIRMATION_V0_PREREGISTRATION_2026_09_07.md`
-4. `research/runner/d051_nr7_index_confirmation.py`
+2. `reports/research/D051_NR7_INDEX_CLUSTER_CONFIRMATION_CLOSEOUT_20260907.md`
+3. `reports/research/D041_D032_M2_POST2024_MANAGEMENT_VALIDATION_CLOSEOUT_20260907.md`
+4. `reports/research/MARKET_TRANSPORT_LAB_V1_CLOSEOUT_20260907.md`
 5. `GUARDIAN_MASTER_MANDATE.md`
 6. `GUARDIAN_STATE.json`
 
-`GUARDIAN_STATE.json` still contains stale D044-era active fields and must be reconciled after D051 state transition. Do not let those stale active fields override this handoff or `backtest-results` evidence. Historical sections in state remain useful.
+Important: generated state views may still contain stale active-experiment fields. This handoff plus immutable `backtest-results` evidence are fresher until state is reconciled.
 
 ## Canonical operator UX
 
-Preserve this exactly:
+- Assistant prepares GitHub, preregistration, source identity, runner/state changes and interpretation.
+- Give one short PowerShell block whenever local MT5 execution is needed.
+- Runner publishes evidence automatically to `backtest-results`.
+- User normally replies only **`fini`**.
+- On `fini`, retrieve GitHub evidence directly; do not ask the user to paste logs/JSON if transport worked.
+- If transport fails but valid local evidence exists, repair publication rather than rerunning MT5.
+- Keep MT5 sequential.
 
-- assistant prepares GitHub, preregistration, source identity, runner changes, interpretation and next action;
-- give one short PowerShell block when local MT5 execution is needed;
-- runner publishes evidence automatically to `backtest-results`;
-- user normally replies only **`fini`**;
-- on `fini`, retrieve GitHub evidence directly;
-- do not ask the user to paste logs/JSON when transport worked;
-- if transport fails but local science is valid, repair publication rather than rerunning MT5;
-- MT5 remains sequential.
+## Hard boundaries
 
-Canonical document: `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`.
-
-## Hard project boundaries
-
-- Guardian Core v12.01 is the compile-validated production baseline; do not modify during research unless explicitly asked.
+- Guardian Core v12.01 is the frozen compile-validated production baseline; do not modify during research unless explicitly asked.
 - Do not merge to `main` unless explicitly requested/reviewed.
-- Never `git reset --hard` or destructive-clean unrelated local work.
-- Legacy AutoSync v1/v2 and Guardian Backtest Bot are historical/untrusted; never fallback to them.
-- Current research publication uses `research/runner/result_transport.py` isolated clones.
+- Never `git reset --hard` or destructive-clean unrelated work.
+- Legacy AutoSync v1/v2 and Guardian Backtest Bot are historical/untrusted; never fallback.
 - No post-hoc rescue, no retuning after opened results, no relabeling seen data as OOS.
 
 ## Market Transport Lab V1 — CLOSED
 
-Preregistration:
-`research/campaigns/MARKET_TRANSPORT_LAB_V1_PREREGISTRATION_2026_09_07.md`
+Frozen 12-market universe: AUDUSD, USDCAD, USDCHF, EURJPY, GBPJPY, AUDJPY, SPX500, NDX100, GER30, US30, XAGUSD, XPTUSD.
+
+- D047 NR7: n903, mean -0.0266508R, PF0.9314, 6/12 positive -> `TRANSPORT_NO_BROAD_PASS`.
+- D048 Inside Day: n805, mean -0.0400952R, PF0.8872, 3/12 positive -> `TRANSPORT_NO_BROAD_PASS`.
+- D049 Donchian: formal `ENGINEERING_INCOMPLETE` because XPTUSD repeatedly ended `FINAL_INVALID_REFERENCE`; 11 valid-market diagnostic n276, mean -0.0198714R, PF0.9558, total -5.4845R, 5/11 positive, 2025 negative. Operationally closed, no XPTUSD retry justified.
+- D050 NR4 comparator: n1567, mean -0.0499294R, PF0.8615, 4/12 positive -> `COMPARATOR_NO_BROAD_PASS`.
+
+D047 discovery only: SPX500+NDX100+GER30+US30 were all positive in 2024-2025, combined n299, +31.66879718R, +0.10591571R/trade. This generated D051.
+
+## D051 NR7 equity-index cluster — CLOSED UNCONFIRMED
+
+Preregistered 2026-H1 confirmation, same unchanged D038/D047 NR7 semantics on SPX500, NDX100, GER30, US30.
+
+Result:
+- n61; SPX50014, NDX10010, GER3017, US3020
+- mean **-0.0429737R/trade**
+- PF **0.878433**
+- total **-2.621396R**
+- positive symbols **2/4**
+- SPX500 -3.37655R
+- NDX100 +2.38774R
+- GER30 -4.10664R
+- US30 +2.47404R
+- integrity 0; all Trade Path checks passed
+- verdict **D051_UNCONFIRMED_CLOSE**
+
+Authoritative event:
+`backtests/d051/live/events/confirmation/d051-confirm-score/20260907T135932Z`
 
 Closeout:
-`reports/research/MARKET_TRANSPORT_LAB_V1_CLOSEOUT_20260907.md`
+`reports/research/D051_NR7_INDEX_CLUSTER_CONFIRMATION_CLOSEOUT_20260907.md`
 
-Frozen new universe was 12 markets:
-AUDUSD, USDCAD, USDCHF, EURJPY, GBPJPY, AUDJPY, SPX500, NDX100, GER30, US30, XAGUSD, XPTUSD.
+The reserved Jul-Aug 2026 holdout remains unopened under the preregistered `LOCKED_UNLESS_CONFIRM_PASS` rule and must not be used to rescue D051.
 
-### D047 / D038 NR7 transport
+## Management evidence already learned
 
-- n=903
-- mean=-0.0266508R/trade
-- PF=0.9314
-- total=-24.0657R
-- 6/12 positive
-- both years negative
-- verdict `TRANSPORT_NO_BROAD_PASS`
+Do not assume management is a universal rescue mechanism.
 
-Discovery only: all four equity indices were positive. Combined SPX500+NDX100+GER30+US30 = 299 trades, +31.66879718R, +0.10591571R/trade.
+D041 / D032-M2 tested a sophisticated management candidate against a simple +24h reference on a previously confirmed entry edge. Candidate mean stayed positive, but paired candidate-minus-reference delta was **-0.3380537662R/trade**, total delta -26.03014R, positive-delta symbols 0/3, and the 95% month-block bootstrap interval was entirely negative. Verdict: **REJECT_MANAGEMENT**.
 
-### D048 / D039 Inside Day transport
+Earlier management benchmarks across D038/D039/D040/D045 also found no universal promotion: most TP/BE/partial variants degraded baseline. `BE_AFTER_2R` was only a tiny exploratory improvement and not robust enough for promotion.
 
-- n=805
-- mean=-0.0400952R/trade
-- PF=0.8872
-- total=-32.2767R
-- 3/12 positive
-- verdict `TRANSPORT_NO_BROAD_PASS`
+## Next scientific question — proposed, not yet executed
 
-### D049 / D045 Donchian transport
+The user explicitly raised the belief: **“a good management can save almost any signal.”**
 
-Formal status: `MARKET_TRANSPORT_ENGINEERING_INCOMPLETE` because XPTUSD repeatedly ended `FINAL_INVALID_REFERENCE` while a trade was open.
+This is worth testing directly rather than arguing about it. Preferred next experiment is a separate **management-as-alpha null-entry lab**:
+- deliberately uninformed/placebo entries, deterministic and reproducible;
+- broad multi-market sample;
+- one frozen family of management rules evaluated in DEV;
+- candidate-selection rule fixed before results;
+- only one selected management allowed into a truly untouched holdout;
+- require both positive absolute expectancy after costs and paired improvement over a simple reference;
+- if management cannot make placebo entries robustly profitable, the strong universal-rescue belief is falsified for the tested management family;
+- if it can, management itself is functioning as alpha and should be treated as a strategy component in its own right.
 
-XPTUSD was not silently removed. The 11 valid markets were scored descriptively only:
-
-- n=276
-- mean=-0.0198714R/trade
-- PF=0.9558
-- total=-5.4845R
-- stress=-6.0986R
-- 2024 +6.2995R
-- 2025 -11.7841R
-- 5/11 positive
-
-No confirmation justified. Operationally closed; formal parent/transport verdicts unchanged.
-
-Published descriptive event:
-`backtests/d049/live/events/development/market-transport-descriptive-11-valid/20260907T134317Z`
-
-### D050 / D040 NR4 comparator
-
-- n=1567
-- mean=-0.0499294R/trade
-- PF=0.8615
-- total=-78.2393R
-- 4/12 positive
-- verdict `COMPARATOR_NO_BROAD_PASS`
-
-D040 remains permanently `UNCONFIRMED`.
-
-## Current P0 — D051 NR7 equity-index cluster confirmation
-
-D051 is a **new hypothesis**, not a rescue of D038/D047.
-
-Preregistration:
-`research/campaigns/D051_NR7_EQUITY_INDEX_CLUSTER_CONFIRMATION_V0_PREREGISTRATION_2026_09_07.md`
-
-Runner:
-`research/runner/d051_nr7_index_confirmation.py`
-
-Frozen symbols:
-- SPX500
-- NDX100
-- GER30
-- US30
-
-Discovery that generated the hypothesis:
-D047 2024-2025 had all 4 indices positive, combined n=299, +31.66879718R, +0.10591571R/trade.
-
-This is development/discovery only. The first untouched D051 confirmation is:
-
-- 2026-01-02 through 2026-06-30
-- Model0 / Every Tick
-- unchanged NR7 strategy semantics
-- same index transport spread/cost semantics as D047
-
-Frozen H1 gates — all required:
-- aggregate n >=60
-- each symbol n >=10
-- mean net R >0
-- PF >=1.10
-- >=3/4 symbols positive
-- aggregate total >0
-- max positive-symbol contribution share <=60%
-- integrity events=0
-
-Pass => `D051_CONFIRM_PASS_OPEN_RESERVED_HOLDOUT`.
-Fail => `D051_UNCONFIRMED_CLOSE`, with no symbol removal or retuning.
-
-Reserved final holdout already locked before H1 inspection:
-2026-07-01 through 2026-08-31, same four symbols, only if H1 passes.
-
-The D051 source is generated deterministically from the exact D047 transport derivative SHA `8718cf1ae5910577ae0c149348ad9981f8d30326ad86132b08296dd93e7f05f6`; only evidence identity/output names change. The runner publishes source identity to GitHub before MT5 execution.
-
-CI for commit `d76c8d2b02f16a2328090ff54ab96ece252f5699` completed successfully (Guardian state consistency run 34129999008).
-
-## Next operator action
-
-Run exactly:
-
-```powershell
-git pull
-py -3 .\research\runner\d051_nr7_index_confirmation.py
-```
-
-Then the user should normally reply only:
-
-`fini`
-
-On `fini`, fetch `backtests/d051/live/latest.json` from branch `backtest-results`, fetch the referenced score event, evaluate the frozen gates, and only open the reserved Jul-Aug 2026 holdout if every H1 gate passed.
+Do not use D051’s seen 2026-H1 data to design an exit and call NR7 rescued. Any further management work must be a new hypothesis with its own validation boundary.
 
 ## Local paths
 
 Repo: `D:\MT5_Backtests\guardian-research`
 Runner workspace: `D:\MT5_Backtests\guardian-runner`
-FundedNext MT5 root: `D:\MT5_FundedNext`
-MetaEditor: `D:\MT5_FundedNext\MetaEditor64.exe`
-Terminal: `D:\MT5_FundedNext\terminal64.exe`
+FundedNext MT5: `D:\MT5_FundedNext`
 Experts: `D:\MT5_FundedNext\MQL5\Experts\GuardianResearch`
 FILE_COMMON: `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\Common\Files`
 
 ## Style
 
-Concise, direct, technically opinionated when evidence supports it. Distinguish fact, inference and unknown. Do not manufacture optimism.
+Concise, direct, technically opinionated when evidence supports it. Distinguish fact, inference and unknown. Contradict the user when evidence warrants it. Do not manufacture optimism.
