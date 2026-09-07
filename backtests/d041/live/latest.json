@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T08:51:00.966062+00:00",
+  "updated_at_utc": "2026-09-07T08:51:13.305260+00:00",
   "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
   "stage": "development",
-  "kind": "score",
+  "kind": "rich-score",
   "event_id": "20260907T085054Z",
-  "event_path": "backtests/d041/live/events/development/score/20260907T085054Z",
-  "event_fingerprint_sha256": "b8250169a98f149a44523aa61a50e4b9cfc563ba10c1b2a705ac4e4ca1c9cfc6",
-  "status": null,
+  "event_path": "backtests/d041/live/events/development/rich-score/20260907T085054Z",
+  "event_fingerprint_sha256": "c1a09491faa69907e8af5264ca13161d42e8b55017bc129cfbeee6c389b53f88",
+  "status": "PAIRED_ANALYTICS_COMPLETE",
   "autosync_used": false
 }

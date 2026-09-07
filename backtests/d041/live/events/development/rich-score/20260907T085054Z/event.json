@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T08:51:13.304535+00:00",
+  "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+  "stage": "development",
+  "kind": "rich-score",
+  "event_id": "20260907T085054Z",
+  "event_fingerprint_sha256": "c1a09491faa69907e8af5264ca13161d42e8b55017bc129cfbeee6c389b53f88",
+  "source_sha256": "36104319f5827c65f343a4accb2344e019eef1887a6c45b491615c6a308618be",
+  "payload": {
+    "schema_version": 1,
+    "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+    "stage": "development",
+    "role": null,
+    "rich_score_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T085054Z\\paired_analytics.json",
+    "batch_path": null,
+    "scope": null,
+    "net_r_summary": {
+      "n": null,
+      "mean": null,
+      "median": null,
+      "profit_factor": null,
+      "total_r": null,
+      "win_rate": null
+    },
+    "commission_stress_summary": {
+      "mean": null,
+      "profit_factor": null,
+      "total_r": null
+    },
+    "trade_path_summary": {
+      "available": null,
+      "trades": null,
+      "path_ambiguous_rows": null,
+      "milestone_touch": null
+    },
+    "compact_trades": null,
+    "autosync_used": false
+  },
+  "payload_compacted": true,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0\\development\\20260907T085054Z\\paired_analytics.json",
+      "exists": true,
+      "sha256": "526d6347014ebc51d0303bf2c3e3c0085ec84633f3ea0069fd0d5ad0ff211360",
+      "bytes": 2031,
+      "published_as": "paired_analytics.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
