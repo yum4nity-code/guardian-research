@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T11:45:19.549514+00:00",
+  "updated_at_utc": "2026-09-07T11:45:29.619477+00:00",
   "experiment_id": "D044-TURTLE-SOUP-20D-FAILED-BREAK-REVERSAL-V0",
   "stage": "development",
   "kind": "trade-path",
-  "event_id": "20260907T114023Z_GBPUSD_M0",
-  "event_path": "backtests/d044/live/events/development/trade-path/20260907T114023Z_GBPUSD_M0",
-  "event_fingerprint_sha256": "1b9cc54f8cc787d15983ce903fd8d9336f6e41df7ec52cdf1137932bdf16107e",
+  "event_id": "20260907T114115Z_USDJPY_M0",
+  "event_path": "backtests/d044/live/events/development/trade-path/20260907T114115Z_USDJPY_M0",
+  "event_fingerprint_sha256": "c80db03c7165347e4e92f1ba9045c2a953d2ee6b509577c8cdb93dbaa9a13791",
   "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
