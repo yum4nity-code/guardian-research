@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic scoring of a completed Guardian research batch.
+"""Deterministic scoring of completed Guardian research batches.
 
 The scorer does not tune anything. It computes frozen manifest gates from the
 immutable CSV evidence referenced by a BATCH_PASS_INTEGRITY receipt.
@@ -59,7 +59,6 @@ def parse_float(row: dict[str, str], field: str, source: Path) -> float:
 
 
 def entry_year(value: str) -> int:
-    # D037 TimeToString(TIME_DATE|TIME_MINUTES) emits YYYY.MM.DD HH:MM.
     try:
         return int(value[:4])
     except (ValueError, TypeError) as exc:
@@ -74,8 +73,8 @@ def profit_factor_parts(values: list[float]) -> tuple[float | None, bool]:
     return (gains / losses, False)
 
 
-def score_development(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[str, Any]:
-    expected_symbols = manifest["stages"]["development"]["symbols"]
+def collect_metrics(manifest: dict[str, Any], batch: dict[str, Any], stage: str) -> tuple[dict[str, Any], dict[int, float]]:
+    expected_symbols = manifest["stages"][stage]["symbols"]
     tests = batch.get("tests", [])
     seen = [item.get("symbol") for item in tests]
     if seen != expected_symbols:
@@ -138,14 +137,24 @@ def score_development(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[s
         "max_positive_symbol_contribution_share": max_positive_share,
         "integrity_events": integrity_events,
     }
+    return metrics, totals_by_year
 
+
+def pf_gate(metrics: dict[str, Any], minimum: float) -> bool:
+    return bool(
+        metrics["aggregate_pf_infinite"]
+        or (metrics["aggregate_pf"] is not None and metrics["aggregate_pf"] >= minimum)
+    )
+
+
+def score_development(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[str, Any]:
+    metrics, totals_by_year = collect_metrics(manifest, batch, "development")
     gates = manifest["stages"]["development"]["gates"]
-    pf_gate = pf_infinite or (pf_value is not None and pf_value >= float(gates["aggregate_pf_min"]))
     gate_results = {
         "aggregate_n_min": metrics["aggregate_n"] >= int(gates["aggregate_n_min"]),
-        "each_symbol_n_min": all(n >= int(gates["each_symbol_n_min"]) for n in per_symbol_n.values()),
+        "each_symbol_n_min": all(n >= int(gates["each_symbol_n_min"]) for n in metrics["per_symbol_n"].values()),
         "aggregate_mean_net_r_min": metrics["aggregate_mean_net_r"] >= float(gates["aggregate_mean_net_r_min"]),
-        "aggregate_pf_min": pf_gate,
+        "aggregate_pf_min": pf_gate(metrics, float(gates["aggregate_pf_min"])),
         "positive_symbols_min": metrics["positive_symbols_n"] >= int(gates["positive_symbols_min"]),
         "aggregate_2024_positive": totals_by_year.get(2024, 0.0) > 0,
         "aggregate_2025_positive": totals_by_year.get(2025, 0.0) > 0,
@@ -155,14 +164,29 @@ def score_development(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[s
     }
     passed = all(gate_results.values())
     verdict = "CANDIDATE_CONFIRM" if passed else str(gates.get("failure_verdict", "REJECT_V0"))
+    return {"metrics": metrics, "gates": gate_results, "all_gates_pass": passed, "verdict": verdict}
 
+
+def score_confirmation(manifest: dict[str, Any], batch: dict[str, Any]) -> dict[str, Any]:
+    metrics, _ = collect_metrics(manifest, batch, "confirmation")
+    gates = manifest["stages"]["confirmation"]["gates"]
+    gate_results = {
+        "aggregate_n_min": metrics["aggregate_n"] >= int(gates["aggregate_n_min"]),
+        "aggregate_mean_net_r_strictly_positive": metrics["aggregate_mean_net_r"] > 0,
+        "aggregate_pf_min": pf_gate(metrics, float(gates["aggregate_pf_min"])),
+        "positive_symbols_min": metrics["positive_symbols_n"] >= int(gates["positive_symbols_min"]),
+        "aggregate_positive_at_commission_stress": metrics["aggregate_total_stress_net_r"] > 0,
+        "integrity_events_max": metrics["integrity_events"] <= int(gates["integrity_events_max"]),
+    }
+    passed = all(gate_results.values())
+    verdict = "CONFIRMED" if passed else str(gates.get("failure_verdict", "UNCONFIRMED"))
     return {"metrics": metrics, "gates": gate_results, "all_gates_pass": passed, "verdict": verdict}
 
 
 def score(identifier: str, stage: str, batch_path: str | None) -> dict[str, Any]:
     _, manifest_path, manifest = runner.load_context(identifier)
-    if stage != "development":
-        raise ScoreError("v1 scorer currently implements frozen development gates only")
+    if stage not in {"development", "confirmation"}:
+        raise ScoreError("scorer implements frozen development and confirmation gates only")
 
     config = runner.load_config()
     path = Path(batch_path).resolve() if batch_path else latest_batch(config, manifest["experiment_id"], stage)
@@ -170,7 +194,7 @@ def score(identifier: str, stage: str, batch_path: str | None) -> dict[str, Any]
     if batch.get("experiment_id") != manifest["experiment_id"] or batch.get("stage") != stage:
         raise ScoreError("batch receipt does not match experiment/stage")
 
-    result = score_development(manifest, batch)
+    result = score_development(manifest, batch) if stage == "development" else score_confirmation(manifest, batch)
     payload = {
         "schema_version": 1,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -180,7 +204,7 @@ def score(identifier: str, stage: str, batch_path: str | None) -> dict[str, Any]
         "batch_path": str(path),
         "stage": stage,
         **result,
-        "confirmation_opened": False,
+        "confirmation_opened": stage == "confirmation",
         "autosync_used": False,
     }
 
@@ -192,9 +216,9 @@ def score(identifier: str, stage: str, batch_path: str | None) -> dict[str, Any]
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Score frozen Guardian development gates")
-    parser.add_argument("experiment", help="D037 or manifest path")
-    parser.add_argument("--stage", default="development", choices=("development",))
+    parser = argparse.ArgumentParser(description="Score frozen Guardian development/confirmation gates")
+    parser.add_argument("experiment", help="D0xx or manifest path")
+    parser.add_argument("--stage", default="development", choices=("development", "confirmation"))
     parser.add_argument("--batch", help="explicit batch.json; defaults to latest integrity-passed batch")
     args = parser.parse_args()
     try:
