@@ -1,0 +1,33 @@
+﻿{
+    "schema":  5,
+    "run_id":  "20260907_114221_D044_USDJPY_bf5edc60947b",
+    "fingerprint":  "bf5edc60947b24dc2e42859e52c5568ebf2518b399bb0a461a8f6069e46312be",
+    "synced_at_utc":  "2026-09-07T11:44:56.5291654Z",
+    "reason":  "GENERIC_FINAL_VALIDATED",
+    "branch":  "backtest-results",
+    "autosync_version":  "2.02",
+    "validation":  {
+                       "required_status_sequence":  "INIT -\u003e READY -\u003e FINAL",
+                       "source_name":  "D044_TurtleSoup20D_H24_TickPath_M15_v1_00.mq5",
+                       "source_version":  "1.00",
+                       "run_stage":  "RUN",
+                       "symbol":  "USDJPY",
+                       "timeframe":  "PERIOD_M15",
+                       "trades_closed":  28,
+                       "published_trades_rows":  28
+                   },
+    "files":  [
+                  {
+                      "name":  "D044_V100_RUN_USDJPY_STATS.csv",
+                      "source_sha256":  "201ad59985c64d9743db0fbb6ecfd1722d49b87f72cd836058195a44f133c602",
+                      "published_sha256":  "2df350d7a7c8ec02b1489ed55ddd68cd0d10ea09c1fd258f70d04c57e27779e0",
+                      "sanitized":  true
+                  },
+                  {
+                      "name":  "D044_V100_RUN_USDJPY_TRADES.csv",
+                      "source_sha256":  "66ef41c8a06d29a899965162e2b4cf562ae435e9d0433c4de8ac8f698b911fe2",
+                      "published_sha256":  "4c251bbd55e1687a18d9121ebf9c29142426c24316be59ca09bbcbf173f40808",
+                      "sanitized":  false
+                  }
+              ]
+}
