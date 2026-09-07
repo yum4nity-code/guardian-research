@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T16:20:29.466864+00:00",
+  "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+  "stage": "development",
+  "kind": "d053-development-score",
+  "event_id": "20260907T162026Z",
+  "event_fingerprint_sha256": "55033ea7c9b2b1e56a7ab08bacbdbddaf956d22e32814d0240b38b69a090c3e6",
+  "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+  "payload": {
+    "schema_version": 1,
+    "status": "D053_REJECT_V0",
+    "created_at_utc": "2026-09-07T16:20:26.981769+00:00",
+    "experiment_id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
+    "stage": "development",
+    "metrics": {
+      "aggregate_n": 2042,
+      "aggregate_mean_net_r": 0.06198411615083252,
+      "aggregate_pf": 1.1349128070500516,
+      "aggregate_pf_infinite": false,
+      "aggregate_total_net_r": 126.57156518000001,
+      "spread_stress_total_net_r": 88.56095494,
+      "per_symbol_n": {
+        "SPX500": 511,
+        "NDX100": 512,
+        "US30": 509,
+        "US2000": 510
+      },
+      "per_symbol_total_net_r": {
+        "SPX500": 36.99092103,
+        "NDX100": 48.08397678,
+        "US30": 46.206236679999996,
+        "US2000": -4.709569309999999
+      },
+      "positive_symbols": [
+        "SPX500",
+        "NDX100",
+        "US30"
+      ],
+      "positive_symbols_n": 3,
+      "year_total_net_r": {
+        "2024": 67.53893644,
+        "2025": 59.03262874
+      },
+      "side": {
+        "LONG": {
+          "n": 1053,
+          "mean_net_r": 0.058649456628679965,
+          "total_net_r": 61.757877830000005
+        },
+        "SHORT": {
+          "n": 989,
+          "mean_net_r": 0.06553456759352881,
+          "total_net_r": 64.81368735
+        }
+      },
+      "month_block_bootstrap": {
+        "lower_95": -0.0290412995746548,
+        "median": 0.06298441390603927,
+        "upper_95": 0.14669593194171174,
+        "reps": 20000,
+        "blocks": 24,
+        "seed": 530053
+      },
+      "max_positive_symbol_contribution_share": 0.36626722466100164,
+      "path_descriptive": {
+        "mean_mfe_r": 1.0345879024485798,
+        "mean_mae_r": 0.6770199125808032
+      },
+      "integrity_events": 0
+    },
+    "gates": {
+      "aggregate_n_min": true,
+      "each_symbol_n_min": true,
+      "aggregate_mean_net_r_min": true,
+      "aggregate_pf_min": true,
+      "aggregate_total_net_r_positive": true,
+      "spread_stress_total_positive": true,
+      "positive_symbols_min": true,
+      "year_2024_positive": true,
+      "year_2025_positive": true,
+      "month_block_bootstrap_lower_95_positive": false,
+      "max_positive_symbol_contribution_share": true,
+      "integrity_events_max": true
+    },
+    "all_gates_pass": false,
+    "holdout": {
+      "status": "LOCKED_UNOPENED",
+      "from": "2026-07-01",
+      "to": "2026-08-31",
+      "symbols": [
+        "SPX500",
+        "NDX100",
+        "US30",
+        "US2000"
+      ],
+      "opened_by_this_workflow": false
+    },
+    "autosync_used": false,
+    "source_sha256": "d39182cc7bd0376322fee474ec7c321b9e1f5d4db93cdb6ff301f0fb60aba7ad",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\d053\\development\\20260907T161827Z\\batch.json",
+    "batch_transport": {
+      "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D053-US-INDEX-ORB30-ENTRY-ALPHA-V0\\development\\d053-development-batch\\20260907T162021Z.json",
+      "status": "EVENT_PUBLISH_PASS",
+      "branch": "backtest-results",
+      "event_path": "backtests/d053/live/events/development/d053-development-batch/20260907T162021Z",
+      "latest_path": "backtests/d053/live/latest.json",
+      "event_id": "20260907T162021Z",
+      "event_fingerprint_sha256": "9342cca41be671a090e4b1f8effea9dd8641fcc6b19c79cc6258e2a945e9d893",
+      "commit_sha": "8252e83b89d50e046e26e7a054ce160921de4291",
+      "payload_compacted": false,
+      "autosync_used": false
+    },
+    "score_path": "D:\\MT5_Backtests\\guardian-runner\\d053\\development-score\\20260907T162026Z\\development-score.json"
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\d053\\development\\20260907T161827Z\\batch.json",
+      "exists": true,
+      "sha256": "00ed25340bf52bbf847be7a32de4331efcba40b37226e89e7b1863dadd557d3f",
+      "bytes": 7576,
+      "published_as": "batch.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
