@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
   "strategy_family": "Confirmed Bullish Doji Star H1 entry management validation",
-  "status": "READY_DEV",
+  "status": "CLOSED_REJECTED_MANAGEMENT",
   "hypothesis": "Does the already-preregistered D032-M2 complete management rule improve the confirmed +24h D032 Bullish Doji Star reference on the untouched POST2024 >24h path, with positive paired delta that survives month-block bootstrap and remains broad across BTC/ETH/DOG?",
   "preregistration": {
     "path": "research/campaigns/D032_M2_DOJI_REALISTIC_MANAGEMENT_POST2024_VALIDATION_PREREGISTRATION_2026_09_05.md",
@@ -28,7 +28,8 @@
       "Only the already-frozen D032-M2 management is formal: -3.5 source-R catastrophe stop, H24 non-positive close, H24 positive 1.5R runner with net-BE floor, H48 timeout.",
       "Old M1 alternative trail diagnostics are not emitted on POST2024 by D041, avoiding unnecessary contamination of other management hypotheses.",
       "Standard runner STATS/TRADES outputs were added without changing entry or candidate semantics.",
-      "The first smoke attempt on 2026-09-07 was blocked before MetaEditor/MT5 by the source-identity guard because the manifest contained an incorrectly transcribed normalized SHA (2873274f...). The runner measured the unchanged canonical source as 36104319f...; this manifest-only provenance correction was made before any D041 backtest executed."
+      "The first smoke attempt on 2026-09-07 was blocked before MetaEditor/MT5 by the source-identity guard because the manifest contained an incorrectly transcribed normalized SHA (2873274f...). The runner measured the unchanged canonical source as 36104319f...; this manifest-only provenance correction was made before any D041 backtest executed.",
+      "After the valid POST2024 score was published, the original specialized workflow incorrectly called the generic strategy publisher and emitted 'decision score does not match experiment/stage'. This was post-verdict archive tooling only; the specialized workflow was corrected and no MT5 rerun is warranted."
     ]
   },
   "execution": {
@@ -88,7 +89,7 @@
       "from": "2024-01-01",
       "to": "2026-06-27",
       "symbols": ["BTCUSD", "ETHUSD", "DOGUSD"],
-      "status": "READY",
+      "status": "REJECT_MANAGEMENT",
       "gates": {
         "science_role": "PREREGISTERED_MANAGEMENT_VALIDATION_POST2024",
         "aggregate_n_min": 40,
@@ -101,7 +102,11 @@
         "failure_verdict": "REJECT_MANAGEMENT",
         "pass_verdict": "MANAGEMENT_VALIDATED"
       },
-      "result_paths": []
+      "result_paths": [
+        "backtests/d041/live/events/development/batch/20260907T084957Z",
+        "backtests/d041/live/events/development/score/20260907T085054Z",
+        "backtests/d041/live/events/development/rich-score/20260907T085054Z"
+      ]
     },
     "confirmation": {
       "stage_name": "D041_POST_VALIDATION_PRODUCTION_BOUNDARY",
@@ -138,9 +143,32 @@
       "integrity_failures": 0,
       "campaign_event": "backtests/d041/live/events/smoke/campaign/20260907T084258Z"
     },
-    "development": null,
-    "rich_analytics": null,
+    "development": {
+      "scientific_role": "D032_M2_MANAGEMENT_VALIDATION_POST2024",
+      "status": "REJECT_MANAGEMENT",
+      "aggregate_n": 77,
+      "reference_mean_net_r": 0.6664364025974026,
+      "candidate_mean_net_r": 0.32838264935064937,
+      "candidate_mean_stress_r": 0.29612835064935067,
+      "paired_mean_delta_r": -0.33805376623376626,
+      "paired_total_delta_r": -26.030140000000003,
+      "positive_delta_symbols_n": 0,
+      "month_block_bootstrap_lower_95": -0.53303533442959,
+      "month_block_bootstrap_median": -0.3389149085944919,
+      "month_block_bootstrap_upper_95": -0.12169696785211304,
+      "failed_gates": [
+        "paired_mean_delta_strictly_positive",
+        "month_block_bootstrap_lower_95_strictly_positive",
+        "positive_delta_symbols_min"
+      ],
+      "score_event": "backtests/d041/live/events/development/score/20260907T085054Z"
+    },
+    "rich_analytics": {
+      "status": "PAIRED_ANALYTICS_COMPLETE",
+      "event": "backtests/d041/live/events/development/rich-score/20260907T085054Z"
+    },
     "confirmation": null,
-    "final_verdict": null
+    "final_verdict": "REJECT_MANAGEMENT",
+    "closeout": "reports/research/D041_D032_M2_POST2024_MANAGEMENT_VALIDATION_CLOSEOUT_20260907.md"
   }
 }
