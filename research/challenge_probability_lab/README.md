@@ -61,6 +61,41 @@ python research\challenge_probability_lab\challenge_probability_lab_v1_00.py `
 
 For a portfolio, repeat `--input` for every compatible strategy/symbol file. Trades sharing an observed date remain in the same day block, preserving observed cross-sleeve clustering when the source histories are synchronized.
 
+## Canonical future export contract
+
+Future OOS/confirmation outputs that may reach the Challenge Lab must follow `CHALLENGE_TRADE_EXPORT_CONTRACT_V1.md`.
+
+The canonical fields added for challenge-risk work are:
+
+- `challenge_day`: prop-firm-normalized `YYYYMMDD` day key using the actual daily-loss reset rule;
+- `adverse_r`: individual signed worst adverse excursion in R, always `<= 0`.
+
+The run manifest must also record the day basis, R denominator, cost basis and whether synchronized floating equity exists. Legacy files can still be processed, but the automatic gate requires an explicit lower-fidelity escape hatch.
+
+## Automatic post-validation integration
+
+`post_validation_challenge_gate_v1_00.py` is now the standard bridge after successful frozen OOS/confirmation.
+
+The upstream scorer must persist an explicit boolean:
+
+```json
+{
+  "challenge_lab_eligible": true
+}
+```
+
+Only a strategy/portfolio that has passed its preregistered alpha/OOS/robustness requirements may set that flag to `true`.
+
+The gate then automatically:
+
+1. skips rejected/unconfirmed results;
+2. validates the canonical Challenge export contract;
+3. runs the six-risk grid with **20,000 paths per risk by default**;
+4. writes `challenge_gate_manifest.json` plus JSON/CSV/Markdown Lab reports;
+5. records DD fidelity and the risk chosen specifically for maximum pass probability.
+
+A future campaign should call the gate directly from its confirmation/OOS scoring pipeline; no user prompt or manual risk-grid command is required.
+
 ## Challenge profiles
 
 Rules are configuration, not alpha. Keep them separate from the strategy:
