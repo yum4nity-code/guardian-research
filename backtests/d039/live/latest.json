@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T06:29:50.949280+00:00",
+  "updated_at_utc": "2026-09-07T06:30:02.626481+00:00",
   "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
   "stage": "development",
-  "kind": "trade-path",
-  "event_id": "20260907T062702Z_XAUUSD_M0",
-  "event_path": "backtests/d039/live/events/development/trade-path/20260907T062702Z_XAUUSD_M0",
-  "event_fingerprint_sha256": "0545d80000af0511a18d0a5db6a45de374d2e39644227f93b1ce333880c170a7",
-  "status": "TRADE_PATH_PASS",
+  "kind": "score",
+  "event_id": "20260907T062954Z",
+  "event_path": "backtests/d039/live/events/development/score/20260907T062954Z",
+  "event_fingerprint_sha256": "d8f96c029f4e58029d426f4840a4b15ec8b92880f53029575d7058a5c1453cd0",
+  "status": null,
   "autosync_used": false
 }

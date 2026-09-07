@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-09-07T06:29:54.614699+00:00",
+  "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
+  "manifest_path": "research\\experiments\\D039.json",
+  "manifest_source_sha256": "543fb1979c66dfb204a1ec6f872f1520db25640de51c8496ec5e78aa2cf008fd",
+  "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D039-INSIDE-DAY-BREAKOUT-V0\\development\\20260907T062153Z\\batch.json",
+  "stage": "development",
+  "metrics": {
+    "aggregate_n": 441,
+    "per_symbol_n": {
+      "BTCUSD": 66,
+      "ETHUSD": 77,
+      "EURUSD": 71,
+      "GBPUSD": 75,
+      "USDJPY": 78,
+      "XAUUSD": 74
+    },
+    "aggregate_mean_net_r": 0.14936574015873016,
+    "aggregate_pf": 1.5163315683916527,
+    "aggregate_pf_infinite": false,
+    "positive_symbols": [
+      "BTCUSD",
+      "EURUSD",
+      "GBPUSD",
+      "USDJPY",
+      "XAUUSD"
+    ],
+    "positive_symbols_n": 5,
+    "per_symbol_total_net_r": {
+      "BTCUSD": 8.56515271,
+      "ETHUSD": -1.2596717000000006,
+      "EURUSD": 28.211707200000003,
+      "GBPUSD": 1.4108510700000003,
+      "USDJPY": 9.03832597,
+      "XAUUSD": 19.90392616
+    },
+    "aggregate_total_net_r": 65.87029141000001,
+    "aggregate_total_stress_net_r": 61.6325712,
+    "year_total_net_r": {
+      "2024": 48.20519766999998,
+      "2025": 17.665093739999996
+    },
+    "max_positive_symbol_contribution_share": 0.42025506782674593,
+    "integrity_events": 0
+  },
+  "gates": {
+    "aggregate_n_min": false,
+    "each_symbol_n_min": true,
+    "aggregate_mean_net_r_min": true,
+    "aggregate_pf_min": true,
+    "positive_symbols_min": true,
+    "aggregate_2024_positive": true,
+    "aggregate_2025_positive": true,
+    "aggregate_positive_at_commission_stress": true,
+    "max_positive_symbol_contribution_share": true,
+    "integrity_events_max": true
+  },
+  "all_gates_pass": false,
+  "verdict": "REJECT_V0",
+  "confirmation_opened": false,
+  "autosync_used": false
+}
