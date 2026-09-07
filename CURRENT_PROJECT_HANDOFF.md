@@ -1,18 +1,18 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-07 Europe/Paris
-Status: **D052 CLOSED / RETURN TO ENTRY-CONTEXT ALPHA RESEARCH**
+Status: **ACTIVE / D053 US-INDEX ORB30 READY LOCAL SMOKE+DEV**
 
 ## Read this first on a new chat
 
 Read in this order:
 1. `GUARDIAN_STATE.json`
-2. `reports/research/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_CLOSEOUT_20260907.md`
-3. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
-4. `research/experiments/D052.json`
-5. `research/campaigns/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_ENTRY_V0_PREREGISTRATION_2026_09_07.md`
-6. `reports/research/D051_NR7_INDEX_CLUSTER_CONFIRMATION_CLOSEOUT_20260907.md`
-7. `reports/research/D041_D032_M2_POST2024_MANAGEMENT_VALIDATION_CLOSEOUT_20260907.md`
+2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
+3. `research/campaigns/D053_US_INDEX_ORB30_ENTRY_ALPHA_V0_PREREGISTRATION_2026_09_07.md`
+4. `research/experiments/D053.json`
+5. `research/runner/d053_orb30_index_run.py`
+6. `research/runner/d053_orb30_index_workflow.py`
+7. `reports/research/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_CLOSEOUT_20260907.md`
 8. `GUARDIAN_MASTER_MANDATE.md`
 
 `GUARDIAN_STATE.json`, `START_HERE_NEXT_AI.md` and `CURRENT_QUEUE.json` are authoritative/current.
@@ -35,69 +35,134 @@ Read in this order:
 - Legacy AutoSync v1/v2 and Guardian Backtest Bot are untrusted historical systems; never fallback.
 - No post-hoc rescue, threshold retune, symbol deletion after results, or reuse of seen data as OOS.
 
-## D052 formal closeout
+## Why D053 exists
+
+D052 directly tested the user's strong management hypothesis on 12,318 price-independent LONG/SHORT legs and 11 frozen management rules. Result: 0/11 passed; the least-negative management remained negative and its incremental bootstrap included zero. D052 is permanently closed and its Jul-Aug 2026 holdout stays unopened.
+
+Research priority therefore returns to entry/context alpha.
+
+## Current P0 — D053 US Index ORB30 Entry Alpha V0
 
 Experiment:
-`D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0`
+`D053-US-INDEX-ORB30-ENTRY-ALPHA-V0`
 
-Authoritative result:
-`backtests/d052/live/events/development/d052-development-score/20260907T152924Z`
+Preregistration:
+`research/campaigns/D053_US_INDEX_ORB30_ENTRY_ALPHA_V0_PREREGISTRATION_2026_09_07.md`
+Git blob:
+`2d66799b1e25cc6cf19dd5d033bd2731372c5cd3`
 
-Formal status:
-`D052_NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY`
+Frozen source:
+`research/strategies/d053/D053_USIndex_ORB30_Tick_M15_v1_00.mq5`
+Git blob:
+`f60329c6fcb79b308c5a60e74c0512b52481386a`
+Normalized SHA256:
+`bbd0178f3c71a99802b75db563f06f38a94d4735bc828a78ee8c009dd4900ec8`
 
-Result:
-- passing management candidates: **0 / 11**
-- selected candidate: **none**
-- integrity events: **0**
-- Jul-Aug 2026 holdout: **UNOPENED / permanently locked by failed DEV**
+Operator entrypoint:
+`research/runner/d053_orb30_index_run.py`
 
-Reference null entry:
-- n = 12,318 legs
-- mean = -0.0266264853R
-- total = -327.98504593R
-- PF = 0.8790507722
+Workflow/scorer:
+`research/runner/d053_orb30_index_workflow.py`
 
-Least-negative candidate by mean: `SL1_BE_AFTER_1R_EOD`
-- mean = -0.0249931593R
-- total = -307.86573628R
-- stress total = -357.25723913R
-- PF = 0.8847298470
-- LONG mean = -0.0122215542R
-- SHORT mean = -0.0377647644R
-- paired lift versus reference = +0.0016333260R/leg
-- paired-delta month-block bootstrap lower 95% = -0.0029910883R
+### Frozen universe
 
-Interpretation: the best management reduced the descriptive loss slightly, but remained strongly negative and did not demonstrate robust incremental alpha. No candidate justified holdout.
+- SPX500
+- NDX100
+- US30
+- US2000
 
-Scientific conclusion: **management can reshape the distribution, but this frozen family did not manufacture alpha from a price-independent direction-neutral entry. Entry/context alpha remains necessary.**
+No additions/removals after results.
 
-Closeout:
-`reports/research/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_CLOSEOUT_20260907.md`
+### Frozen rule
 
-## Prior management evidence
+FundedNext server time:
+- build executable ASK/BID opening range from **16:30:00 through 16:59:59**;
+- from 17:00, first executable break by **1 trade tick** wins;
+- LONG enters ASK above OR ask-high; SHORT enters BID below OR bid-low;
+- one trade/symbol/day; no reversal/re-entry;
+- initial stop at opposite executable OR extreme;
+- no TP, BE, trail, partial, trend/volatility/weekday/volume filter;
+- structural stop or first executable liquidation at/after **22:45**.
 
-- D041: confirmed D032 Bullish Doji Star entry reference remained strong, but the frozen realistic management candidate degraded it by -0.3380537662R/event; bootstrap delta entirely negative.
-- Management Benchmark V1/V2: no universal management promotion across D038/D039/D040/D045 paths.
-- D052 now directly rejects the stronger claim that ordinary fixed SL/TP/BE/partial/trailing combinations can reliably rescue an information-free entry.
+The fixed server-time anchor is the actual tested rule. It is an operational proxy for the US cash-open region, not a claim of perfect exchange-local alignment during DST transition mismatch days.
 
-Management is still essential for account-risk control and execution, but should not be treated as the assumed source of expectancy.
+Primary costs use executable spread. Frozen stress applies an additional 0.5x observed round-trip spread penalty to represent **1.5x spread stress**.
 
-## Current P0
+Native path exports MFE/MAE and timing for later descriptive analysis only.
 
-Return to **fresh entry/context alpha**.
+### Smoke
 
-Do not spend more cycles on generic management variants now. Do not reopen D052 holdout. Do not broadly rerun D017 Momentum or raw RSI families without a genuinely new preregistered hypothesis; prior evidence is already broad and negative.
+2023-10-02 through 2023-10-31:
+- SPX500
+- NDX100
+- US2000
 
-The next experiment should:
-- come from a documented, clearly distinct entry family;
-- have predictable trade frequency;
-- freeze the market universe before outcomes;
-- use realistic FundedNext execution/costs;
-- use 2024-2025 DEV and an untouched later confirmation where available;
-- keep management deliberately minimal so entry alpha is measured cleanly.
+Engineering-only. No profitability interpretation.
 
-A high-priority candidate for design is a **session-based Opening Range Breakout benchmark on liquid indices**, because it is structurally distinct from D1 contraction/Donchian/failed-break families and naturally produces enough events for robust testing. This is a design direction only until exact rules, session handling, universe, source and gates are preregistered.
+If compile or smoke integrity fails, DEV must not run.
+
+### Development
+
+2024-01-02 through 2025-12-31, all four symbols.
+
+All frozen gates required:
+- n >=1000;
+- each symbol n >=200;
+- mean >= +0.050R/trade;
+- PF >=1.10;
+- total >0;
+- 1.5x spread-stress total >0;
+- >=3/4 symbols positive;
+- 2024 >0 and 2025 >0;
+- month-block bootstrap lower 95% >0;
+- max positive-symbol contribution share <=55%;
+- integrity 0.
+
+LONG/SHORT attribution is reported but is not a gate and cannot be post-hoc selected to rescue D053.
+
+Failure: `D053_REJECT_V0`.
+Pass: `D053_DEV_PASS_HOLDOUT_LOCKED`.
+
+### Holdout
+
+2026-07-01 through 2026-08-31 remains **LOCKED / UNOPENED** in the smoke+DEV command.
+
+2026 H1 is not reused as untouched confirmation because prior index experiments already exposed it.
+
+A future confirmation command may be created only if every DEV gate passes.
+
+## Tooling safeguards
+
+- source/prereg blob identities verified locally before execution;
+- normalized source SHA verified;
+- MetaEditor compile required before smoke;
+- Model0 / Every tick;
+- stale FILE_COMMON outputs quarantined;
+- lifecycle, one-trade/day and numeric integrity validated per symbol;
+- smoke must pass before DEV;
+- deterministic 20,000-rep month-block bootstrap in DEV;
+- result publication uses isolated-clone `result_transport.py` only;
+- workflow errors attempt automatic GitHub publication;
+- DEV command has no confirmation execution path.
+
+Static CI run `34141365544` on commit `54b42c0846508baa025cacb9c145a0dd01bd10a9` completed **SUCCESS**. It validated D053 state/manifest readiness, source identity, Python tooling and synthetic PASS/REJECT scorer regressions.
+
+## Next operator action
+
+Run exactly:
+
+```powershell
+git pull
+py -3 .\research\runner\d053_orb30_index_run.py
+```
+
+This performs: frozen-identity preflight -> local MetaEditor compile -> 3-symbol engineering smoke -> if clean, 4-symbol 2024-2025 DEV -> frozen scoring/bootstrap -> automatic GitHub publication.
+
+Then the user normally replies only:
+
+`fini`
+
+On `fini`, fetch `backtests/d053/live/latest.json` from `backtest-results` and the referenced event. Never open Jul-Aug 2026 unless the DEV event status is exactly `D053_DEV_PASS_HOLDOUT_LOCKED` and every gate is true.
 
 ## Local paths
 
