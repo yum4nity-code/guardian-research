@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T08:03:09.020072+00:00",
+  "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+  "stage": "development",
+  "kind": "trade-path",
+  "event_id": "20260907T075943Z_EURUSD_M0",
+  "event_fingerprint_sha256": "ab184a89489461025f3e4944225c8cdeba5726098c56b314287950bceceff80b",
+  "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
+  "payload": {
+    "schema_version": 1,
+    "experiment_id": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
+    "stage": "development",
+    "symbol": "EURUSD",
+    "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D045-D1-DONCHIAN-20-10-BENCHMARK-V0\\development\\20260907T075943Z_EURUSD_M0",
+    "status": "TRADE_PATH_PASS",
+    "trades": 23,
+    "path_rows": 23,
+    "path_calc_failures": 0,
+    "required_columns": 36,
+    "reached_counts": {
+      "0.5R": 19,
+      "1R": 13,
+      "2R": 5,
+      "3R": 2,
+      "5R": 0
+    },
+    "path_ambiguous_rows": 0,
+    "stats_encoding": "utf-16",
+    "trades_encoding": "utf-16"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
