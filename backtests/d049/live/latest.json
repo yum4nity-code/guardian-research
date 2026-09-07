@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-07T12:07:39.094280+00:00",
+  "experiment_id": "D049-MARKET-TRANSPORT-DONCHIAN20-10-V1",
+  "stage": "smoke",
+  "kind": "market-transport-batch",
+  "event_id": "20260907T120731Z",
+  "event_path": "backtests/d049/live/events/smoke/market-transport-batch/20260907T120731Z",
+  "event_fingerprint_sha256": "30f4249e0f3686853ecc8da20985a26122860767b9c923dcb787eb283004f8a9",
+  "status": "BATCH_PASS_INTEGRITY",
+  "autosync_used": false
+}
