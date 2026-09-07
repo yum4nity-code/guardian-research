@@ -8,17 +8,17 @@ Status: **ACTIVE / D052 MANAGEMENT-AS-ALPHA PAIRED NULL LAB READY LOCAL SMOKE+DE
 This is the freshest human-readable handoff.
 
 Then read:
-1. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
-2. `research/campaigns/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_ENTRY_V0_PREREGISTRATION_2026_09_07.md`
-3. `research/experiments/D052.json`
-4. `research/runner/d052_management_alpha_run.py`
-5. `research/runner/d052_management_alpha_workflow.py`
-6. `reports/research/D051_NR7_INDEX_CLUSTER_CONFIRMATION_CLOSEOUT_20260907.md`
-7. `reports/research/D041_D032_M2_POST2024_MANAGEMENT_VALIDATION_CLOSEOUT_20260907.md`
-8. `GUARDIAN_MASTER_MANDATE.md`
-9. `GUARDIAN_STATE.json`
+1. `GUARDIAN_STATE.json`
+2. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
+3. `research/campaigns/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_ENTRY_V0_PREREGISTRATION_2026_09_07.md`
+4. `research/experiments/D052.json`
+5. `research/runner/d052_management_alpha_run.py`
+6. `research/runner/d052_management_alpha_workflow.py`
+7. `reports/research/D051_NR7_INDEX_CLUSTER_CONFIRMATION_CLOSEOUT_20260907.md`
+8. `reports/research/D041_D032_M2_POST2024_MANAGEMENT_VALIDATION_CLOSEOUT_20260907.md`
+9. `GUARDIAN_MASTER_MANDATE.md`
 
-Important: `GUARDIAN_STATE.json` and its generated compatibility view still contain stale D044-era active-experiment fields. Do not manually edit generated `START_HERE_NEXT_AI.md`; CI requires it to match state. Until structural state reconciliation, this handoff + frozen D052 manifest/preregistration + immutable `backtest-results` are the fresher operational evidence.
+`GUARDIAN_STATE.json`, `START_HERE_NEXT_AI.md` and `CURRENT_QUEUE.json` have now been reconciled to D052. The authoritative state and this handoff agree on the active experiment and operator action.
 
 ## Canonical operator UX
 
@@ -164,8 +164,10 @@ It stays unopened unless exactly one DEV-selected candidate passes every frozen 
 - Smoke and DEV remain sequential MT5.
 - Results publish through isolated-clone `result_transport.py`, never legacy AutoSync.
 - If compile/smoke/DEV/scoring raises, the resilient entrypoint attempts to publish `d052-workflow-incomplete` so a future assistant can diagnose GitHub evidence rather than asking the operator to replay already-valid MT5 work.
+- The DEV scorer applies all 16 frozen gates, deterministic month-block bootstrap and the preregistered lexicographic candidate selection.
+- The D052 DEV command contains no holdout execution path; even a passing candidate leaves Jul-Aug 2026 locked for a separate reviewed runner.
 
-CI run `34133243633` for commit `6104d10e5baaf0c18db74c662b26445d5900124c` completed **SUCCESS**. It Python-compiled D052 tooling, validated/ready-checked `research/experiments/D052.json`, re-measured source identity, and passed D052 regression tests.
+Authoritative-state/active-D052 CI run `34133920148` for commit `fe74565986fd948d0ee9fa1f4d5a63fab3c11bfa` completed **SUCCESS**. It validated generated state views, D052 manifest readiness, `runner.plan('D052')`, frozen source identity and the regression suite.
 
 ## Next operator action
 
