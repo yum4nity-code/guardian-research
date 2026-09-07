@@ -2,16 +2,16 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T07:42:00+01:00",
+  "updated_at": "2026-09-07T08:50:00+02:00",
   "active_primary": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "items": [
     {
       "id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
       "priority": 0,
-      "status": "READY_SMOKE",
+      "status": "READY_DEV",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py compile D040`. D040 is preregistered, source-complete and CI-SHA-frozen. If local MetaEditor compilation is accepted with 0 errors / 0 warnings and a trusted EX5 receipt, run `py -3 .\\research\\runner\\guardian_research.py campaign D040 --stage smoke --no-finalize`. Smoke is engineering-only on USDJPY/XAUUSD/BTCUSD for 2023-10-02..2023-10-31. Do not inspect smoke alpha and do not open DEV until lifecycle + native Trade Path pass. After completion the user only needs to say `fini`; the assistant reads GitHub evidence.",
+      "goal": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py campaign D040 --stage development`. D040 smoke is engineering-PASS: compile PASS, 11 total smoke trades across USDJPY/XAUUSD/BTCUSD, zero integrity failures and native Trade Path PASS on all three. The development campaign recompiles the exact frozen source, runs all six markets for 2024-01-02..2025-12-31 in Model=0, validates Trade Path, applies frozen gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and continues.",
       "manifest": "research/experiments/D040.json"
     },
     {
@@ -20,7 +20,7 @@
       "status": "END_TO_END_PROVEN_WITH_SEQUENTIAL_MULTI_STRATEGY_CAMPAIGN_MODE",
       "owner": "DETERMINISTIC_LOCAL_TOOLING",
       "type": "research_orchestration",
-      "goal": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; several ready experiments may be run unattended through sequential campaign mode"
+      "goal": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; several ready experiments may be run unattended through sequential campaign mode; preserve the canonical PowerShell-first operator workflow so the user normally only runs one command block and replies `fini`"
     },
     {
       "id": "AUTOSYNC_V3_FROM_SCRATCH",
@@ -79,5 +79,5 @@
       "goal": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
     }
   ],
-  "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. No operational item may wait on Codex."
+  "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. Canonical operator UX: docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md. No operational item may wait on Codex."
 }
