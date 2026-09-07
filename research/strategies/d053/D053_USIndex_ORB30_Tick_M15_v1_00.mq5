@@ -1,12 +1,12 @@
 #property strict
-#property version "1.00"
-#property description "D053 FundedNext US Index ORB30 entry-alpha benchmark V0 - tick execution"
+#property version "1.01"
+#property description "D053 FundedNext US Index ORB30 entry-alpha benchmark V0 - tick execution - session-close lifecycle amendment"
 
 input bool InpWriteCSV=true;
 
 string EXPERIMENT_ID="D053-US-INDEX-ORB30-ENTRY-ALPHA-V0";
 string SOURCE_NAME="D053_USIndex_ORB30_Tick_M15_v1_00.mq5";
-string SOURCE_VERSION="1.00";
+string SOURCE_VERSION="1.01";
 string RUN_TOKEN="RUN";
 
 const int OR_START_MINUTE=16*60+30;
@@ -111,7 +111,7 @@ string TimeSecond(datetime t)
 void SetFatal(string status,string message)
 {
    if(g_fatal_status=="") g_fatal_status=status;
-   PrintFormat("D053 V100 FATAL | %s | %s",status,message);
+   PrintFormat("D053 V101 FATAL | %s | %s",status,message);
 }
 
 bool CalcMoney1Lot(double entry_px,double exit_px,bool long_side,double &pnl)
@@ -315,7 +315,7 @@ void CloseTrade(const MqlTick &tick,string why)
 
    g_trades_closed++;
    if(why=="STOP") g_stop_exits++;
-   else if(why=="EOD") g_eod_exits++;
+   else if(why=="EOD" || why=="SESSION_END") g_eod_exits++;
    else if(why=="TEST_END") g_test_end_exits++;
    ResetTrade();
 }
@@ -401,7 +401,7 @@ void EvaluateEntry(const MqlTick &tick)
    {
       g_day_ambiguous=true;
       g_ambiguous_days++;
-      PrintFormat("D053 V100 AMBIGUOUS SAME TICK | symbol=%s | day=%d",_Symbol,g_day_key);
+      PrintFormat("D053 V101 AMBIGUOUS SAME TICK | symbol=%s | day=%d",_Symbol,g_day_key);
       return;
    }
    if(long_hit) OpenTrade(tick,true);
@@ -425,22 +425,22 @@ int OnInit()
 {
    if(_Period!=PERIOD_M15)
    {
-      PrintFormat("D053 V100 FATAL wrong timeframe | got=%s | required=M15",EnumToString(_Period));
+      PrintFormat("D053 V101 FATAL wrong timeframe | got=%s | required=M15",EnumToString(_Period));
       return INIT_PARAMETERS_INCORRECT;
    }
    if(!InpWriteCSV)
    {
-      Print("D053 V100 FATAL InpWriteCSV must remain true");
+      Print("D053 V101 FATAL InpWriteCSV must remain true");
       return INIT_PARAMETERS_INCORRECT;
    }
    if(!IsAllowedSymbol())
    {
-      PrintFormat("D053 V100 FATAL symbol outside frozen universe | %s",_Symbol);
+      PrintFormat("D053 V101 FATAL symbol outside frozen universe | %s",_Symbol);
       return INIT_PARAMETERS_INCORRECT;
    }
    if(AccountInfoString(ACCOUNT_CURRENCY)!="USD")
    {
-      PrintFormat("D053 V100 FATAL account currency must be USD | got=%s",AccountInfoString(ACCOUNT_CURRENCY));
+      PrintFormat("D053 V101 FATAL account currency must be USD | got=%s",AccountInfoString(ACCOUNT_CURRENCY));
       return INIT_PARAMETERS_INCORRECT;
    }
 
@@ -452,7 +452,7 @@ int OnInit()
    g_stats_fh=FileOpen(g_stats_name,FILE_WRITE|FILE_CSV|FILE_COMMON|FILE_SHARE_READ,';');
    if(g_stats_fh==INVALID_HANDLE)
    {
-      PrintFormat("D053 V100 FATAL cannot open stats | err=%d",GetLastError());
+      PrintFormat("D053 V101 FATAL cannot open stats | err=%d",GetLastError());
       return INIT_FAILED;
    }
 
@@ -469,7 +469,7 @@ int OnInit()
    g_trades_fh=FileOpen(g_trades_name,FILE_WRITE|FILE_CSV|FILE_COMMON|FILE_SHARE_READ,';');
    if(g_trades_fh==INVALID_HANDLE)
    {
-      PrintFormat("D053 V100 FATAL cannot open trades | err=%d",GetLastError());
+      PrintFormat("D053 V101 FATAL cannot open trades | err=%d",GetLastError());
       WriteStats("FATAL_TRADES_OPEN");
       FileClose(g_stats_fh);
       g_stats_fh=INVALID_HANDLE;
@@ -488,7 +488,7 @@ int OnInit()
    ResetTrade();
    g_day_key=0;
    WriteStats("READY");
-   PrintFormat("D053 V100 READY | source=%s | symbol=%s | OR=16:30-17:00 server | exit=22:45 | NO ORDERS",SOURCE_NAME,_Symbol);
+   PrintFormat("D053 V101 READY | source=%s | symbol=%s | OR=16:30-17:00 server | nominal exit=22:45 | SESSION_END fallback | NO ORDERS",SOURCE_NAME,_Symbol);
    return INIT_SUCCEEDED;
 }
 
@@ -515,9 +515,14 @@ void OnTick()
    {
       if(g_in_trade)
       {
-         g_day_change_open_trade++;
-         SetFatal("FINAL_INVALID_LIFECYCLE","broker day changed with unresolved open trade");
-         return;
+         if(!g_have_last_tick || DateKey(g_last_tick.time)!=g_day_key)
+         {
+            g_day_change_open_trade++;
+            SetFatal("FINAL_INVALID_LIFECYCLE","broker day changed with open trade but no valid same-day last executable tick");
+            return;
+         }
+         CloseTrade(g_last_tick,"SESSION_END");
+         if(g_fatal_status!="") return;
       }
       ResetDay(day);
    }
@@ -601,7 +606,7 @@ void OnDeinit(const int reason)
       g_stats_fh=INVALID_HANDLE;
    }
 
-   PrintFormat("D053 V100 FINAL | status=%s | symbol=%s | range_days=%I64d | opened=%I64d | closed=%I64d | rows=%I64d | invalid_price=%I64d | invalid_risk=%I64d | pnl_fail=%I64d | path_fail=%I64d",
+   PrintFormat("D053 V101 FINAL | status=%s | symbol=%s | range_days=%I64d | opened=%I64d | closed=%I64d | rows=%I64d | invalid_price=%I64d | invalid_risk=%I64d | pnl_fail=%I64d | path_fail=%I64d",
       final_status,_Symbol,g_range_days,g_trades_opened,g_trades_closed,g_csv_rows,
       g_invalid_price,g_invalid_risk,g_pnl_calc_failures,g_path_calc_failures);
 }
