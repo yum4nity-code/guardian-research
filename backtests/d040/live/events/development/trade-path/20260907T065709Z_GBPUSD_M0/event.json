@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T07:01:43.164841+00:00",
+  "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "development",
+  "kind": "trade-path",
+  "event_id": "20260907T065709Z_GBPUSD_M0",
+  "event_fingerprint_sha256": "fd6b6c4f9b4d0472ca82d9a356bd11cff36614fa857635852bb05b81c55a35ee",
+  "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+  "payload": {
+    "schema_version": 1,
+    "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+    "stage": "development",
+    "symbol": "GBPUSD",
+    "run_dir": "D:\\MT5_Backtests\\guardian-runner\\runs\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\development\\20260907T065709Z_GBPUSD_M0",
+    "status": "TRADE_PATH_PASS",
+    "trades": 126,
+    "path_rows": 126,
+    "path_calc_failures": 0,
+    "required_columns": 36,
+    "reached_counts": {
+      "0.5R": 60,
+      "1R": 42,
+      "2R": 10,
+      "3R": 2,
+      "5R": 0
+    },
+    "path_ambiguous_rows": 0,
+    "stats_encoding": "utf-16",
+    "trades_encoding": "utf-16"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
