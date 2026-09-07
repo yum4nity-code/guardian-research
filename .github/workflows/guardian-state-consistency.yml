@@ -30,6 +30,7 @@ jobs:
           research/runner/campaign.py
           research/runner/score.py
           research/runner/rich_score.py
+          research/runner/rich_score_v2.py
           research/runner/publisher.py
           research/runner/result_transport.py
           research/runner/guardian_research.py
@@ -41,6 +42,7 @@ jobs:
           research/runner/test_trade_path_validate.py
           research/runner/test_rich_trade_path.py
           research/runner/test_campaign_transport.py
+          research/runner/test_confirmation_rich_v2.py
 
       - name: Parse Windows PowerShell tools
         shell: pwsh
@@ -66,14 +68,8 @@ jobs:
       - name: Validate authoritative state and generated views
         run: python research/runner/state_tools.py validate
 
-      - name: Validate active D040 experiment contract
+      - name: Validate closed D040 manifest remains coherent
         run: python research/runner/experiment.py validate D040
-
-      - name: Verify active D040 source is execution-ready
-        run: python research/runner/experiment.py ready D040
-
-      - name: Exercise active D040 runner planning without MT5
-        run: python research/runner/guardian_research.py plan D040
 
       - name: Validate closed D039 manifest remains coherent
         run: python research/runner/experiment.py validate D039
@@ -90,7 +86,7 @@ jobs:
       - name: Report D039 v1.00 closed source identity
         run: python research/runner/source_hash.py research/strategies/d039/D039_InsideDay_TickPath_M15_v1_00.mq5
 
-      - name: Report D040 v1.00 active source identity
+      - name: Report D040 v1.00 closed source identity
         run: python research/runner/source_hash.py research/strategies/d040/D040_NR4_TickPath_M15_v1_00.mq5
 
       - name: Run regression tests
@@ -100,3 +96,4 @@ jobs:
           python research/runner/test_trade_path_validate.py
           python research/runner/test_rich_trade_path.py
           python research/runner/test_campaign_transport.py
+          python research/runner/test_confirmation_rich_v2.py
