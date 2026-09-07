@@ -1,0 +1,86 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T07:15:23.539376+00:00",
+  "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+  "stage": "confirmation",
+  "kind": "score",
+  "event_id": "20260907T071519Z",
+  "event_fingerprint_sha256": "205f48a2b42c2cce4219e1169cb9f4bfefeb164bc094cbc792a0b7e1f8a5c865",
+  "source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+  "payload": {
+    "verdict_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\confirmation\\20260907T071519Z\\verdict.json",
+    "schema_version": 1,
+    "created_at_utc": "2026-09-07T07:15:19.131755+00:00",
+    "experiment_id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
+    "manifest_path": "research\\experiments\\D040.json",
+    "manifest_source_sha256": "b6264adb884a87cc66a1041e04732602a098fa6a8b22a95e0606f08537f7fc0c",
+    "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\confirmation\\20260907T070952Z\\batch.json",
+    "stage": "confirmation",
+    "metrics": {
+      "aggregate_n": 191,
+      "per_symbol_n": {
+        "BTCUSD": 32,
+        "ETHUSD": 33,
+        "EURUSD": 30,
+        "GBPUSD": 30,
+        "USDJPY": 32,
+        "XAUUSD": 34
+      },
+      "aggregate_mean_net_r": 0.00965054712041884,
+      "aggregate_pf": 1.0310382460718455,
+      "aggregate_pf_infinite": false,
+      "positive_symbols": [
+        "BTCUSD",
+        "ETHUSD",
+        "XAUUSD"
+      ],
+      "positive_symbols_n": 3,
+      "per_symbol_total_net_r": {
+        "BTCUSD": 5.03753596,
+        "ETHUSD": 6.54144801,
+        "EURUSD": -4.998622210000001,
+        "GBPUSD": -2.2344736700000003,
+        "USDJPY": -3.50663637,
+        "XAUUSD": 1.0040027799999998
+      },
+      "aggregate_total_net_r": 1.8432544999999987,
+      "aggregate_total_stress_net_r": -0.16180818000000052,
+      "year_total_net_r": {
+        "2026": 1.8432545000000076
+      },
+      "max_positive_symbol_contribution_share": 0.5198644916319252,
+      "integrity_events": 0
+    },
+    "gates": {
+      "aggregate_n_min": true,
+      "aggregate_mean_net_r_strictly_positive": true,
+      "aggregate_pf_min": false,
+      "positive_symbols_min": true,
+      "aggregate_positive_at_commission_stress": false,
+      "integrity_events_max": true
+    },
+    "all_gates_pass": false,
+    "verdict": "UNCONFIRMED",
+    "confirmation_opened": true,
+    "autosync_used": false
+  },
+  "payload_compacted": false,
+  "files": [
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\confirmation\\20260907T070952Z\\batch.json",
+      "exists": true,
+      "sha256": "2603a207124c347e261297e03ab2af09d75c3d1727a9f51f8e784c1acd1f111e",
+      "bytes": 16164,
+      "published_as": "batch.json"
+    },
+    {
+      "local_path": "D:\\MT5_Backtests\\guardian-runner\\scores\\D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0\\confirmation\\20260907T071519Z\\verdict.json",
+      "exists": true,
+      "sha256": "4cff82d4b60ba9c8ff82a08635af5315658340a3b3377084634eb5379632f8fe",
+      "bytes": 1820,
+      "published_as": "verdict.json"
+    }
+  ],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
