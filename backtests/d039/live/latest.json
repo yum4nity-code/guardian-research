@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-07T06:16:23.091705+00:00",
+  "updated_at_utc": "2026-09-07T06:16:31.067456+00:00",
   "experiment_id": "D039-INSIDE-DAY-BREAKOUT-V0",
   "stage": "smoke",
-  "kind": "batch",
-  "event_id": "20260907T061542Z",
-  "event_path": "backtests/d039/live/events/smoke/batch/20260907T061542Z",
-  "event_fingerprint_sha256": "6b6509a1c2f3d7b64079843c0dd54cbc9cb767cee49a6fe54edc03f40894f858",
-  "status": "BATCH_PASS_INTEGRITY",
+  "kind": "trade-path",
+  "event_id": "20260907T061543Z_USDJPY_M0",
+  "event_path": "backtests/d039/live/events/smoke/trade-path/20260907T061543Z_USDJPY_M0",
+  "event_fingerprint_sha256": "93b96955bc3020f9b00acb20b723526f6e7e5e8d539ec4519b17b8105cfe57c3",
+  "status": "TRADE_PATH_PASS",
   "autosync_used": false
 }
