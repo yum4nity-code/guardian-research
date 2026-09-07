@@ -1,7 +1,7 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 Last updated: 2026-09-07 Europe/Paris
-Status: **ACTIVE / D051 CLOSED UNCONFIRMED / NEXT SCIENCE: MANAGEMENT-AS-ALPHA NULL TEST CANDIDATE**
+Status: **ACTIVE / D052 MANAGEMENT-AS-ALPHA PAIRED NULL LAB READY LOCAL SMOKE+DEV**
 
 ## Read this first on a new chat
 
@@ -9,13 +9,16 @@ This is the freshest human-readable handoff.
 
 Then read:
 1. `docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md`
-2. `reports/research/D051_NR7_INDEX_CLUSTER_CONFIRMATION_CLOSEOUT_20260907.md`
-3. `reports/research/D041_D032_M2_POST2024_MANAGEMENT_VALIDATION_CLOSEOUT_20260907.md`
-4. `reports/research/MARKET_TRANSPORT_LAB_V1_CLOSEOUT_20260907.md`
-5. `GUARDIAN_MASTER_MANDATE.md`
-6. `GUARDIAN_STATE.json`
+2. `research/campaigns/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_ENTRY_V0_PREREGISTRATION_2026_09_07.md`
+3. `research/experiments/D052.json`
+4. `research/runner/d052_management_alpha_run.py`
+5. `research/runner/d052_management_alpha_workflow.py`
+6. `reports/research/D051_NR7_INDEX_CLUSTER_CONFIRMATION_CLOSEOUT_20260907.md`
+7. `reports/research/D041_D032_M2_POST2024_MANAGEMENT_VALIDATION_CLOSEOUT_20260907.md`
+8. `GUARDIAN_MASTER_MANDATE.md`
+9. `GUARDIAN_STATE.json`
 
-Important: generated state views may still contain stale active-experiment fields. This handoff plus immutable `backtest-results` evidence are fresher until state is reconciled.
+Important: `GUARDIAN_STATE.json` and its generated compatibility view still contain stale D044-era active-experiment fields. Do not manually edit generated `START_HERE_NEXT_AI.md`; CI requires it to match state. Until structural state reconciliation, this handoff + frozen D052 manifest/preregistration + immutable `backtest-results` are the fresher operational evidence.
 
 ## Canonical operator UX
 
@@ -35,71 +38,159 @@ Important: generated state views may still contain stale active-experiment field
 - Legacy AutoSync v1/v2 and Guardian Backtest Bot are historical/untrusted; never fallback.
 - No post-hoc rescue, no retuning after opened results, no relabeling seen data as OOS.
 
-## Market Transport Lab V1 — CLOSED
+## Prior conclusion motivating D052
 
-Frozen 12-market universe: AUDUSD, USDCAD, USDCHF, EURJPY, GBPJPY, AUDJPY, SPX500, NDX100, GER30, US30, XAGUSD, XPTUSD.
+D051 NR7 equity-index cluster failed its untouched 2026-H1 confirmation:
+- n61
+- mean -0.0429737R/trade
+- PF 0.878433
+- total -2.621396R
+- 2/4 symbols positive
+- integrity 0
+- verdict `D051_UNCONFIRMED_CLOSE`
 
-- D047 NR7: n903, mean -0.0266508R, PF0.9314, 6/12 positive -> `TRANSPORT_NO_BROAD_PASS`.
-- D048 Inside Day: n805, mean -0.0400952R, PF0.8872, 3/12 positive -> `TRANSPORT_NO_BROAD_PASS`.
-- D049 Donchian: formal `ENGINEERING_INCOMPLETE` because XPTUSD repeatedly ended `FINAL_INVALID_REFERENCE`; 11 valid-market diagnostic n276, mean -0.0198714R, PF0.9558, total -5.4845R, 5/11 positive, 2025 negative. Operationally closed, no XPTUSD retry justified.
-- D050 NR4 comparator: n1567, mean -0.0499294R, PF0.8615, 4/12 positive -> `COMPARATOR_NO_BROAD_PASS`.
+D041 previously showed that a sophisticated management candidate materially degraded an already-confirmed D032 entry edge: paired delta -0.3380537662R/trade, -26.03014R total, 0/3 symbols improved, bootstrap interval entirely negative. Management Benchmark V1/V2 also found no universal management promotion.
 
-D047 discovery only: SPX500+NDX100+GER30+US30 were all positive in 2024-2025, combined n299, +31.66879718R, +0.10591571R/trade. This generated D051.
+The user explicitly raised the stronger belief: **“a good management can save almost any signal.”** D052 tests that belief directly instead of continuing to debate it.
 
-## D051 NR7 equity-index cluster — CLOSED UNCONFIRMED
+## Current P0 — D052 Management-as-Alpha Paired Null-Entry Lab V0
 
-Preregistered 2026-H1 confirmation, same unchanged D038/D047 NR7 semantics on SPX500, NDX100, GER30, US30.
+Experiment ID:
+`D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0`
 
-Result:
-- n61; SPX50014, NDX10010, GER3017, US3020
-- mean **-0.0429737R/trade**
-- PF **0.878433**
-- total **-2.621396R**
-- positive symbols **2/4**
-- SPX500 -3.37655R
-- NDX100 +2.38774R
-- GER30 -4.10664R
-- US30 +2.47404R
-- integrity 0; all Trade Path checks passed
-- verdict **D051_UNCONFIRMED_CLOSE**
+Preregistration:
+`research/campaigns/D052_MANAGEMENT_AS_ALPHA_PAIRED_NULL_ENTRY_V0_PREREGISTRATION_2026_09_07.md`
+Git blob: `faa986bb7460806ccc7b5423ba8a697f7569de8e`
 
-Authoritative event:
-`backtests/d051/live/events/confirmation/d051-confirm-score/20260907T135932Z`
+Permanent manifest:
+`research/experiments/D052.json`
 
-Closeout:
-`reports/research/D051_NR7_INDEX_CLUSTER_CONFIRMATION_CLOSEOUT_20260907.md`
+Frozen source:
+`research/strategies/d052/D052_ManagementAsAlpha_PairedNull_M15_v1_00.mq5`
+Git blob: `98ca64ebe2c8e21f2579e9f4cc804b8848d6325b`
+Normalized source SHA measured by GitHub CI before local MT5 execution:
+`009a4bc7a5995d5d766fe6b5bec7d61b486e88d61fad0d75b29b227fb6098275`
 
-The reserved Jul-Aug 2026 holdout remains unopened under the preregistered `LOCKED_UNLESS_CONFIRM_PASS` rule and must not be used to rescue D051.
+Operator entrypoint:
+`research/runner/d052_management_alpha_run.py`
 
-## Management evidence already learned
+Core workflow/scorer:
+`research/runner/d052_management_alpha_workflow.py`
 
-Do not assume management is a universal rescue mechanism.
+### Null-entry construction
 
-D041 / D032-M2 tested a sophisticated management candidate against a simple +24h reference on a previously confirmed entry edge. Candidate mean stayed positive, but paired candidate-minus-reference delta was **-0.3380537662R/trade**, total delta -26.03014R, positive-delta symbols 0/3, and the 95% month-block bootstrap interval was entirely negative. Verdict: **REJECT_MANAGEMENT**.
+Each eligible broker day/symbol gets one price-independent deterministic schedule minute from `symbol + broker-day key`, in 10:00–13:59 broker time. At the first executable tick at/after that minute (no later than 15:00), the harness opens **simultaneous virtual LONG and SHORT sleeves** on exactly the same event.
 
-Earlier management benchmarks across D038/D039/D040/D045 also found no universal promotion: most TP/BE/partial variants degraded baseline. `BE_AFTER_2R` was only a tiny exploratory improvement and not robust enough for promotion.
+LONG enters ASK and liquidates BID; SHORT enters BID and liquidates ASK. No order is sent.
 
-## Next scientific question — proposed, not yet executed
+Because both directions exist at each event, directional drift alone cannot satisfy D052’s separate LONG-positive and SHORT-positive gates.
 
-The user explicitly raised the belief: **“a good management can save almost any signal.”**
+`1R` is ATR14 from prior completed D1 bars only. It is a volatility scale, not an entry signal.
 
-This is worth testing directly rather than arguing about it. Preferred next experiment is a separate **management-as-alpha null-entry lab**:
-- deliberately uninformed/placebo entries, deterministic and reproducible;
-- broad multi-market sample;
-- one frozen family of management rules evaluated in DEV;
-- candidate-selection rule fixed before results;
-- only one selected management allowed into a truly untouched holdout;
-- require both positive absolute expectancy after costs and paired improvement over a simple reference;
-- if management cannot make placebo entries robustly profitable, the strong universal-rescue belief is falsified for the tested management family;
-- if it can, management itself is functioning as alpha and should be treated as a strategy component in its own right.
+### Frozen 12-market universe
 
-Do not use D051’s seen 2026-H1 data to design an exit and call NR7 rescued. Any further management work must be a new hypothesis with its own validation boundary.
+EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF,
+SPX500, NDX100, GER30, US30, XAUUSD, XAGUSD.
+
+XPTUSD was excluded before D052 due the repeated D049 reference-engineering defect. Crypto was excluded in V0 to avoid mixing 24/7 sessions and different cost mechanics into the first null-management test.
+
+### Frozen management family
+
+Reference, not eligible for selection:
+- `REF_EOD_NO_STOP`
+
+Eleven candidates:
+- `SL1_EOD`
+- `SL1_TP1`
+- `SL1_TP2`
+- `SL1_TP3`
+- `SL1_BE_AFTER_1R_EOD`
+- `SL1_BE_AFTER_2R_EOD`
+- `SL1_P50_AT_1R_BE_REST`
+- `SL1_P40_AT_2_5R_BE_REST`
+- `SL1_TRAIL1_AFTER_1R`
+- `SL1_TRAIL1_5_AFTER_2R`
+- `SL1_P50_AT_1R_TRAIL1_REST`
+
+One MT5 run per symbol simulates reference + all 11 candidates over the identical paired entries. Therefore DEV is **12 MT5 runs, not 132**.
+
+### Smoke
+
+2023-10-02 through 2023-10-31, engineering-only:
+- EURUSD
+- SPX500
+- XAUUSD
+
+The runner requires exact 2 sides × 12 management rows for every paired event, complete lifecycle, nonzero events, zero invalid price/risk/PnL, and no duplicate event-side-management rows.
+
+If smoke fails, DEV does not run.
+
+### Development
+
+2024-01-02 through 2025-12-31, all 12 markets.
+
+All candidates are compared on the exact same entry-side events and paired against `REF_EOD_NO_STOP`.
+
+Frozen all-required candidate gates include:
+- n >=8000 legs
+- each symbol n >=600
+- mean net R >0
+- PF >=1.05
+- total and 1.5x commission-stress total >0
+- LONG mean >0 and SHORT mean >0
+- >=9/12 symbols positive
+- 2024 >0 and 2025 >0
+- paired candidate-minus-reference mean >0
+- month-block bootstrap 95% lower bound absolute mean >0
+- month-block bootstrap 95% lower bound paired delta >0
+- max positive-symbol contribution share <=25%
+- integrity 0
+
+If zero candidates pass all gates: `D052_NO_MANAGEMENT_ALPHA_IN_FROZEN_FAMILY`; no “best loser” advances.
+
+If one or more pass, exactly one is mechanically selected under the preregistered lexicographic rule. This first command still **does not open confirmation automatically**.
+
+### Locked holdout
+
+2026-07-01 through 2026-08-31, same 12 symbols.
+
+It stays unopened unless exactly one DEV-selected candidate passes every frozen gate. A future holdout runner must expose only reference + selected candidate; outcomes for losing candidates must never be generated on holdout.
+
+## Tooling / transport safeguards
+
+- `d052_management_alpha_run.py` preflights the permanent manifest, prereg Git blob, source Git blob and normalized source SHA before execution.
+- Workflow publishes `d052-source-freeze` before any MT5 outcome.
+- MetaEditor compile is run locally before smoke.
+- Smoke and DEV remain sequential MT5.
+- Results publish through isolated-clone `result_transport.py`, never legacy AutoSync.
+- If compile/smoke/DEV/scoring raises, the resilient entrypoint attempts to publish `d052-workflow-incomplete` so a future assistant can diagnose GitHub evidence rather than asking the operator to replay already-valid MT5 work.
+
+CI run `34133243633` for commit `6104d10e5baaf0c18db74c662b26445d5900124c` completed **SUCCESS**. It Python-compiled D052 tooling, validated/ready-checked `research/experiments/D052.json`, re-measured source identity, and passed D052 regression tests.
+
+## Next operator action
+
+Run exactly:
+
+```powershell
+git pull
+py -3 .\research\runner\d052_management_alpha_run.py
+```
+
+This is intentionally a large unattended block: source freeze -> compile -> 3-symbol engineering smoke -> if clean, 12-symbol 2024-2025 DEV -> paired scorer -> automatic GitHub publication.
+
+Then the user should normally reply only:
+
+`fini`
+
+On `fini`, fetch `backtests/d052/live/latest.json` from `backtest-results` and the referenced event. If status is a DEV score, inspect every candidate and frozen gate. Do **not** open Jul-Aug holdout unless the score mechanically selected exactly one candidate after all gates passed.
 
 ## Local paths
 
 Repo: `D:\MT5_Backtests\guardian-research`
 Runner workspace: `D:\MT5_Backtests\guardian-runner`
 FundedNext MT5: `D:\MT5_FundedNext`
+MetaEditor: `D:\MT5_FundedNext\MetaEditor64.exe`
+Terminal: `D:\MT5_FundedNext\terminal64.exe`
 Experts: `D:\MT5_FundedNext\MQL5\Experts\GuardianResearch`
 FILE_COMMON: `C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\Common\Files`
 
