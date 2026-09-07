@@ -86,36 +86,32 @@ jobs:
       - name: Validate authoritative state and generated views
         run: python research/runner/state_tools.py validate
 
-      - name: Validate active D044 experiment contract
-        run: python research/runner/experiment.py validate D044
+      - name: Validate active D052 experiment contract
+        run: |
+          python research/runner/experiment.py validate D052
+          python research/runner/experiment.py ready D052
 
-      - name: Verify active D044 manifest is execution-ready
-        run: python research/runner/experiment.py ready D044
-
-      - name: Verify active D044 source identity and runner plan
+      - name: Verify active D052 source identity and runner plan
         run: |
           python - <<'PY'
           import sys
           sys.path.insert(0, 'research/runner')
           import runner
-          report = runner.plan('D044')
+          report = runner.plan('D052')
           assert report['source_ready'], report['blockers']
-          print('D044_SOURCE_READY', report['source_identity'])
+          assert report['experiment_id'] == 'D052-MANAGEMENT-AS-ALPHA-PAIRED-NULL-ENTRY-V0'
+          print('D052_SOURCE_READY', report['source_identity'])
           PY
 
       - name: Validate closed experiment manifests remain coherent
         run: |
           python research/runner/experiment.py validate D046
-          python research/runner/experiment.py validate D041
           python research/runner/experiment.py validate D045
+          python research/runner/experiment.py validate D044
+          python research/runner/experiment.py validate D041
           python research/runner/experiment.py validate D040
           python research/runner/experiment.py validate D039
           python research/runner/experiment.py validate D038
-
-      - name: Validate frozen D052 experiment contract
-        run: |
-          python research/runner/experiment.py validate D052
-          python research/runner/experiment.py ready D052
 
       - name: Report frozen source identities
         run: |
