@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-07T09:44:00+02:00",
+  "updated_at": "2026-09-07T09:56:00+02:00",
   "authoritative": true,
   "repository": {
     "name": "yum4nity-code/guardian-research",
@@ -8,17 +8,17 @@
     "migration_base_commit": "e50ccdfafb33ff0081503ccd788eb1c55c5b2f19"
   },
   "migration": {
-    "status": "PHASE_3_D040_ARCHIVED_D045_READY_SMOKE",
+    "status": "PHASE_3_D045_SMOKE_PASS_READY_DEV",
     "plan": "docs/GUARDIAN_RESEARCH_RUNNER_MIGRATION_PLAN.md",
     "legacy_behavior_preserved": true,
     "codex_required": false,
-    "next_phase": "PHASE_3_RUN_D045_ENGINEERING_SMOKE_THEN_DEV_ONLY_IF_SMOKE_PASSES",
+    "next_phase": "PHASE_3_RUN_D045_DEV_2024_2025_THEN_SCORE_AND_FINALIZE",
     "state_validator": "research/runner/state_tools.py"
   },
   "research": {
     "active_experiment": "D045-D1-DONCHIAN-20-10-BENCHMARK-V0",
     "experiment_manifest": "research/experiments/D045.json",
-    "status": "READY_SMOKE",
+    "status": "READY_DEV",
     "strategy_family": "Daily Donchian 20/10 trend-following benchmark",
     "timeframe": "M15",
     "preregistration": "research/campaigns/D045_D1_DONCHIAN_20_10_BENCHMARK_V0_PREREGISTRATION_2026_09_07.md",
@@ -26,7 +26,7 @@
       "research/strategies/d045/D045_D1_Donchian20_10_TickPath_M15_v1_00.mq5"
     ],
     "operator_workflow": "docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md",
-    "next_action": "On the MT5 research PC run `git pull` then `py -3 .\\research\\runner\\guardian_research.py campaign D045 --stage smoke`. Smoke is engineering-only on USDJPY/XAUUSD/BTCUSD for 2023-08-01..2023-10-31 in Model=0. Do not inspect smoke profitability. The campaign recompiles the exact frozen D045 source, runs the three smoke symbols, validates native Trade Path and publishes automatically. After completion the user should only say `fini`; the assistant reads `backtests/d045/live/latest.json`. Development remains locked until smoke engineering integrity passes.",
+    "next_action": "On the MT5 research PC run `git pull` then `py -3 .\\research\\runner\\guardian_research.py campaign D045 --stage development`. D045 engineering smoke passed on USDJPY/XAUUSD/BTCUSD with 10 total trades, clean lifecycle/integrity and TRADE_PATH_PASS_ALL. Development is now legitimately opened for the frozen 2024-01-02..2025-12-31 six-market window in Model=0. The campaign recompiles the exact frozen source, runs all six markets, validates Trade Path, applies the frozen development gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d045/live/latest.json` and closes or advances the verdict.",
     "closed_experiments": {
       "D017": "REJECTED_ALPHA_FAMILY",
       "D023": "REJECTED_UNTOUCHED_CONFIRMATION",
@@ -59,8 +59,14 @@
       "source_sha256": "2b8c9d73a9e19c9e94f6c0bd6c6e160fd7ac7c666f1e8a06fb55a41c8d910723",
       "source_git_blob_sha": "ce64ac87d0aa940b6728ff6bf61f71efb00cba68",
       "swap_boundary": "Formal D045 V0 scoring is net ex-swap. Separate preregistered FundedNext swap/weekend stress is mandatory before production classification.",
-      "smoke_status": "READY",
-      "development_status": "LOCKED",
+      "local_compile_status": "COMPILE_PASS",
+      "local_ex5_sha256": "02626a1e0878b2ee034d8bce477f218745acf8ffc21414338658f7822c856c1f",
+      "smoke_status": "PASS",
+      "smoke_aggregate_trades": 10,
+      "smoke_symbol_trades": {"USDJPY": 3, "XAUUSD": 4, "BTCUSD": 3},
+      "smoke_trade_path_status": "TRADE_PATH_PASS_ALL",
+      "smoke_event": "backtests/d045/live/events/smoke/campaign/20260907T075351Z",
+      "development_status": "READY",
       "confirmation_status": "UNOPENED"
     },
     "deferred_next_candidates": {
@@ -89,11 +95,11 @@
     "trusted_runtime_installed_version": null,
     "research_results_target": "BACKTEST_RESULTS_BRANCH_PUBLISHER_V1",
     "research_results_branch": "backtest-results",
-    "research_results_status": "PROVEN_END_TO_END_THROUGH_D040_CONFIRMATION_FINALIZE",
+    "research_results_status": "PROVEN_END_TO_END_THROUGH_D045_ENGINEERING_SMOKE",
     "research_results_standard": "docs/RESEARCH_RESULTS_RICH_SCORING_AND_PUBLISHING_STANDARD.md",
     "research_results_policy": "Publish runner-validated compact evidence/results with provenance and hashes through isolated temporary clones. Large raws stay local with SHA256/bytes metadata. Transport failure never invalidates valid local scientific evidence and never requires an MT5 rerun by itself.",
     "automatic_event_transport": {
-      "status": "PROVEN_D038_D039_D040_FULL_PIPELINES",
+      "status": "PROVEN_D038_D039_D040_FULL_PIPELINES_AND_D045_SMOKE",
       "module": "research/runner/result_transport.py",
       "branch": "backtest-results",
       "latest_pointer_template": "backtests/<d0xx>/live/latest.json",
@@ -111,7 +117,7 @@
   },
   "runner": {
     "target": "GUARDIAN_RESEARCH_RUNNER_V1",
-    "status": "END_TO_END_PROVEN_D045_READY_SMOKE",
+    "status": "END_TO_END_PROVEN_D045_SMOKE_PASS_DEV_READY",
     "path": "research/runner/",
     "manifest_schema": "research/experiments/EXPERIMENT_MANIFEST.schema.json",
     "state_tools": "research/runner/state_tools.py",
@@ -154,8 +160,8 @@
       "RICH_EVENT_PAYLOAD_COMPACTION"
     ],
     "planned_stages": [
-      "D045_LOCAL_COMPILE_AND_ENGINEERING_SMOKE",
-      "D045_DEV_2024_2025_ONLY_IF_SMOKE_PASS",
+      "D045_DEV_2024_2025",
+      "D045_DEV_TRADE_PATH_SCORE_RICH_FINALIZE",
       "D045_CONFIRM_2026_H1_ONLY_IF_DEV_PASS",
       "D041_SPECIALIZED_PAIRED_MANAGEMENT_SCORER",
       "D042_LAYERED_MOMENTUM_ATTRIBUTION"
@@ -166,8 +172,8 @@
     "parallel_mt5_approved": false,
     "parallel_mt5_reason": "FILE_COMMON/output ownership and terminal contention are not proven safe concurrently; campaign mode stays sequential.",
     "autosync_required_for_local_pipeline": false,
-    "github_ci_status": "PENDING_D045_ACTIVE_STATE_CI",
-    "local_mt5_status": "D045_NOT_YET_COMPILED_LOCAL",
+    "github_ci_status": "PENDING_D045_READY_DEV_STATE_CI",
+    "local_mt5_status": "D045_SMOKE_PASS_DEV_READY",
     "trade_path_contract": "research/runner/TRADE_PATH_DATASET_SPEC.md",
     "principle": "one frozen manifest + one complete strategy source per experiment; deterministic compile/test/batch/decision-score/rich-analytics/publish pipeline; preserve the PowerShell-first operator workflow so the user normally runs one short command block and replies `fini`"
   },
