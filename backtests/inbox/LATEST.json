@@ -1,8 +1,8 @@
 ﻿{
     "schema":  5,
-    "synced_at_utc":  "2026-09-07T06:46:02.6560682Z",
-    "run_id":  "20260907_064538_D040_USDJPY_1667218df62e",
-    "path":  "backtests/inbox/2026/09/07/20260907_064538_D040_USDJPY_1667218df62e",
+    "synced_at_utc":  "2026-09-07T06:47:16.4033016Z",
+    "run_id":  "20260907_064539_D040_USDJPY_1667218df62e",
+    "path":  "backtests/inbox/2026/09/07/20260907_064539_D040_USDJPY_1667218df62e",
     "fingerprint":  "1667218df62e2b9e292b30e7b46460fc0271c45d65ab4151b94fefed1d72fe72",
     "reason":  "GENERIC_FINAL_VALIDATED",
     "files":  [
