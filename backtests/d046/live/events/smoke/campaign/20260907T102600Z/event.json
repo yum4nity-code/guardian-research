@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-09-07T10:26:02.736585+00:00",
+  "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+  "stage": "smoke",
+  "kind": "campaign",
+  "event_id": "20260907T102600Z",
+  "event_fingerprint_sha256": "d338439de0fcc7396bc5168883693a2615f3d453155f1a4734365d7225f4619a",
+  "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
+  "payload": {
+    "schema_version": 2,
+    "campaign_id": "20260907T102541Z",
+    "status": "CAMPAIGN_PASS",
+    "stage": "smoke",
+    "execution_mode": "SEQUENTIAL_EXPERIMENTS_SEQUENTIAL_SYMBOLS",
+    "parallel_mt5": false,
+    "continue_after_scientific_reject": true,
+    "continue_after_experiment_engineering_failure": true,
+    "finalize_development": false,
+    "finalize_scored_stage": false,
+    "experiments_requested": [
+      "D046"
+    ],
+    "started_at_utc": "2026-09-07T10:25:41.578051+00:00",
+    "experiments": [
+      {
+        "identifier": "D046",
+        "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+        "stage": "smoke",
+        "started_at_utc": "2026-09-07T10:25:41.602960+00:00",
+        "status": "EXPERIMENT_STAGE_PASS",
+        "compile": {
+          "status": "COMPILE_PASS",
+          "receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\20260907T102541Z\\build.json",
+          "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
+          "ex5_sha256": "e65e0bd1d86c810aa9e53aa971d244ed8b071656139bb6661a429a870fd92375"
+        },
+        "batch": {
+          "batch_path": "D:\\MT5_Backtests\\guardian-runner\\batches\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\smoke\\20260907T102543Z\\batch.json",
+          "schema_version": 1,
+          "status": "BATCH_PASS_INTEGRITY",
+          "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+          "manifest_path": "research\\experiments\\D046.json",
+          "stage": "smoke",
+          "symbols": [
+            "BTCUSD"
+          ],
+          "started_at_utc": "2026-09-07T10:25:43.014624+00:00",
+          "execution_mode": "SEQUENTIAL",
+          "tester_model": 0,
+          "tests": [
+            {
+              "schema_version": 1,
+              "status": "TEST_PASS_INTEGRITY",
+              "experiment_id": "D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0",
+              "manifest_path": "research\\experiments\\D046.json",
+              "stage": "smoke",
+              "symbol": "BTCUSD",
+              "tester_model": 0,
+              "started_at_utc": "2026-09-07T10:25:43.022906+00:00",
+              "finished_at_utc": "2026-09-07T10:25:54.894187+00:00",
+              "terminal_exit_code": 0,
+              "command": [
+                "D:\\MT5_FundedNext\\terminal64.exe",
+                "/config:D:\\MT5_Backtests\\guardian-runner\\runs\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\smoke\\20260907T102543Z_BTCUSD_M0\\tester.ini",
+                "/portable"
+              ],
+              "compile_receipt": "D:\\MT5_Backtests\\guardian-runner\\builds\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\20260907T102541Z\\build.json",
+              "source_sha256": "beb36e88c59577d7c5ec385ef5e99957dc7cd52e9b61b30d1087ae2212b5f390",
+              "ex5_sha256": "e65e0bd1d86c810aa9e53aa971d244ed8b071656139bb6661a429a870fd92375",
+              "quarantined_stale_outputs": [],
+              "stats": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\smoke\\20260907T102543Z_BTCUSD_M0\\D046_V100_RUN_BTCUSD_STATS.csv",
+                "sha256": "3daa037584af18156b320a09520f6c00b7e245c5a0c209eaabf7a858d4423fb2"
+              },
+              "trades": {
+                "path": "D:\\MT5_Backtests\\guardian-runner\\runs\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\smoke\\20260907T102543Z_BTCUSD_M0\\D046_V100_RUN_BTCUSD_TRADES.csv",
+                "sha256": "2c77031299b7247e44f1d3e015d778630b36bd97bd67e6bf5d4e9d1529a9f8a5"
+              },
+              "integrity": {
+                "final_status": "FINAL",
+                "source_name": "D046_BTC_DeribitExpiryReversal_M1_v1_00.mq5",
+                "source_version": "1.00",
+                "run_stage": "RUN",
+                "symbol": "BTCUSD",
+                "trades": 42,
+                "trades_opened": 42,
+                "trades_closed": 42,
+                "invalid_price": 0,
+                "invalid_risk": 0,
+                "pnl_calc_failures": 0,
+                "stats_encoding": "utf-8-sig",
+                "trades_encoding": "utf-8-sig"
+              },
+              "recovered_after_parser_failure": false,
+              "autosync_used": false
+            }
+          ],
+          "autosync_used": false,
+          "finished_at_utc": "2026-09-07T10:25:54.922367+00:00",
+          "github_transport": {
+            "receipt_path": "D:\\MT5_Backtests\\guardian-runner\\result_transport_receipts\\D046-BTC-DERIBIT-08UTC-EXPIRY-REVERSAL-SCREEN-V0\\smoke\\batch\\20260907T102543Z.json",
+            "status": "EVENT_PUBLISH_PASS",
+            "branch": "backtest-results",
+            "event_path": "backtests/d046/live/events/smoke/batch/20260907T102543Z",
+            "latest_path": "backtests/d046/live/latest.json",
+            "event_id": "20260907T102543Z",
+            "event_fingerprint_sha256": "88c1f4837ae0fb03ee784a73f784bfb34a952352878c6e35cc603b9c3346ad43",
+            "commit_sha": "d2bed3d0e15695cd177aa425662956d0af3c853b",
+            "payload_compacted": false,
+            "autosync_used": false
+          }
+        },
+        "trade_path": {
+          "status": "NOT_REQUIRED_BY_MANIFEST",
+          "symbols": [
+            "BTCUSD"
+          ]
+        },
+        "finished_at_utc": "2026-09-07T10:26:00.485567+00:00"
+      }
+    ],
+    "autosync_used": false,
+    "engineering_failures": 0,
+    "post_decision_analytics_failures": 0,
+    "scientific_rejections": 0,
+    "finished_at_utc": "2026-09-07T10:26:00.486400+00:00",
+    "campaign_receipt": "D:\\MT5_Backtests\\guardian-runner\\campaigns\\20260907T102541Z\\campaign.json"
+  },
+  "payload_compacted": false,
+  "files": [],
+  "transport": "ISOLATED_GIT_CLONE_EVENT_PUBLISHER",
+  "autosync_used": false
+}
