@@ -2,16 +2,16 @@
   "schema_version": 2,
   "generated": true,
   "generated_from": "GUARDIAN_STATE.json",
-  "updated_at": "2026-09-07T08:50:00+02:00",
+  "updated_at": "2026-09-07T09:05:00+02:00",
   "active_primary": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
   "items": [
     {
       "id": "D040-NR4-VOLATILITY-CONTRACTION-BREAKOUT-V0",
       "priority": 0,
-      "status": "READY_DEV",
+      "status": "READY_CONFIRM",
       "owner": "DETERMINISTIC_RUNNER+USER",
       "type": "active_research_experiment",
-      "goal": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py campaign D040 --stage development`. D040 smoke is engineering-PASS: compile PASS, 11 total smoke trades across USDJPY/XAUUSD/BTCUSD, zero integrity failures and native Trade Path PASS on all three. The development campaign recompiles the exact frozen source, runs all six markets for 2024-01-02..2025-12-31 in Model=0, validates Trade Path, applies frozen gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and continues.",
+      "goal": "On the MT5 research PC, pull the refactor branch and run `py -3 .\\research\\runner\\guardian_research.py campaign D040 --stage confirmation`. D040 passed every frozen development gate on 758 trades and is now legitimately opened for the untouched prospective 2026-01-02..2026-06-30 confirmation window. The confirmation campaign recompiles the exact frozen source, runs all six markets in Model=0, validates native Trade Path, applies the frozen confirmation gates, computes rich analytics and publishes automatically. The user should not paste logs; after completion the preferred response is only `fini`, then the assistant reads `backtests/d040/live/latest.json` and closes the verdict.",
       "manifest": "research/experiments/D040.json"
     },
     {
@@ -79,5 +79,5 @@
       "goal": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
     }
   ],
-  "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. No operational item may wait on Codex."
+  "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. Canonical operator UX: docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md. No operational item may wait on Codex."
 }
