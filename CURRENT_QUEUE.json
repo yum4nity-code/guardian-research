@@ -30,14 +30,70 @@
       "type": "result_transport",
       "goal": "Build from scratch; legacy AutoSync is reference-only and never a fallback."
     },
-    {"id":"D017","priority":99,"status":"CLOSED","owner":"HISTORICAL","type":"closed_research","goal":"REJECTED_ALPHA_FAMILY"},
-    {"id":"D023","priority":99,"status":"CLOSED","owner":"HISTORICAL","type":"closed_research","goal":"REJECTED_UNTOUCHED_CONFIRMATION"},
-    {"id":"D036","priority":99,"status":"CLOSED","owner":"HISTORICAL","type":"closed_research","goal":"REJECTED_V0"},
-    {"id":"D037","priority":99,"status":"CLOSED","owner":"HISTORICAL","type":"closed_research","goal":"REJECTED_V0"},
-    {"id":"D038","priority":99,"status":"CLOSED","owner":"HISTORICAL","type":"closed_research","goal":"REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"},
-    {"id":"D039","priority":99,"status":"CLOSED","owner":"HISTORICAL","type":"closed_research","goal":"REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"},
-    {"id":"D040","priority":99,"status":"CLOSED","owner":"HISTORICAL","type":"closed_research","goal":"UNCONFIRMED_2026_H1_ARCHIVED"},
-    {"id":"D045","priority":99,"status":"CLOSED","owner":"HISTORICAL","type":"closed_research","goal":"REJECTED_V0_MEAN_GATE_ONLY_RICH_PATH_RETAINED"}
+    {
+      "id": "D017",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_ALPHA_FAMILY"
+    },
+    {
+      "id": "D023",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_UNTOUCHED_CONFIRMATION"
+    },
+    {
+      "id": "D036",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_V0"
+    },
+    {
+      "id": "D037",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_V0"
+    },
+    {
+      "id": "D038",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
+    },
+    {
+      "id": "D039",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_V0_COUNT_GATE_ONLY_RICH_PATH_RETAINED"
+    },
+    {
+      "id": "D040",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "UNCONFIRMED_2026_H1_ARCHIVED"
+    },
+    {
+      "id": "D045",
+      "priority": 99,
+      "status": "CLOSED",
+      "owner": "HISTORICAL",
+      "type": "closed_research",
+      "goal": "REJECTED_V0_MEAN_GATE_ONLY_RICH_PATH_RETAINED"
+    }
   ],
   "notes": "Compatibility view only. GUARDIAN_STATE.json is authoritative. Canonical operator UX: docs/OPERATOR_POWERSHELL_HANDOFF_WORKFLOW.md. No operational item may wait on Codex."
 }
