@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "experiment_id": "D041-D032-M2-DOJI-MANAGEMENT-VALIDATION-V0",
+  "strategy_family": "Confirmed Bullish Doji Star H1 entry management validation",
+  "status": "READY_SMOKE",
+  "hypothesis": "Does the already-preregistered D032-M2 complete management rule improve the confirmed +24h D032 Bullish Doji Star reference on the untouched POST2024 >24h path, with positive paired delta that survives month-block bootstrap and remains broad across BTC/ETH/DOG?",
+  "preregistration": {
+    "path": "research/campaigns/D032_M2_DOJI_REALISTIC_MANAGEMENT_POST2024_VALIDATION_PREREGISTRATION_2026_09_05.md",
+    "git_blob_sha": "951629bee9bb7c6b4906b100e1f410e4ce22bc8a",
+    "frozen_before_result_inspection": true,
+    "execution_deviations": [
+      "D041 is only an operational runner wrapper for the pre-existing D032-M2 preregistration; it is not a new scientific hypothesis.",
+      "Explicit FundedNext crypto commission is frozen for this execution at 4 bps per side (0.04%/side), before POST2024 M2 outcomes are inspected.",
+      "Runner stage name development is used as an orchestration label for the preregistered POST2024 management-validation window; its scientific role remains validation, not development."
+    ]
+  },
+  "source": {
+    "canonical_path": "research/strategies/d041/D041_D032_M2_DojiManagementValidation_v1_00.mq5",
+    "source_sha256": "2873274f2d67a07dcd67594c41eb2bb9c11ad1353fa2fa1273597d7f567c733f",
+    "source_sha256_mode": "UTF8_TEXT_LF_NORMALIZED",
+    "git_blob_sha": "2759f3ac53edd28b59cba70f05001a7b7c89016e",
+    "version": "1.00",
+    "complete_repository_source": true,
+    "strategy_semantics_frozen": true,
+    "engineering_lineage": [
+      "Exact D032-M1 source was recovered from the user's ChatGPT file library with historical SHA256 6c55da90607d5431b92f9a59b2439ffa2e504b93621be78137dc99ab4fdef583, matching the 2026-09-05 handoff receipt.",
+      "D041 retains the exact D032-M1 Bullish Doji Star numerical signal, strict 144h SMA downtrend, executable ASK entry and source 1R=2*sigma24 calculations.",
+      "Only the already-frozen D032-M2 management is formal: -3.5 source-R catastrophe stop, H24 non-positive close, H24 positive 1.5R runner with net-BE floor, H48 timeout.",
+      "Old M1 alternative trail diagnostics are not emitted on POST2024 by D041, avoiding unnecessary contamination of other management hypotheses.",
+      "Standard runner STATS/TRADES outputs were added without changing entry or candidate semantics."
+    ]
+  },
+  "execution": {
+    "timeframe": "M1",
+    "reference_timeframes": ["H1"],
+    "symbols": ["BTCUSD", "ETHUSD", "DOGUSD"],
+    "account_currency": "USD",
+    "prop_firm_profile": "FUNDEDNEXT"
+  },
+  "runner_contract": {
+    "expert_relative_path": "GuardianResearch\\D041_D032_M2_DojiManagementValidation_v1_00",
+    "default_stage": "smoke",
+    "stage_selection": "TESTER_DATE_RANGE_ONLY",
+    "tester_model_reference": 1,
+    "tester_model_fast_candidate": null,
+    "output": {
+      "location": "FILE_COMMON",
+      "stats_template": "D041_V100_{stage_token}_{symbol_clean}_STATS.csv",
+      "trades_template": "D041_V100_{stage_token}_{symbol_clean}_TRADES.csv",
+      "stage_tokens": {
+        "smoke": "RUN",
+        "development": "RUN",
+        "confirmation": "RUN"
+      }
+    }
+  },
+  "cost_model": {
+    "name": "D041_D032_M2_FUNDEDNEXT_CRYPTO_4BPS_SIDE",
+    "spread_source": "tester executable ASK entry / BID liquidation",
+    "commission_stress_multiplier": 1.5,
+    "crypto": "4 bps per side frozen before formal POST2024 M2 outcome inspection",
+    "swap": "EXCLUDED_FROM_FORMAL_GATE_REQUIRE_SEPARATE_STRESS_IF_VALIDATED",
+    "scoring_mode": "D032_M2_PAIRED_MONTH_BLOCK_BOOTSTRAP"
+  },
+  "stages": {
+    "smoke": {
+      "stage_name": "D041_ENGINEERING_SMOKE_PRE2024_SEEN_DATA",
+      "from": "2023-01-02",
+      "to": "2023-12-31",
+      "symbols": ["BTCUSD", "ETHUSD", "DOGUSD"],
+      "status": "READY",
+      "gates": {
+        "compile_errors": 0,
+        "compile_warnings": 0,
+        "lifecycle_clean": true,
+        "invalid_price_risk_pnl_events": 0,
+        "deterministic_stats_trades_output": true,
+        "science_role": "ENGINEERING_ONLY_ALREADY_SEEN_PRE2024_NO_ALPHA_OR_MANAGEMENT_VERDICT"
+      },
+      "result_paths": []
+    },
+    "development": {
+      "stage_name": "D032_M2_POST2024_MANAGEMENT_VALIDATION",
+      "from": "2024-01-01",
+      "to": "2026-06-27",
+      "symbols": ["BTCUSD", "ETHUSD", "DOGUSD"],
+      "status": "LOCKED",
+      "gates": {
+        "science_role": "PREREGISTERED_MANAGEMENT_VALIDATION_POST2024",
+        "aggregate_n_min": 40,
+        "paired_mean_delta_strictly_positive": true,
+        "month_block_bootstrap_lower_95_strictly_positive": true,
+        "positive_delta_symbols_min": 2,
+        "max_positive_symbol_contribution_share": 0.60,
+        "candidate_mean_net_r_min": 0.20,
+        "count_failure_verdict": "INCONCLUSIVE_COUNT",
+        "failure_verdict": "REJECT_MANAGEMENT",
+        "pass_verdict": "MANAGEMENT_VALIDATED"
+      },
+      "result_paths": []
+    },
+    "confirmation": {
+      "stage_name": "D041_POST_VALIDATION_PRODUCTION_BOUNDARY",
+      "from": "2026-06-28",
+      "to": "2026-09-07",
+      "symbols": ["BTCUSD", "ETHUSD", "DOGUSD"],
+      "status": "UNOPENED",
+      "gates": {
+        "science_role": "NOT_AUTHORIZED_AS_D032_M2_CONFIRMATION",
+        "required_next_if_validated": "FundedNext swap/cost stress + weekend policy + portfolio overlap/risk + real-tick/live-forward confirmation"
+      },
+      "result_paths": []
+    }
+  },
+  "decision_policy": {
+    "no_posthoc_rescue": true,
+    "confirmation_locked_until_dev_pass": true,
+    "invalid_run_is_not_strategy_reject": true
+  },
+  "results": {
+    "compile": null,
+    "smoke": null,
+    "development": null,
+    "rich_analytics": null,
+    "confirmation": null,
+    "final_verdict": null
+  }
+}
