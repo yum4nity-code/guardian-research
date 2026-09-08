@@ -1,0 +1,36 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_fb_summary.json",
+      "sha256": "9333af5de804d4759a508a8ab58fc6fe3fd046b2bd82837b1c4cb58419bb11ff",
+      "size_bytes": 1529
+    },
+    {
+      "name": "phase_fb_2024_universe.csv",
+      "sha256": "0908a4d4a788e68eb23a6ef45f0f085b047c19b404f2928bc2b7090682298ef1",
+      "size_bytes": 47703
+    },
+    {
+      "name": "phase_fb_frozen_shortlist_2024.csv",
+      "sha256": "04bcaeb1d083cfa35c8645184ce3440a07f790e4f1be6fc30063a942515e86e5",
+      "size_bytes": 5745
+    },
+    {
+      "name": "phase_fb_2025_confirmation.csv",
+      "sha256": "102b0a265286bee476cc5c55ed9eac6383a1013df3bcef089309a43e7f08456f",
+      "size_bytes": 13205
+    },
+    {
+      "name": "phase_fb_distinct_passes.csv",
+      "sha256": "022a96bd1ca359597f72c758ae173b399003f42bad2aa7c61b4466f256e3c1aa",
+      "size_bytes": 7
+    }
+  ],
+  "generated_at_utc": "2026-09-08T17:59:47.754796+00:00",
+  "phase": "phase-fb-orderflow-atlas",
+  "published_run_path": "phenomenon-discovery/phase-fb-orderflow-atlas/runs/20260908T175947Z_phase-fb-orderflow-atlas",
+  "schema": 1,
+  "source_commit": "1587157c3b1f61a2e2777023247c16306c6bcef5",
+  "status": "PASS",
+  "summary": "Phase F-B univariate Binance spot/perp aggressive-flow atlas completed. 2024 discovery frozen before 2025 confirmation; no feature combinations; 2026 untouched."
+}

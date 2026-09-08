@@ -1,0 +1,46 @@
+{
+  "features": [
+    "spot_taker_imbalance",
+    "perp_taker_imbalance",
+    "taker_imbalance_diff",
+    "perp_spot_basis_bps",
+    "log_quote_volume_ratio",
+    "log_trade_count_ratio",
+    "spot_taker_imbalance_change_15m",
+    "spot_taker_imbalance_change_1h",
+    "perp_taker_imbalance_change_15m",
+    "perp_taker_imbalance_change_1h",
+    "taker_imbalance_diff_change_15m",
+    "taker_imbalance_diff_change_1h",
+    "perp_spot_basis_bps_change_15m",
+    "perp_spot_basis_bps_change_1h",
+    "log_quote_volume_ratio_change_15m",
+    "log_quote_volume_ratio_change_1h",
+    "log_trade_count_ratio_change_15m",
+    "log_trade_count_ratio_change_1h"
+  ],
+  "frozen_shortlist_count": 20,
+  "frozen_shortlist_sha256": "04bcaeb1d083cfa35c8645184ce3440a07f790e4f1be6fc30063a942515e86e5",
+  "gates": {
+    "bh_q_max": 0.1,
+    "bootstrap_paths": 3000,
+    "circular_block_days": 5,
+    "confirmation_effect_retention_fraction": 0.25,
+    "quarter_match_rate_min": 0.75,
+    "quarter_min_eligible_blocks": 6,
+    "top_per_outcome": 25
+  },
+  "independent_validation": false,
+  "passes_by_outcome": {
+    "direction_1h_atr": 0,
+    "up_first_1atr_1h": 0
+  },
+  "phase": "F-B",
+  "phase_fb_screen_pass_count": 0,
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "states_tested": 90,
+  "status": "DISCOVERY_ROBUSTNESS_ONLY",
+  "universe_tests_total": 180,
+  "warning": "Phase F-B uses inspected 2024-2025 data. Passing states are candidates only; freeze before any 2026 validation."
+}
