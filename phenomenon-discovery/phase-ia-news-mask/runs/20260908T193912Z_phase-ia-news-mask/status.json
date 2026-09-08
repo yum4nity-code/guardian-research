@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "generated_at_utc": "2026-09-08T19:39:12.715974+00:00",
+  "phase": "phase-ia-news-mask",
+  "schema": 1,
+  "source_commit": "0db13e41ca279f0d9d4b795517aae2de880f186f",
+  "status": "RUNNING",
+  "summary": "Phase I-A exporting 2024-2025 MT5 high-impact calendar and building conservative XAUUSD news mask. 2026 protected."
+}
