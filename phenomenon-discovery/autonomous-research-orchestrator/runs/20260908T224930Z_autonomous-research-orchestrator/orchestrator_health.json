@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IB-HCC-RECOVERY",
+    "revision": 1
+  },
+  "main_commit": "fae8ead2c9ccd99e091a21dec0cc756c2a0aaf55",
+  "pid": 4032,
+  "protected_2026": true,
+  "queue_generation": 8,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-08T22:49:30.461456+00:00",
+  "version": "1.00"
+}
