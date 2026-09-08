@@ -1,0 +1,52 @@
+{
+  "exact_three_clause_rules": 35750,
+  "features": [
+    "rsi14",
+    "atr_slope_1bar_pct",
+    "atr_slope_3bar_pct",
+    "price_change_5m_pct",
+    "price_change_15m_pct",
+    "price_change_1h_pct",
+    "oi_change_5m_pct",
+    "oi_change_15m_pct",
+    "oi_change_1h_pct",
+    "oi_accel_5m_pctpt",
+    "oi_accel_15m_pctpt",
+    "range_atr",
+    "body_atr"
+  ],
+  "frozen_shortlist_count": 100,
+  "frozen_shortlist_sha256": "c6da7b12fec56860a434c3af68e0c385829531e903490558a4cc1e0c5fefdc9b",
+  "gates": {
+    "bh_q_max": 0.1,
+    "bootstrap_paths": 3000,
+    "circular_block_days": 5,
+    "confirmation_effect_retention_fraction": 0.25,
+    "dedup_jaccard": 0.95,
+    "min_2024_annual_n": 500,
+    "min_2024_half_n": 180,
+    "min_2025_annual_n": 300,
+    "min_2025_quarter_n": 50,
+    "quarter_match_rate_min": 0.75,
+    "quarter_min_eligible_blocks": 6,
+    "top_per_outcome": 50
+  },
+  "independent_validation": false,
+  "method": "deterministic exhaustive exact three-feature quintile states; 2024 generation with BTC+ETH and H1/H2 sign stability; frozen top 50 per directional outcome; 2025 internal confirmation with quarter stability, circular 5-day block bootstrap and BH correction; 2026 untouched",
+  "outcomes": [
+    "direction_1h_atr",
+    "up_first_1atr_1h"
+  ],
+  "passes_by_outcome": {
+    "direction_1h_atr": 0,
+    "up_first_1atr_1h": 0
+  },
+  "phase": "D",
+  "phase_d_distinct_pass_count": 0,
+  "phase_d_screen_pass_count": 0,
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "DISCOVERY_ROBUSTNESS_ONLY",
+  "universe_tests_total": 71500,
+  "warning": "Phase D still uses inspected historical data. Any final candidate must be frozen before 2026 is opened. No PnL claim is authorized."
+}

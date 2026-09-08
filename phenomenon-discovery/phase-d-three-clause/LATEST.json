@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_d_summary.json",
+      "sha256": "40abc856bbe7e663ae5eb5b3f15ecffc20c6ad0d80f0f43644cd748a3c8e6089",
+      "size_bytes": 1773
+    },
+    {
+      "name": "phase_d_2024_full_universe.csv",
+      "sha256": "db20a14a7afdab03fa3a0590c96b62938c3ff5827eaa8888e4c21b63c1a019b7",
+      "size_bytes": 18822154
+    },
+    {
+      "name": "phase_d_frozen_shortlist_2024.csv",
+      "sha256": "c6da7b12fec56860a434c3af68e0c385829531e903490558a4cc1e0c5fefdc9b",
+      "size_bytes": 27118
+    },
+    {
+      "name": "phase_d_2025_confirmation.csv",
+      "sha256": "4b50fb3b1f90807676940504bede28fcb0a7d631b1004a9ec7a2d223009c8b1a",
+      "size_bytes": 39718
+    },
+    {
+      "name": "phase_d_distinct_passes.csv",
+      "sha256": "24526432f951ea86e61db71a2c7df058d690643d1792c6525c784823544d3c03",
+      "size_bytes": 7
+    },
+    {
+      "name": "phase_d_dedup_clusters.csv",
+      "sha256": "24526432f951ea86e61db71a2c7df058d690643d1792c6525c784823544d3c03",
+      "size_bytes": 7
+    }
+  ],
+  "generated_at_utc": "2026-09-08T10:40:30.568459+00:00",
+  "phase": "phase-d-three-clause",
+  "published_run_path": "phenomenon-discovery/phase-d-three-clause/runs/20260908T104030Z_phase-d-three-clause",
+  "schema": 1,
+  "source_commit": "b5b8a84533cbe820c2347e0349398131b7d63dc9",
+  "status": "PASS",
+  "summary": "Phase D deterministic 3-clause directional search completed. 2024 candidate generation frozen before 2025 confirmation; 2026 untouched."
+}
