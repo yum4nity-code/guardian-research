@@ -19,6 +19,7 @@ Le **Challenge Probability Lab est strictement downstream** : il ne s'exécute a
 - Tester coûts réalistes et stressés, autres périodes, perturbations de paramètres et dépendance aux meilleurs jours/trades.
 - Une stratégie rejetée ne revient en recherche que sur nouvelle hypothèse explicitement documentée.
 - Le sizing du Challenge Probability Lab est une décision **post-alpha**. Une hausse/baisse de risque ne peut jamais transformer un verdict alpha/OOS négatif en candidat valide.
+- Le verdict admissible, le stage, les gates, le seed, la grille de risque, le nombre de chemins Monte-Carlo et le profil de challenge utilisés par le pipeline doivent être **pré-enregistrés avant l'ouverture du résultat protégé**. Aucun de ces éléments ne doit être choisi après observation du scorer.
 
 ## Fidélité à l'évidence externe — exigence obligatoire
 - Ne plus employer « stratégie prouvée » pour une simple famille documentée puis librement adaptée.
@@ -55,8 +56,12 @@ Le **Challenge Probability Lab est strictement downstream** : il ne s'exécute a
 - `challenge_day` est une clé `YYYYMMDD` calculée selon la vraie frontière journalière du programme prop-firm simulé. Ne pas remplacer silencieusement cette règle par la date brute de l'entrée.
 - `adverse_r` est l'excursion adverse individuelle signée en R et doit être `<= 0`. Un ancien `MAE_R` positif ne devient pas `adverse_r` sans conversion explicite/documentée.
 - Le manifeste de run doit documenter `challenge_day_basis`, `r_denominator`, le coût inclus dans `net_r`, le coût inclus dans `adverse_r`, `floating_equity_available` et `challenge_export_contract=GUARDIAN_CHALLENGE_TRADE_EXPORT_V1`.
-- Le scorer de confirmation/OOS doit écrire explicitement `challenge_lab_eligible: true` uniquement si les gates alpha/OOS/robustesse prévues sont réellement passées. Pour un rejet/non-confirmé, écrire `false` ou échouer fermé.
-- Après un verdict éligible, `post_validation_challenge_gate_v1_00.py` doit être lancé automatiquement sans demander à l'utilisateur. Le défaut de décision est **20 000 chemins par risque** sur la grille gelée `0.10 / 0.15 / 0.20 / 0.25 / 0.33 / 0.50 %`, sauf protocole de campagne gelé autrement avant résultat.
+- **Ne pas modifier un scorer historique gelé pour y injecter a posteriori un champ Challenge Lab.** Le pipeline doit savoir consommer son JSON tel qu'il a été gelé.
+- Avant d'ouvrir la confirmation/OOS protégée, créer et committer une policy dérivée de `research/challenge_probability_lab/challenge_pipeline_policy_template_v1_00.json` avec : verdict(s) accepté(s), stage exact, clés du scorer, traitement des gates, `paths_per_risk`, `seed`, grille de risque et SHA256 du profil challenge gelé.
+- Les placeholders de la policy sont interdits au runtime ; `post_validation_pipeline_v1_01.py` échoue fermé s'ils n'ont pas été remplacés.
+- Après scoring, `post_validation_pipeline_v1_01.py` est l'entrée canonique. Il vérifie la policy, le SHA256 du profil, le verdict exact, le stage exact et tous les gates ; il écrit ensuite `challenge_lab_eligibility.json` et appelle `post_validation_challenge_gate_v1_00.py`.
+- Un rejet/non-confirmé ou un gate faux doit produire `challenge_lab_eligible=false` et **aucun calcul de sizing destiné à sauver la stratégie**.
+- Le défaut de décision reste **20 000 chemins par risque** sur la grille `0.10 / 0.15 / 0.20 / 0.25 / 0.33 / 0.50 %`, mais ces valeurs doivent être gelées dans la policy avant le résultat.
 - Le gate doit produire `challenge_gate_manifest.json` + rapports JSON/CSV/Markdown et conserver le niveau de fidélité DD (`ATOMIC_CLOSED_EQUITY` ou `ATOMIC_PLUS_INDIVIDUAL_ADVERSE_R`).
 - Les anciens CSV validés dépourvus du contrat canonique ne sont autorisés qu'avec l'escape hatch explicite `--allow-legacy-atomic-export`; leur résultat reste lower-fidelity et ne doit jamais être présenté comme une reconstruction exacte du floating DD.
 - Même avec `adverse_r`, les excursions simultanées de positions qui se chevauchent restent imparfaites sans snapshots mark-to-market portefeuille. Le futur niveau exact est un flux synchronisé d'equity/floating P&L.
