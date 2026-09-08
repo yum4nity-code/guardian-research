@@ -1,0 +1,30 @@
+{
+  "cross_year_future_labels_forbidden": true,
+  "horizons": {
+    "15m": 3,
+    "1h": 12,
+    "2h": 24,
+    "30m": 6,
+    "4h": 48
+  },
+  "news_mask_applied": false,
+  "news_policy": "Historical news mask is required before any event candidate can be promoted as prop-firm tradable.",
+  "phase": "H-A",
+  "propfirm_tradability_authorized": false,
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "symbols": {
+    "BTCUSDT": {
+      "first_timestamp_ms": 1704071400000,
+      "last_timestamp_ms": 1767225300000,
+      "output_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\event_shock_v1\\BTCUSDT_event_shock_matrix_2024-01-01_2026-01-01.csv",
+      "rows": 210514
+    },
+    "ETHUSDT": {
+      "first_timestamp_ms": 1704071400000,
+      "last_timestamp_ms": 1767225300000,
+      "output_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\event_shock_v1\\ETHUSDT_event_shock_matrix_2024-01-01_2026-01-01.csv",
+      "rows": 210514
+    }
+  }
+}

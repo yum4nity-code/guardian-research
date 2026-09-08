@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "event_shock_manifest_v1.json",
+      "sha256": "c238668cc399b642ee7b1fac166d788f33fd32dd40847a7d0c7aa633dadb201f",
+      "size_bytes": 996
+    },
+    {
+      "name": "event_shock_integrity_v1.json",
+      "sha256": "74c657ef14ea66e287417123ca3b8dbd8ba19ed591825a80f8087a40cb16abe2",
+      "size_bytes": 4434
+    }
+  ],
+  "generated_at_utc": "2026-09-08T18:48:10.450026+00:00",
+  "phase": "phase-ha-event-shock-matrix",
+  "schema": 1,
+  "source_commit": "bbe9f73a9d596f817e652944a1d1a6f618d9b7d8",
+  "status": "PASS",
+  "summary": "Phase H-A event-shock matrix passed integrity. Multi-source rare-event predictors plus 15m/30m/1h/2h/4h path labels; 2026 untouched; prop-firm tradability remains unauthorized until historical news masking is applied."
+}

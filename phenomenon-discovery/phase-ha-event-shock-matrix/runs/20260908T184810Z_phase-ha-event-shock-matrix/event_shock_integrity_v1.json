@@ -1,0 +1,135 @@
+{
+  "cross_year_future_labels_forbidden": true,
+  "news_mask_applied": false,
+  "phase": "H-A",
+  "propfirm_tradability_authorized": false,
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "PASS",
+  "symbols": {
+    "BTCUSDT": {
+      "duplicate_timestamps": 0,
+      "feature_availability_violations": 0,
+      "first_timestamp_ms": 1704071400000,
+      "future_label_coverage": {
+        "15m": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210508,
+          "missing_rows": 6,
+          "valid_rows": 210508
+        },
+        "1h": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210490,
+          "missing_rows": 24,
+          "valid_rows": 210490
+        },
+        "2h": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210466,
+          "missing_rows": 48,
+          "valid_rows": 210466
+        },
+        "30m": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210502,
+          "missing_rows": 12,
+          "valid_rows": 210502
+        },
+        "4h": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210418,
+          "missing_rows": 96,
+          "valid_rows": 210418
+        }
+      },
+      "last_timestamp_ms": 1767225300000,
+      "missing_shock_features_after_1h_warmup": {
+        "atr_slope_3bar_pct": 0,
+        "mark_index_bps_change_15m": 0,
+        "mark_index_bps_change_1h": 0,
+        "oi_accel_15m_pctpt": 0,
+        "oi_change_15m_pct": 0,
+        "oi_change_1h_pct": 0,
+        "perp_spot_basis_bps_change_15m": 0,
+        "perp_spot_basis_bps_change_1h": 0,
+        "perp_taker_imbalance_change_15m": 0,
+        "perp_trade_shock_1h": 0,
+        "perp_volume_shock_1h": 0,
+        "premium_index_change_15m": 0,
+        "premium_index_change_1h": 0,
+        "range_atr": 0,
+        "spot_taker_imbalance_change_15m": 0,
+        "spot_trade_shock_1h": 0,
+        "spot_volume_shock_1h": 0,
+        "taker_imbalance_diff_change_15m": 0,
+        "taker_imbalance_diff_change_1h": 0
+      },
+      "non_5m_gap_count": 0,
+      "opened_2026_rows": 0,
+      "rows": 210514
+    },
+    "ETHUSDT": {
+      "duplicate_timestamps": 0,
+      "feature_availability_violations": 0,
+      "first_timestamp_ms": 1704071400000,
+      "future_label_coverage": {
+        "15m": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210508,
+          "missing_rows": 6,
+          "valid_rows": 210508
+        },
+        "1h": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210490,
+          "missing_rows": 24,
+          "valid_rows": 210490
+        },
+        "2h": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210466,
+          "missing_rows": 48,
+          "valid_rows": 210466
+        },
+        "30m": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210502,
+          "missing_rows": 12,
+          "valid_rows": 210502
+        },
+        "4h": {
+          "cross_year_or_noncontiguous_label_violations": 0,
+          "expected_valid_rows": 210418,
+          "missing_rows": 96,
+          "valid_rows": 210418
+        }
+      },
+      "last_timestamp_ms": 1767225300000,
+      "missing_shock_features_after_1h_warmup": {
+        "atr_slope_3bar_pct": 0,
+        "mark_index_bps_change_15m": 0,
+        "mark_index_bps_change_1h": 0,
+        "oi_accel_15m_pctpt": 0,
+        "oi_change_15m_pct": 0,
+        "oi_change_1h_pct": 0,
+        "perp_spot_basis_bps_change_15m": 0,
+        "perp_spot_basis_bps_change_1h": 0,
+        "perp_taker_imbalance_change_15m": 0,
+        "perp_trade_shock_1h": 0,
+        "perp_volume_shock_1h": 0,
+        "premium_index_change_15m": 0,
+        "premium_index_change_1h": 0,
+        "range_atr": 0,
+        "spot_taker_imbalance_change_15m": 0,
+        "spot_trade_shock_1h": 0,
+        "spot_volume_shock_1h": 0,
+        "taker_imbalance_diff_change_15m": 0,
+        "taker_imbalance_diff_change_1h": 0
+      },
+      "non_5m_gap_count": 0,
+      "opened_2026_rows": 0,
+      "rows": 210514
+    }
+  }
+}
