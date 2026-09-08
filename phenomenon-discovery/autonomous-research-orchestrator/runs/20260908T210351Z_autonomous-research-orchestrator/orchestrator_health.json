@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IB-MT5-HISTORY-CAPACITY-PROBE__r1.json",
+  "main_commit": "edeb8b713fbabb40cd3b75a3eb328c4c78eb4f98",
+  "pid": 4032,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-08T21:03:51.459417+00:00",
+  "version": "1.00"
+}

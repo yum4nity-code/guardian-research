@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 450.0,
+  "class_key": "xau-mt5-data-diagnostic",
+  "duration_seconds": 5.010956200014334,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-08T21:03:51.457532+00:00",
+  "job_id": "PHASE-IB-MT5-HISTORY-CAPACITY-PROBE",
+  "main_commit": "edeb8b713fbabb40cd3b75a3eb328c4c78eb4f98",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-08T21:03:46.414103+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "      \"oldest_utc\": \"2026-09-08T07:20:00+00:00\",\n      \"requested\": 1000,\n      \"returned\": 1000,\n      \"timeframe\": \"M1\"\n    },\n    {\n      \"last_error\": [\n        -2,\n        \"Terminal: Invalid params\"\n      ],\n      \"requested\": 100000,\n      \"returned\": 0,\n      \"timeframe\": \"M1\"\n    },\n    {\n      \"last_error\": [\n        -2,\n        \"Terminal: Invalid params\"\n      ],\n      \"requested\": 600000,\n      \"returned\": 0,\n      \"timeframe\": \"M1\"\n    },\n    {\n      \"last_error\": [\n        -2,\n        \"Terminal: Invalid params\"\n      ],\n      \"requested\": 1200000,\n      \"returned\": 0,\n      \"timeframe\": \"M1\"\n    },\n    {\n      \"last_error\": [\n        1,\n        \"Success\"\n      ],\n      \"newest_utc\": \"2026-09-08T23:55:00+00:00\",\n      \"oldest_utc\": \"2026-09-03T07:10:00+00:00\",\n      \"requested\": 1000,\n      \"returned\": 1000,\n      \"timeframe\": \"M5\"\n    },\n    {\n      \"last_error\": [\n        -2,\n        \"Terminal: Invalid params\"\n      ],\n      \"requested\": 100000,\n      \"returned\": 0,\n      \"timeframe\": \"M5\"\n    },\n    {\n      \"last_error\": [\n        -2,\n        \"Terminal: Invalid params\"\n      ],\n      \"requested\": 300000,\n      \"returned\": 0,\n      \"timeframe\": \"M5\"\n    },\n    {\n      \"last_error\": [\n        -2,\n        \"Terminal: Invalid params\"\n      ],\n      \"requested\": 600000,\n      \"returned\": 0,\n      \"timeframe\": \"M5\"\n    }\n  ],\n  \"protected_2026_untouched\": true,\n  \"schema\": 1,\n  \"server\": \"FundedNext-Server 2\",\n  \"status\": \"PASS\",\n  \"symbol\": \"XAUUSD\",\n  \"terminal_maxbars\": 100000,\n  \"terminal_path\": \"D:\\\\MT5_FundedNext\",\n  \"terminal_pid\": 11312\n}"
+}
