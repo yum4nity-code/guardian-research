@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_c_summary.json",
+      "sha256": "2d472c2e5cb7a6fb25f81d930cff6242638ef62822d65fe6138903fb57a80c19",
+      "size_bytes": 997
+    },
+    {
+      "name": "phase_c_all_candidates.csv",
+      "sha256": "79eba27c03d085deae1281a6232433323c206063f215b4ca8960a342e698fe2b",
+      "size_bytes": 29254
+    },
+    {
+      "name": "phase_c_distinct_passes.csv",
+      "sha256": "9a1ed845fed55b586a6815a6042de06ad5da61641369e25e36eb269c23b9c67a",
+      "size_bytes": 7743
+    },
+    {
+      "name": "phase_c_dedup_clusters.csv",
+      "sha256": "519473d2781e8afe1625dd292294aba4a6d4c1fdc30d320ce6e03d9a46a1ce64",
+      "size_bytes": 3678
+    }
+  ],
+  "generated_at_utc": "2026-09-08T10:17:52.706226+00:00",
+  "phase": "phase-c-stability",
+  "schema": 1,
+  "source_commit": "50ed2d03c5971ae6c820977b4e72157a46dece1d",
+  "status": "PASS",
+  "summary": "Phase C robustness screen completed: deduplication, 2025 quarter stability, local quantile plateaus and multiple-testing correction. 2026 untouched."
+}

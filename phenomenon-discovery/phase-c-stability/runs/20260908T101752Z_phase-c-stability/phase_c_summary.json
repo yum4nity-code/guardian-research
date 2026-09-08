@@ -1,0 +1,30 @@
+{
+  "dedup_clusters": 32,
+  "gates": {
+    "bh_q_max": 0.1,
+    "bootstrap_paths": 3000,
+    "circular_block_days": 5,
+    "dedup_jaccard_both_symbols": 0.98,
+    "multiple_testing": "Benjamini-Hochberg on worst(BTC p, ETH p) across all 75 Phase-B candidates",
+    "plateau_match_rate_min": 0.5,
+    "plateau_min_eligible_neighbours": 2,
+    "quarter_match_rate_min": 0.75,
+    "quarter_min_eligible_blocks": 6,
+    "quarter_min_n": 50
+  },
+  "independent_validation": false,
+  "near_duplicate_pairs": 6,
+  "passes_by_outcome": {
+    "direction_1h_atr": 0,
+    "move_ge_1atr_1h": 18,
+    "up_first_1atr_1h": 0
+  },
+  "phase": "C",
+  "phase_b_candidates_tested": 75,
+  "phase_b_survivors": 38,
+  "phase_c_distinct_pass_count": 18,
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "DISCOVERY_ROBUSTNESS_ONLY",
+  "warning": "Phase C uses already inspected 2024-2025 data. Passing is not validation. Freeze final candidates before opening any 2026 data."
+}

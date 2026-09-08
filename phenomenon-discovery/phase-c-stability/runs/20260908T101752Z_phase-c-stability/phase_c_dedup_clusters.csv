@@ -1,0 +1,33 @@
+cluster,outcome,representative_state,member_count,members
+C01,direction_1h_atr,atr_slope_3bar_pct=Q5 & oi_change_1h_pct=Q2,1,atr_slope_3bar_pct=Q5 & oi_change_1h_pct=Q2
+C02,direction_1h_atr,price_change_5m_pct=Q2 & range_atr=Q5,2,price_change_5m_pct=Q2 & range_atr=Q5 || atr_slope_1bar_pct=Q5 & price_change_5m_pct=Q2
+C03,direction_1h_atr,rsi14=Q3 & price_change_1h_pct=Q5,1,rsi14=Q3 & price_change_1h_pct=Q5
+C04,direction_1h_atr,rsi14=Q2 & atr_slope_3bar_pct=Q5,1,rsi14=Q2 & atr_slope_3bar_pct=Q5
+C05,direction_1h_atr,atr_slope_3bar_pct=Q2 & oi_change_15m_pct=Q1,1,atr_slope_3bar_pct=Q2 & oi_change_15m_pct=Q1
+C06,move_ge_1atr_1h,atr_slope_1bar_pct=Q1 & price_change_5m_pct=Q5,2,atr_slope_1bar_pct=Q1 & price_change_5m_pct=Q5 || price_change_5m_pct=Q5 & range_atr=Q1
+C07,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & price_change_15m_pct=Q5,1,atr_slope_3bar_pct=Q1 & price_change_15m_pct=Q5
+C08,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & price_change_5m_pct=Q5,1,atr_slope_3bar_pct=Q1 & price_change_5m_pct=Q5
+C09,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & price_change_1h_pct=Q5,1,atr_slope_3bar_pct=Q1 & price_change_1h_pct=Q5
+C10,move_ge_1atr_1h,rsi14=Q1 & price_change_15m_pct=Q5,1,rsi14=Q1 & price_change_15m_pct=Q5
+C11,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & oi_change_1h_pct=Q1,1,atr_slope_3bar_pct=Q1 & oi_change_1h_pct=Q1
+C12,move_ge_1atr_1h,atr_slope_1bar_pct=Q1 & price_change_15m_pct=Q5,2,atr_slope_1bar_pct=Q1 & price_change_15m_pct=Q5 || price_change_15m_pct=Q5 & range_atr=Q1
+C13,move_ge_1atr_1h,rsi14=Q2 & price_change_1h_pct=Q5,1,rsi14=Q2 & price_change_1h_pct=Q5
+C14,move_ge_1atr_1h,price_change_15m_pct=Q5 & price_change_1h_pct=Q1,1,price_change_15m_pct=Q5 & price_change_1h_pct=Q1
+C15,move_ge_1atr_1h,atr_slope_1bar_pct=Q1 & price_change_1h_pct=Q5,2,atr_slope_1bar_pct=Q1 & price_change_1h_pct=Q5 || price_change_1h_pct=Q5 & range_atr=Q1
+C16,move_ge_1atr_1h,rsi14=Q3 & price_change_1h_pct=Q5,1,rsi14=Q3 & price_change_1h_pct=Q5
+C17,move_ge_1atr_1h,atr_slope_1bar_pct=Q1 & oi_change_1h_pct=Q1,2,atr_slope_1bar_pct=Q1 & oi_change_1h_pct=Q1 || oi_change_1h_pct=Q1 & range_atr=Q1
+C18,move_ge_1atr_1h,rsi14=Q4 & price_change_1h_pct=Q5,1,rsi14=Q4 & price_change_1h_pct=Q5
+C19,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & oi_accel_5m_pctpt=Q5,1,atr_slope_3bar_pct=Q1 & oi_accel_5m_pctpt=Q5
+C20,move_ge_1atr_1h,rsi14=Q4 & oi_change_1h_pct=Q1,1,rsi14=Q4 & oi_change_1h_pct=Q1
+C21,move_ge_1atr_1h,price_change_5m_pct=Q4 & body_atr=Q3,1,price_change_5m_pct=Q4 & body_atr=Q3
+C22,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & oi_accel_15m_pctpt=Q5,1,atr_slope_3bar_pct=Q1 & oi_accel_15m_pctpt=Q5
+C23,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & oi_change_5m_pct=Q1,1,atr_slope_3bar_pct=Q1 & oi_change_5m_pct=Q1
+C24,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & oi_change_5m_pct=Q5,1,atr_slope_3bar_pct=Q1 & oi_change_5m_pct=Q5
+C25,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & oi_change_15m_pct=Q1,1,atr_slope_3bar_pct=Q1 & oi_change_15m_pct=Q1
+C26,move_ge_1atr_1h,atr_slope_3bar_pct=Q1 & oi_accel_5m_pctpt=Q1,1,atr_slope_3bar_pct=Q1 & oi_accel_5m_pctpt=Q1
+C27,up_first_1atr_1h,price_change_15m_pct=Q5 & price_change_1h_pct=Q1,1,price_change_15m_pct=Q5 & price_change_1h_pct=Q1
+C28,up_first_1atr_1h,price_change_5m_pct=Q4 & price_change_1h_pct=Q5,1,price_change_5m_pct=Q4 & price_change_1h_pct=Q5
+C29,up_first_1atr_1h,rsi14=Q2 & atr_slope_3bar_pct=Q5,1,rsi14=Q2 & atr_slope_3bar_pct=Q5
+C30,up_first_1atr_1h,rsi14=Q2 & range_atr=Q5,2,rsi14=Q2 & range_atr=Q5 || rsi14=Q2 & atr_slope_1bar_pct=Q5
+C31,up_first_1atr_1h,rsi14=Q3 & price_change_1h_pct=Q1,1,rsi14=Q3 & price_change_1h_pct=Q1
+C32,up_first_1atr_1h,oi_accel_5m_pctpt=Q2 & body_atr=Q5,1,oi_accel_5m_pctpt=Q2 & body_atr=Q5
