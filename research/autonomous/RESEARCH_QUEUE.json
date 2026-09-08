@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 8,
+  "generation": 9,
   "updated_at": "2026-09-08",
   "mode": "AUTONOMOUS_SCIENTIFIC_RESEARCH",
   "human_approved_2026": false,
@@ -52,11 +52,19 @@
     },
     {
       "id":"PHASE-IB-HCC-RECOVERY","revision":1,"enabled":true,"priority":5,"class_key":"xau-hcc-data-recovery",
-      "description":"Infrastructure-only recovery after bar/tick access failures: read exactly the canonical FundedNext-Server 2 XAUUSD 2024.hcc and 2025.hcc M1 files already proven present, derive M5 deterministically, apply the frozen Phase I-A +/-5m news mask, and run the existing I-B integrity gate. No 2026 file may be opened.",
+      "description":"Historical failed infrastructure attempt retained immutably: exact HCC recovery logic was valid but external hcc-reader package was unavailable from the local pip index.",
       "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
       "requires":[{"kind":"receipt","job_id":"PHASE-IB-MT5-LOCAL-HISTORY-FILES-PROBE","revision":1,"accepted_status":["PASS"]}],
       "executor":{"kind":"python","path":"research/autonomous/phase_ib_hcc_recovery_v1_00.py","args":["--ia-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ia_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--deploy","{DEPLOY}","--policy","{DEPLOY}\\research\\autonomous\\phase_ib_hcc_recovery_policy_v1.json","--progress-file","{ROOT}\\progress\\PHASE-IB-HCC-RECOVERY.json"]},
       "timeout":{"min_seconds":900,"expected_seconds":1800,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":600,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IB-HCC-RECOVERY.json"}
+    },
+    {
+      "id":"PHASE-IB-HCC-RECOVERY","revision":2,"enabled":true,"priority":5,"class_key":"xau-hcc-data-recovery",
+      "description":"Second deterministic infrastructure repair: same preregistered exact 2024/2025 canonical HCC recovery, now using a self-contained read-only parser rather than an unavailable external package. Scientific hypothesis and news mask unchanged; 2026 forbidden.",
+      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
+      "requires":[{"kind":"receipt","job_id":"PHASE-IB-HCC-RECOVERY","revision":1,"accepted_status":["FAIL"]}],
+      "executor":{"kind":"python","path":"research/autonomous/phase_ib_hcc_recovery_v1_01.py","args":["--ia-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ia_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--deploy","{DEPLOY}","--policy","{DEPLOY}\\research\\autonomous\\phase_ib_hcc_recovery_policy_v1.json","--progress-file","{ROOT}\\progress\\PHASE-IB-HCC-RECOVERY-R2.json"]},
+      "timeout":{"min_seconds":1200,"expected_seconds":2400,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IB-HCC-RECOVERY-R2.json"}
     },
     {
       "id":"PHASE-IB-PASS-GATE","revision":4,"enabled":true,"priority":6,"class_key":"scientific-gate",
@@ -67,9 +75,16 @@
     },
     {
       "id":"PHASE-IB-PASS-GATE","revision":5,"enabled":true,"priority":6,"class_key":"scientific-gate",
-      "description":"Advance only after preregistered canonical HCC Phase I-B recovery passes and canonical Phase I-B publication is PASS.",
+      "description":"Historical preregistered gate retained immutably; tied to HCC recovery r1.",
       "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
       "requires":[{"kind":"receipt","job_id":"PHASE-IB-HCC-RECOVERY","revision":1,"accepted_status":["PASS"]},{"kind":"github_result","ref":"origin/backtest-results","path":"phenomenon-discovery/phase-ib-xau-dataset/LATEST.json","accepted_status":["PASS"]}],
+      "executor":{"kind":"noop"}
+    },
+    {
+      "id":"PHASE-IB-PASS-GATE","revision":6,"enabled":true,"priority":6,"class_key":"scientific-gate",
+      "description":"Advance only after self-contained canonical HCC recovery r2 passes and canonical Phase I-B publication is PASS.",
+      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
+      "requires":[{"kind":"receipt","job_id":"PHASE-IB-HCC-RECOVERY","revision":2,"accepted_status":["PASS"]},{"kind":"github_result","ref":"origin/backtest-results","path":"phenomenon-discovery/phase-ib-xau-dataset/LATEST.json","accepted_status":["PASS"]}],
       "executor":{"kind":"noop"}
     },
     {
@@ -82,11 +97,19 @@
     },
     {
       "id":"PHASE-IC-XAU-PHENOMENON-ATLAS","revision":5,"enabled":true,"priority":7,"class_key":"xau-phenomenon-atlas",
-      "description":"Run frozen Phase I-C XAUUSD M5 phenomenon atlas on validated HCC-recovered I-B news-clean 2024/2025 data. 2024 discovery, 2025 confirmation; no PnL optimization; no 2026.",
+      "description":"Historical preregistered Phase I-C path retained immutably; tied to I-B gate r5.",
       "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
       "requires":[{"kind":"receipt","job_id":"PHASE-IB-PASS-GATE","revision":5,"accepted_status":["PASS"]}],
       "executor":{"kind":"python","path":"research/autonomous/phase_ic_xau_phenomenon_atlas_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ic_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_policy_v1.json","--progress-file","{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
       "timeout":{"min_seconds":600,"expected_seconds":1200,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS.json"}
+    },
+    {
+      "id":"PHASE-IC-XAU-PHENOMENON-ATLAS","revision":6,"enabled":true,"priority":7,"class_key":"xau-phenomenon-atlas",
+      "description":"Run frozen Phase I-C XAUUSD M5 phenomenon atlas only after I-B gate r6 validates the self-contained canonical HCC recovery. 2024 discovery, 2025 confirmation; no PnL optimization; no 2026.",
+      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
+      "requires":[{"kind":"receipt","job_id":"PHASE-IB-PASS-GATE","revision":6,"accepted_status":["PASS"]}],
+      "executor":{"kind":"python","path":"research/autonomous/phase_ic_xau_phenomenon_atlas_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ic_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_policy_v1.json","--progress-file","{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS-R6.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
+      "timeout":{"min_seconds":600,"expected_seconds":1200,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS-R6.json"}
     }
   ]
 }
