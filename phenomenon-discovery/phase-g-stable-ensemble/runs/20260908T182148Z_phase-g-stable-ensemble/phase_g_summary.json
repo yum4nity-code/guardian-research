@@ -1,0 +1,76 @@
+{
+  "feature_count": 36,
+  "features": [
+    "rsi14",
+    "atr_slope_3bar_pct",
+    "price_change_5m_pct",
+    "price_change_15m_pct",
+    "price_change_1h_pct",
+    "oi_change_5m_pct",
+    "oi_change_15m_pct",
+    "oi_change_1h_pct",
+    "oi_accel_5m_pctpt",
+    "oi_accel_15m_pctpt",
+    "mark_index_bps",
+    "mark_index_bps_change_15m",
+    "mark_index_bps_change_1h",
+    "premium_index_close",
+    "premium_index_change_15m",
+    "premium_index_change_1h",
+    "funding_last_settled_rate",
+    "funding_delta_settlement",
+    "spot_taker_imbalance",
+    "perp_taker_imbalance",
+    "taker_imbalance_diff",
+    "perp_spot_basis_bps",
+    "log_quote_volume_ratio",
+    "log_trade_count_ratio",
+    "spot_taker_imbalance_change_15m",
+    "spot_taker_imbalance_change_1h",
+    "perp_taker_imbalance_change_15m",
+    "perp_taker_imbalance_change_1h",
+    "taker_imbalance_diff_change_15m",
+    "taker_imbalance_diff_change_1h",
+    "perp_spot_basis_bps_change_15m",
+    "perp_spot_basis_bps_change_1h",
+    "log_quote_volume_ratio_change_15m",
+    "log_quote_volume_ratio_change_1h",
+    "log_trade_count_ratio_change_15m",
+    "log_trade_count_ratio_change_1h"
+  ],
+  "frozen_model_sha256": "72984b888b74320b76e336c214d593fda1fdf0616abdba697dc0be44a711ab8a",
+  "gates": {
+    "bh_q_max": 0.1,
+    "bootstrap_paths": 3000,
+    "circular_block_days": 5,
+    "confirmation_effect_retention_fraction": 0.25,
+    "quarter_match_rate_min": 0.75,
+    "quarter_min_eligible_blocks": 6,
+    "tail_q": 0.1
+  },
+  "hypotheses_tested": 4,
+  "independent_validation": false,
+  "method": "equal-weight vote of feature/quintile signs stable across BTC+ETH and both 2024 halves; frozen before 2025 read",
+  "outcomes": {
+    "direction_1h_atr": {
+      "score_high_tail_cut": 4.0,
+      "score_low_tail_cut": -4.0,
+      "stable_contribution_count": 33
+    },
+    "up_first_1atr_1h": {
+      "score_high_tail_cut": 5.0,
+      "score_low_tail_cut": -3.0,
+      "stable_contribution_count": 36
+    }
+  },
+  "passes_by_outcome": {
+    "direction_1h_atr": 0,
+    "up_first_1atr_1h": 0
+  },
+  "phase": "G",
+  "phase_g_screen_pass_count": 0,
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "DISCOVERY_ROBUSTNESS_ONLY",
+  "warning": "Phase G still uses inspected 2024-2025 history. Any pass must be frozen again before opening 2026. No PnL claim is authorized."
+}

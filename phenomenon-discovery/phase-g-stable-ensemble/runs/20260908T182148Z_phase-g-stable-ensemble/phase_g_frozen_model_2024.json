@@ -1,0 +1,658 @@
+{
+  "cuts_2024_by_symbol": {
+    "BTCUSDT": {
+      "atr_slope_3bar_pct": [
+        -6.1046176364,
+        -3.2729449675,
+        -0.1477572674,
+        5.0013319147
+      ],
+      "funding_delta_settlement": [
+        -3.284e-05,
+        0.0,
+        0.0,
+        3.294000000000002e-05
+      ],
+      "funding_last_settled_rate": [
+        2.833e-05,
+        0.00010000000000000002,
+        0.00010000000000000002,
+        0.0001
+      ],
+      "log_quote_volume_ratio": [
+        1.6348818688997566,
+        1.8984510822029843,
+        2.1154361715155066,
+        2.359127486458595
+      ],
+      "log_quote_volume_ratio_change_15m": [
+        -0.3979251136262716,
+        -0.12232795087579826,
+        0.11475668274224757,
+        0.3991650044810075
+      ],
+      "log_quote_volume_ratio_change_1h": [
+        -0.42446226383603536,
+        -0.12908047529417196,
+        0.12303261005924555,
+        0.42438690621173486
+      ],
+      "log_trade_count_ratio": [
+        -0.18419377899155642,
+        0.2750713323590484,
+        0.6093203985675402,
+        0.8611987765719629
+      ],
+      "log_trade_count_ratio_change_15m": [
+        -0.2581349572808494,
+        -0.0799284485362413,
+        0.06936031885772852,
+        0.25643133599226425
+      ],
+      "log_trade_count_ratio_change_1h": [
+        -0.28716231733214104,
+        -0.088498726622042,
+        0.08203383058271119,
+        0.2885074569473991
+      ],
+      "mark_index_bps": [
+        -4.651693120176992,
+        -3.5517477443451906,
+        -0.12211523184735285,
+        5.126863336823998
+      ],
+      "mark_index_bps_change_15m": [
+        -0.7213076140288877,
+        -0.20853910153384447,
+        0.20309173940025183,
+        0.7199143800429297
+      ],
+      "mark_index_bps_change_1h": [
+        -1.0024076346124566,
+        -0.28874482694174475,
+        0.2835686763218435,
+        1.0037682465584568
+      ],
+      "oi_accel_15m_pctpt": [
+        -0.27310494658,
+        -0.06823141443999996,
+        0.06170465835999996,
+        0.26320131370000033
+      ],
+      "oi_accel_5m_pctpt": [
+        -0.12754124102,
+        -0.02992783602,
+        0.02680423126,
+        0.12264781038000001
+      ],
+      "oi_change_15m_pct": [
+        -0.16939996172,
+        -0.027919109919999983,
+        0.05634502599999998,
+        0.19060053822000006
+      ],
+      "oi_change_1h_pct": [
+        -0.43553539109999995,
+        -0.08134321538,
+        0.14223548285999996,
+        0.47051577716000015
+      ],
+      "oi_change_5m_pct": [
+        -0.07525243603999994,
+        -0.010807618179999992,
+        0.025600654799999997,
+        0.08962913856000002
+      ],
+      "perp_spot_basis_bps": [
+        -4.722592430475014,
+        -3.598028155730182,
+        -0.8217326414030617,
+        5.785039457407937
+      ],
+      "perp_spot_basis_bps_change_15m": [
+        -0.8997700145707554,
+        -0.268720650991927,
+        0.2661492726214742,
+        0.8918307379837124
+      ],
+      "perp_spot_basis_bps_change_1h": [
+        -1.0441319809579848,
+        -0.31307228605848,
+        0.30644702584958766,
+        1.029531821867824
+      ],
+      "perp_taker_imbalance": [
+        -0.21622736010399196,
+        -0.07510629400812172,
+        0.05359147088269327,
+        0.19682800712660864
+      ],
+      "perp_taker_imbalance_change_15m": [
+        -0.2806518536550078,
+        -0.08293996304609748,
+        0.08420697359292968,
+        0.2778274016578974
+      ],
+      "perp_taker_imbalance_change_1h": [
+        -0.28077763092883345,
+        -0.0827081863200015,
+        0.08379300165966805,
+        0.2792204297738453
+      ],
+      "premium_index_change_15m": [
+        -9.965000000000001e-05,
+        -2.796999999999999e-05,
+        2.758000000000003e-05,
+        9.943999999999998e-05
+      ],
+      "premium_index_change_1h": [
+        -0.00012204000000000002,
+        -3.4646000000000014e-05,
+        3.4389999999999974e-05,
+        0.00012186999999999998
+      ],
+      "premium_index_close": [
+        -0.00048170399999999995,
+        -0.0003612359999999999,
+        -6.094000000000742e-06,
+        0.0005067840000000005
+      ],
+      "price_change_15m_pct": [
+        -0.15534970673999998,
+        -0.04155878479999999,
+        0.046330954599999995,
+        0.1635134880800001
+      ],
+      "price_change_1h_pct": [
+        -0.29362393917999996,
+        -0.07348147027999996,
+        0.09262331695999998,
+        0.32116745052000006
+      ],
+      "price_change_5m_pct": [
+        -0.09240313825999999,
+        -0.025208454039999995,
+        0.026848414199999997,
+        0.09587007250000001
+      ],
+      "rsi14": [
+        41.73263964674,
+        47.96471645682,
+        53.24603134348,
+        59.26673995774001
+      ],
+      "spot_taker_imbalance": [
+        -0.2456320239890204,
+        -0.08815011972504756,
+        0.04773912721269438,
+        0.20298756313355415
+      ],
+      "spot_taker_imbalance_change_15m": [
+        -0.29554212884943265,
+        -0.08698674186469549,
+        0.08816249302364844,
+        0.29443441432819273
+      ],
+      "spot_taker_imbalance_change_1h": [
+        -0.3022283571511011,
+        -0.08927676892059878,
+        0.09071899498848346,
+        0.301209769404847
+      ],
+      "taker_imbalance_diff": [
+        -0.16454635999391465,
+        -0.041430334909554445,
+        0.059705476230319264,
+        0.18788408353341998
+      ],
+      "taker_imbalance_diff_change_15m": [
+        -0.23654762577646443,
+        -0.06935981414281986,
+        0.0698077160050874,
+        0.2363596258110826
+      ],
+      "taker_imbalance_diff_change_1h": [
+        -0.24526776082557045,
+        -0.07242100461374829,
+        0.07223757151016699,
+        0.24552642133575397
+      ]
+    },
+    "ETHUSDT": {
+      "atr_slope_3bar_pct": [
+        -6.0011711881,
+        -3.2127568854,
+        -0.0703151274,
+        4.9847629022
+      ],
+      "funding_delta_settlement": [
+        -3.824e-05,
+        0.0,
+        0.0,
+        3.861000000000001e-05
+      ],
+      "funding_last_settled_rate": [
+        2.9e-05,
+        0.00010000000000000002,
+        0.00010000000000000002,
+        0.00010677
+      ],
+      "log_quote_volume_ratio": [
+        1.5873169737518977,
+        1.850195137094741,
+        2.064513165637116,
+        2.307650402917434
+      ],
+      "log_quote_volume_ratio_change_15m": [
+        -0.3948840129607402,
+        -0.11898920224814757,
+        0.11657972664606787,
+        0.39697657504085515
+      ],
+      "log_quote_volume_ratio_change_1h": [
+        -0.4249791470002322,
+        -0.12821684909566944,
+        0.12473183281130129,
+        0.42537804001414736
+      ],
+      "log_trade_count_ratio": [
+        0.34197793859837755,
+        0.7894526614477143,
+        1.0758929880546924,
+        1.3653904620143251
+      ],
+      "log_trade_count_ratio_change_15m": [
+        -0.22028671365176902,
+        -0.06503499864198144,
+        0.06391982536224769,
+        0.22089438032615366
+      ],
+      "log_trade_count_ratio_change_1h": [
+        -0.2459648308213517,
+        -0.07379948593718078,
+        0.071146309849852,
+        0.24548463344057234
+      ],
+      "mark_index_bps": [
+        -4.772013442644774,
+        -3.646416019579712,
+        -0.26918607355752755,
+        6.18903629267864
+      ],
+      "mark_index_bps_change_15m": [
+        -0.7168669656576476,
+        -0.21164157142705697,
+        0.20504216856176427,
+        0.727187404462315
+      ],
+      "mark_index_bps_change_1h": [
+        -0.9994444381411505,
+        -0.2817823435279365,
+        0.28559542413653105,
+        0.9886808092760547
+      ],
+      "oi_accel_15m_pctpt": [
+        -0.23749037659999997,
+        -0.05766454374,
+        0.056393223759999986,
+        0.23363882194000019
+      ],
+      "oi_accel_5m_pctpt": [
+        -0.10412899821999996,
+        -0.02344653341999999,
+        0.023129566659999993,
+        0.10241312084000001
+      ],
+      "oi_change_15m_pct": [
+        -0.1510057828,
+        -0.03140008839999998,
+        0.04071662211999998,
+        0.15932087306000015
+      ],
+      "oi_change_1h_pct": [
+        -0.39690594642,
+        -0.09120520171999998,
+        0.11265259107999998,
+        0.4168804230600003
+      ],
+      "oi_change_5m_pct": [
+        -0.06617117249999999,
+        -0.012599054339999997,
+        0.016359012999999988,
+        0.07023215982000003
+      ],
+      "perp_spot_basis_bps": [
+        -4.618466312739322,
+        -3.631975889515359,
+        -0.8806080151591044,
+        6.210818359737583
+      ],
+      "perp_spot_basis_bps_change_15m": [
+        -0.8836938453775645,
+        -0.2660555716968993,
+        0.26193777909289084,
+        0.8818742171030625
+      ],
+      "perp_spot_basis_bps_change_1h": [
+        -1.0280437279008847,
+        -0.3129763902769421,
+        0.29700196402471224,
+        1.009385983491652
+      ],
+      "perp_taker_imbalance": [
+        -0.20609208712500482,
+        -0.07227897965420875,
+        0.0494392912158349,
+        0.1867015165721888
+      ],
+      "perp_taker_imbalance_change_15m": [
+        -0.26525568578738346,
+        -0.07906556349585175,
+        0.07869164558558317,
+        0.2652789991664979
+      ],
+      "perp_taker_imbalance_change_1h": [
+        -0.2673879444951228,
+        -0.07939814029981732,
+        0.08069460530742158,
+        0.2649009989610009
+      ],
+      "premium_index_change_15m": [
+        -0.00010084999999999998,
+        -2.8180000000000018e-05,
+        2.8120000000000022e-05,
+        0.00010061
+      ],
+      "premium_index_change_1h": [
+        -0.00012277999999999996,
+        -3.4685999999999986e-05,
+        3.3465999999999974e-05,
+        0.00012257000000000001
+      ],
+      "premium_index_close": [
+        -0.00048092,
+        -0.0003558979999999999,
+        0.0,
+        0.0005948900000000004
+      ],
+      "price_change_15m_pct": [
+        -0.18991014186,
+        -0.050912643560000005,
+        0.056755346039999946,
+        0.19691871756
+      ],
+      "price_change_1h_pct": [
+        -0.3642059678,
+        -0.09255007341999998,
+        0.11346854403999995,
+        0.3838074672800007
+      ],
+      "price_change_5m_pct": [
+        -0.11202401771999998,
+        -0.03040992578,
+        0.033000878439999916,
+        0.11395878094000006
+      ],
+      "rsi14": [
+        41.502525394,
+        47.84484105908,
+        53.185474396020005,
+        59.14372752564
+      ],
+      "spot_taker_imbalance": [
+        -0.21609198725375772,
+        -0.0650263726631492,
+        0.06644518729699869,
+        0.218023886796805
+      ],
+      "spot_taker_imbalance_change_15m": [
+        -0.2818635985951386,
+        -0.08425032278730107,
+        0.08304366032420815,
+        0.282214081578543
+      ],
+      "spot_taker_imbalance_change_1h": [
+        -0.2920593005774423,
+        -0.08590523229177685,
+        0.08719390806897777,
+        0.2909275654319064
+      ],
+      "taker_imbalance_diff": [
+        -0.19170085879339083,
+        -0.06101188004139646,
+        0.04218074896508656,
+        0.16823642360471974
+      ],
+      "taker_imbalance_diff_change_15m": [
+        -0.24285667399405805,
+        -0.07084575752330545,
+        0.07089311881736984,
+        0.24351159677420256
+      ],
+      "taker_imbalance_diff_change_1h": [
+        -0.2510898692924477,
+        -0.0737901300498689,
+        0.07329733726011717,
+        0.2510917947169867
+      ]
+    }
+  },
+  "features": [
+    "rsi14",
+    "atr_slope_3bar_pct",
+    "price_change_5m_pct",
+    "price_change_15m_pct",
+    "price_change_1h_pct",
+    "oi_change_5m_pct",
+    "oi_change_15m_pct",
+    "oi_change_1h_pct",
+    "oi_accel_5m_pctpt",
+    "oi_accel_15m_pctpt",
+    "mark_index_bps",
+    "mark_index_bps_change_15m",
+    "mark_index_bps_change_1h",
+    "premium_index_close",
+    "premium_index_change_15m",
+    "premium_index_change_1h",
+    "funding_last_settled_rate",
+    "funding_delta_settlement",
+    "spot_taker_imbalance",
+    "perp_taker_imbalance",
+    "taker_imbalance_diff",
+    "perp_spot_basis_bps",
+    "log_quote_volume_ratio",
+    "log_trade_count_ratio",
+    "spot_taker_imbalance_change_15m",
+    "spot_taker_imbalance_change_1h",
+    "perp_taker_imbalance_change_15m",
+    "perp_taker_imbalance_change_1h",
+    "taker_imbalance_diff_change_15m",
+    "taker_imbalance_diff_change_1h",
+    "perp_spot_basis_bps_change_15m",
+    "perp_spot_basis_bps_change_1h",
+    "log_quote_volume_ratio_change_15m",
+    "log_quote_volume_ratio_change_1h",
+    "log_trade_count_ratio_change_15m",
+    "log_trade_count_ratio_change_1h"
+  ],
+  "method": "equal-weight vote of feature/quintile signs stable across BTC+ETH and both 2024 halves; frozen before 2025 read",
+  "outcomes": {
+    "direction_1h_atr": {
+      "discovery_hypotheses": [
+        {
+          "btcusdt_2024_effect": -0.10930779684782005,
+          "btcusdt_2024_h1_effect": -0.1168938035435015,
+          "btcusdt_2024_h1_n": 5447,
+          "btcusdt_2024_h2_effect": -0.10188077439663418,
+          "btcusdt_2024_h2_n": 5445,
+          "btcusdt_2024_n": 10892,
+          "discovery_eligible": true,
+          "discovery_worst_abs_effect": 0.10930779684782005,
+          "ethusdt_2024_effect": -0.10967309402735516,
+          "ethusdt_2024_h1_effect": -0.09355770194181445,
+          "ethusdt_2024_h1_n": 5720,
+          "ethusdt_2024_h2_effect": -0.12984164297673995,
+          "ethusdt_2024_h2_n": 5269,
+          "ethusdt_2024_n": 10989,
+          "expected_sign": -1,
+          "hypothesis": "direction_1h_atr|LOW",
+          "outcome": "direction_1h_atr",
+          "side": "LOW"
+        },
+        {
+          "btcusdt_2024_effect": 0.09642101717933174,
+          "btcusdt_2024_h1_effect": 0.11987070240958837,
+          "btcusdt_2024_h1_n": 8602,
+          "btcusdt_2024_h2_effect": 0.07867662332061715,
+          "btcusdt_2024_h2_n": 10195,
+          "btcusdt_2024_n": 18797,
+          "discovery_eligible": true,
+          "discovery_worst_abs_effect": 0.0953207172171622,
+          "ethusdt_2024_effect": 0.0953207172171622,
+          "ethusdt_2024_h1_effect": 0.11312044455473971,
+          "ethusdt_2024_h1_n": 8711,
+          "ethusdt_2024_h2_effect": 0.08249231006005628,
+          "ethusdt_2024_h2_n": 9856,
+          "ethusdt_2024_n": 18567,
+          "expected_sign": 1,
+          "hypothesis": "direction_1h_atr|HIGH",
+          "outcome": "direction_1h_atr",
+          "side": "HIGH"
+        }
+      ],
+      "score_high_tail_cut": 4.0,
+      "score_low_tail_cut": -4.0,
+      "stable_contribution_count": 33,
+      "stable_contributions": {
+        "atr_slope_3bar_pct=Q1": 1,
+        "atr_slope_3bar_pct=Q2": 1,
+        "atr_slope_3bar_pct=Q5": -1,
+        "log_quote_volume_ratio=Q5": -1,
+        "log_quote_volume_ratio_change_1h=Q1": 1,
+        "log_trade_count_ratio=Q1": 1,
+        "mark_index_bps_change_15m=Q2": 1,
+        "mark_index_bps_change_15m=Q5": -1,
+        "mark_index_bps_change_1h=Q1": 1,
+        "mark_index_bps_change_1h=Q5": -1,
+        "oi_accel_5m_pctpt=Q1": -1,
+        "oi_accel_5m_pctpt=Q4": 1,
+        "oi_change_5m_pct=Q2": 1,
+        "oi_change_5m_pct=Q3": 1,
+        "oi_change_5m_pct=Q5": -1,
+        "perp_taker_imbalance=Q4": -1,
+        "premium_index_change_15m=Q1": 1,
+        "premium_index_change_1h=Q1": 1,
+        "premium_index_change_1h=Q4": -1,
+        "premium_index_change_1h=Q5": -1,
+        "premium_index_close=Q1": 1,
+        "premium_index_close=Q2": -1,
+        "price_change_15m_pct=Q5": -1,
+        "price_change_5m_pct=Q2": 1,
+        "price_change_5m_pct=Q5": -1,
+        "rsi14=Q2": -1,
+        "rsi14=Q4": 1,
+        "rsi14=Q5": -1,
+        "spot_taker_imbalance=Q4": 1,
+        "spot_taker_imbalance_change_15m=Q3": 1,
+        "spot_taker_imbalance_change_1h=Q4": -1,
+        "taker_imbalance_diff=Q4": 1,
+        "taker_imbalance_diff_change_1h=Q5": 1
+      }
+    },
+    "up_first_1atr_1h": {
+      "discovery_hypotheses": [
+        {
+          "btcusdt_2024_effect": -0.018260379945679972,
+          "btcusdt_2024_h1_effect": -0.01951144178454356,
+          "btcusdt_2024_h1_n": 6218,
+          "btcusdt_2024_h2_effect": -0.016422811953126726,
+          "btcusdt_2024_h2_n": 5040,
+          "btcusdt_2024_n": 11258,
+          "discovery_eligible": true,
+          "discovery_worst_abs_effect": 0.018260379945679972,
+          "ethusdt_2024_effect": -0.022853071545736126,
+          "ethusdt_2024_h1_effect": -0.02193812044123078,
+          "ethusdt_2024_h1_n": 7248,
+          "ethusdt_2024_h2_effect": -0.023977723169945897,
+          "ethusdt_2024_h2_n": 5596,
+          "ethusdt_2024_n": 12844,
+          "expected_sign": -1,
+          "hypothesis": "up_first_1atr_1h|LOW",
+          "outcome": "up_first_1atr_1h",
+          "side": "LOW"
+        },
+        {
+          "btcusdt_2024_effect": 0.02179398142255834,
+          "btcusdt_2024_h1_effect": 0.02427485470265539,
+          "btcusdt_2024_h1_n": 6254,
+          "btcusdt_2024_h2_effect": 0.01958950990771091,
+          "btcusdt_2024_h2_n": 7849,
+          "btcusdt_2024_n": 14103,
+          "discovery_eligible": true,
+          "discovery_worst_abs_effect": 0.02068357878976368,
+          "ethusdt_2024_effect": 0.02068357878976368,
+          "ethusdt_2024_h1_effect": 0.01837554647553513,
+          "ethusdt_2024_h1_n": 7123,
+          "ethusdt_2024_h2_effect": 0.022569539868834365,
+          "ethusdt_2024_h2_n": 8575,
+          "ethusdt_2024_n": 15698,
+          "expected_sign": 1,
+          "hypothesis": "up_first_1atr_1h|HIGH",
+          "outcome": "up_first_1atr_1h",
+          "side": "HIGH"
+        }
+      ],
+      "score_high_tail_cut": 5.0,
+      "score_low_tail_cut": -3.0,
+      "stable_contribution_count": 36,
+      "stable_contributions": {
+        "log_quote_volume_ratio_change_15m=Q2": 1,
+        "log_quote_volume_ratio_change_1h=Q1": 1,
+        "log_quote_volume_ratio_change_1h=Q2": -1,
+        "log_trade_count_ratio_change_15m=Q1": 1,
+        "log_trade_count_ratio_change_1h=Q2": -1,
+        "mark_index_bps=Q1": 1,
+        "mark_index_bps_change_15m=Q1": 1,
+        "mark_index_bps_change_15m=Q4": -1,
+        "mark_index_bps_change_15m=Q5": -1,
+        "mark_index_bps_change_1h=Q1": 1,
+        "mark_index_bps_change_1h=Q5": -1,
+        "oi_change_15m_pct=Q1": 1,
+        "oi_change_15m_pct=Q5": -1,
+        "oi_change_1h_pct=Q1": 1,
+        "oi_change_5m_pct=Q1": 1,
+        "oi_change_5m_pct=Q2": 1,
+        "oi_change_5m_pct=Q5": -1,
+        "perp_spot_basis_bps_change_15m=Q2": -1,
+        "perp_spot_basis_bps_change_1h=Q5": -1,
+        "perp_taker_imbalance_change_15m=Q1": 1,
+        "premium_index_change_15m=Q3": 1,
+        "premium_index_change_1h=Q2": 1,
+        "premium_index_change_1h=Q5": -1,
+        "premium_index_close=Q1": 1,
+        "price_change_15m_pct=Q2": 1,
+        "price_change_15m_pct=Q3": -1,
+        "price_change_1h_pct=Q1": 1,
+        "price_change_1h_pct=Q5": -1,
+        "price_change_5m_pct=Q1": -1,
+        "price_change_5m_pct=Q3": -1,
+        "price_change_5m_pct=Q5": 1,
+        "rsi14=Q1": 1,
+        "rsi14=Q3": 1,
+        "taker_imbalance_diff=Q4": 1,
+        "taker_imbalance_diff=Q5": 1,
+        "taker_imbalance_diff_change_15m=Q3": -1
+      }
+    }
+  },
+  "phase": "G",
+  "protected_2026_untouched": true,
+  "quintile_probs": [
+    0.2,
+    0.4,
+    0.6,
+    0.8
+  ],
+  "schema": 1,
+  "tail_q": 0.1
+}

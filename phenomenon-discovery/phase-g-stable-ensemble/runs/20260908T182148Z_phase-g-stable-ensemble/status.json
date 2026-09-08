@@ -1,0 +1,35 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_g_summary.json",
+      "sha256": "8f4e78e7d75b353e7a5b687a2300b681f72aed551c8a1259ce7b26faa437e3a3",
+      "size_bytes": 2434
+    },
+    {
+      "name": "phase_g_frozen_model_2024.json",
+      "sha256": "72984b888b74320b76e336c214d593fda1fdf0616abdba697dc0be44a711ab8a",
+      "size_bytes": 19862
+    },
+    {
+      "name": "phase_g_2024_contribution_audit.csv",
+      "sha256": "8497c10803320e4bdd9548e9d06f47614e2e2d65416607d5431b214f57dc2cfc",
+      "size_bytes": 77356
+    },
+    {
+      "name": "phase_g_2025_confirmation.csv",
+      "sha256": "1eb606e1791f66e79fe6605504a4bbda9a7bc264a779ccfbb611178ed30a75fb",
+      "size_bytes": 3364
+    },
+    {
+      "name": "phase_g_distinct_passes.csv",
+      "sha256": "a27ba7fc392871af8034a78f43206b59472e601bc8ad64f357f1a57b41753933",
+      "size_bytes": 12
+    }
+  ],
+  "generated_at_utc": "2026-09-08T18:21:48.654783+00:00",
+  "phase": "phase-g-stable-ensemble",
+  "schema": 1,
+  "source_commit": "a26a37102a560cf50a49b26b8dadaee98e2c410d",
+  "status": "PASS",
+  "summary": "Phase G stable-marginal ensemble completed. Model learned from 2024 only and frozen before 2025 read; 2025 confirmation executed; 2026 untouched; no PnL optimization."
+}
