@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IB-HCC-RECOVERY__r1.json",
+  "main_commit": "fae8ead2c9ccd99e091a21dec0cc756c2a0aaf55",
+  "pid": 4032,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-08T22:49:44.868201+00:00",
+  "version": "1.00"
+}

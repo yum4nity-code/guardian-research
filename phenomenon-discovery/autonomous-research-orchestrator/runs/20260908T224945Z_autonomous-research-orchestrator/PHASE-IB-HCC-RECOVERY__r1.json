@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 4500.0,
+  "class_key": "xau-hcc-data-recovery",
+  "duration_seconds": 5.0331632000161335,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-08T22:49:44.865031+00:00",
+  "job_id": "PHASE-IB-HCC-RECOVERY",
+  "main_commit": "fae8ead2c9ccd99e091a21dec0cc756c2a0aaf55",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-08T22:49:39.719150+00:00",
+  "status": "FAIL",
+  "stderr_tail": "PHASE I-B HCC RECOVERY FAIL: hcc-reader install failed rc=1: ERROR: Could not find a version that satisfies the requirement hcc-reader (from versions: none)\nERROR: No matching distribution found for hcc-reader\nTraceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_hcc_recovery_v1_00.py\", line 47, in ensure_hcc_reader\n    from hcc_reader import read_hcc  # type: ignore\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'hcc_reader'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_hcc_recovery_v1_00.py\", line 329, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_hcc_recovery_v1_00.py\", line 243, in main\n    read_hcc = ensure_hcc_reader()\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_hcc_recovery_v1_00.py\", line 52, in ensure_hcc_reader\n    raise RuntimeError(f\"hcc-reader install failed rc={cp.returncode}: {cp.stderr.strip() or cp.stdout.strip()}\")\nRuntimeError: hcc-reader install failed rc=1: ERROR: Could not find a version that satisfies the requirement hcc-reader (from versions: none)\nERROR: No matching distribution found for hcc-reader",
+  "stdout_tail": ""
+}
