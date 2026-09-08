@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IB-AUTO-PYTHON-EXTRACT__r1.json",
+  "main_commit": "01908d171adf33be81f9cd0c4d806752a733fe5d",
+  "pid": 4032,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-08T20:47:07.046167+00:00",
+  "version": "1.00"
+}

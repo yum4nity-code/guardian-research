@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 6000.0,
+  "class_key": "xau-mt5-data-extract",
+  "duration_seconds": 15.004148899985012,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-08T20:47:07.009525+00:00",
+  "job_id": "PHASE-IB-AUTO-PYTHON-EXTRACT",
+  "main_commit": "01908d171adf33be81f9cd0c4d806752a733fe5d",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-08T20:46:51.973003+00:00",
+  "status": "FAIL",
+  "stderr_tail": "PHASE I-B AUTO FAIL: empty M1 export\nTraceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_mt5_python_extract_v1_00.py\", line 337, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_mt5_python_extract_v1_00.py\", line 302, in main\n    m1 = export_timeframe(mt5, symbol, \"M1\", mt5.TIMEFRAME_M1, raw_m1, offset_seconds, progress_path)\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_mt5_python_extract_v1_00.py\", line 195, in export_timeframe\n    raise RuntimeError(f\"empty {tf_name} export\")\nRuntimeError: empty M1 export",
+  "stdout_tail": ""
+}
