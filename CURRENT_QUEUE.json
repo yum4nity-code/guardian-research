@@ -1,23 +1,15 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-06T17:05:00+02:00",
-  "active_primary": "D036-DONCHIAN-TREND-BREAKOUT-H1-V0",
+  "updated_at": "2026-09-08",
+  "active_primary": null,
   "items": [
     {
-      "id": "D036-DONCHIAN-TREND-BREAKOUT-H1-V0",
+      "id": "NEXT-INDEPENDENT-ALPHA-FAMILY",
       "priority": 0,
       "status": "READY",
-      "owner": "ChatGPT/User",
-      "type": "scientific_hypothesis_preregistered",
-      "goal": "Run the frozen D036 H1 Donchian/Turtle-inspired V0. Preregistration, MT5 no-order harness v1.00 and scorer v1.01 are committed. First local gate is MetaEditor 0/0 then March-2025 smoke on USDJPY, XAUUSD and BTCUSD. Only after smoke PASS may the six-symbol 2024-2025 development sample be opened. 2026-H1 remains untouched confirmation."
-    },
-    {
-      "id": "AUTOSYNC-GENERIC-V201",
-      "priority": 0,
-      "status": "READY",
-      "owner": "ChatGPT/User",
-      "type": "research_output_transport",
-      "goal": "Install Generic PUBLICSAFE AutoSync v2.01 once. It supersedes the D023-specific v1.04 watcher and should remain resident/autostart for future Dxxx STATS/TRADES pairs. First local install requires one health check; normal later backtests require no -Once command."
+      "owner": "ChatGPT/Codex",
+      "type": "scientific_hypothesis_selection",
+      "goal": "Select and preregister a genuinely independent next alpha family. Do not rescue D053/D054 or other inspected/rejected families. Before any protected confirmation/OOS result is opened, create the frozen Challenge pipeline policy and Challenge-ready export contract for that campaign."
     },
     {
       "id": "FUNDEDNEXT-FREE-TRIAL-EA-OPTION-AWARE-FIX",
@@ -28,8 +20,16 @@
       "goal": "FundedNext Algo Trading remains OFF until request-budget/retry pathology is bounded. Keep separate from alpha research."
     },
     {
-      "id": "DERIBIT-0DTE-OI-OBSERVER-V1",
+      "id": "CHALLENGE-PROBABILITY-LAB-PIPELINE-V101",
       "priority": 2,
+      "status": "VALIDATED",
+      "owner": "ChatGPT",
+      "type": "post_validation_research_infrastructure",
+      "goal": "Preserve Challenge Probability Lab v1.00 plus preregistered post-validation pipeline v1.01. Canonical flow: frozen scorer JSON + preregistered policy + canonical challenge_day/adverse_r trades + pinned challenge profile -> fail-closed eligibility -> 20k-path risk-grid Lab only if alpha/OOS gates passed."
+    },
+    {
+      "id": "DERIBIT-0DTE-OI-OBSERVER-V1",
+      "priority": 3,
       "status": "WAITING_CODEX",
       "owner": "Codex",
       "type": "read_only_forward_research_infrastructure",
@@ -44,8 +44,32 @@
       "goal": "Preserve validated Bybit+Binance read-only collection and timestamped archive accumulation."
     },
     {
-      "id": "D025-LIQUIDITY-EXHAUSTION-RECLAIM",
+      "id": "D053-US-INDEX-ORB30-ENTRY-ALPHA-V0",
       "priority": 8,
+      "status": "REJECTED",
+      "owner": "Codex/ChatGPT",
+      "type": "closed_scientific_hypothesis",
+      "goal": "Formal verdict D053_REJECT_V0. Descriptive post-verdict audit does not authorize same-sample rescue."
+    },
+    {
+      "id": "D054-ORB30-CORE3-JUL-AUG2026-CONFIRMATION-V0",
+      "priority": 8,
+      "status": "REJECTED",
+      "owner": "Codex/ChatGPT",
+      "type": "closed_unconfirmed_hypothesis",
+      "goal": "Closed with D054_UNCONFIRMED_CLOSE. Preserve evidence; do not promote or tune on inspected confirmation data."
+    },
+    {
+      "id": "D036-DONCHIAN-TREND-BREAKOUT-H1-V0",
+      "priority": 9,
+      "status": "REJECTED",
+      "owner": "ChatGPT/User",
+      "type": "closed_scientific_hypothesis",
+      "goal": "Historical D036 corrected integrity audit closed V0 rejected. Preserve evidence only; no same-sample rescue."
+    },
+    {
+      "id": "D025-LIQUIDITY-EXHAUSTION-RECLAIM",
+      "priority": 9,
       "status": "BLOCKED",
       "owner": "ChatGPT/Codex",
       "type": "scientific_hypothesis",
@@ -116,9 +140,20 @@
       "owner": "Codex",
       "type": "deferred_scientific_hypothesis",
       "goal": "Do not rewrite or tune existing D021. Reopen only if a fresh independent preregistered reason emerges.",
-      "blocking": "D036 is current independent P0."
+      "blocking": "No current reason to reopen inspected D021 evidence."
     }
   ],
-  "allowed_status": ["READY", "RUNNING_MIMO", "RUNNING_MT5", "WAITING_RESULT", "WAITING_CODEX", "WAITING_CHATGPT", "CANDIDATE", "VALIDATED", "REJECTED", "BLOCKED"],
-  "notes": "2026-09-06: D036 Donchian/Turtle-inspired H1 V0 is the active independent P0. It is preregistered before data inspection. D036 v1.00 harness and scorer v1.01 are committed; Generic AutoSync v2.01 is static-audited and ready for one-time local installation. D023 and D17 remain closed. Guardian Core v12.01 remains stable. FundedNext AUTO remains off until request/retry compliance is separately bounded."
+  "allowed_status": [
+    "READY",
+    "RUNNING_MIMO",
+    "RUNNING_MT5",
+    "WAITING_RESULT",
+    "WAITING_CODEX",
+    "WAITING_CHATGPT",
+    "CANDIDATE",
+    "VALIDATED",
+    "REJECTED",
+    "BLOCKED"
+  ],
+  "notes": "2026-09-08 reconciliation: stale D036 active-primary state removed. D053 is formally rejected; D054 is closed unconfirmed; no alpha P0 is currently promoted. Challenge Probability Lab v1.00 and preregistered post-validation pipeline v1.01 are validated infrastructure. Next scientific action is an independent preregistered family, not rescue of inspected failures. Guardian Core v12.01 remains stable; FundedNext AUTO remains off until request/retry compliance is separately bounded."
 }
