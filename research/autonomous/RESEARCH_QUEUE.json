@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 4,
+  "generation": 5,
   "updated_at": "2026-09-08",
   "mode": "AUTONOMOUS_SCIENTIFIC_RESEARCH",
   "human_approved_2026": false,
@@ -17,19 +17,8 @@
       "priority": 0,
       "class_key": "orchestrator-infrastructure",
       "description": "Repair the already-installed Scheduled Task so future starts use pythonw.exe and hide the currently shared console window. No research data access.",
-      "executor": {
-        "kind": "powershell",
-        "path": "research/autonomous/repair_orchestrator_hidden_v1_00.ps1",
-        "args": []
-      },
-      "timeout": {
-        "min_seconds": 120,
-        "expected_seconds": 30,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 120,
-        "poll_seconds": 2
-      }
+      "executor": {"kind":"powershell","path":"research/autonomous/repair_orchestrator_hidden_v1_00.ps1","args":[]},
+      "timeout": {"min_seconds":120,"expected_seconds":30,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":120,"poll_seconds":2}
     },
     {
       "id": "PHASE-IB-AUTO-PYTHON-EXTRACT",
@@ -37,110 +26,44 @@
       "enabled": true,
       "priority": 1,
       "class_key": "xau-mt5-data-extract",
-      "description": "Retry automatic read-only XAUUSD M1/M5 extraction after fixing the v1.00 MT5 Python date_to type/timestamp mapping defect. Use the sole pre-existing FundedNext terminal, 2024-2025 only, Phase I-A server coordinate and frozen +/-5m news mask. Never open 2026.",
-      "data_window": {
-        "start": "2024-01-01T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/phase_ib_mt5_python_extract_v1_01.py",
-        "args": [
-          "--ia-dir",
-          "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ia_v1",
-          "--output-dir",
-          "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--terminal-exe",
-          "D:\\MT5_FundedNext\\terminal64.exe",
-          "--deploy",
-          "{DEPLOY}",
-          "--progress-file",
-          "{ROOT}\\progress\\PHASE-IB-AUTO-PYTHON-EXTRACT.json"
-        ]
-      },
-      "timeout": {
-        "min_seconds": 900,
-        "expected_seconds": 2400,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 600,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\PHASE-IB-AUTO-PYTHON-EXTRACT.json"
-      }
+      "description": "Historical failed infrastructure attempt retained immutably: automatic XAUUSD M1/M5 extraction v1.01.",
+      "data_window": {"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
+      "executor": {"kind":"python","path":"research/autonomous/phase_ib_mt5_python_extract_v1_01.py","args":["--ia-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ia_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--terminal-exe","D:\\MT5_FundedNext\\terminal64.exe","--deploy","{DEPLOY}","--progress-file","{ROOT}\\progress\\PHASE-IB-AUTO-PYTHON-EXTRACT.json"]},
+      "timeout": {"min_seconds":900,"expected_seconds":2400,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":600,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IB-AUTO-PYTHON-EXTRACT.json"}
+    },
+    {
+      "id": "PHASE-IB-MT5-HISTORY-CAPACITY-PROBE",
+      "revision": 1,
+      "enabled": true,
+      "priority": 2,
+      "class_key": "xau-mt5-data-diagnostic",
+      "description": "Diagnose the second failed I-B extraction without changing the scientific hypothesis: measure terminal max-bars and actual oldest/newest XAUUSD M1/M5 history obtainable from the sole canonical FundedNext terminal. Read-only; 2026 is not used as research data.",
+      "data_window": {"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
+      "executor": {"kind":"python","path":"research/autonomous/phase_ib_mt5_history_capacity_probe_v1_00.py","args":["--terminal-exe","D:\\MT5_FundedNext\\terminal64.exe","--output","{ROOT}\\diagnostics\\phase_ib_mt5_history_capacity_probe_v1.json"]},
+      "timeout": {"min_seconds":300,"expected_seconds":180,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":300,"poll_seconds":5}
     },
     {
       "id": "PHASE-IB-PASS-GATE",
       "revision": 3,
       "enabled": true,
-      "priority": 2,
+      "priority": 3,
       "class_key": "scientific-gate",
-      "description": "Advance only after automatic Phase I-B revision 2 passed and canonical Phase I-B publication is PASS.",
-      "data_window": {
-        "start": "2024-01-01T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "PHASE-IB-AUTO-PYTHON-EXTRACT",
-          "revision": 2,
-          "accepted_status": ["PASS"]
-        },
-        {
-          "kind": "github_result",
-          "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/phase-ib-xau-dataset/LATEST.json",
-          "accepted_status": ["PASS"]
-        }
-      ],
-      "executor": {
-        "kind": "noop"
-      }
+      "description": "Advance only after a future successful automatic Phase I-B extraction and canonical Phase I-B publication PASS. Current revision remains blocked by the failed r2 receipt; supervisor must issue a new immutable gate after infrastructure repair.",
+      "data_window": {"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
+      "requires": [{"kind":"receipt","job_id":"PHASE-IB-AUTO-PYTHON-EXTRACT","revision":2,"accepted_status":["PASS"]},{"kind":"github_result","ref":"origin/backtest-results","path":"phenomenon-discovery/phase-ib-xau-dataset/LATEST.json","accepted_status":["PASS"]}],
+      "executor": {"kind":"noop"}
     },
     {
       "id": "PHASE-IC-XAU-PHENOMENON-ATLAS",
       "revision": 3,
       "enabled": true,
-      "priority": 3,
+      "priority": 4,
       "class_key": "xau-phenomenon-atlas",
-      "description": "Run the frozen Phase I-C XAUUSD M5 phenomenon atlas on the Phase I-B news-clean 2024/2025 dataset. 2024 fits state cutpoints and screens; 2025 confirms. No PnL optimization and no 2026 access.",
-      "data_window": {
-        "start": "2024-01-01T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "PHASE-IB-PASS-GATE",
-          "revision": 3,
-          "accepted_status": ["PASS"]
-        }
-      ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/phase_ic_xau_phenomenon_atlas_v1_00.py",
-        "args": [
-          "--ib-dir",
-          "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--output-dir",
-          "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ic_v1",
-          "--policy",
-          "{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_policy_v1.json",
-          "--progress-file",
-          "{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS.json",
-          "--publisher",
-          "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
-        ]
-      },
-      "timeout": {
-        "min_seconds": 600,
-        "expected_seconds": 1200,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 900,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS.json"
-      }
+      "description": "Run the frozen Phase I-C XAUUSD M5 phenomenon atlas on a validated Phase I-B news-clean 2024/2025 dataset. 2024 discovery, 2025 confirmation; no PnL optimization; no 2026.",
+      "data_window": {"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
+      "requires": [{"kind":"receipt","job_id":"PHASE-IB-PASS-GATE","revision":3,"accepted_status":["PASS"]}],
+      "executor": {"kind":"python","path":"research/autonomous/phase_ic_xau_phenomenon_atlas_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ic_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_policy_v1.json","--progress-file","{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
+      "timeout": {"min_seconds":600,"expected_seconds":1200,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS.json"}
     }
   ]
 }
