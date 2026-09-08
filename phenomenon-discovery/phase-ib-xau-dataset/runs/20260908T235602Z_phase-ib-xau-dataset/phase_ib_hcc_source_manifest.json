@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "blocks_found": 260,
+      "header_size": 502,
+      "path": "D:\\MT5_FundedNext\\Bases\\FundedNext-Server 2\\history\\XAUUSD\\2024.hcc",
+      "rows": 355885,
+      "sha256": "d6df6d5472bbe5d38efea6a6b34415fbf577f1f5889e2771a696740ec8a1aebb",
+      "size_bytes": 21401784,
+      "year": 2024
+    },
+    {
+      "blocks_found": 258,
+      "header_size": 502,
+      "path": "D:\\MT5_FundedNext\\Bases\\FundedNext-Server 2\\history\\XAUUSD\\2025.hcc",
+      "rows": 354415,
+      "sha256": "32234800fd8bdc1969e1c8ceaeab979f234eb573f8e24ca35b5b5716fa873738",
+      "size_bytes": 21313326,
+      "year": 2025
+    }
+  ],
+  "m1_rows": 710300,
+  "m5_rows": 142549,
+  "parser_version": "1.01-built-in",
+  "phase": "I-B-HCC-RECOVERY",
+  "policy_sha256": "695927a05774b3425e960056e11e12f349135753bf76b2943d706b366f52d499",
+  "propfirm_tradability_authorized": false,
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "server": "FundedNext-Server 2",
+  "symbol": "XAUUSD",
+  "terminal_data_path": "D:\\MT5_FundedNext"
+}

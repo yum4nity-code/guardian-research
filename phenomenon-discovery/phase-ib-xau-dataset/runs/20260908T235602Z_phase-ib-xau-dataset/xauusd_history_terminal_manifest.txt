@@ -1,0 +1,15 @@
+schema=1
+phase=I-B
+symbol=XAUUSD
+symbol_root=XAUUSD
+server=FundedNext-Server 2
+company=FundedNext Ltd
+terminal_path=D:\MT5_FundedNext
+terminal_data_path=D:\MT5_FundedNext
+terminal_commondata_path=C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\Common
+from_server_time=2024.01.01 00:00:00
+to_server_time_exclusive=2026.01.01 00:00:00
+source_method=read_only_canonical_hcc_m1_builtin_parser
+timestamp_semantics=direct_mt5_server_datetime_coordinate_no_offset
+m1_rows=710300
+m5_rows=142549
