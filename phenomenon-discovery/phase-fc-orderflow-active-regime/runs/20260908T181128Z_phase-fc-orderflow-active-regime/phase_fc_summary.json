@@ -1,0 +1,51 @@
+{
+  "features": [
+    "spot_taker_imbalance",
+    "perp_taker_imbalance",
+    "taker_imbalance_diff",
+    "perp_spot_basis_bps",
+    "log_quote_volume_ratio",
+    "log_trade_count_ratio",
+    "spot_taker_imbalance_change_15m",
+    "spot_taker_imbalance_change_1h",
+    "perp_taker_imbalance_change_15m",
+    "perp_taker_imbalance_change_1h",
+    "taker_imbalance_diff_change_15m",
+    "taker_imbalance_diff_change_1h",
+    "perp_spot_basis_bps_change_15m",
+    "perp_spot_basis_bps_change_1h",
+    "log_quote_volume_ratio_change_15m",
+    "log_quote_volume_ratio_change_1h",
+    "log_trade_count_ratio_change_15m",
+    "log_trade_count_ratio_change_1h"
+  ],
+  "frozen_shortlist_count": 22,
+  "frozen_shortlist_sha256": "3a3210ca6e1453b8c43ecb94b635eeaf64d06324d377631bb852b5072635a780",
+  "gates": {
+    "bh_q_max": 0.1,
+    "bootstrap_paths": 3000,
+    "circular_block_days": 5,
+    "confirmation_effect_retention_fraction": 0.25,
+    "quarter_match_rate_min": 0.75,
+    "quarter_min_eligible_blocks": 6,
+    "same_gates_as_phase_fb": true,
+    "top_per_outcome": 25
+  },
+  "independent_validation": false,
+  "method": "F-B univariate order-flow atlas conditioned on the complement of the exact frozen 18-state Phase-C low-movement union; Phase-B 2024 thresholds reused unchanged",
+  "passes_by_outcome": {
+    "direction_1h_atr": 0,
+    "up_first_1atr_1h": 0
+  },
+  "phase": "F-C",
+  "phase_b_summary_sha256": "a8a98dc13647bec59a430c49283239649c1f62846b6cbff4d2a9433dce76dd18",
+  "phase_c_filter_sha256": "9a1ed845fed55b586a6815a6042de06ad5da61641369e25e36eb269c23b9c67a",
+  "phase_c_filter_state_count": 18,
+  "phase_fc_screen_pass_count": 0,
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "states_tested": 90,
+  "status": "DISCOVERY_ROBUSTNESS_ONLY",
+  "universe_tests_total": 180,
+  "warning": "Phase F-C uses inspected 2024-2025 data. Any pass remains a discovery candidate only. Freeze before opening 2026."
+}

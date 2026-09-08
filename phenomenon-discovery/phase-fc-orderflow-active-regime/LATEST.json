@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_fc_summary.json",
+      "sha256": "1814ac11f6680adc3e14c46f82462331ad78a9319f8550036a8dde4cf1f5e809",
+      "size_bytes": 1974
+    },
+    {
+      "name": "phase_fc_filter_audit.json",
+      "sha256": "d5d1e4ff717ad56c122f709c33cc1d9321886e865de0ea3848c5685507e64cf9",
+      "size_bytes": 856
+    },
+    {
+      "name": "phase_fc_2024_universe.csv",
+      "sha256": "cea3ba4c9d0edad06ecaafcf58b6a872506d81c25d54f79077b47eb10836ea0e",
+      "size_bytes": 47263
+    },
+    {
+      "name": "phase_fc_frozen_shortlist_2024.csv",
+      "sha256": "3a3210ca6e1453b8c43ecb94b635eeaf64d06324d377631bb852b5072635a780",
+      "size_bytes": 6320
+    },
+    {
+      "name": "phase_fc_2025_confirmation.csv",
+      "sha256": "73aca9a7174646abb55405d0777a797ccaff1533eb792de02d431f6d2056bc5e",
+      "size_bytes": 14533
+    },
+    {
+      "name": "phase_fc_distinct_passes.csv",
+      "sha256": "022a96bd1ca359597f72c758ae173b399003f42bad2aa7c61b4466f256e3c1aa",
+      "size_bytes": 7
+    }
+  ],
+  "generated_at_utc": "2026-09-08T18:11:28.569208+00:00",
+  "phase": "phase-fc-orderflow-active-regime",
+  "published_run_path": "phenomenon-discovery/phase-fc-orderflow-active-regime/runs/20260908T181128Z_phase-fc-orderflow-active-regime",
+  "schema": 1,
+  "source_commit": "c3a2a72d9a7f11955cfed1d3e5a2c697d86f057b",
+  "status": "PASS",
+  "summary": "Phase F-C conditional order-flow screen completed outside the exact frozen Phase-C low-movement union. Same F-B gates; 2024 discovery frozen before 2025 confirmation; 2026 untouched."
+}

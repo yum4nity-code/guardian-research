@@ -1,0 +1,29 @@
+{
+  "phase": "F-C",
+  "phase_b_summary_sha256": "a8a98dc13647bec59a430c49283239649c1f62846b6cbff4d2a9433dce76dd18",
+  "phase_c_filter_sha256": "9a1ed845fed55b586a6815a6042de06ad5da61641369e25e36eb269c23b9c67a",
+  "phase_c_filter_state_count": 18,
+  "schema": 1,
+  "symbols": {
+    "BTCUSDT": {
+      "active_2024": 81032,
+      "active_2025": 84778,
+      "dead_2024": 24362,
+      "dead_2025": 20342,
+      "dead_pct_2024": 0.23115167846366966,
+      "dead_pct_2025": 0.19351217656012176,
+      "rows_2024": 105394,
+      "rows_2025": 105120
+    },
+    "ETHUSDT": {
+      "active_2024": 80347,
+      "active_2025": 76899,
+      "dead_2024": 25047,
+      "dead_2025": 28221,
+      "dead_pct_2024": 0.23765109968309392,
+      "dead_pct_2025": 0.2684646118721461,
+      "rows_2024": 105394,
+      "rows_2025": 105120
+    }
+  }
+}
