@@ -2,7 +2,6 @@
   "artifacts": [],
   "generated_at_utc": "2026-09-08T19:47:03.302520+00:00",
   "phase": "phase-ia-news-mask",
-  "published_run_path": "phenomenon-discovery/phase-ia-news-mask/runs/20260908T194703Z_phase-ia-news-mask",
   "schema": 1,
   "source_commit": "756f1f30a24f1b7716af4dd685a653ae60f65ca3",
   "status": "RUNNING",
