@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 3,
+  "generation": 4,
   "updated_at": "2026-09-08",
   "mode": "AUTONOMOUS_SCIENTIFIC_RESEARCH",
   "human_approved_2026": false,
@@ -11,19 +11,40 @@
   },
   "jobs": [
     {
-      "id": "PHASE-IB-AUTO-PYTHON-EXTRACT",
+      "id": "INFRA-HIDE-ORCHESTRATOR-CONSOLE",
       "revision": 1,
       "enabled": true,
       "priority": 0,
+      "class_key": "orchestrator-infrastructure",
+      "description": "Repair the already-installed Scheduled Task so future starts use pythonw.exe and hide the currently shared console window. No research data access.",
+      "executor": {
+        "kind": "powershell",
+        "path": "research/autonomous/repair_orchestrator_hidden_v1_00.ps1",
+        "args": []
+      },
+      "timeout": {
+        "min_seconds": 120,
+        "expected_seconds": 30,
+        "eta_multiplier": 2.5,
+        "history_p95_multiplier": 3.0,
+        "stale_heartbeat_seconds": 120,
+        "poll_seconds": 2
+      }
+    },
+    {
+      "id": "PHASE-IB-AUTO-PYTHON-EXTRACT",
+      "revision": 2,
+      "enabled": true,
+      "priority": 1,
       "class_key": "xau-mt5-data-extract",
-      "description": "Replace the failed/manual I-B chart script with an automatic read-only MetaTrader5 Python API extraction from the sole pre-existing FundedNext terminal. Export XAUUSD M1/M5 2024-2025, map Python UTC bar timestamps into the Phase I-A server-time coordinate using the offset proven by the I-A export timestamps, apply the frozen +/-5m USD high-impact mask, integrity-check and publish Phase I-B. Never open 2026.",
+      "description": "Retry automatic read-only XAUUSD M1/M5 extraction after fixing the v1.00 MT5 Python date_to type/timestamp mapping defect. Use the sole pre-existing FundedNext terminal, 2024-2025 only, Phase I-A server coordinate and frozen +/-5m news mask. Never open 2026.",
       "data_window": {
         "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
       },
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/phase_ib_mt5_python_extract_v1_00.py",
+        "path": "research/autonomous/phase_ib_mt5_python_extract_v1_01.py",
         "args": [
           "--ia-dir",
           "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ia_v1",
@@ -49,11 +70,11 @@
     },
     {
       "id": "PHASE-IB-PASS-GATE",
-      "revision": 2,
+      "revision": 3,
       "enabled": true,
-      "priority": 1,
+      "priority": 2,
       "class_key": "scientific-gate",
-      "description": "Advance only after the automatic I-B extractor itself passed and the canonical backtest-results Phase I-B publication is PASS.",
+      "description": "Advance only after automatic Phase I-B revision 2 passed and canonical Phase I-B publication is PASS.",
       "data_window": {
         "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -62,7 +83,7 @@
         {
           "kind": "receipt",
           "job_id": "PHASE-IB-AUTO-PYTHON-EXTRACT",
-          "revision": 1,
+          "revision": 2,
           "accepted_status": ["PASS"]
         },
         {
@@ -78,9 +99,9 @@
     },
     {
       "id": "PHASE-IC-XAU-PHENOMENON-ATLAS",
-      "revision": 2,
+      "revision": 3,
       "enabled": true,
-      "priority": 2,
+      "priority": 3,
       "class_key": "xau-phenomenon-atlas",
       "description": "Run the frozen Phase I-C XAUUSD M5 phenomenon atlas on the Phase I-B news-clean 2024/2025 dataset. 2024 fits state cutpoints and screens; 2025 confirms. No PnL optimization and no 2026 access.",
       "data_window": {
@@ -91,7 +112,7 @@
         {
           "kind": "receipt",
           "job_id": "PHASE-IB-PASS-GATE",
-          "revision": 2,
+          "revision": 3,
           "accepted_status": ["PASS"]
         }
       ],
