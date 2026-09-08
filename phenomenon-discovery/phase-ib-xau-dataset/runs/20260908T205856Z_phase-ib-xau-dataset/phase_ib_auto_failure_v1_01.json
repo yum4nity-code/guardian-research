@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "error": "RuntimeError('M1 2024-01 returned 1 bars but none mapped into the requested server month; raw_first=1780017000 raw_last=1780017000 offset=10800 requested_utc=2023-12-31T21:00:00+00:00..2024-01-31T21:00:00+00:00')",
+  "updated_at_utc": "2026-09-08T20:58:56.693892+00:00",
+  "protected_2026_untouched": true
+}
