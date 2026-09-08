@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 3000.0,
+  "class_key": "xau-phenomenon-atlas",
+  "duration_seconds": 20.037853100016946,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-08T23:57:06.006254+00:00",
+  "job_id": "PHASE-IC-XAU-PHENOMENON-ATLAS",
+  "main_commit": "d10a60cd86b58229d32e2e0471116bd65cb1105b",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 7,
+  "schema": 1,
+  "started_at_utc": "2026-09-08T23:56:45.954134+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "    \"bar_seconds\": 300,\n    \"confirmation_bh_q\": 0.1,\n    \"confirmation_effect_retention_fraction\": 0.5,\n    \"confirmation_year\": 2025,\n    \"continuous_features\": [\n      \"ret1_atr\",\n      \"ret3_atr\",\n      \"ret12_atr\",\n      \"bar_range_atr\",\n      \"body_atr\",\n      \"upper_wick_atr\",\n      \"lower_wick_atr\",\n      \"atr_slope3\",\n      \"atr_slope12\",\n      \"compression6_atr\",\n      \"dist_high24_atr\",\n      \"dist_low24_atr\",\n      \"tickvol_z48\",\n      \"gap_atr\"\n    ],\n    \"discovery_bh_q\": 0.05,\n    \"discovery_year\": 2024,\n    \"horizons_bars\": [\n      3,\n      6,\n      12,\n      24\n    ],\n    \"min_state_n_confirmation\": 250,\n    \"min_state_n_discovery\": 300,\n    \"min_state_n_quarter\": 50,\n    \"minimum_absolute_effect\": {\n      \"mean_fwd_ret_atr\": 0.06,\n      \"move_ge_1atr\": 0.05,\n      \"up_first_1atr\": 0.04\n    },\n    \"name\": \"XAU_PHENOMENON_ATLAS_V1\",\n    \"notes\": [\n      \"Quintile cutpoints are fit on 2024 only and frozen into 2025.\",\n      \"All future-label windows must remain contiguous M5 bars; labels do not jump across news-excluded gaps.\",\n      \"Tests compare each state with its same-year complement.\",\n      \"BH correction is applied separately within each outcome/horizon family.\",\n      \"No PnL, stop, target, position sizing or execution optimization is permitted in Phase I-C.\",\n      \"A survivor is a phenomenon candidate only, not a trading strategy.\"\n    ],\n    \"outcomes\": [\n      \"mean_fwd_ret_atr\",\n      \"move_ge_1atr\",\n      \"up_first_1atr\"\n    ],\n    \"phase\": \"I-C\",\n    \"protected_2026_untouched\": true,\n    \"quarters_same_sign_required\": 3,\n    \"schema\": 1,\n    \"state_families\": [\n      \"feature_quintile\",\n      \"feature_quintile_x_server_4h_block\"\n    ]\n  },\n  \"propfirm_tradability_authorized\": false,\n  \"protected_2026_untouched\": true,\n  \"rows_2024\": 70445,\n  \"rows_2025\": 70219,\n  \"schema\": 1,\n  \"scientific_status\": \"SURVIVORS_FOUND\",\n  \"states_tested\": 490,\n  \"survivors_by_outcome_horizon\": {\n    \"mean_fwd_ret_atr_h12\": 8,\n    \"mean_fwd_ret_atr_h24\": 15,\n    \"mean_fwd_ret_atr_h3\": 2,\n    \"mean_fwd_ret_atr_h6\": 6,\n    \"move_ge_1atr_h12\": 423,\n    \"move_ge_1atr_h24\": 462,\n    \"move_ge_1atr_h3\": 345,\n    \"move_ge_1atr_h6\": 360,\n    \"up_first_1atr_h12\": 2,\n    \"up_first_1atr_h6\": 1\n  },\n  \"technical_status\": \"PASS\"\n}"
+}
