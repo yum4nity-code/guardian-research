@@ -1,6 +1,6 @@
 # Guardian — Project Planning & Time Log
 
-Last reconstructed: 2026-09-07 Europe/Paris
+Last reconstructed: 2026-09-08 Europe/Paris
 Status: LIVING FILE — update during each material Guardian work session
 
 ## Purpose
@@ -403,16 +403,45 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Extend future standardized harness exports with normalized `challenge_day`, signed MAE/adverse R, and ideally synchronized portfolio floating-equity snapshots to move from atomic DD estimation toward exact prop-firm DD simulation.
 - Reconcile `CURRENT_QUEUE.json` when the next independent alpha family is formally selected.
 
+## 2026-09-08 — preregistered Challenge pipeline v1.01 / queue reconciliation
+
+**Work / decisions**
+- Inspected a real frozen scorer (`analyze_d037_williams_prevday_range_v0_v1_00.py`) and deliberately **did not modify it**. Historical scorers remain frozen; post-result Challenge integration must be external.
+- Added `post_validation_pipeline_v1_00.py` as a fail-closed scorer-to-gate bridge and validated its eligibility logic locally (6/6 policy checks PASS).
+- Identified a remaining ex-post degree of freedom in selecting accepted verdict/stage/seed/risk grid after scorer observation.
+- Added canonical `post_validation_pipeline_v1_01.py`, which requires a **pre-registered policy JSON** and refuses ad-hoc post-result choices for verdict acceptance, stage, Monte-Carlo path count, seed, risk grid or challenge-profile identity.
+- Added `test_post_validation_pipeline_v1_01.py`; local prereg policy checks: **6/6 PASS**.
+- Added `challenge_pipeline_policy_template_v1_00.json`; placeholders are intentionally rejected at runtime and must be replaced/committed before protected OOS/confirmation evidence is opened.
+- v1.01 pins the challenge profile by SHA256 and writes scorer/policy/profile provenance into `challenge_lab_eligibility.json` before calling the lower-level gate.
+- Integration smoke PASS: valid `CONFIRM` path propagates six risk levels, 20,000 paths and deterministic seed to the lower-level gate.
+- Integrity smoke PASS: byte-level challenge-profile tampering causes SHA256 mismatch and fails closed.
+- Updated `README.md`, `CHALLENGE_TRADE_EXPORT_CONTRACT_V1.md` and `docs/RESEARCH_PROTOCOL.md` so the preregistered v1.01 pipeline is the scientific default.
+- Reconciled `CURRENT_QUEUE.json`: removed stale D036 active-primary state, set `active_primary=null`, represented D053 rejected and D054 closed/unconfirmed, and marked Challenge Probability Lab Pipeline v1.01 as validated infrastructure.
+- Updated `CURRENT_PROJECT_HANDOFF.md` to remove the stale queue warning and make the v1.01 flow canonical.
+- Guardian Core v12.01 and production trading semantics were not modified.
+
+**Time evidence**
+- This session resumed during the early hours of 2026-09-08 Europe/Paris and continued through the repository reconciliation work.
+- `Human active total: NOT QUANTIFIED`; do not infer exact active minutes from tool/commit timestamps.
+- No unattended MT5/collector compute is counted here.
+
+**Next**
+- Select/preregister the next genuinely independent alpha family; do not rescue D053/D054.
+- Build `challenge_day` + signed `adverse_r` into its export from the start.
+- Before protected OOS/confirmation, instantiate and commit a campaign-specific policy from the Challenge pipeline template.
+- After frozen scoring, run `post_validation_pipeline_v1_01.py` automatically. Failed alpha/OOS -> Lab skipped; successful alpha/OOS -> frozen Challenge pass-probability simulation.
+- Later v2: synchronized portfolio mark-to-market/floating-equity snapshots for exact concurrent DD reconstruction.
+
 ---
 
 # Current planning / backlog
 
-## P0 — D023 USDJPY London ORB 2023 confirmation harness
+## P0 — Next independent alpha family
 
-- **CLOSED / REJECTED.** Untouched 2023 confirmation completed once and failed 4/5 frozen gates.
-- Result: n=195, mean net -0.198176R/trade, PF 0.708428, block-bootstrap lower 5% -0.268783R/day, 1.5x commission stress -44.512458R total.
-- Preserve the source/output/result for evidence only. Do not rescue-filter, retune or rerun 2023.
-- Next alpha action is selection of a new independent preregistered P0 family.
+- No current alpha P0 is promoted.
+- D053 is formally rejected; D054 is closed unconfirmed.
+- Select a genuinely independent family and preregister before opening protected evidence.
+- Its future confirmation/OOS package must include the Challenge export contract and preregistered Challenge pipeline policy.
 
 ## P0 — FundedNext request-budget fix
 
@@ -428,6 +457,12 @@ From 2026-09-04 onward, time should be logged more precisely.
 - Add precise entry-time / elapsed-time / P&L-sign logging for Guardian-managed exits under 30 seconds.
 - Evaluate FundedNext-specific early BE/SL behavior only if risk-neutral.
 - Never hold an unsafe trade open simply to avoid Quick Strike classification.
+
+## P1 — Challenge Probability Lab
+
+- Engine v1.00 + gate v1.00 + preregistered pipeline v1.01 are validated infrastructure.
+- Default risk grid remains 0.10/0.15/0.20/0.25/0.33/0.50% and default decision run 20,000 paths/risk, but campaign policy must freeze these before protected results.
+- Exact portfolio DD remains future work requiring synchronized mark-to-market/floating-equity snapshots.
 
 ## P1 — Manager evidence / D17 lineage
 
