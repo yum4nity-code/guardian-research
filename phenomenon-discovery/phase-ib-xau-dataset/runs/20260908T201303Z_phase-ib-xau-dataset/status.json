@@ -2,7 +2,6 @@
   "artifacts": [],
   "generated_at_utc": "2026-09-08T20:13:03.335515+00:00",
   "phase": "phase-ib-xau-dataset",
-  "published_run_path": "phenomenon-discovery/phase-ib-xau-dataset/runs/20260908T201303Z_phase-ib-xau-dataset",
   "schema": 1,
   "source_commit": "49273dcfefcec5a5960978938ab13cc9e15a018b",
   "status": "RUNNING",
