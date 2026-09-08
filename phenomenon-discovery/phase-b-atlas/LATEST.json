@@ -1,0 +1,26 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_b_summary.json",
+      "sha256": "a8a98dc13647bec59a430c49283239649c1f62846b6cbff4d2a9433dce76dd18",
+      "size_bytes": 5150
+    },
+    {
+      "name": "phase_b_shortlist_and_confirmation.csv",
+      "sha256": "a13ea7a9cf68fb76b463c6eae925dd613ba5629af8a4e2d78549c215d93c3e6c",
+      "size_bytes": 16377
+    },
+    {
+      "name": "phase_b_survivors.csv",
+      "sha256": "6723465b106eea4d6fc418692eef978b3a182a6dae2d090c271c8e19998ad58e",
+      "size_bytes": 8699
+    }
+  ],
+  "generated_at_utc": "2026-09-08T10:05:24.785809+00:00",
+  "phase": "phase-b-atlas",
+  "published_run_path": "phenomenon-discovery/phase-b-atlas/runs/20260908T100524Z_phase-b-atlas",
+  "schema": 1,
+  "source_commit": "ca0d4451acea4fc36fe37dc78b3ecb309d9aceab",
+  "status": "PASS",
+  "summary": "Recovered publication of completed Phase B atlas. Computation completed locally; 2024 discovery and 2025 internal confirmation; 2026 untouched."
+}
