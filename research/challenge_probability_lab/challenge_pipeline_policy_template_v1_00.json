@@ -1,0 +1,22 @@
+{
+  "policy_id": "REPLACE_WITH_POLICY_ID",
+  "verdict_key": "verdict",
+  "accepted_verdicts": [
+    "CONFIRM"
+  ],
+  "stage_key": "stage",
+  "expected_stage": "REPLACE_WITH_FROZEN_CONFIRMATION_STAGE",
+  "gates_key": "gates",
+  "allow_missing_gates": false,
+  "paths_per_risk": 20000,
+  "seed": 20260907,
+  "risk_levels_pct": [
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.33,
+    0.5
+  ],
+  "expected_profile_sha256": "REPLACE_WITH_64_HEX_SHA256_OF_FROZEN_PROFILE"
+}
