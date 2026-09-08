@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "phase": "I-B-HCC-RECOVERY",
+  "preregistered_at_utc": "2026-09-08T22:46:00Z",
+  "scientific_hypothesis_changed": false,
+  "purpose": "Infrastructure-only recovery of the already frozen Phase I-B XAUUSD M1/M5 2024-2025 dataset from canonical FundedNext-Server 2 local HCC minute-history files after MT5 Python chart-history and tick-history retrieval paths failed.",
+  "canonical_server": "FundedNext-Server 2",
+  "canonical_terminal_data_path": "D:\\MT5_FundedNext",
+  "symbol": "XAUUSD",
+  "allowed_source_files": [
+    "D:\\MT5_FundedNext\\Bases\\FundedNext-Server 2\\history\\XAUUSD\\2024.hcc",
+    "D:\\MT5_FundedNext\\Bases\\FundedNext-Server 2\\history\\XAUUSD\\2025.hcc"
+  ],
+  "forbidden_years": [2026],
+  "source_semantics": "MT5 HCC files are the terminal's canonical one-minute history database for the named trade server and symbol. HCC bar datetime is retained directly as the MT5 server-time datetime coordinate, matching the Phase I-A MT5 Economic Calendar trade-server-time coordinate; no UTC/server offset transformation is permitted in this recovery path.",
+  "derived_timeframes": {
+    "M1": "direct HCC minute bars",
+    "M5": "deterministic 5-minute aggregation from recovered M1: open=first, high=max, low=min, close=last, tick_volume=sum, spread=last, real_volume=sum"
+  },
+  "frozen_news_mask": "Phase I-A high-impact USD +/-5 minutes, unchanged",
+  "integrity_gates": [
+    "exact canonical server/path provenance matches Phase I-A",
+    "only 2024.hcc and 2025.hcc may be opened",
+    "strictly increasing unique M1 timestamps",
+    "valid positive OHLC and high/low envelope",
+    "minimum monthly and total coverage from existing Phase I-B checker",
+    "M5 exact-open timestamps must be a subset of M1 timestamps",
+    "news-clean output contains zero overlap with Phase I-A mask",
+    "existing build_xau_news_clean_dataset_v1_00.py and check_xau_news_clean_dataset_v1_00.py must both succeed"
+  ],
+  "protected_2026_untouched": true,
+  "propfirm_tradability_authorized": false
+}
