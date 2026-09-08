@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IB-MT5-LOCAL-HISTORY-FILES-PROBE",
+    "revision": 1
+  },
+  "main_commit": "cd68b8118fcffe50d60479df769e970c279c50d1",
+  "pid": 4032,
+  "protected_2026": true,
+  "queue_generation": 7,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-08T21:47:57.549743+00:00",
+  "version": "1.00"
+}
