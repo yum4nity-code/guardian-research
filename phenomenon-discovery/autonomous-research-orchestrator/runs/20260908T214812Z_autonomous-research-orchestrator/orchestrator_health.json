@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IB-MT5-LOCAL-HISTORY-FILES-PROBE__r1.json",
+  "main_commit": "cd68b8118fcffe50d60479df769e970c279c50d1",
+  "pid": 4032,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-08T21:48:12.099791+00:00",
+  "version": "1.00"
+}
