@@ -2,23 +2,33 @@
 
 You are taking over the Guardian project.
 
+## Current P0
+
+The active research campaign is now **Phenomenon Discovery → Phase I-A historical news mask → Phase I-B XAUUSD clean dataset → Phase I-C XAU phenomenon discovery**.
+
+The old D023 instruction below is obsolete for the active P0.
+
 Read in this exact order before coding:
 
-1. `GUARDIAN_MASTER_MANDATE.md`
-2. `handoff/guardian_next_ai/2026/09/06/GUARDIAN_PROJECT_RESTART_HANDOFF_2026_09_06.md`
-3. `CURRENT_QUEUE.json`
-4. `research/results/D023_USDJPY_FUNDEDNEXT_CONFORMANCE_RESULT_2026_09_06.md`
-5. `research/MANAGER_EVIDENCE_LEDGER.md`
-6. `production/guardian/GUARDIAN_CORE_V12_01_COMPILE_VALIDATED_2026_09_06.md`
+1. `handoff/PHENOMENON_DISCOVERY_CURRENT_HANDOFF_2026_09_08.md`
+2. latest relevant `backtest-results` `LATEST.json`
+3. `GUARDIAN_MASTER_MANDATE.md`
+4. `CURRENT_PROJECT_HANDOFF.md`
+5. `CURRENT_QUEUE.json`
+6. `docs/RESEARCH_PROTOCOL.md`
 
-Current P0:
+## Critical current rules
 
-> **D023 USDJPY London ORB — audit and prove a reliable 2023 confirmation harness before requesting another full 2023 run.**
+- 2024/2025 are discovery/internal confirmation only.
+- **2026 remains sealed final OOS. Do not open it without an explicit promotion gate.**
+- BTC/ETH 5m directional research families A-H are closed after repeated 2024→2025 failure. Do not same-sample rescue them.
+- Phase C's 18 low-movement/no-trade phenomena remain the only robust Phenomenon result worth retaining from that branch.
+- Current pivot is XAUUSD with conservative high-impact USD news exclusion.
+- For Phase I-A / I-B, **use the one and only MT5 session already open on the owner's PC as the canonical terminal/server/data source.** Do not choose another inactive installation. If zero or more than one MT5 session is running, fail closed.
+- Do not assume a startup-script command can inject into an already-running MT5 instance. Preserve the open session as the canonical terminal/server anchor and use a technically valid method rather than silently switching terminal installations.
+- Launchers should publish status/results to GitHub. The owner should not be asked to act as a log courier.
+- If the owner says `published`, `fini`, `résultat ?`, etc., inspect GitHub directly.
 
-Do not restart D17 as the primary alpha campaign.
+## Legacy note
 
-Do not tune D023 before untouched 2023 confirmation.
-
-Do not trust the last local v1.07 diagnostic as compiled/validated. Read the handoff warning.
-
-The owner should not be asked to repeat a long run until you have personally reduced the risk of a trivial harness/output failure using compile + smoke test + direct output inspection.
+Historical handoffs may still mention D023 USDJPY London ORB or another older alpha P0. Those are superseded by this file plus the current Phenomenon handoff above.
