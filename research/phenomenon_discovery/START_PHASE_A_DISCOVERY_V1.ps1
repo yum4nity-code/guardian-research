@@ -13,7 +13,7 @@ function Find-Python {
     if ($py) { return @("py", "-3") }
     $python = Get-Command python -ErrorAction SilentlyContinue
     if ($python) { return @("python") }
-    throw "Python 3 introuvable."
+    throw "Python 3 not found."
 }
 
 $Python = Find-Python
@@ -22,7 +22,7 @@ $Prefix = @()
 if ($Python.Count -gt 1) { $Prefix = $Python[1..($Python.Count-1)] }
 
 Write-Host ""
-Write-Host "=== GUARDIAN PHENOMENON DISCOVERY — PHASE A ===" -ForegroundColor Cyan
+Write-Host "=== GUARDIAN PHENOMENON DISCOVERY - PHASE A ===" -ForegroundColor Cyan
 Write-Host "Discovery window: $Start -> $End (end exclusive)"
 Write-Host "Symbols: BTCUSDT ETHUSDT"
 Write-Host "2026 is intentionally NOT downloaded by this launcher."
@@ -50,4 +50,4 @@ Write-Host "Historical: $HistDir"
 Write-Host "Features:   $FeatDir"
 Write-Host ""
 Write-Host "STOP HERE. Do not download/open 2026 for discovery."
-Write-Host "Send me the console output + dataset_integrity_v1.json results before Phase B."
+Write-Host "Send me the console output and dataset_integrity_v1.json results before Phase B."
