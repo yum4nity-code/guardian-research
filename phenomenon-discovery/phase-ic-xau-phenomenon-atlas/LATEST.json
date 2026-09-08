@@ -1,0 +1,36 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_ic_summary.json",
+      "sha256": "94c3872434235f7a9ae12c82224c679a4bbf828caf1398307eb7724568a738ca",
+      "size_bytes": 2726
+    },
+    {
+      "name": "phase_ic_frozen_2024_cutpoints.json",
+      "sha256": "105083cf27fbdb2a0a1a75f3e0e18f30d52fb4f4ed1c7c36e14e28b4c6d584af",
+      "size_bytes": 1782
+    },
+    {
+      "name": "phase_ic_discovery_shortlist.csv",
+      "sha256": "2e71ffb00e016a75e4de25bfdff1cd8381746e022c884389c41b13649eb91b38",
+      "size_bytes": 983066
+    },
+    {
+      "name": "phase_ic_survivors.csv",
+      "sha256": "3254303d8c136d99b9420a1a6adc114fef7785ed432bb5d4a9c1079dac9e2a7d",
+      "size_bytes": 915832
+    },
+    {
+      "name": "phase_ic_xau_phenomenon_policy_v1.json",
+      "sha256": "81faa785c2fb391b0b1f99151fc25ecd1d2e13f7e7df73001d8fb613e021fa0b",
+      "size_bytes": 1529
+    }
+  ],
+  "generated_at_utc": "2026-09-08T23:56:57.465319+00:00",
+  "phase": "phase-ic-xau-phenomenon-atlas",
+  "published_run_path": "phenomenon-discovery/phase-ic-xau-phenomenon-atlas/runs/20260908T235657Z_phase-ic-xau-phenomenon-atlas",
+  "schema": 1,
+  "source_commit": "d10a60cd86b58229d32e2e0471116bd65cb1105b",
+  "status": "PASS",
+  "summary": "Phase I-C technical PASS; scientific=SURVIVORS_FOUND; discovery_shortlist=1844; survivors=1624; 2026 untouched."
+}

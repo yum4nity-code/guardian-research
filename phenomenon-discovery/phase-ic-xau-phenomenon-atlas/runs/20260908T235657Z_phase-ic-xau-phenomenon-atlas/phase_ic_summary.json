@@ -1,0 +1,89 @@
+{
+  "confirmation_survivors": 1624,
+  "discovery_shortlist": 1844,
+  "features_frozen": 14,
+  "generated_at_utc": "2026-09-08T23:56:57.344730+00:00",
+  "hypotheses_evaluated": 5827,
+  "next_rule": "A Phase I-C survivor is a phenomenon candidate only. The supervisor must preregister robustness/translation before any strategy/PnL test.",
+  "phase": "I-C",
+  "policy": {
+    "bar_seconds": 300,
+    "confirmation_bh_q": 0.1,
+    "confirmation_effect_retention_fraction": 0.5,
+    "confirmation_year": 2025,
+    "continuous_features": [
+      "ret1_atr",
+      "ret3_atr",
+      "ret12_atr",
+      "bar_range_atr",
+      "body_atr",
+      "upper_wick_atr",
+      "lower_wick_atr",
+      "atr_slope3",
+      "atr_slope12",
+      "compression6_atr",
+      "dist_high24_atr",
+      "dist_low24_atr",
+      "tickvol_z48",
+      "gap_atr"
+    ],
+    "discovery_bh_q": 0.05,
+    "discovery_year": 2024,
+    "horizons_bars": [
+      3,
+      6,
+      12,
+      24
+    ],
+    "min_state_n_confirmation": 250,
+    "min_state_n_discovery": 300,
+    "min_state_n_quarter": 50,
+    "minimum_absolute_effect": {
+      "mean_fwd_ret_atr": 0.06,
+      "move_ge_1atr": 0.05,
+      "up_first_1atr": 0.04
+    },
+    "name": "XAU_PHENOMENON_ATLAS_V1",
+    "notes": [
+      "Quintile cutpoints are fit on 2024 only and frozen into 2025.",
+      "All future-label windows must remain contiguous M5 bars; labels do not jump across news-excluded gaps.",
+      "Tests compare each state with its same-year complement.",
+      "BH correction is applied separately within each outcome/horizon family.",
+      "No PnL, stop, target, position sizing or execution optimization is permitted in Phase I-C.",
+      "A survivor is a phenomenon candidate only, not a trading strategy."
+    ],
+    "outcomes": [
+      "mean_fwd_ret_atr",
+      "move_ge_1atr",
+      "up_first_1atr"
+    ],
+    "phase": "I-C",
+    "protected_2026_untouched": true,
+    "quarters_same_sign_required": 3,
+    "schema": 1,
+    "state_families": [
+      "feature_quintile",
+      "feature_quintile_x_server_4h_block"
+    ]
+  },
+  "propfirm_tradability_authorized": false,
+  "protected_2026_untouched": true,
+  "rows_2024": 70445,
+  "rows_2025": 70219,
+  "schema": 1,
+  "scientific_status": "SURVIVORS_FOUND",
+  "states_tested": 490,
+  "survivors_by_outcome_horizon": {
+    "mean_fwd_ret_atr_h12": 8,
+    "mean_fwd_ret_atr_h24": 15,
+    "mean_fwd_ret_atr_h3": 2,
+    "mean_fwd_ret_atr_h6": 6,
+    "move_ge_1atr_h12": 423,
+    "move_ge_1atr_h24": 462,
+    "move_ge_1atr_h3": 345,
+    "move_ge_1atr_h6": 360,
+    "up_first_1atr_h12": 2,
+    "up_first_1atr_h6": 1
+  },
+  "technical_status": "PASS"
+}
