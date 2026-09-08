@@ -1,0 +1,113 @@
+{
+  "event_counts_by_month": {
+    "2024.01": 42,
+    "2024.02": 36,
+    "2024.03": 44,
+    "2024.04": 41,
+    "2024.05": 45,
+    "2024.06": 41,
+    "2024.07": 48,
+    "2024.08": 39,
+    "2024.09": 43,
+    "2024.10": 43,
+    "2024.11": 40,
+    "2024.12": 42,
+    "2025.01": 43,
+    "2025.02": 41,
+    "2025.03": 42,
+    "2025.04": 44,
+    "2025.05": 42,
+    "2025.06": 44,
+    "2025.07": 47,
+    "2025.08": 38,
+    "2025.09": 43,
+    "2025.10": 27,
+    "2025.11": 26,
+    "2025.12": 40
+  },
+  "event_counts_by_year": {
+    "2024": 504,
+    "2025": 477
+  },
+  "generated_at_utc": "2026-09-08T19:51:55.889124+00:00",
+  "merged_mask_intervals": 634,
+  "official_profiles_reference": {
+    "FTMO_EVALUATION": {
+      "news_trading": "ALLOWED",
+      "note": "Current FTMO Evaluation Process has no news restriction, subject to forbidden-trading-practice rules.",
+      "official_window_post_minutes": 0,
+      "official_window_pre_minutes": 0,
+      "source": "https://ftmo.com/faq/can-i-trade-news/"
+    },
+    "FTMO_FUNDED_STANDARD": {
+      "news_trading": "RESTRICTED_SELECTED_EVENTS",
+      "note": "Current FTMO Standard funded-account rule restricts opening/closing targeted instruments around selected macro releases; XAUUSD is affected by selected USD events. The research policy is intentionally broader: all high-impact USD events +/-5 minutes.",
+      "official_window_post_minutes": 2,
+      "official_window_pre_minutes": 2,
+      "source": "https://ftmo.com/faq/can-i-trade-news/",
+      "xauusd_affected_currency": "USD"
+    },
+    "FTMO_FUNDED_SWING": {
+      "news_trading": "ALLOWED",
+      "note": "Current FTMO Swing account has no news restriction, but the conservative research mask still applies.",
+      "official_window_post_minutes": 0,
+      "official_window_pre_minutes": 0,
+      "source": "https://ftmo.com/faq/can-i-trade-news/"
+    },
+    "FUNDEDNEXT_CFD_CHALLENGE": {
+      "news_trading": "ALLOWED",
+      "note": "Stellar 1-Step, 2-Step and Lite challenge phases are currently excluded from the funded-account news reward-share rule.",
+      "official_window_post_minutes": 0,
+      "official_window_pre_minutes": 0,
+      "source": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext"
+    },
+    "FUNDEDNEXT_CFD_FUNDED": {
+      "loss_counted_fraction": 1.0,
+      "news_trading": "ALLOWED_WITH_PROFIT_ADJUSTMENT",
+      "note": "Current FundedNext CFD funded-account policy applies a 40% reward-share treatment to profitable trades executed in the listed high-impact news window; the research policy remains stricter and blocks these windows entirely.",
+      "official_window_post_minutes": 5,
+      "official_window_pre_minutes": 5,
+      "profit_counted_fraction": 0.4,
+      "source": "https://help.fundednext.com/en/articles/10701447-is-news-trading-allowed-at-fundednext"
+    }
+  },
+  "phase": "I-A",
+  "promotion_gate": "Phase I-B/I-C may exclude masked rows for research; no live prop-firm promotion is authorized by Phase I-A alone.",
+  "propfirm_tradability_authorized": false,
+  "protected_2026_untouched": true,
+  "raw_rows": 1634,
+  "research_profile": {
+    "bar_intersection_rule": "A bar is news-contaminated when its half-open interval [open, close) overlaps the closed policy window [event-pre, event+post].",
+    "description": "Research gate: do not allow candidate entries/exits inside high-impact news windows even when a target prop-firm account type would technically allow or merely haircut news profits.",
+    "importance": "HIGH",
+    "name": "CONSERVATIVE_PROP_FIRM_NEWS_EXCLUSION",
+    "post_minutes": 5,
+    "pre_minutes": 5,
+    "promotion_rule": "Any strategy candidate using rows inside the conservative news mask is ineligible for prop-firm promotion.",
+    "xauusd_currencies": [
+      "USD"
+    ]
+  },
+  "same_server_time_required_for_xau_phase_ib": true,
+  "schema": 1,
+  "source": "MT5 Economic Calendar via same-terminal trade-server time",
+  "status": "DATA_GATE_READY",
+  "target_currency": "USD",
+  "target_symbol": "XAUUSD",
+  "terminal_manifest": {
+    "company": "FundedNext Ltd",
+    "currencies": "USD,EUR,GBP,JPY,CHF,CAD,AUD,NZD",
+    "currency": "USD",
+    "exported_at_server_time": "2026.09.08 22:51:54",
+    "from_server_time": "2024.01.01 00:00:00",
+    "phase": "I-A",
+    "schema": "1",
+    "server": "FundedNext-Server 2",
+    "terminal_commondata_path": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common",
+    "terminal_data_path": "D:\\MT5_FundedNext",
+    "terminal_path": "D:\\MT5_FundedNext",
+    "to_server_time_exclusive": "2026.01.01 00:00:00"
+  },
+  "unique_raw_value_ids": 1634,
+  "xauusd_high_impact_event_rows": 981
+}

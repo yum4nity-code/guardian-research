@@ -1,0 +1,12 @@
+schema=1
+phase=I-A
+terminal_path=D:\MT5_FundedNext
+terminal_data_path=D:\MT5_FundedNext
+terminal_commondata_path=C:\Users\armor\AppData\Roaming\MetaQuotes\Terminal\Common
+company=FundedNext Ltd
+server=FundedNext-Server 2
+currency=USD
+from_server_time=2024.01.01 00:00:00
+to_server_time_exclusive=2026.01.01 00:00:00
+exported_at_server_time=2026.09.08 22:51:54
+currencies=USD,EUR,GBP,JPY,CHF,CAD,AUD,NZD
