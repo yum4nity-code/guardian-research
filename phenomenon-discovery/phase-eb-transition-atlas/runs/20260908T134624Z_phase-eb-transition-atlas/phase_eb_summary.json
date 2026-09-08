@@ -1,0 +1,176 @@
+{
+  "features": [
+    "oi_change_15m_pct",
+    "oi_change_1h_pct",
+    "mark_index_bps",
+    "mark_index_bps_change_15m",
+    "mark_index_bps_change_1h",
+    "premium_index_close",
+    "premium_index_change_15m",
+    "premium_index_change_1h",
+    "funding_last_settled_rate",
+    "funding_delta_settlement"
+  ],
+  "frozen_shortlist_count": 100,
+  "frozen_shortlist_sha256": "0ebfe46ecef80869161f246871e51699e3c0909abe3d7d06ea2bed2608caca92",
+  "gates": {
+    "bh_q_max": 0.1,
+    "bootstrap_paths": 3000,
+    "circular_block_days": 5,
+    "confirmation_effect_retention_fraction": 0.25,
+    "dedup_jaccard": 0.95,
+    "min_2024_annual_n": 300,
+    "min_2024_half_n": 120,
+    "min_2025_annual_n": 200,
+    "min_2025_quarter_n": 40,
+    "quarter_match_rate_min": 0.75,
+    "quarter_min_eligible_blocks": 6,
+    "top_per_outcome": 50
+  },
+  "independent_validation": false,
+  "lags": [
+    "15m",
+    "1h"
+  ],
+  "method": "single-variable quintile transitions only; 2024 discovery with BTC+ETH and H1/H2 sign stability; frozen shortlist before 2025 confirmation; 2025 quarter stability, circular 5-day bootstrap, BH correction; no transition combinations",
+  "passes_by_outcome": {
+    "direction_1h_atr": 0,
+    "up_first_1atr_1h": 0
+  },
+  "phase": "E-B",
+  "phase_eb_distinct_pass_count": 0,
+  "phase_eb_screen_pass_count": 0,
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "DISCOVERY_ROBUSTNESS_ONLY",
+  "thresholds_2024_by_symbol": {
+    "BTCUSDT": {
+      "funding_delta_settlement": [
+        -3.284e-05,
+        0.0,
+        0.0,
+        3.294000000000002e-05
+      ],
+      "funding_last_settled_rate": [
+        2.833e-05,
+        0.00010000000000000002,
+        0.00010000000000000002,
+        0.0001
+      ],
+      "mark_index_bps": [
+        -4.651693120176992,
+        -3.5517477443451906,
+        -0.12211523184735285,
+        5.126863336823998
+      ],
+      "mark_index_bps_change_15m": [
+        -0.7213076140288877,
+        -0.20853910153384447,
+        0.20309173940025183,
+        0.7199143800429297
+      ],
+      "mark_index_bps_change_1h": [
+        -1.0024076346124566,
+        -0.28874482694174475,
+        0.2835686763218435,
+        1.0037682465584568
+      ],
+      "oi_change_15m_pct": [
+        -0.16939996172,
+        -0.027919109919999983,
+        0.05634502599999998,
+        0.19060053822000006
+      ],
+      "oi_change_1h_pct": [
+        -0.43553539109999995,
+        -0.08134321538,
+        0.14223548285999996,
+        0.47051577716000015
+      ],
+      "premium_index_change_15m": [
+        -9.965000000000001e-05,
+        -2.796999999999999e-05,
+        2.758000000000003e-05,
+        9.943999999999998e-05
+      ],
+      "premium_index_change_1h": [
+        -0.00012204000000000002,
+        -3.4646000000000014e-05,
+        3.4389999999999974e-05,
+        0.00012186999999999998
+      ],
+      "premium_index_close": [
+        -0.00048170399999999995,
+        -0.0003612359999999999,
+        -6.094000000000742e-06,
+        0.0005067840000000005
+      ]
+    },
+    "ETHUSDT": {
+      "funding_delta_settlement": [
+        -3.824e-05,
+        0.0,
+        0.0,
+        3.861000000000001e-05
+      ],
+      "funding_last_settled_rate": [
+        2.9e-05,
+        0.00010000000000000002,
+        0.00010000000000000002,
+        0.00010677
+      ],
+      "mark_index_bps": [
+        -4.772013442644774,
+        -3.646416019579712,
+        -0.26918607355752755,
+        6.18903629267864
+      ],
+      "mark_index_bps_change_15m": [
+        -0.7168669656576476,
+        -0.21164157142705697,
+        0.20504216856176427,
+        0.727187404462315
+      ],
+      "mark_index_bps_change_1h": [
+        -0.9994444381411505,
+        -0.2817823435279365,
+        0.28559542413653105,
+        0.9886808092760547
+      ],
+      "oi_change_15m_pct": [
+        -0.1510057828,
+        -0.03140008839999998,
+        0.04071662211999998,
+        0.15932087306000015
+      ],
+      "oi_change_1h_pct": [
+        -0.39690594642,
+        -0.09120520171999998,
+        0.11265259107999998,
+        0.4168804230600003
+      ],
+      "premium_index_change_15m": [
+        -0.00010084999999999998,
+        -2.8180000000000018e-05,
+        2.8120000000000022e-05,
+        0.00010061
+      ],
+      "premium_index_change_1h": [
+        -0.00012277999999999996,
+        -3.4685999999999986e-05,
+        3.3465999999999974e-05,
+        0.00012257000000000001
+      ],
+      "premium_index_close": [
+        -0.00048092,
+        -0.0003558979999999999,
+        0.0,
+        0.0005948900000000004
+      ]
+    }
+  },
+  "transition_states_per_feature_lag": 25,
+  "transition_states_tested": 444,
+  "universe_tests_total": 888,
+  "warning": "Phase E-B still uses inspected 2024-2025 data. Passing transitions are candidates only. Freeze any final candidate before opening 2026."
+}

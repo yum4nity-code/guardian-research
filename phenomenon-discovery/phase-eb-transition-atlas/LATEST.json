@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_eb_summary.json",
+      "sha256": "1f6c3690b5a098e884b1f6b68cd45430ef5e8f78a4f21b6935f64147fe274d5a",
+      "size_bytes": 4982
+    },
+    {
+      "name": "phase_eb_2024_transition_universe.csv",
+      "sha256": "289b46ddff4bbc84d8306de528d89712b05358b0b17ca903df251f77b47f7c19",
+      "size_bytes": 207640
+    },
+    {
+      "name": "phase_eb_frozen_shortlist_2024.csv",
+      "sha256": "0ebfe46ecef80869161f246871e51699e3c0909abe3d7d06ea2bed2608caca92",
+      "size_bytes": 24646
+    },
+    {
+      "name": "phase_eb_2025_confirmation.csv",
+      "sha256": "06fa1e6496b98959eb638d1e4078ab78c593c699ad5ccd6bd876b2b9573e2b7e",
+      "size_bytes": 58307
+    },
+    {
+      "name": "phase_eb_distinct_passes.csv",
+      "sha256": "022a96bd1ca359597f72c758ae173b399003f42bad2aa7c61b4466f256e3c1aa",
+      "size_bytes": 7
+    },
+    {
+      "name": "phase_eb_dedup_clusters.csv",
+      "sha256": "022a96bd1ca359597f72c758ae173b399003f42bad2aa7c61b4466f256e3c1aa",
+      "size_bytes": 7
+    }
+  ],
+  "generated_at_utc": "2026-09-08T13:46:24.663499+00:00",
+  "phase": "phase-eb-transition-atlas",
+  "published_run_path": "phenomenon-discovery/phase-eb-transition-atlas/runs/20260908T134624Z_phase-eb-transition-atlas",
+  "schema": 1,
+  "source_commit": "830c798d599a3f84f4588b89ba348e05bf0346f3",
+  "status": "PASS",
+  "summary": "Phase E-B single-variable transition atlas completed. 2024 discovery frozen before 2025 confirmation; no transition combinations; 2026 untouched."
+}
