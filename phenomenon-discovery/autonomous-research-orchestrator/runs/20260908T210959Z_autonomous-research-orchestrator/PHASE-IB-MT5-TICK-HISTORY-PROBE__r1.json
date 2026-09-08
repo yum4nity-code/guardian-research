@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 450.0,
+  "class_key": "xau-mt5-tick-diagnostic",
+  "duration_seconds": 100.08227760001319,
+  "exit_code": 2,
+  "finished_at_utc": "2026-09-08T21:09:59.530375+00:00",
+  "job_id": "PHASE-IB-MT5-TICK-HISTORY-PROBE",
+  "main_commit": "2237259a9c8c230a56eb09a8357dd2ee19208099",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 2",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-08T21:08:19.426005+00:00",
+  "status": "FAIL",
+  "stderr_tail": "",
+  "stdout_tail": "{\n  \"generated_at_utc\": \"2026-09-08T21:09:54.697268+00:00\",\n  \"historical_tick_path_viable\": false,\n  \"probes\": [\n    {\n      \"count\": 0,\n      \"end\": \"2024-01-05T13:40:00+00:00\",\n      \"last_error\": [\n        -1,\n        \"Terminal: Call failed\"\n      ],\n      \"start\": \"2024-01-05T13:20:00+00:00\"\n    },\n    {\n      \"count\": 0,\n      \"end\": \"2024-07-05T12:40:00+00:00\",\n      \"last_error\": [\n        1,\n        \"Success\"\n      ],\n      \"start\": \"2024-07-05T12:20:00+00:00\"\n    },\n    {\n      \"count\": 0,\n      \"end\": \"2025-01-10T13:40:00+00:00\",\n      \"last_error\": [\n        1,\n        \"Success\"\n      ],\n      \"start\": \"2025-01-10T13:20:00+00:00\"\n    },\n    {\n      \"count\": 0,\n      \"end\": \"2025-07-03T12:40:00+00:00\",\n      \"last_error\": [\n        1,\n        \"Success\"\n      ],\n      \"start\": \"2025-07-03T12:20:00+00:00\"\n    }\n  ],\n  \"protected_2026_untouched\": true,\n  \"schema\": 1,\n  \"server\": \"FundedNext-Server 2\",\n  \"status\": \"FAIL\",\n  \"symbol\": \"XAUUSD\",\n  \"terminal_maxbars\": 100000\n}"
+}

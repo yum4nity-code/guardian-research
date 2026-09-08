@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 2",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IB-MT5-TICK-HISTORY-PROBE__r1.json",
+  "main_commit": "2237259a9c8c230a56eb09a8357dd2ee19208099",
+  "pid": 4032,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-08T21:09:59.541740+00:00",
+  "version": "1.00"
+}
