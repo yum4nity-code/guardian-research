@@ -1,0 +1,55 @@
+{
+  "discovery_eligible_count": 257,
+  "engine_version": "1.01",
+  "feature_count": 19,
+  "frozen_shortlist_count": 75,
+  "frozen_shortlist_sha256": "bbe100b5fc32ae47a7e8f9e7381d7fb11a8d7d9b64e48b11154492e9dea6d68c",
+  "gates": {
+    "bh_q_max": 0.1,
+    "bootstrap_paths": 3000,
+    "circular_block_days": 5,
+    "confirmation_min_annual": 300,
+    "confirmation_min_quarter": 50,
+    "discovery_min_annual": 500,
+    "discovery_min_half": 180,
+    "effect_retention_fraction": 0.25,
+    "quarter_match_min": 0.75
+  },
+  "generated_at_utc": "2026-09-08T19:25:47.406475+00:00",
+  "horizons": [
+    "15m",
+    "30m",
+    "1h",
+    "2h",
+    "4h"
+  ],
+  "independent_validation": false,
+  "method": "rare 1%-2% single-feature event atlas; 2024 discovery/freeze then 2025 confirmation",
+  "news_mask_applied": false,
+  "news_policy": "No candidate may be promoted as prop-firm tradable until a historical news mask matching the target prop-firm rule is applied.",
+  "outcome_kinds": [
+    "return_atr",
+    "excursion_bias_atr",
+    "up_first_touch"
+  ],
+  "passes_by_horizon": {
+    "15m": 0,
+    "1h": 0,
+    "2h": 0,
+    "30m": 0,
+    "4h": 0
+  },
+  "passes_by_outcome_kind": {
+    "excursion_bias_atr": 0,
+    "return_atr": 0,
+    "up_first_touch": 0
+  },
+  "phase": "H-B",
+  "phase_hb_screen_pass_count": 0,
+  "propfirm_tradability_authorized": false,
+  "protected_2026_untouched": true,
+  "raw_hypotheses": 1140,
+  "schema": 1,
+  "status": "DISCOVERY_ROBUSTNESS_ONLY",
+  "tails_per_feature": 4
+}

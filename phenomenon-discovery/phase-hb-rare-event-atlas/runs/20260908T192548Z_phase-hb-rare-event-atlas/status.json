@@ -28,7 +28,6 @@
   ],
   "generated_at_utc": "2026-09-08T19:25:48.604575+00:00",
   "phase": "phase-hb-rare-event-atlas",
-  "published_run_path": "phenomenon-discovery/phase-hb-rare-event-atlas/runs/20260908T192548Z_phase-hb-rare-event-atlas",
   "schema": 1,
   "source_commit": "934cf7836e4295fc9df81910e546f38d4da1fd76",
   "status": "PASS",
