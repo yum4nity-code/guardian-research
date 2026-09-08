@@ -18,9 +18,8 @@ function Invoke-PythonFile([string]$Script, [string[]]$Arguments) {
     $exe = $cmd[0]
     $prefix = @()
     if ($cmd.Count -gt 1) { $prefix = $cmd[1..($cmd.Count - 1)] }
-    & $exe @prefix $Script @Arguments
-    $code = $LASTEXITCODE
-    return [int]$code
+    & $exe @prefix $Script @Arguments | Out-Host
+    return [int]$LASTEXITCODE
 }
 
 $Analyzer = Join-Path $PSScriptRoot "phase_c_stability_multipletest_v1_00.py"
