@@ -18,7 +18,7 @@ A Lab-ready trade file must contain at least:
 | `challenge_day` | Prop-firm-normalized day key for daily-loss accounting, format `YYYYMMDD`. |
 | `adverse_r` | Most adverse observed excursion of that individual trade in R, **signed and <= 0**. |
 
-`challenge_day` and `adverse_r` are the new canonical fields. Do not silently substitute an entry date for `challenge_day`, and do not silently reinterpret a positive MAE magnitude as signed adverse R.
+`challenge_day` and `adverse_r` are canonical fields. Do not silently substitute an entry date for `challenge_day`, and do not silently reinterpret a positive MAE magnitude as signed adverse R.
 
 ## Run-level metadata required
 
@@ -51,27 +51,42 @@ Exact portfolio DD requires synchronized mark-to-market/floating-equity snapshot
 
 ## Eligibility handshake
 
-Every frozen confirmation/OOS decision JSON must persist:
+Do **not** modify a historical frozen scorer merely to add Challenge Lab fields after its result is known.
 
-```json
-{
-  "challenge_lab_eligible": true
-}
-```
+For new scorers, an explicit `challenge_lab_eligible` boolean may be emitted directly if that behavior was frozen before OOS/confirmation. The canonical cross-scorer path, however, is `post_validation_pipeline_v1_01.py`.
 
-only when the underlying strategy/portfolio has passed its preregistered alpha/OOS/robustness requirements and is scientifically eligible for downstream challenge-risk selection.
+The pipeline derives the same boolean from a **pre-registered policy** that pins:
 
-A failed/rejected strategy must write `false` (or omit eligibility and therefore fail closed). Risk optimization must never be used to rescue failed alpha.
+- exact accepted scorer verdict(s);
+- exact expected stage;
+- exact scorer gate object;
+- whether a legacy scorer without gates is permitted;
+- Monte-Carlo path count;
+- seed;
+- risk grid;
+- SHA256 of the frozen challenge profile.
 
-## Automatic post-validation gate
+Eligibility is true only when the scorer verdict and stage exactly match the frozen policy and all persisted gates are literally `true` (unless missing gates were explicitly allowed in the policy before the result existed).
 
-Use `post_validation_challenge_gate_v1_00.py` after the confirmation scorer. The gate:
+A failed/rejected/unconfirmed strategy remains false and the Challenge Lab is skipped. Risk optimization must never rescue failed alpha.
 
-1. reads the persisted eligibility boolean;
-2. skips rejected/unconfirmed strategies;
-3. validates the canonical export contract;
-4. runs Challenge Probability Lab for eligible strategies;
-5. emits `challenge_gate_manifest.json` plus JSON/CSV/Markdown Lab results;
-6. records DD fidelity and the risk selected for maximum pass probability.
+## Automatic post-validation pipeline
 
-Legacy validated evidence can be processed only with the explicit `--allow-legacy-atomic-export` escape hatch; the lower-fidelity result remains labelled as such.
+Canonical entrypoint: `post_validation_pipeline_v1_01.py`.
+
+It:
+
+1. validates the preregistered policy and rejects placeholders;
+2. verifies the frozen challenge profile SHA256;
+3. reads the untouched scorer JSON;
+4. computes fail-closed eligibility from exact verdict/stage/gates;
+5. writes `challenge_lab_eligibility.json` with scorer/policy/profile provenance;
+6. calls `post_validation_challenge_gate_v1_00.py`;
+7. skips rejected/unconfirmed strategies;
+8. validates the canonical trade export contract;
+9. runs Challenge Probability Lab only for eligible strategies;
+10. emits `challenge_gate_manifest.json` plus JSON/CSV/Markdown Lab results and DD fidelity.
+
+Use `challenge_pipeline_policy_template_v1_00.json` when preregistering a new confirmation/OOS campaign. The template is intentionally invalid until its placeholders are replaced and committed before the protected result is opened.
+
+Legacy validated trade exports lacking canonical challenge fields can be processed only with the explicit `--allow-legacy-atomic-export` escape hatch; the lower-fidelity result remains labelled as such.
