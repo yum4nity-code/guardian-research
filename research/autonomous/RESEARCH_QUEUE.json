@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "generation": 1,
+  "updated_at": "2026-09-08",
+  "mode": "AUTONOMOUS_SCIENTIFIC_RESEARCH",
+  "human_approved_2026": false,
+  "codex_policy": {
+    "enabled": false,
+    "max_requests_per_24h": 1,
+    "minimum_deterministic_failures_before_request": 2
+  },
+  "jobs": [
+    {
+      "id": "PHASE-IB-PASS-GATE",
+      "revision": 1,
+      "enabled": true,
+      "priority": 0,
+      "class_key": "scientific-gate",
+      "description": "Do nothing until the canonical Phase I-B XAUUSD data gate is published PASS. This prevents the autonomous branch from racing ahead on unvalidated local data.",
+      "data_window": {
+        "start": "2024-01-01T00:00:00Z",
+        "end_exclusive": "2026-01-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "github_result",
+          "ref": "origin/backtest-results",
+          "path": "phenomenon-discovery/phase-ib-xau-dataset/LATEST.json",
+          "accepted_status": ["PASS"]
+        }
+      ],
+      "executor": {
+        "kind": "noop"
+      }
+    }
+  ]
+}
