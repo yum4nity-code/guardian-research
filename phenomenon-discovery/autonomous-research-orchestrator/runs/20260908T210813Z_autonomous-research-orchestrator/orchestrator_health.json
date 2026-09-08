@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IB-MT5-TICK-HISTORY-PROBE",
+    "revision": 1
+  },
+  "main_commit": "2237259a9c8c230a56eb09a8357dd2ee19208099",
+  "pid": 4032,
+  "protected_2026": true,
+  "queue_generation": 6,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-08T21:08:13.024341+00:00",
+  "version": "1.00"
+}
