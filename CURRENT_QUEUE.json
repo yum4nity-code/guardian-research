@@ -1,15 +1,23 @@
 {
   "schema_version": 1,
   "updated_at": "2026-09-08",
-  "active_primary": "PHENOMENON-DISCOVERY-LAB-PHASE-A",
+  "active_primary": "PHENOMENON-DISCOVERY-LAB-PHASE-B-ATLAS",
   "items": [
     {
-      "id": "PHENOMENON-DISCOVERY-LAB-PHASE-A",
+      "id": "PHENOMENON-DISCOVERY-LAB-PHASE-B-ATLAS",
       "priority": 0,
-      "status": "WAITING_RESULT",
+      "status": "READY",
       "owner": "ChatGPT/User",
       "type": "phenomenon_first_research",
-      "goal": "Build and integrity-check a 2024-2025 BTC/ETH 5m Bybit price+OI discovery matrix before inventing another named strategy. 2026 remains withheld. Next step after the data gate is a coarse phenomenon atlas with cross-symbol/time-block stability and multiple-testing control; no P&L optimization or BUY/SELL rule generation yet."
+      "goal": "Run the deterministic coarse quintile phenomenon atlas on the validated Phase A feature matrices. 2024 is discovery; 2025 is internal confirmation; BTC and ETH must agree in sign. Search single-feature and two-feature market states for directional, future-movement and first-touch distribution shifts. This is screening only: no PnL optimization, no BUY/SELL rule promotion, and 2026 remains untouched. Results auto-publish to backtest-results so the user does not need to relay console output."
+    },
+    {
+      "id": "PHENOMENON-DISCOVERY-LAB-PHASE-A",
+      "priority": 1,
+      "status": "VALIDATED",
+      "owner": "ChatGPT/User",
+      "type": "phenomenon_first_research",
+      "goal": "Phase A data gate passed on 2024-2025 BTCUSDT and ETHUSDT Bybit 5m price+OI: 210,528 aligned rows per symbol, 100% OI coverage, zero duplicate timestamps and zero non-5m gaps. Preserve 2026 withheld."
     },
     {
       "id": "NEXT-INDEPENDENT-ALPHA-FAMILY",
@@ -17,7 +25,7 @@
       "status": "BLOCKED",
       "owner": "ChatGPT/Codex",
       "type": "scientific_hypothesis_selection",
-      "goal": "Do not select another named alpha family while Phenomenon Discovery Phase A is active. Reopen only if the phenomenon-first branch fails or after its evidence is exhausted.",
+      "goal": "Do not select another named alpha family while Phenomenon Discovery is active. Reopen only if the phenomenon-first branch fails or after its evidence is exhausted.",
       "blocking": "Phenomenon-first research is the current P0."
     },
     {
@@ -164,5 +172,5 @@
     "REJECTED",
     "BLOCKED"
   ],
-  "notes": "2026-09-08: P0 changed from another named alpha-family search to Phenomenon Discovery Lab Phase A. Bootstrap code is committed; user-run data gate pending. Discovery uses only 2024-2025 BTC/ETH Bybit 5m price+OI; 2026 is withheld. No strategy/P&L optimization until a phenomenon atlas survives stability and multiple-testing gates. D053/D054 and other rejected families remain closed. Guardian Core v12.01 remains stable; FundedNext AUTO remains off until request/retry compliance is separately bounded."
+  "notes": "2026-09-08: Phenomenon Discovery Phase A passed with complete 2024-2025 BTC/ETH Bybit 5m price+OI coverage (210,528 aligned rows/symbol, 100% OI, no gaps/duplicates). P0 advances to Phase B coarse phenomenon atlas: 2024 discovery, 2025 internal confirmation, BTC+ETH same-sign stability. Phase B launchers now auto-publish compact status/results to backtest-results so the user no longer needs to relay console output. 2026 remains withheld. No strategy/PnL optimization yet. D053/D054 and other rejected families remain closed. Guardian Core v12.01 remains stable; FundedNext AUTO remains off until request/retry compliance is separately bounded."
 }
