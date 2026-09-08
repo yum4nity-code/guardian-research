@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 120.0,
+  "class_key": "orchestrator-infrastructure",
+  "duration_seconds": 6.024476999999024,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-08T20:58:17.984893+00:00",
+  "job_id": "INFRA-HIDE-ORCHESTRATOR-CONSOLE",
+  "main_commit": "e5cd2fff7c0c133801dae0965964809c0d41f86c",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-08T20:58:11.895918+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "ORCHESTRATOR_HIDDEN_REPAIR_PASS"
+}
