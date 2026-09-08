@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 6000.0,
+  "class_key": "xau-hcc-data-recovery",
+  "duration_seconds": 40.12160070001846,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-08T22:52:59.488520+00:00",
+  "job_id": "PHASE-IB-HCC-RECOVERY",
+  "main_commit": "999579b68c498a0bd01a42bec51beb14faf63cc9",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 1",
+  "revision": 2,
+  "schema": 1,
+  "started_at_utc": "2026-09-08T22:52:19.326045+00:00",
+  "status": "FAIL",
+  "stderr_tail": "PHASE I-B HCC RECOVERY v1.01 FAIL: derived M5 exact-open timestamps absent from M1: 45\nTraceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_hcc_recovery_v1_01.py\", line 364, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_hcc_recovery_v1_01.py\", line 308, in main\n    m5 = aggregate_m5(all_m1)\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_ib_hcc_recovery_v1_01.py\", line 226, in aggregate_m5\n    raise RuntimeError(f\"derived M5 exact-open timestamps absent from M1: {bad}\")\nRuntimeError: derived M5 exact-open timestamps absent from M1: 45",
+  "stdout_tail": ""
+}
