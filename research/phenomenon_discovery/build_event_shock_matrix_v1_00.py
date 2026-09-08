@@ -49,12 +49,13 @@ def add_trailing_shocks(rows):
 
 def add_future_labels(rows):
     for i,row in enumerate(rows):
-        close=fnum(row.get("close")); atr=fnum(row.get("atr14")); ts=int(row["timestamp_ms"])
+        close=fnum(row.get("close")); atr=fnum(row.get("atr14")); ts=int(row["timestamp_ms"]); year=row.get("timestamp_utc","")[:4]
         for tag,bars in HORIZONS.items():
             keys=[f"future_return_{tag}_atr",f"future_mfe_{tag}_atr",f"future_mae_{tag}_atr",f"future_excursion_bias_{tag}_atr",f"future_first_touch_1atr_{tag}"]
             for k in keys: row[k]=""
             j=i+bars
             if close is None or atr is None or atr<=0 or j>=len(rows): continue
+            if rows[j].get("timestamp_utc","")[:4] != year: continue  # never let 2024 labels consume 2025
             if int(rows[j]["timestamp_ms"])-ts != bars*STEP_MS: continue
             path=rows[i+1:j+1]
             vals=[]; valid=True
@@ -70,8 +71,7 @@ def add_future_labels(rows):
             row[f"future_mfe_{tag}_atr"]=mfe
             row[f"future_mae_{tag}_atr"]=mae
             row[f"future_excursion_bias_{tag}_atr"]=mfe-mae
-            touch="NONE"
-            up=close+atr; dn=close-atr
+            touch="NONE"; up=close+atr; dn=close-atr
             for hi,lo in vals:
                 u=hi>=up; d=lo<=dn
                 if u and d: touch="AMBIGUOUS_SAME_BAR"; break
@@ -87,33 +87,27 @@ def main():
     ap.add_argument("--flow-dir",default=r"D:\MT5_Backtests\Research\PhenomenonDiscovery\binance_orderflow_v1")
     ap.add_argument("--output-dir",default=r"D:\MT5_Backtests\Research\PhenomenonDiscovery\event_shock_v1")
     a=ap.parse_args(); out=Path(a.output_dir); out.mkdir(parents=True,exist_ok=True)
-    manifest={"schema":1,"phase":"H-A","protected_2026_untouched":True,"news_mask_applied":False,"propfirm_tradability_authorized":False,"news_policy":"Historical news mask is required before any event candidate can be promoted as prop-firm tradable.","horizons":HORIZONS,"symbols":{}}
+    manifest={"schema":1,"phase":"H-A","protected_2026_untouched":True,"cross_year_future_labels_forbidden":True,"news_mask_applied":False,"propfirm_tradability_authorized":False,"news_policy":"Historical news mask is required before any event candidate can be promoted as prop-firm tradable.","horizons":HORIZONS,"symbols":{}}
     for sym in ("BTCUSDT","ETHUSDT"):
-        fp=sorted(Path(a.features_dir).glob(f"{sym}_bybit_5m_oi_price_*_features_v1.csv"));
+        fp=sorted(Path(a.features_dir).glob(f"{sym}_bybit_5m_oi_price_*_features_v1.csv"))
         if len(fp)!=1: raise RuntimeError(f"expected one feature file for {sym}, got {len(fp)}")
         dp=Path(a.derivative_dir)/f"{sym}_derivative_context_features_v1.csv"
         op=Path(a.flow_dir)/f"{sym}_binance_spot_um_5m_orderflow_2024-01-01_2026-01-01.csv"
         if not dp.exists() or not op.exists(): raise RuntimeError(f"missing H-A input for {sym}")
-        base=load_csv(fp[0]); der=load_csv(dp); flow=load_csv(op)
-        common=sorted(set(base)&set(der)&set(flow))
-        rows=[]
+        base=load_csv(fp[0]); der=load_csv(dp); flow=load_csv(op); common=sorted(set(base)&set(der)&set(flow)); rows=[]
         for ts in common:
-            b=base[ts]; d=der[ts]; o=flow[ts]
-            row=dict(b)
+            b=base[ts]; d=der[ts]; o=flow[ts]; row=dict(b)
             for k in BASE_FEATURES:
                 if k in d: row[k]=d[k]
                 if k in o: row[k]=o[k]
-            for k in ("spot_quote_volume","perp_quote_volume","spot_trade_count","perp_trade_count"):
-                row[k]=o.get(k,"")
-            row["feature_available_at_ms"]=ts+STEP_MS
-            rows.append(row)
+            for k in ("spot_quote_volume","perp_quote_volume","spot_trade_count","perp_trade_count"): row[k]=o.get(k,"")
+            row["feature_available_at_ms"]=ts+STEP_MS; rows.append(row)
         add_trailing_shocks(rows); add_future_labels(rows)
         path=out/f"{sym}_event_shock_matrix_2024-01-01_2026-01-01.csv"
         with path.open("w",newline="",encoding="utf-8") as f:
             w=csv.DictWriter(f,fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
         manifest["symbols"][sym]={"rows":len(rows),"first_timestamp_ms":int(rows[0]["timestamp_ms"]),"last_timestamp_ms":int(rows[-1]["timestamp_ms"]),"output_file":str(path)}
         print(f"{sym}: rows={len(rows)} output={path}")
-    mp=out/"event_shock_manifest_v1.json"; mp.write_text(json.dumps(manifest,indent=2,sort_keys=True)+"\n",encoding="utf-8"); print(f"Manifest: {mp}")
-    return 0
+    mp=out/"event_shock_manifest_v1.json"; mp.write_text(json.dumps(manifest,indent=2,sort_keys=True)+"\n",encoding="utf-8"); print(f"Manifest: {mp}"); return 0
 
 if __name__=="__main__": raise SystemExit(main())
