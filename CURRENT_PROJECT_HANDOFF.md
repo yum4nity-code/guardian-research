@@ -1,40 +1,32 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-Last updated: 2026-09-07 Europe/Paris
-Status: **ACTIVE / D053 REJECTED / D054 UNCONFIRMED-CLOSED / NO CURRENT ALPHA P0 PROMOTED / CHALLENGE LAB AUTO POST-VALIDATION GATE INSTALLED**
+Last updated: 2026-09-08 Europe/Paris
+Status: **ACTIVE / D053 REJECTED / D054 UNCONFIRMED-CLOSED / NO CURRENT ALPHA P0 / QUEUE RECONCILED / CHALLENGE LAB PREREGISTERED PIPELINE V1.01 CANONICAL**
 
 ## Canonical resume
 
 Read first:
 1. this file;
-2. latest `backtest-results` branch state for the newest Dxxx campaign;
-3. `START_HERE_NEXT_AI.md` and `GUARDIAN_MASTER_MANDATE.md`;
-4. `docs/RESEARCH_PROTOCOL.md`;
-5. `CURRENT_QUEUE.json` only with the warning below.
+2. `CURRENT_QUEUE.json`;
+3. latest `backtest-results` branch evidence for the newest Dxxx campaign;
+4. `START_HERE_NEXT_AI.md` and `GUARDIAN_MASTER_MANDATE.md`;
+5. `docs/RESEARCH_PROTOCOL.md`.
 
-### Important metadata warning
+`CURRENT_QUEUE.json` was reconciled on 2026-09-08. Its stale D036 active-primary state was removed. Real/newer run evidence still wins if a future interruption causes metadata lag again.
 
-`CURRENT_QUEUE.json` on `main` still reflects older Sep-6 research state and must not override newer run evidence. The `backtest-results` branch is newer for the latest experiment outcomes until queue reconciliation is performed.
+## Current alpha state
 
-Do not reopen rejected families merely because they remain in older queue/handoff entries.
+- D053 formal verdict: `D053_REJECT_V0`.
+- D054 latest confirmation state: `D054_UNCONFIRMED_CLOSE`.
+- No alpha P0 is currently promoted.
+- Do not same-sample rescue D053/D054 or reopen other rejected families merely because historical files remain.
+- Next alpha action: select and preregister a genuinely independent family.
 
-## Latest alpha state observed on 2026-09-07
-
-### D053 — US Index ORB30 Entry Alpha V0
-
-Latest mirrored evidence records the formal verdict `D053_REJECT_V0`. The later descriptive audit explicitly does not change that verdict. Do not mine weekday/symbol/latency diagnostics into a same-sample rescue.
-
-### D054 — ORB30 Core3 Jul-Aug 2026 Confirmation V0
-
-Latest mirrored confirmation status is `D054_UNCONFIRMED_CLOSE`. D054 is closed/unconfirmed, not promoted.
-
-No new alpha P0 is invented here. The next alpha action is selection/preregistration of a genuinely independent family.
-
-## Challenge Probability Lab v1.00 — core engine
+## Challenge Probability Lab — core engine v1.00
 
 Purpose:
 
-> Estimate the probability that a strategy/portfolio reaches the challenge profit target before a daily or overall drawdown rule is breached, and select risk for **passing the challenge** rather than maximizing terminal profit.
+> Estimate the probability that a strategy/portfolio reaches the challenge target before a daily or overall drawdown breach, and select risk for **passing the challenge** rather than maximizing terminal profit.
 
 Core files:
 - `research/challenge_probability_lab/challenge_probability_lab_v1_00.py`
@@ -43,11 +35,10 @@ Core files:
 - `research/challenge_probability_lab/README.md`
 - `research/results/CHALLENGE_PROBABILITY_LAB_V1_00_IMPLEMENTATION_REPORT_2026_09_07.md`
 
-Validated core engine Git blob:
-`0fbe86213b5d42dd4d8a6202e4e246ae2ed6ee75`
-
-Validated core tests Git blob:
-`800808538f1c2013cabb3a48c3ddaa787fb81853`
+Core validation already completed:
+- Python compile PASS;
+- 8/8 engine unit tests PASS;
+- real Guardian CSV-schema smoke PASS.
 
 Frozen default risk grid:
 - 0.10%
@@ -59,50 +50,12 @@ Frozen default risk grid:
 
 per trade.
 
-Core validation: Python compile PASS, 8/8 core unit tests PASS, real Guardian CSV-schema smoke PASS.
+## Challenge trade export contract v1
 
-## NEW — automatic post-validation gate v1.00
+Canonical file:
+`research/challenge_probability_lab/CHALLENGE_TRADE_EXPORT_CONTRACT_V1.md`
 
-Challenge Lab is no longer a manual side step. `docs/RESEARCH_PROTOCOL.md` now defines the canonical flow:
-
-`... -> STAT VALIDATION / OOS -> RED TEAM -> CHALLENGE PROBABILITY LAB -> PRODUCTION CANDIDATE -> ...`
-
-New files:
-- gate: `research/challenge_probability_lab/post_validation_challenge_gate_v1_00.py`
-- gate tests: `research/challenge_probability_lab/test_post_validation_challenge_gate_v1_00.py`
-- export contract: `research/challenge_probability_lab/CHALLENGE_TRADE_EXPORT_CONTRACT_V1.md`
-- integration report: `research/results/CHALLENGE_PROBABILITY_POST_VALIDATION_GATE_V1_00_2026_09_07.md`
-
-Validated Git blobs:
-- gate: `412f8ee8b627cc1600385a2f5133e89dbe611fd6`
-- gate tests: `599f2cbc2d0dd2aea3d23ed41b3d9774048c9069`
-- export contract: `a3be60edaf5907ae0073a8d600dabe1a8c362e4c`
-
-Validation:
-- core suite 8/8 PASS;
-- gate suite 4/4 PASS;
-- total local tests 12/12 PASS;
-- real D037 legacy-schema gate smoke PASS with explicit legacy flag and correct lower-fidelity label.
-
-### Eligibility handshake — mandatory for future confirmation scorers
-
-Every future frozen OOS/confirmation decision JSON that can promote a strategy must persist:
-
-```json
-{
-  "challenge_lab_eligible": true
-}
-```
-
-Only a strategy/portfolio that actually passed its preregistered alpha/OOS/robustness gates may write `true`.
-
-The gate deliberately does **not** infer eligibility from arbitrary strings like `PASS`, `CONFIRM`, etc. `false` is skipped; missing/malformed eligibility fails closed.
-
-Risk optimization cannot rescue failed alpha.
-
-### Canonical future trade export
-
-Lab-ready future trade files must include at least:
+Future Lab-ready confirmation/OOS trades must contain at least:
 - `run_stage`
 - `symbol`
 - `entry_time`
@@ -111,50 +64,118 @@ Lab-ready future trade files must include at least:
 - `challenge_day`
 - `adverse_r`
 
-`challenge_day` is a prop-firm-normalized `YYYYMMDD` key based on the actual daily-loss reset rule.
+`challenge_day` must use the actual prop-firm daily-loss reset rule. `adverse_r` is signed worst adverse excursion in R and must be `<= 0`.
 
-`adverse_r` is the individual worst adverse excursion in R, **signed <= 0**. Do not guess the sign of historical `MAE_R`; convert/document explicitly.
+Run metadata must preserve day basis, R denominator, cost basis, floating-equity availability and the export-contract identifier.
 
-Run metadata must document day basis, R denominator, cost basis, floating-equity availability and `challenge_export_contract=GUARDIAN_CHALLENGE_TRADE_EXPORT_V1`.
+## Lower-level automatic gate v1.00
 
-### Automatic gate behavior
+Files:
+- `research/challenge_probability_lab/post_validation_challenge_gate_v1_00.py`
+- `research/challenge_probability_lab/test_post_validation_challenge_gate_v1_00.py`
 
-For `challenge_lab_eligible=true`:
-1. validate canonical export;
-2. run Challenge Probability Lab automatically;
-3. default to **20,000 paths per risk**;
-4. use the six frozen default risks unless the campaign froze another grid before outcomes;
-5. emit `challenge_gate_manifest.json`;
-6. emit `challenge_probability.json`, `.csv`, `.md`;
-7. persist DD fidelity + pass-optimal risk.
+Behavior:
+- `challenge_lab_eligible=false` -> skip;
+- malformed/missing eligibility -> fail closed;
+- canonical future export without `challenge_day` -> fail closed;
+- eligible canonical export -> run Lab and write `challenge_gate_manifest.json` plus JSON/CSV/Markdown results;
+- legacy export requires explicit `--allow-legacy-atomic-export` and remains lower fidelity.
 
-For rejected/unconfirmed results: `SKIPPED_NOT_ALPHA_VALIDATED`, no Lab run.
+Gate validation already completed: 4/4 gate tests PASS in addition to the 8/8 core tests.
 
-For future canonical results, missing `challenge_day` fails closed. Legacy validated evidence can only use explicit `--allow-legacy-atomic-export` and remains labelled lower fidelity.
+## NEW canonical bridge — preregistered post-validation pipeline v1.01
 
-### DD exactness boundary
+Canonical entrypoint:
+`research/challenge_probability_lab/post_validation_pipeline_v1_01.py`
+
+Supporting files:
+- `research/challenge_probability_lab/test_post_validation_pipeline_v1_01.py`
+- `research/challenge_probability_lab/challenge_pipeline_policy_template_v1_00.json`
+- compatibility predecessor: `post_validation_pipeline_v1_00.py`
+
+### Why v1.01 exists
+
+Historical scorers must stay frozen. Do **not** modify D037 or another completed scorer merely to inject Challenge Lab fields after its result is known.
+
+Also, accepting `--accepted-verdict CONFIRM` or choosing seed/risk grid after observing the result leaves an avoidable ex-post degree of freedom.
+
+v1.01 closes both problems by requiring a **pre-registered policy JSON** committed before the protected result is opened.
+
+The policy freezes:
+- exact scorer verdict(s) allowed to advance;
+- exact expected OOS/confirmation stage;
+- scorer verdict/stage/gates keys;
+- whether missing gates are permitted for an explicitly legacy scorer;
+- Monte-Carlo paths per risk;
+- deterministic seed;
+- complete risk grid;
+- SHA256 of the frozen challenge profile.
+
+Placeholder policy values are rejected at runtime.
+
+### v1.01 flow
+
+1. read untouched frozen scorer JSON;
+2. read preregistered policy JSON;
+3. verify policy validity;
+4. verify frozen challenge profile SHA256;
+5. exact-match scorer verdict + expected stage;
+6. require every persisted scorer gate to be literally `true` unless missing gates were preregistered as a legacy exception;
+7. write `challenge_lab_eligibility.json` with scorer/policy/profile SHA256 provenance;
+8. call `post_validation_challenge_gate_v1_00.py`;
+9. rejected/unconfirmed -> skip, no risk optimization;
+10. eligible -> run frozen Challenge Lab policy automatically.
+
+### v1.01 validation completed 2026-09-08
+
+Local policy checks: **6/6 PASS** covering:
+- valid `CONFIRM` + all gates true;
+- `UNCONFIRMED` blocked;
+- wrong stage blocked;
+- false gate blocked;
+- placeholder policy rejected;
+- invalid/empty risk grid rejected.
+
+Integration checks:
+- canonical CONFIRM path -> PASS;
+- policy values correctly propagated to lower-level gate;
+- six risk values propagated;
+- 20,000 paths and deterministic seed propagated;
+- challenge profile byte tampering -> **SHA256 mismatch / fail closed PASS**.
+
+This means the Lab is now not merely implemented; it has a scientifically safer bridge from frozen scorer to challenge-risk decision.
+
+## DD exactness boundary
 
 Current fidelity levels:
 - `ATOMIC_CLOSED_EQUITY`
 - `ATOMIC_PLUS_INDIVIDUAL_ADVERSE_R`
 
-Even with `adverse_r`, simultaneous adverse excursions from overlapping positions are not exact. Exact prop-firm floating DD requires synchronized portfolio mark-to-market/equity snapshots in a later v2-level extension.
+`adverse_r` improves intratrade DD detection but cannot reconstruct simultaneous adverse excursions of overlapping positions.
 
-Never describe current atomic DD probabilities as exact floating-equity compliance probabilities.
+Exact prop-firm floating DD still requires synchronized portfolio mark-to-market/equity snapshots. Never label current atomic probabilities as exact floating-equity compliance probabilities.
+
+## Queue state
+
+`CURRENT_QUEUE.json` now has:
+- `active_primary: null`;
+- P0 READY: `NEXT-INDEPENDENT-ALPHA-FAMILY`;
+- Challenge Probability Lab Pipeline v1.01 marked `VALIDATED` infrastructure;
+- D036 / D053 / D054 represented as closed/rejected evidence rather than active work.
 
 ## Guardian production / compliance separation
 
 Guardian Core v12.01 remains the compile-validated pure infrastructure baseline. Challenge Lab work did **not** modify `production/guardian/` or live trading semantics.
 
-FundedNext request/retry hyperactivity remains separate compliance/runtime work. Do not mix it into alpha or Challenge Lab scoring.
+FundedNext request/retry hyperactivity remains separate compliance/runtime work. FundedNext AUTO stays off until that issue is bounded.
 
 ## Next safe actions
 
-1. Keep D053 and D054 closed; no same-sample rescue.
-2. Select/preregister the next independent alpha family when ready.
-3. **From the next new Dxxx onward, build `challenge_day` + signed `adverse_r` into the trade export from the start.**
-4. Make every future OOS/confirmation scorer emit `challenge_lab_eligible` explicitly.
-5. If that flag is true, run `post_validation_challenge_gate_v1_00.py` automatically — no separate user request/command.
-6. Keep 20,000 paths/risk, seed, profile, block length, horizon and risk grid frozen for decision comparisons unless preregistered otherwise.
-7. Later v2 improvement: synchronized portfolio floating-equity/mark-to-market snapshots for exact concurrent DD reconstruction.
+1. Select/preregister the next genuinely independent alpha family.
+2. From its first harness design, include canonical `challenge_day` + signed `adverse_r` in the trade export.
+3. Before opening protected confirmation/OOS evidence, instantiate and commit a campaign-specific policy from `challenge_pipeline_policy_template_v1_00.json`.
+4. Keep the scorer itself frozen; after scoring, run `post_validation_pipeline_v1_01.py` automatically.
+5. If alpha/OOS fails, the Lab must skip. Do not use sizing to rescue it.
+6. If alpha/OOS succeeds, the frozen policy determines the six-risk Challenge simulation and pass-optimal risk.
+7. Later v2: add synchronized portfolio floating-equity/mark-to-market snapshots for exact concurrent DD reconstruction.
 8. Keep Guardian Core v12.01 stable unless a separate production change is explicitly justified and validated.
