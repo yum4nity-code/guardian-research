@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "generated_at_utc": "2026-09-08T20:04:52.798329+00:00",
+  "phase": "phase-ib-xau-dataset",
+  "schema": 1,
+  "source_commit": "4fc140d0aa6c4ec49773aaee94398ff7cf49be33",
+  "status": "RUNNING",
+  "summary": "Phase I-B staged XAUUSD M1/M5 exporter into the sole open MT5. Waiting for execution in that exact session; Phase I-A +/-5m mask will be applied before research use; 2026 protected."
+}
