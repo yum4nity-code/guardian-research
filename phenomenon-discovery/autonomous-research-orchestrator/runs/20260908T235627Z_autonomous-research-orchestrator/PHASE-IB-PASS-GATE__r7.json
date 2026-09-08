@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 0,
+  "class_key": "scientific-gate",
+  "duration_seconds": 0,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-08T23:56:27.412743+00:00",
+  "job_id": "PHASE-IB-PASS-GATE",
+  "main_commit": "d10a60cd86b58229d32e2e0471116bd65cb1105b",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "noop gate satisfied",
+  "revision": 7,
+  "schema": 1,
+  "started_at_utc": "2026-09-08T23:56:27.402964+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": ""
+}
