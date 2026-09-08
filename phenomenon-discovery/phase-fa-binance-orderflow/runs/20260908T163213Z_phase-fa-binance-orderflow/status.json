@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "binance_orderflow_manifest_v1.json",
+      "sha256": "9423e4093f7afaae4ea32c4eb1c154cc03b8ba86d1ef25e8e424270f3be30715",
+      "size_bytes": 702
+    },
+    {
+      "name": "binance_orderflow_integrity_v1.json",
+      "sha256": "5ae22c3ff2587326fa5c46b57c9888a537038ee433e80dbc4ad62471cc2afb3d",
+      "size_bytes": 1501
+    }
+  ],
+  "generated_at_utc": "2026-09-08T16:32:13.740788+00:00",
+  "phase": "phase-fa-binance-orderflow",
+  "schema": 1,
+  "source_commit": "8188c0407251c962514cfc55ef25c03cdf0d6e2f",
+  "status": "PASS",
+  "summary": "Phase F-A Binance spot+USD-M 5m aggressive-flow dataset passed integrity. BTC/ETH 2024-2025 only; checksum-verified archives; 2026 untouched; no rule search executed."
+}

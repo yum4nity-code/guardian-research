@@ -1,0 +1,44 @@
+{
+  "phase": "F-A",
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "PASS",
+  "symbols": {
+    "BTCUSDT": {
+      "duplicate_timestamps": 0,
+      "feature_availability_violations": 0,
+      "file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\binance_orderflow_v1\\BTCUSDT_binance_spot_um_5m_orderflow_2024-01-01_2026-01-01.csv",
+      "first_timestamp_ms": 1704067200000,
+      "last_timestamp_ms": 1767225300000,
+      "missing_required_numeric": {
+        "log_quote_volume_ratio": 0,
+        "log_trade_count_ratio": 0,
+        "perp_spot_basis_bps": 0,
+        "perp_taker_imbalance": 0,
+        "spot_taker_imbalance": 0,
+        "taker_imbalance_diff": 0
+      },
+      "non_5m_gap_count": 0,
+      "opened_2026_rows": 0,
+      "rows": 210528
+    },
+    "ETHUSDT": {
+      "duplicate_timestamps": 0,
+      "feature_availability_violations": 0,
+      "file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\binance_orderflow_v1\\ETHUSDT_binance_spot_um_5m_orderflow_2024-01-01_2026-01-01.csv",
+      "first_timestamp_ms": 1704067200000,
+      "last_timestamp_ms": 1767225300000,
+      "missing_required_numeric": {
+        "log_quote_volume_ratio": 0,
+        "log_trade_count_ratio": 0,
+        "perp_spot_basis_bps": 0,
+        "perp_taker_imbalance": 0,
+        "spot_taker_imbalance": 0,
+        "taker_imbalance_diff": 0
+      },
+      "non_5m_gap_count": 0,
+      "opened_2026_rows": 0,
+      "rows": 210528
+    }
+  }
+}

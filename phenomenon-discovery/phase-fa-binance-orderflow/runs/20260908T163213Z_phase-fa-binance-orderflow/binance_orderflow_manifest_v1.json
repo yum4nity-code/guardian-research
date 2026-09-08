@@ -1,0 +1,21 @@
+{
+  "end_exclusive": "2026-01-01",
+  "phase": "F-A",
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "start": "2024-01-01",
+  "symbols": {
+    "BTCUSDT": {
+      "aligned_rows": 210528,
+      "output_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\binance_orderflow_v1\\BTCUSDT_binance_spot_um_5m_orderflow_2024-01-01_2026-01-01.csv",
+      "perp_rows": 210528,
+      "spot_rows": 210528
+    },
+    "ETHUSDT": {
+      "aligned_rows": 210528,
+      "output_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\binance_orderflow_v1\\ETHUSDT_binance_spot_um_5m_orderflow_2024-01-01_2026-01-01.csv",
+      "perp_rows": 210528,
+      "spot_rows": 210528
+    }
+  }
+}
