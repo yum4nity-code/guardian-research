@@ -1,0 +1,36 @@
+{
+  "end_exclusive": "2026-01-01",
+  "funding_seed_start_utc": "2023-12-30T00:00:00+00:00",
+  "schema": 1,
+  "start": "2024-01-01",
+  "symbols": {
+    "BTCUSDT": {
+      "context_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_context_v1\\BTCUSDT_bybit_derivative_5m_2024-01-01_2026-01-01.csv",
+      "funding_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_context_v1\\BTCUSDT_bybit_funding_2024-01-01_2026-01-01.csv",
+      "funding_rows_downloaded_including_seed": 2199,
+      "index_rows_downloaded": 210528,
+      "mark_rows_downloaded": 210528,
+      "missing": {
+        "index": 0,
+        "mark": 0,
+        "premium": 0
+      },
+      "premium_rows_downloaded": 210528,
+      "rows": 210528
+    },
+    "ETHUSDT": {
+      "context_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_context_v1\\ETHUSDT_bybit_derivative_5m_2024-01-01_2026-01-01.csv",
+      "funding_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_context_v1\\ETHUSDT_bybit_funding_2024-01-01_2026-01-01.csv",
+      "funding_rows_downloaded_including_seed": 2199,
+      "index_rows_downloaded": 210528,
+      "mark_rows_downloaded": 210528,
+      "missing": {
+        "index": 0,
+        "mark": 0,
+        "premium": 0
+      },
+      "premium_rows_downloaded": 210528,
+      "rows": 210528
+    }
+  }
+}

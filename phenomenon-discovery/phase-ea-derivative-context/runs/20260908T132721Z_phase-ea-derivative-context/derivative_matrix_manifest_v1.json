@@ -1,0 +1,24 @@
+{
+  "builder_version": "1.01",
+  "schema": 1,
+  "symbols": {
+    "BTCUSDT": {
+      "funding_first_timestamp_ms": 1703894400000,
+      "funding_last_timestamp_ms": 1767196800000,
+      "funding_rows": 2199,
+      "missing_context_rows_skipped": 0,
+      "output_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_matrix_v1\\BTCUSDT_derivative_context_features_v1.csv",
+      "rows": 210514,
+      "rows_without_asof_funding": 0
+    },
+    "ETHUSDT": {
+      "funding_first_timestamp_ms": 1703894400000,
+      "funding_last_timestamp_ms": 1767196800000,
+      "funding_rows": 2199,
+      "missing_context_rows_skipped": 0,
+      "output_file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_matrix_v1\\ETHUSDT_derivative_context_features_v1.csv",
+      "rows": 210514,
+      "rows_without_asof_funding": 0
+    }
+  }
+}

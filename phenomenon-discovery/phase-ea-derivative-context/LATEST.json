@@ -1,0 +1,26 @@
+{
+  "artifacts": [
+    {
+      "name": "manifest_derivative_2024-01-01_2026-01-01.json",
+      "sha256": "19414f8792cb9ec8537f2f9f797f28b05fa79d912e83ef3b875afa726c52e53f",
+      "size_bytes": 1394
+    },
+    {
+      "name": "derivative_matrix_manifest_v1.json",
+      "sha256": "f3e05f3e2d4e4fa1376fed8eab16a740f799137dc026ddb9c744ddfa5a248cd3",
+      "size_bytes": 874
+    },
+    {
+      "name": "derivative_context_integrity_v1.json",
+      "sha256": "a69889fd0ebdc6e4ca6d47adfae187a4d3c6403f0a2a668426e1439cd24ef22a",
+      "size_bytes": 2164
+    }
+  ],
+  "generated_at_utc": "2026-09-08T13:27:21.084901+00:00",
+  "phase": "phase-ea-derivative-context",
+  "published_run_path": "phenomenon-discovery/phase-ea-derivative-context/runs/20260908T132721Z_phase-ea-derivative-context",
+  "schema": 1,
+  "source_commit": "b68f13abfb8f9231e0f011b2a6026e1e7122ea14",
+  "status": "PASS",
+  "summary": "Phase E-A recovered with builder v1.01 after timestamp typing fix. Existing 2024-2025 downloads reused; derivative context integrity gate passed; 2026 untouched; no rule search executed."
+}

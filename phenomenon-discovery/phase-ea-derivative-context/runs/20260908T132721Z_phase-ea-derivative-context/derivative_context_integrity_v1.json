@@ -1,0 +1,61 @@
+{
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "PASS",
+  "symbols": {
+    "BTCUSDT": {
+      "context": {
+        "duplicate_timestamps": 0,
+        "file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_context_v1\\BTCUSDT_bybit_derivative_5m_2024-01-01_2026-01-01.csv",
+        "first_timestamp_ms": 1704067200000,
+        "last_timestamp_ms": 1767225300000,
+        "missing_index": 0,
+        "missing_mark": 0,
+        "missing_premium": 0,
+        "non_5m_gap_count": 0,
+        "rows": 210528
+      },
+      "matrix": {
+        "duplicate_timestamps": 0,
+        "feature_availability_violations": 0,
+        "file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_matrix_v1\\BTCUSDT_derivative_context_features_v1.csv",
+        "first_timestamp_ms": 1704071400000,
+        "future_funding_violations": 0,
+        "last_timestamp_ms": 1767225300000,
+        "missing_asof_funding": 0,
+        "missing_index": 0,
+        "missing_mark": 0,
+        "missing_premium": 0,
+        "non_5m_gap_count": 0,
+        "rows": 210514
+      }
+    },
+    "ETHUSDT": {
+      "context": {
+        "duplicate_timestamps": 0,
+        "file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_context_v1\\ETHUSDT_bybit_derivative_5m_2024-01-01_2026-01-01.csv",
+        "first_timestamp_ms": 1704067200000,
+        "last_timestamp_ms": 1767225300000,
+        "missing_index": 0,
+        "missing_mark": 0,
+        "missing_premium": 0,
+        "non_5m_gap_count": 0,
+        "rows": 210528
+      },
+      "matrix": {
+        "duplicate_timestamps": 0,
+        "feature_availability_violations": 0,
+        "file": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_matrix_v1\\ETHUSDT_derivative_context_features_v1.csv",
+        "first_timestamp_ms": 1704071400000,
+        "future_funding_violations": 0,
+        "last_timestamp_ms": 1767225300000,
+        "missing_asof_funding": 0,
+        "missing_index": 0,
+        "missing_mark": 0,
+        "missing_premium": 0,
+        "non_5m_gap_count": 0,
+        "rows": 210514
+      }
+    }
+  }
+}
