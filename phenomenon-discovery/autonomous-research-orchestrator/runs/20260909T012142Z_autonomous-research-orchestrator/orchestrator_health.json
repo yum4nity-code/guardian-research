@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IE-XAU-DIRECTIONAL-CONFIRMATION",
+    "revision": 1
+  },
+  "main_commit": "a54b9efb3501613f3e22d384e54aa3882ea507a6",
+  "pid": 4032,
+  "protected_2026": true,
+  "queue_generation": 12,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-09T01:21:42.037906+00:00",
+  "version": "1.00"
+}
