@@ -14,12 +14,16 @@ def norm(s: str) -> str:
 
 
 def run_ps(script: str) -> tuple[int, str, str]:
+    kwargs = {}
+    if os.name == "nt":
+        kwargs["creationflags"] = getattr(subprocess, "CREATE_NO_WINDOW", 0x08000000)
     cp = subprocess.run(
         ["powershell.exe", "-NoProfile", "-Command", script],
         text=True,
         capture_output=True,
         timeout=30,
         check=False,
+        **kwargs,
     )
     return cp.returncode, cp.stdout.strip(), cp.stderr.strip()
 
@@ -75,7 +79,6 @@ def main() -> int:
 
     calendar_candidates = []
     needles = ("calendar", "economic", "news")
-    # Metadata-only inventory. Never read candidate file contents here.
     roots = [data_path]
     appdata = os.environ.get("APPDATA")
     if appdata:
