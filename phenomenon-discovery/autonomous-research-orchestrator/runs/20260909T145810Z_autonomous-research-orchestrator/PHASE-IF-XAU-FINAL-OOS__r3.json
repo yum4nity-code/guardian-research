@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 10800.0,
+  "class_key": "xau-final-oos-evaluation",
+  "duration_seconds": 10807.955498199997,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-09T14:58:10.040570+00:00",
+  "job_id": "PHASE-IF-XAU-FINAL-OOS",
+  "main_commit": "c070900803947378ddb08e41f5f92b935d7b45e9",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 3,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T11:58:02.041441+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_xau_final_oos_retry_wrapper_v1_00.py\", line 50, in main\n    with hcc.open(\"rb\") as f:\n         ~~~~~~~~^^^^^^\n  File \"C:\\Users\\armor\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pathlib\\_local.py\", line 537, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: 'D:\\\\MT5_FundedNext\\\\Bases\\\\FundedNext-Server 2\\\\history\\\\XAUUSD\\\\2026.hcc'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_xau_final_oos_retry_wrapper_v1_00.py\", line 73, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_xau_final_oos_retry_wrapper_v1_00.py\", line 57, in main\n    raise RuntimeError(f\"timed out waiting for read access to HCC: {hcc}\")\nRuntimeError: timed out waiting for read access to HCC: D:\\MT5_FundedNext\\Bases\\FundedNext-Server 2\\history\\XAUUSD\\2026.hcc",
+  "stdout_tail": ""
+}
