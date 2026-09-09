@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IF-2026-READINESS__r1.json",
+  "main_commit": "762df3cf35c8762b5b2b59314b43e6e8ff306322",
+  "pid": 7360,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-09T08:34:28.699594+00:00",
+  "version": "1.01"
+}
