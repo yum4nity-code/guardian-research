@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "name": "abnormal_activity_summary.json",
+      "sha256": "29ac6839a7ef7366b8061f17e02929f7bae2ccacb525159f2e3e55a0827f71b2",
+      "size_bytes": 342
+    },
+    {
+      "name": "abnormal_activity_shortlist.csv",
+      "sha256": "25afd4c5b9e5a7fc91601eda86d9351b3471e11fe6ea602f66ac50e579da09ac",
+      "size_bytes": 36494
+    },
+    {
+      "name": "abnormal_activity_survivors.csv",
+      "sha256": "c03416d6ae403d9dcd4be2948533c9c748ef878395d4f8c24135c1aef9bd3c7b",
+      "size_bytes": 105105
+    },
+    {
+      "name": "phase_ig_xau_simple_independent_families_policy_v1.json",
+      "sha256": "4a82ba5261a7157743f34e8c65b706c8c06ecc9fc3eb3e201657a849e833d8c8",
+      "size_bytes": 2304
+    }
+  ],
+  "generated_at_utc": "2026-09-09T23:57:09.507532+00:00",
+  "phase": "phase-ig-xau-abnormal-activity",
+  "schema": 1,
+  "source_commit": "7b8c5d8e1fbd4ce1381eb0ce5f55efb82a8ea5d9",
+  "status": "PASS",
+  "summary": "Phase I-G abnormal_activity: shortlist=227 confirmed=201 survivors=196; 2026 untouched."
+}

@@ -1,0 +1,15 @@
+{
+  "confirmed_before_quarter_gate": 201,
+  "discovery_shortlist": 227,
+  "family": "abnormal_activity",
+  "features": [
+    "tickvol_z48",
+    "gap_atr"
+  ],
+  "generated_at_utc": "2026-09-09T23:57:09.342139+00:00",
+  "phase": "I-G",
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "PASS",
+  "survivors": 196
+}

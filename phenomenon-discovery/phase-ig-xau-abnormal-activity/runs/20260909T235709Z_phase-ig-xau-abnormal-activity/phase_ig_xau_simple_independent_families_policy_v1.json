@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "phase": "I-G",
+  "name": "XAU_SIMPLE_INDEPENDENT_FAMILIES_V1",
+  "purpose": "Overnight screen of simple XAU M5 phenomenon families after closure of the bar_range_atr directional final-OOS candidate. This is fresh discovery/confirmation on 2024/2025 only, not a rescue of the failed candidate.",
+  "discovery_year": 2024,
+  "confirmation_year": 2025,
+  "protected_2026_forbidden": true,
+  "bar_seconds": 300,
+  "horizons_bars": [3, 6, 12, 24],
+  "families": {
+    "extension_reversion": ["ret3_atr", "ret12_atr", "body_atr"],
+    "compression_expansion": ["compression6_atr", "atr_slope3", "atr_slope12"],
+    "wick_rejection": ["upper_wick_atr", "lower_wick_atr"],
+    "range_location": ["dist_high24_atr", "dist_low24_atr"],
+    "abnormal_activity": ["tickvol_z48", "gap_atr"]
+  },
+  "excluded_features": ["bar_range_atr"],
+  "state_definition": "2024-fitted feature quintiles, frozen into 2025; feature quintile alone and feature quintile x frozen 4-hour server block",
+  "outcomes": ["mean_fwd_ret_atr", "move_ge_1atr", "up_first_1atr"],
+  "min_state_n_discovery": 300,
+  "min_state_n_confirmation": 250,
+  "min_state_n_quarter": 50,
+  "discovery_bh_q": 0.05,
+  "confirmation_bh_q": 0.10,
+  "confirmation_effect_retention_fraction": 0.50,
+  "quarters_same_sign_required": 3,
+  "minimum_absolute_effect": {
+    "mean_fwd_ret_atr": 0.06,
+    "move_ge_1atr": 0.05,
+    "up_first_1atr": 0.04
+  },
+  "independence_rule": "Report at most one representative per family/outcome/horizon/direction cluster; prefer larger confirmation sample, then lower confirmation q, then larger retained effect. Do not count correlated quintile/hour variants as independent candidates.",
+  "overnight_constraints": [
+    "Python only.",
+    "Use the existing clean Phase I-B XAUUSD M5 2024/2025 dataset.",
+    "No MT5 process, exporter, HCC access, network data acquisition or owner interaction.",
+    "No 2026 file may be opened or inspected.",
+    "No PnL, stop, target, sizing, Challenge Lab or post-hoc threshold optimization.",
+    "Do not reuse bar_range_atr or variants of the failed Phase I-F candidate.",
+    "A survivor is only a new phenomenon candidate and must receive a separate frozen robustness/confirmation step before any protected OOS."
+  ]
+}
