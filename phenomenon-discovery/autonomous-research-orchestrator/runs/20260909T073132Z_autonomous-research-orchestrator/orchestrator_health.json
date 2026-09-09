@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 6",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IF-2026-CALENDAR-EXPORTER-PREP__r1.json",
+  "main_commit": "0ee218fcf9809b01d6147dd1639c8bb4c18db09f",
+  "pid": 4032,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-09T07:31:31.777926+00:00",
+  "version": "1.00"
+}
