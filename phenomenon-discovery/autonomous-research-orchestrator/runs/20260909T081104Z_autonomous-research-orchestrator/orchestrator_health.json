@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IF-2026-CALENDAR-EXPORTER-PREP",
+    "revision": 2
+  },
+  "main_commit": "73d83ce62a03e60621cfc9809d2abfb964fa19fa",
+  "pid": 15784,
+  "protected_2026": false,
+  "queue_generation": 17,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-09T08:11:04.379195+00:00",
+  "version": "1.00"
+}
