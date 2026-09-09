@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 4500.0,
+  "class_key": "xau-final-oos-evaluation",
+  "duration_seconds": 20.00514830002794,
+  "exit_code": 10,
+  "finished_at_utc": "2026-09-09T23:35:06.308474+00:00",
+  "job_id": "PHASE-IF-XAU-FINAL-OOS",
+  "main_commit": "f1a6c13260d8e14faf79df385364d365ab85a1dd",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 10",
+  "revision": 6,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T23:34:46.283447+00:00",
+  "status": "FAIL",
+  "stderr_tail": "",
+  "stdout_tail": ""
+}
