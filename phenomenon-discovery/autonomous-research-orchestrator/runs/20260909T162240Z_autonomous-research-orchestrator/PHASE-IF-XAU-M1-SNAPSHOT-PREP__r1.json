@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "xau-final-oos-snapshot-infrastructure",
+  "duration_seconds": 5.003026999998838,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-09T16:22:40.222186+00:00",
+  "job_id": "PHASE-IF-XAU-M1-SNAPSHOT-PREP",
+  "main_commit": "15ec29eb4ac7aefc370f50b368a8fc1f086a5b7e",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T16:22:35.190458+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": ""
+}
