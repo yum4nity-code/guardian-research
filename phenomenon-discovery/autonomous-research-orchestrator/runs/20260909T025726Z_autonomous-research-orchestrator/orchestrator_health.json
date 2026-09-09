@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IF-PROTECTED-2026-PREREGISTRATION__r1.json",
+  "main_commit": "3b9db1ef53d69a28f932e1d59289480d541c286f",
+  "pid": 4032,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-09T02:57:26.566324+00:00",
+  "version": "1.00"
+}

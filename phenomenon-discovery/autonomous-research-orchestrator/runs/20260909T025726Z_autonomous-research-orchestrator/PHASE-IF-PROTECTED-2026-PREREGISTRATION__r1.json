@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 120.0,
+  "class_key": "xau-final-oos-preregistration",
+  "duration_seconds": 2.009834399999818,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-09T02:57:26.564775+00:00",
+  "job_id": "PHASE-IF-PROTECTED-2026-PREREGISTRATION",
+  "main_commit": "3b9db1ef53d69a28f932e1d59289480d541c286f",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T02:57:24.533682+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\n  \"status\": \"PASS\",\n  \"phase\": \"I-F-PREREGISTRATION\",\n  \"policy\": \"D:\\\\MT5_Backtests\\\\guardian-autonomous-main\\\\research\\\\autonomous\\\\phase_if_xau_final_oos_policy_v1.json\",\n  \"protected_2026_untouched\": true,\n  \"owner_approval_required\": true\n}"
+}
