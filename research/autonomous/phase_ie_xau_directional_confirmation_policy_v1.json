@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "phase": "I-E",
+  "name": "XAU_DIRECTIONAL_CONFIRMATION_V1",
+  "source_phase": "I-D",
+  "confirmation_year": 2025,
+  "eligible_outcomes": ["mean_fwd_ret_atr"],
+  "minimum_full_effect_atr": 0.06,
+  "minimum_quarter_effect_atr": 0.06,
+  "minimum_quarter_state_n": 100,
+  "required_quarters_same_sign": 4,
+  "familywise_alpha": 0.05,
+  "block_bootstrap_replicates": 5000,
+  "block_length_bars": 24,
+  "bootstrap_seed": 20260909,
+  "redundancy_jaccard_threshold": 0.90,
+  "protected_2026_untouched": true,
+  "propfirm_tradability_authorized": false,
+  "notes": [
+    "The candidate family is frozen to the Phase I-D robust survivors whose outcome is mean_fwd_ret_atr. The much larger move_ge_1atr family is classified as non-directional movement/volatility behavior and is not eligible for directional alpha promotion.",
+    "No state, feature, quintile cutpoint, hour block, outcome, horizon, target, stop, sizing, cost, or PnL parameter may be created or retuned in this phase.",
+    "All 2024-fitted Phase I-C cutpoints remain frozen. Phase I-E reuses only 2025 and is a stricter multiplicity/autocorrelation/redundancy confirmation of already frozen Phase I-D directional candidates; 2026 is forbidden.",
+    "Each eligible candidate must retain the Phase I-D sign and at least 0.06 ATR state-vs-complement mean forward-return effect over full 2025, and independently in every 2025 calendar quarter with at least 100 state observations per quarter.",
+    "Full-2025 normal-approximation p-values are controlled across the entire frozen eligible family with Holm family-wise alpha 0.05.",
+    "A contiguous moving-block bootstrap over 2025 rows, block length 24 M5 bars and 5000 deterministic replicates, preserves state/outcome temporal dependence. Its two-sided Bonferroni familywise confidence interval must exclude zero in the frozen effect direction.",
+    "Signal-mask redundancy is measured after statistical testing. Passing candidates with 2025 Jaccard overlap >=0.90 and the same effect sign are clustered; the canonical representative is chosen lexicographically, never by realized effect size.",
+    "A Phase I-E survivor cluster is still a frozen phenomenon candidate, not a strategy and not prop-firm authorization. If at least one independent directional cluster survives, the supervisor must commit an exact protected-2026 preregistration and obtain explicit owner approval before opening 2026. If none survives, close the XAU directional family rather than rescue it with sizing or Challenge Lab."
+  ]
+}
