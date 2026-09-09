@@ -1,0 +1,15 @@
+{
+  "confirmed_before_quarter_gate": 254,
+  "discovery_shortlist": 318,
+  "family": "range_location",
+  "features": [
+    "dist_high24_atr",
+    "dist_low24_atr"
+  ],
+  "generated_at_utc": "2026-09-09T23:56:20.853441+00:00",
+  "phase": "I-G",
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "PASS",
+  "survivors": 252
+}

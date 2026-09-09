@@ -1,0 +1,31 @@
+{
+  "artifacts": [
+    {
+      "name": "range_location_summary.json",
+      "sha256": "c1b02c61a56533d7ed2eed1a4a0e123baa7af6dc9ade09b885eff9a93fc073cb",
+      "size_bytes": 350
+    },
+    {
+      "name": "range_location_shortlist.csv",
+      "sha256": "f6c292bfdd9d8cec6ba78e260171d0a42dc19b531fd6559d15b1d4e7979842e5",
+      "size_bytes": 52074
+    },
+    {
+      "name": "range_location_survivors.csv",
+      "sha256": "f107093df660d0553fc0dcd3d4203dfd6e69c704771926b7611dabf741813d07",
+      "size_bytes": 135959
+    },
+    {
+      "name": "phase_ig_xau_simple_independent_families_policy_v1.json",
+      "sha256": "4a82ba5261a7157743f34e8c65b706c8c06ecc9fc3eb3e201657a849e833d8c8",
+      "size_bytes": 2304
+    }
+  ],
+  "generated_at_utc": "2026-09-09T23:56:21.021650+00:00",
+  "phase": "phase-ig-xau-range-location",
+  "published_run_path": "phenomenon-discovery/phase-ig-xau-range-location/runs/20260909T235621Z_phase-ig-xau-range-location",
+  "schema": 1,
+  "source_commit": "7b8c5d8e1fbd4ce1381eb0ce5f55efb82a8ea5d9",
+  "status": "PASS",
+  "summary": "Phase I-G range_location: shortlist=318 confirmed=254 survivors=252; 2026 untouched."
+}
