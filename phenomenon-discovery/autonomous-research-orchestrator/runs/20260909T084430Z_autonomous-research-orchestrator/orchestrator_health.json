@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IF-2026-NEWS-MASK-FREEZE",
+    "revision": 1
+  },
+  "main_commit": "257704b82b66f432e7367e3786ede9917c857ae5",
+  "pid": 7360,
+  "protected_2026": false,
+  "queue_generation": 19,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-09T08:44:29.867059+00:00",
+  "version": "1.01"
+}
