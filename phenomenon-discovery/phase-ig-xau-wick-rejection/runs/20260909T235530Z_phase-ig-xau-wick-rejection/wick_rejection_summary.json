@@ -1,0 +1,15 @@
+{
+  "confirmed_before_quarter_gate": 238,
+  "discovery_shortlist": 244,
+  "family": "wick_rejection",
+  "features": [
+    "upper_wick_atr",
+    "lower_wick_atr"
+  ],
+  "generated_at_utc": "2026-09-09T23:55:30.857865+00:00",
+  "phase": "I-G",
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "PASS",
+  "survivors": 237
+}

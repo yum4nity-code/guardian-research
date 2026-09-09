@@ -1,0 +1,31 @@
+{
+  "artifacts": [
+    {
+      "name": "wick_rejection_summary.json",
+      "sha256": "f6e902bb4f237432be5d9373fce29a7494a23c83e4d07035b24a485a214ba6cd",
+      "size_bytes": 349
+    },
+    {
+      "name": "wick_rejection_shortlist.csv",
+      "sha256": "4348c78f8e4dd2b350dcedd884b548288e13b749666639a33b9e2cf0febe3013",
+      "size_bytes": 39517
+    },
+    {
+      "name": "wick_rejection_survivors.csv",
+      "sha256": "9b7e3cf159e99c9941f1beb0facad1fde8a6e78750aec7aa53b57b03edc97b6f",
+      "size_bytes": 127575
+    },
+    {
+      "name": "phase_ig_xau_simple_independent_families_policy_v1.json",
+      "sha256": "4a82ba5261a7157743f34e8c65b706c8c06ecc9fc3eb3e201657a849e833d8c8",
+      "size_bytes": 2304
+    }
+  ],
+  "generated_at_utc": "2026-09-09T23:55:30.997248+00:00",
+  "phase": "phase-ig-xau-wick-rejection",
+  "published_run_path": "phenomenon-discovery/phase-ig-xau-wick-rejection/runs/20260909T235530Z_phase-ig-xau-wick-rejection",
+  "schema": 1,
+  "source_commit": "7b8c5d8e1fbd4ce1381eb0ce5f55efb82a8ea5d9",
+  "status": "PASS",
+  "summary": "Phase I-G wick_rejection: shortlist=244 confirmed=238 survivors=237; 2026 untouched."
+}
