@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generation": 17,
+  "jobs": [
+    {
+      "id": "PHASE-IF-2026-CALENDAR-EXPORTER-PREP",
+      "revision": 2,
+      "enabled": true,
+      "priority": 13,
+      "class_key": "xau-final-oos-calendar-infrastructure",
+      "description": "Deterministic infrastructure retry after r1 proved MetaEditor can report exit code 1 despite a compile log with zero errors. Re-run the unchanged frozen Phase I-F Jan-Aug 2026 USD-only exporter preparation using explicit compile evidence; do not launch exporter, inspect 2026 news/market contents, or change candidate/policy.",
+      "data_window": {
+        "start": "2026-01-01T00:00:00Z",
+        "end_exclusive": "2026-09-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "PHASE-IF-2026-CALENDAR-EXPORTER-PREP",
+          "revision": 1,
+          "accepted_status": ["FAIL"]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/phase_if_prepare_2026_calendar_exporter_v1_00.py",
+        "args": [
+          "--source", "D:\\MT5_FundedNext\\MQL5\\Scripts\\Guardian\\ExportNewsCalendarIA.mq5",
+          "--metaeditor", "D:\\MT5_FundedNext\\metaeditor64.exe",
+          "--target-source", "D:\\MT5_FundedNext\\MQL5\\Scripts\\Guardian\\ExportNewsCalendarIF2026.mq5",
+          "--target-ex5", "D:\\MT5_FundedNext\\MQL5\\Scripts\\Guardian\\ExportNewsCalendarIF2026.ex5",
+          "--output", "{ROOT}\\diagnostics\\phase_if_2026_calendar_exporter_prep_r2.json"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 300,
+        "expected_seconds": 90,
+        "eta_multiplier": 2.5,
+        "history_p95_multiplier": 3.0,
+        "stale_heartbeat_seconds": 300,
+        "poll_seconds": 5
+      }
+    }
+  ]
+}
