@@ -1,48 +1,94 @@
-# Guardian Autonomous Research Mandate v1.00
+# Guardian Autonomous Research Mandate v1.10
 
-Date: 2026-09-08
-Status: canonical for unattended alpha research
+Date: 2026-09-09
+Status: canonical for unattended alpha research and EA promotion
 
-## Objective
+## Final objective
 
-Run research continuously without using the owner as a relay. The objective is **not** to keep changing rules until something passes. The objective is to discover a reproducible market phenomenon, reject weak families quickly, and promote only evidence that survives frozen gates.
+Run research continuously and autonomously with the long-term objective of producing **multiple genuinely independent, robust, executable EAs that can make money after realistic costs while respecting the target prop-firm constraints**.
+
+The objective is not to manufacture a passing backtest, maximize in-sample profit, or keep changing rules until something passes. The pipeline must discover reproducible market phenomena, reject weak families quickly, validate survivors out of sample, convert only validated phenomena into executable trading rules, validate execution/cost robustness, and ultimately build a diversified portfolio of EAs whose sources of edge are not merely duplicates of one another.
+
+A scientifically failed alpha must never be rescued with sizing, money management, Challenge Probability Lab, parameter tweaking, or post-hoc filters.
 
 ## Architecture
 
-1. ChatGPT is the scientific supervisor. It reads GitHub evidence, designs/preregisters the next experiment, writes code, and updates `research/autonomous/RESEARCH_QUEUE.json`.
+1. ChatGPT is the scientific supervisor. It reads GitHub evidence, designs/preregisters the next experiment, writes/updates research code when required, and updates `research/autonomous/RESEARCH_QUEUE.json`.
 2. The local Guardian Research Orchestrator polls `main`, executes only frozen queued jobs, records receipts, and publishes compact health/results.
-3. Python is the default research/backtest engine. MT5 is reserved for broker/server data acquisition and later execution-fidelity validation.
+3. Python is the default research/backtest engine. MT5 is reserved for broker/server data acquisition and execution-fidelity/broker-specific validation where it adds genuine information.
 4. `backtest-results` is the evidence bus. The owner is never asked to paste console logs when the system can publish them itself.
+5. Jobs are immutable by `(id, revision)` once run. Any scientific change requires a new revision or new job id.
 
 ## Scientific invariants
 
-- Market state/event -> future distribution -> robustness -> only then trading rule.
-- 2024 = discovery and 2025 = internal confirmation for the current XAU branch.
-- **2026 remains sealed.** `human_approved_2026` must remain false until the owner explicitly approves opening final OOS after a genuinely frozen candidate exists.
+- Market state/event -> future distribution -> robustness -> trading rule -> costs/execution -> EA -> portfolio contribution.
+- Discovery, confirmation, and final OOS must remain separated.
 - No same-sample rescue of a failed family.
 - No arbitrary threshold tweaking after results are known.
 - No repeated named-strategy churn.
 - Multiple-testing control is mandatory when many hypotheses are screened.
 - Costs/execution and Challenge Probability Lab are downstream; sizing may never rescue failed alpha.
-- Phase C BTC/ETH low-movement/no-trade output remains preserved; BTC/ETH directional 5m->1h search remains closed.
+- A survivor is not automatically an EA: the phenomenon must first survive its frozen confirmation/OOS gates.
+- A profitable EA candidate must remain profitable/credible after realistic spread, commission, slippage assumptions and broker/prop-firm constraints.
+- Prefer simple, explainable rules when statistically equivalent to complex ones.
+- Seek multiple independent mechanisms/markets/horizons rather than many correlated variants of one edge.
+- Phase C BTC/ETH low-movement/no-trade output remains preserved; BTC/ETH directional 5m->1h search remains closed unless genuinely new independent information justifies reopening it through preregistration.
 
-## Current branch
+## Protected final OOS policy
 
-- Phase I-A: PASS. Historical USD high-impact news mask, XAUUSD conservative +/-5 minutes, FundedNext-Server 2, 2026 untouched.
-- Phase I-B: XAUUSD M1/M5 2024-2025 data gate, same canonical MT5/server/path as I-A, news mask applied before research use.
-- After I-B PASS: begin XAU phenomenon-first discovery. Do not turn the first statistical survivor directly into an EA.
+Protected data exists to prevent researcher degrees of freedom, **not to require the owner to wake up and press a button**.
+
+A protected final OOS period, including protected 2026 data, may be opened automatically only when ALL of the following are already true before first inspection:
+
+1. a candidate has survived the required discovery/internal-confirmation gates;
+2. its exact signal definition, direction, market, horizon, thresholds, exclusions, evaluation metrics, pass/fail criteria and protected test window are frozen;
+3. a dated preregistration/policy artifact containing those items is committed to `main`;
+4. the queue contains a new immutable job id/revision referencing that preregistration;
+5. provenance can prove that protected data was not used to select or tune the candidate.
+
+Once those conditions are met, **no additional owner approval is required to open and evaluate the preregistered protected OOS**.
+
+After protected OOS is opened, the hypothesis, thresholds, exclusions, window and success criteria may not be changed. A failure closes that candidate/family under the frozen hypothesis. Do not retune against protected OOS. A success freezes the validated phenomenon and advances it to trading-rule/execution validation.
+
+Protected data may never be browsed opportunistically, used for discovery, used to choose among variants, or reused to rescue a failure.
 
 ## Autonomous decision loop
 
 At every terminal result:
 
-1. verify integrity/provenance first;
-2. if infrastructure/data failed, repair the infrastructure without changing the scientific hypothesis;
-3. if the scientific family failed its frozen gates, close it;
-4. if evidence is suggestive but not confirmatory, run only a preregistered robustness/confirmation step logically implied before seeing the result;
-5. if a family is exhausted, move to a genuinely different information representation, event type, horizon, or market mechanism;
-6. if a candidate survives internal confirmation, freeze exact rules and only then prepare protected final OOS;
-7. opening 2026 requires explicit owner approval and a committed preregistration/policy file first.
+1. verify integrity, provenance, hashes/inputs and protected-data status first;
+2. if infrastructure/data failed, repair infrastructure without changing the frozen scientific hypothesis;
+3. if the scientific family failed its frozen gates, close it and record the closure;
+4. if evidence is suggestive but not confirmatory, run only a preregistered robustness/confirmation step logically justified without seeing future/protected results;
+5. if a family is exhausted, move to a genuinely different information representation, event type, horizon, market mechanism or instrument;
+6. if a candidate survives internal confirmation, freeze exact rules and preregister final protected OOS;
+7. once the Protected final OOS policy conditions are satisfied, execute final OOS automatically;
+8. if final OOS fails, close the candidate without rescue;
+9. if final OOS passes, freeze the phenomenon and autonomously design the simplest causal/executable trading-rule translation without using final OOS for optimization;
+10. test realistic costs, spread/slippage sensitivity, timing assumptions, signal availability, look-ahead safety and execution feasibility;
+11. use MT5 only when broker/server/execution fidelity is genuinely required; otherwise prefer Python;
+12. if executable robustness survives, build/version an EA candidate and validate it on the appropriate fidelity layer;
+13. evaluate correlation and marginal portfolio contribution versus already accepted EA candidates so the final system seeks diversified sources of edge;
+14. continue researching independent families rather than stopping after the first successful EA.
+
+## EA promotion gates
+
+A research phenomenon can be promoted toward an EA only if:
+
+- discovery/confirmation/final-OOS provenance is clean;
+- final OOS passes its preregistered criteria;
+- no look-ahead or unavailable-at-decision-time feature exists;
+- realistic costs do not destroy the edge;
+- trade frequency/sample size is sufficient for the claimed use;
+- drawdown/tail behavior is characterized rather than hidden by average returns;
+- implementation can reproduce the research signal deterministically;
+- prop-firm rules can be enforced without changing the underlying alpha hypothesis.
+
+Production/live deployment remains a separate approval boundary. Research may autonomously create and validate EA candidates, but it must not modify or deploy production/live-trading code or accounts without explicit owner approval.
+
+## Portfolio objective
+
+The target is not one magic EA. Maintain a registry of validated/closed candidates and seek a portfolio of multiple EAs with differentiated mechanisms, instruments, horizons or regime exposures. When two candidates are materially redundant, prefer the simpler/more robust one rather than counting both as independent successes.
 
 ## Timeout/watchdog policy
 
@@ -71,7 +117,7 @@ Codex may be requested only when all are true:
 3. the request is tightly scoped to code, not hypothesis selection;
 4. no more than one Codex assistance request is made in 24 hours unless the owner explicitly overrides the budget.
 
-The v1.00 local orchestrator deliberately treats `codex_assist` as fail-closed. A future explicit adapter may be enabled only after its exact CLI/API contract is validated.
+The local orchestrator treats `codex_assist` as fail-closed unless an explicitly validated adapter is enabled.
 
 ## Queue authority
 
@@ -81,9 +127,17 @@ The local executor never invents hypotheses. ChatGPT changes the queue after rea
 
 ## Owner notification policy
 
-Do not notify the owner for normal PASS/FAIL research churn. Notify only when:
+Normal research churn is silent. Do not notify the owner merely because a job is running, waiting, passed an infrastructure gate, failed scientifically, or because another autonomous experiment was queued.
 
-- a candidate survives a meaningful confirmation gate;
-- explicit permission is needed to open protected 2026;
-- an unrecoverable local/MT5/account condition blocks all progress;
-- a production/live-trading change would be required.
+Notify the owner only when:
+
+- a candidate has survived **final protected OOS and subsequent executable/cost robustness sufficiently to become a meaningful EA candidate**;
+- an unrecoverable local/MT5/account/data condition blocks all useful progress;
+- a production/live-trading change or deployment requires explicit approval;
+- a scientific governance ambiguity cannot be resolved without changing these invariants.
+
+Do **not** stop merely to request permission to open protected OOS when the preregistration conditions above are satisfied.
+
+## Standing authorization
+
+The owner explicitly authorizes the scientific supervisor and deterministic orchestrator to continue this research pipeline unattended under this mandate, including automatically opening preregistered protected 2026 final-OOS windows when all protection conditions are satisfied. This authorization does not permit post-hoc tuning on protected data and does not authorize live/production trading changes.
