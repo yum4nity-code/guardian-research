@@ -1,0 +1,31 @@
+{
+  "artifacts": [
+    {
+      "name": "extension_reversion_summary.json",
+      "sha256": "dbafbaa1ecc4dbb330f710a7b010daacc52866fe93b884881720e53c6eac2d2a",
+      "size_bytes": 360
+    },
+    {
+      "name": "extension_reversion_shortlist.csv",
+      "sha256": "d19c71e6738ce92999b2b7a8133c867022f796bc20e3a1effacb349372dc40ad",
+      "size_bytes": 64020
+    },
+    {
+      "name": "extension_reversion_survivors.csv",
+      "sha256": "3250cd8cf7717653f9dbfbaa7698cf37e38e52346fc0533194f0c161546be91b",
+      "size_bytes": 189742
+    },
+    {
+      "name": "phase_ig_xau_simple_independent_families_policy_v1.json",
+      "sha256": "4a82ba5261a7157743f34e8c65b706c8c06ecc9fc3eb3e201657a849e833d8c8",
+      "size_bytes": 2304
+    }
+  ],
+  "generated_at_utc": "2026-09-09T23:53:38.077648+00:00",
+  "phase": "phase-ig-xau-extension-reversion",
+  "published_run_path": "phenomenon-discovery/phase-ig-xau-extension-reversion/runs/20260909T235338Z_phase-ig-xau-extension-reversion",
+  "schema": 1,
+  "source_commit": "7b8c5d8e1fbd4ce1381eb0ce5f55efb82a8ea5d9",
+  "status": "PASS",
+  "summary": "Phase I-G extension_reversion: shortlist=396 confirmed=355 survivors=353; 2026 untouched."
+}

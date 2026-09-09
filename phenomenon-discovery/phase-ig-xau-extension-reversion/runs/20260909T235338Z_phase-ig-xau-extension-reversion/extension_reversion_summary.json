@@ -1,0 +1,16 @@
+{
+  "confirmed_before_quarter_gate": 355,
+  "discovery_shortlist": 396,
+  "family": "extension_reversion",
+  "features": [
+    "ret3_atr",
+    "ret12_atr",
+    "body_atr"
+  ],
+  "generated_at_utc": "2026-09-09T23:53:37.928183+00:00",
+  "phase": "I-G",
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "PASS",
+  "survivors": 353
+}
