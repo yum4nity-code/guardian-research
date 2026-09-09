@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 4500.0,
+  "class_key": "xau-simple-robustness",
+  "duration_seconds": 20.037219299993012,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-09T23:59:04.372423+00:00",
+  "job_id": "PHASE-IH-XAU-SIMPLE-ROBUSTNESS",
+  "main_commit": "7b8c5d8e1fbd4ce1381eb0ce5f55efb82a8ea5d9",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T23:58:44.318375+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": ""
+}
