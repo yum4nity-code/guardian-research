@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 4500.0,
+  "class_key": "xau-final-oos-evaluation",
+  "duration_seconds": 15.002765200013528,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-09T10:36:01.691809+00:00",
+  "job_id": "PHASE-IF-XAU-FINAL-OOS",
+  "main_commit": "9f6b07ed06ecd70def042e1868f41319250e746c",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 2,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T10:35:46.655077+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_xau_final_oos_v1_01.py\", line 138, in <module>\n    if __name__=='__main__': raise SystemExit(main())\n                                              ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_xau_final_oos_v1_01.py\", line 114, in main\n    hb(prog,0,100,'parse_frozen_hcc'); m1,meta=parse_hcc_bounded(hcc,prog); hb(prog,30,100,'aggregate_m5'); m5=aggregate(m1); intervals=read_mask(maskp); clean=clean_m5(m5,intervals)\n                                               ~~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_xau_final_oos_v1_01.py\", line 46, in parse_hcc_bounded\n    data=p.read_bytes()\n  File \"C:\\Users\\armor\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pathlib\\_abc.py\", line 625, in read_bytes\n    with self.open(mode='rb') as f:\n         ~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\armor\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pathlib\\_local.py\", line 537, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 13] Permission denied: 'D:\\\\MT5_FundedNext\\\\Bases\\\\FundedNext-Server 2\\\\history\\\\XAUUSD\\\\2026.hcc'",
+  "stdout_tail": ""
+}
