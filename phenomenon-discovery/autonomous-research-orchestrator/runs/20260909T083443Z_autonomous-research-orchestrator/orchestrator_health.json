@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IF-2026-CALENDAR-CAPABILITY",
+    "revision": 1
+  },
+  "main_commit": "2570b6cc1b8492a784f1e9e39be62b08027f4f59",
+  "pid": 7360,
+  "protected_2026": false,
+  "queue_generation": 18,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-09T08:34:42.934337+00:00",
+  "version": "1.01"
+}
