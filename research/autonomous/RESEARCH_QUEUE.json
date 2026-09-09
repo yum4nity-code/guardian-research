@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 12,
+  "generation": 13,
   "updated_at": "2026-09-09",
   "mode": "AUTONOMOUS_SCIENTIFIC_RESEARCH",
   "human_approved_2026": false,
@@ -120,7 +120,7 @@
     },
     {
       "id":"PHASE-IC-XAU-PHENOMENON-ATLAS","revision":6,"enabled":true,"priority":7,"class_key":"xau-phenomenon-atlas",
-      "description":"Run frozen Phase I-C XAUUSD M5 phenomenon atlas only after I-B gate r6 validates the self-contained canonical HCC recovery. 2024 discovery, 2025 confirmation; no PnL optimization; no 2026.",
+      "description":"Historical preregistered Phase I-C path retained immutably; tied to I-B gate r6 validates the self-contained canonical HCC recovery. 2024 discovery, 2025 confirmation; no PnL optimization; no 2026.",
       "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
       "requires":[{"kind":"receipt","job_id":"PHASE-IB-PASS-GATE","revision":6,"accepted_status":["PASS"]}],
       "executor":{"kind":"python","path":"research/autonomous/phase_ic_xau_phenomenon_atlas_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ic_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_policy_v1.json","--progress-file","{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS-R6.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
@@ -149,6 +149,13 @@
       "requires":[{"kind":"receipt","job_id":"PHASE-ID-XAU-TEMPORAL-ROBUSTNESS","revision":1,"accepted_status":["PASS"]}],
       "executor":{"kind":"python","path":"research/autonomous/phase_ie_xau_directional_confirmation_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--ic-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ic_v1","--id-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_id_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ie_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ie_xau_directional_confirmation_policy_v1.json","--deploy","{DEPLOY}","--progress-file","{ROOT}\\progress\\PHASE-IE-XAU-DIRECTIONAL-CONFIRMATION.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
       "timeout":{"min_seconds":900,"expected_seconds":1800,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IE-XAU-DIRECTIONAL-CONFIRMATION.json"}
+    },
+    {
+      "id":"PHASE-IF-PROTECTED-2026-PREREGISTRATION","revision":1,"enabled":true,"priority":10,"class_key":"xau-final-oos-preregistration",
+      "description":"Verify the exact frozen Phase I-F final-OOS preregistration after the single independent Phase I-E directional cluster survived. This job reads only the committed policy; it must not inspect any 2026 market/news data and cannot authorize opening 2026.",
+      "requires":[{"kind":"receipt","job_id":"PHASE-IE-XAU-DIRECTIONAL-CONFIRMATION","revision":1,"accepted_status":["PASS"]},{"kind":"github_result","ref":"origin/backtest-results","path":"phenomenon-discovery/phase-ie-xau-directional-confirmation/LATEST.json","accepted_status":["PASS"]}],
+      "executor":{"kind":"python","path":"research/autonomous/verify_phase_if_preregistration_v1_00.py","args":["--policy","{DEPLOY}\\research\\autonomous\\phase_if_xau_final_oos_policy_v1.json"]},
+      "timeout":{"min_seconds":120,"expected_seconds":15,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":120,"poll_seconds":2}
     }
   ]
 }
