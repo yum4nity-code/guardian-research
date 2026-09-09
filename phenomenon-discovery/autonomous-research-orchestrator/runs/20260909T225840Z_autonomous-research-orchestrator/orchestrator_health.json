@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IF-XAU-M1-SNAPSHOT-WAIT__r2.json",
+  "main_commit": "b0b71f3a062256a3b58bc72224258874456436e3",
+  "pid": 7360,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-09T22:58:40.267176+00:00",
+  "version": "1.01"
+}

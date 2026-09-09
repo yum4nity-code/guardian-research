@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 604800.0,
+  "class_key": "xau-final-oos-snapshot-infrastructure",
+  "duration_seconds": 6587.9460872999625,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-09T22:58:40.254943+00:00",
+  "job_id": "PHASE-IF-XAU-M1-SNAPSHOT-WAIT",
+  "main_commit": "b0b71f3a062256a3b58bc72224258874456436e3",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 2,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T21:08:52.247864+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_wait_xau_m1_snapshot_v1_00.py\", line 40, in <module>\n    if __name__=='__main__': raise SystemExit(main())\n                                              ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_wait_xau_m1_snapshot_v1_00.py\", line 37, in main\n    if rows<150000: raise RuntimeError(f'too few exported M1 rows: {rows}')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: too few exported M1 rows: 91089",
+  "stdout_tail": ""
+}
