@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IF-PROTECTED-2026-PREREGISTRATION",
+    "revision": 1
+  },
+  "main_commit": "3b9db1ef53d69a28f932e1d59289480d541c286f",
+  "pid": 4032,
+  "protected_2026": true,
+  "queue_generation": 13,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-09T02:57:18.565011+00:00",
+  "version": "1.00"
+}
