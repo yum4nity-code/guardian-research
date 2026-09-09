@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-ID-XAU-TEMPORAL-ROBUSTNESS__r1.json",
+  "main_commit": "d71847b4a9aee46711e10e6604066fb2cbefd5a2",
+  "pid": 4032,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-09T00:17:21.631514+00:00",
+  "version": "1.00"
+}

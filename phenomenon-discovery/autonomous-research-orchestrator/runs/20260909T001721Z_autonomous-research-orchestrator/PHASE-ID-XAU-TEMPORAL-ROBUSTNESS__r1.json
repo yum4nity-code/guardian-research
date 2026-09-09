@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 4500.0,
+  "class_key": "xau-temporal-robustness",
+  "duration_seconds": 20.042927600006806,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-09T00:17:21.630215+00:00",
+  "job_id": "PHASE-ID-XAU-TEMPORAL-ROBUSTNESS",
+  "main_commit": "d71847b4a9aee46711e10e6604066fb2cbefd5a2",
+  "orchestrator_version": "1.00",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T00:17:01.573583+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\n  \"candidates_retested\": 1624,\n  \"distinct_state_outcome_horizon_count\": 1502,\n  \"generated_at_utc\": \"2026-09-09T00:17:10.761340+00:00\",\n  \"next_rule\": \"A Phase I-D survivor remains a phenomenon candidate. The supervisor must deduplicate/translate and preregister any further confirmation before considering protected 2026; no PnL/sizing rescue is permitted.\",\n  \"phase\": \"I-D\",\n  \"policy\": {\n    \"confirmation_year\": 2025,\n    \"minimum_absolute_effect\": {\n      \"mean_fwd_ret_atr\": 0.06,\n      \"move_ge_1atr\": 0.05,\n      \"up_first_1atr\": 0.04\n    },\n    \"minimum_half_state_n\": 125,\n    \"minimum_month_state_n\": 21,\n    \"minimum_same_sign_fraction\": 0.75,\n    \"minimum_valid_months\": 10,\n    \"name\": \"XAU_TEMPORAL_ROBUSTNESS_V1\",\n    \"notes\": [\n      \"Input candidates are exactly the Phase I-C confirmation survivors; no new state, cutpoint, horizon, outcome, stop, target, sizing or PnL parameter is introduced.\",\n      \"The 2024-fitted Phase I-C quintile cutpoints remain frozen. Only 2025 is re-examined at finer temporal granularity; 2026 is forbidden.\",\n      \"A candidate passes only if at least 10 calendar months have sufficient state sample, at least 75% of valid months retain the Phase I-C effect sign, the median signed monthly effect retains the original Phase I-C minimum absolute effect, and both 2025 half-years independently retain the same sign and original minimum absolute effect.\",\n      \"Monthly and half-year tests compare the frozen state with its same-period complement, matching the Phase I-C estimand.\",\n      \"This phase is robustness/temporal stability only. A survivor is still a phenomenon candidate, not a strategy and not authorization to open 2026.\"\n    ],\n    \"phase\": \"I-D\",\n    \"protected_2026_untouched\": true,\n    \"schema\": 1,\n    \"source_phase\": \"I-C\"\n  },\n  \"propfirm_tradability_authorized\": false,\n  \"protected_2026_untouched\": true,\n  \"robust_survivor_count\": 1502,\n  \"robust_survivors_by_horizon\": {\n    \"12\": 409,\n    \"24\": 466,\n    \"3\": 307,\n    \"6\": 320\n  },\n  \"robust_survivors_by_outcome\": {\n    \"mean_fwd_ret_atr\": 13,\n    \"move_ge_1atr\": 1489\n  },\n  \"schema\": 1,\n  \"scientific_status\": \"ROBUST_SURVIVORS_FOUND\",\n  \"source_phase_ic_survivors\": 1624,\n  \"technical_status\": \"PASS\"\n}"
+}
