@@ -1,0 +1,97 @@
+{
+  "all_gates_pass": false,
+  "bootstrap": {
+    "block_length_bars": 24,
+    "ci_high": 0.28657423205157406,
+    "ci_low": -0.34808501572420375,
+    "replicates": 5000,
+    "seed": 20260909,
+    "valid_reps": 5000
+  },
+  "candidate": {
+    "expected_sign": -1,
+    "feature": "bar_range_atr",
+    "feature_definition": "(high-low)/Wilder_ATR14, computed only inside contiguous 300-second news-clean M5 segments with ATR reset at segment boundaries exactly as Phase I-C",
+    "frozen_q5_lower_cutpoint": 1.2604033158741452,
+    "horizon_bars": 12,
+    "horizon_minutes": 60,
+    "hour_block": 4,
+    "minimum_absolute_effect_atr": 0.06,
+    "outcome": "mean_fwd_ret_atr",
+    "outcome_definition": "(close[t+12]-close[t])/ATR14[t], only when t..t+12 remain in the same contiguous M5 segment",
+    "quintile": 5,
+    "server_hours": [
+      16,
+      17,
+      18,
+      19
+    ],
+    "state": "bar_range_atr:Q5:H4",
+    "state_family": "feature_quintile_x_server_4h_block",
+    "state_rule": "bar_range_atr > 1.2604033158741452 AND server_hour in [16,17,18,19]"
+  },
+  "decision": "close_xau_directional_candidate_family",
+  "full": {
+    "comp_mean": -0.02929887360610323,
+    "effect": -0.02617605554890667,
+    "n_comp": 37133,
+    "n_state": 864,
+    "p": 0.7591185826772188,
+    "state_mean": -0.0554749291550099
+  },
+  "gates": {
+    "bootstrap_upper_below_zero": false,
+    "full_effect": false,
+    "full_n": true,
+    "jan_apr_effect": false,
+    "jan_apr_n": true,
+    "may_aug_effect": true,
+    "may_aug_n": true,
+    "normal_p": false
+  },
+  "generated_at_utc": "2026-09-09T23:34:55.540312+00:00",
+  "news_mask_sha256": "8d3eb7dda83376a4bbfd759233465ca6fcd996ef94cc07030369e1d606d2e558",
+  "no_retuning_performed": true,
+  "phase": "I-F",
+  "schema": 1,
+  "snapshot_provenance": {
+    "csv": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug.csv",
+    "csv_sha256": "4b2d286c2a4287fbddb37dde9a71b362915d34496e129654ab8c9a3ebfac361b",
+    "m5_rows_news_clean": 46425,
+    "m5_rows_raw": 47025,
+    "manifest": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug_manifest.txt",
+    "manifest_fields": {
+      "company": "MetaQuotes Ltd.",
+      "from": "2026.01.01 00:00:00",
+      "period": "M5",
+      "rows": "47025",
+      "server": "FundedNext-Server 2",
+      "symbol": "XAUUSD",
+      "terminal_data_path": "D:\\MT5_FundedNext",
+      "terminal_path": "D:\\MT5_FundedNext",
+      "to_exclusive": "2026.09.01 00:00:00"
+    },
+    "manifest_sha256": "ef2316a2863087d84c182701bf5ed0ac5649d0f63a30dc7e0efcecd1c8b773af",
+    "outcomes_after_2026_09_01_decoded": false,
+    "transport": "native_mt5_m5"
+  },
+  "status": "FAIL",
+  "subperiods": {
+    "JAN_APR": {
+      "comp_mean": 0.022680050636222276,
+      "effect": 0.11872389345959666,
+      "n_comp": 18147,
+      "n_state": 427,
+      "p": 0.3064318679136857,
+      "state_mean": 0.14140394409581894
+    },
+    "MAY_AUG": {
+      "comp_mean": -0.07898082547724418,
+      "effect": -0.16886773955443374,
+      "n_comp": 18986,
+      "n_state": 437,
+      "p": 0.17469446819230605,
+      "state_mean": -0.24784856503167793
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_if_final_oos_result.json",
+      "sha256": "069c947de90603efd8d931a785fc9e14b9b55a2ec6741e81f0d449c44563c5a4",
+      "size_bytes": 3332
+    },
+    {
+      "name": "phase_if_xau_final_oos_policy_v1.json",
+      "sha256": "2f5dfe9e065b108e41ac262576168b18d39abfe26bd987024973d9334383a9ce",
+      "size_bytes": 4013
+    },
+    {
+      "name": "phase_if_xauusd_merged_news_mask_2026_jan_aug.csv",
+      "sha256": "8d3eb7dda83376a4bbfd759233465ca6fcd996ef94cc07030369e1d606d2e558",
+      "size_bytes": 16035
+    },
+    {
+      "name": "xauusd_m5_2026_jan_aug_manifest.txt",
+      "sha256": "ef2316a2863087d84c182701bf5ed0ac5649d0f63a30dc7e0efcecd1c8b773af",
+      "size_bytes": 222
+    }
+  ],
+  "generated_at_utc": "2026-09-09T23:34:55.658421+00:00",
+  "phase": "phase-if-xau-final-oos",
+  "schema": 1,
+  "source_commit": "f1a6c13260d8e14faf79df385364d365ab85a1dd",
+  "status": "FAIL",
+  "summary": "Phase I-F frozen XAU final OOS via native MT5 M5 snapshot -> FAIL; effect=-0.026176 ATR n=864 CI=[-0.348085,0.286574]"
+}
