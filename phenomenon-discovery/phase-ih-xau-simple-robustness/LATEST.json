@@ -1,0 +1,31 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_ih_summary.json",
+      "sha256": "6b325dbdc34948c26c7e6c4a42391028d9076ebc0d0bbbeab06c0923154cfd8f",
+      "size_bytes": 320
+    },
+    {
+      "name": "phase_ih_all_candidates.csv",
+      "sha256": "b804c6fd979abffd081a2102247fc276c6ba2e767b7044360ac5bb53d1d9511e",
+      "size_bytes": 107476
+    },
+    {
+      "name": "phase_ih_robust_survivors.csv",
+      "sha256": "62736857f10029568138c795b114c187c2992f67ce3a677606ddab9f120a7dae",
+      "size_bytes": 91039
+    },
+    {
+      "name": "phase_ih_xau_simple_robustness_policy_v1.json",
+      "sha256": "44e143656129b9779b2095d72f6a17f2bffcfe0cd660a0f3b35a1472971c672f",
+      "size_bytes": 769
+    }
+  ],
+  "generated_at_utc": "2026-09-09T23:58:51.912620+00:00",
+  "phase": "phase-ih-xau-simple-robustness",
+  "published_run_path": "phenomenon-discovery/phase-ih-xau-simple-robustness/runs/20260909T235851Z_phase-ih-xau-simple-robustness",
+  "schema": 1,
+  "source_commit": "7b8c5d8e1fbd4ce1381eb0ce5f55efb82a8ea5d9",
+  "status": "PASS",
+  "summary": "Phase I-H robustness: tested=66 robust_survivors=56; 2026 untouched."
+}

@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "phase": "I-H",
+  "name": "XAU_SIMPLE_FAMILY_ROBUSTNESS_V1",
+  "input": "Phase I-G independent representatives only",
+  "protected_2026_forbidden": true,
+  "confirmation_year": 2025,
+  "gates": {
+    "minimum_confirmation_n": 250,
+    "minimum_halfyear_n": 100,
+    "halves_same_sign_required": 2,
+    "minimum_month_n": 30,
+    "months_same_sign_required": 8,
+    "minimum_effect_retention_fraction_vs_full_2025": 0.35
+  },
+  "notes": [
+    "This is a robustness gate on already selected 2024->2025 representatives, not a new independent OOS.",
+    "No 2026 access, PnL, sizing, stop/target optimization or strategy rescue is allowed.",
+    "A PASS only authorizes a later separately preregistered confirmation/OOS step."
+  ]
+}
