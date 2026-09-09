@@ -1,0 +1,17 @@
+{
+  "all_survivors": 1404,
+  "family_survivors": {
+    "abnormal_activity": 196,
+    "compression_expansion": 366,
+    "extension_reversion": 353,
+    "range_location": 252,
+    "wick_rejection": 237
+  },
+  "generated_at_utc": "2026-09-09T23:57:52.138605+00:00",
+  "independent_representatives": 66,
+  "next_rule": "Representatives are phenomenon candidates only; next step is frozen robustness/confirmation, not PnL or OOS.",
+  "phase": "I-G",
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "PASS"
+}

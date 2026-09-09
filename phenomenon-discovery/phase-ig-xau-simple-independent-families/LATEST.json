@@ -1,0 +1,31 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_ig_summary.json",
+      "sha256": "5694fc2677f8e52823cb5db97c6762f082fd77b37217c2dc439e8a22966b37c8",
+      "size_bytes": 534
+    },
+    {
+      "name": "phase_ig_all_survivors.csv",
+      "sha256": "1123f75f7a7a2f4a4aaaff65d456b0daf9c97e99a11cf1d0fafa6634685e8048",
+      "size_bytes": 779909
+    },
+    {
+      "name": "phase_ig_independent_representatives.csv",
+      "sha256": "7761247d72288a52d9d56bba894d20c80c2e1ab705d47d525c966eb365cec104",
+      "size_bytes": 35719
+    },
+    {
+      "name": "phase_ig_xau_simple_independent_families_policy_v1.json",
+      "sha256": "4a82ba5261a7157743f34e8c65b706c8c06ecc9fc3eb3e201657a849e833d8c8",
+      "size_bytes": 2304
+    }
+  ],
+  "generated_at_utc": "2026-09-09T23:57:52.318175+00:00",
+  "phase": "phase-ig-xau-simple-independent-families",
+  "published_run_path": "phenomenon-discovery/phase-ig-xau-simple-independent-families/runs/20260909T235752Z_phase-ig-xau-simple-independent-families",
+  "schema": 1,
+  "source_commit": "7b8c5d8e1fbd4ce1381eb0ce5f55efb82a8ea5d9",
+  "status": "PASS",
+  "summary": "Phase I-G merged: all_survivors=1404 independent_representatives=66; 2026 untouched."
+}
