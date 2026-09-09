@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 20,
+  "generation": 21,
   "jobs": [
     {
       "id": "PHASE-IF-2026-CALENDAR-EXPORTER-PREP",
@@ -44,11 +44,23 @@
       "enabled": true,
       "priority": 16,
       "class_key": "xau-final-oos-news-mask",
-      "description": "Wait for the preregistered Jan-Aug 2026 USD high-impact calendar export from the already-open canonical FundedNext MT5 session, validate exact provenance/window, then freeze the +/-5 minute XAUUSD research mask before any protected market outcome evaluation.",
+      "description": "Historical failed infrastructure attempt retained immutably: Windows denied atomic replacement of the progress heartbeat while waiting for the MT5 calendar export. Scientific hypothesis unchanged.",
       "data_window": {"start":"2026-01-01T00:00:00Z","end_exclusive":"2026-09-01T00:00:00Z"},
       "requires": [{"kind":"receipt","job_id":"PHASE-IF-2026-CALENDAR-CAPABILITY","revision":1,"accepted_status":["PASS"]}],
       "executor": {"kind":"python","path":"research/autonomous/phase_if_wait_build_news_mask_2026_v1_00.py","args":["--raw-common","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\mt5_high_impact_calendar_2026_jan_aug.csv","--manifest-common","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\mt5_calendar_terminal_manifest_2026_jan_aug.txt","--output-dir","{ROOT}\\phase_if_2026","--progress-file","{ROOT}\\progress\\PHASE-IF-2026-NEWS-MASK-FREEZE.json","--wait-seconds","10800"]},
       "timeout": {"min_seconds":10800,"expected_seconds":7200,"eta_multiplier":1.2,"history_p95_multiplier":1.5,"stale_heartbeat_seconds":120,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IF-2026-NEWS-MASK-FREEZE.json"}
+    },
+    {
+      "id": "PHASE-IF-2026-NEWS-MASK-FREEZE",
+      "revision": 2,
+      "enabled": true,
+      "priority": 16,
+      "class_key": "xau-final-oos-news-mask",
+      "description": "Deterministic infrastructure repair of the exact frozen Phase I-F news-mask job. Same calendar files, provenance checks, Jan-Aug 2026 window and +/-5 minute USD high-impact mask; only heartbeat/result writes are hardened against transient Windows file locks.",
+      "data_window": {"start":"2026-01-01T00:00:00Z","end_exclusive":"2026-09-01T00:00:00Z"},
+      "requires": [{"kind":"receipt","job_id":"PHASE-IF-2026-NEWS-MASK-FREEZE","revision":1,"accepted_status":["FAIL"]},{"kind":"receipt","job_id":"PHASE-IF-2026-CALENDAR-CAPABILITY","revision":1,"accepted_status":["PASS"]}],
+      "executor": {"kind":"python","path":"research/autonomous/phase_if_wait_build_news_mask_2026_v1_01.py","args":["--raw-common","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\mt5_high_impact_calendar_2026_jan_aug.csv","--manifest-common","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\mt5_calendar_terminal_manifest_2026_jan_aug.txt","--output-dir","{ROOT}\\phase_if_2026","--progress-file","{ROOT}\\progress\\PHASE-IF-2026-NEWS-MASK-FREEZE-R2.json","--wait-seconds","10800"]},
+      "timeout": {"min_seconds":10800,"expected_seconds":7200,"eta_multiplier":1.2,"history_p95_multiplier":1.5,"stale_heartbeat_seconds":120,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IF-2026-NEWS-MASK-FREEZE-R2.json"}
     },
     {
       "id": "PHASE-IF-XAU-FINAL-OOS",
@@ -56,11 +68,23 @@
       "enabled": true,
       "priority": 17,
       "class_key": "xau-final-oos-evaluation",
-      "description": "Open only the preregistered Jan-Aug 2026 XAUUSD outcome window after the USD high-impact +/-5m mask is frozen, evaluate exactly the single frozen bar_range_atr:Q5:H4 candidate, and apply every preregistered sample/effect/subperiod/bootstrap/p-value gate with no retuning.",
+      "description": "Historical frozen final-OOS path retained immutably; depends on news-mask r1 PASS and therefore will not run after the r1 infrastructure failure.",
       "data_window": {"start":"2026-01-01T00:00:00Z","end_exclusive":"2026-09-01T00:00:00Z"},
       "requires": [{"kind":"receipt","job_id":"PHASE-IF-2026-NEWS-MASK-FREEZE","revision":1,"accepted_status":["PASS"]}],
       "executor": {"kind":"python","path":"research/autonomous/phase_if_xau_final_oos_v1_00.py","args":["--hcc","D:\\MT5_FundedNext\\Bases\\FundedNext-Server 2\\history\\XAUUSD\\2026.hcc","--news-mask","{ROOT}\\phase_if_2026\\phase_if_xauusd_merged_news_mask_2026_jan_aug.csv","--policy","{DEPLOY}\\research\\autonomous\\phase_if_xau_final_oos_policy_v1.json","--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py","--ie-engine","{DEPLOY}\\research\\autonomous\\phase_ie_xau_directional_confirmation_v1_00.py","--output-dir","{ROOT}\\phase_if_2026","--progress-file","{ROOT}\\progress\\PHASE-IF-XAU-FINAL-OOS.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py","--deploy","{DEPLOY}"]},
       "timeout": {"min_seconds":1800,"expected_seconds":1800,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IF-XAU-FINAL-OOS.json"}
+    },
+    {
+      "id": "PHASE-IF-XAU-FINAL-OOS",
+      "revision": 2,
+      "enabled": true,
+      "priority": 17,
+      "class_key": "xau-final-oos-evaluation",
+      "description": "Execute the exact preregistered Jan-Aug 2026 final OOS after news-mask r2 PASS. Scientific rule, threshold, hours, horizon, exclusions and pass/fail gates are unchanged; only Windows-safe progress/result writes differ from r1.",
+      "data_window": {"start":"2026-01-01T00:00:00Z","end_exclusive":"2026-09-01T00:00:00Z"},
+      "requires": [{"kind":"receipt","job_id":"PHASE-IF-2026-NEWS-MASK-FREEZE","revision":2,"accepted_status":["PASS"]}],
+      "executor": {"kind":"python","path":"research/autonomous/phase_if_xau_final_oos_v1_01.py","args":["--hcc","D:\\MT5_FundedNext\\Bases\\FundedNext-Server 2\\history\\XAUUSD\\2026.hcc","--news-mask","{ROOT}\\phase_if_2026\\phase_if_xauusd_merged_news_mask_2026_jan_aug.csv","--policy","{DEPLOY}\\research\\autonomous\\phase_if_xau_final_oos_policy_v1.json","--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py","--ie-engine","{DEPLOY}\\research\\autonomous\\phase_ie_xau_directional_confirmation_v1_00.py","--output-dir","{ROOT}\\phase_if_2026","--progress-file","{ROOT}\\progress\\PHASE-IF-XAU-FINAL-OOS-R2.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py","--deploy","{DEPLOY}"]},
+      "timeout": {"min_seconds":1800,"expected_seconds":1800,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IF-XAU-FINAL-OOS-R2.json"}
     }
   ]
 }
