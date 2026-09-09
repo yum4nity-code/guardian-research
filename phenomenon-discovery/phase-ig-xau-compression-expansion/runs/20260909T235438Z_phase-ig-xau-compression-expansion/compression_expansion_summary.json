@@ -1,0 +1,16 @@
+{
+  "confirmed_before_quarter_gate": 371,
+  "discovery_shortlist": 413,
+  "family": "compression_expansion",
+  "features": [
+    "compression6_atr",
+    "atr_slope3",
+    "atr_slope12"
+  ],
+  "generated_at_utc": "2026-09-09T23:54:38.480428+00:00",
+  "phase": "I-G",
+  "protected_2026_untouched": true,
+  "schema": 1,
+  "status": "PASS",
+  "survivors": 366
+}

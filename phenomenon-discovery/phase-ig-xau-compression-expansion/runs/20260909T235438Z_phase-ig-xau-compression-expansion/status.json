@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "name": "compression_expansion_summary.json",
+      "sha256": "da42528119cd1be924a383c3c79c810acd66529aba10260f6ce85c555ce5b2ab",
+      "size_bytes": 374
+    },
+    {
+      "name": "compression_expansion_shortlist.csv",
+      "sha256": "10ef4ef235b87108e333be90399448419db402ae2e48c02309949c0cb649cc24",
+      "size_bytes": 69147
+    },
+    {
+      "name": "compression_expansion_survivors.csv",
+      "sha256": "11a022f761c63fdfb89ebda13a80c5d8c0572f76ced1b3d5b8455286657bf259",
+      "size_bytes": 199087
+    },
+    {
+      "name": "phase_ig_xau_simple_independent_families_policy_v1.json",
+      "sha256": "4a82ba5261a7157743f34e8c65b706c8c06ecc9fc3eb3e201657a849e833d8c8",
+      "size_bytes": 2304
+    }
+  ],
+  "generated_at_utc": "2026-09-09T23:54:38.665799+00:00",
+  "phase": "phase-ig-xau-compression-expansion",
+  "schema": 1,
+  "source_commit": "7b8c5d8e1fbd4ce1381eb0ce5f55efb82a8ea5d9",
+  "status": "PASS",
+  "summary": "Phase I-G compression_expansion: shortlist=413 confirmed=371 survivors=366; 2026 untouched."
+}
