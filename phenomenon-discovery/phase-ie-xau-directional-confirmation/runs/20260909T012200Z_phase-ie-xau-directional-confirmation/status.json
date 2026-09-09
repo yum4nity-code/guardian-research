@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_ie_summary.json",
+      "sha256": "8e1a6e3be5b0047ce22f5bb1ed1595a607938bd64b81a991e4628ab31efe5661",
+      "size_bytes": 3722
+    },
+    {
+      "name": "phase_ie_all_directional_candidates.csv",
+      "sha256": "680eb2666c7c99da042e5da9afea36bf16a4c7ec79c1b9dfd80fa8ad3fd84aae",
+      "size_bytes": 37914
+    },
+    {
+      "name": "phase_ie_directional_survivors.csv",
+      "sha256": "cd3a32ebfba67ba4ba81edfd7506b6949a50b73a3234b69007c8292f0a82e5a3",
+      "size_bytes": 3767
+    },
+    {
+      "name": "phase_ie_independent_candidates.csv",
+      "sha256": "cd3a32ebfba67ba4ba81edfd7506b6949a50b73a3234b69007c8292f0a82e5a3",
+      "size_bytes": 3767
+    },
+    {
+      "name": "phase_ie_redundancy_pairs.csv",
+      "sha256": "ff101413dbb86610f2df7c42df604e528191bb2725c762a6470fae8dbb287d01",
+      "size_bytes": 33
+    },
+    {
+      "name": "phase_ie_xau_directional_confirmation_policy_v1.json",
+      "sha256": "f23f09fff07f4bffcbaaa7c1ecc90c3ac20cb427c1aac1b03413134930af41d0",
+      "size_bytes": 2568
+    }
+  ],
+  "generated_at_utc": "2026-09-09T01:22:00.977642+00:00",
+  "phase": "phase-ie-xau-directional-confirmation",
+  "schema": 1,
+  "source_commit": "a54b9efb3501613f3e22d384e54aa3882ea507a6",
+  "status": "PASS",
+  "summary": "Phase I-E technical PASS; scientific=DIRECTIONAL_CANDIDATES_CONFIRMED; directional_tested=13; raw_passes=1; independent_clusters=1; 2026 untouched."
+}
