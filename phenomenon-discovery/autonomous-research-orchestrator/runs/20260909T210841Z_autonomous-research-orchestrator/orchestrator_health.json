@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IF-XAU-M1-SNAPSHOT-WAIT",
+    "revision": 2
+  },
+  "main_commit": "b0b71f3a062256a3b58bc72224258874456436e3",
+  "pid": 7360,
+  "protected_2026": false,
+  "queue_generation": 24,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-09T21:08:40.241663+00:00",
+  "version": "1.01"
+}
