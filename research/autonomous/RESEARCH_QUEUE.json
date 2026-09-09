@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 10,
+  "generation": 11,
   "updated_at": "2026-09-09",
   "mode": "AUTONOMOUS_SCIENTIFIC_RESEARCH",
   "human_approved_2026": false,
@@ -133,6 +133,14 @@
       "requires":[{"kind":"receipt","job_id":"PHASE-IB-PASS-GATE","revision":7,"accepted_status":["PASS"]}],
       "executor":{"kind":"python","path":"research/autonomous/phase_ic_xau_phenomenon_atlas_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ic_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_policy_v1.json","--progress-file","{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS-R7.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
       "timeout":{"min_seconds":600,"expected_seconds":1200,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IC-XAU-PHENOMENON-ATLAS-R7.json"}
+    },
+    {
+      "id":"PHASE-ID-XAU-TEMPORAL-ROBUSTNESS","revision":1,"enabled":true,"priority":8,"class_key":"xau-temporal-robustness",
+      "description":"Preregistered temporal robustness of the exact Phase I-C survivors. Re-evaluate only frozen states/cutpoints/outcomes/horizons inside 2025 at monthly and half-year granularity; no new alpha search, no PnL/sizing, and 2026 remains sealed.",
+      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
+      "requires":[{"kind":"receipt","job_id":"PHASE-IC-XAU-PHENOMENON-ATLAS","revision":7,"accepted_status":["PASS"]}],
+      "executor":{"kind":"python","path":"research/autonomous/phase_id_xau_temporal_robustness_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--ic-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ic_v1","--output-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_id_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_id_xau_temporal_robustness_policy_v1.json","--deploy","{DEPLOY}","--progress-file","{ROOT}\\progress\\PHASE-ID-XAU-TEMPORAL-ROBUSTNESS.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
+      "timeout":{"min_seconds":900,"expected_seconds":1800,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-ID-XAU-TEMPORAL-ROBUSTNESS.json"}
     }
   ]
 }
