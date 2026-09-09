@@ -91,7 +91,6 @@ def main() -> int:
         print(json.dumps(result, separators=(',', ':')))
         return 4
 
-    # Fail closed if legacy protected-data guard or old output names remain.
     forbidden = [
         "InpTo>D'2026.01.01 00:00:00'",
         'mt5_high_impact_calendar_2024_2025.csv',
@@ -108,7 +107,6 @@ def main() -> int:
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(changed, encoding='utf-8')
 
-    # Compilation only. Do not launch terminal/script and do not read calendar contents in this job.
     cp = subprocess.run(
         [str(meta), f'/compile:{dst}', f'/log:{dst.with_suffix(".compile.log")}'],
         text=True,
@@ -138,15 +136,23 @@ def main() -> int:
         'currencies': ['USD'],
     })
 
-    if cp.returncode != 0 or not ex5.exists():
-        result['reason'] = 'MetaEditor compilation failed or EX5 not produced'
+    zero_errors = re.search(r'Result:\s*0 errors\b', log_tail, flags=re.IGNORECASE) is not None
+    compile_ok = ex5.exists() and zero_errors
+    result['compile_success_evidence'] = {
+        'ex5_exists': ex5.exists(),
+        'log_reports_zero_errors': zero_errors,
+        'metaeditor_exit_code': cp.returncode,
+    }
+
+    if not compile_ok:
+        result['reason'] = 'MetaEditor compilation failed: EX5 missing or compile log does not report zero errors'
         atomic_json(out, result)
         print(json.dumps(result, separators=(',', ':')))
         return 6
 
     result['target_ex5_sha256'] = sha256(ex5)
     result['status'] = 'PASS'
-    result['reason'] = 'separate Phase I-F exporter prepared and compiled; no 2026 market/news content inspected'
+    result['reason'] = 'separate Phase I-F exporter prepared and compiled with zero errors; no 2026 market/news content inspected'
     atomic_json(out, result)
     print(json.dumps(result, separators=(',', ':')))
     return 0
