@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IF-2026-NEWS-MASK-FREEZE__r1.json",
+  "main_commit": "257704b82b66f432e7367e3786ede9917c857ae5",
+  "pid": 7360,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-09T10:30:24.680927+00:00",
+  "version": "1.01"
+}

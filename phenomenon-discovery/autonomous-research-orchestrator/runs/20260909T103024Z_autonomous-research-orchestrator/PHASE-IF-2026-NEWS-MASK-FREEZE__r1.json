@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 10800.0,
+  "class_key": "xau-final-oos-news-mask",
+  "duration_seconds": 6346.751272199996,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-09T10:30:24.672011+00:00",
+  "job_id": "PHASE-IF-2026-NEWS-MASK-FREEZE",
+  "main_commit": "257704b82b66f432e7367e3786ede9917c857ae5",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T08:44:37.881231+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_wait_build_news_mask_2026_v1_00.py\", line 67, in <module>\n    if __name__=='__main__': raise SystemExit(main())\n                                              ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_wait_build_news_mask_2026_v1_00.py\", line 29, in main\n    if hb: atomic(hb,{'completed':0,'total':1,'stage':'waiting_for_mt5_calendar_export','updated_at_utc':datetime.now(timezone.utc).isoformat()})\n           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\phase_if_wait_build_news_mask_2026_v1_00.py\", line 11, in atomic\n    p.parent.mkdir(parents=True,exist_ok=True); t=p.with_suffix(p.suffix+'.tmp'); t.write_text(json.dumps(o,indent=2,sort_keys=True)+'\\n',encoding='utf-8'); t.replace(p)\n                                                                                                                                                             ~~~~~~~~~^^^\n  File \"C:\\Users\\armor\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pathlib\\_local.py\", line 780, in replace\n    os.replace(self, target)\n    ~~~~~~~~~~^^^^^^^^^^^^^^\nPermissionError: [WinError 5] Access is denied: 'D:\\\\MT5_Backtests\\\\Research\\\\Autonomous\\\\progress\\\\PHASE-IF-2026-NEWS-MASK-FREEZE.json.tmp' -> 'D:\\\\MT5_Backtests\\\\Research\\\\Autonomous\\\\progress\\\\PHASE-IF-2026-NEWS-MASK-FREEZE.json'",
+  "stdout_tail": ""
+}
