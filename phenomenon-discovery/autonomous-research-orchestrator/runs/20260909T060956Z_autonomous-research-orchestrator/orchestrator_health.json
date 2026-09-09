@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IF-2026-READINESS-PROBE",
+    "revision": 1
+  },
+  "main_commit": "9341a2b360dae21ebe4974a789a47ebb691d16e1",
+  "pid": 4032,
+  "protected_2026": false,
+  "queue_generation": 14,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-09T06:09:55.503240+00:00",
+  "version": "1.00"
+}
