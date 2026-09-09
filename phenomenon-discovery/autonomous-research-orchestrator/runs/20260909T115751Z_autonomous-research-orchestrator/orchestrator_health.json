@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-IF-XAU-FINAL-OOS",
+    "revision": 3
+  },
+  "main_commit": "c070900803947378ddb08e41f5f92b935d7b45e9",
+  "pid": 7360,
+  "protected_2026": false,
+  "queue_generation": 22,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-09T11:57:51.582132+00:00",
+  "version": "1.01"
+}
