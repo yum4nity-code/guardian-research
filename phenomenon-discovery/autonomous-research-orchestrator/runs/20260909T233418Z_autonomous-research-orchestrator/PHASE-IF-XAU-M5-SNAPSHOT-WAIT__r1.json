@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 604800.0,
+  "class_key": "xau-final-oos-snapshot-infrastructure",
+  "duration_seconds": 395.1186215999769,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-09T23:34:18.829373+00:00",
+  "job_id": "PHASE-IF-XAU-M5-SNAPSHOT-WAIT",
+  "main_commit": "f1a6c13260d8e14faf79df385364d365ab85a1dd",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T23:27:43.680473+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"csv\": \"C:\\\\Users\\\\armor\\\\AppData\\\\Roaming\\\\MetaQuotes\\\\Terminal\\\\Common\\\\Files\\\\Guardian\\\\phase_if\\\\xauusd_m5_2026_jan_aug.csv\", \"csv_sha256\": \"4b2d286c2a4287fbddb37dde9a71b362915d34496e129654ab8c9a3ebfac361b\", \"first_epoch\": 1767315600, \"generated_at_utc\": \"2026-09-09T23:34:14.368383+00:00\", \"jan_apr_rows\": 23125, \"last_epoch\": 1788220500, \"manifest\": \"C:\\\\Users\\\\armor\\\\AppData\\\\Roaming\\\\MetaQuotes\\\\Terminal\\\\Common\\\\Files\\\\Guardian\\\\phase_if\\\\xauusd_m5_2026_jan_aug_manifest.txt\", \"manifest_fields\": {\"company\": \"MetaQuotes Ltd.\", \"from\": \"2026.01.01 00:00:00\", \"period\": \"M5\", \"rows\": \"47025\", \"server\": \"FundedNext-Server 2\", \"symbol\": \"XAUUSD\", \"terminal_data_path\": \"D:\\\\MT5_FundedNext\", \"terminal_path\": \"D:\\\\MT5_FundedNext\", \"to_exclusive\": \"2026.09.01 00:00:00\"}, \"manifest_sha256\": \"ef2316a2863087d84c182701bf5ed0ac5649d0f63a30dc7e0efcecd1c8b773af\", \"may_aug_rows\": 23900, \"rows\": 47025, \"schema\": 1, \"scientific_hypothesis_changed\": false, \"status\": \"PASS\", \"transport_only\": true}"
+}
