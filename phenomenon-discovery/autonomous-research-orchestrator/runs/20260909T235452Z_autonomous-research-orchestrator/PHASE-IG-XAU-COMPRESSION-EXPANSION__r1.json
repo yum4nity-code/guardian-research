@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 4500.0,
+  "class_key": "xau-simple-family-screen",
+  "duration_seconds": 25.009703999967314,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-09T23:54:52.748560+00:00",
+  "job_id": "PHASE-IG-XAU-COMPRESSION-EXPANSION",
+  "main_commit": "7b8c5d8e1fbd4ce1381eb0ce5f55efb82a8ea5d9",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-09T23:54:27.721920+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": ""
+}
