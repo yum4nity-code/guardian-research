@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_id_summary.json",
+      "sha256": "efec5b2c6964f68246c9a6ed1efedb98ead639b48803e39ee615fba6e0d45d3d",
+      "size_bytes": 2285
+    },
+    {
+      "name": "phase_id_all_candidates.csv",
+      "sha256": "0464fd6a01a98e001168ed77a0fd5f43cd1eedc194acafb9c495fdeb1d22e845",
+      "size_bytes": 3463603
+    },
+    {
+      "name": "phase_id_robust_survivors.csv",
+      "sha256": "448002b000cf645f2273c7f4b825cde50b1153c584f7329699d2c8be9b6b924c",
+      "size_bytes": 3201969
+    },
+    {
+      "name": "phase_id_xau_temporal_robustness_policy_v1.json",
+      "sha256": "5ab810df7aba37aaaf74c58232a02cbe46d2ae6a43415ba62302c110ddec2dd1",
+      "size_bytes": 1386
+    }
+  ],
+  "generated_at_utc": "2026-09-09T00:17:10.863162+00:00",
+  "phase": "phase-id-xau-temporal-robustness",
+  "schema": 1,
+  "source_commit": "d71847b4a9aee46711e10e6604066fb2cbefd5a2",
+  "status": "PASS",
+  "summary": "Phase I-D technical PASS; scientific=ROBUST_SURVIVORS_FOUND; retested=1624; robust_survivors=1502; 2026 untouched."
+}

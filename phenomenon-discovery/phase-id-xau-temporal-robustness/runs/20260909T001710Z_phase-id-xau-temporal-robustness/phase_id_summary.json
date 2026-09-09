@@ -1,0 +1,48 @@
+{
+  "candidates_retested": 1624,
+  "distinct_state_outcome_horizon_count": 1502,
+  "generated_at_utc": "2026-09-09T00:17:10.761340+00:00",
+  "next_rule": "A Phase I-D survivor remains a phenomenon candidate. The supervisor must deduplicate/translate and preregister any further confirmation before considering protected 2026; no PnL/sizing rescue is permitted.",
+  "phase": "I-D",
+  "policy": {
+    "confirmation_year": 2025,
+    "minimum_absolute_effect": {
+      "mean_fwd_ret_atr": 0.06,
+      "move_ge_1atr": 0.05,
+      "up_first_1atr": 0.04
+    },
+    "minimum_half_state_n": 125,
+    "minimum_month_state_n": 21,
+    "minimum_same_sign_fraction": 0.75,
+    "minimum_valid_months": 10,
+    "name": "XAU_TEMPORAL_ROBUSTNESS_V1",
+    "notes": [
+      "Input candidates are exactly the Phase I-C confirmation survivors; no new state, cutpoint, horizon, outcome, stop, target, sizing or PnL parameter is introduced.",
+      "The 2024-fitted Phase I-C quintile cutpoints remain frozen. Only 2025 is re-examined at finer temporal granularity; 2026 is forbidden.",
+      "A candidate passes only if at least 10 calendar months have sufficient state sample, at least 75% of valid months retain the Phase I-C effect sign, the median signed monthly effect retains the original Phase I-C minimum absolute effect, and both 2025 half-years independently retain the same sign and original minimum absolute effect.",
+      "Monthly and half-year tests compare the frozen state with its same-period complement, matching the Phase I-C estimand.",
+      "This phase is robustness/temporal stability only. A survivor is still a phenomenon candidate, not a strategy and not authorization to open 2026."
+    ],
+    "phase": "I-D",
+    "protected_2026_untouched": true,
+    "schema": 1,
+    "source_phase": "I-C"
+  },
+  "propfirm_tradability_authorized": false,
+  "protected_2026_untouched": true,
+  "robust_survivor_count": 1502,
+  "robust_survivors_by_horizon": {
+    "12": 409,
+    "24": 466,
+    "3": 307,
+    "6": 320
+  },
+  "robust_survivors_by_outcome": {
+    "mean_fwd_ret_atr": 13,
+    "move_ge_1atr": 1489
+  },
+  "schema": 1,
+  "scientific_status": "ROBUST_SURVIVORS_FOUND",
+  "source_phase_ic_survivors": 1624,
+  "technical_status": "PASS"
+}
