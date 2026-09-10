@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "STRATEGY-FACTORY-MULTI-ASSET-RANDOM",
+    "revision": 1
+  },
+  "main_commit": "c9c2d123197db5d5d9c27a581a1df91957300126",
+  "pid": 7580,
+  "protected_2026": false,
+  "queue_generation": 29,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-10T05:42:08.162533+00:00",
+  "version": "1.01"
+}
