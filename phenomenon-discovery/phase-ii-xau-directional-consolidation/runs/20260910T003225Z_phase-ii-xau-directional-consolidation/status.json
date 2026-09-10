@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_ii_summary.json",
+      "sha256": "f87ecf2d60fcf5af3f22572a6008a9af42e16f9e1450a489995175cfaf1b045a",
+      "size_bytes": 600
+    },
+    {
+      "name": "phase_ii_all_robust_directionals.csv",
+      "sha256": "576643b5cc6889c65789067732bbb049c499d0706a1f06b49497079220c87116",
+      "size_bytes": 20454
+    },
+    {
+      "name": "phase_ii_independent_directional_representatives.csv",
+      "sha256": "ac9785d715ffc091e1ec009a02bae203cc9d6a96262eaf5e23df8e6e9bfa67b3",
+      "size_bytes": 12097
+    },
+    {
+      "name": "phase_ii_xau_directional_consolidation_policy_v1.json",
+      "sha256": "ea8dfe5357b575fa82cd2f7557d0b688051d9666ab3d9ab8c9a7b3d8c6866860",
+      "size_bytes": 1159
+    }
+  ],
+  "generated_at_utc": "2026-09-10T00:32:25.405641+00:00",
+  "phase": "phase-ii-xau-directional-consolidation",
+  "schema": 1,
+  "source_commit": "bfcfec6a4abfd7f2f9f1ba37bdf260b35ae9bd4f",
+  "status": "PASS",
+  "summary": "Phase I-I directional consolidation: robust_directionals=12 independent_representatives=7; 2026 untouched."
+}
