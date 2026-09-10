@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 27,
+  "generation": 28,
   "jobs": [
     {
       "id": "PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION",
@@ -25,6 +25,33 @@
         ]
       },
       "timeout": {"min_seconds":300,"expected_seconds":120,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":300,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION-R1.json"}
+    },
+    {
+      "id":"PHASE-IJ-XAU-MULTI-FINAL-OOS",
+      "revision":1,
+      "enabled":true,
+      "priority":28,
+      "class_key":"xau-multi-final-oos",
+      "description":"Evaluate the seven frozen independent XAU directional representatives on protected Jan-Aug 2026 using the existing provenance-validated native MT5 M5 snapshot and frozen news mask. No MT5 process is started. Holm multiple-testing control, half-period consistency and moving-block bootstrap are frozen in the preregistration. No retuning.",
+      "data_window":{"start":"2026-01-01T00:00:00Z","end_exclusive":"2026-09-01T00:00:00Z"},
+      "requires":[
+        {"kind":"receipt","job_id":"PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION","revision":1,"accepted_status":["PASS"]},
+        {"kind":"receipt","job_id":"PHASE-IF-2026-NEWS-MASK-FREEZE","revision":2,"accepted_status":["PASS"]},
+        {"kind":"receipt","job_id":"PHASE-IF-XAU-M5-SNAPSHOT-WAIT","revision":1,"accepted_status":["PASS"]}
+      ],
+      "executor":{"kind":"python","path":"research/autonomous/phase_ij_xau_multi_candidate_final_oos_v1_00.py","args":[
+        "--csv","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug.csv",
+        "--manifest","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug_manifest.txt",
+        "--news-mask","{ROOT}\\phase_if_2026\\phase_if_xauusd_merged_news_mask_2026_jan_aug.csv",
+        "--policy","{DEPLOY}\\research\\autonomous\\phase_ij_xau_multi_candidate_final_oos_policy_v1.json",
+        "--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py",
+        "--ie-engine","{DEPLOY}\\research\\autonomous\\phase_ie_xau_directional_confirmation_v1_00.py",
+        "--output-dir","{ROOT}\\phase_ij_multi_final_oos",
+        "--progress-file","{ROOT}\\progress\\PHASE-IJ-XAU-MULTI-FINAL-OOS-R1.json",
+        "--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py",
+        "--deploy","{DEPLOY}"
+      ]},
+      "timeout":{"min_seconds":900,"expected_seconds":600,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":600,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IJ-XAU-MULTI-FINAL-OOS-R1.json"}
     }
   ]
 }
