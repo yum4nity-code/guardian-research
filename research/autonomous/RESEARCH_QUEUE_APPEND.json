@@ -1,105 +1,30 @@
 {
   "schema": 1,
-  "generation": 26,
+  "generation": 27,
   "jobs": [
     {
-      "id": "PHASE-IF-XAU-M5-SNAPSHOT-PREP",
+      "id": "PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION",
       "revision": 1,
       "enabled": true,
-      "priority": 17,
-      "class_key": "xau-final-oos-snapshot-infrastructure",
-      "description": "Deterministic transport-only repair after the native M1 snapshot proved incomplete at 91089 rows, consistent with MT5 chart-history depth. Stage and compile a bounded native M5 exporter for the same frozen Jan-Aug 2026 window. M5 is the native scientific timeframe of the frozen candidate, so no hypothesis, threshold, horizon, mask or gate changes.",
-      "data_window": {"start":"2026-01-01T00:00:00Z","end_exclusive":"2026-09-01T00:00:00Z"},
+      "priority": 27,
+      "class_key": "xau-directional-consolidation",
+      "description": "Consolidate Phase I-H robust survivors into one non-redundant directional representative per family/direction before any protected OOS request. No 2026, no PnL, no parameter tuning.",
+      "data_window": {"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
       "requires": [
-        {"kind":"receipt","job_id":"PHASE-IF-XAU-M1-SNAPSHOT-WAIT","revision":2,"accepted_status":["FAIL"]},
-        {"kind":"receipt","job_id":"PHASE-IF-2026-NEWS-MASK-FREEZE","revision":2,"accepted_status":["PASS"]}
+        {"kind":"receipt","job_id":"PHASE-IH-XAU-SIMPLE-ROBUSTNESS","revision":1,"accepted_status":["PASS"]}
       ],
       "executor": {
-        "kind":"python",
-        "path":"research/autonomous/phase_if_prepare_xau_m1_exporter_v1_00.py",
-        "args":["--source","{DEPLOY}\\research\\autonomous\\export_phase_if_xau_m5_2026_v1_00.mq5","--target-source","D:\\MT5_FundedNext\\MQL5\\Scripts\\Guardian\\ExportPhaseIFXauM5_2026.mq5","--metaeditor","D:\\MT5_FundedNext\\metaeditor64.exe","--target-ex5","D:\\MT5_FundedNext\\MQL5\\Scripts\\Guardian\\ExportPhaseIFXauM5_2026.ex5","--output","{ROOT}\\diagnostics\\phase_if_xau_m5_snapshot_prep_r1.json"]
+        "kind": "python",
+        "path": "research/autonomous/phase_ii_xau_directional_consolidation_v1_00.py",
+        "args": [
+          "--ih-csv","{ROOT}\\phase_ih_simple\\phase_ih_robust_survivors.csv",
+          "--policy","{DEPLOY}\\research\\autonomous\\phase_ii_xau_directional_consolidation_policy_v1.json",
+          "--output-dir","{ROOT}\\phase_ii_directional",
+          "--progress-file","{ROOT}\\progress\\PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION-R1.json",
+          "--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
+        ]
       },
-      "timeout":{"min_seconds":300,"expected_seconds":90,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":300,"poll_seconds":5}
-    },
-    {
-      "id":"PHASE-IF-XAU-M5-SNAPSHOT-WAIT",
-      "revision":1,
-      "enabled":true,
-      "priority":18,
-      "class_key":"xau-final-oos-snapshot-infrastructure",
-      "description":"Wait for the prepared canonical FundedNext terminal to produce the bounded native M5 Jan-Aug 2026 snapshot, then validate exact server/window provenance, temporal coverage and hashes. Scientific hypothesis unchanged.",
-      "data_window":{"start":"2026-01-01T00:00:00Z","end_exclusive":"2026-09-01T00:00:00Z"},
-      "requires":[{"kind":"receipt","job_id":"PHASE-IF-XAU-M5-SNAPSHOT-PREP","revision":1,"accepted_status":["PASS"]}],
-      "executor":{"kind":"python","path":"research/autonomous/phase_if_wait_xau_m5_snapshot_v1_00.py","args":["--csv","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug.csv","--manifest","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug_manifest.txt","--wait-seconds","604800","--progress-file","{ROOT}\\progress\\PHASE-IF-XAU-M5-SNAPSHOT-WAIT-R1.json","--output","{ROOT}\\diagnostics\\phase_if_xau_m5_snapshot_ready_r1.json"]},
-      "timeout":{"min_seconds":604800,"expected_seconds":86400,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":120,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IF-XAU-M5-SNAPSHOT-WAIT-R1.json"}
-    },
-    {
-      "id":"PHASE-IF-XAU-FINAL-OOS",
-      "revision":6,
-      "enabled":true,
-      "priority":19,
-      "class_key":"xau-final-oos-evaluation",
-      "description":"Deterministic transport-only continuation of the exact preregistered Phase I-F final OOS using the provenance-validated native MT5 M5 snapshot. Candidate, threshold, server hours, 12-bar horizon, news mask, bootstrap seed/length/replicates and all pass/fail gates remain frozen; no retuning.",
-      "data_window":{"start":"2026-01-01T00:00:00Z","end_exclusive":"2026-09-01T00:00:00Z"},
-      "requires":[{"kind":"receipt","job_id":"PHASE-IF-XAU-M5-SNAPSHOT-WAIT","revision":1,"accepted_status":["PASS"]},{"kind":"receipt","job_id":"PHASE-IF-2026-NEWS-MASK-FREEZE","revision":2,"accepted_status":["PASS"]}],
-      "executor":{"kind":"python","path":"research/autonomous/phase_if_xau_final_oos_m5_csv_v1_00.py","args":["--csv","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug.csv","--manifest","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug_manifest.txt","--news-mask","{ROOT}\\phase_if_2026\\phase_if_xauusd_merged_news_mask_2026_jan_aug.csv","--policy","{DEPLOY}\\research\\autonomous\\phase_if_xau_final_oos_policy_v1.json","--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py","--ie-engine","{DEPLOY}\\research\\autonomous\\phase_ie_xau_directional_confirmation_v1_00.py","--output-dir","{ROOT}\\phase_if_2026","--progress-file","{ROOT}\\progress\\PHASE-IF-XAU-FINAL-OOS-R6.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py","--deploy","{DEPLOY}"]},
-      "timeout":{"min_seconds":1800,"expected_seconds":1800,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":900,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IF-XAU-FINAL-OOS-R6.json"}
-    },
-    {
-      "id":"PHASE-IG-XAU-EXTENSION-REVERSION","revision":1,"enabled":true,"priority":20,"class_key":"xau-simple-family-screen",
-      "description":"Fresh 2024 discovery / 2025 confirmation for simple XAU extension-reversion states. Excludes bar_range_atr and protected 2026; Python only.",
-      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
-      "requires":[{"kind":"receipt","job_id":"PHASE-IF-XAU-FINAL-OOS","revision":6,"accepted_status":["FAIL"]}],
-      "executor":{"kind":"python","path":"research/autonomous/phase_ig_xau_simple_family_screen_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ig_xau_simple_independent_families_policy_v1.json","--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py","--family","extension_reversion","--output-dir","{ROOT}\\phase_ig_simple\\extension_reversion","--progress-file","{ROOT}\\progress\\PHASE-IG-XAU-EXTENSION-REVERSION-R1.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
-      "timeout":{"min_seconds":1200,"expected_seconds":1800,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":600,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IG-XAU-EXTENSION-REVERSION-R1.json"}
-    },
-    {
-      "id":"PHASE-IG-XAU-COMPRESSION-EXPANSION","revision":1,"enabled":true,"priority":21,"class_key":"xau-simple-family-screen",
-      "description":"Fresh 2024 discovery / 2025 confirmation for simple XAU compression/volatility-transition states. Protected 2026 forbidden; Python only.",
-      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
-      "requires":[{"kind":"receipt","job_id":"PHASE-IG-XAU-EXTENSION-REVERSION","revision":1,"accepted_status":["PASS"]}],
-      "executor":{"kind":"python","path":"research/autonomous/phase_ig_xau_simple_family_screen_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ig_xau_simple_independent_families_policy_v1.json","--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py","--family","compression_expansion","--output-dir","{ROOT}\\phase_ig_simple\\compression_expansion","--progress-file","{ROOT}\\progress\\PHASE-IG-XAU-COMPRESSION-EXPANSION-R1.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
-      "timeout":{"min_seconds":1200,"expected_seconds":1800,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":600,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IG-XAU-COMPRESSION-EXPANSION-R1.json"}
-    },
-    {
-      "id":"PHASE-IG-XAU-WICK-REJECTION","revision":1,"enabled":true,"priority":22,"class_key":"xau-simple-family-screen",
-      "description":"Fresh 2024 discovery / 2025 confirmation for XAU wick/rejection states. Protected 2026 forbidden; Python only.",
-      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
-      "requires":[{"kind":"receipt","job_id":"PHASE-IG-XAU-COMPRESSION-EXPANSION","revision":1,"accepted_status":["PASS"]}],
-      "executor":{"kind":"python","path":"research/autonomous/phase_ig_xau_simple_family_screen_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ig_xau_simple_independent_families_policy_v1.json","--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py","--family","wick_rejection","--output-dir","{ROOT}\\phase_ig_simple\\wick_rejection","--progress-file","{ROOT}\\progress\\PHASE-IG-XAU-WICK-REJECTION-R1.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
-      "timeout":{"min_seconds":1200,"expected_seconds":1500,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":600,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IG-XAU-WICK-REJECTION-R1.json"}
-    },
-    {
-      "id":"PHASE-IG-XAU-RANGE-LOCATION","revision":1,"enabled":true,"priority":23,"class_key":"xau-simple-family-screen",
-      "description":"Fresh 2024 discovery / 2025 confirmation for XAU location versus 24-bar extremes. Protected 2026 forbidden; Python only.",
-      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
-      "requires":[{"kind":"receipt","job_id":"PHASE-IG-XAU-WICK-REJECTION","revision":1,"accepted_status":["PASS"]}],
-      "executor":{"kind":"python","path":"research/autonomous/phase_ig_xau_simple_family_screen_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ig_xau_simple_independent_families_policy_v1.json","--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py","--family","range_location","--output-dir","{ROOT}\\phase_ig_simple\\range_location","--progress-file","{ROOT}\\progress\\PHASE-IG-XAU-RANGE-LOCATION-R1.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
-      "timeout":{"min_seconds":1200,"expected_seconds":1500,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":600,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IG-XAU-RANGE-LOCATION-R1.json"}
-    },
-    {
-      "id":"PHASE-IG-XAU-ABNORMAL-ACTIVITY","revision":1,"enabled":true,"priority":24,"class_key":"xau-simple-family-screen",
-      "description":"Fresh 2024 discovery / 2025 confirmation for XAU abnormal tick-volume and gap states. Protected 2026 forbidden; Python only.",
-      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
-      "requires":[{"kind":"receipt","job_id":"PHASE-IG-XAU-RANGE-LOCATION","revision":1,"accepted_status":["PASS"]}],
-      "executor":{"kind":"python","path":"research/autonomous/phase_ig_xau_simple_family_screen_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--policy","{DEPLOY}\\research\\autonomous\\phase_ig_xau_simple_independent_families_policy_v1.json","--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py","--family","abnormal_activity","--output-dir","{ROOT}\\phase_ig_simple\\abnormal_activity","--progress-file","{ROOT}\\progress\\PHASE-IG-XAU-ABNORMAL-ACTIVITY-R1.json","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
-      "timeout":{"min_seconds":1200,"expected_seconds":1500,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":600,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-IG-XAU-ABNORMAL-ACTIVITY-R1.json"}
-    },
-    {
-      "id":"PHASE-IG-XAU-FAMILY-MERGE","revision":1,"enabled":true,"priority":25,"class_key":"xau-family-merge",
-      "description":"Merge the five independently screened simple XAU families and keep one representative per family/outcome/horizon/direction cluster. No 2026 and no PnL.",
-      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
-      "requires":[{"kind":"receipt","job_id":"PHASE-IG-XAU-EXTENSION-REVERSION","revision":1,"accepted_status":["PASS"]},{"kind":"receipt","job_id":"PHASE-IG-XAU-COMPRESSION-EXPANSION","revision":1,"accepted_status":["PASS"]},{"kind":"receipt","job_id":"PHASE-IG-XAU-WICK-REJECTION","revision":1,"accepted_status":["PASS"]},{"kind":"receipt","job_id":"PHASE-IG-XAU-RANGE-LOCATION","revision":1,"accepted_status":["PASS"]},{"kind":"receipt","job_id":"PHASE-IG-XAU-ABNORMAL-ACTIVITY","revision":1,"accepted_status":["PASS"]}],
-      "executor":{"kind":"python","path":"research/autonomous/phase_ig_xau_family_merge_v1_00.py","args":["--root","{ROOT}\\phase_ig_simple","--policy","{DEPLOY}\\research\\autonomous\\phase_ig_xau_simple_independent_families_policy_v1.json","--output-dir","{ROOT}\\phase_ig_simple\\merged","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
-      "timeout":{"min_seconds":300,"expected_seconds":120,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":300,"poll_seconds":5}
-    },
-    {
-      "id":"PHASE-IH-XAU-SIMPLE-ROBUSTNESS","revision":1,"enabled":true,"priority":26,"class_key":"xau-simple-robustness",
-      "description":"Frozen robustness gate on Phase I-G independent representatives using 2025 half-year and monthly stability only. No protected 2026, no PnL, no tuning.",
-      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
-      "requires":[{"kind":"receipt","job_id":"PHASE-IG-XAU-FAMILY-MERGE","revision":1,"accepted_status":["PASS"]}],
-      "executor":{"kind":"python","path":"research/autonomous/phase_ih_xau_simple_robustness_v1_00.py","args":["--ib-dir","D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1","--ig-representatives","{ROOT}\\phase_ig_simple\\merged\\phase_ig_independent_representatives.csv","--policy","{DEPLOY}\\research\\autonomous\\phase_ih_xau_simple_robustness_policy_v1.json","--ic-engine","{DEPLOY}\\research\\autonomous\\phase_ic_xau_phenomenon_atlas_v1_00.py","--output-dir","{ROOT}\\phase_ih_simple","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
-      "timeout":{"min_seconds":1200,"expected_seconds":1800,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":600,"poll_seconds":5}
+      "timeout": {"min_seconds":300,"expected_seconds":120,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":300,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION-R1.json"}
     }
   ]
 }
