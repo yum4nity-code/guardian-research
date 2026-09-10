@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION",
+    "revision": 1
+  },
+  "main_commit": "bfcfec6a4abfd7f2f9f1ba37bdf260b35ae9bd4f",
+  "pid": 7360,
+  "protected_2026": false,
+  "queue_generation": 27,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-10T00:32:13.067630+00:00",
+  "version": "1.01"
+}
