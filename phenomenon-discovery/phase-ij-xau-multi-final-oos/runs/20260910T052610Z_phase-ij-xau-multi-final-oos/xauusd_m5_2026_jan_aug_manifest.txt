@@ -1,0 +1,9 @@
+symbol=XAUUSD
+period=M5
+from=2026.01.01 00:00:00
+to_exclusive=2026.09.01 00:00:00
+terminal_path=D:\MT5_FundedNext
+terminal_data_path=D:\MT5_FundedNext
+company=MetaQuotes Ltd.
+server=FundedNext-Server 2
+rows=47025

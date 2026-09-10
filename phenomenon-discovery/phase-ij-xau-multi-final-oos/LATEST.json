@@ -1,0 +1,31 @@
+{
+  "artifacts": [
+    {
+      "name": "phase_ij_multi_final_oos_result.json",
+      "sha256": "f708b1503c72fadc64d9cbebff8fc723c527b63501e94609f185ac0baf2b5e6a",
+      "size_bytes": 13029
+    },
+    {
+      "name": "phase_ij_xau_multi_candidate_final_oos_policy_v1.json",
+      "sha256": "67f68a2b607ef4c7a49d575e5a7802b2b58528b020254a909f0dc19c7f80f677",
+      "size_bytes": 3762
+    },
+    {
+      "name": "phase_if_xauusd_merged_news_mask_2026_jan_aug.csv",
+      "sha256": "8d3eb7dda83376a4bbfd759233465ca6fcd996ef94cc07030369e1d606d2e558",
+      "size_bytes": 16035
+    },
+    {
+      "name": "xauusd_m5_2026_jan_aug_manifest.txt",
+      "sha256": "ef2316a2863087d84c182701bf5ed0ac5649d0f63a30dc7e0efcecd1c8b773af",
+      "size_bytes": 222
+    }
+  ],
+  "generated_at_utc": "2026-09-10T05:26:10.112031+00:00",
+  "phase": "phase-ij-xau-multi-final-oos",
+  "published_run_path": "phenomenon-discovery/phase-ij-xau-multi-final-oos/runs/20260910T052610Z_phase-ij-xau-multi-final-oos",
+  "schema": 1,
+  "source_commit": "a6da203529acb6c6e18c2bde0af649f4d49da8fa",
+  "status": "FAIL",
+  "summary": "Phase I-J seven-candidate protected OOS -> FAIL; passed=0/7"
+}
