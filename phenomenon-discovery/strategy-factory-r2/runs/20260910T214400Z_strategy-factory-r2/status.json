@@ -1,0 +1,25 @@
+{
+  "artifacts": [
+    {
+      "name": "strategy_factory_result.json",
+      "sha256": "56646202ae9ead67b3a534e0d0bb0ea5e929342aec71c2bc5a3ac2f871141755",
+      "size_bytes": 787343
+    },
+    {
+      "name": "strategy_factory_survivors.csv",
+      "sha256": "d434557e562c4ec1c164e0a08dbc474c8285e0edeb2a43b1f783973ce00e3c74",
+      "size_bytes": 347205
+    },
+    {
+      "name": "dataset_inventory.json",
+      "sha256": "b34fd2e93d64389fbe2663901ead2d39aab5a4bc29c4639f9d8d41703d149d2f",
+      "size_bytes": 952
+    }
+  ],
+  "generated_at_utc": "2026-09-10T21:44:00.851569+00:00",
+  "phase": "strategy-factory-r2",
+  "schema": 1,
+  "source_commit": "536ff784924ef44963cd86cd8977321fac65e3ef",
+  "status": "PASS",
+  "summary": "500 reproducible survivors after 2024 discovery, untouched 2025 confirmation, BH-FDR and half-year/neighbor robustness; 2026 untouched."
+}
