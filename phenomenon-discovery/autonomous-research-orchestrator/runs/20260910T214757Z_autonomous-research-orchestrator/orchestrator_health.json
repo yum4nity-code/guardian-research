@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "STRATEGY-FACTORY-MULTI-ASSET-RANDOM-R4-CONDITIONAL-EDGE",
+    "revision": 1
+  },
+  "main_commit": "63b825bad510150225154c8f539d14e025d8c8d9",
+  "pid": 7580,
+  "protected_2026": false,
+  "queue_generation": 32,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-10T21:47:57.635192+00:00",
+  "version": "1.01"
+}
