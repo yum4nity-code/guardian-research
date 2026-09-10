@@ -3,6 +3,11 @@
 Last updated: 2026-09-08 Europe/Paris
 Status: **ACTIVE / D053 REJECTED / D054 UNCONFIRMED-CLOSED / NO CURRENT ALPHA P0 / QUEUE RECONCILED / CHALLENGE LAB PREREGISTERED PIPELINE V1.01 CANONICAL**
 
+
+## Strategy factory infrastructure handoff — 2026-09-10
+
+STRATEGY-FACTORY-MULTI-ASSET-RANDOM r2 failed on temporary Windows PermissionError in atomic_json (receipt 15:09:50 UTC). Queue generation 31 registers r3 using immutable v1_02 with bounded replace retries only; distinct output/progress R3 paths. Seed 260911, 250000 trials, inputs and all scientific logic are unchanged; no 2026 analysis, retuning or live deployment. Seven regression tests PASS. No r2/r3 process found before registration; existing orchestrator PID 7580 owns launch after push. Preserve r2 artifacts and receipt. Next: observe r3 health/progress; do not start another engine. The existing publisher phase label is preserved by the atomic-only scope.
+
 ## Canonical resume
 
 Read first:

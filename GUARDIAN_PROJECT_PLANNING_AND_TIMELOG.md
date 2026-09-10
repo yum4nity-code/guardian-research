@@ -510,3 +510,13 @@ Next:
 ## Historical-time caveat
 
 The chronology above is much more reliable than the old time totals. Pre-GitHub conversations were not originally run as a stopwatch. Therefore old durations are deliberately labelled as observed spans/minimums/unknowns. Going forward this file can provide a substantially cleaner day-by-day work-time record.
+
+## 2026-09-10 — Strategy factory r3 infrastructure repair
+
+- Created immutable `strategy_factory_random_search_v1_02.py` from v1_01; only `atomic_json` changed: retry PermissionError on replace, six attempts, bounded delays 0.05/0.10/0.20/0.20/0.20 seconds, explicit exhaustion error chained to the cause. Other exceptions propagate immediately.
+- Registered STRATEGY-FACTORY-MULTI-ASSET-RANDOM revision 3 in queue generation 31 with distinct strategy_factory_r3 output and RANDOM-R3 progress paths. r2 and its FAIL receipt remain intact.
+- Scientific implementation and queue parameters unchanged: seed 260911, 250000 trials, same roots/limits, 2024 discovery, 2025 confirmation, thresholds, FDR and validation. No 2026 analysis or retuning. Existing publisher phase label remains unchanged because this repair only changes atomic writing.
+- Seven focused regression tests PASS, including AST equality outside atomic_json and full normalized r2/r3 queue equality. Initial sandbox runs could not access Windows temporary directories; the same suite passed with normal Windows permissions.
+- Process inventory before registration: no r2/r3 engine process; orchestrator PID 7580 active. r2 receipt confirms FAIL at 15:09:50 UTC on WinError 5. No manual engine launch and no live deployment.
+- Next safe action: after commit/push, let the existing orchestrator fetch main and execute r3 once; observe its health/progress.
+- Human active time: NOT QUANTIFIED. Automated test execution is not human time.
