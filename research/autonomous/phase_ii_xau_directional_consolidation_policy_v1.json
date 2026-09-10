@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "phase": "I-I",
+  "name": "XAU_DIRECTIONAL_CONSOLIDATION_V1",
+  "purpose": "Consolidate Phase I-H robust survivors into a small non-redundant directional candidate set before any protected OOS request.",
+  "input_phase": "I-H",
+  "protected_2026_forbidden": true,
+  "eligible_outcome": "mean_fwd_ret_atr",
+  "selection_rule": {
+    "require_robustness_pass": true,
+    "one_representative_per_family_direction": true,
+    "ranking": [
+      "lowest_confirmation_q",
+      "largest_abs_confirmation_effect",
+      "largest_confirmation_n_state",
+      "shorter_horizon_bars",
+      "lexicographic_feature_state_tiebreak"
+    ]
+  },
+  "notes": [
+    "This phase does not add or relax any scientific pass gate from I-H; it only removes redundancy among already robust directional survivors.",
+    "No 2026 access, PnL, sizing, stop/target optimization, execution optimization, or Challenge Lab is permitted.",
+    "A surviving representative is still a phenomenon candidate. Protected final OOS requires a separate committed preregistration and explicit owner approval under the current supervisor instruction."
+  ]
+}
