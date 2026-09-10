@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION__r1.json",
+  "main_commit": "bfcfec6a4abfd7f2f9f1ba37bdf260b35ae9bd4f",
+  "pid": 7360,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-10T00:32:38.665361+00:00",
+  "version": "1.01"
+}
