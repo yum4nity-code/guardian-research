@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 57389.961002249984,
+  "class_key": "multi-asset-strategy-factory-validation",
+  "duration_seconds": 22960.985754499998,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-10T21:44:20.269607+00:00",
+  "job_id": "STRATEGY-FACTORY-MULTI-ASSET-RANDOM",
+  "main_commit": "536ff784924ef44963cd86cd8977321fac65e3ef",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 3,
+  "schema": 1,
+  "started_at_utc": "2026-09-10T15:21:45.532361+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"trials\": 250000, \"discovery_candidates\": 25584, \"survivors\": 500, \"protected_2026_untouched\": true}"
+}
