@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 10",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\PHASE-IJ-XAU-MULTI-FINAL-OOS__r1.json",
+  "main_commit": "a6da203529acb6c6e18c2bde0af649f4d49da8fa",
+  "pid": 7580,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-10T05:26:20.480680+00:00",
+  "version": "1.01"
+}
