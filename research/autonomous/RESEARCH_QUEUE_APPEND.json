@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 29,
+  "generation": 30,
   "jobs": [
     {
       "id": "PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION",
@@ -36,6 +36,18 @@
       "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
       "executor":{"kind":"python","path":"research/autonomous/strategy_factory_random_search_v1_00.py","args":["--roots","D:\\MT5_Backtests","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files","--output-dir","{ROOT}\\strategy_factory_r1","--progress-file","{ROOT}\\progress\\STRATEGY-FACTORY-MULTI-ASSET-RANDOM-R1.json","--trials","250000","--max-files","120","--max-rows","900000"]},
       "timeout":{"min_seconds":3600,"expected_seconds":14400,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":1200,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\STRATEGY-FACTORY-MULTI-ASSET-RANDOM-R1.json"}
+    },
+    {
+      "id":"STRATEGY-FACTORY-MULTI-ASSET-RANDOM",
+      "revision":2,
+      "enabled":true,
+      "priority":30,
+      "class_key":"multi-asset-strategy-factory-validation",
+      "description":"Leakage-safe reproducible strategy factory. Re-run 250k randomized rules with thresholds fitted on 2024 only, persist every rule component including session gates, test all 2024 discoveries once on untouched 2025, apply BH-FDR 5%, require both 2025 half-years positive and adjacent-parameter robustness. Protected 2026 remains untouched. Publish compact terminal artifacts to backtest-results.",
+      "data_window":{"start":"2024-01-01T00:00:00Z","end_exclusive":"2026-01-01T00:00:00Z"},
+      "requires":[{"kind":"receipt","job_id":"STRATEGY-FACTORY-MULTI-ASSET-RANDOM","revision":1,"accepted_status":["PASS"]}],
+      "executor":{"kind":"python","path":"research/autonomous/strategy_factory_random_search_v1_01.py","args":["--roots","D:\\MT5_Backtests","C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files","--output-dir","{ROOT}\\strategy_factory_r2","--progress-file","{ROOT}\\progress\\STRATEGY-FACTORY-MULTI-ASSET-RANDOM-R2.json","--trials","250000","--max-files","120","--max-rows","900000","--seed","260911","--publisher","{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
+      "timeout":{"min_seconds":3600,"expected_seconds":18000,"eta_multiplier":2.5,"history_p95_multiplier":3.0,"stale_heartbeat_seconds":1200,"poll_seconds":5,"progress_file":"{ROOT}\\progress\\STRATEGY-FACTORY-MULTI-ASSET-RANDOM-R2.json"}
     }
   ]
 }
