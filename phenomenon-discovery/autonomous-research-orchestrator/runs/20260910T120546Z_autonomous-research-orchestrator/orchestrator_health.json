@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\STRATEGY-FACTORY-MULTI-ASSET-RANDOM__r1.json",
+  "main_commit": "c9c2d123197db5d5d9c27a581a1df91957300126",
+  "pid": 7580,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-10T12:05:45.985382+00:00",
+  "version": "1.01"
+}
