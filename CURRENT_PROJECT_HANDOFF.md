@@ -1,5 +1,28 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
+## CURRENT CANONICAL CONTINUITY SNAPSHOT — 2026-09-11 R4/R5
+
+The current R4/R5 state is canonically captured in:
+
+`handoff/2026/09/11/GUARDIAN_R4_R5_CURRENT_HANDOFF_2026_09_11.md`
+
+Commit:
+`8d3c054449aacd15f6a4da8efd1f74273d5e6fca`
+
+That dated handoff **supersedes older R4/economic-feasibility top sections below for resume purposes**.
+
+Current essentials:
+- R4 causal-capture forensic audit: PASS_INTERPRETABLE; ~99.5% of B->C degradation is ENTRY_DELTA.
+- R4 close-to-close family closed.
+- R5 causal next-open r2 currently running from queue generation 44.
+- Last local progress snapshot: 100000/150000 discovery trials, 4088 discovery candidates, still in 2024 discovery.
+- GitHub queue generation 45 has all append jobs disabled so nothing new should auto-start after the current R5 run.
+- Do not power off at 150000 discovery alone; wait for the same job's 2025 confirmation to complete.
+- On completion: cold-audit R5 semantics/provenance/statistics before any new phase or protected 2026.
+- No Codex. No live deployment.
+
+---
+
 ## Current scoped handoff — 2026-09-11 economic feasibility protocol
 
 Owner revised the economic scope: FundedNext remains UNRESOLVED / DISABLED and optional; missing historical Bid/Ask permits explicitly conditional feasibility screening, not verified historical fills. The earlier BLOCKED preflight is preserved as historical evidence.
