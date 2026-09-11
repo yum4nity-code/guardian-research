@@ -62,3 +62,9 @@ Document vivant maintenu par Codex.
 - Invariant backtest renforce: une observation n'est accessible que si `available_at_ms <= simulated_time_ms`; le timestamp source seul ne suffit jamais.
 - Si flux externe indisponible/stale, Guardian Core et protections continuent; les features Crypto+ dependantes deviennent indisponibles plutot que d'utiliser une donnee ancienne silencieusement.
 - Aucun signal LER live, aucun poids, seuil ou plan de sortie n'est autorise avant le smoke data puis l'event study.
+
+## 2026-09-11 — Issue #3 economic/execution gate BLOCKED
+
+The 500 published R4 survivors remain the reference population; 32 frozen are secondary only. Cold preflight is BLOCKED before economic implementation: conflicting official FundedNext commission-side descriptions and no positively identified account model; no executable Bid/Ask in the four HCC-derived XAUUSD M1/M5 datasets. M5 spread is from the last M1, not an entry quote. Historical R4 inventory includes two 2026 files and the loader reads before filtering, so the hardcoded untouched flag is not proof of no access; this audit did not open them. Source publication equality is verified after LF normalization; all four pre-2026 dataset hashes match Phase I-B provenance. No new PnL, retuning, engine, job, protected OOS or live changes.
+
+Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `data_provenance_audit.json`. Autonomous queue remains generation 34. Next safe action: resolve exact FundedNext model/commission sides, verify symbol units and execution-feed convention, then complete frozen protocol, validator, tests, smoke and second cold audit before any queue activation. Human time NOT QUANTIFIED; automated audit time is not human time.

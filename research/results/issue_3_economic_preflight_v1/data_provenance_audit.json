@@ -1,0 +1,217 @@
+{
+  "status": "BLOCKED_PRE_IMPLEMENTATION",
+  "source_local_sha256": "7cb29f3251fa0c1f0d37f719286ba4e51a2446aa0d04d0a7cc3bc53e663b3a48",
+  "source_published_blob_sha256": "af7c94500ab99eed3c984dbab5dfac3dc3180fae86b958a3753378803f62f8c4",
+  "source_equal_after_lf_normalization": true,
+  "source_semantically_equal": true,
+  "canonical_source_sha256": "0ac1e917508e29276c0c13b2abf8cbb576f078feab5e084120e02a09dfa505cf",
+  "published_ref": "origin/backtest-results:phenomenon-discovery/strategy-factory-r4-conditional-edge/runs/20260911T034654Z_strategy-factory-r4-conditional-edge/strategy_factory_result.json",
+  "r4_commit": "63b825bad510150225154c8f539d14e025d8c8d9",
+  "source_candidate_count": 500,
+  "unique_signature_count": 500,
+  "source_has_candidate_ids": false,
+  "frozen_count": 32,
+  "all_frozen_in_500": true,
+  "frozen_local_sha256": "37bb6f2d52ef12e7a17a2fd38d94f53ebd94843c3f47500ef36b4c7c76c57e9b",
+  "dataset_audit": [
+    {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+      "sha256": "f98a395961b27ca9dcb34cffa4ef8dd93720adb70292abf7bc96108667232445",
+      "matches_phase_ib_sha256": true,
+      "symbol": "XAUUSD",
+      "timeframe": "M1",
+      "kind": "raw",
+      "status": "VERIFIED_METADATA_ONLY",
+      "rows": 710300,
+      "columns": [
+        "symbol",
+        "timeframe",
+        "server_time",
+        "server_epoch",
+        "open",
+        "high",
+        "low",
+        "close",
+        "tick_volume",
+        "spread",
+        "real_volume"
+      ],
+      "symbols": [
+        "XAUUSD"
+      ],
+      "timeframes": [
+        "M1"
+      ],
+      "first_server_time": "2024.01.01 00:00:00",
+      "last_server_time": "2025.12.31 23:59:00",
+      "year_counts": {
+        "2024": 355885,
+        "2025": 354415
+      },
+      "spread_min": 0,
+      "spread_max": 230,
+      "spread_zero_rows": 446,
+      "spread_negative_rows": 0,
+      "spread_distinct": 56,
+      "gaps_larger_than_timeframe": 868,
+      "duplicate_timestamps": 0,
+      "non_increasing": 0,
+      "max_rows_900000_truncated": false,
+      "source_candidate_count": 59
+    },
+    {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+      "sha256": "b116c61d0be7d73c455f4a4f897efdf0bf77a2b88594ed4b93ebee0d707570ee",
+      "matches_phase_ib_sha256": true,
+      "symbol": "XAUUSD",
+      "timeframe": "M1",
+      "kind": "clean",
+      "status": "VERIFIED_METADATA_ONLY",
+      "rows": 703387,
+      "columns": [
+        "symbol",
+        "timeframe",
+        "server_time",
+        "server_epoch",
+        "open",
+        "high",
+        "low",
+        "close",
+        "tick_volume",
+        "spread",
+        "real_volume"
+      ],
+      "symbols": [
+        "XAUUSD"
+      ],
+      "timeframes": [
+        "M1"
+      ],
+      "first_server_time": "2024.01.01 00:00:00",
+      "last_server_time": "2025.12.31 23:59:00",
+      "year_counts": {
+        "2024": 352376,
+        "2025": 351011
+      },
+      "spread_min": 0,
+      "spread_max": 230,
+      "spread_zero_rows": 409,
+      "spread_negative_rows": 0,
+      "spread_distinct": 56,
+      "gaps_larger_than_timeframe": 1495,
+      "duplicate_timestamps": 0,
+      "non_increasing": 0,
+      "max_rows_900000_truncated": false,
+      "source_candidate_count": 66
+    },
+    {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+      "sha256": "ba54c9b29755eac4284cb872805148736be529e954533c028e7f826bb444ce66",
+      "matches_phase_ib_sha256": true,
+      "symbol": "XAUUSD",
+      "timeframe": "M5",
+      "kind": "raw",
+      "status": "VERIFIED_METADATA_ONLY",
+      "rows": 142549,
+      "columns": [
+        "symbol",
+        "timeframe",
+        "server_time",
+        "server_epoch",
+        "open",
+        "high",
+        "low",
+        "close",
+        "tick_volume",
+        "spread",
+        "real_volume"
+      ],
+      "symbols": [
+        "XAUUSD"
+      ],
+      "timeframes": [
+        "M5"
+      ],
+      "first_server_time": "2024.01.01 00:00:00",
+      "last_server_time": "2025.12.31 23:55:00",
+      "year_counts": {
+        "2024": 71402,
+        "2025": 71147
+      },
+      "spread_min": 0,
+      "spread_max": 100,
+      "spread_zero_rows": 154,
+      "spread_negative_rows": 0,
+      "spread_distinct": 55,
+      "gaps_larger_than_timeframe": 651,
+      "duplicate_timestamps": 0,
+      "non_increasing": 0,
+      "max_rows_900000_truncated": false,
+      "source_candidate_count": 176
+    },
+    {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+      "sha256": "972ecaf6c3cadf7136363f396d7a29e7a6246646b575fad5c3e677036004b503",
+      "matches_phase_ib_sha256": true,
+      "symbol": "XAUUSD",
+      "timeframe": "M5",
+      "kind": "clean",
+      "status": "VERIFIED_METADATA_ONLY",
+      "rows": 140664,
+      "columns": [
+        "symbol",
+        "timeframe",
+        "server_time",
+        "server_epoch",
+        "open",
+        "high",
+        "low",
+        "close",
+        "tick_volume",
+        "spread",
+        "real_volume"
+      ],
+      "symbols": [
+        "XAUUSD"
+      ],
+      "timeframes": [
+        "M5"
+      ],
+      "first_server_time": "2024.01.01 00:00:00",
+      "last_server_time": "2025.12.31 23:55:00",
+      "year_counts": {
+        "2024": 70445,
+        "2025": 70219
+      },
+      "spread_min": 0,
+      "spread_max": 100,
+      "spread_zero_rows": 150,
+      "spread_negative_rows": 0,
+      "spread_distinct": 55,
+      "gaps_larger_than_timeframe": 1222,
+      "duplicate_timestamps": 0,
+      "non_increasing": 0,
+      "max_rows_900000_truncated": false,
+      "source_candidate_count": 199
+    }
+  ],
+  "new_performance_computed": false,
+  "protected_market_files_opened": false,
+  "verified_at_utc": "2026-09-11T07:02:50.637466+00:00",
+  "published_branch_commit": "6d5e46a8b285e9e00b3b50f87e3b51010333912a",
+  "r4_inventory_policy": {
+    "detected_files": 6,
+    "eligible_files": 4,
+    "max_files": 120,
+    "max_files_reached": false,
+    "max_rows": 900000,
+    "pre2026_datasets_truncated": false,
+    "rejected_dataset_log_available": false,
+    "inventory_reexecuted": false,
+    "forbidden_files_listed_in_historical_inventory": [
+      "xauusd_m1_2026_jan_aug.csv",
+      "xauusd_m5_2026_jan_aug.csv"
+    ],
+    "current_audit_forbidden_files_opened": false
+  }
+}
