@@ -1,28 +1,52 @@
 # Guardian Research
 
-Dépôt privé de coordination entre Codex, MiMo/MT5 et ChatGPT pour la recherche, la validation et l'intégration des stratégies Guardian.
+Dépôt privé de recherche, validation, orchestration et intégration des stratégies Guardian.
 
 ## Reprise rapide
 
-**Toujours commencer par `CURRENT_PROJECT_HANDOFF.md`.** Il contient l'état courant validé, les composants live, la version active et la prochaine action sûre. Il doit être mis à jour après chaque jalon matériel afin qu'une nouvelle instance puisse reprendre sans dépendre de l'historique de conversation.
+Toujours commencer par :
 
-## Obligation quotidienne de journal de travail
+1. `CURRENT_PROJECT_HANDOFF.md`
+2. `START_HERE_NEXT_AI.md`
+3. le handoff daté canonique indiqué par `CURRENT_PROJECT_HANDOFF.md`
+4. `docs/REPO_MAP.md`
 
-**Toute IA/agent qui travaille matériellement sur Guardian un jour donné doit vérifier et mettre à jour `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` pour cette date avant de terminer sa session ou de passer le relais.** Cette règle s'applique à ChatGPT, Codex et à toute future IA entrant dans le dépôt.
+L'état courant ne doit pas être reconstruit à partir des anciens handoffs, campagnes D0xx ou échanges Codex historiques.
 
-- Journaliser le travail réellement effectué, les décisions/rejets importants et la prochaine action.
-- Journaliser le temps humain de façon conservatrice ; si la durée active exacte n'est pas prouvable, utiliser un span observé / minimum observé / non quantifié plutôt que d'inventer.
-- Les backtests, collectors et calculs tournant seuls ne comptent pas comme temps humain et doivent rester séparés.
-- Au début d'une reprise, vérifier si la date courante possède déjà une entrée ; si du travail matériel a eu lieu et qu'elle manque, la créer avant la fin de la session.
-- Cette obligation quotidienne ne doit pas être repoussée en supposant qu'une autre IA s'en chargera plus tard.
-
-## Principe
+## Source de vérité
 
 - `D:\MT5_Backtests` reste le laboratoire local et conserve les gros historiques, ticks, clones MT5 et sorties volumineuses.
-- GitHub est la source de vérité pour le code utile, les `.set`, manifests, résultats synthétiques, décisions et handoffs.
-- `production/` contient la branche Guardian de production et ne doit pas être modifiée par la recherche sans handoff explicite.
-- `research/` est libre pour Codex/MiMo et les campagnes expérimentales.
-- `candidates/for_guardian/` contient uniquement les stratégies ayant franchi les gates de validation.
-- `handoff/YYYY/MM/DD/` est l'interface formelle Codex -> ChatGPT.
+- GitHub est la source de vérité pour le code utile, protocoles, manifests, décisions, résultats synthétiques, receipts et handoffs.
+- La branche `backtest-results` contient les publications de l'orchestrateur.
+- `production/` ne doit pas être modifié par la recherche sans changement de production explicite et validé.
+- `research/` contient les campagnes expérimentales et leur infrastructure.
+- `candidates/` ne doit contenir que des stratégies ayant réellement franchi les gates de promotion applicables.
+- `handoff/` conserve la continuité et la provenance; voir `handoff/README.md`.
 
-Voir `AGENTS.md`, `CURRENT_PROJECT_HANDOFF.md`, `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md`, `docs/CODEX_RESEARCH_DIRECTOR.md` et `docs/RESEARCH_PROTOCOL.md`.
+## Règle de provenance
+
+Le dépôt privilégie un nettoyage **non destructif** :
+- un point d'entrée courant clair ;
+- les anciens états archivés ;
+- les résultats/receipts/protocoles historiques conservés ;
+- pas de suppression d'évidence scientifique simplement parce qu'elle est ancienne ou négative.
+
+Voir `docs/REPO_MAP.md` pour les conventions current / historical.
+
+## Journal de travail
+
+Toute IA/agent qui travaille matériellement sur Guardian un jour donné doit vérifier et mettre à jour `GUARDIAN_PROJECT_PLANNING_AND_TIMELOG.md` avant de terminer sa session ou de passer le relais.
+
+- Journaliser le travail réellement effectué, les décisions/rejets importants et la prochaine action.
+- Ne pas inventer du temps humain. Si la durée active n'est pas prouvable, utiliser un span observé / minimum observé / non quantifié.
+- Les calculs/backtests autonomes ne comptent pas comme temps humain.
+- Ne pas repousser cette obligation en supposant qu'un autre agent la fera plus tard.
+
+## Documents structurants
+
+- `CURRENT_PROJECT_HANDOFF.md` — état courant.
+- `START_HERE_NEXT_AI.md` — reprise opérationnelle.
+- `GUARDIAN_MASTER_MANDATE.md` — règles durables / architecture.
+- `docs/RESEARCH_PROTOCOL.md` — discipline scientifique.
+- `docs/REPO_MAP.md` — navigation du dépôt.
+- `research/autonomous/AUTONOMOUS_RESEARCH_MANDATE.md` — contrat de l'automatisation de recherche.
