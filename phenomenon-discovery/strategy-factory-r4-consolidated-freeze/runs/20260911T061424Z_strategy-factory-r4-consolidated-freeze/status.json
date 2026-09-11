@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "name": "freeze_publication_manifest.json",
+      "sha256": "05495f1ca3680229cf5b4e91005d7e55de4196144539e81e110fed2d5ea52e5e",
+      "size_bytes": 1025
+    },
+    {
+      "name": "frozen_candidates.json",
+      "sha256": "37bb6f2d52ef12e7a17a2fd38d94f53ebd94843c3f47500ef36b4c7c76c57e9b",
+      "size_bytes": 85115
+    },
+    {
+      "name": "frozen_candidates.csv",
+      "sha256": "b6fd98459c6ea17be817823ee8ea656d2871f2324cfc76ca2d63f2c9098e77d2",
+      "size_bytes": 8164
+    },
+    {
+      "name": "consolidation_summary.json",
+      "sha256": "aae6e722161c09dcab69600e6529bc8745dea43d6b3e402379ca9eb6337e6ab3",
+      "size_bytes": 332
+    }
+  ],
+  "generated_at_utc": "2026-09-11T06:14:24.015574+00:00",
+  "phase": "strategy-factory-r4-consolidated-freeze",
+  "schema": 1,
+  "source_commit": "3ad27cdbe09b19ca3cfae2d617c042a5a0ce6497",
+  "status": "PASS",
+  "summary": "Published frozen R4 shortlist: 32 candidates; canonical candidate-set SHA256 f92da89a61f8eb7ad4bc8f8c8e7a6a7efd0bbc32cd83a29d192e870a4261db64; protected 2026 untouched and unauthorized."
+}

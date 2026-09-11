@@ -1,0 +1,15 @@
+{
+  "candidate_set_sha256_canonical": "f92da89a61f8eb7ad4bc8f8c8e7a6a7efd0bbc32cd83a29d192e870a4261db64",
+  "frozen_candidate_count": 32,
+  "frozen_csv_sha256": "b6fd98459c6ea17be817823ee8ea656d2871f2324cfc76ca2d63f2c9098e77d2",
+  "frozen_json_sha256": "37bb6f2d52ef12e7a17a2fd38d94f53ebd94843c3f47500ef36b4c7c76c57e9b",
+  "generated_at_utc": "2026-09-11T06:14:23.869469+00:00",
+  "next_gate": "Separate committed protected-OOS preregistration plus explicit owner approval required before any 2026 data access.",
+  "phase": "strategy-factory-r4-consolidated-freeze",
+  "policy_sha256": "cd64e2f7f0c46fe75f77e4bd8dbda51ab9a302c51cf263c24eafa5dbf76d36d3",
+  "protected_2026_authorized": false,
+  "protected_2026_untouched": true,
+  "purpose": "Publish and cryptographically identify the already-frozen R4 shortlist before any protected OOS request. No scientific selection is changed in this repair.",
+  "schema": 1,
+  "source_result_sha256": "7cb29f3251fa0c1f0d37f719286ba4e51a2446aa0d04d0a7cc3bc53e663b3a48"
+}

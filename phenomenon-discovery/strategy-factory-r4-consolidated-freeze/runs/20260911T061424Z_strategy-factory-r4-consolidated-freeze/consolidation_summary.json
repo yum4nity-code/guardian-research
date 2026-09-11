@@ -1,0 +1,9 @@
+{
+  "csv_sha256": "b6fd98459c6ea17be817823ee8ea656d2871f2324cfc76ca2d63f2c9098e77d2",
+  "frozen_candidates": 32,
+  "frozen_candidates_sha256": "37bb6f2d52ef12e7a17a2fd38d94f53ebd94843c3f47500ef36b4c7c76c57e9b",
+  "protected_2026_untouched": true,
+  "source_survivors": 500,
+  "status": "PASS",
+  "structural_buckets": 40
+}
