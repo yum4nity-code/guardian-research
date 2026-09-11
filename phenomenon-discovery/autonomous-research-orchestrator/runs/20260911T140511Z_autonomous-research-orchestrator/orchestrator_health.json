@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R4-CAUSAL-CAPTURE-FORENSIC-PREFLIGHT-TESTS",
+    "revision": 1
+  },
+  "main_commit": "a920c03b32c6a685e7d045dea9f377637fcecc6f",
+  "pid": 7580,
+  "protected_2026": false,
+  "queue_generation": 41,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-11T14:05:11.731084+00:00",
+  "version": "1.01"
+}
