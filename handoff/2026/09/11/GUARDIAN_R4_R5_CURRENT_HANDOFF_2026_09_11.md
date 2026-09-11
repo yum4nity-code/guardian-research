@@ -30,16 +30,17 @@ This file is the canonical continuity snapshot for the current Guardian autonomo
 
 ## Queue state — IMPORTANT
 
-GitHub `research/autonomous/RESEARCH_QUEUE_APPEND.json` is now **generation 45**.
+GitHub `research/autonomous/RESEARCH_QUEUE_APPEND.json` is now **generation 46**.
 
-All append jobs are disabled. This was deliberate because the operator wants the computer to stop working after the current R5 run finishes and then shut the machine down.
+R5 preflight r2 and R5 r2 are enabled again at the operator's request.
 
-Commit:
-- `094d5ecb3ccf57d525632c5c9cafdc61c4639d0d` — pause autonomous queue after current R5 run.
+Commits:
+- `094d5ecb3ccf57d525632c5c9cafdc61c4639d0d` — temporary pause request, now superseded.
+- `b53e7e3e97c0518037732fbbb5945367151766c2` — restore the R5 queue state per operator request.
 
-Nuance: the currently running R5 r2 was launched from queue generation 44 before generation 45 existed. Disabling it in generation 45 does **not** kill the already-running child. It should finish normally. On the next orchestrator loop, generation 45 should be fetched and no further append job should start.
+Nuance: the current R5 r2 child was already running from generation 44, so generation 46 does not restart it. Existing receipts prevent rerunning completed revisions once the orchestrator loops again.
 
-Do **not** re-enable anything automatically when resuming. First inspect the completed R5 result and perform the cold audit described below.
+This queue restoration does **not** authorize a new downstream research phase after R5. First inspect the completed R5 result and perform the cold audit described below before adding/enabling any new job.
 
 ## R4 history and closure
 
@@ -328,7 +329,7 @@ If the cold audit finds a scientific-semantic problem, freeze R5 result, repair 
 
 1. Read this file first.
 2. Read `CURRENT_PROJECT_HANDOFF.md`, but this dated file supersedes older stale top sections on R4/R5 state.
-3. Inspect GitHub main queue generation. It should be >=45 with all append jobs disabled.
+3. Inspect GitHub main queue generation. It should be >=46 with R5 preflight r2 and R5 r2 enabled, unless a later explicit operator instruction changed it.
 4. Check local R5 progress:
    `Get-Content "D:\MT5_Backtests\Research\Autonomous\progress\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-R2.json" -Raw`
 5. Check local orchestrator health:
@@ -337,7 +338,7 @@ If the cold audit finds a scientific-semantic problem, freeze R5 result, repair 
 7. If R5 still runs normally: do not interfere.
 8. If R5 is complete: verify final receipt/result and perform the cold audit above **before** enabling any new queue work.
 9. If R5 failed: classify scientific vs infrastructure failure before deciding anything.
-10. Once current R5 is done and generation 45 is fetched, the queue should become idle. The operator intends to shut down the PC at that point.
+10. Once current R5 is done, verify the final receipt/result. The operator intends to leave the PC running overnight and shut it down tomorrow; no extra shutdown-time pause is required.
 
 ## What not to do on resume
 
@@ -346,7 +347,7 @@ If the cold audit finds a scientific-semantic problem, freeze R5 result, repair 
 - Do not open protected 2026.
 - Do not treat 4,088 discovery candidates as survivors.
 - Do not treat a R5 PASS as an EA.
-- Do not re-enable the queue without the operator's explicit go-ahead after the R5 cold audit.
+- Do not add or enable any **new downstream research job** before the R5 cold audit, even though the existing R5 r2 queue entries are enabled.
 - Do not resurrect the stopped interaction factory.
 - Do not overwrite or delete historical failed receipts.
 
