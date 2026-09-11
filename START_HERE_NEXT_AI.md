@@ -23,7 +23,7 @@ Current known state:
 - R4 close-to-close family is closed after a causal-capture forensic audit.
 - The forensic result found that about 99.5% of R4 B→C degradation came from the entry transition to the first executable reference.
 - R5 r2 is designed to discover edge using a causal next-open target instead.
-- Queue generation 45 is intentionally paused so nothing new should auto-start after the currently running R5 child finishes.
+- Queue generation 46 has R5 preflight r2 and R5 r2 enabled again at the operator's request. The already-running R5 r2 child should be allowed to finish normally. This does not authorize a new downstream research phase after R5.
 - A R5 PASS is not an EA and does not authorize 2026 OOS.
 
 The exact current state and mandatory post-run audit are in the dated R4/R5 handoff above.
