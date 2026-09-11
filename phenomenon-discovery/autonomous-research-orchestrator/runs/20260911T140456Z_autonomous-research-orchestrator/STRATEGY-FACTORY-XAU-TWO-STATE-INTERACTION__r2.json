@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 36000.0,
+  "class_key": "xau-two-state-interaction-provenance-repair",
+  "duration_seconds": 4894.537976000007,
+  "exit_code": 4294967295,
+  "finished_at_utc": "2026-09-11T14:04:55.745044+00:00",
+  "job_id": "STRATEGY-FACTORY-XAU-TWO-STATE-INTERACTION",
+  "main_commit": "99288a7267ee239c38c1976034ee3a6bf32e3fc8",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 4294967295",
+  "revision": 2,
+  "schema": 1,
+  "started_at_utc": "2026-09-11T12:43:21.131102+00:00",
+  "status": "FAIL",
+  "stderr_tail": "",
+  "stdout_tail": ""
+}
