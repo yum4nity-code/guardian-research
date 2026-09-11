@@ -1,5 +1,7 @@
 # GUARDIAN MASTER MANDATE
 
+> **Temporal-state warning:** this document contains durable Guardian rules **and** older strategy-specific status sections retained for historical context. Do not treat sections such as the D023 “current primary” wording as the present campaign state. For current operational truth, read `CURRENT_PROJECT_HANDOFF.md` and the dated canonical handoff it names first. When temporal status conflicts, the current handoff wins; the durable scientific/engineering rules in this mandate still apply.
+
 ## Mission
 
 You are taking over **Guardian**, an autonomous CFD Prop Firm trading system.
