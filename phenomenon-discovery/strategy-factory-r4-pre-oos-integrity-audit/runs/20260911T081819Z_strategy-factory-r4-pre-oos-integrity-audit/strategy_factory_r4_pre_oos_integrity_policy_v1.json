@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "name": "strategy-factory-r4-pre-oos-integrity-audit",
+  "source_phase": "strategy-factory-r4-consolidated-freeze",
+  "purpose": "Reject-only robustness and integrity audit of the already-frozen 32 R4 candidates before any protected OOS request. This step may reject candidates but may not retune, replace, optimize, or add candidates.",
+  "expected_frozen_json_sha256": "37bb6f2d52ef12e7a17a2fd38d94f53ebd94843c3f47500ef36b4c7c76c57e9b",
+  "expected_candidate_set_sha256_canonical": "f92da89a61f8eb7ad4bc8f8c8e7a6a7efd0bbc32cd83a29d192e870a4261db64",
+  "expected_candidate_count": 32,
+  "frozen_rule_components": ["dataset", "feature", "operator", "cutpoint", "horizon_bars", "direction", "hour_start", "hour_width"],
+  "audit_gates": {
+    "strict_year_boundary": "Forward outcome for a signal is valid only when the target bar remains in the same calendar year as the signal bar. This removes any 2024-to-2025 horizon spillover without changing a rule.",
+    "purged_2024_edge": "Frozen conditional edge must remain strictly positive after the same-year outcome purge.",
+    "purged_2025_edge": "Frozen conditional edge must remain strictly positive; 2026 is unavailable to the loader and cannot contribute outcomes.",
+    "quarter_sign_consistency_2025": "Each 2025 calendar quarter must have a strictly positive frozen conditional edge with the minimum sample gates below.",
+    "daily_block_bootstrap_2025": "Resample whole UTC calendar days with replacement; the 5th percentile of the frozen conditional-edge distribution must be strictly above zero. This is a dependence/stability stress test, not new independent confirmation."
+  },
+  "quarter_min_selected": 10,
+  "quarter_min_baseline": 100,
+  "bootstrap_reps": 2000,
+  "bootstrap_seed": 260913,
+  "pass_rule": "A candidate survives only if every audit gate passes. Zero survivors closes this R4 frozen shortlist. One or more survivors may advance only to a separately committed protected-OOS preregistration; this audit itself cannot authorize 2026.",
+  "interpretation": "R4 already used 2025 for confirmation. These checks are conservative reject-only integrity/robustness checks and must never be described as new independent evidence. No parameter or candidate substitution is allowed after seeing audit results.",
+  "protected_2026_policy": "FORBIDDEN. Do not read, inspect, summarize, hash market-data contents, or use any row dated 2026 or later. Explicit owner approval plus a separate committed preregistration are required before protected OOS."
+}

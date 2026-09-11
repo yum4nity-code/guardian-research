@@ -1,0 +1,2445 @@
+{
+  "candidate_count": 32,
+  "frozen_json_sha256": "37bb6f2d52ef12e7a17a2fd38d94f53ebd94843c3f47500ef36b4c7c76c57e9b",
+  "generated_at_utc": "2026-09-11T08:18:18.927104+00:00",
+  "protected_2026_untouched": true,
+  "purpose": "reject-only pre-OOS integrity/robustness audit of frozen R4 candidates",
+  "results": [
+    {
+      "candidate_index": 0,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 5.4404684309832705,
+        "edge_p05": 4.484391580080006,
+        "edge_p95": 6.4101994356678045,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.13637553645577513,
+        "edge_atr": 5.891359591280169,
+        "n_baseline": 3251,
+        "n_selected": 105,
+        "selected_mean_atr": 5.754984054824394
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.14084561481218416,
+        "edge_atr": 5.397875484490121,
+        "n_baseline": 3231,
+        "n_selected": 121,
+        "selected_mean_atr": 5.257029869677937
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+        "ret24",
+        "gt",
+        3.919888409674747,
+        6,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.10884934722708313,
+            "edge_atr": 6.222276710255969,
+            "n_baseline": 787,
+            "n_selected": 32,
+            "selected_mean_atr": 6.113427363028886
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.20538945618086063,
+            "edge_atr": 4.458634084952375,
+            "n_baseline": 797,
+            "n_selected": 33,
+            "selected_mean_atr": 4.253244628771514
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.06305193323202045,
+            "edge_atr": 5.512275491865406,
+            "n_baseline": 828,
+            "n_selected": 30,
+            "selected_mean_atr": 5.449223558633386
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.18743021721391168,
+            "edge_atr": 5.442705567431006,
+            "n_baseline": 819,
+            "n_selected": 26,
+            "selected_mean_atr": 5.255275350217095
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 1,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 5.46567404850356,
+        "edge_p05": 4.603334201198457,
+        "edge_p95": 6.141933461626489,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.17891757512940037,
+        "edge_atr": 5.54038799172441,
+        "n_baseline": 3230,
+        "n_selected": 126,
+        "selected_mean_atr": 5.36147041659501
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.19332482641608517,
+        "edge_atr": 5.425850564722385,
+        "n_baseline": 3222,
+        "n_selected": 128,
+        "selected_mean_atr": 5.2325257383062995
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+        "sma20",
+        "gt",
+        2.5413055779642115,
+        12,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.17615558271264942,
+            "edge_atr": 6.307334892551889,
+            "n_baseline": 787,
+            "n_selected": 32,
+            "selected_mean_atr": 6.13117930983924
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.21387383412384486,
+            "edge_atr": 4.301091462064349,
+            "n_baseline": 795,
+            "n_selected": 35,
+            "selected_mean_atr": 4.087217627940504
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.06515672659373921,
+            "edge_atr": 5.683721198740322,
+            "n_baseline": 824,
+            "n_selected": 34,
+            "selected_mean_atr": 5.618564472146583
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.31928836553440393,
+            "edge_atr": 5.485279015810299,
+            "n_baseline": 816,
+            "n_selected": 27,
+            "selected_mean_atr": 5.165990650275895
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 2,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 5.243716050428002,
+        "edge_p05": 4.120302200710495,
+        "edge_p95": 6.275634366039244,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.17946591369940224,
+        "edge_atr": 5.793880560635847,
+        "n_baseline": 3253,
+        "n_selected": 103,
+        "selected_mean_atr": 5.614414646936445
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.2575220365062079,
+        "edge_atr": 5.187570413826578,
+        "n_baseline": 3229,
+        "n_selected": 121,
+        "selected_mean_atr": 4.930048377320371
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+        "ret24",
+        "gt",
+        3.9402679908463076,
+        24,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.18861535168402488,
+            "edge_atr": 6.108018299127155,
+            "n_baseline": 787,
+            "n_selected": 32,
+            "selected_mean_atr": 5.919402947443131
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.2209238194638362,
+            "edge_atr": 3.9579328168463723,
+            "n_baseline": 797,
+            "n_selected": 33,
+            "selected_mean_atr": 3.737008997382536
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.19688924146560127,
+            "edge_atr": 5.540459022841446,
+            "n_baseline": 828,
+            "n_selected": 30,
+            "selected_mean_atr": 5.343569781375845
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.421049936422304,
+            "edge_atr": 5.170533358833293,
+            "n_baseline": 817,
+            "n_selected": 26,
+            "selected_mean_atr": 4.7494834224109885
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 3,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 5.328500775551788,
+        "edge_p05": 4.455338089992004,
+        "edge_p95": 6.133628766724266,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.12658345733541587,
+        "edge_atr": 5.874724390792693,
+        "n_baseline": 3246,
+        "n_selected": 110,
+        "selected_mean_atr": 5.748140933457277
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.11795831474819947,
+        "edge_atr": 5.293911365714527,
+        "n_baseline": 3221,
+        "n_selected": 131,
+        "selected_mean_atr": 5.175953050966327
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+        "sma50",
+        "gt",
+        3.2316154238280803,
+        1,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.09069634504927321,
+            "edge_atr": 5.558379427283326,
+            "n_baseline": 783,
+            "n_selected": 36,
+            "selected_mean_atr": 5.4676830822340525
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.17854551583246214,
+            "edge_atr": 4.161859127013952,
+            "n_baseline": 793,
+            "n_selected": 37,
+            "selected_mean_atr": 3.98331361118149
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.10412084975045238,
+            "edge_atr": 5.927480864591158,
+            "n_baseline": 826,
+            "n_selected": 32,
+            "selected_mean_atr": 5.823360014840706
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.09931389216282466,
+            "edge_atr": 5.77174214706841,
+            "n_baseline": 819,
+            "n_selected": 26,
+            "selected_mean_atr": 5.672428254905585
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 4,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 4.765477998832152,
+        "edge_p05": 4.239442605311146,
+        "edge_p95": 5.292723504530924,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.15750930141860264,
+        "edge_atr": 4.830265730007975,
+        "n_baseline": 3206,
+        "n_selected": 150,
+        "selected_mean_atr": 4.672756428589372
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.15042172908345627,
+        "edge_atr": 4.759386881408647,
+        "n_baseline": 3193,
+        "n_selected": 157,
+        "selected_mean_atr": 4.60896515232519
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+        "rsi7",
+        "gt",
+        77.4440670460028,
+        3,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.10629570552619672,
+            "edge_atr": 5.464294632062762,
+            "n_baseline": 781,
+            "n_selected": 38,
+            "selected_mean_atr": 5.357998926536565
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.21145873157570422,
+            "edge_atr": 4.3369120998888935,
+            "n_baseline": 792,
+            "n_selected": 38,
+            "selected_mean_atr": 4.125453368313189
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.12243939812180214,
+            "edge_atr": 5.431465952750836,
+            "n_baseline": 819,
+            "n_selected": 39,
+            "selected_mean_atr": 5.309026554629034
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.16170593318077728,
+            "edge_atr": 3.880379887472014,
+            "n_baseline": 801,
+            "n_selected": 42,
+            "selected_mean_atr": 3.718673954291237
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 5,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 4.697097379401362,
+        "edge_p05": 4.251179817956614,
+        "edge_p95": 5.142215777429188,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.16228323326972083,
+        "edge_atr": 5.178435444274358,
+        "n_baseline": 3213,
+        "n_selected": 143,
+        "selected_mean_atr": 5.016152211004638
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.15273028442453251,
+        "edge_atr": 4.675796990758201,
+        "n_baseline": 3190,
+        "n_selected": 162,
+        "selected_mean_atr": 4.523066706333668
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+        "body",
+        "gt",
+        1.0110450270350626,
+        3,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.11022795941633898,
+            "edge_atr": 5.149951230491653,
+            "n_baseline": 778,
+            "n_selected": 41,
+            "selected_mean_atr": 5.039723271075314
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.21053857297792022,
+            "edge_atr": 4.688710165300952,
+            "n_baseline": 795,
+            "n_selected": 35,
+            "selected_mean_atr": 4.478171592323032
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.12531772065441074,
+            "edge_atr": 4.564790377439648,
+            "n_baseline": 811,
+            "n_selected": 47,
+            "selected_mean_atr": 4.439472656785237
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.1643193770721754,
+            "edge_atr": 4.285266344040228,
+            "n_baseline": 806,
+            "n_selected": 39,
+            "selected_mean_atr": 4.120946966968053
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 6,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 4.675382962212321,
+        "edge_p05": 4.2309972950232915,
+        "edge_p95": 5.1155076015768035,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.162210942984853,
+        "edge_atr": 5.17705292725547,
+        "n_baseline": 3213,
+        "n_selected": 143,
+        "selected_mean_atr": 5.014841984270618
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.15332932070169875,
+        "edge_atr": 4.672618347544875,
+        "n_baseline": 3188,
+        "n_selected": 162,
+        "selected_mean_atr": 4.519289026843176
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+        "body",
+        "gt",
+        1.0079408227081856,
+        3,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.110137341738093,
+            "edge_atr": 5.141207221364097,
+            "n_baseline": 778,
+            "n_selected": 41,
+            "selected_mean_atr": 5.0310698796260045
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.21058385585472242,
+            "edge_atr": 4.687900369924659,
+            "n_baseline": 795,
+            "n_selected": 35,
+            "selected_mean_atr": 4.477316514069936
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.12563217965009243,
+            "edge_atr": 4.565246355501184,
+            "n_baseline": 811,
+            "n_selected": 47,
+            "selected_mean_atr": 4.439614175851092
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.16644920326374357,
+            "edge_atr": 4.281398255224749,
+            "n_baseline": 804,
+            "n_selected": 39,
+            "selected_mean_atr": 4.1149490519610055
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 7,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 4.043732005886493,
+        "edge_p05": 3.4457056627928484,
+        "edge_p95": 4.674725316807247,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.15567645349116357,
+        "edge_atr": 4.299744381999338,
+        "n_baseline": 3183,
+        "n_selected": 173,
+        "selected_mean_atr": 4.144067928508175
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.13847876034445325,
+        "edge_atr": 4.012036434459189,
+        "n_baseline": 3162,
+        "n_selected": 190,
+        "selected_mean_atr": 3.8735576741147355
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+        "rsi7",
+        "gt",
+        71.68590936042793,
+        1,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.10437559227528573,
+            "edge_atr": 4.802385519552364,
+            "n_baseline": 775,
+            "n_selected": 44,
+            "selected_mean_atr": 4.698009927277078
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.1973855921237655,
+            "edge_atr": 3.0841100185690564,
+            "n_baseline": 775,
+            "n_selected": 55,
+            "selected_mean_atr": 2.8867244264452907
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.12993837720479554,
+            "edge_atr": 5.043591100541511,
+            "n_baseline": 816,
+            "n_selected": 42,
+            "selected_mean_atr": 4.913652723336716
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.1230844302773659,
+            "edge_atr": 3.4724775618482853,
+            "n_baseline": 796,
+            "n_selected": 49,
+            "selected_mean_atr": 3.3493931315709196
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 8,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 4.076329431465617,
+        "edge_p05": 3.457914433423448,
+        "edge_p95": 4.699647204921195,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.20642714443193952,
+        "edge_atr": 4.731722407364033,
+        "n_baseline": 3251,
+        "n_selected": 105,
+        "selected_mean_atr": 4.525295262932093
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.1981848041704228,
+        "edge_atr": 4.044309096339784,
+        "n_baseline": 3246,
+        "n_selected": 104,
+        "selected_mean_atr": 3.8461242921693617
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+        "rsi7",
+        "lt",
+        23.962743659762086,
+        3,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.24759048384803842,
+            "edge_atr": 4.566088504395203,
+            "n_baseline": 801,
+            "n_selected": 18,
+            "selected_mean_atr": 4.318498020547164
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.1605779169775306,
+            "edge_atr": 4.799591950113566,
+            "n_baseline": 800,
+            "n_selected": 30,
+            "selected_mean_atr": 4.639014033136036
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.2540946679919806,
+            "edge_atr": 4.83648072036274,
+            "n_baseline": 835,
+            "n_selected": 23,
+            "selected_mean_atr": 4.58238605237076
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.1288352042217104,
+            "edge_atr": 2.483340107771895,
+            "n_baseline": 810,
+            "n_selected": 33,
+            "selected_mean_atr": 2.354504903550185
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 9,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 4.062402732035018,
+        "edge_p05": 3.409354606685937,
+        "edge_p95": 4.668324443419567,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.2064813504180608,
+        "edge_atr": 4.733882612618684,
+        "n_baseline": 3251,
+        "n_selected": 105,
+        "selected_mean_atr": 4.527401262200623
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.19871865117215842,
+        "edge_atr": 4.044016534781535,
+        "n_baseline": 3248,
+        "n_selected": 104,
+        "selected_mean_atr": 3.8452978836093763
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+        "rsi7",
+        "lt",
+        23.979726683384882,
+        3,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.24801467421176465,
+            "edge_atr": 4.569595360625506,
+            "n_baseline": 801,
+            "n_selected": 18,
+            "selected_mean_atr": 4.321580686413741
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.1606332352320975,
+            "edge_atr": 4.7989248342927135,
+            "n_baseline": 800,
+            "n_selected": 30,
+            "selected_mean_atr": 4.638291599060616
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.254225007992668,
+            "edge_atr": 4.830544062588267,
+            "n_baseline": 835,
+            "n_selected": 23,
+            "selected_mean_atr": 4.576319054595599
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.13053442746796953,
+            "edge_atr": 2.4856387096622283,
+            "n_baseline": 812,
+            "n_selected": 33,
+            "selected_mean_atr": 2.355104282194259
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 10,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 3.28905119312437,
+        "edge_p05": 2.325866238893643,
+        "edge_p95": 4.565460757619405,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.02244181349850404,
+        "edge_atr": 3.4700421297355324,
+        "n_baseline": 15624,
+        "n_selected": 144,
+        "selected_mean_atr": 3.4476003162370286
+      },
+      "purged_2025": {
+        "baseline_mean_atr": 0.03940773603394812,
+        "edge_atr": 3.2250654701273724,
+        "n_baseline": 15521,
+        "n_selected": 167,
+        "selected_mean_atr": 3.2644732061613206
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+        "sma50",
+        "lt",
+        -4.167788533092078,
+        12,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": 0.015371620250261366,
+            "edge_atr": 3.5522430320959675,
+            "n_baseline": 3775,
+            "n_selected": 46,
+            "selected_mean_atr": 3.567614652346229
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": 0.06092940722030716,
+            "edge_atr": 2.599527278006046,
+            "n_baseline": 3816,
+            "n_selected": 67,
+            "selected_mean_atr": 2.660456685226353
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.05613048944102734,
+            "edge_atr": 3.520645315578203,
+            "n_baseline": 3987,
+            "n_selected": 38,
+            "selected_mean_atr": 3.464514826137176
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": 0.1381955992865473,
+            "edge_atr": 4.3089662830656845,
+            "n_baseline": 3943,
+            "n_selected": 16,
+            "selected_mean_atr": 4.447161882352232
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 11,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 2.9519459252301212,
+        "edge_p05": 2.428763407926096,
+        "edge_p95": 3.618968468461434,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.03803463097016826,
+        "edge_atr": 3.5667129590962374,
+        "n_baseline": 15524,
+        "n_selected": 244,
+        "selected_mean_atr": 3.528678328126069
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.03664797112888495,
+        "edge_atr": 2.9445106117903936,
+        "n_baseline": 15382,
+        "n_selected": 312,
+        "selected_mean_atr": 2.907862640661509
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+        "sma20",
+        "gt",
+        2.7576520743474,
+        1,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.03033772072393303,
+            "edge_atr": 2.7643876399245872,
+            "n_baseline": 3726,
+            "n_selected": 95,
+            "selected_mean_atr": 2.7340499192006544
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.051244215191152194,
+            "edge_atr": 3.300169679030564,
+            "n_baseline": 3822,
+            "n_selected": 61,
+            "selected_mean_atr": 3.248925463839412
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.030802880787987763,
+            "edge_atr": 3.6608700919223276,
+            "n_baseline": 3957,
+            "n_selected": 68,
+            "selected_mean_atr": 3.6300672111343397
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.034288974657849546,
+            "edge_atr": 2.335304632737273,
+            "n_baseline": 3877,
+            "n_selected": 88,
+            "selected_mean_atr": 2.3010156580794234
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 12,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 3.2662523875085236,
+        "edge_p05": 2.7478349907884247,
+        "edge_p95": 3.8307974795444166,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.19861374627853515,
+        "edge_atr": 4.3967937023645876,
+        "n_baseline": 3241,
+        "n_selected": 115,
+        "selected_mean_atr": 4.198179956086053
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.1856468803302447,
+        "edge_atr": 3.2445581624567423,
+        "n_baseline": 3216,
+        "n_selected": 136,
+        "selected_mean_atr": 3.0589112821264974
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+        "sma10",
+        "lt",
+        -1.2139401588984418,
+        6,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.25589864528744155,
+            "edge_atr": 3.2134113271356366,
+            "n_baseline": 788,
+            "n_selected": 31,
+            "selected_mean_atr": 2.957512681848195
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.14829183753418804,
+            "edge_atr": 2.6621917996374918,
+            "n_baseline": 775,
+            "n_selected": 55,
+            "selected_mean_atr": 2.5138999621033036
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.26641038848777127,
+            "edge_atr": 4.511938741523814,
+            "n_baseline": 832,
+            "n_selected": 26,
+            "selected_mean_atr": 4.245528353036042
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.07163534390346106,
+            "edge_atr": 3.2250022662905766,
+            "n_baseline": 821,
+            "n_selected": 24,
+            "selected_mean_atr": 3.1533669223871157
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 13,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 2.9586572153415798,
+        "edge_p05": 2.223703052293959,
+        "edge_p95": 4.01741022647986,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.041522991823834246,
+        "edge_atr": 3.9161046078460697,
+        "n_baseline": 15558,
+        "n_selected": 210,
+        "selected_mean_atr": 3.8745816160222355
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.04846041246780821,
+        "edge_atr": 2.939392957750564,
+        "n_baseline": 15400,
+        "n_selected": 288,
+        "selected_mean_atr": 2.8909325452827557
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+        "sma50",
+        "gt",
+        4.429375831112745,
+        3,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.04566476637000585,
+            "edge_atr": 3.83631155942971,
+            "n_baseline": 3756,
+            "n_selected": 65,
+            "selected_mean_atr": 3.790646793059704
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.06565067498570613,
+            "edge_atr": 2.578670403725832,
+            "n_baseline": 3809,
+            "n_selected": 74,
+            "selected_mean_atr": 2.513019728740126
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.023470630563810813,
+            "edge_atr": 3.0998029071524105,
+            "n_baseline": 3956,
+            "n_selected": 69,
+            "selected_mean_atr": 3.0763322765886
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.059773202884123286,
+            "edge_atr": 2.4093500088987505,
+            "n_baseline": 3879,
+            "n_selected": 80,
+            "selected_mean_atr": 2.3495768060146274
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 14,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 3.0213698424963136,
+        "edge_p05": 2.454925348138046,
+        "edge_p95": 3.616684120527057,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.02652973421414414,
+        "edge_atr": 2.849388976709085,
+        "n_baseline": 15570,
+        "n_selected": 198,
+        "selected_mean_atr": 2.822859242494941
+      },
+      "purged_2025": {
+        "baseline_mean_atr": 0.03257376888255377,
+        "edge_atr": 3.0096684315263262,
+        "n_baseline": 15480,
+        "n_selected": 214,
+        "selected_mean_atr": 3.04224220040888
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+        "rsi14",
+        "lt",
+        31.56621756363758,
+        12,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": 0.025699348388027347,
+            "edge_atr": 2.816777828849609,
+            "n_baseline": 3777,
+            "n_selected": 44,
+            "selected_mean_atr": 2.8424771772376363
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": 0.04923057216903717,
+            "edge_atr": 3.852541877721983,
+            "n_baseline": 3826,
+            "n_selected": 57,
+            "selected_mean_atr": 3.9017724498910202
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.06374927744225299,
+            "edge_atr": 3.8244211319848893,
+            "n_baseline": 3982,
+            "n_selected": 43,
+            "selected_mean_atr": 3.7606718545426365
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": 0.12135274893367601,
+            "edge_atr": 1.9052317610652236,
+            "n_baseline": 3895,
+            "n_selected": 70,
+            "selected_mean_atr": 2.0265845099988997
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 15,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 2.9032664288362904,
+        "edge_p05": 2.3907593106973164,
+        "edge_p95": 3.4461342888067854,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.039616150208398225,
+        "edge_atr": 2.991305211847771,
+        "n_baseline": 15571,
+        "n_selected": 197,
+        "selected_mean_atr": 2.9516890616393727
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.018860590758968072,
+        "edge_atr": 2.880615128941677,
+        "n_baseline": 15475,
+        "n_selected": 213,
+        "selected_mean_atr": 2.861754538182709
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+        "rsi14",
+        "lt",
+        31.523752426636968,
+        6,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.022513118469026164,
+            "edge_atr": 2.8148026527397785,
+            "n_baseline": 3777,
+            "n_selected": 44,
+            "selected_mean_atr": 2.7922895342707523
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.0067495369642379885,
+            "edge_atr": 3.454042555973346,
+            "n_baseline": 3826,
+            "n_selected": 57,
+            "selected_mean_atr": 3.447293019009108
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.07159534427000018,
+            "edge_atr": 3.845382949497842,
+            "n_baseline": 3982,
+            "n_selected": 43,
+            "selected_mean_atr": 3.7737876052278416
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": 0.026755988630024728,
+            "edge_atr": 1.82722093914806,
+            "n_baseline": 3890,
+            "n_selected": 69,
+            "selected_mean_atr": 1.8539769277780849
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 16,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 2.544162426087313,
+        "edge_p05": 2.1354689125444763,
+        "edge_p95": 2.959308657657398,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.15154277700661137,
+        "edge_atr": 3.8081145797325133,
+        "n_baseline": 3221,
+        "n_selected": 135,
+        "selected_mean_atr": 3.6565718027259018
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.053625428122305224,
+        "edge_atr": 2.5438526775000176,
+        "n_baseline": 3187,
+        "n_selected": 163,
+        "selected_mean_atr": 2.4902272493777122
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+        "body",
+        "lt",
+        -0.7397482173958707,
+        24,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.157055658204386,
+            "edge_atr": 3.1302846973764122,
+            "n_baseline": 791,
+            "n_selected": 28,
+            "selected_mean_atr": 2.9732290391720264
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.09425817340762842,
+            "edge_atr": 2.381623111407006,
+            "n_baseline": 775,
+            "n_selected": 55,
+            "selected_mean_atr": 2.287364937999378
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.131782441010281,
+            "edge_atr": 3.30818665368753,
+            "n_baseline": 823,
+            "n_selected": 35,
+            "selected_mean_atr": 3.176404212677249
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": 0.1689646861607216,
+            "edge_atr": 1.7349777475744084,
+            "n_baseline": 798,
+            "n_selected": 45,
+            "selected_mean_atr": 1.90394243373513
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 17,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 2.427469378115326,
+        "edge_p05": 1.9517608197816212,
+        "edge_p95": 3.0297152648109713,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.039021041465087086,
+        "edge_atr": 2.501377681760222,
+        "n_baseline": 15455,
+        "n_selected": 313,
+        "selected_mean_atr": 2.462356640295135
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.046873584647741835,
+        "edge_atr": 2.4237493126577023,
+        "n_baseline": 15349,
+        "n_selected": 339,
+        "selected_mean_atr": 2.3768757280099604
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+        "ret24",
+        "gt",
+        5.449101948101351,
+        3,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.04545892823530044,
+            "edge_atr": 2.9243969864731976,
+            "n_baseline": 3736,
+            "n_selected": 85,
+            "selected_mean_atr": 2.878938058237897
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.06542770542133634,
+            "edge_atr": 2.2087885936891123,
+            "n_baseline": 3797,
+            "n_selected": 86,
+            "selected_mean_atr": 2.143360888267776
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.014385529648633249,
+            "edge_atr": 2.216485867624083,
+            "n_baseline": 3945,
+            "n_selected": 80,
+            "selected_mean_atr": 2.2021003379754496
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.06314858768339826,
+            "edge_atr": 2.3421721492298824,
+            "n_baseline": 3871,
+            "n_selected": 88,
+            "selected_mean_atr": 2.279023561546484
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 18,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 2.2668642854446386,
+        "edge_p05": 1.716707130300873,
+        "edge_p95": 3.0350772280845035,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.18463925804248832,
+        "edge_atr": 2.716382130208593,
+        "n_baseline": 3200,
+        "n_selected": 156,
+        "selected_mean_atr": 2.5317428721661046
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.18172461652503494,
+        "edge_atr": 2.2307589906755925,
+        "n_baseline": 3189,
+        "n_selected": 163,
+        "selected_mean_atr": 2.0490343741505574
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+        "ret48",
+        "lt",
+        -3.0857310508299127,
+        3,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.22842985421515583,
+            "edge_atr": 3.1529880435255473,
+            "n_baseline": 798,
+            "n_selected": 21,
+            "selected_mean_atr": 2.9245581893103916
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.1358546065916001,
+            "edge_atr": 1.8697194432904327,
+            "n_baseline": 764,
+            "n_selected": 66,
+            "selected_mean_atr": 1.7338648366988325
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.2538037421444185,
+            "edge_atr": 2.0507605063283707,
+            "n_baseline": 804,
+            "n_selected": 54,
+            "selected_mean_atr": 1.7969567641839523
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.10860467838948605,
+            "edge_atr": 2.8861563385243176,
+            "n_baseline": 823,
+            "n_selected": 22,
+            "selected_mean_atr": 2.7775516601348316
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 19,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 2.361169114826483,
+        "edge_p05": 1.870313531148199,
+        "edge_p95": 3.0563754890431687,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.2064219335211277,
+        "edge_atr": 2.922431558567876,
+        "n_baseline": 3186,
+        "n_selected": 170,
+        "selected_mean_atr": 2.7160096250467483
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.20268452409009008,
+        "edge_atr": 2.355038960812015,
+        "n_baseline": 3165,
+        "n_selected": 185,
+        "selected_mean_atr": 2.1523544367219247
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+        "sma50",
+        "lt",
+        -1.7570093251231185,
+        3,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.24162151095736153,
+            "edge_atr": 3.5136820128022386,
+            "n_baseline": 797,
+            "n_selected": 22,
+            "selected_mean_atr": 3.272060501844877
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.17310025892584613,
+            "edge_atr": 1.7153478035612095,
+            "n_baseline": 740,
+            "n_selected": 90,
+            "selected_mean_atr": 1.5422475446353634
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.27550723694450313,
+            "edge_atr": 2.8802453495468305,
+            "n_baseline": 813,
+            "n_selected": 45,
+            "selected_mean_atr": 2.6047381126023272
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.11882527517927693,
+            "edge_atr": 2.6254233347750398,
+            "n_baseline": 815,
+            "n_selected": 28,
+            "selected_mean_atr": 2.506598059595763
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 20,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 2.2768513078724415,
+        "edge_p05": 1.8154975229836434,
+        "edge_p95": 2.792439134454108,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.06605469929900769,
+        "edge_atr": 2.7060191246132304,
+        "n_baseline": 15437,
+        "n_selected": 331,
+        "selected_mean_atr": 2.6399644253142225
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.12756431134883628,
+        "edge_atr": 2.276108949245172,
+        "n_baseline": 15322,
+        "n_selected": 372,
+        "selected_mean_atr": 2.1485446378963355
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+        "ret12",
+        "gt",
+        3.871356034445741,
+        12,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.1150692741336518,
+            "edge_atr": 1.9082829982863885,
+            "n_baseline": 3707,
+            "n_selected": 114,
+            "selected_mean_atr": 1.7932137241527366
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.15428594577541432,
+            "edge_atr": 2.2967698619927965,
+            "n_baseline": 3801,
+            "n_selected": 82,
+            "selected_mean_atr": 2.1424839162173823
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.03425195160291302,
+            "edge_atr": 3.0263794504137222,
+            "n_baseline": 3949,
+            "n_selected": 76,
+            "selected_mean_atr": 2.992127498810809
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.20860976520081995,
+            "edge_atr": 2.1260784622466,
+            "n_baseline": 3865,
+            "n_selected": 100,
+            "selected_mean_atr": 1.9174686970457797
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 21,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 2.2233625075325802,
+        "edge_p05": 1.7353399703302113,
+        "edge_p95": 2.899111410770365,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.21095609167552878,
+        "edge_atr": 3.2437138158463954,
+        "n_baseline": 3206,
+        "n_selected": 150,
+        "selected_mean_atr": 3.0327577241708665
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.20912643917893667,
+        "edge_atr": 2.2151420392143235,
+        "n_baseline": 3168,
+        "n_selected": 182,
+        "selected_mean_atr": 2.006015600035387
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+        "ret24",
+        "lt",
+        -2.1787493808702836,
+        1,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.23758052895863555,
+            "edge_atr": 4.932694836887208,
+            "n_baseline": 805,
+            "n_selected": 14,
+            "selected_mean_atr": 4.695114307928573
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.18857045091853564,
+            "edge_atr": 1.6213006177047942,
+            "n_baseline": 737,
+            "n_selected": 93,
+            "selected_mean_atr": 1.4327301667862584
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.2515666257117024,
+            "edge_atr": 2.359964355106808,
+            "n_baseline": 809,
+            "n_selected": 49,
+            "selected_mean_atr": 2.1083977293951057
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.1576088261682274,
+            "edge_atr": 2.5732951586281576,
+            "n_baseline": 817,
+            "n_selected": 26,
+            "selected_mean_atr": 2.4156863324599303
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 22,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 1.746991881665572,
+        "edge_p05": 1.395228331587925,
+        "edge_p95": 2.1480087721221532,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.06503380541725247,
+        "edge_atr": 2.266682083473764,
+        "n_baseline": 15300,
+        "n_selected": 468,
+        "selected_mean_atr": 2.2016482780565116
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.08114147638295822,
+        "edge_atr": 1.7349916648151218,
+        "n_baseline": 15145,
+        "n_selected": 549,
+        "selected_mean_atr": 1.6538501884321635
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+        "rsi7",
+        "gt",
+        77.5145521981275,
+        6,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.07338018956610011,
+            "edge_atr": 1.7202823483346803,
+            "n_baseline": 3680,
+            "n_selected": 141,
+            "selected_mean_atr": 1.6469021587685801
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.0995703168022597,
+            "edge_atr": 1.727676641016691,
+            "n_baseline": 3758,
+            "n_selected": 125,
+            "selected_mean_atr": 1.6281063242144314
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.040185964767065145,
+            "edge_atr": 2.294905798426951,
+            "n_baseline": 3901,
+            "n_selected": 124,
+            "selected_mean_atr": 2.254719833659886
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.11242718421372595,
+            "edge_atr": 1.3240749776870473,
+            "n_baseline": 3806,
+            "n_selected": 159,
+            "selected_mean_atr": 1.2116477934733214
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 23,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 1.6544976889178589,
+        "edge_p05": 1.3838112596373175,
+        "edge_p95": 1.9721830137253087,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.02619262847516157,
+        "edge_atr": 1.663181301291228,
+        "n_baseline": 15432,
+        "n_selected": 336,
+        "selected_mean_atr": 1.6369886728160665
+      },
+      "purged_2025": {
+        "baseline_mean_atr": 0.037436747561914785,
+        "edge_atr": 1.6603696812260353,
+        "n_baseline": 15345,
+        "n_selected": 343,
+        "selected_mean_atr": 1.6978064287879502
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+        "ret6",
+        "lt",
+        -2.7169132034391468,
+        12,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": 0.030347111104516617,
+            "edge_atr": 1.294900352711038,
+            "n_baseline": 3739,
+            "n_selected": 82,
+            "selected_mean_atr": 1.3252474638155547
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": 0.05520318405979763,
+            "edge_atr": 1.9838712339258944,
+            "n_baseline": 3784,
+            "n_selected": 99,
+            "selected_mean_atr": 2.039074417985692
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.06124177248183172,
+            "edge_atr": 1.7948539096652247,
+            "n_baseline": 3939,
+            "n_selected": 86,
+            "selected_mean_atr": 1.733612137183393
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": 0.12705164466686986,
+            "edge_atr": 1.487662853530974,
+            "n_baseline": 3883,
+            "n_selected": 76,
+            "selected_mean_atr": 1.6147144981978439
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 24,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 1.6169482038337786,
+        "edge_p05": 1.3396808866974852,
+        "edge_p95": 1.9280552933250874,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.03434583014351954,
+        "edge_atr": 1.735917217178763,
+        "n_baseline": 15372,
+        "n_selected": 396,
+        "selected_mean_atr": 1.7015713870352434
+      },
+      "purged_2025": {
+        "baseline_mean_atr": 0.031550814677059794,
+        "edge_atr": 1.6219245396748314,
+        "n_baseline": 15287,
+        "n_selected": 407,
+        "selected_mean_atr": 1.6534753543518912
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+        "sma5",
+        "lt",
+        -1.2275741429312652,
+        12,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": 0.03240888446104133,
+            "edge_atr": 1.0802317267516086,
+            "n_baseline": 3730,
+            "n_selected": 91,
+            "selected_mean_atr": 1.11264061121265
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": 0.04960929454919776,
+            "edge_atr": 2.038544934841023,
+            "n_baseline": 3776,
+            "n_selected": 107,
+            "selected_mean_atr": 2.088154229390221
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.0754457179257048,
+            "edge_atr": 2.0145550630594644,
+            "n_baseline": 3920,
+            "n_selected": 105,
+            "selected_mean_atr": 1.9391093451337598
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": 0.12169248458418051,
+            "edge_atr": 1.2694151098107247,
+            "n_baseline": 3861,
+            "n_selected": 104,
+            "selected_mean_atr": 1.3911075943949052
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 25,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 1.551172649074048,
+        "edge_p05": 1.2815676773161957,
+        "edge_p95": 1.8201264105703936,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.04502879051592425,
+        "edge_atr": 1.8740549933572468,
+        "n_baseline": 15408,
+        "n_selected": 360,
+        "selected_mean_atr": 1.8290262028413224
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.016969929652355404,
+        "edge_atr": 1.5453946903545008,
+        "n_baseline": 15314,
+        "n_selected": 380,
+        "selected_mean_atr": 1.5284247607021455
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+        "ret3",
+        "lt",
+        -1.947485662303986,
+        6,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.015861833600088856,
+            "edge_atr": 1.1445809232885829,
+            "n_baseline": 3735,
+            "n_selected": 86,
+            "selected_mean_atr": 1.128719089688494
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.008076120857326658,
+            "edge_atr": 1.8881452084587609,
+            "n_baseline": 3776,
+            "n_selected": 107,
+            "selected_mean_atr": 1.8800690876014343
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.07256654915267724,
+            "edge_atr": 1.72714846451042,
+            "n_baseline": 3927,
+            "n_selected": 98,
+            "selected_mean_atr": 1.6545819153577428
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": 0.02962608789473433,
+            "edge_atr": 1.3233530949725985,
+            "n_baseline": 3876,
+            "n_selected": 89,
+            "selected_mean_atr": 1.3529791828673328
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 26,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 1.596782766645821,
+        "edge_p05": 1.2139006013370586,
+        "edge_p95": 2.0413382026828626,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.06210609481687539,
+        "edge_atr": 1.9973803795757947,
+        "n_baseline": 15260,
+        "n_selected": 508,
+        "selected_mean_atr": 1.9352742847589193
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.0864466130784856,
+        "edge_atr": 1.5830615721606642,
+        "n_baseline": 15032,
+        "n_selected": 656,
+        "selected_mean_atr": 1.4966149590821787
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+        "rsi14",
+        "gt",
+        65.14519905198497,
+        6,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.0827104895735564,
+            "edge_atr": 1.854720597401051,
+            "n_baseline": 3671,
+            "n_selected": 150,
+            "selected_mean_atr": 1.7720101078274946
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.10761932058330788,
+            "edge_atr": 1.4803224441116158,
+            "n_baseline": 3716,
+            "n_selected": 167,
+            "selected_mean_atr": 1.372703123528308
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.0355407516290199,
+            "edge_atr": 1.9841143221279745,
+            "n_baseline": 3891,
+            "n_selected": 134,
+            "selected_mean_atr": 1.9485735704989546
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.12190538643984593,
+            "edge_atr": 1.22252790794081,
+            "n_baseline": 3754,
+            "n_selected": 205,
+            "selected_mean_atr": 1.1006225215009642
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 27,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 1.5254145216100419,
+        "edge_p05": 1.2710687965980034,
+        "edge_p95": 1.7877072880170506,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.106108893735924,
+        "edge_atr": 1.9509404966843558,
+        "n_baseline": 15204,
+        "n_selected": 564,
+        "selected_mean_atr": 1.8448316029484317
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.19714570924707453,
+        "edge_atr": 1.5191161557172776,
+        "n_baseline": 15053,
+        "n_selected": 641,
+        "selected_mean_atr": 1.3219704464702031
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+        "body",
+        "gt",
+        0.8497742028837347,
+        24,
+        -1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.19659377466292483,
+            "edge_atr": 1.4026066799501344,
+            "n_baseline": 3647,
+            "n_selected": 174,
+            "selected_mean_atr": 1.2060129052872097
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.23185282142157837,
+            "edge_atr": 1.6339091247862707,
+            "n_baseline": 3740,
+            "n_selected": 143,
+            "selected_mean_atr": 1.4020563033646924
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": 0.016787565040947017,
+            "edge_atr": 1.6986962712471696,
+            "n_baseline": 3877,
+            "n_selected": 148,
+            "selected_mean_atr": 1.7154838362881166
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.3823205866053244,
+            "edge_atr": 1.4229521293077871,
+            "n_baseline": 3789,
+            "n_selected": 176,
+            "selected_mean_atr": 1.0406315427024628
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 28,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 1.0590235872395102,
+        "edge_p05": 0.8964634973554253,
+        "edge_p95": 1.2383669045006058,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.04395609297640666,
+        "edge_atr": 1.3341693768874148,
+        "n_baseline": 15275,
+        "n_selected": 493,
+        "selected_mean_atr": 1.290213283911008
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.01902185745143322,
+        "edge_atr": 1.0607070842695847,
+        "n_baseline": 15110,
+        "n_selected": 584,
+        "selected_mean_atr": 1.0416852268181516
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+        "body",
+        "lt",
+        -0.8504524443981683,
+        6,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.018798845773094198,
+            "edge_atr": 0.891514495250988,
+            "n_baseline": 3698,
+            "n_selected": 123,
+            "selected_mean_atr": 0.8727156494778938
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.010627718517900597,
+            "edge_atr": 1.4320229123047028,
+            "n_baseline": 3735,
+            "n_selected": 148,
+            "selected_mean_atr": 1.4213951937868021
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.07445980460070972,
+            "edge_atr": 1.1713967066248467,
+            "n_baseline": 3874,
+            "n_selected": 151,
+            "selected_mean_atr": 1.096936902024137
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": 0.028990185975612575,
+            "edge_atr": 0.7425912133449323,
+            "n_baseline": 3803,
+            "n_selected": 162,
+            "selected_mean_atr": 0.7715813993205448
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 29,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 0.4458707688368181,
+        "edge_p05": 0.3742476475737883,
+        "edge_p95": 0.5144798910686608,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.05497830213630597,
+        "edge_atr": 0.43916800499686803,
+        "n_baseline": 13462,
+        "n_selected": 2306,
+        "selected_mean_atr": 0.3841897028605621
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.0045421233189727765,
+        "edge_atr": 0.4444702595149817,
+        "n_baseline": 12925,
+        "n_selected": 2763,
+        "selected_mean_atr": 0.4399281361960089
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+        "body",
+        "lt",
+        -0.31779518060030204,
+        12,
+        1,
+        0,
+        2
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.010789543457137304,
+            "edge_atr": 0.4418875604066859,
+            "n_baseline": 3225,
+            "n_selected": 596,
+            "selected_mean_atr": 0.43109801694954863
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.0001394986915483881,
+            "edge_atr": 0.5641960072457342,
+            "n_baseline": 3154,
+            "n_selected": 729,
+            "selected_mean_atr": 0.5640565085541858
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.09549198534271594,
+            "edge_atr": 0.43163152584382314,
+            "n_baseline": 3348,
+            "n_selected": 677,
+            "selected_mean_atr": 0.33613954050110717
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": 0.09263179473173895,
+            "edge_atr": 0.32763543069847206,
+            "n_baseline": 3198,
+            "n_selected": 761,
+            "selected_mean_atr": 0.420267225430211
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 30,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 0.3849533496759324,
+        "edge_p05": 0.3200431171389084,
+        "edge_p95": 0.4621815020480051,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.04563731783004738,
+        "edge_atr": 0.3390913414707837,
+        "n_baseline": 72501,
+        "n_selected": 3445,
+        "selected_mean_atr": 0.2934540236407363
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.06346847093381275,
+        "edge_atr": 0.3872312051024051,
+        "n_baseline": 72364,
+        "n_selected": 3359,
+        "selected_mean_atr": 0.32376273416859236
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+        "body",
+        "gt",
+        1.1164176270001982,
+        1,
+        -1,
+        21,
+        6
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.08239757860055336,
+            "edge_atr": 0.4781449690568593,
+            "n_baseline": 17565,
+            "n_selected": 824,
+            "selected_mean_atr": 0.39574739045630597
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.047979780108976036,
+            "edge_atr": 0.40578304137648974,
+            "n_baseline": 17971,
+            "n_selected": 858,
+            "selected_mean_atr": 0.3578032612675137
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.06098570522540482,
+            "edge_atr": 0.3527310038168437,
+            "n_baseline": 18647,
+            "n_selected": 863,
+            "selected_mean_atr": 0.2917452985914389
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.06303690054777923,
+            "edge_atr": 0.31199486551628935,
+            "n_baseline": 18181,
+            "n_selected": 814,
+            "selected_mean_atr": 0.2489579649685101
+          }
+        }
+      ]
+    },
+    {
+      "candidate_index": 31,
+      "daily_block_bootstrap_2025": {
+        "edge_median": 0.1856085774714737,
+        "edge_p05": 0.1494677608341593,
+        "edge_p95": 0.2208610309410915,
+        "reps_valid": 2000
+      },
+      "pass": true,
+      "purged_2024": {
+        "baseline_mean_atr": -0.045821754500304845,
+        "edge_atr": 0.24329901402876075,
+        "n_baseline": 13394,
+        "n_selected": 2394,
+        "selected_mean_atr": 0.1974772595284559
+      },
+      "purged_2025": {
+        "baseline_mean_atr": -0.04457441913711626,
+        "edge_atr": 0.18544030092171895,
+        "n_baseline": 13263,
+        "n_selected": 2473,
+        "selected_mean_atr": 0.1408658817846027
+      },
+      "signature": [
+        "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+        "body",
+        "lt",
+        -0.4603598892732052,
+        1,
+        1,
+        0,
+        6
+      ],
+      "y2025_quarters": [
+        {
+          "quarter": 1,
+          "stats": {
+            "baseline_mean_atr": -0.04834165762697562,
+            "edge_atr": 0.1805762676343052,
+            "n_baseline": 3307,
+            "n_selected": 536,
+            "selected_mean_atr": 0.13223461000732958
+          }
+        },
+        {
+          "quarter": 2,
+          "stats": {
+            "baseline_mean_atr": -0.033677590135952104,
+            "edge_atr": 0.21815213483518908,
+            "n_baseline": 3254,
+            "n_selected": 648,
+            "selected_mean_atr": 0.184474544699237
+          }
+        },
+        {
+          "quarter": 3,
+          "stats": {
+            "baseline_mean_atr": -0.05783330052026725,
+            "edge_atr": 0.19675700981797634,
+            "n_baseline": 3392,
+            "n_selected": 634,
+            "selected_mean_atr": 0.13892370929770909
+          }
+        },
+        {
+          "quarter": 4,
+          "stats": {
+            "baseline_mean_atr": -0.03793571769668577,
+            "edge_atr": 0.1446020352990378,
+            "n_baseline": 3310,
+            "n_selected": 655,
+            "selected_mean_atr": 0.10666631760235203
+          }
+        }
+      ]
+    }
+  ],
+  "rules_not_retuned": true,
+  "schema": 1,
+  "strict_same_calendar_year_forward_outcomes": true,
+  "survivor_count": 32
+}

@@ -1,0 +1,26 @@
+{
+  "artifacts": [
+    {
+      "name": "pre_oos_integrity_audit.json",
+      "sha256": "70f2503e1f26a4bd2374559f70b0ec3df4e6fafa6228c9e12a15390457fcdb8a",
+      "size_bytes": 71297
+    },
+    {
+      "name": "pre_oos_audit_survivors.json",
+      "sha256": "7b847af62c13aa1bd98c95cdbc841a07cb47ed861414edc08a53b13d29d5ae2e",
+      "size_bytes": 167572
+    },
+    {
+      "name": "strategy_factory_r4_pre_oos_integrity_policy_v1.json",
+      "sha256": "d2f221a19a470fab324772dadd8076079de350ff2a8b584e6311d134c195344f",
+      "size_bytes": 2563
+    }
+  ],
+  "generated_at_utc": "2026-09-11T08:18:19.148703+00:00",
+  "phase": "strategy-factory-r4-pre-oos-integrity-audit",
+  "published_run_path": "phenomenon-discovery/strategy-factory-r4-pre-oos-integrity-audit/runs/20260911T081819Z_strategy-factory-r4-pre-oos-integrity-audit",
+  "schema": 1,
+  "source_commit": "8038ba3a92b2e0ec205f08e7d124fa2aaad0cde8",
+  "status": "PASS",
+  "summary": "32/32 frozen R4 candidates survive reject-only purged-year, 2025 quarter-sign and daily-block-bootstrap audit; no retuning; 2026 untouched."
+}
