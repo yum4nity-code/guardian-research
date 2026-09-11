@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "STRATEGY-FACTORY-XAU-TWO-STATE-INTERACTION",
+    "revision": 1
+  },
+  "main_commit": "e67351ac43250e775b9854d1977f9c8fbc7aa940",
+  "pid": 7580,
+  "protected_2026": false,
+  "queue_generation": 37,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-11T10:28:45.952058+00:00",
+  "version": "1.01"
+}
