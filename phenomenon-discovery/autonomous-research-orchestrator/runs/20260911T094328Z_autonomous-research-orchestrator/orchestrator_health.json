@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "PRE-OOS-ECONOMIC-FEASIBILITY-SCREEN",
+    "revision": 1
+  },
+  "main_commit": "30216780582cffd1e5243652f49a8afe718fb5c8",
+  "pid": 7580,
+  "protected_2026": false,
+  "queue_generation": 36,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-11T09:43:28.116214+00:00",
+  "version": "1.01"
+}
