@@ -16,8 +16,8 @@ That dated handoff is the canonical source for the current R4/R5 research state.
 - R5 causal-next-open r2 is the current experiment.
 - Last operator-provided local progress: **100,000 / 150,000** discovery trials, **4,088** 2024 discovery candidates, still in `discovery_2024_causal_next_open`.
 - Reaching 150,000/150,000 only finishes 2024 discovery. The same run must still complete 2025 confirmation before it is finished.
-- GitHub autonomous append queue is **generation 45** with all jobs disabled so no new work should auto-start after the currently running R5 child finishes.
-- Do not re-enable the queue automatically.
+- GitHub autonomous append queue is **generation 46**. R5 preflight r2 and R5 r2 are enabled again at the operator's request. The current R5 r2 child was already running and must be allowed to finish normally.
+- No additional downstream research phase is authorized by this queue change; after R5 completion, perform the mandatory cold audit before adding/enabling new work.
 - Do not use Codex for this workflow unless the operator explicitly changes that decision.
 - Do not deploy live.
 - Do not open protected 2026 OOS without explicit owner approval and preregistration.
