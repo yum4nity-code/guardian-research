@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 21600.0,
+  "class_key": "pre-oos-economic-feasibility",
+  "duration_seconds": 505.1917684999935,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-11T09:52:01.255219+00:00",
+  "job_id": "PRE-OOS-ECONOMIC-FEASIBILITY-SCREEN",
+  "main_commit": "30216780582cffd1e5243652f49a8afe718fb5c8",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-11T09:43:36.012308+00:00",
+  "status": "FAIL",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"candidates\": 500, \"source_candidates\": 500}"
+}
