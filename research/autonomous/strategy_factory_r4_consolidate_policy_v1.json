@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "name": "strategy-factory-r4-consolidation-freeze",
+  "source_phase": "strategy-factory-r4-conditional-edge",
+  "source_status_required": "PASS",
+  "source_protected_2026_untouched_required": true,
+  "purpose": "Reduce the 500 already-confirmed R4 survivors to a manageable structurally diverse frozen shortlist without reading protected 2026.",
+  "structural_bucket_dimensions": ["dataset", "mechanism_family", "operator", "direction", "session_presence"],
+  "representative_rule": "Within each structural bucket choose the already-confirmed variant maximizing the minimum of 2024, 2025 full, 2025 H1 and 2025 H2 conditional edge; tie-break by lower BH q then larger 2025 selected sample.",
+  "max_frozen_candidates": 32,
+  "max_per_dataset_direction": 4,
+  "protected_2026_policy": "FORBIDDEN. This step may not read, inspect or summarize any 2026 market data. A separate committed preregistration and explicit owner approval are required before any protected 2026 evaluation.",
+  "scientific_interpretation": "This is consolidation, not new independent evidence. Selection among confirmed variants is allowed only because a future untouched protected OOS remains mandatory. No candidate may be promoted from this step alone."
+}
