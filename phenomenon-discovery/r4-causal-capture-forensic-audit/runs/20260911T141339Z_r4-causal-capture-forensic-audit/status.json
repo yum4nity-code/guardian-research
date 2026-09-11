@@ -1,0 +1,25 @@
+{
+  "artifacts": [
+    {
+      "name": "r4_causal_capture_forensic_result.json",
+      "sha256": "87a55cc57483572ba0d4dff1495f7f721395490a4770be64029ae99dbe7c5b08",
+      "size_bytes": 28380
+    },
+    {
+      "name": "candidate_forensic_summary.csv",
+      "sha256": "7690c97bb50035bb39f63bb5e39035a4a0031fd364e58c16cf755bf9720fa080",
+      "size_bytes": 359991
+    },
+    {
+      "name": "SUMMARY.md",
+      "sha256": "0384ce36996df4a8085010b4a0e403a587c49b394c2ac9a0b8522003580aa6bd",
+      "size_bytes": 806
+    }
+  ],
+  "generated_at_utc": "2026-09-11T14:13:39.151794+00:00",
+  "phase": "r4-causal-capture-forensic-audit",
+  "schema": 1,
+  "source_commit": "a920c03b32c6a685e7d045dea9f377637fcecc6f",
+  "status": "PASS",
+  "summary": "PASS_INTERPRETABLE; immutable 500-candidate causal-capture forensic audit; no discovery/no 2026/no downstream authorization."
+}
