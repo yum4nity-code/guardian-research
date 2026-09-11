@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 40,
+  "generation": 41,
   "jobs": [
     {
       "id": "PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION",
@@ -632,7 +632,7 @@
       "id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT",
       "revision": 1,
       "enabled": true,
-      "priority": 38,
+      "priority": 39,
       "class_key": "r4-causal-capture-forensic-audit",
       "description": "Descriptive forensic audit of the immutable 500 R4 survivors after the economic FAIL. Verify M5-to-M1 OHLC mapping, decompose close-to-close to causal next-open loss into entry and exit components, measure same-session post-close behavior, overlap degradation, frozen E1/STRESS costs and news-clean execution-reference anomalies. No discovery, no tuning, no 2026, no OOS, no live and no downstream authorization.",
       "data_window": {
@@ -646,6 +646,14 @@
           "revision": 1,
           "accepted_status": [
             "FAIL"
+          ]
+        },
+        {
+          "kind": "receipt",
+          "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-PREFLIGHT-TESTS",
+          "revision": 1,
+          "accepted_status": [
+            "PASS"
           ]
         }
       ],
@@ -669,6 +677,27 @@
         "stale_heartbeat_seconds": 600,
         "poll_seconds": 5,
         "progress_file": "{ROOT}\\progress\\R4-CAUSAL-CAPTURE-FORENSIC-AUDIT-R1.json"
+      }
+    },
+    {
+      "id": "R4-CAUSAL-CAPTURE-FORENSIC-PREFLIGHT-TESTS",
+      "revision": 1,
+      "enabled": true,
+      "priority": 38,
+      "class_key": "r4-causal-capture-forensic-preflight",
+      "description": "Deterministic synthetic preflight tests for the forensic audit. Validate decomposition identity, first-available reference mapping, M5-to-M1 complete/incomplete bucket semantics, OHLC mismatch detection, clean-subset checks and feature-family classification. No market-data file access, no discovery, no tuning, no 2026, no OOS and no live.",
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/test_r4_causal_capture_forensic_audit_v1_00.py",
+        "args": []
+      },
+      "timeout": {
+        "min_seconds": 60,
+        "expected_seconds": 30,
+        "eta_multiplier": 2.5,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 120,
+        "poll_seconds": 2
       }
     }
   ]
