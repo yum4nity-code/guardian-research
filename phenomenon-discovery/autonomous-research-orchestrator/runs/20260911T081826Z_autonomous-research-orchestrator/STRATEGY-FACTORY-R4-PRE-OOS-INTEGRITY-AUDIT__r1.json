@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 3601.726880000024,
+  "class_key": "multi-asset-strategy-factory-pre-oos-integrity",
+  "duration_seconds": 1445.6919618000102,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-11T08:18:26.720941+00:00",
+  "job_id": "STRATEGY-FACTORY-R4-PRE-OOS-INTEGRITY-AUDIT",
+  "main_commit": "8038ba3a92b2e0ec205f08e7d124fa2aaad0cde8",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-11T07:54:20.979840+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"survivors\": 32, \"candidates\": 32, \"protected_2026_untouched\": true}"
+}

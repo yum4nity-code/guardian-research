@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\STRATEGY-FACTORY-R4-PRE-OOS-INTEGRITY-AUDIT__r1.json",
+  "main_commit": "8038ba3a92b2e0ec205f08e7d124fa2aaad0cde8",
+  "pid": 7580,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-11T08:18:26.728295+00:00",
+  "version": "1.01"
+}
