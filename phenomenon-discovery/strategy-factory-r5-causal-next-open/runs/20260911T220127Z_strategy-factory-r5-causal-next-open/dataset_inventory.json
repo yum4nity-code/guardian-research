@@ -1,0 +1,18 @@
+[
+  {
+    "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+    "size_bytes": 57832468
+  },
+  {
+    "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+    "size_bytes": 58403641
+  },
+  {
+    "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+    "size_bytes": 11661696
+  },
+  {
+    "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+    "size_bytes": 11818720
+  }
+]

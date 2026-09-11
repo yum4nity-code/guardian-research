@@ -1,0 +1,25 @@
+{
+  "artifacts": [
+    {
+      "name": "strategy_factory_causal_result.json",
+      "sha256": "81dd16fabf001025c4dc144035d538fa46fab2fc768ba237610e027af1c7d34e",
+      "size_bytes": 294120
+    },
+    {
+      "name": "strategy_factory_causal_survivors.csv",
+      "sha256": "3dc2828c1a50b2ce04f37d17698165b0d8eb13dfd2bf89ed44169f0df58a429c",
+      "size_bytes": 157800
+    },
+    {
+      "name": "dataset_inventory.json",
+      "sha256": "791d8da37a2dc410ee76e5b218f72702c09b0c638422389f237c6c9bd3c2403d",
+      "size_bytes": 603
+    }
+  ],
+  "generated_at_utc": "2026-09-11T22:01:27.583138+00:00",
+  "phase": "strategy-factory-r5-causal-next-open",
+  "schema": 1,
+  "source_commit": "ca84ba7a9a8c4b306564d23db654d6e9204ff5e2",
+  "status": "PASS",
+  "summary": "96 causal next-open survivors after 2024 discovery, untouched 2025 HAC/BH-FDR confirmation, four-quarter and adjacent-quantile robustness; 2026 never opened."
+}
