@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 39,
+  "generation": 40,
   "jobs": [
     {
       "id": "PHASE-II-XAU-DIRECTIONAL-CONSOLIDATION",
@@ -626,6 +626,49 @@
         "stale_heartbeat_seconds": 1200,
         "poll_seconds": 5,
         "progress_file": "{ROOT}\\progress\\STRATEGY-FACTORY-XAU-TWO-STATE-INTERACTION-R2.json"
+      }
+    },
+    {
+      "id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT",
+      "revision": 1,
+      "enabled": true,
+      "priority": 38,
+      "class_key": "r4-causal-capture-forensic-audit",
+      "description": "Descriptive forensic audit of the immutable 500 R4 survivors after the economic FAIL. Verify M5-to-M1 OHLC mapping, decompose close-to-close to causal next-open loss into entry and exit components, measure same-session post-close behavior, overlap degradation, frozen E1/STRESS costs and news-clean execution-reference anomalies. No discovery, no tuning, no 2026, no OOS, no live and no downstream authorization.",
+      "data_window": {
+        "start": "2024-01-01T00:00:00Z",
+        "end_exclusive": "2026-01-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "PRE-OOS-ECONOMIC-FEASIBILITY-SCREEN",
+          "revision": 1,
+          "accepted_status": [
+            "FAIL"
+          ]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/r4_causal_capture_forensic_audit_v1_00.py",
+        "args": [
+          "--output-dir",
+          "{ROOT}\\r4_causal_capture_forensic_r1",
+          "--progress-file",
+          "{ROOT}\\progress\\R4-CAUSAL-CAPTURE-FORENSIC-AUDIT-R1.json",
+          "--publisher",
+          "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 300,
+        "expected_seconds": 1800,
+        "eta_multiplier": 3,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 600,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\R4-CAUSAL-CAPTURE-FORENSIC-AUDIT-R1.json"
       }
     }
   ]
