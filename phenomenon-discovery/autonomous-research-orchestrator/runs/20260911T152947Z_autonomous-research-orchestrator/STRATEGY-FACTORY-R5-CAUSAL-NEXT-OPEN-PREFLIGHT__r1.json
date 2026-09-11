@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 75.0,
+  "class_key": "strategy-factory-causal-next-open-preflight",
+  "duration_seconds": 2.002849700016668,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-11T15:29:46.975083+00:00",
+  "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
+  "main_commit": "edb667dfb2fac19f032c61601c3ad440bf20d32f",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-11T15:29:44.941228+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\test_strategy_factory_causal_next_open_v1_00.py\", line 48, in <module>\n    if __name__=='__main__': raise SystemExit(main())\n                                              ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\test_strategy_factory_causal_next_open_v1_00.py\", line 18, in main\n    r=f.causal_return(df,atr,1,1)\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\strategy_factory_causal_next_open_v1_00.py\", line 119, in causal_return\n    ret[~valid]=np.nan\n    ~~~^^^^^^^^\nValueError: assignment destination is read-only",
+  "stdout_tail": ""
+}
