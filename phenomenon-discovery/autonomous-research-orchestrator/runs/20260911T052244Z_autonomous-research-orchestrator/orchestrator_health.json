@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "STRATEGY-FACTORY-R4-CONSOLIDATE-FREEZE",
+    "revision": 1
+  },
+  "main_commit": "14ec098759ab5962704557e6cb1837189269f08c",
+  "pid": 7580,
+  "protected_2026": false,
+  "queue_generation": 33,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-11T05:22:43.850380+00:00",
+  "version": "1.01"
+}
