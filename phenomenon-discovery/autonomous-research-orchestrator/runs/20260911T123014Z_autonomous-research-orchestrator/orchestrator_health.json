@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\STRATEGY-FACTORY-XAU-TWO-STATE-INTERACTION__r1.json",
+  "main_commit": "e67351ac43250e775b9854d1977f9c8fbc7aa940",
+  "pid": 7580,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-11T12:30:14.401498+00:00",
+  "version": "1.01"
+}
