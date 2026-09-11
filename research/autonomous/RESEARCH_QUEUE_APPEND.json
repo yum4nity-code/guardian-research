@@ -1,22 +1,24 @@
 {
   "schema": 1,
-  "generation": 42,
+  "generation": 43,
   "supersedes_generation": 41,
   "closure": "R4 close-to-close conditional-edge family closed by R4_CAUSAL_CAPTURE_CLOSURE_2026_09_11.md after causal/economic failure. Prior append jobs remain immutable in git history and receipts; disabled close-based interaction jobs are intentionally not carried forward.",
   "jobs": [
     {
       "id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 40,
       "class_key": "strategy-factory-causal-next-open-preflight",
-      "description": "Deterministic synthetic preflight for the preregistered R5 causal next-open factory. Verify next-open execution semantics, direction inversion, calendar-boundary purging, rule masking and BH behavior without opening any market-data file.",
+      "description": "[FROZEN pending cold methodology/code audit after forensic result] Deterministic synthetic preflight for the preregistered R5 causal next-open factory. Verify next-open execution semantics, direction inversion, calendar-boundary purging, rule masking and BH behavior without opening any market-data file.",
       "requires": [
         {
           "kind": "receipt",
           "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT",
           "revision": 1,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         }
       ],
       "executor": {
@@ -36,10 +38,10 @@
     {
       "id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 41,
       "class_key": "strategy-factory-causal-next-open-discovery",
-      "description": "New independent causal discovery representation after R4 closure. Features are known only through source-bar close; entry proxy is the next available bar open and exit is a future bar open. Thresholds fit on 2024 only; untouched 2025 HAC/BH-FDR confirmation requires all four quarters positive plus adjacent-quantile robustness. Canonical Phase I-B pre-2026 XAU files only; protected 2026 is forbidden. Frozen by R5_CAUSAL_NEXT_OPEN_PREREGISTRATION_2026_09_11.md.",
+      "description": "[FROZEN pending cold methodology/code audit after forensic result] New independent causal discovery representation after R4 closure. Features are known only through source-bar close; entry proxy is the next available bar open and exit is a future bar open. Thresholds fit on 2024 only; untouched 2025 HAC/BH-FDR confirmation requires all four quarters positive plus adjacent-quantile robustness. Canonical Phase I-B pre-2026 XAU files only; protected 2026 is forbidden. Frozen by R5_CAUSAL_NEXT_OPEN_PREREGISTRATION_2026_09_11.md.",
       "data_window": {
         "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -49,13 +51,17 @@
           "kind": "receipt",
           "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT",
           "revision": 1,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         },
         {
           "kind": "receipt",
           "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
           "revision": 1,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         }
       ],
       "executor": {
