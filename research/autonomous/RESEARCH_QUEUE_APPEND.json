@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 45,
+  "generation": 46,
   "supersedes_generation": 43,
   "closure": "R4 close-to-close conditional-edge family closed by R4_CAUSAL_CAPTURE_CLOSURE_2026_09_11.md after causal/economic failure. R5 preflight r1 failed on a NumPy/pandas read-only return buffer before any market-data access; r2 is an infrastructure-only writable-copy repair. Scientific hypothesis, preregistration, seed, data window, execution semantics and selection criteria are unchanged. Historical jobs remain immutable.",
   "jobs": [
@@ -99,10 +99,10 @@
     {
       "id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
       "revision": 2,
-      "enabled": false,
+      "enabled": true,
       "priority": 40,
       "class_key": "strategy-factory-causal-next-open-preflight",
-      "description": "[PAUSED after current R5 run per operator request; do not auto-start subsequent work] Infrastructure-only repair of failed r1 preflight. Re-run deterministic synthetic tests with an owned writable return array; verify frozen next-open execution semantics, direction inversion, calendar-boundary purge, masking and BH behavior. No market-data file may be opened.",
+      "description": "Infrastructure-only repair of failed r1 preflight. Re-run deterministic synthetic tests with an owned writable return array; verify frozen next-open execution semantics, direction inversion, calendar-boundary purge, masking and BH behavior. No market-data file may be opened.",
       "requires": [
         {
           "kind": "receipt",
@@ -138,10 +138,10 @@
     {
       "id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN",
       "revision": 2,
-      "enabled": false,
+      "enabled": true,
       "priority": 41,
       "class_key": "strategy-factory-causal-next-open-discovery",
-      "description": "[PAUSED after current R5 run per operator request; do not auto-start subsequent work] Same frozen preregistered R5 causal next-open scientific experiment, revisioned only for the writable-array infrastructure repair. Signal after source-bar close; entry next available open; exit open after h bars. Thresholds fit on 2024 only; untouched 2025 HAC/BH-FDR confirmation requires four positive quarters plus adjacent-quantile robustness. Canonical Phase I-B 2024/2025 files only; protected 2026 forbidden.",
+      "description": "Same frozen preregistered R5 causal next-open scientific experiment, revisioned only for the writable-array infrastructure repair. Signal after source-bar close; entry next available open; exit open after h bars. Thresholds fit on 2024 only; untouched 2025 HAC/BH-FDR confirmation requires four positive quarters plus adjacent-quantile robustness. Canonical Phase I-B 2024/2025 files only; protected 2026 forbidden.",
       "data_window": {
         "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
