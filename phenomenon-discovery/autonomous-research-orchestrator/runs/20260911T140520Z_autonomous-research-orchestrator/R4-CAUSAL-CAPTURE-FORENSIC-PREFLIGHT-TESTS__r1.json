@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 75.0,
+  "class_key": "r4-causal-capture-forensic-preflight",
+  "duration_seconds": 2.0011578999983612,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-11T14:05:20.886866+00:00",
+  "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-PREFLIGHT-TESTS",
+  "main_commit": "a920c03b32c6a685e7d045dea9f377637fcecc6f",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-11T14:05:18.833301+00:00",
+  "status": "PASS",
+  "stderr_tail": "test_clean_subset (__main__.ForensicAuditPreflight.test_clean_subset) ... ok\ntest_decomposition_identity (__main__.ForensicAuditPreflight.test_decomposition_identity) ... ok\ntest_exact_m5_mapping_and_one_incomplete_bucket (__main__.ForensicAuditPreflight.test_exact_m5_mapping_and_one_incomplete_bucket) ... ok\ntest_feature_family_is_descriptive_only (__main__.ForensicAuditPreflight.test_feature_family_is_descriptive_only) ... ok\ntest_first_available_reference_after_gap (__main__.ForensicAuditPreflight.test_first_available_reference_after_gap) ... ok\ntest_m5_mapping_detects_real_ohlc_mismatch (__main__.ForensicAuditPreflight.test_m5_mapping_detects_real_ohlc_mismatch) ... ok\ntest_timestamp_membership (__main__.ForensicAuditPreflight.test_timestamp_membership) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.020s\n\nOK",
+  "stdout_tail": ""
+}

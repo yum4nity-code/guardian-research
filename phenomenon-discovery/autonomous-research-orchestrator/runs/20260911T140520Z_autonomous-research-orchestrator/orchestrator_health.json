@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R4-CAUSAL-CAPTURE-FORENSIC-PREFLIGHT-TESTS__r1.json",
+  "main_commit": "a920c03b32c6a685e7d045dea9f377637fcecc6f",
+  "pid": 7580,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-11T14:05:20.890370+00:00",
+  "version": "1.01"
+}
