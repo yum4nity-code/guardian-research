@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "STRATEGY-FACTORY-R4-PRE-OOS-INTEGRITY-AUDIT",
+    "revision": 1
+  },
+  "main_commit": "8038ba3a92b2e0ec205f08e7d124fa2aaad0cde8",
+  "pid": 7580,
+  "protected_2026": false,
+  "queue_generation": 35,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-11T07:54:09.417186+00:00",
+  "version": "1.01"
+}
