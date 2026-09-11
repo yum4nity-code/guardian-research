@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 5400.0,
+  "class_key": "r4-causal-capture-forensic-audit",
+  "duration_seconds": 480.19162239998695,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-11T14:13:48.498766+00:00",
+  "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT",
+  "main_commit": "a920c03b32c6a685e7d045dea9f377637fcecc6f",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-11T14:05:48.271691+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"mapping\": \"PASS\", \"news_clean_any_reference_absent\": 886, \"positive_counts\": {\"2024\": {\"B_positive\": 500, \"C_positive\": 252, \"D_positive\": 200, \"E1_net_positive\": 0}, \"2025\": {\"B_positive\": 500, \"C_positive\": 194, \"D_positive\": 180, \"E1_net_positive\": 4}}, \"status\": \"PASS_INTERPRETABLE\"}"
+}
