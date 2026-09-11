@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "generation": 46,
-  "supersedes_generation": 43,
-  "closure": "R4 close-to-close conditional-edge family closed by R4_CAUSAL_CAPTURE_CLOSURE_2026_09_11.md after causal/economic failure. R5 preflight r1 failed on a NumPy/pandas read-only return buffer before any market-data access; r2 is an infrastructure-only writable-copy repair. Scientific hypothesis, preregistration, seed, data window, execution semantics and selection criteria are unchanged. Historical jobs remain immutable.",
+  "generation": 47,
+  "supersedes_generation": 46,
+  "closure": "R5 causal next-open r2 reached terminal PASS with 96 survivors at source commit ca84ba7a9a8c4b306564d23db654d6e9204ff5e2. Per the canonical handoff, that PASS is not accepted automatically. Generation 47 adds only a deterministic no-market-data preflight and a reject-only 2024/2025 post-result provenance/execution-semantics audit. Protected 2026 remains forbidden and no downstream research phase is authorized by this queue.",
   "jobs": [
     {
       "id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
@@ -12,28 +12,10 @@
       "class_key": "strategy-factory-causal-next-open-preflight",
       "description": "Historical failed preflight retained immutably. Failed before market-data access because causal_return attempted NaN assignment into a read-only ndarray.",
       "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
-        }
+        {"kind": "receipt", "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT", "revision": 1, "accepted_status": ["PASS"]}
       ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/test_strategy_factory_causal_next_open_v1_00.py",
-        "args": []
-      },
-      "timeout": {
-        "min_seconds": 60,
-        "expected_seconds": 30,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 120,
-        "poll_seconds": 2
-      }
+      "executor": {"kind": "python", "path": "research/autonomous/test_strategy_factory_causal_next_open_v1_00.py", "args": []},
+      "timeout": {"min_seconds": 60, "expected_seconds": 30, "eta_multiplier": 2.5, "history_p95_multiplier": 3, "stale_heartbeat_seconds": 120, "poll_seconds": 2}
     },
     {
       "id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN",
@@ -42,59 +24,13 @@
       "priority": 41,
       "class_key": "strategy-factory-causal-next-open-discovery",
       "description": "Historical frozen R5 r1 retained immutably and disabled after preflight r1 infrastructure failure; never authorized to run without a passing preflight.",
-      "data_window": {
-        "start": "2024-01-01T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
+      "data_window": {"start": "2024-01-01T00:00:00Z", "end_exclusive": "2026-01-01T00:00:00Z"},
       "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
-        },
-        {
-          "kind": "receipt",
-          "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
-        }
+        {"kind": "receipt", "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT", "revision": 1, "accepted_status": ["PASS"]},
+        {"kind": "receipt", "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT", "revision": 1, "accepted_status": ["PASS"]}
       ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/strategy_factory_causal_next_open_v1_00.py",
-        "args": [
-          "--roots",
-          "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--output-dir",
-          "{ROOT}\\strategy_factory_r5_causal_next_open",
-          "--progress-file",
-          "{ROOT}\\progress\\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-R1.json",
-          "--trials",
-          "150000",
-          "--max-files",
-          "20",
-          "--max-rows",
-          "900000",
-          "--seed",
-          "260914",
-          "--publisher",
-          "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
-        ]
-      },
-      "timeout": {
-        "min_seconds": 3600,
-        "expected_seconds": 14400,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 1200,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-R1.json"
-      }
+      "executor": {"kind": "python", "path": "research/autonomous/strategy_factory_causal_next_open_v1_00.py", "args": ["--roots", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1", "--output-dir", "{ROOT}\\strategy_factory_r5_causal_next_open", "--progress-file", "{ROOT}\\progress\\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-R1.json", "--trials", "150000", "--max-files", "20", "--max-rows", "900000", "--seed", "260914", "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
+      "timeout": {"min_seconds": 3600, "expected_seconds": 14400, "eta_multiplier": 2.5, "history_p95_multiplier": 3, "stale_heartbeat_seconds": 1200, "poll_seconds": 5, "progress_file": "{ROOT}\\progress\\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-R1.json"}
     },
     {
       "id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
@@ -104,36 +40,11 @@
       "class_key": "strategy-factory-causal-next-open-preflight",
       "description": "Infrastructure-only repair of failed r1 preflight. Re-run deterministic synthetic tests with an owned writable return array; verify frozen next-open execution semantics, direction inversion, calendar-boundary purge, masking and BH behavior. No market-data file may be opened.",
       "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
-        },
-        {
-          "kind": "receipt",
-          "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
-          "revision": 1,
-          "accepted_status": [
-            "FAIL"
-          ]
-        }
+        {"kind": "receipt", "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT", "revision": 1, "accepted_status": ["PASS"]},
+        {"kind": "receipt", "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT", "revision": 1, "accepted_status": ["FAIL"]}
       ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/test_strategy_factory_causal_next_open_v1_01.py",
-        "args": []
-      },
-      "timeout": {
-        "min_seconds": 60,
-        "expected_seconds": 30,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 120,
-        "poll_seconds": 2
-      }
+      "executor": {"kind": "python", "path": "research/autonomous/test_strategy_factory_causal_next_open_v1_01.py", "args": []},
+      "timeout": {"min_seconds": 60, "expected_seconds": 30, "eta_multiplier": 2.5, "history_p95_multiplier": 3, "stale_heartbeat_seconds": 120, "poll_seconds": 2}
     },
     {
       "id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN",
@@ -142,59 +53,51 @@
       "priority": 41,
       "class_key": "strategy-factory-causal-next-open-discovery",
       "description": "Same frozen preregistered R5 causal next-open scientific experiment, revisioned only for the writable-array infrastructure repair. Signal after source-bar close; entry next available open; exit open after h bars. Thresholds fit on 2024 only; untouched 2025 HAC/BH-FDR confirmation requires four positive quarters plus adjacent-quantile robustness. Canonical Phase I-B 2024/2025 files only; protected 2026 forbidden.",
-      "data_window": {
-        "start": "2024-01-01T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
+      "data_window": {"start": "2024-01-01T00:00:00Z", "end_exclusive": "2026-01-01T00:00:00Z"},
       "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
-        },
-        {
-          "kind": "receipt",
-          "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
-          "revision": 2,
-          "accepted_status": [
-            "PASS"
-          ]
-        }
+        {"kind": "receipt", "job_id": "R4-CAUSAL-CAPTURE-FORENSIC-AUDIT", "revision": 1, "accepted_status": ["PASS"]},
+        {"kind": "receipt", "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT", "revision": 2, "accepted_status": ["PASS"]}
+      ],
+      "executor": {"kind": "python", "path": "research/autonomous/strategy_factory_causal_next_open_v1_01.py", "args": ["--roots", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1", "--output-dir", "{ROOT}\\strategy_factory_r5_causal_next_open_r2", "--progress-file", "{ROOT}\\progress\\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-R2.json", "--trials", "150000", "--max-files", "20", "--max-rows", "900000", "--seed", "260914", "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"]},
+      "timeout": {"min_seconds": 3600, "expected_seconds": 14400, "eta_multiplier": 2.5, "history_p95_multiplier": 3, "stale_heartbeat_seconds": 1200, "poll_seconds": 5, "progress_file": "{ROOT}\\progress\\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-R2.json"}
+    },
+    {
+      "id": "R5-POST-RESULT-COLD-AUDIT-PREFLIGHT",
+      "revision": 1,
+      "enabled": true,
+      "priority": 42,
+      "class_key": "r5-post-result-cold-audit-preflight",
+      "description": "Deterministic synthetic preflight for the preregistered R5 post-result audit. Verifies aligned M5/raw-M1 mapping, detects news-clean next-row drift, verifies calendar-boundary purge and frozen materiality constants. No market data may be opened.",
+      "requires": [
+        {"kind": "receipt", "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN", "revision": 2, "accepted_status": ["PASS"]}
+      ],
+      "executor": {"kind": "python", "path": "research/autonomous/test_audit_r5_post_result_execution_semantics_v1_00.py", "args": []},
+      "timeout": {"min_seconds": 60, "expected_seconds": 30, "eta_multiplier": 2.5, "history_p95_multiplier": 3, "stale_heartbeat_seconds": 120, "poll_seconds": 2}
+    },
+    {
+      "id": "R5-POST-RESULT-COLD-AUDIT",
+      "revision": 1,
+      "enabled": true,
+      "priority": 43,
+      "class_key": "r5-post-result-cold-audit",
+      "description": "Reject-only post-result audit frozen before execution. Hash-pins the exact Phase I-B 2024/2025 inputs and R5 result, then replays all 96 frozen R5 survivors using first-available canonical raw-M1 entry references. Quantifies source-row vs executable-reference drift and rechecks non-BH numerical gates. Any material semantic drift freezes R5 r2 and requires a full newly preregistered discovery/confirmation revision; this audit never opens 2026.",
+      "data_window": {"start": "2024-01-01T00:00:00Z", "end_exclusive": "2026-01-01T00:00:00Z"},
+      "requires": [
+        {"kind": "receipt", "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN", "revision": 2, "accepted_status": ["PASS"]},
+        {"kind": "receipt", "job_id": "R5-POST-RESULT-COLD-AUDIT-PREFLIGHT", "revision": 1, "accepted_status": ["PASS"]}
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/strategy_factory_causal_next_open_v1_01.py",
+        "path": "research/autonomous/audit_r5_post_result_execution_semantics_v1_00.py",
         "args": [
-          "--roots",
-          "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--output-dir",
-          "{ROOT}\\strategy_factory_r5_causal_next_open_r2",
-          "--progress-file",
-          "{ROOT}\\progress\\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-R2.json",
-          "--trials",
-          "150000",
-          "--max-files",
-          "20",
-          "--max-rows",
-          "900000",
-          "--seed",
-          "260914",
-          "--publisher",
-          "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
+          "--r5-result", "{ROOT}\\strategy_factory_r5_causal_next_open_r2\\strategy_factory_causal_result.json",
+          "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
+          "--output-dir", "{ROOT}\\r5_post_result_cold_audit",
+          "--progress-file", "{ROOT}\\progress\\R5-POST-RESULT-COLD-AUDIT-R1.json",
+          "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
-      "timeout": {
-        "min_seconds": 3600,
-        "expected_seconds": 14400,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 1200,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-R2.json"
-      }
+      "timeout": {"min_seconds": 600, "expected_seconds": 1800, "eta_multiplier": 2.5, "history_p95_multiplier": 3, "stale_heartbeat_seconds": 600, "poll_seconds": 5, "progress_file": "{ROOT}\\progress\\R5-POST-RESULT-COLD-AUDIT-R1.json"}
     }
   ]
 }
