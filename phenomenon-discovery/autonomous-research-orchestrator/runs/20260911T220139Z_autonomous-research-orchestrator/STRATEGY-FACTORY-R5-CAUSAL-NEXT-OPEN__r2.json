@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 43825.32744324999,
+  "class_key": "strategy-factory-causal-next-open-discovery",
+  "duration_seconds": 17535.1316466,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-11T22:01:38.795311+00:00",
+  "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN",
+  "main_commit": "ca84ba7a9a8c4b306564d23db654d6e9204ff5e2",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 2,
+  "schema": 1,
+  "started_at_utc": "2026-09-11T17:09:23.623063+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"discovery_candidates\": 5661, \"protected_2026_untouched\": true, \"status\": \"PASS\", \"survivors\": 96, \"trials\": 150000}"
+}
