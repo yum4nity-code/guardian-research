@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 54000.0,
+  "class_key": "multi-asset-strategy-factory-conditional-edge",
+  "duration_seconds": 21535.506281899987,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-11T03:47:04.625727+00:00",
+  "job_id": "STRATEGY-FACTORY-MULTI-ASSET-RANDOM-R4-CONDITIONAL-EDGE",
+  "main_commit": "63b825bad510150225154c8f539d14e025d8c8d9",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-10T21:48:09.057582+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"discovery_candidates\": 12097, \"survivors\": 500, \"protected_2026_untouched\": true}"
+}

@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\STRATEGY-FACTORY-MULTI-ASSET-RANDOM-R4-CONDITIONAL-EDGE__r1.json",
+  "main_commit": "63b825bad510150225154c8f539d14e025d8c8d9",
+  "pid": 7580,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-11T03:47:04.630383+00:00",
+  "version": "1.01"
+}
