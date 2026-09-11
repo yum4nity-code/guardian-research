@@ -1,0 +1,25 @@
+{
+  "artifacts": [
+    {
+      "name": "strategy_factory_result.json",
+      "sha256": "7cb29f3251fa0c1f0d37f719286ba4e51a2446aa0d04d0a7cc3bc53e663b3a48",
+      "size_bytes": 1186664
+    },
+    {
+      "name": "strategy_factory_survivors.csv",
+      "sha256": "9fc1f734929977f33a027c1de838b3de041ee7a6f977da4f8d95e495a060a14e",
+      "size_bytes": 490837
+    },
+    {
+      "name": "dataset_inventory.json",
+      "sha256": "b34fd2e93d64389fbe2663901ead2d39aab5a4bc29c4639f9d8d41703d149d2f",
+      "size_bytes": 952
+    }
+  ],
+  "generated_at_utc": "2026-09-11T03:46:54.593324+00:00",
+  "phase": "strategy-factory-r4-conditional-edge",
+  "schema": 1,
+  "source_commit": "63b825bad510150225154c8f539d14e025d8c8d9",
+  "status": "PASS",
+  "summary": "500 conditional-edge survivors after 2024 discovery and untouched 2025 HAC/BH confirmation; tail-only rules; 2026 untouched."
+}
