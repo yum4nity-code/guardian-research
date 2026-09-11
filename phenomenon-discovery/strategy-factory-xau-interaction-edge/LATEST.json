@@ -1,0 +1,26 @@
+{
+  "artifacts": [
+    {
+      "name": "interaction_factory_result.json",
+      "sha256": "4fe744a043a92cbc7777be06d86586c81d8bcf6911fd57f2d1c48fd53fe5cb6b",
+      "size_bytes": 648785
+    },
+    {
+      "name": "interaction_factory_survivors.csv",
+      "sha256": "32dc704cecf68a3888b5f0b2699328de3256ac939f7d3e433903dcde9b4df986",
+      "size_bytes": 341718
+    },
+    {
+      "name": "dataset_inventory.json",
+      "sha256": "b34fd2e93d64389fbe2663901ead2d39aab5a4bc29c4639f9d8d41703d149d2f",
+      "size_bytes": 952
+    }
+  ],
+  "generated_at_utc": "2026-09-11T12:30:06.468573+00:00",
+  "phase": "strategy-factory-xau-interaction-edge",
+  "published_run_path": "phenomenon-discovery/strategy-factory-xau-interaction-edge/runs/20260911T123006Z_strategy-factory-xau-interaction-edge",
+  "schema": 1,
+  "source_commit": "e67351ac43250e775b9854d1977f9c8fbc7aa940",
+  "status": "PASS",
+  "summary": "300 two-state interaction survivors after 2024 discovery and untouched 2025 HAC/BH/quarter confirmation; 2026 untouched."
+}
