@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT__r2.json",
+  "main_commit": "ca84ba7a9a8c4b306564d23db654d6e9204ff5e2",
+  "pid": 7580,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-11T17:08:52.363461+00:00",
+  "version": "1.01"
+}
