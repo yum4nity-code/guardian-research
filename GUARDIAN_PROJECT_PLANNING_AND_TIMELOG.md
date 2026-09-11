@@ -546,3 +546,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Historical results, protocols, receipts, code and handoffs were intentionally preserved for provenance; no scientific evidence was deleted.
 - Next safe action: let R5 r2 finish, then cold-audit its execution-reference semantics, exact input provenance, protected-2026 evidence, HAC/BH-FDR implementation and adjacent-quantile confirmation before enabling any new phase.
 - Human active time: NOT QUANTIFIED. Autonomous R5 compute time is separate and does not count as human time.
+
+
+### 2026-09-11 — Operator superseded temporary overnight pause
+
+- Operator cancelled the earlier request to pause the autonomous append queue after the current R5 run.
+- Queue generation 46 restores R5 preflight r2 and R5 r2 to enabled state; commit `b53e7e3e97c0518037732fbbb5945367151766c2`.
+- The already-running R5 r2 child is not restarted or interrupted by this change.
+- No new downstream research phase is authorized merely by restoring the existing R5 queue entries; R5 completion still requires the planned cold methodology/code/provenance audit before new research work is added.
+- Operator intends to leave the PC running overnight and shut it down tomorrow.
