@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "protocol_revision": 2,
+  "validator": "pre_oos_economic_feasibility_v1_00",
+  "created_at_utc": "2026-09-11T09:39:07.552214+00:00",
+  "stage": "PRE_SMOKE_CODE_SEAL_NO_CALIBRATION",
+  "files": {
+    "research/protocols/pre_oos_economic_feasibility_screen_v2/PROTOCOL.md": "331b72daa3a44cf745ccd904aa83158587411d7ceddd95f03074be1dad29286f",
+    "research/protocols/pre_oos_economic_feasibility_screen_v2/POLICY.json": "5b1f07f542ac0665accbede22e0ea70f32c7ddfb359d4ecf2053065a45873c06",
+    "research/protocols/pre_oos_economic_feasibility_screen_v2/DATA_MANIFEST.json": "98c46c8e70697ac8153f2dad162875d69d3fcf27a648787369f8be658a4998d2",
+    "research/protocols/pre_oos_economic_feasibility_screen_v2/FTMO_VERIFICATION.json": "efa96669030522c5a7c3f1656642fa04d2f2ee9dadc0e52fc95c6374ca51454e",
+    "research/protocols/pre_oos_economic_feasibility_screen_v2/OWNER_DECISIONS.md": "5351006146b4805d903a154798fc0127601eace0445d1bec21e367c8efd0ec80",
+    "research/autonomous/pre_oos_economic_feasibility_v1_00.py": "df131f0aea1ff6d4af3efba999e442099613bbcc2931a5a9d2a9874e6a9f7536",
+    "research/autonomous/pre_oos_r4_features_v1_00.py": "fd904c73c0ddee139efad77cf8a4997b58556b96f66c8a0c23c739176c397ca9"
+  }
+}

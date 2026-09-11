@@ -2,6 +2,10 @@
 
 Document vivant maintenu par Codex.
 
+## 2026-09-11 — Issue #3 final feasibility implementation READY
+
+Owner-frozen protocol v2 and validator v1_00 implemented for all 500 R4 rules, with 32 annotation only. Code cold audit PASS for selecting candidates for a realistic backtest, not validated profitability. 43 synthetic tests PASS / 0 FAIL; final reduced smoke PASS (eight candidates, 1,148 ledger checks, four verified pre-2026 CSV reads). No full run yet at this code milestone. Authorizes the owner's requested single immutable queue registration after publication; no manual full launch, no automatic OOS chain. FundedNext remains optional UNRESOLVED/DISABLED, financing unmodeled and overnight/weekend exposure reported. Source R4 and consolidation preserved; separate recertification mandatory before protected OOS. Evidence: `research/protocols/pre_oos_economic_feasibility_screen_v2/`.
+
 ## Active
 
 - `D017-V11-16-MIN-RISK-SCALING-DIVERGENCE` — `VALIDATED / RESOLVED`. La candidate v11.16.1 RISKFIX correspond au hash ChatGPT, compile sans erreur ni avertissement et son auto-test runtime confirme 25 USD sur 10k / 250 USD sur 100k.

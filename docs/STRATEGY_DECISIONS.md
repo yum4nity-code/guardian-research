@@ -2,6 +2,10 @@
 
 Journal append-only des decisions de recherche importantes.
 
+## 2026-09-11 — Issue #3 owner-final PRE-OOS feasibility v2
+
+Explicit owner revision supersedes v1's proposed hours/weekdays/same-day restrictions, +60-second latency and half-year stress gates. Retain original R4 signal/session/horizon; enter first raw M1 open at/after bar close; count subsequent raw/clean source bars chronologically. Positions may cross midnight; year/half crossing affects only the respective period metric, not forced liquidation. Fixed one ounce, E1 2 bps full spread/1 bp slippage each side/0.0007% commission each side; stress 5/2/0.0014%. Counts 100 per year, 40 per 2025 half; E1 net positive in all four required slices, stress positive annually and 2025 ex-best. No extra elimination gate. FundedNext disabled, no OOS chain. Code audit and tests/smoke PASS, ready for the explicitly authorized single queued run. Earlier audit remains historical evidence; no R4/consolidation alteration or claim of exact fills/profitability. Financing remains outside supplied costs, with exposure reported for later realistic testing.
+
 Chaque entree doit inclure : date, Strategy ID, Campaign ID, verdict, preuves principales, limites, commit/source exacts, et raison de la decision.
 
 ## 2026-08-31 — Guardian v11.15 SAFE runtime divergence

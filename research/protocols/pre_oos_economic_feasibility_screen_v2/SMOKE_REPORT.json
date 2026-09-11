@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checks": "causal timing, overlap, bounds, costs, output identity, 500 ingestion, eight smoke-only records, four verified CSV reads, heartbeat",
+  "candidates": 8,
+  "ledger_rows_checked": 1148,
+  "elapsed_seconds": 14.665471000000252,
+  "result_sha256": "3d1d3e0ec381ada4c3713e1bffc94d45c91fb5c23df3a39f49eb69a47cb857f6",
+  "denied_accesses": 0,
+  "performance_ranking_or_calibration": false,
+  "source": "D:\\MT5_Backtests\\Research\\Autonomous\\pre_oos_economic_feasibility_smoke_v2_04",
+  "progress": "D:\\MT5_Backtests\\Research\\Autonomous\\progress\\PRE-OOS-ECONOMIC-FEASIBILITY-SMOKE-V2-04.json"
+}

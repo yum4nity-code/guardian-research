@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "id": "PRE-OOS-ECONOMIC-FEASIBILITY-SCREEN",
+  "revision": 2,
+  "stage": "FROZEN_OWNER_DECISIONS_BEFORE_IMPLEMENTATION",
+  "interpretation": "conditional cost/execution feasibility, not historical fills/profitability or independent OOS",
+  "population": 500,
+  "shortlist32_role": "optional annotation only",
+  "randomness": false,
+  "signal_definition": "unchanged R4, original dataset and frozen cutpoints",
+  "timing": {
+    "availability": "bar open + timeframe",
+    "entry": "first raw M1 open >= availability",
+    "exit": "first raw M1 open >= close of original horizon-th subsequently completed source bar",
+    "extra_latency_seconds": 0
+  },
+  "temporal_domain": {
+    "clock": "source server clock",
+    "session": "original R4 only",
+    "overnight": true,
+    "weekend": true,
+    "evaluation_crossing": "exclude from crossed subperiod only; do not liquidate"
+  },
+  "position_policy": {
+    "max_open_or_pending_per_candidate_symbol": 1,
+    "signals_while_busy": "skip; no extension/reversal",
+    "event_order": [
+      "exit",
+      "signal_available",
+      "entry"
+    ],
+    "cooldown_seconds": 0,
+    "combined_portfolio": false
+  },
+  "sizing": {
+    "quantity_ounces": 1,
+    "accounting_currency": "USD",
+    "compound": false,
+    "leverage": null,
+    "tick_rounding": false,
+    "lot_equivalent_for_costs_only": 0.01
+  },
+  "ftmo_verified_component": {
+    "symbol": "XAU/USD",
+    "contract_size_ounces": 100,
+    "profit_currency": "USD",
+    "commission_fraction_per_side": 7e-06,
+    "effective_from": "2025-09-29",
+    "historical_tariff_reconstruction": false,
+    "source_evidence": "FTMO_VERIFICATION.json"
+  },
+  "execution_assumptions": {
+    "E1": {
+      "full_spread_bps": 2,
+      "slippage_bps_per_side": 1,
+      "historically_observed": false
+    },
+    "E2": {
+      "full_spread_bps": 5,
+      "slippage_bps_per_side": 2,
+      "historically_observed": false
+    }
+  },
+  "profiles": [
+    {
+      "id": "FTMO_VERIFIED",
+      "report_label": "FTMO COMMISSION + E1 SIMULATED EXECUTION",
+      "execution_assumptions": "E1",
+      "commission_fraction_per_side": 7e-06,
+      "commission_status": "OFFICIAL_VERIFIED"
+    },
+    {
+      "id": "CONSERVATIVE_STRESS",
+      "execution_assumptions": "E2",
+      "commission_fraction_per_side": 1.4e-05,
+      "commission_status": "HYPOTHETICAL_STRESS_NOT_A_BROKER_RATE"
+    }
+  ],
+  "FUNDENDNEXT_PROFILE": {
+    "status": "UNRESOLVED / DISABLED",
+    "optional": true,
+    "calculate": false,
+    "commission": null,
+    "results": null
+  },
+  "decision": {
+    "minimum_trades_2024": 100,
+    "minimum_trades_2025": 100,
+    "minimum_trades_each_half_2025": 40,
+    "positive_net_required_profiles": [
+      "FTMO_VERIFIED",
+      "CONSERVATIVE_STRESS"
+    ],
+    "positive_net_required_periods": null,
+    "stress_2025_remove_largest_positive_trade_net_must_be_positive": true,
+    "drawdown_hard_limit": null,
+    "profit_factor_hard_limit": null,
+    "candidate_pass_label": "PASS_FOR_REALISTIC_BACKTEST",
+    "e1_positive_periods": [
+      "2024",
+      "2025",
+      "2025_H1",
+      "2025_H2"
+    ],
+    "stress_positive_periods": [
+      "2024",
+      "2025"
+    ]
+  },
+  "infra": {
+    "atomic_replace_attempts": 6,
+    "permission_error_delays_seconds": [
+      0.05,
+      0.1,
+      0.2,
+      0.2,
+      0.2
+    ],
+    "heartbeat_max_interval_seconds": 10,
+    "network": false,
+    "publisher": false,
+    "automatic_oos_chain": false
+  },
+  "smoke": {
+    "synthetic_first": true,
+    "real_candidate_selection": "first two source IDs per dataset, maximum eight",
+    "real_dates": "first five available weekdays per half-year, signal admission only; original full source retained for warmup and horizon",
+    "label": "SMOKE_NOT_FOR_SELECTION",
+    "calibration": false
+  },
+  "queue_authorized": false,
+  "economic_calculations_performed": false,
+  "financing": "No financing model supplied: results cover specified spread/slippage/commission only; overnight/weekend exposure explicit. No all-in profitability claim."
+}

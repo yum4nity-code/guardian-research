@@ -1,5 +1,13 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
+## Current scoped handoff — 2026-09-11 economic feasibility protocol
+
+Owner revised the economic scope: FundedNext remains UNRESOLVED / DISABLED and optional; missing historical Bid/Ask permits explicitly conditional feasibility screening, not verified historical fills. The earlier BLOCKED preflight is preserved as historical evidence.
+
+Final owner decisions and implementation now live in `research/protocols/pre_oos_economic_feasibility_screen_v2/` and `research/autonomous/pre_oos_economic_feasibility_v1_00.py`. No artificial hours/day restrictions or +60-second latency. Chronological clean/raw horizon counters, first-available M1 raw reference, 500 unchanged source rules, one-ounce sleeves, exact frozen E1/stress gates. Code cold audit PASS for realistic-backtest selection only; 43 synthetic tests PASS, zero failures; final smoke PASS on eight IDs/1,148 ledger rows with no calibration. Same-author audit, not independent review. Four pinned CSV reads, no protected data. R4 recertification remains mandatory before protected OOS authorization; existing 500 and consolidation untouched.
+
+Owner explicitly authorized commit/push and one immutable queue entry once code/tests/smoke PASS. Next safe action: publish this exact sealed implementation, then register PRE-OOS-ECONOMIC-FEASIBILITY-SCREEN r1 at the next available queue generation; existing orchestrator PID 7580 alone owns full launch. No automatic OOS dependency or live operation. Queue generation 35 is the integration baseline. Historical handoff sections below retain their original context; earlier BLOCKED preflight is not erased.
+
 Last updated: 2026-09-08 Europe/Paris
 Status: **ACTIVE / D053 REJECTED / D054 UNCONFIRMED-CLOSED / NO CURRENT ALPHA P0 / QUEUE RECONCILED / CHALLENGE LAB PREREGISTERED PIPELINE V1.01 CANONICAL**
 
@@ -7,6 +15,13 @@ Status: **ACTIVE / D053 REJECTED / D054 UNCONFIRMED-CLOSED / NO CURRENT ALPHA P0
 ## Strategy factory infrastructure handoff — 2026-09-10
 
 STRATEGY-FACTORY-MULTI-ASSET-RANDOM r2 failed on temporary Windows PermissionError in atomic_json (receipt 15:09:50 UTC). Queue generation 31 registers r3 using immutable v1_02 with bounded replace retries only; distinct output/progress R3 paths. Seed 260911, 250000 trials, inputs and all scientific logic are unchanged; no 2026 analysis, retuning or live deployment. Seven regression tests PASS. No r2/r3 process found before registration; existing orchestrator PID 7580 owns launch after push. Preserve r2 artifacts and receipt. Next: observe r3 health/progress; do not start another engine. The existing publisher phase label is preserved by the atomic-only scope.
+
+
+## 2026-09-11 — Issue #3 economic/execution gate BLOCKED
+
+The 500 published R4 survivors remain the reference population; 32 frozen are secondary only. Cold preflight is BLOCKED before economic implementation: conflicting official FundedNext commission-side descriptions and no positively identified account model; no executable Bid/Ask in the four HCC-derived XAUUSD M1/M5 datasets. M5 spread is from the last M1, not an entry quote. Historical R4 inventory includes two 2026 files and the loader reads before filtering, so the hardcoded untouched flag is not proof of no access; this audit did not open them. Source publication equality is verified after LF normalization; all four pre-2026 dataset hashes match Phase I-B provenance. No new PnL, retuning, engine, job, protected OOS or live changes.
+
+Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `data_provenance_audit.json`. Autonomous queue remains generation 34. Next safe action: resolve exact FundedNext model/commission sides, verify symbol units and execution-feed convention, then complete frozen protocol, validator, tests, smoke and second cold audit before any queue activation. Human time NOT QUANTIFIED; automated audit time is not human time.
 
 ## Canonical resume
 

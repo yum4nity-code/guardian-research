@@ -1,0 +1,10 @@
+{
+  "tests_run": 43,
+  "pass": 43,
+  "fail": 0,
+  "errors": 0,
+  "skipped": 0,
+  "status": "PASS",
+  "scope": "synthetic suite; no market data",
+  "generated_at_utc": "2026-09-11T09:36:45.209866+00:00"
+}

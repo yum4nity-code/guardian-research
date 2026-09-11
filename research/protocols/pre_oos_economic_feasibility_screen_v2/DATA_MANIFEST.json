@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "id": "PRE-OOS-ECONOMIC-FEASIBILITY-SCREEN-DATA-V2",
+  "market_file_count": 4,
+  "path_policy": "exact canonical allowlist before open; immutable identity; no glob, recursive scan, network or unmanifested market input",
+  "certification_source": "issue_3_economic_preflight_v1/data_provenance_audit.json; Phase I-B exact hashes",
+  "data_boundaries": "2024-01-01 inclusive to 2026-01-01 exclusive, original server clock; period-end is not an allowed observation",
+  "files": [
+    {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+      "sha256": "f98a395961b27ca9dcb34cffa4ef8dd93720adb70292abf7bc96108667232445",
+      "symbol": "XAUUSD",
+      "timeframe": "M1",
+      "kind": "raw",
+      "rows": 710300,
+      "first_server_time": "2024.01.01 00:00:00",
+      "last_server_time": "2025.12.31 23:59:00",
+      "role": [
+        "signal",
+        "execution_reference"
+      ]
+    },
+    {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_news_clean.csv",
+      "sha256": "b116c61d0be7d73c455f4a4f897efdf0bf77a2b88594ed4b93ebee0d707570ee",
+      "symbol": "XAUUSD",
+      "timeframe": "M1",
+      "kind": "clean",
+      "rows": 703387,
+      "first_server_time": "2024.01.01 00:00:00",
+      "last_server_time": "2025.12.31 23:59:00",
+      "role": [
+        "signal"
+      ]
+    },
+    {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+      "sha256": "ba54c9b29755eac4284cb872805148736be529e954533c028e7f826bb444ce66",
+      "symbol": "XAUUSD",
+      "timeframe": "M5",
+      "kind": "raw",
+      "rows": 142549,
+      "first_server_time": "2024.01.01 00:00:00",
+      "last_server_time": "2025.12.31 23:55:00",
+      "role": [
+        "signal"
+      ]
+    },
+    {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_news_clean.csv",
+      "sha256": "972ecaf6c3cadf7136363f396d7a29e7a6246646b575fad5c3e677036004b503",
+      "symbol": "XAUUSD",
+      "timeframe": "M5",
+      "kind": "clean",
+      "rows": 140664,
+      "first_server_time": "2024.01.01 00:00:00",
+      "last_server_time": "2025.12.31 23:55:00",
+      "role": [
+        "signal"
+      ]
+    }
+  ],
+  "source_artifact": {
+    "path": "D:\\MT5_Backtests\\Research\\Autonomous\\strategy_factory_r4_conditional_edge\\strategy_factory_result.json",
+    "local_sha256": "7cb29f3251fa0c1f0d37f719286ba4e51a2446aa0d04d0a7cc3bc53e663b3a48",
+    "published_blob_sha256": "af7c94500ab99eed3c984dbab5dfac3dc3180fae86b958a3753378803f62f8c4",
+    "canonical_sha256": "0ac1e917508e29276c0c13b2abf8cbb576f078feab5e084120e02a09dfa505cf",
+    "population_count": 500
+  },
+  "supporting_runtime_manifest_status": "Fixed code/document paths sealed in PRE_REGISTRATION; trusted installed interpreter/numpy/pandas recorded at run",
+  "confinement_status": "Application before-open allowlist plus Python audit fence and locked native verified-byte reader; not OS sandbox"
+}

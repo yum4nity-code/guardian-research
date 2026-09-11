@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "verified_at_utc": "2026-09-11T08:15:47.184089+00:00",
+  "scope": "cost/contract documentation only, not market history",
+  "specification_url": "https://ftmo.com/wp-json/ftmo/symbols",
+  "official_display_page": "https://ftmo.com/en/symbols/",
+  "selected_fields_observed": {
+    "code": "XAU/USD",
+    "contractSize": 100,
+    "profitCurrency": "USD",
+    "profitCalculation": "cfd",
+    "digits": 2,
+    "commission": 0.0014,
+    "commissionType": "percent"
+  },
+  "per_side_source": "https://ftmo.com/en/blog/trading-updates/trading-update-25-sep-2025/",
+  "per_side_rate_percent": 0.0007,
+  "effective_from": "2025-09-29",
+  "interpretation": "two modeled sides at their respective notionals; aggregate display is not charged again",
+  "unverified_and_not_used": [
+    "historical FTMO spreads",
+    "exact historical fills",
+    "symbol tick size/value",
+    "minimum tradable order size",
+    "FundedNext commission convention"
+  ],
+  "execution_assumptions_are_not_official_broker_facts": true
+}
