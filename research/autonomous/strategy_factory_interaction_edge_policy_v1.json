@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "name": "strategy-factory-xau-two-state-interaction-edge-v1",
+  "purpose": "Genuinely different pre-2026 discovery family after the single-state R4 family failed its frozen economic-feasibility screen. Search conjunctive two-state interactions only; this is not a rescue or retune of R4.",
+  "data_policy": {
+    "discovery": "2024 only",
+    "confirmation": "2025 only",
+    "protected_2026": "forbidden",
+    "forward_returns_crossing_calendar_year": "purged"
+  },
+  "search_space": {
+    "trials": 120000,
+    "seed": 260913,
+    "features": "all continuous features emitted by strategy_factory_conditional_edge_v1_00.features except hour and dow",
+    "rule_form": "condition(feature1, tail quantile) AND condition(feature2, tail quantile)",
+    "operators": ["lt", "gt"],
+    "tail_probabilities": [0.05, 0.10, 0.20, 0.30],
+    "horizons_bars": [1, 3, 6, 12, 24, 48],
+    "directions": [-1, 1],
+    "threshold_fit": "2024 only",
+    "baseline": "same dataset/time rows with both selected features finite; complement within that finite baseline",
+    "duplicate_rule_policy": "exact generated signature deduplicated"
+  },
+  "discovery_gate_2024": {
+    "minimum_selected_and_baseline_n": 100,
+    "conditional_edge_atr_gt": 0.04,
+    "fast_two_sided_p_lt": 0.005
+  },
+  "confirmation_gate_2025": {
+    "minimum_selected_and_baseline_n": 100,
+    "hac_max_lag": "max(48, 2*horizon_bars)",
+    "bh_fdr_q_lte": 0.05,
+    "full_year_edge_atr_gt": 0.02,
+    "quarter_minimum_n": 30,
+    "all_four_quarter_edges_gt": 0.0
+  },
+  "selection_cap": 300,
+  "interpretation": "A PASS means statistical interaction survivors only. It does not establish tradability, economic feasibility, protected-OOS success, or EA profitability. Any survivor requires subsequent frozen economic/execution screening before protected OOS.",
+  "live_or_oos_authorization": false
+}
