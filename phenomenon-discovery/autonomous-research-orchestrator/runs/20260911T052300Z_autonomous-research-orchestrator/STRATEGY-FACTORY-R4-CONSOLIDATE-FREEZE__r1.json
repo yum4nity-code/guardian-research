@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "multi-asset-strategy-factory-consolidation",
+  "duration_seconds": 5.003883400000632,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-11T05:23:00.513328+00:00",
+  "job_id": "STRATEGY-FACTORY-R4-CONSOLIDATE-FREEZE",
+  "main_commit": "14ec098759ab5962704557e6cb1837189269f08c",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-11T05:22:55.445278+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"csv_sha256\": \"b6fd98459c6ea17be817823ee8ea656d2871f2324cfc76ca2d63f2c9098e77d2\", \"frozen_candidates\": 32, \"frozen_candidates_sha256\": \"d9070372f9990c39aa8493a1de734d7b64445d2af8f01c53de27a7e1d454ecbb\", \"protected_2026_untouched\": true, \"source_survivors\": 500, \"status\": \"PASS\", \"structural_buckets\": 40}"
+}

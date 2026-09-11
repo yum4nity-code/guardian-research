@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\STRATEGY-FACTORY-R4-CONSOLIDATE-FREEZE__r1.json",
+  "main_commit": "14ec098759ab5962704557e6cb1837189269f08c",
+  "pid": 7580,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-11T05:23:00.518304+00:00",
+  "version": "1.01"
+}
