@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "edb667dfb2fac19f032c61601c3ad440bf20d32f",
+  "pid": 7580,
+  "protected_2026": false,
+  "queue_generation": 42,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-11T15:29:37.801452+00:00",
+  "version": "1.01"
+}
