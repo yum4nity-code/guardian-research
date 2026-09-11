@@ -1,44 +1,61 @@
 # START HERE — NEXT GUARDIAN AI
 
-You are taking over the Guardian project.
+You are taking over Guardian.
 
-## Current P0
+## Read in this order
 
-The active research campaign is now **Autonomous Phenomenon Discovery on XAUUSD**.
+1. `CURRENT_PROJECT_HANDOFF.md`
+2. `handoff/2026/09/11/GUARDIAN_R4_R5_CURRENT_HANDOFF_2026_09_11.md`
+3. `GUARDIAN_MASTER_MANDATE.md`
+4. `docs/RESEARCH_PROTOCOL.md`
+5. `research/autonomous/AUTONOMOUS_RESEARCH_MANDATE.md`
+6. `research/autonomous/RESEARCH_QUEUE.json`
+7. `research/autonomous/RESEARCH_QUEUE_APPEND.json`
+8. latest relevant evidence on the `backtest-results` branch
 
-Current sequence:
+Do not infer current state from older D0xx handoffs or Codex exchanges when the current handoff says otherwise.
 
-**Phase I-A news mask PASS → Phase I-B XAUUSD clean dataset → autonomous XAU phenomenon discovery → robustness/confirmation → frozen candidate only → protected 2026 final OOS with explicit owner approval.**
+## Current P0 — 2026-09-11
 
-Read in this exact order before coding:
+The active research campaign is **R5 causal next-open XAU discovery/confirmation**.
 
-1. `research/autonomous/AUTONOMOUS_RESEARCH_MANDATE.md`
-2. `research/autonomous/RESEARCH_QUEUE.json`
-3. `handoff/PHENOMENON_DISCOVERY_CURRENT_HANDOFF_2026_09_08.md`
-4. latest relevant `backtest-results` `LATEST.json`
-5. `GUARDIAN_MASTER_MANDATE.md`
-6. `CURRENT_PROJECT_HANDOFF.md`
-7. `docs/RESEARCH_PROTOCOL.md`
+Current known state:
+- R4 close-to-close family is closed after a causal-capture forensic audit.
+- The forensic result found that about 99.5% of R4 B→C degradation came from the entry transition to the first executable reference.
+- R5 r2 is designed to discover edge using a causal next-open target instead.
+- Queue generation 45 is intentionally paused so nothing new should auto-start after the currently running R5 child finishes.
+- A R5 PASS is not an EA and does not authorize 2026 OOS.
 
-## Autonomous-control rules
+The exact current state and mandatory post-run audit are in the dated R4/R5 handoff above.
 
-- ChatGPT is the scientific supervisor: read evidence, preregister the next experiment, write code, update the autonomous queue.
-- The local Guardian Research Orchestrator is the deterministic executor. It must not invent hypotheses.
-- Prefer Python for research/backtests; use MT5 for broker/server data and later execution-fidelity confirmation.
+## Hard operating rules
+
+- Never deploy live automatically.
+- Never open protected 2026 OOS without explicit owner approval plus committed preregistration.
+- Distinguish scientific FAIL from infrastructure FAIL.
+- Never restart a healthy job or create a duplicate run.
 - Jobs are immutable by `(id, revision)` once run.
-- Long jobs use heartbeat/progress plus adaptive timeout; do not kill a job merely because it is slow.
-- Codex is disabled by default and reserved for tightly scoped code blockers after deterministic repair attempts fail.
-- Normal research PASS/FAIL churn should continue without involving the owner.
+- After infrastructure failure, preserve the scientific protocol and revision only the infrastructure repair.
+- Before every expensive phase: cold methodology/code audit → deterministic tests → micro/canary only if justified → expensive run only if justified.
+- Before launch, answer: **If this job PASSes, does it actually answer the question required to advance?**
+- Never claim a job is running only because it is queued. Require process/health/progress/published evidence.
+- Prefer GitHub + the local autonomous orchestrator for this workflow.
+- Codex is currently out of circuit unless the operator explicitly re-authorizes it.
+- Preserve historical artifacts; do not overwrite failed receipts or prior scientific evidence.
 
-## Scientific invariants
+## Scientific rules
 
-- 2024/2025 are discovery/internal confirmation only.
-- **2026 remains sealed final OOS. Do not open it without explicit owner approval plus committed preregistration.**
-- BTC/ETH 5m directional research families A-H are closed after repeated 2024→2025 failure. Do not same-sample rescue them.
-- Phase C's low-movement/no-trade result remains the only robust practical output retained from BTC/ETH.
-- Current pivot is XAUUSD with conservative high-impact USD news exclusion.
-- For Phase I-A / I-B, use the one and only MT5 session already open on the owner's PC as canonical terminal/server/data source.
-- Launchers/results must publish to GitHub. The owner must not be used as a log courier.
-- If the owner says `published`, `fini`, `résultat ?`, etc., inspect GitHub directly.
+- 2024 is discovery/development.
+- 2025 is internal confirmation for the current R5 family.
+- 2026 remains protected final OOS.
+- Do not same-sample rescue a failed family.
+- Do not promote gross-return survivors directly to production.
+- Survivors still require reject-only robustness, realistic cost/execution feasibility, red-team review and untouched OOS before promotion.
 
-Historical handoffs mentioning D023 or another older alpha P0 are superseded by this file and the autonomous mandate.
+## Communication / control
+
+The owner prefers direct answers and does not want to act as a log courier.
+
+If the owner says `published`, `fini`, `résultat ?`, `on en est où ?`, inspect GitHub first. If local-only progress is required, ask for the exact one-line command needed and nothing more.
+
+If a mistake is found, state it, classify its consequence, and correct the workflow rather than defending it.
