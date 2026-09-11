@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json, math, random
+import argparse, json, random
 from pathlib import Path
 import numpy as np
 import pandas as pd
 from strategy_factory_conditional_edge_v1_00 import (
-    PROTECTED, HORIZONS, atomic_json, hb, inventory, load_market, features,
+    HORIZONS, atomic_json, hb, inventory, load_market, features,
     welch_edge, hac_edge, bh_qvalues, publish
 )
 
@@ -59,15 +59,15 @@ def main():
         seen.add(sig)
         year=df.time.dt.year.to_numpy()
         x1=ft[f1].to_numpy(float); x2=ft[f2].to_numpy(float)
-        a=x1[(year==2024)&np.isfinite(x1)]; b=x2[(year==2024)&np.isfinite(x2)]
+        finite=np.isfinite(x1)&np.isfinite(x2)
+        a=x1[(year==2024)&finite]; b=x2[(year==2024)&finite]
         if len(a)<1000 or len(b)<1000: continue
         c1=float(np.quantile(a,q1)); c2=float(np.quantile(b,q2))
-        selected=cond(x1,o1,c1)&cond(x2,o2,c2)
+        selected=finite&cond(x1,o1,c1)&cond(x2,o2,c2)
         target_year=df.time.shift(-h).dt.year.to_numpy()
         ret=((df.close.shift(-h)-df.close)/atr).to_numpy(float)*direction
         ret[target_year!=year]=np.nan
-        base=np.ones(len(df),dtype=bool)
-        s24=welch_edge(selected&(year==2024),base&(year==2024),ret,100)
+        s24=welch_edge(selected&(year==2024),finite&(year==2024),ret,100)
         if s24 and s24['edge_atr']>0.04 and s24['p_fast']<0.005:
             discovery.append({'market_index':mi,'dataset':M['path'],'feature1':f1,'operator1':o1,'quantile1':q1,'cutpoint1':c1,
                               'feature2':f2,'operator2':o2,'quantile2':q2,'cutpoint2':c2,'horizon_bars':h,'direction':direction,'y2024':s24})
@@ -76,16 +76,15 @@ def main():
     confirms=[]; pvals=[]
     for j,r in enumerate(discovery):
         M=markets[r['market_index']]; df=M['df']; ft=M['ft']; atr=M['atr']; year=df.time.dt.year.to_numpy(); month=df.time.dt.month.to_numpy(); h=r['horizon_bars']
-        x1=ft[r['feature1']].to_numpy(float); x2=ft[r['feature2']].to_numpy(float)
-        selected=cond(x1,r['operator1'],r['cutpoint1'])&cond(x2,r['operator2'],r['cutpoint2'])
+        x1=ft[r['feature1']].to_numpy(float); x2=ft[r['feature2']].to_numpy(float); finite=np.isfinite(x1)&np.isfinite(x2)
+        selected=finite&cond(x1,r['operator1'],r['cutpoint1'])&cond(x2,r['operator2'],r['cutpoint2'])
         target_year=df.time.shift(-h).dt.year.to_numpy(); ret=((df.close.shift(-h)-df.close)/atr).to_numpy(float)*r['direction']; ret[target_year!=year]=np.nan
-        base=np.ones(len(df),dtype=bool)
-        s25=welch_edge(selected&(year==2025),base&(year==2025),ret,100)
-        hac=hac_edge(selected&(year==2025),base&(year==2025),ret,max_lag=max(48,2*h),min_n=100) if s25 else None
+        s25=welch_edge(selected&(year==2025),finite&(year==2025),ret,100)
+        hac=hac_edge(selected&(year==2025),finite&(year==2025),ret,max_lag=max(48,2*h),min_n=100) if s25 else None
         quarters=[]
         for q in range(4):
-            lo=1+3*q; hi=lo+2
-            quarters.append(welch_edge(selected&(year==2025)&(month>=lo)&(month<=hi),base&(year==2025)&(month>=lo)&(month<=hi),ret,30))
+            lo=1+3*q; hi=lo+2; pm=(year==2025)&(month>=lo)&(month<=hi)
+            quarters.append(welch_edge(selected&pm,finite&pm,ret,30))
         rr=dict(r); rr['y2025_hac']=hac; rr['y2025_quarters']=quarters
         confirms.append(rr); pvals.append(1.0 if hac is None else hac['p_hac'])
         if (j+1)%250==0: hb(progress,j+1,max(1,len(discovery)),'confirmation_2025_interactions',{'discovery_candidates':len(discovery)})
