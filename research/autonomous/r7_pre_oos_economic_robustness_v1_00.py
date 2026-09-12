@@ -122,9 +122,9 @@ def extract_nonoverlap_trades(df: pd.DataFrame, ft: pd.DataFrame, atr: pd.Series
 def max_drawdown(series: pd.Series) -> float:
     if series.empty:
         return 0.0
-    equity = series.cumsum()
-    peak = equity.cummax()
-    return float((equity - peak).min())
+    equity = np.concatenate(([0.0], series.astype(float).cumsum().to_numpy()))
+    peak = np.maximum.accumulate(equity)
+    return float(np.min(equity - peak))
 
 
 def metric_block(trades: pd.DataFrame, col: str) -> dict:
