@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "TOP2-XAU-MT5-CANONICAL-REPLAY-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "49841593ebb00176af541e6eb8041f46181a157e",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 64,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T16:51:49.124302+00:00",
+  "version": "1.01"
+}
