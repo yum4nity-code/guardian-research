@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-R2-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "e23ec0602bbcdb2a165748e1f6963a84456a3328",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 67,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T19:47:52.471833+00:00",
+  "version": "1.01"
+}
