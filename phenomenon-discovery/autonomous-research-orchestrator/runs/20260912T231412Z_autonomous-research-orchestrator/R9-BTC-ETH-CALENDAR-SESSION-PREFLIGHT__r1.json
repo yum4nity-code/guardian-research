@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r9-calendar-session-preflight",
+  "duration_seconds": 2.012871000006271,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T23:14:11.946496+00:00",
+  "job_id": "R9-BTC-ETH-CALENDAR-SESSION-PREFLIGHT",
+  "main_commit": "a0cf46c9c2742ab050fcc02641c225bf78aa3f03",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T23:14:09.910892+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS R9 deterministic preflight: 672 rules, UTC trigger/execution semantics, costs, gaps, year purge, protected-2026 rejection"
+}

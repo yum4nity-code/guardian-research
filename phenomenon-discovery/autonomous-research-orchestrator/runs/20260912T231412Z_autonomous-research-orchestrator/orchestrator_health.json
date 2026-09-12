@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R9-BTC-ETH-CALENDAR-SESSION-PREFLIGHT__r1.json",
+  "main_commit": "a0cf46c9c2742ab050fcc02641c225bf78aa3f03",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T23:14:11.948267+00:00",
+  "version": "1.01"
+}
