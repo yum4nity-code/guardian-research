@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r8-relative-value-preflight",
+  "duration_seconds": 2.0018981999965035,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T22:40:07.510385+00:00",
+  "job_id": "R8-BTC-ETH-RELATIVE-VALUE-PREFLIGHT",
+  "main_commit": "deeba7577a131487b1abf0d3bf6401004355ad49",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T22:40:05.477597+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS 7 deterministic R8 preflight tests"
+}

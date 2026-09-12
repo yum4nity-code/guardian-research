@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R8-BTC-ETH-RELATIVE-VALUE-PREFLIGHT__r1.json",
+  "main_commit": "deeba7577a131487b1abf0d3bf6401004355ad49",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T22:40:07.512109+00:00",
+  "version": "1.01"
+}
