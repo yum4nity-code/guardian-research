@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 75.0,
+  "class_key": "r6-protected-2026-oos-preflight",
+  "duration_seconds": 2.002114900000379,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-12T14:04:38.235306+00:00",
+  "job_id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
+  "main_commit": "6177d2eb2e435953ffc8f64a8b2dab3dd11b2e51",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T14:04:36.190330+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\test_r6_protected_2026_oos_v1_00.py\", line 77, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\test_r6_protected_2026_oos_v1_00.py\", line 71, in main\n    t()\n    ~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\test_r6_protected_2026_oos_v1_00.py\", line 38, in test_executor_is_frozen_and_fail_closed\n    assert token in src, token\n           ^^^^^^^^^^^^\nAssertionError: fail_closed_if_not_exactly_one_file_per_timeframe",
+  "stdout_tail": ""
+}
