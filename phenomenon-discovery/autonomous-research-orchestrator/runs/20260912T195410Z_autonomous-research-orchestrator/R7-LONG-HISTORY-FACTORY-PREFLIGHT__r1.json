@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r7-long-history-factory-preflight",
+  "duration_seconds": 2.0073488999987603,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T19:54:10.704968+00:00",
+  "job_id": "R7-LONG-HISTORY-FACTORY-PREFLIGHT",
+  "main_commit": "282b1c2044d82389d5288805a132ae5dd5fb21e9",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T19:54:08.650073+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\":\"PASS\",\"tests\":10,\"protected_market_data_access\":false}"
+}
