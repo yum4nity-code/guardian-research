@@ -1,0 +1,1643 @@
+{
+  "candidates": [
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-219",
+      "definition": {
+        "buffer_atr": 0.0,
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 96,
+        "lookback_bars": 48,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 663,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 663
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-251",
+      "definition": {
+        "buffer_atr": 0.1,
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 96,
+        "lookback_bars": 48,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 567,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 567
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-283",
+      "definition": {
+        "buffer_atr": 0.2,
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 96,
+        "lookback_bars": 48,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 472,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 472
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-307",
+      "definition": {
+        "buffer_atr": 0.0,
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 48,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 432,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 432
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-315",
+      "definition": {
+        "buffer_atr": 0.0,
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 96,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 432,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 432
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-316",
+      "definition": {
+        "buffer_atr": 0.0,
+        "direction": -1,
+        "direction_name": "SHORT",
+        "horizon_bars": 96,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 267,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 267
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-339",
+      "definition": {
+        "buffer_atr": 0.1,
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 48,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 373,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 373
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-347",
+      "definition": {
+        "buffer_atr": 0.1,
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 96,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 373,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 373
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-348",
+      "definition": {
+        "buffer_atr": 0.1,
+        "direction": -1,
+        "direction_name": "SHORT",
+        "horizon_bars": 96,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 227,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 227
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-371",
+      "definition": {
+        "buffer_atr": 0.2,
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 48,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 321,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 321
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-379",
+      "definition": {
+        "buffer_atr": 0.2,
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 96,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 321,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 321
+      }
+    },
+    {
+      "bh_fdr_q": 1.0,
+      "bootstrap_2026_e1": {
+        "days": 0,
+        "mean": null,
+        "p05": null,
+        "p_one_sided": 1.0,
+        "resamples": 2000
+      },
+      "candidate_id": "R6B-380",
+      "definition": {
+        "buffer_atr": 0.2,
+        "direction": -1,
+        "direction_name": "SHORT",
+        "horizon_bars": 96,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "oos_full": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half1_jan_apr": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_half2_may_aug": {
+        "E1": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        },
+        "STRESS": {
+          "PF": null,
+          "best_trade": null,
+          "commission": 0.0,
+          "ex_best_positive_net": 0.0,
+          "expectancy": null,
+          "expectancy_bps": null,
+          "gross": 0.0,
+          "max_drawdown_realized": 0.0,
+          "net": 0.0,
+          "slippage": 0.0,
+          "spread": 0.0,
+          "trades": 0,
+          "win_rate": null,
+          "worst_trade": null
+        }
+      },
+      "oos_pass": false,
+      "signal_accounting_2026_jan_aug": {
+        "excluded_year_boundary_signals": 190,
+        "executable_trades": 0,
+        "ignored_overlap_signals": 0,
+        "missing_reference_trades": 0,
+        "signals_total": 190
+      }
+    }
+  ],
+  "coverage": {
+    "days": 241.95486111111111,
+    "end_utc": "2026-08-31T23:55:00+00:00",
+    "start_utc": "2026-01-02T01:00:00+00:00"
+  },
+  "evaluated_window": {
+    "end_exclusive": "2026-09-01T00:00:00+00:00",
+    "split": "2026-05-01T00:00:00+00:00",
+    "start": "2026-01-01T00:00:00+00:00"
+  },
+  "frozen_candidate_count": 12,
+  "frozen_candidates_sha256": "e163cceb752176dc16d7645194c797ae3d2fc399b573ba3cf682a39dfbcd1d84",
+  "generated_at_utc": "2026-09-12T14:28:11.717499+00:00",
+  "human_authorized": true,
+  "input_manifest": {
+    "m1": {
+      "manifest": {
+        "company": "MetaQuotes Ltd.",
+        "from": "2026.01.01 00:00:00",
+        "period": "M1",
+        "rows": "235051",
+        "server": "FundedNext-Server 2",
+        "symbol": "XAUUSD",
+        "terminal_data_path": "D:\\MT5_FundedNext",
+        "terminal_path": "D:\\MT5_FundedNext",
+        "to_exclusive": "2026.09.01 00:00:00",
+        "transport": "monthly_chunks"
+      },
+      "manifest_path": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m1_2026_jan_aug_manifest.txt",
+      "manifest_sha256": "8ee450044547ab6b9426a14e7ca5b3d7ee28d2e6175882187a18c838b576d291",
+      "path": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m1_2026_jan_aug.csv",
+      "rows": 235051,
+      "sha256": "73a6956aeb56d67021e7d4132cb34840610162429bac69071ce7519a46c780df"
+    },
+    "m5": {
+      "manifest": {
+        "company": "MetaQuotes Ltd.",
+        "from": "2026.01.01 00:00:00",
+        "period": "M5",
+        "rows": "47025",
+        "server": "FundedNext-Server 2",
+        "symbol": "XAUUSD",
+        "terminal_data_path": "D:\\MT5_FundedNext",
+        "terminal_path": "D:\\MT5_FundedNext",
+        "to_exclusive": "2026.09.01 00:00:00"
+      },
+      "manifest_path": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug_manifest.txt",
+      "manifest_sha256": "ef2316a2863087d84c182701bf5ed0ac5649d0f63a30dc7e0efcecd1c8b773af",
+      "path": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug.csv",
+      "rows_news_clean": 46425,
+      "rows_raw": 47025,
+      "sha256": "4b2d286c2a4287fbddb37dde9a71b362915d34496e129654ab8c9a3ebfac361b"
+    },
+    "news_mask": {
+      "intervals": 204,
+      "path": "D:\\MT5_Backtests\\Research\\Autonomous\\phase_if_2026\\phase_if_xauusd_merged_news_mask_2026_jan_aug.csv",
+      "sha256": "8d3eb7dda83376a4bbfd759233465ca6fcd996ef94cc07030369e1d606d2e558"
+    }
+  },
+  "interpretation": "PASS identifies post-cost protected-OOS EA-candidate evidence only. No live deployment authorization is implied. FAIL closes this frozen R6 family for promotion; no retuning on 2026 is allowed.",
+  "pass_count": 0,
+  "passing_candidate_ids": [],
+  "phase": "r6-protected-2026-oos",
+  "protected_2026_opened": true,
+  "retuning_performed": false,
+  "schema": 2,
+  "status": "FAIL"
+}

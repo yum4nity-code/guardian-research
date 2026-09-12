@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "r6_protected_2026_oos_result.json",
+      "sha256": "043a0e87040909b58ee1f844802b5177592ac7748c40dddd27f2ee7dba3daba6",
+      "size_bytes": 45917
+    },
+    {
+      "name": "r6_oos_2026_preregistration_v2.json",
+      "sha256": "7037e2d532963a1abce25a042704a50bae285cc7ce8ed86394f355e5d141a2be",
+      "size_bytes": 3287
+    }
+  ],
+  "generated_at_utc": "2026-09-12T14:28:12.007360+00:00",
+  "phase": "r6-protected-2026-oos",
+  "schema": 1,
+  "source_commit": "4fc29326322154a3257fb037f94e54ef80e5fa0e",
+  "status": "FAIL",
+  "summary": "R6 protected Jan-Aug 2026 OOS FAIL: 0/12 frozen candidates pass all preregistered post-cost gates; no retuning."
+}
