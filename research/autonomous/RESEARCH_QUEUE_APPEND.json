@@ -1,16 +1,16 @@
 {
   "schema": 1,
-  "generation": 65,
-  "supersedes_generation": 64,
-  "closure": "Generation 64 canonical schedule replay failed as infrastructure: canonical schedule generation succeeded with 201 rows for each frozen R6 candidate, but the MT5 replay emitted zero trades for R6B-347. Do not alter the frozen R6 hypotheses. Before another replay attempt, diagnose whether the completed generation-62 tester timestamps have a deterministic offset/alignment relative to the hash-pinned canonical UTC schedule. Protected 2026 remains forbidden.",
+  "generation": 66,
+  "supersedes_generation": 65,
+  "closure": "Generation 65 time-alignment diagnostic executed successfully but its scientific diagnostic JSON remained local and was not published on the evidence bus. Preserve the frozen R6 hypotheses and publish that exact existing diagnostic artifact before deciding any replay repair. No 2026 access.",
   "jobs": [
     {
-      "id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC",
+      "id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-PUBLISH",
       "revision": 1,
       "enabled": true,
-      "priority": 70,
-      "class_key": "top2-xau-mt5-time-alignment-diagnostic",
-      "description": "Read only the existing 2024/2025 generation-62 MT5 trade CSVs and hash-pinned Phase I-B canonical data. Measure nearest timestamp offsets and exact entry/exit matches under prespecified -3..+3 hour shifts. This is infrastructure diagnosis only: no signal recomputation in MT5, no parameter changes, no tuning, and no 2026 access.",
+      "priority": 71,
+      "class_key": "top2-xau-mt5-time-alignment-diagnostic-publish",
+      "description": "Publish the exact generation-65 local time-alignment diagnostic JSON to backtest-results so its timestamp-shift evidence can be independently inspected before any further MT5 replay repair. This job does not recompute signals, change hypotheses, or open 2026.",
       "data_window": {
         "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -18,18 +18,17 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "TOP2-XAU-MT5-CANONICAL-REPLAY",
+          "job_id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC",
           "revision": 1,
-          "accepted_status": ["FAIL"]
+          "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/diagnose_top2_mt5_time_alignment_v1_00.py",
+        "path": "research/autonomous/publish_top2_mt5_time_alignment_diagnostic_v1_00.py",
         "args": [
-          "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--mt5-dir", "{ROOT}\\top2_mt5_strategy_tester_v1",
-          "--output", "{ROOT}\\diagnostics\\top2_mt5_time_alignment_v1.json"
+          "--input", "{ROOT}\\diagnostics\\top2_mt5_time_alignment_v1.json",
+          "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
