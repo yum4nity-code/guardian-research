@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R6-PROTECTED-2026-INPUT-PROBE",
+    "revision": 1
+  },
+  "main_commit": "280fc327ca4f2652a9558d8e82c5d3dc668da349",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 56,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T14:14:56.691580+00:00",
+  "version": "1.01"
+}
