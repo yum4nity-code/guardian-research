@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R6-XAU-LOW-TURNOVER-BREAKOUT",
+    "revision": 1
+  },
+  "main_commit": "6555969c81fb97280a274c0ed62ed61d5812bb31",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 52,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T12:00:24.083387+00:00",
+  "version": "1.01"
+}
