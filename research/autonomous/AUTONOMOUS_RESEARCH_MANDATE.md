@@ -1,4 +1,4 @@
-# Guardian Autonomous Research Mandate v1.11
+# Guardian Autonomous Research Mandate v1.12
 
 Date: 2026-09-10
 Status: canonical for unattended alpha research and EA promotion
@@ -56,6 +56,26 @@ When a discovery factory ends, the supervisor should automatically freeze a mana
 - Seek multiple independent mechanisms/markets/horizons rather than many correlated variants of one edge.
 - Historical failed branches remain evidence but must not prevent newer independent runnable jobs from executing.
 - Phase C BTC/ETH low-movement/no-trade output remains preserved. Closed directional families may be revisited only through genuinely new independent representations/search spaces, not parameter rescue.
+
+## Mandatory long-history gate before protected OOS
+
+Effective 2026-09-12, broad alpha research must exploit the longest clean pre-OOS history available before spending protected final-OOS data.
+
+For XAUUSD and any market with sufficient history, the default chronological research architecture is:
+
+1. **Discovery:** 2017-01-01 through 2022-12-31. Large deterministic/randomized factories may screen millions of frozen hypotheses cheaply here.
+2. **Independent confirmation:** 2023-01-01 through 2024-12-31. Survivor definitions are frozen before these results are opened.
+3. **Pre-OOS temporal gate:** 2025-01-01 through 2025-12-31. No retuning after this gate is opened.
+4. **Broker/execution-fidelity check:** MT5/real broker feed only for the small finalist set when it adds information; never run millions of candidates through Strategy Tester.
+5. **Protected final OOS:** 2026 only after all prior gates pass and exact final rules/criteria are preregistered.
+
+Every serious candidate should also be characterized across the complete 2017-2025 pre-OOS history with yearly, monthly, rolling 6/12-month, realistic-cost, stress-cost, best-trade concentration, drawdown/tail and trade-count diagnostics. Selection must not be based only on aggregate profit factor or net profit.
+
+The long-history gate is intended to reject regime-fragile candidates before protected OOS. It does **not** authorize optimizing parameters across 2017-2025 until a pleasing curve appears. Search spaces, seeds, rule definitions and stage gates must be frozen before the corresponding stage is evaluated.
+
+If a market genuinely lacks the default historical depth, use the longest clean history available and preregister the alternative chronology before discovery. Do not shorten history merely for convenience.
+
+Existing protected-OOS results remain historical evidence; they are not retroactively reclassified. Failed protected candidates remain closed and may not be rescued by the new long-history process.
 
 ## Protected final OOS policy
 
