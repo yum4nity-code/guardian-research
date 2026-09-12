@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 360.0,
+  "class_key": "top2-xau-mt5-time-alignment-diagnostic-publish",
+  "duration_seconds": 12.009045900002093,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T18:14:10.412978+00:00",
+  "job_id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-PUBLISH",
+  "main_commit": "68220af0d910297e46d73b98541b9d70aca747c8",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T18:13:58.358195+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"published_phase\": \"top2-mt5-time-alignment-diagnostic\", \"protected_2026_opened\": false, \"summary\": \"R6B-307 2024: best_shift=1.0h pair=1/95 entry=1/95; R6B-307 2025: best_shift=2.0h pair=1/106 entry=1/106; R6B-347 2024: best_shift=1.0h pair=1/95 entry=1/95; R6B-347 2025: best_shift=1.0h pair=1/106 entry=1/106; infrastructure timestamp-alignment diagnosis only; frozen R6 hypotheses unchanged; 2026 unopened.\"}"
+}
