@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 120.0,
+  "class_key": "r6-protected-2026-oos-preflight",
+  "duration_seconds": 2.005404199999248,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T14:38:39.744421+00:00",
+  "job_id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
+  "main_commit": "97182a0dcdead6aaeb783009b3d3b6c7ec6fd806",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 5,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T14:38:37.707039+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"tests\": 5, \"market_data_accessed\": false, \"scientific_r6_oos_evaluated\": false, \"repair\": \"replace_pre_oos_2024_2025_guard_with_authorized_jan_aug_2026_window_guard\"}"
+}
