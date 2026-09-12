@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 75.0,
+  "class_key": "r5-post-result-cold-audit-preflight",
+  "duration_seconds": 2.0026846999826375,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-12T00:07:49.437887+00:00",
+  "job_id": "R5-POST-RESULT-COLD-AUDIT-PREFLIGHT",
+  "main_commit": "9976eb3d53f3be62b6f7211b3af0a53e73dd23aa",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 2,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T00:07:47.391576+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\test_audit_r5_post_result_execution_semantics_v1_01.py\", line 89, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\test_audit_r5_post_result_execution_semantics_v1_01.py\", line 83, in main\n    test()\n    ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\test_audit_r5_post_result_execution_semantics_v1_01.py\", line 24, in test_raw_m1_aligned_m5_reference_matches_expected\n    assert abs(ret[0] - 5.0) < 1e-12\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+  "stdout_tail": ""
+}
