@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 75.0,
+  "class_key": "r5-pre-oos-economic-robustness-preflight",
+  "duration_seconds": 8.014649500000132,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T11:05:46.948506+00:00",
+  "job_id": "R5-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT",
+  "main_commit": "0d526817b2246198a141eb5d0623fab0e0138c7b",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 2,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T11:05:38.911750+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS: R5 economic robustness infrastructure wrapper"
+}
