@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 120.0,
+  "class_key": "r5e023-protected-2026-oos-preflight",
+  "duration_seconds": 4.0061824999993405,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T14:34:12.534501+00:00",
+  "job_id": "R5E023-PROTECTED-2026-OOS-PREFLIGHT",
+  "main_commit": "36019a89a0657741956da7e3400b3862572c2622",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T14:34:08.498392+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"candidate_id\": \"R5E-023\", \"market_data_accessed\": false, \"scientific_oos_evaluated\": false}"
+}
