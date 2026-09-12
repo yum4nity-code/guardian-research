@@ -1,0 +1,449 @@
+{
+  "candidates": {
+    "R6B-307": {
+      "years": {
+        "2024": {
+          "nearest_entry_offset_summary": {
+            "count": 95,
+            "mode_count": 1,
+            "mode_hours": -473134.884,
+            "top_offsets_hours": [
+              {
+                "count": 1,
+                "hours": -473134.884
+              },
+              {
+                "count": 1,
+                "hours": -473302.884
+              },
+              {
+                "count": 1,
+                "hours": -473398.884
+              },
+              {
+                "count": 1,
+                "hours": -473542.884
+              },
+              {
+                "count": 1,
+                "hours": -473734.884
+              },
+              {
+                "count": 1,
+                "hours": -473950.884
+              },
+              {
+                "count": 1,
+                "hours": -473974.884
+              },
+              {
+                "count": 1,
+                "hours": -474046.884
+              },
+              {
+                "count": 1,
+                "hours": -474070.884
+              },
+              {
+                "count": 1,
+                "hours": -474142.884
+              }
+            ]
+          },
+          "shift_match_table": [
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": -473134.884
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": -3.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": -2.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": -1.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": 0.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 164,
+              "shift_hours": 1.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": 2.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": 3.0
+            }
+          ]
+        },
+        "2025": {
+          "nearest_entry_offset_summary": {
+            "count": 106,
+            "mode_count": 1,
+            "mode_hours": -481790.145,
+            "top_offsets_hours": [
+              {
+                "count": 1,
+                "hours": -481790.145
+              },
+              {
+                "count": 1,
+                "hours": -481862.145
+              },
+              {
+                "count": 1,
+                "hours": -481958.145
+              },
+              {
+                "count": 1,
+                "hours": -481982.145
+              },
+              {
+                "count": 1,
+                "hours": -482006.178
+              },
+              {
+                "count": 1,
+                "hours": -482126.145
+              },
+              {
+                "count": 1,
+                "hours": -482150.145
+              },
+              {
+                "count": 1,
+                "hours": -482198.145
+              },
+              {
+                "count": 1,
+                "hours": -482294.145
+              },
+              {
+                "count": 1,
+                "hours": -482342.145
+              }
+            ]
+          },
+          "shift_match_table": [
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": -481790.145
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": -3.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": -2.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": -1.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": 0.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": 1.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 182,
+              "shift_hours": 2.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 182,
+              "shift_hours": 3.0
+            }
+          ]
+        }
+      }
+    },
+    "R6B-347": {
+      "years": {
+        "2024": {
+          "nearest_entry_offset_summary": {
+            "count": 95,
+            "mode_count": 1,
+            "mode_hours": -473134.884,
+            "top_offsets_hours": [
+              {
+                "count": 1,
+                "hours": -473134.884
+              },
+              {
+                "count": 1,
+                "hours": -473302.884
+              },
+              {
+                "count": 1,
+                "hours": -473398.884
+              },
+              {
+                "count": 1,
+                "hours": -473542.884
+              },
+              {
+                "count": 1,
+                "hours": -473734.884
+              },
+              {
+                "count": 1,
+                "hours": -473950.884
+              },
+              {
+                "count": 1,
+                "hours": -473974.884
+              },
+              {
+                "count": 1,
+                "hours": -474046.884
+              },
+              {
+                "count": 1,
+                "hours": -474070.884
+              },
+              {
+                "count": 1,
+                "hours": -474142.884
+              }
+            ]
+          },
+          "shift_match_table": [
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -473134.884
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -3.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -2.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -1.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": 0.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 1.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": 2.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 3.0
+            }
+          ]
+        },
+        "2025": {
+          "nearest_entry_offset_summary": {
+            "count": 106,
+            "mode_count": 1,
+            "mode_hours": -481790.148,
+            "top_offsets_hours": [
+              {
+                "count": 1,
+                "hours": -481790.148
+              },
+              {
+                "count": 1,
+                "hours": -481862.148
+              },
+              {
+                "count": 1,
+                "hours": -481958.148
+              },
+              {
+                "count": 1,
+                "hours": -481982.148
+              },
+              {
+                "count": 1,
+                "hours": -482006.181
+              },
+              {
+                "count": 1,
+                "hours": -482126.148
+              },
+              {
+                "count": 1,
+                "hours": -482150.148
+              },
+              {
+                "count": 1,
+                "hours": -482198.148
+              },
+              {
+                "count": 1,
+                "hours": -482294.148
+              },
+              {
+                "count": 1,
+                "hours": -482342.148
+              }
+            ]
+          },
+          "shift_match_table": [
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -481790.148
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -3.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -2.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -1.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": 0.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 1.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 2.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 3.0
+            }
+          ]
+        }
+      }
+    }
+  },
+  "canonical_inputs": {
+    "xauusd_m1_2024_2025_raw.csv": "f98a395961b27ca9dcb34cffa4ef8dd93720adb70292abf7bc96108667232445",
+    "xauusd_m5_2024_2025_news_clean.csv": "972ecaf6c3cadf7136363f396d7a29e7a6246646b575fad5c3e677036004b503"
+  },
+  "generated_at_utc": "2026-09-12T17:29:20.162728+00:00",
+  "phase": "top2-mt5-time-alignment-diagnostic",
+  "protected_2026_opened": false,
+  "purpose": "Diagnose infrastructure timestamp alignment only; frozen R6 rules are unchanged.",
+  "schema": 1
+}

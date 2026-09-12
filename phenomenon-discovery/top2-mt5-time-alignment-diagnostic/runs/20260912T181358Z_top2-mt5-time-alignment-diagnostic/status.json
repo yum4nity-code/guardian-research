@@ -1,0 +1,15 @@
+{
+  "artifacts": [
+    {
+      "name": "top2_mt5_time_alignment_v1.json",
+      "sha256": "60cf309c6f549d4ccab6cf5f1fabb62bfd766d4ff437423593404c037b9b9f98",
+      "size_bytes": 12914
+    }
+  ],
+  "generated_at_utc": "2026-09-12T18:13:58.859953+00:00",
+  "phase": "top2-mt5-time-alignment-diagnostic",
+  "schema": 1,
+  "source_commit": "68220af0d910297e46d73b98541b9d70aca747c8",
+  "status": "PASS",
+  "summary": "R6B-307 2024: best_shift=1.0h pair=1/95 entry=1/95; R6B-307 2025: best_shift=2.0h pair=1/106 entry=1/106; R6B-347 2024: best_shift=1.0h pair=1/95 entry=1/95; R6B-347 2025: best_shift=1.0h pair=1/106 entry=1/106; infrastructure timestamp-alignment diagnosis only; frozen R6 hypotheses unchanged; 2026 unopened."
+}
