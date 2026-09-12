@@ -37,6 +37,18 @@ def main() -> int:
     sm = r7.session_mask(df, 22, 4)
     assert sm.tolist() == [True, True, True, True, False]
 
+    # Long-history causal return must work outside the old 2024/2025 guard.
+    cdf = frame("2020-01-01", 10, "15min")
+    atr = pd.Series(np.ones(len(cdf)))
+    cr = r7.causal_return(cdf, atr, 1, 1, "M15")
+    assert np.isfinite(cr[0])
+
+    # Missing-bar paths fail closed rather than treating a later bar as the next bar.
+    gap = cdf.drop(index=[2]).reset_index(drop=True)
+    gatr = pd.Series(np.ones(len(gap)))
+    gr = r7.causal_return(gap, gatr, 1, 1, "M15")
+    assert np.isnan(gr[0])
+
     # Rule IDs are deterministic and insensitive to dict insertion order.
     a = {"dataset":"BTC","timeframe":"M15","feature":"rsi14","operator":"lt","quantile":.1,"horizon_bars":6,"direction":1,"hour_start":None,"hour_width":None}
     b = dict(reversed(list(a.items())))
@@ -56,7 +68,7 @@ def main() -> int:
         except RuntimeError as exc:
             assert "protected 2026 row" in str(exc)
 
-    print('{"status":"PASS","tests":5,"protected_market_data_access":false}')
+    print('{"status":"PASS","tests":7,"protected_market_data_access":false}')
     return 0
 
 
