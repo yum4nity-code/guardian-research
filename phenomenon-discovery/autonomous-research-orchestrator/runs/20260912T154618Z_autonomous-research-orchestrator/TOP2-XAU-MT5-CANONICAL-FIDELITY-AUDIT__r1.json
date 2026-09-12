@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 360.0,
+  "class_key": "top2-xau-mt5-canonical-fidelity-audit",
+  "duration_seconds": 18.01658469999893,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T15:46:17.862862+00:00",
+  "job_id": "TOP2-XAU-MT5-CANONICAL-FIDELITY-AUDIT",
+  "main_commit": "3dd467d8c5020a78c88c99bcf27a33960e14c967",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T15:45:59.799933+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"scientific_status\": \"FAIL_FIDELITY_MISMATCH\", \"protected_2026_opened\": false}"
+}
