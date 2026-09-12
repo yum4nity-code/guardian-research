@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 120.0,
+  "class_key": "top2-xau-mt5-time-alignment-diagnostic-preflight",
+  "duration_seconds": 2.0050133999975515,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T19:48:05.374434+00:00",
+  "job_id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-R2-PREFLIGHT",
+  "main_commit": "e23ec0602bbcdb2a165748e1f6963a84456a3328",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T19:48:03.325627+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS resolution-safe TOP2 MT5 time-alignment diagnostic regression"
+}

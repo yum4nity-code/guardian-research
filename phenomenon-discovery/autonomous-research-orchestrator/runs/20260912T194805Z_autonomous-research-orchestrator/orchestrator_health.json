@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-R2-PREFLIGHT__r1.json",
+  "main_commit": "e23ec0602bbcdb2a165748e1f6963a84456a3328",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T19:48:05.377231+00:00",
+  "version": "1.01"
+}
