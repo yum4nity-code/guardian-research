@@ -1,27 +1,27 @@
 {
   "schema": 1,
-  "generation": 57,
-  "supersedes_generation": 56,
-  "closure": "R6 protected-2026 input probe r1 passed: both pre-existing Jan-Aug 2026 XAUUSD snapshots are complete enough, the canonical 2026 HCC is readable, and the recommended transport is USE_EXISTING_VALIDATED_JAN_AUG_SNAPSHOTS. OOS r2 never computed candidate metrics. Generation 57 freezes a transport-only preregistration amendment to the already-existing Jan-Aug 2026 window, preserves all 12 candidates and every v1 pass/fail gate unchanged, cold-audits the repaired executor without market-data access, then performs the first scientific R6 protected-2026 evaluation. No retuning and no live deployment.",
+  "generation": 58,
+  "supersedes_generation": 57,
+  "closure": "R6 protected-2026 OOS preflight r3 failed before market-data access because the synthetic news-mask test exposed a pandas datetime integer-resolution dependency in the transport helper. No candidate metric was computed and no scientific gate changed. Generation 58 versions an infrastructure-only epoch conversion repair, cold-audits it without market-data access, then requeues the identical frozen 12-candidate Jan-Aug 2026 OOS protocol under a new immutable revision. Preregistration v2, candidates, costs, statistics, split and pass/fail gates are unchanged; no retuning and no live deployment.",
   "jobs": [
     {
       "id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
-      "revision": 3,
+      "revision": 4,
       "enabled": true,
-      "priority": 52,
+      "priority": 54,
       "class_key": "r6-protected-2026-oos-preflight",
-      "description": "Cold semantic audit of the repaired R6 Jan-Aug 2026 OOS executor and transport-only preregistration amendment. Verifies all scientific gates exactly equal v1, 12 frozen candidates, explicit M1/M5 snapshot semantics, inherited news cleaning, fixed temporal split, no R5 protected-data loader, no retuning and no market-data access.",
+      "description": "Infrastructure-repair cold audit after r3 exposed resolution-dependent datetime->epoch conversion in news-mask transport. Verifies the repair uses resolution-safe Timestamp.value epoch seconds while all v1/v2 scientific semantics remain frozen; no market-data access.",
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R6-PROTECTED-2026-INPUT-PROBE",
-          "revision": 1,
-          "accepted_status": ["PASS"]
+          "job_id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
+          "revision": 3,
+          "accepted_status": ["FAIL"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r6_protected_2026_oos_v1_02.py",
+        "path": "research/autonomous/test_r6_protected_2026_oos_v1_03.py",
         "args": []
       },
       "timeout": {
@@ -35,11 +35,11 @@
     },
     {
       "id": "R6-PROTECTED-2026-OOS",
-      "revision": 3,
+      "revision": 4,
       "enabled": true,
-      "priority": 53,
+      "priority": 55,
       "class_key": "r6-protected-2026-oos",
-      "description": "First scientific protected-OOS evaluation of exactly the 12 frozen R6 breakout survivors, using the pre-existing provenance-validated Jan-Aug 2026 M5/M1 snapshots and inherited frozen news mask. Every statistical/economic gate is unchanged from preregistration v1. No parameter changes, rescue, retuning or live deployment.",
+      "description": "First scientific protected-OOS evaluation of exactly the same 12 frozen R6 breakout survivors under preregistration v2, with only the resolution-safe news-mask epoch transport repair relative to r3. All candidate definitions, E1/STRESS costs, bootstrap/BH gates, temporal split and Jan-Aug 2026 window remain unchanged. No rescue, retuning or live deployment.",
       "data_window": {
         "start": "2026-01-01T00:00:00Z",
         "end_exclusive": "2026-09-01T00:00:00Z"
@@ -48,19 +48,19 @@
         {
           "kind": "receipt",
           "job_id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
-          "revision": 3,
+          "revision": 4,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r6_protected_2026_oos_v1_01.py",
+        "path": "research/autonomous/r6_protected_2026_oos_v1_02.py",
         "args": [
           "--r6-result", "{ROOT}\\r6_xau_low_turnover_breakout_r1\\r6_xau_low_turnover_breakout_result.json",
           "--preregistration", "{DEPLOY}\\research\\autonomous\\r6_oos_2026_preregistration_v2.json",
           "--root", "{ROOT}",
-          "--output-dir", "{ROOT}\\r6_protected_2026_oos_r3",
-          "--progress-file", "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R3.json",
+          "--output-dir", "{ROOT}\\r6_protected_2026_oos_r4",
+          "--progress-file", "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R4.json",
           "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
@@ -71,7 +71,7 @@
         "history_p95_multiplier": 3.0,
         "stale_heartbeat_seconds": 300,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R3.json"
+        "progress_file": "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R4.json"
       }
     }
   ]
