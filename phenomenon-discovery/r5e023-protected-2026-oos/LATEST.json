@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    {
+      "name": "r5e023_protected_2026_oos_result.json",
+      "sha256": "ef95955eb084de7ddc4e994649897b55573079d7bba4741212882f521a6ec381",
+      "size_bytes": 6696
+    },
+    {
+      "name": "r5e023_protected_2026_oos_preregistration_v1.json",
+      "sha256": "57ae69deb5f9ac1bf8485e5717cd83160f59b7211e74667ee8b66f7295258283",
+      "size_bytes": 3437
+    }
+  ],
+  "generated_at_utc": "2026-09-12T14:34:47.310810+00:00",
+  "phase": "r5e023-protected-2026-oos",
+  "published_run_path": "phenomenon-discovery/r5e023-protected-2026-oos/runs/20260912T143447Z_r5e023-protected-2026-oos",
+  "schema": 1,
+  "source_commit": "36019a89a0657741956da7e3400b3862572c2622",
+  "status": "FAIL",
+  "summary": "R5E-023 protected Jan-Aug 2026 OOS FAIL: 89 trades; no retuning; no live deployment."
+}
