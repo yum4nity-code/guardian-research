@@ -13,7 +13,6 @@
   ],
   "generated_at_utc": "2026-09-12T14:39:14.880559+00:00",
   "phase": "r6-protected-2026-oos",
-  "published_run_path": "phenomenon-discovery/r6-protected-2026-oos/runs/20260912T143914Z_r6-protected-2026-oos",
   "schema": 1,
   "source_commit": "97182a0dcdead6aaeb783009b3d3b6c7ec6fd806",
   "status": "FAIL",
