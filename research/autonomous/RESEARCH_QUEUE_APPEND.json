@@ -1,51 +1,16 @@
 {
   "schema": 1,
-  "generation": 52,
-  "supersedes_generation": 51,
-  "closure": "R5 causal next-open is scientifically closed for tradable-alpha promotion after the frozen economic robustness result returned FAIL with 0/96 survivors under inherited E1/STRESS gates. Executor success is not scientific PASS. Protected 2026 remained unopened. Generation 52 does not retune or rescue R5; it preregisters a genuinely independent structured low-turnover XAU rolling-range breakout family with economic costs built into discovery/confirmation.",
+  "generation": 53,
+  "supersedes_generation": 52,
+  "closure": "R6-XAU-LOW-TURNOVER-BREAKOUT r1 completed executor PASS with 15 discovery passes and 12 isolated-2025 survivors. Scientific output states protected_2026_opened=false, while the generic orchestrator receipt carries protected_2026_untouched=false. Generation 53 does not rerun or retune R6 and does not open 2026; it performs a fail-closed provenance audit of the exact frozen 2024/2025 inputs and artifacts to classify the discrepancy before any OOS gate.",
   "jobs": [
     {
-      "id": "R6-XAU-LOW-TURNOVER-BREAKOUT-PREFLIGHT",
+      "id": "R6-PROVENANCE-INTEGRITY-AUDIT",
       "revision": 1,
       "enabled": true,
-      "priority": 46,
-      "class_key": "r6-xau-low-turnover-breakout-preflight",
-      "description": "Cold methodology/code audit and deterministic no-market-data tests for the preregistered independent R6 structured breakout family. Verifies prior-bar-only breakout references, frozen 384-rule grid, session masks, inherited cost identity, chronological cross-year purge, BH-FDR, deterministic day-block bootstrap and strict 2024/2025 construction order.",
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R5-PRE-OOS-ECONOMIC-ROBUSTNESS",
-          "revision": 2,
-          "accepted_status": ["PASS"]
-        },
-        {
-          "kind": "github_result",
-          "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/r5-pre-oos-economic-robustness/LATEST.json",
-          "accepted_status": ["FAIL"]
-        }
-      ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/test_r6_xau_low_turnover_breakout_v1_00.py",
-        "args": []
-      },
-      "timeout": {
-        "min_seconds": 60,
-        "expected_seconds": 30,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 120,
-        "poll_seconds": 2
-      }
-    },
-    {
-      "id": "R6-XAU-LOW-TURNOVER-BREAKOUT",
-      "revision": 1,
-      "enabled": true,
-      "priority": 47,
-      "class_key": "r6-xau-low-turnover-breakout",
-      "description": "Independent preregistered structured XAU rolling-range breakout family. 384 deterministic definitions; strict 2024 discovery frozen before isolated 2025 confirmation; first-available raw-M1 execution; one-position chronological replay; inherited E1/STRESS costs; day-block bootstrap plus BH-FDR; protected 2026 forbidden.",
+      "priority": 48,
+      "class_key": "r6-provenance-integrity-audit",
+      "description": "Fail-closed audit of R6 provenance. Verify the exact two frozen 2024/2025 input hashes and timestamp bounds, R6 PASS artifact counts, scientific protected_2026_opened=false, and the conflicting generic receipt flag. Classify metadata-only defect only if all independent checks pass. No R6 rerun, no retuning, no protected-2026 access.",
       "data_window": {
         "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -53,29 +18,35 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R6-XAU-LOW-TURNOVER-BREAKOUT-PREFLIGHT",
+          "job_id": "R6-XAU-LOW-TURNOVER-BREAKOUT",
           "revision": 1,
+          "accepted_status": ["PASS"]
+        },
+        {
+          "kind": "github_result",
+          "ref": "origin/backtest-results",
+          "path": "phenomenon-discovery/r6-xau-low-turnover-breakout/LATEST.json",
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r6_xau_low_turnover_breakout_v1_00.py",
+        "path": "research/autonomous/audit_r6_provenance_v1_00.py",
         "args": [
           "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--output-dir", "{ROOT}\\r6_xau_low_turnover_breakout_r1",
-          "--progress-file", "{ROOT}\\progress\\R6-XAU-LOW-TURNOVER-BREAKOUT-R1.json",
+          "--r6-result", "{ROOT}\\r6_xau_low_turnover_breakout_r1\\r6_xau_low_turnover_breakout_result.json",
+          "--r6-receipt", "{ROOT}\\receipts\\R6-XAU-LOW-TURNOVER-BREAKOUT__r1.json",
+          "--output", "{ROOT}\\r6_provenance_audit_r1\\r6_provenance_audit.json",
           "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
-        "min_seconds": 900,
-        "expected_seconds": 2400,
+        "min_seconds": 120,
+        "expected_seconds": 60,
         "eta_multiplier": 2.5,
         "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 600,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R6-XAU-LOW-TURNOVER-BREAKOUT-R1.json"
+        "stale_heartbeat_seconds": 180,
+        "poll_seconds": 2
       }
     }
   ]
