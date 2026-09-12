@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r9-input-integrity",
+  "duration_seconds": 2.0020242000027793,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T23:14:33.702972+00:00",
+  "job_id": "R9-BTC-ETH-CALENDAR-SESSION-INPUT-GATE",
+  "main_commit": "a0cf46c9c2742ab050fcc02641c225bf78aa3f03",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T23:14:31.677814+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"note\": \"byte hashes only; no market rows or 2026 data inspected\", \"pinned_inputs\": {\"BTCUSDT_spot_5m_2017_2025.csv\": \"75d0d48dcfa7e649192d1eb2c96e89a591aa49bcfac11d394a1f84113264f6e8\", \"ETHUSDT_spot_5m_2017_2025.csv\": \"21b170675eae6bd2e3d442391e2acb9392abdff443f517b5cb0ee1946a12aa13\"}, \"status\": \"PASS\"}"
+}
