@@ -1,33 +1,27 @@
 {
   "schema": 1,
-  "generation": 68,
-  "supersedes_generation": 67,
-  "closure": "R7 long-history factory completed scientifically PASS with 8 frozen pre-OOS survivors and protected 2026 untouched. Before any protected-OOS consideration, run the preregistered reject-only non-overlap/economic robustness screen over 2018-2025. No 2026 access is authorized.",
+  "generation": 69,
+  "supersedes_generation": 68,
+  "closure": "R7 pre-OOS economic robustness is scientific FAIL: 0/8 frozen candidates survived non-overlap and 10/20 bps reject-only cost gates. R7 is closed without rescue and protected 2026 remains untouched. R8 is a genuinely independent BTC/ETH market-neutral relative-value mean-reversion family using synchronized H1 pair dynamics rather than R7 single-market directional feature tails.",
   "jobs": [
     {
-      "id": "R7-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT",
+      "id": "R8-BTC-ETH-RELATIVE-VALUE-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r7-pre-oos-economic-robustness-preflight",
-      "description": "Run deterministic cold-audit regression tests for R7 non-overlap semantics, cost accounting, year/protected boundaries and drawdown accounting. No market-data discovery and no 2026 access.",
+      "class_key": "r8-relative-value-preflight",
+      "description": "Run deterministic no-market-data regression tests for prior-bar z-score timing, next-open execution, pair PnL signs, costs, one-position semantics, gap fail-closed behavior, calendar-year purge and protected-2026 rejection.",
       "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R7-LONG-HISTORY-FACTORY",
-          "revision": 1,
-          "accepted_status": ["PASS"]
-        },
         {
           "kind": "github_result",
           "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/r7-long-history-causal-factory/LATEST.json",
-          "accepted_status": ["PASS"]
+          "path": "phenomenon-discovery/r7-pre-oos-economic-robustness/LATEST.json",
+          "accepted_status": ["FAIL"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r7_pre_oos_economic_robustness_v1_00.py",
+        "path": "research/autonomous/test_r8_btc_eth_relative_value_v1_00.py",
         "args": []
       },
       "timeout": {
@@ -40,12 +34,12 @@
       }
     },
     {
-      "id": "R7-PRE-OOS-ECONOMIC-ROBUSTNESS",
+      "id": "R8-BTC-ETH-RELATIVE-VALUE",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r7-pre-oos-economic-robustness",
-      "description": "Evaluate the eight frozen R7 finalists using one-position-at-a-time causal trades, fixed 10/20 bps round-trip cost sensitivity, long-history/year/half-year/concentration diagnostics and frozen reject-only gates. Protected 2026 forbidden.",
+      "class_key": "r8-relative-value",
+      "description": "Execute preregistered R8 BTC/ETH H1 relative-value mean-reversion: 54 frozen definitions, 2018-22 discovery, frozen 2023-24 confirmation, frozen 2025 pre-OOS gate, costs built in, protected 2026 forbidden.",
       "data_window": {
         "start": "2017-08-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -53,29 +47,21 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R7-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT",
+          "job_id": "R8-BTC-ETH-RELATIVE-VALUE-PREFLIGHT",
           "revision": 1,
-          "accepted_status": ["PASS"]
-        },
-        {
-          "kind": "github_result",
-          "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/r7-long-history-causal-factory/LATEST.json",
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r7_pre_oos_economic_robustness_v1_00.py",
+        "path": "research/autonomous/r8_btc_eth_relative_value_v1_00.py",
         "args": [
           "--data-dir",
           "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
-          "--factory-result",
-          "{ROOT}\\r7_long_history_factory_v1\\r7_long_history_causal_factory_result.json",
           "--output-dir",
-          "{ROOT}\\r7_pre_oos_economic_robustness_v1",
+          "{ROOT}\\r8_btc_eth_relative_value_v1",
           "--progress-file",
-          "{ROOT}\\progress\\R7-PRE-OOS-ECONOMIC-ROBUSTNESS-R1.json",
+          "{ROOT}\\progress\\R8-BTC-ETH-RELATIVE-VALUE-R1.json",
           "--publisher",
           "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
@@ -87,7 +73,7 @@
         "history_p95_multiplier": 3,
         "stale_heartbeat_seconds": 900,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R7-PRE-OOS-ECONOMIC-ROBUSTNESS-R1.json"
+        "progress_file": "{ROOT}\\progress\\R8-BTC-ETH-RELATIVE-VALUE-R1.json"
       }
     }
   ]
