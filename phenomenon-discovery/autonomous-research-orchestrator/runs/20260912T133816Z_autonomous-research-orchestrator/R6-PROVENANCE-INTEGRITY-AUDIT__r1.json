@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r6-provenance-integrity-audit",
+  "duration_seconds": 16.009213100000125,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T13:38:15.953587+00:00",
+  "job_id": "R6-PROVENANCE-INTEGRITY-AUDIT",
+  "main_commit": "4056139b65c081b884bffdbadbed798691834ba8",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T13:37:59.868413+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"verdict\": \"PASS_METADATA_MAPPING_DEFECT\", \"survivors_frozen\": 12, \"protected_2026_opened\": false}"
+}

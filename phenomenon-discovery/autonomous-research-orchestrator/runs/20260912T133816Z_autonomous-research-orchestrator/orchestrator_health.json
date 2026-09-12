@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R6-PROVENANCE-INTEGRITY-AUDIT__r1.json",
+  "main_commit": "4056139b65c081b884bffdbadbed798691834ba8",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T13:38:15.957960+00:00",
+  "version": "1.01"
+}
