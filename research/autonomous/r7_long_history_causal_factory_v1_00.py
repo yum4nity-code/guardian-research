@@ -8,6 +8,7 @@ import math
 import os
 import random
 import subprocess
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -200,6 +201,8 @@ def main() -> int:
     ap.add_argument("--seed", type=int, default=260912)
     ap.add_argument("--publisher")
     args = ap.parse_args()
+    if args.trials != 50000 or args.seed != 260912:
+        raise ValueError("R7 v1.00 search size and seed are frozen by preregistration")
 
     data_dir = Path(args.data_dir)
     out = Path(args.output_dir)
