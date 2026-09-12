@@ -1,16 +1,16 @@
 {
   "schema": 1,
-  "generation": 61,
-  "supersedes_generation": 60,
-  "closure": "Owner explicitly requested a retrospective 2017-through-July-2026 backtest of the two best candidates from today's research and maximum diagnostics before considering an EA. R6 protected OOS r5 is complete. The selected pair is R6B-347 and R6B-307: R6B-347 has the strongest combined 2024-2025 evidence and strongest positive Jan-Aug-2026 STRESS result among today's positive R6 candidates; R6B-307 has the strongest Jan-Aug-2026 E1 PF among the positive R6 candidates and a comparatively smaller H2 deterioration. R5E-023 is not selected because its valid protected OOS had negative STRESS and severe May-Aug deterioration. Generation 61 is descriptive/post-selection only: exact parameters are frozen, no tuning, no sizing optimization and no live deployment. It first cold-audits the setup, then exports read-only FundedNext XAUUSD M1/M5 history in monthly chunks for 2017-01-01 through 2026-08-01 exclusive with canonical 2024-2026 reconciliation, then computes full, yearly, monthly, rolling, concentration, drawdown/streak, cost-stress and pair diagnostics.",
+  "generation": 62,
+  "supersedes_generation": 61,
+  "closure": "Generation 61 did not launch a Strategy Tester backtest. Its first data-export stage merely initialized the FundedNext terminal through the Python MT5 API and failed immediately because 2017 M1 history was not available through copy_rates_range. Owner explicitly noticed the mismatch. Generation 62 corrects the execution method: it uses the actual MetaTrader 5 Strategy Tester from the FundedNext installation for frozen R6B-347 and R6B-307, one candidate per run, M1 tester period, 1-minute OHLC modelling, 2016-12 warmup, active strategy window 2017-01-01 through 2026-07-31, optimization disabled. The harness can place orders only when MQL_TESTER is true; live trading is disabled in the launch config. It refuses to stop or reuse an already-open FundedNext terminal and waits up to 20 minutes for the visible terminal to be closed. After both tester runs, an analyzer computes full/year/month/rolling PF/net/DD/streak and pair diagnostics. No parameter tuning.",
   "jobs": [
     {
-      "id": "TOP2-XAU-LONG-HISTORY-PREFLIGHT",
+      "id": "TOP2-XAU-MT5-STRATEGY-TESTER-PREFLIGHT",
       "revision": 1,
       "enabled": true,
-      "priority": 60,
-      "class_key": "top2-xau-long-history-preflight",
-      "description": "Cold audit only. Verifies exact frozen R6B-347/R6B-307 definitions, 2017-through-July-2026 window, no optimization/live action, canonical overlap reconciliation requirements, news-mask semantics and generic historical replay behavior. No market data access.",
+      "priority": 63,
+      "class_key": "top2-xau-mt5-strategy-tester-preflight",
+      "description": "Cold static audit of the two actual MT5 Strategy Tester harnesses and launcher. Confirms exact frozen R6B-347/R6B-307 parameters, tester-only order guard, 2017-Jul2026 active interval, optimization disabled, M1/1-minute-OHLC tester configuration, and safe refusal to terminate an already-open FundedNext terminal.",
       "requires": [
         {
           "kind": "receipt",
@@ -21,7 +21,7 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_top2_xau_long_history_v1_00.py",
+        "path": "research/autonomous/test_top2_xau_mt5_strategy_tester_v1_00.py",
         "args": []
       },
       "timeout": {
@@ -34,91 +34,73 @@
       }
     },
     {
-      "id": "TOP2-XAU-LONG-HISTORY-MARKET-EXPORT",
+      "id": "TOP2-XAU-MT5-STRATEGY-TESTER",
       "revision": 1,
       "enabled": true,
-      "priority": 61,
-      "class_key": "top2-xau-long-history-market-export",
-      "description": "Read-only XAUUSD M1/M5 export from FundedNext-Server 2 for 2017-01-01 through 2026-08-01 exclusive, requested in monthly chunks. Fails closed unless 2024-2025 and Jan-Jul-2026 OHLC/time overlap reconcile with the frozen canonical datasets already used today. No trading action.",
+      "priority": 64,
+      "class_key": "top2-xau-mt5-strategy-tester",
+      "description": "Run real MetaTrader 5 Strategy Tester backtests on FundedNext for frozen R6B-347 then R6B-307. The tester downloads missing history as needed. Orders are confined to MQL_TESTER, optimization is off, 1-minute OHLC is sufficient because signals use closed M5 bars and entries/exits occur on M1 opens. The harness never deploys to a live chart or live account.",
       "data_window": {
-        "start": "2017-01-01T00:00:00Z",
+        "start": "2016-12-01T00:00:00Z",
         "end_exclusive": "2026-08-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "TOP2-XAU-LONG-HISTORY-PREFLIGHT",
+          "job_id": "TOP2-XAU-MT5-STRATEGY-TESTER-PREFLIGHT",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
-        "kind": "python",
-        "path": "research/autonomous/top2_xau_long_history_market_export_v1_00.py",
+        "kind": "powershell",
+        "path": "research/autonomous/run_top2_xau_mt5_strategy_tester_v1_00.ps1",
         "args": [
-          "--terminal-exe", "D:\\MT5_FundedNext\\terminal64.exe",
-          "--symbol", "XAUUSD",
-          "--required-server", "FundedNext-Server 2",
-          "--start", "2017-01-01T00:00:00Z",
-          "--end-exclusive", "2026-08-01T00:00:00Z",
-          "--output-dir", "{ROOT}\\top2_xau_long_history_data_v1",
-          "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--phase-if-common", "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if",
-          "--progress-file", "{ROOT}\\progress\\TOP2-XAU-LONG-HISTORY-MARKET-EXPORT-R1.json"
+          "-TerminalExe", "D:\\MT5_FundedNext\\terminal64.exe",
+          "-OutputDir", "{ROOT}\\top2_mt5_strategy_tester_v1",
+          "-ProgressFile", "{ROOT}\\progress\\TOP2-XAU-MT5-STRATEGY-TESTER-R1.json"
         ]
       },
       "timeout": {
-        "min_seconds": 1800,
-        "expected_seconds": 1800,
-        "eta_multiplier": 3.0,
+        "min_seconds": 14400,
+        "expected_seconds": 3600,
+        "eta_multiplier": 4.0,
         "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 600,
+        "stale_heartbeat_seconds": 900,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\TOP2-XAU-LONG-HISTORY-MARKET-EXPORT-R1.json"
+        "progress_file": "{ROOT}\\progress\\TOP2-XAU-MT5-STRATEGY-TESTER-R1.json"
       }
     },
     {
-      "id": "TOP2-XAU-LONG-HISTORY-BACKTEST",
+      "id": "TOP2-XAU-MT5-STRATEGY-TESTER-ANALYSIS",
       "revision": 1,
       "enabled": true,
-      "priority": 62,
-      "class_key": "top2-xau-long-history-backtest",
-      "description": "Post-selection descriptive characterization of frozen R6B-347 and R6B-307 across 2017 through July 2026. Computes raw-full-history and hybrid-canonical variants, exact 2024-2025 replay parity, E1/STRESS full/year/month/rolling metrics, best-trade concentration, drawdown/streaks, recent decay, positive-year fractions and pair correlation. No tuning and no live deployment.",
-      "data_window": {
-        "start": "2017-01-01T00:00:00Z",
-        "end_exclusive": "2026-08-01T00:00:00Z"
-      },
+      "priority": 65,
+      "class_key": "top2-xau-mt5-strategy-tester-analysis",
+      "description": "Analyze the actual MT5 tester trade CSVs for both candidates: full net/PF/win rate/drawdown/ex-best-trade, yearly and monthly stability, rolling 6m/12m windows, streaks, Jan-Jul 2026 behavior, monthly correlation and a simple equal-1-lot combined diagnostic. Descriptive only; no retuning or live deployment.",
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "TOP2-XAU-LONG-HISTORY-MARKET-EXPORT",
+          "job_id": "TOP2-XAU-MT5-STRATEGY-TESTER",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/top2_xau_long_history_backtest_v1_00.py",
+        "path": "research/autonomous/analyze_top2_xau_mt5_strategy_tester_v1_00.py",
         "args": [
-          "--preregistration", "{DEPLOY}\\research\\autonomous\\top2_xau_long_history_preregistration_v1.json",
-          "--market-dir", "{ROOT}\\top2_xau_long_history_data_v1",
-          "--market-manifest", "{ROOT}\\top2_xau_long_history_data_v1\\top2_long_history_market_manifest.json",
-          "--mask-2024-2025", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ia_v1\\phase_ia_xauusd_merged_news_mask_2024_2025.csv",
-          "--mask-2026", "{ROOT}\\phase_if_2026\\phase_if_xauusd_merged_news_mask_2026_jan_aug.csv",
-          "--r6-result", "{ROOT}\\r6_xau_low_turnover_breakout_r1\\r6_xau_low_turnover_breakout_result.json",
-          "--output-dir", "{ROOT}\\top2_xau_long_history_result_v1",
-          "--progress-file", "{ROOT}\\progress\\TOP2-XAU-LONG-HISTORY-BACKTEST-R1.json",
-          "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
+          "--input-dir", "{ROOT}\\top2_mt5_strategy_tester_v1",
+          "--output-dir", "{ROOT}\\top2_mt5_strategy_tester_analysis_v1"
         ]
       },
       "timeout": {
-        "min_seconds": 1200,
-        "expected_seconds": 900,
+        "min_seconds": 120,
+        "expected_seconds": 60,
         "eta_multiplier": 3.0,
         "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 600,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\TOP2-XAU-LONG-HISTORY-BACKTEST-R1.json"
+        "stale_heartbeat_seconds": 120,
+        "poll_seconds": 2
       }
     }
   ]
