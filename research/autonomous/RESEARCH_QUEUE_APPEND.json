@@ -2,77 +2,142 @@
   "schema": 1,
   "generation": 67,
   "supersedes_generation": 66,
-  "closure": "Generation 66 published the generation-65 time-alignment diagnostic. Cold inspection found that its nearest-offset calculation mixed pandas integer datetime storage resolution with Timestamp.value nanoseconds, a known infrastructure regression class; therefore its ~-473k to -482k hour offsets are invalid evidence. Preserve the frozen R6 hypotheses. Run a deterministic resolution-safety regression test, then recompute and publish only the 2024/2025 timestamp diagnostic. Do not replay MT5 and do not access 2026 until the corrected diagnostic is reconciled.",
+  "closure": "Generation 66 published the completed R6/MT5 time-alignment diagnostic. R6 remains scientifically closed. Start R7 under the mandatory long-history-first protocol: preflight, acquire official BTCUSDT/ETHUSDT 5m history on D:, then run the frozen 2017-2022 discovery -> 2023-2024 confirmation -> 2025 pre-OOS gate. 2026 remains unopened.",
   "jobs": [
     {
-      "id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-R2-PREFLIGHT",
+      "id": "R7-LONG-HISTORY-DATA-PREFLIGHT",
       "revision": 1,
       "enabled": true,
-      "priority": 72,
-      "class_key": "top2-xau-mt5-time-alignment-diagnostic-preflight",
-      "description": "Deterministic regression test for the generation-65 pandas datetime-resolution bug. Verify nanosecond normalization across datetime64[us] and datetime64[ns], exact shifted pair matching, frozen R6 candidate ids and 2024/2025-only scope. No market-data inspection and no 2026 access.",
-      "data_window": {
-        "start": "2024-01-01T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-PUBLISH",
-          "revision": 1,
-          "accepted_status": ["PASS"]
-        }
-      ],
+      "priority": 10,
+      "class_key": "r7-long-history-data-preflight",
+      "description": "Run the audited offline regression tests for the R7 official-history data builder. No network or protected market data access.",
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_diagnose_top2_mt5_time_alignment_v1_01.py",
+        "path": "research/autonomous/test_r7_long_history_data_v1_00.py",
         "args": []
       },
       "timeout": {
-        "min_seconds": 120,
+        "min_seconds": 300,
         "expected_seconds": 30,
-        "eta_multiplier": 3.0,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 120,
+        "eta_multiplier": 3,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 300,
         "poll_seconds": 2
       }
     },
     {
-      "id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC",
-      "revision": 2,
+      "id": "R7-LONG-HISTORY-FACTORY-PREFLIGHT",
+      "revision": 1,
       "enabled": true,
-      "priority": 73,
-      "class_key": "top2-xau-mt5-time-alignment-diagnostic",
-      "description": "Recompute the existing TOP2 2024/2025 infrastructure timestamp-alignment diagnostic with resolution-safe nanosecond normalization, timestamp range/dtype provenance, and direct publication to backtest-results. Frozen R6 rules and canonical inputs are unchanged. No MT5 replay, no tuning, no 2026 access.",
+      "priority": 11,
+      "class_key": "r7-long-history-factory-preflight",
+      "description": "Run the audited offline causality, gap, resampling, year-boundary, selection-freeze and protected-period regression tests for R7.",
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/test_r7_long_history_causal_factory_v1_00.py",
+        "args": []
+      },
+      "timeout": {
+        "min_seconds": 300,
+        "expected_seconds": 30,
+        "eta_multiplier": 3,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 300,
+        "poll_seconds": 2
+      }
+    },
+    {
+      "id": "R7-LONG-HISTORY-DATA",
+      "revision": 1,
+      "enabled": true,
+      "priority": 20,
+      "class_key": "r7-long-history-official-data",
+      "description": "Acquire and validate the frozen BTCUSDT/ETHUSDT official Binance Data Vision 5m history from 2017-08 through 2025-12 on D:. Record SHA-256 provenance and gaps. Never access 2026.",
       "data_window": {
-        "start": "2024-01-01T00:00:00Z",
+        "start": "2017-08-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-R2-PREFLIGHT",
+          "job_id": "R7-LONG-HISTORY-DATA-PREFLIGHT",
           "revision": 1,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/diagnose_top2_mt5_time_alignment_v1_01.py",
+        "path": "research/autonomous/r7_long_history_data_v1_00.py",
         "args": [
-          "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--mt5-dir", "{ROOT}\\top2_mt5_strategy_tester_v1",
-          "--output", "{ROOT}\\diagnostics\\top2_mt5_time_alignment_v2.json",
-          "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
+          "--output-dir",
+          "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
+          "--progress-file",
+          "{ROOT}\\progress\\R7-LONG-HISTORY-DATA-R1.json"
         ]
       },
       "timeout": {
-        "min_seconds": 300,
-        "expected_seconds": 180,
-        "eta_multiplier": 3.0,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 300,
-        "poll_seconds": 3
+        "min_seconds": 7200,
+        "expected_seconds": 1800,
+        "eta_multiplier": 4,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 900,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\R7-LONG-HISTORY-DATA-R1.json"
+      }
+    },
+    {
+      "id": "R7-LONG-HISTORY-FACTORY",
+      "revision": 1,
+      "enabled": true,
+      "priority": 30,
+      "class_key": "r7-long-history-causal-factory",
+      "description": "Run the frozen 50,000-rule BTC/ETH M15/H1 causal long-history factory: 2017-22 discovery, 2023-24 independent confirmation, 2025 pre-OOS gate. Survivors are candidates only; no EA/live promotion.",
+      "data_window": {
+        "start": "2017-08-01T00:00:00Z",
+        "end_exclusive": "2026-01-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "R7-LONG-HISTORY-DATA",
+          "revision": 1,
+          "accepted_status": [
+            "PASS"
+          ]
+        },
+        {
+          "kind": "receipt",
+          "job_id": "R7-LONG-HISTORY-FACTORY-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": [
+            "PASS"
+          ]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/r7_long_history_causal_factory_v1_00.py",
+        "args": [
+          "--data-dir",
+          "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
+          "--output-dir",
+          "{ROOT}\\r7_long_history_factory_v1",
+          "--progress-file",
+          "{ROOT}\\progress\\R7-LONG-HISTORY-FACTORY-R1.json",
+          "--publisher",
+          "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 21600,
+        "expected_seconds": 7200,
+        "eta_multiplier": 3,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 1800,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\R7-LONG-HISTORY-FACTORY-R1.json"
       }
     }
   ]
