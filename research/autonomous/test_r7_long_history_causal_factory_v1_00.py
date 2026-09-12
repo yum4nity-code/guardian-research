@@ -54,6 +54,13 @@ def main() -> int:
     gr = r7.causal_return(gap, gatr, 1, 1, "M15")
     assert np.isnan(gr[0])
 
+    # Path-dependent features must reset after a gap instead of bridging it.
+    long_df = frame("2020-01-01", 240, "15min")
+    long_gap = long_df.drop(index=[120]).reset_index(drop=True)
+    gap_ft, _ = r7.features_contiguous(long_gap, "M15")
+    after_gap = long_gap.index[long_gap["time"] == pd.Timestamp("2020-01-02T06:15:00Z")][0]
+    assert np.isnan(gap_ft.loc[after_gap, "sma100"])
+
     # Holding paths crossing a year boundary fail closed.
     ydf = frame("2020-12-31 23:30", 6, "15min")
     yatr = pd.Series(np.ones(len(ydf)))
@@ -79,7 +86,7 @@ def main() -> int:
         except RuntimeError as exc:
             assert "protected 2026 row" in str(exc)
 
-    print('{"status":"PASS","tests":9,"protected_market_data_access":false}')
+    print('{"status":"PASS","tests":10,"protected_market_data_access":false}')
     return 0
 
 
