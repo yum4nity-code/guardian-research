@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 360.0,
+  "class_key": "top2-xau-mt5-time-alignment-diagnostic",
+  "duration_seconds": 6.004538000001048,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T17:29:22.534903+00:00",
+  "job_id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC",
+  "main_commit": "768cdac235c61f612affccf54a653672f4255e01",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T17:29:16.479849+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"protected_2026_opened\": false, \"output\": \"D:\\\\MT5_Backtests\\\\Research\\\\Autonomous\\\\diagnostics\\\\top2_mt5_time_alignment_v1.json\"}"
+}
