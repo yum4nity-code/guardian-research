@@ -1,16 +1,16 @@
 {
   "schema": 1,
-  "generation": 54,
-  "supersedes_generation": 53,
-  "closure": "R6 provenance audit r1 passed and classified the receipt discrepancy as a metadata mapping defect while independently confirming the frozen 2024/2025 inputs and 12 survivors. Human authorization for protected 2026 OOS was explicitly granted on 2026-09-12. Generation 54 preregisters fixed OOS gates, runs a no-market-data cold preflight, then evaluates exactly the 12 frozen R6 candidates on protected 2026 with no retuning and no live deployment.",
+  "generation": 55,
+  "supersedes_generation": 54,
+  "closure": "R6 protected-2026 OOS preflight r1 failed before any market-data access because the cold test asserted that the preregistration policy string fail_closed_if_not_exactly_one_file_per_timeframe must literally appear in executor source. The executor already implements the frozen ambiguity policy semantically by raising unless exactly one matching CSV exists. Generation 55 is an infrastructure-only repair: preflight r2 replaces the brittle source-token assertion with deterministic temporary-file tests for unique, duplicate and missing inputs, while preserving the same committed preregistration, 12 frozen candidates, fixed OOS gates and human authorization. Protected 2026 remains untouched until repaired preflight PASS.",
   "jobs": [
     {
       "id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
-      "revision": 1,
+      "revision": 2,
       "enabled": true,
       "priority": 49,
       "class_key": "r6-protected-2026-oos-preflight",
-      "description": "Cold deterministic preflight for the human-authorized protected-2026 R6 OOS. Verifies frozen 12-candidate contract, fixed preregistered thresholds, fail-closed input selection, no retuning hooks and deterministic candidate fingerprint. Must not access market data.",
+      "description": "Infrastructure-only repair of cold deterministic preflight for the human-authorized protected-2026 R6 OOS. Verifies frozen 12-candidate contract, fixed preregistered thresholds, semantic fail-closed input selection using synthetic temporary filenames only, no retuning hooks and deterministic candidate fingerprint. Must not access market data.",
       "requires": [
         {
           "kind": "receipt",
@@ -21,7 +21,7 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r6_protected_2026_oos_v1_00.py",
+        "path": "research/autonomous/test_r6_protected_2026_oos_v1_01.py",
         "args": []
       },
       "timeout": {
@@ -35,11 +35,11 @@
     },
     {
       "id": "R6-PROTECTED-2026-OOS",
-      "revision": 1,
+      "revision": 2,
       "enabled": true,
       "priority": 50,
       "class_key": "r6-protected-2026-oos",
-      "description": "Human-authorized protected 2026 OOS for exactly the 12 frozen R6 breakout survivors. Fixed preregistered post-cost gates, BH-FDR and deterministic day-block bootstrap. No parameter changes, no rescue, no retuning, no live deployment.",
+      "description": "Same frozen human-authorized protected 2026 OOS as r1, revisioned only because the prerequisite preflight infrastructure was repaired. Evaluates exactly the 12 frozen R6 breakout survivors under the already committed post-cost gates, BH-FDR and deterministic day-block bootstrap. No parameter changes, no rescue, no retuning, no live deployment.",
       "data_window": {
         "start": "2026-01-01T00:00:00Z",
         "end_exclusive": "2027-01-01T00:00:00Z"
@@ -48,7 +48,7 @@
         {
           "kind": "receipt",
           "job_id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
-          "revision": 1,
+          "revision": 2,
           "accepted_status": ["PASS"]
         }
       ],
@@ -59,8 +59,8 @@
           "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
           "--r6-result", "{ROOT}\\r6_xau_low_turnover_breakout_r1\\r6_xau_low_turnover_breakout_result.json",
           "--preregistration", "{DEPLOY}\\research\\autonomous\\r6_oos_2026_preregistration_v1.json",
-          "--output-dir", "{ROOT}\\r6_protected_2026_oos_r1",
-          "--progress-file", "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R1.json",
+          "--output-dir", "{ROOT}\\r6_protected_2026_oos_r2",
+          "--progress-file", "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R2.json",
           "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
@@ -71,7 +71,7 @@
         "history_p95_multiplier": 3.0,
         "stale_heartbeat_seconds": 300,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R1.json"
+        "progress_file": "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R2.json"
       }
     }
   ]
