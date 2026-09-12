@@ -13,11 +13,11 @@ That dated handoff is the canonical source for the current R4/R5 research state.
 - R4 causal-capture forensic audit: **PASS_INTERPRETABLE**.
 - R4 close-to-close family: **CLOSED**.
 - Main finding: about **99.5% of the B→C degradation is ENTRY_DELTA**, meaning most of the apparent R4 edge was realized before the first executable entry reference.
-- R5 causal-next-open r2 is the current experiment.
-- Last operator-provided local progress: **100,000 / 150,000** discovery trials, **4,088** 2024 discovery candidates, still in `discovery_2024_causal_next_open`.
-- Reaching 150,000/150,000 only finishes 2024 discovery. The same run must still complete 2025 confirmation before it is finished.
-- GitHub autonomous append queue is **generation 46**. R5 preflight r2 and R5 r2 are enabled again at the operator's request. The current R5 r2 child was already running and must be allowed to finish normally.
-- No additional downstream research phase is authorized by this queue change; after R5 completion, perform the mandatory cold audit before adding/enabling new work.
+- R5 causal-next-open r2 is **complete: PASS**, with **5,661 discovery candidates and 96 frozen 2025-confirmed survivors** after HAC/BH-FDR, four-quarter positivity and adjacent-quantile robustness.
+- R5 is still **not scientifically accepted for promotion** until the post-result cold execution/provenance audit passes.
+- Cold-audit preflight r1 and r2 both failed **before market-data access** on timestamp-unit infrastructure handling; these are not scientific FAILs.
+- Queue is now **generation 49**. Immutable preflight r3 + cold-audit r3 are queued with explicit pandas `as_unit('ns')` timestamp normalization and ns/us/ms invariance tests.
+- No downstream research phase is authorized until the cold audit completes cleanly. Protected 2026 remains forbidden.
 - Do not use Codex for this workflow unless the operator explicitly changes that decision.
 - Do not deploy live.
 - Do not open protected 2026 OOS without explicit owner approval and preregistration.
