@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R6-XAU-LOW-TURNOVER-BREAKOUT__r1.json",
+  "main_commit": "6555969c81fb97280a274c0ed62ed61d5812bb31",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T12:02:26.105370+00:00",
+  "version": "1.01"
+}
