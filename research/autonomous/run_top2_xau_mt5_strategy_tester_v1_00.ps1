@@ -136,7 +136,16 @@ if(-not (Test-Path -LiteralPath $MetaEditor)){ throw "MetaEditor missing: $MetaE
 
 $existing = @(Get-SameTerminalProcess $TerminalExe)
 if($existing.Count -gt 0) {
-    throw "FundedNext terminal is already open (PID(s): $($existing.Id -join ',')). Close that window first; this harness refuses to stop or reuse a live terminal."
+    $deadlineIdle = (Get-Date).AddMinutes(20)
+    while((Get-Date) -lt $deadlineIdle -and @(Get-SameTerminalProcess $TerminalExe).Count -gt 0) {
+        $pids = @((Get-SameTerminalProcess $TerminalExe) | ForEach-Object { $_.Id })
+        Write-Progress 0 4 "waiting_for_fundednext_terminal_to_close" @{pids=($pids -join ','); action="Close the visible FundedNext terminal. The harness will not terminate it."}
+        Start-Sleep -Seconds 3
+    }
+    $existing = @(Get-SameTerminalProcess $TerminalExe)
+    if($existing.Count -gt 0) {
+        throw "FundedNext terminal remained open for 20 minutes. Harness refused to stop or reuse it."
+    }
 }
 
 New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
