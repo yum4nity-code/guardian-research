@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R7-LONG-HISTORY-FACTORY__r1.json",
+  "main_commit": "282b1c2044d82389d5288805a132ae5dd5fb21e9",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T21:12:47.759382+00:00",
+  "version": "1.01"
+}
