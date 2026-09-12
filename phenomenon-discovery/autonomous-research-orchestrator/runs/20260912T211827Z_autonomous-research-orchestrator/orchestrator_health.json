@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R7-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT__r1.json",
+  "main_commit": "2c0b8d8f8a5d2dff2cf6de3000bc23972608f3b0",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T21:18:27.665476+00:00",
+  "version": "1.01"
+}
