@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 75.0,
+  "class_key": "r5-post-result-cold-audit-preflight",
+  "duration_seconds": 4.006205599987879,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T01:04:24.692057+00:00",
+  "job_id": "R5-POST-RESULT-COLD-AUDIT-PREFLIGHT",
+  "main_commit": "e0659a0863f730b275d6e53087684c87763a3cf7",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 3,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T01:04:20.615389+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{'status': 'PASS', 'tests': 5, 'market_data_access': False, 'scientific_protocol_changed': False}"
+}
