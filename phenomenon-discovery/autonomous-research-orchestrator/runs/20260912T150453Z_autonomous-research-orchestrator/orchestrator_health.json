@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "TOP2-XAU-MT5-STRATEGY-TESTER",
+    "revision": 1
+  },
+  "main_commit": "fc46a899fc81204ea9725c7af51648745d0eae83",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 62,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T15:04:53.396004+00:00",
+  "version": "1.01"
+}
