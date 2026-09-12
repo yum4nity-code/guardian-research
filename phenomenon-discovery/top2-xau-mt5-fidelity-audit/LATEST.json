@@ -1,0 +1,16 @@
+{
+  "artifacts": [
+    {
+      "name": "top2_mt5_fidelity_audit.json",
+      "sha256": "d8c32ddf49bdf9dac810ee291be4970fa4d2dc766d41528b14467dc69fd85f55",
+      "size_bytes": 3135
+    }
+  ],
+  "generated_at_utc": "2026-09-12T15:46:07.392412+00:00",
+  "phase": "top2-xau-mt5-fidelity-audit",
+  "published_run_path": "phenomenon-discovery/top2-xau-mt5-fidelity-audit/runs/20260912T154607Z_top2-xau-mt5-fidelity-audit",
+  "schema": 1,
+  "source_commit": "3dd467d8c5020a78c88c99bcf27a33960e14c967",
+  "status": "FAIL",
+  "summary": "FAIL_FIDELITY_MISMATCH; 2026 not opened by this audit."
+}

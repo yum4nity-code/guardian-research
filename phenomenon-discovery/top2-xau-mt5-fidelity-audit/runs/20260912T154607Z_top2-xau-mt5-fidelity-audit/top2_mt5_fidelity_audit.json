@@ -1,0 +1,89 @@
+{
+  "candidates": {
+    "R6B-307": {
+      "frozen_rule": {
+        "buffer_atr": 0.0,
+        "candidate_id": "R6B-307",
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 48,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "years": {
+        "2024": {
+          "canonical_only_pairs": 95,
+          "canonical_trades": 95,
+          "exact_entry_exit_match_fraction_of_canonical": 0.0,
+          "exact_entry_exit_matches": 0,
+          "exact_entry_match_fraction_of_canonical": 0.0,
+          "exact_entry_matches": 0,
+          "mt5_only_pairs": 164,
+          "mt5_trades": 164,
+          "parity": false
+        },
+        "2025": {
+          "canonical_only_pairs": 106,
+          "canonical_trades": 106,
+          "exact_entry_exit_match_fraction_of_canonical": 0.0,
+          "exact_entry_exit_matches": 0,
+          "exact_entry_match_fraction_of_canonical": 0.0,
+          "exact_entry_matches": 0,
+          "mt5_only_pairs": 182,
+          "mt5_trades": 182,
+          "parity": false
+        }
+      }
+    },
+    "R6B-347": {
+      "frozen_rule": {
+        "buffer_atr": 0.1,
+        "candidate_id": "R6B-347",
+        "direction": 1,
+        "direction_name": "LONG",
+        "horizon_bars": 96,
+        "lookback_bars": 96,
+        "session": "UTC00_08",
+        "session_end": 8,
+        "session_start": 0
+      },
+      "years": {
+        "2024": {
+          "canonical_only_pairs": 95,
+          "canonical_trades": 95,
+          "exact_entry_exit_match_fraction_of_canonical": 0.0,
+          "exact_entry_exit_matches": 0,
+          "exact_entry_match_fraction_of_canonical": 0.0,
+          "exact_entry_matches": 0,
+          "mt5_only_pairs": 152,
+          "mt5_trades": 152,
+          "parity": false
+        },
+        "2025": {
+          "canonical_only_pairs": 106,
+          "canonical_trades": 106,
+          "exact_entry_exit_match_fraction_of_canonical": 0.0,
+          "exact_entry_exit_matches": 0,
+          "exact_entry_match_fraction_of_canonical": 0.0,
+          "exact_entry_matches": 0,
+          "mt5_only_pairs": 152,
+          "mt5_trades": 152,
+          "parity": false
+        }
+      }
+    }
+  },
+  "canonical_inputs": {
+    "xauusd_m1_2024_2025_raw.csv": "f98a395961b27ca9dcb34cffa4ef8dd93720adb70292abf7bc96108667232445",
+    "xauusd_m5_2024_2025_news_clean.csv": "972ecaf6c3cadf7136363f396d7a29e7a6246646b575fad5c3e677036004b503"
+  },
+  "generated_at_utc": "2026-09-12T15:46:05.629905+00:00",
+  "interpretation": "FAIL means the completed MT5 long-history run is descriptive only and must not be used as execution-fidelity validation of the frozen R6 candidates. Repair the harness without changing the candidate definitions.",
+  "phase": "top2-xau-mt5-fidelity-audit",
+  "protected_2026_opened": false,
+  "question": "Does the completed MT5 tester reproduce the exact frozen canonical 2024/2025 R6 trade schedule?",
+  "schema": 1,
+  "scientific_status": "FAIL_FIDELITY_MISMATCH"
+}
