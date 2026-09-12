@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r6-protected-2026-input-infrastructure",
+  "duration_seconds": 5.0018831999987015,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T14:15:08.475054+00:00",
+  "job_id": "R6-PROTECTED-2026-INPUT-PROBE",
+  "main_commit": "280fc327ca4f2652a9558d8e82c5d3dc668da349",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T14:15:03.428523+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"hcc_readable\": true, \"m1_complete\": true, \"m5_complete\": true, \"recommendation\": \"USE_EXISTING_VALIDATED_JAN_AUG_SNAPSHOTS\", \"status\": \"PASS\"}"
+}

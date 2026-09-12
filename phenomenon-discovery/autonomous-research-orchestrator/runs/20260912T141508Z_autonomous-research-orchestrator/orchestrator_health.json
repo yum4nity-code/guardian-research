@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R6-PROTECTED-2026-INPUT-PROBE__r1.json",
+  "main_commit": "280fc327ca4f2652a9558d8e82c5d3dc668da349",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T14:15:08.490584+00:00",
+  "version": "1.01"
+}
