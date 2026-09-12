@@ -1,19 +1,33 @@
 {
   "schema": 1,
-  "generation": 67,
-  "supersedes_generation": 66,
-  "closure": "Generation 66 published the completed R6/MT5 time-alignment diagnostic. R6 remains scientifically closed. Start R7 under the mandatory long-history-first protocol: preflight, acquire official BTCUSDT/ETHUSDT 5m history on D:, then run the frozen 2017-2022 discovery -> 2023-2024 confirmation -> 2025 pre-OOS gate. 2026 remains unopened.",
+  "generation": 68,
+  "supersedes_generation": 67,
+  "closure": "R7 long-history factory completed scientifically PASS with 8 frozen pre-OOS survivors and protected 2026 untouched. Before any protected-OOS consideration, run the preregistered reject-only non-overlap/economic robustness screen over 2018-2025. No 2026 access is authorized.",
   "jobs": [
     {
-      "id": "R7-LONG-HISTORY-DATA-PREFLIGHT",
+      "id": "R7-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r7-long-history-data-preflight",
-      "description": "Run the audited offline regression tests for the R7 official-history data builder. No network or protected market data access.",
+      "class_key": "r7-pre-oos-economic-robustness-preflight",
+      "description": "Run deterministic cold-audit regression tests for R7 non-overlap semantics, cost accounting, year/protected boundaries and drawdown accounting. No market-data discovery and no 2026 access.",
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "R7-LONG-HISTORY-FACTORY",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        },
+        {
+          "kind": "github_result",
+          "ref": "origin/backtest-results",
+          "path": "phenomenon-discovery/r7-long-history-causal-factory/LATEST.json",
+          "accepted_status": ["PASS"]
+        }
+      ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r7_long_history_data_v1_00.py",
+        "path": "research/autonomous/test_r7_pre_oos_economic_robustness_v1_00.py",
         "args": []
       },
       "timeout": {
@@ -26,33 +40,12 @@
       }
     },
     {
-      "id": "R7-LONG-HISTORY-FACTORY-PREFLIGHT",
-      "revision": 1,
-      "enabled": true,
-      "priority": 11,
-      "class_key": "r7-long-history-factory-preflight",
-      "description": "Run the audited offline causality, gap, resampling, year-boundary, selection-freeze and protected-period regression tests for R7.",
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/test_r7_long_history_causal_factory_v1_00.py",
-        "args": []
-      },
-      "timeout": {
-        "min_seconds": 300,
-        "expected_seconds": 30,
-        "eta_multiplier": 3,
-        "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 300,
-        "poll_seconds": 2
-      }
-    },
-    {
-      "id": "R7-LONG-HISTORY-DATA",
+      "id": "R7-PRE-OOS-ECONOMIC-ROBUSTNESS",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r7-long-history-official-data",
-      "description": "Acquire and validate the frozen BTCUSDT/ETHUSDT official Binance Data Vision 5m history from 2017-08 through 2025-12 on D:. Record SHA-256 provenance and gaps. Never access 2026.",
+      "class_key": "r7-pre-oos-economic-robustness",
+      "description": "Evaluate the eight frozen R7 finalists using one-position-at-a-time causal trades, fixed 10/20 bps round-trip cost sensitivity, long-history/year/half-year/concentration diagnostics and frozen reject-only gates. Protected 2026 forbidden.",
       "data_window": {
         "start": "2017-08-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -60,84 +53,41 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R7-LONG-HISTORY-DATA-PREFLIGHT",
+          "job_id": "R7-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT",
           "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
-        }
-      ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/r7_long_history_data_v1_00.py",
-        "args": [
-          "--output-dir",
-          "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
-          "--progress-file",
-          "{ROOT}\\progress\\R7-LONG-HISTORY-DATA-R1.json"
-        ]
-      },
-      "timeout": {
-        "min_seconds": 7200,
-        "expected_seconds": 1800,
-        "eta_multiplier": 4,
-        "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 900,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R7-LONG-HISTORY-DATA-R1.json"
-      }
-    },
-    {
-      "id": "R7-LONG-HISTORY-FACTORY",
-      "revision": 1,
-      "enabled": true,
-      "priority": 30,
-      "class_key": "r7-long-history-causal-factory",
-      "description": "Run the frozen 50,000-rule BTC/ETH M15/H1 causal long-history factory: 2017-22 discovery, 2023-24 independent confirmation, 2025 pre-OOS gate. Survivors are candidates only; no EA/live promotion.",
-      "data_window": {
-        "start": "2017-08-01T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R7-LONG-HISTORY-DATA",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
+          "accepted_status": ["PASS"]
         },
         {
-          "kind": "receipt",
-          "job_id": "R7-LONG-HISTORY-FACTORY-PREFLIGHT",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
+          "kind": "github_result",
+          "ref": "origin/backtest-results",
+          "path": "phenomenon-discovery/r7-long-history-causal-factory/LATEST.json",
+          "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r7_long_history_causal_factory_v1_00.py",
+        "path": "research/autonomous/r7_pre_oos_economic_robustness_v1_00.py",
         "args": [
           "--data-dir",
           "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
+          "--factory-result",
+          "{ROOT}\\r7_long_history_factory_v1\\r7_long_history_causal_factory_result.json",
           "--output-dir",
-          "{ROOT}\\r7_long_history_factory_v1",
+          "{ROOT}\\r7_pre_oos_economic_robustness_v1",
           "--progress-file",
-          "{ROOT}\\progress\\R7-LONG-HISTORY-FACTORY-R1.json",
+          "{ROOT}\\progress\\R7-PRE-OOS-ECONOMIC-ROBUSTNESS-R1.json",
           "--publisher",
           "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
-        "min_seconds": 21600,
-        "expected_seconds": 7200,
+        "min_seconds": 3600,
+        "expected_seconds": 1200,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 1800,
+        "stale_heartbeat_seconds": 900,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R7-LONG-HISTORY-FACTORY-R1.json"
+        "progress_file": "{ROOT}\\progress\\R7-PRE-OOS-ECONOMIC-ROBUSTNESS-R1.json"
       }
     }
   ]
