@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R6-PROVENANCE-INTEGRITY-AUDIT",
+    "revision": 1
+  },
+  "main_commit": "4056139b65c081b884bffdbadbed798691834ba8",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 53,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T13:37:48.258717+00:00",
+  "version": "1.01"
+}
