@@ -1,106 +1,45 @@
 {
   "schema": 1,
-  "generation": 62,
-  "supersedes_generation": 61,
-  "closure": "Generation 61 did not launch a Strategy Tester backtest. Its first data-export stage merely initialized the FundedNext terminal through the Python MT5 API and failed immediately because 2017 M1 history was not available through copy_rates_range. Owner explicitly noticed the mismatch. Generation 62 corrects the execution method: it uses the actual MetaTrader 5 Strategy Tester from the FundedNext installation for frozen R6B-347 and R6B-307, one candidate per run, M1 tester period, 1-minute OHLC modelling, 2016-12 warmup, active strategy window 2017-01-01 through 2026-07-31, optimization disabled. The harness can place orders only when MQL_TESTER is true; live trading is disabled in the launch config. It refuses to stop or reuse an already-open FundedNext terminal and waits up to 20 minutes for the visible terminal to be closed. After both tester runs, an analyzer computes full/year/month/rolling PF/net/DD/streak and pair diagnostics. No parameter tuning.",
+  "generation": 63,
+  "supersedes_generation": 62,
+  "closure": "Generation 62 completed the actual FundedNext MT5 Strategy Tester run and descriptive analysis for frozen R6B-347/R6B-307. Before treating those results as execution-fidelity evidence, generation 63 performs an exact canonical-schedule parity audit on 2024/2025 only. This is required because the completed tester EAs recompute signals on raw MT5 bars whereas the frozen R6 hypothesis was defined on canonical UTC news-clean M5 signals with first-available raw-M1 execution. The audit does not open or inspect protected 2026 and does not retune either candidate. A parity failure classifies generation 62 as descriptive-only infrastructure/fidelity evidence and requires a repaired harness preserving the frozen candidate definitions.",
   "jobs": [
     {
-      "id": "TOP2-XAU-MT5-STRATEGY-TESTER-PREFLIGHT",
+      "id": "TOP2-XAU-MT5-CANONICAL-FIDELITY-AUDIT",
       "revision": 1,
       "enabled": true,
-      "priority": 63,
-      "class_key": "top2-xau-mt5-strategy-tester-preflight",
-      "description": "Cold static audit of the two actual MT5 Strategy Tester harnesses and launcher. Confirms exact frozen R6B-347/R6B-307 parameters, tester-only order guard, 2017-Jul2026 active interval, optimization disabled, M1/1-minute-OHLC tester configuration, and safe refusal to terminate an already-open FundedNext terminal.",
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R6-PROTECTED-2026-OOS",
-          "revision": 5,
-          "accepted_status": ["PASS"]
-        }
-      ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/test_top2_xau_mt5_strategy_tester_v1_00.py",
-        "args": []
-      },
-      "timeout": {
-        "min_seconds": 120,
-        "expected_seconds": 30,
-        "eta_multiplier": 3.0,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 120,
-        "poll_seconds": 2
-      }
-    },
-    {
-      "id": "TOP2-XAU-MT5-STRATEGY-TESTER",
-      "revision": 1,
-      "enabled": true,
-      "priority": 64,
-      "class_key": "top2-xau-mt5-strategy-tester",
-      "description": "Run real MetaTrader 5 Strategy Tester backtests on FundedNext for frozen R6B-347 then R6B-307. The tester downloads missing history as needed. Orders are confined to MQL_TESTER, optimization is off, 1-minute OHLC is sufficient because signals use closed M5 bars and entries/exits occur on M1 opens. The harness never deploys to a live chart or live account.",
+      "priority": 66,
+      "class_key": "top2-xau-mt5-canonical-fidelity-audit",
+      "description": "Recompute the exact frozen R6B-347/R6B-307 canonical 2024/2025 trade schedules from the hash-pinned Phase I-B UTC news-clean M5 source plus raw M1 execution reference, then compare exact entry/exit timestamps against the completed MT5 Strategy Tester trade CSVs. No 2026 access, no parameter changes, no tuning. PASS requires exact schedule parity; FAIL means the prior MT5 long-history run is descriptive only and cannot be used as execution-fidelity validation.",
       "data_window": {
-        "start": "2016-12-01T00:00:00Z",
-        "end_exclusive": "2026-08-01T00:00:00Z"
+        "start": "2024-01-01T00:00:00Z",
+        "end_exclusive": "2026-01-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "TOP2-XAU-MT5-STRATEGY-TESTER-PREFLIGHT",
-          "revision": 1,
-          "accepted_status": ["PASS"]
-        }
-      ],
-      "executor": {
-        "kind": "powershell",
-        "path": "research/autonomous/run_top2_xau_mt5_strategy_tester_v1_00.ps1",
-        "args": [
-          "-TerminalExe", "D:\\MT5_FundedNext\\terminal64.exe",
-          "-OutputDir", "{ROOT}\\top2_mt5_strategy_tester_v1",
-          "-ProgressFile", "{ROOT}\\progress\\TOP2-XAU-MT5-STRATEGY-TESTER-R1.json"
-        ]
-      },
-      "timeout": {
-        "min_seconds": 14400,
-        "expected_seconds": 3600,
-        "eta_multiplier": 4.0,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 900,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\TOP2-XAU-MT5-STRATEGY-TESTER-R1.json"
-      }
-    },
-    {
-      "id": "TOP2-XAU-MT5-STRATEGY-TESTER-ANALYSIS",
-      "revision": 1,
-      "enabled": true,
-      "priority": 65,
-      "class_key": "top2-xau-mt5-strategy-tester-analysis",
-      "description": "Analyze the actual MT5 tester trade CSVs for both candidates: full net/PF/win rate/drawdown/ex-best-trade, yearly and monthly stability, rolling 6m/12m windows, streaks, Jan-Jul 2026 behavior, monthly correlation and a simple equal-1-lot combined diagnostic. Descriptive only; no retuning or live deployment.",
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "TOP2-XAU-MT5-STRATEGY-TESTER",
+          "job_id": "TOP2-XAU-MT5-STRATEGY-TESTER-ANALYSIS",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/analyze_top2_xau_mt5_strategy_tester_v1_00.py",
+        "path": "research/autonomous/audit_top2_mt5_fidelity_vs_canonical_v1_00.py",
         "args": [
-          "--input-dir", "{ROOT}\\top2_mt5_strategy_tester_v1",
-          "--output-dir", "{ROOT}\\top2_mt5_strategy_tester_analysis_v1"
+          "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
+          "--mt5-dir", "{ROOT}\\top2_mt5_strategy_tester_v1",
+          "--output-dir", "{ROOT}\\top2_mt5_fidelity_audit_v1",
+          "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
-        "min_seconds": 120,
-        "expected_seconds": 60,
+        "min_seconds": 300,
+        "expected_seconds": 120,
         "eta_multiplier": 3.0,
         "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 120,
-        "poll_seconds": 2
+        "stale_heartbeat_seconds": 300,
+        "poll_seconds": 3
       }
     }
   ]
