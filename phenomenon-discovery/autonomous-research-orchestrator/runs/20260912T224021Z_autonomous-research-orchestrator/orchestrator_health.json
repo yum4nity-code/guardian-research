@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R8-BTC-ETH-RELATIVE-VALUE",
+    "revision": 1
+  },
+  "main_commit": "deeba7577a131487b1abf0d3bf6401004355ad49",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 69,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T22:40:20.919380+00:00",
+  "version": "1.01"
+}
