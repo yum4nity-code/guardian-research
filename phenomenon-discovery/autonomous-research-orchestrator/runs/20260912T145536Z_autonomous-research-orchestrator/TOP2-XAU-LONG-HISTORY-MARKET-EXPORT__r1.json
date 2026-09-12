@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 5400.0,
+  "class_key": "top2-xau-long-history-market-export",
+  "duration_seconds": 20.00677110000106,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-12T14:55:36.720588+00:00",
+  "job_id": "TOP2-XAU-LONG-HISTORY-MARKET-EXPORT",
+  "main_commit": "d9da59c4b07799f647e2f7f49bcfdd9417d6c1b1",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T14:55:16.647829+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\top2_xau_long_history_market_export_v1_00.py\", line 248, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\top2_xau_long_history_market_export_v1_00.py\", line 187, in main\n    raise RuntimeError(f\"{tf_name} normalized empty for {a}..{b}\")\nRuntimeError: M1 normalized empty for 2017-01-01 00:00:00+00:00..2017-02-01 00:00:00+00:00",
+  "stdout_tail": ""
+}

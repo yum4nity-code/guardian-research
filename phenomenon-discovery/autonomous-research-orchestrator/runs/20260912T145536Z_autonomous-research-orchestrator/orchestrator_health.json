@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\TOP2-XAU-LONG-HISTORY-MARKET-EXPORT__r1.json",
+  "main_commit": "d9da59c4b07799f647e2f7f49bcfdd9417d6c1b1",
+  "pid": 10260,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-12T14:55:36.726351+00:00",
+  "version": "1.01"
+}
