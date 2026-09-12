@@ -1,0 +1,59 @@
+{
+  "schema": 2,
+  "phase": "r6-protected-2026-oos",
+  "version": "2.00",
+  "authorized_by_human": true,
+  "authorized_at_context": "2026-09-12",
+  "family": "R6-XAU-LOW-TURNOVER-BREAKOUT",
+  "frozen_survivor_count": 12,
+  "retuning_allowed": false,
+  "amendment_type": "transport_and_calendar_window_only",
+  "amendment_reason": "Before any R6 2026 candidate metric was computed, OOS r2 failed at input selection. The repository already contained a separately preregistered and provenance-validated Jan-Aug 2026 XAUUSD transport window from Phase I-F. This amendment binds R6 to that pre-existing closed window and explicit snapshot paths; candidate definitions and every statistical/economic pass criterion remain unchanged from v1.",
+  "scientific_evaluation_before_amendment": false,
+  "oos_window": {
+    "start": "2026-01-01T00:00:00Z",
+    "split": "2026-05-01T00:00:00Z",
+    "end_exclusive": "2026-09-01T00:00:00Z",
+    "minimum_overlap_days": 230,
+    "start_must_be_on_or_before": "2026-01-07T00:00:00Z",
+    "end_must_be_on_or_after": "2026-08-25T00:00:00Z"
+  },
+  "inputs": {
+    "m5_csv": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug.csv",
+    "m5_manifest": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug_manifest.txt",
+    "m1_csv": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m1_2026_jan_aug.csv",
+    "m1_manifest": "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m1_2026_jan_aug_manifest.txt",
+    "news_mask": "{ROOT}\\phase_if_2026\\phase_if_xauusd_merged_news_mask_2026_jan_aug.csv",
+    "news_mask_expected_sha256": "8d3eb7dda83376a4bbfd759233465ca6fcd996ef94cc07030369e1d606d2e558",
+    "required_server": "FundedNext-Server 2",
+    "required_terminal_data_path": "D:\\MT5_FundedNext"
+  },
+  "execution": {
+    "signal_timeframe": "M5",
+    "signal_input_semantics": "news-clean M5 matching R6 discovery/confirmation semantics",
+    "execution_timeframe": "M1",
+    "execution_input_semantics": "raw M1",
+    "execution_model": "inherited first-available raw-M1 chronological replay",
+    "cost_profiles": ["E1", "STRESS"],
+    "one_position_chronological_replay": true
+  },
+  "candidate_pass_criteria": {
+    "minimum_full_oos_trades": 18,
+    "minimum_each_temporal_half_trades": 6,
+    "full_e1_net_gt": 0,
+    "full_stress_net_gt": 0,
+    "half1_e1_net_gt": 0,
+    "half2_e1_net_gt": 0,
+    "half1_stress_net_gt": 0,
+    "half2_stress_net_gt": 0,
+    "full_e1_profit_factor_gt": 1.0,
+    "full_e1_net_after_best_positive_trade_removed_gt": 0,
+    "day_block_bootstrap_e1_p05_gt": 0,
+    "bh_fdr_q_lte": 0.05
+  },
+  "family_verdict": {
+    "PASS": "at least one of the 12 frozen candidates passes every preregistered OOS criterion",
+    "FAIL": "zero frozen candidates pass every preregistered OOS criterion"
+  },
+  "interpretation": "This is the first scientific R6 evaluation on protected 2026. PASS is EA-candidate evidence only, never live-deployment authorization. No candidate parameter or gate may be changed after seeing R6 2026 metrics."
+}
