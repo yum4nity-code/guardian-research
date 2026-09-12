@@ -7,6 +7,7 @@ import hashlib
 import io
 import json
 import os
+import shutil
 import time
 import urllib.error
 import urllib.request
@@ -72,7 +73,9 @@ def sha256_file(path: Path) -> str:
 
 def download(url: str, target: Path, retries: int = 4) -> None:
     if target.exists() and target.stat().st_size > 0:
-        return
+        if zipfile.is_zipfile(target):
+            return
+        target.unlink()
     target.parent.mkdir(parents=True, exist_ok=True)
     tmp = target.with_suffix(target.suffix + ".part")
     req = urllib.request.Request(url, headers={"User-Agent": "guardian-research/1.0"})
@@ -181,6 +184,10 @@ def main() -> int:
 
     if args.interval != "5m":
         raise ValueError("R7 v1.00 is preregistered for 5m only")
+    if sorted(args.symbols) != ["BTCUSDT", "ETHUSDT"]:
+        raise ValueError("R7 v1.00 is preregistered for BTCUSDT and ETHUSDT only")
+    if args.start_month != "2017-08" or args.end_month != "2025-12":
+        raise ValueError("R7 v1.00 data window is frozen at 2017-08 through 2025-12")
     if pd.Period(args.end_month, freq="M") >= pd.Period("2026-01", freq="M"):
         raise ValueError("2026 download is forbidden")
 
