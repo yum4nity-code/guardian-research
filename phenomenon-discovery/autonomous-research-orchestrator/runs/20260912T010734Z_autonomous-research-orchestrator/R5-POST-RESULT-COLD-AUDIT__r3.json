@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 4500.0,
+  "class_key": "r5-post-result-cold-audit",
+  "duration_seconds": 155.08901990001323,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T01:07:34.062547+00:00",
+  "job_id": "R5-POST-RESULT-COLD-AUDIT",
+  "main_commit": "e5591f0a73588a6dc5aea3b9bc02ffab2cbbb91f",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 3,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T01:04:58.938975+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS_INTERPRETABLE\", \"survivors\": 96, \"material_changes\": 0, \"protected_2026_opened\": false}"
+}

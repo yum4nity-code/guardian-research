@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R5-POST-RESULT-COLD-AUDIT__r3.json",
+  "main_commit": "e5591f0a73588a6dc5aea3b9bc02ffab2cbbb91f",
+  "pid": 7580,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T01:07:34.099561+00:00",
+  "version": "1.01"
+}
