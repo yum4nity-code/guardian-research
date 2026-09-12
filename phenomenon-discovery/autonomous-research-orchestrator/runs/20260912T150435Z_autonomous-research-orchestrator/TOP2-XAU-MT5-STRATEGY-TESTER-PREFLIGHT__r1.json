@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 120.0,
+  "class_key": "top2-xau-mt5-strategy-tester-preflight",
+  "duration_seconds": 2.003535499999998,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T15:04:35.129986+00:00",
+  "job_id": "TOP2-XAU-MT5-STRATEGY-TESTER-PREFLIGHT",
+  "main_commit": "fc46a899fc81204ea9725c7af51648745d0eae83",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T15:04:33.092506+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"tests\": 2, \"market_data_accessed\": false, \"live_action\": false, \"strategy_tester_commandline\": true}"
+}
