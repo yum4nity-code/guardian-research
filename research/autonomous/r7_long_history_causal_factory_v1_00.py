@@ -32,7 +32,15 @@ def atomic_json(path: Path, obj: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(obj, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
-    os.replace(tmp, path)
+    delays = (0.05, 0.10, 0.20, 0.40, 0.80, 1.00)
+    for attempt, delay in enumerate(delays):
+        try:
+            os.replace(tmp, path)
+            return
+        except PermissionError:
+            if attempt == len(delays) - 1:
+                raise
+            time.sleep(delay)
 
 
 def heartbeat(path: Path | None, completed: int, total: int, stage: str, extra: dict | None = None) -> None:
@@ -112,6 +120,41 @@ def apply_rule(df: pd.DataFrame, ft: pd.DataFrame, rule: dict, cut_override: flo
 
 def baseline_mask(df: pd.DataFrame, rule: dict) -> np.ndarray:
     return session_mask(df, rule["hour_start"], rule["hour_width"])
+
+
+def causal_return(df: pd.DataFrame, atr: pd.Series, h: int, direction: int, timeframe: str) -> np.ndarray:
+    """Signal is known only after bar i closes; enter open[i+1], exit open[i+h+1].
+
+    Fail closed across missing/resampled gaps and across calendar-year boundaries so
+    each temporal gate is measured only on complete within-year holding paths.
+    """
+    ent = df.open.shift(-1)
+    ex = df.open.shift(-(h + 1))
+    ret = ((ex - ent) / atr * direction).to_numpy(dtype=float, copy=True)
+
+    years = df.time.dt.year.to_numpy()
+    entry_year = df.time.shift(-1).dt.year.to_numpy()
+    exit_year = df.time.shift(-(h + 1)).dt.year.to_numpy()
+    authorized = np.isin(years, np.arange(2017, 2026))
+    same_year = (years == entry_year) & (entry_year == exit_year)
+
+    expected = {"M15": pd.Timedelta(minutes=15), "H1": pd.Timedelta(hours=1)}[timeframe]
+    step_ok = df.time.diff().eq(expected).to_numpy()
+    bad = (~step_ok).astype(np.int64)
+    if len(bad):
+        bad[0] = 0
+    prefix = np.concatenate(([0], np.cumsum(bad)))
+    continuity = np.zeros(len(df), dtype=bool)
+    idx = np.arange(len(df))
+    valid_idx = idx + h + 1 < len(df)
+    iv = idx[valid_idx]
+    # Required transitions are bad[i+1] ... bad[i+h+1].
+    bad_counts = prefix[iv + h + 2] - prefix[iv + 1]
+    continuity[iv] = bad_counts == 0
+
+    valid = np.isfinite(ret) & authorized & same_year & continuity
+    ret[~valid] = np.nan
+    return ret
 
 
 def window_mask(df: pd.DataFrame, start: pd.Timestamp, end: pd.Timestamp) -> np.ndarray:
@@ -213,7 +256,7 @@ def main() -> int:
         rule["candidate_id"] = stable_rule_id(rule)
         sel = apply_rule(df, ft, rule)
         bmask = baseline_mask(df, rule)
-        ret = base.causal_return(df, atr, h, direction)
+        ret = causal_return(df, atr, h, direction, m["timeframe"])
         disc = window_mask(df, DISCOVERY_START, DISCOVERY_END)
         agg = edge(sel & disc, bmask & disc, ret, 300)
         if not agg or agg["edge_atr"] <= 0.018 or agg["p_fast"] >= 0.005:
@@ -251,7 +294,7 @@ def main() -> int:
         df, ft, atr = m["df"], m["ft"], m["atr"]
         sel = apply_rule(df, ft, r)
         bmask = baseline_mask(df, r)
-        ret = base.causal_return(df, atr, r["horizon_bars"], r["direction"])
+        ret = causal_return(df, atr, r["horizon_bars"], r["direction"], m["timeframe"])
         y23 = df.time.dt.year.to_numpy() == 2023
         y24 = df.time.dt.year.to_numpy() == 2024
         s23 = edge(sel & y23, bmask & y23, ret, 80)
@@ -286,7 +329,7 @@ def main() -> int:
         xdisc_mask = window_mask(df, DISCOVERY_START, DISCOVERY_END)
         x = ft[r["feature"]].to_numpy(dtype=float, copy=True)
         vals = x[xdisc_mask & np.isfinite(x)]
-        ret = base.causal_return(df, atr, r["horizon_bars"], r["direction"])
+        ret = causal_return(df, atr, r["horizon_bars"], r["direction"], m["timeframe"])
         bmask = baseline_mask(df, r)
         pooled = (df.time.dt.year.to_numpy() == 2023) | (df.time.dt.year.to_numpy() == 2024)
         stress = []
@@ -315,7 +358,7 @@ def main() -> int:
         df, ft, atr = m["df"], m["ft"], m["atr"]
         sel = apply_rule(df, ft, r)
         bmask = baseline_mask(df, r)
-        ret = base.causal_return(df, atr, r["horizon_bars"], r["direction"])
+        ret = causal_return(df, atr, r["horizon_bars"], r["direction"], m["timeframe"])
         y25 = df.time.dt.year.to_numpy() == 2025
         mo = df.time.dt.month.to_numpy()
         annual = hac(sel & y25, bmask & y25, ret, max(48, 2 * r["horizon_bars"]), 100)
