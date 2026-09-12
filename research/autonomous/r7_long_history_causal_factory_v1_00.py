@@ -88,11 +88,17 @@ def load_exact(path: Path) -> pd.DataFrame:
 
 def resample(df: pd.DataFrame, timeframe: str) -> pd.DataFrame:
     rule = {"M15": "15min", "H1": "1h"}[timeframe]
+    expected_rows = {"M15": 3, "H1": 12}[timeframe]
     x = df.set_index("time")
     agg = {"open": "first", "high": "max", "low": "min", "close": "last"}
     if "volume" in x.columns:
         agg["volume"] = "sum"
-    y = x.resample(rule, label="left", closed="left").agg(agg).dropna(subset=["open", "high", "low", "close"]).reset_index()
+    grouped = x.resample(rule, label="left", closed="left")
+    y = grouped.agg(agg)
+    counts = grouped["close"].count()
+    # Never synthesize an apparently valid M15/H1 candle from an incomplete 5m bucket.
+    y = y.loc[counts.eq(expected_rows)]
+    y = y.dropna(subset=["open", "high", "low", "close"]).reset_index()
     return y
 
 
