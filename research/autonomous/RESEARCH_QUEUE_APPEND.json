@@ -1,16 +1,45 @@
 {
   "schema": 1,
-  "generation": 63,
-  "supersedes_generation": 62,
-  "closure": "Generation 62 completed the actual FundedNext MT5 Strategy Tester run and descriptive analysis for frozen R6B-347/R6B-307. Before treating those results as execution-fidelity evidence, generation 63 performs an exact canonical-schedule parity audit on 2024/2025 only. This is required because the completed tester EAs recompute signals on raw MT5 bars whereas the frozen R6 hypothesis was defined on canonical UTC news-clean M5 signals with first-available raw-M1 execution. The audit does not open or inspect protected 2026 and does not retune either candidate. A parity failure classifies generation 62 as descriptive-only infrastructure/fidelity evidence and requires a repaired harness preserving the frozen candidate definitions.",
+  "generation": 64,
+  "supersedes_generation": 63,
+  "closure": "Generation 63 scientifically failed exact canonical parity: both R6B-347 and R6B-307 had zero exact entry matches in both 2024 and 2025. Generation 62 is therefore descriptive-only. Generation 64 is an infrastructure/fidelity repair only: it preserves the frozen R6 candidate definitions, regenerates their exact canonical 2024/2025 schedules from hash-pinned Phase I-B inputs, replays those schedules in the real FundedNext Strategy Tester without recomputing signals from tester bars, then reruns exact parity. Protected 2026 is forbidden throughout this repair.",
   "jobs": [
     {
-      "id": "TOP2-XAU-MT5-CANONICAL-FIDELITY-AUDIT",
+      "id": "TOP2-XAU-MT5-CANONICAL-REPLAY-PREFLIGHT",
       "revision": 1,
       "enabled": true,
-      "priority": 66,
-      "class_key": "top2-xau-mt5-canonical-fidelity-audit",
-      "description": "Recompute the exact frozen R6B-347/R6B-307 canonical 2024/2025 trade schedules from the hash-pinned Phase I-B UTC news-clean M5 source plus raw M1 execution reference, then compare exact entry/exit timestamps against the completed MT5 Strategy Tester trade CSVs. No 2026 access, no parameter changes, no tuning. PASS requires exact schedule parity; FAIL means the prior MT5 long-history run is descriptive only and cannot be used as execution-fidelity validation.",
+      "priority": 67,
+      "class_key": "top2-xau-mt5-canonical-replay-preflight",
+      "description": "Cold deterministic audit of the canonical schedule replay repair. Verifies frozen candidates and hashes, tester-only guard, no M5 signal recomputation, 2024/2025-only tester window, live trading disabled, and explicit 2026 fail-closed guards.",
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "TOP2-XAU-MT5-CANONICAL-FIDELITY-AUDIT",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/test_top2_canonical_schedule_replay_v1_00.py",
+        "args": []
+      },
+      "timeout": {
+        "min_seconds": 120,
+        "expected_seconds": 30,
+        "eta_multiplier": 3.0,
+        "history_p95_multiplier": 3.0,
+        "stale_heartbeat_seconds": 120,
+        "poll_seconds": 2
+      }
+    },
+    {
+      "id": "TOP2-XAU-MT5-CANONICAL-REPLAY",
+      "revision": 1,
+      "enabled": true,
+      "priority": 68,
+      "class_key": "top2-xau-mt5-canonical-replay",
+      "description": "Regenerate exact frozen R6B-347/R6B-307 canonical schedules from hash-pinned Phase I-B 2024/2025 data and replay them in FundedNext MT5 Strategy Tester on XAUUSD M1. The EA cannot recompute R6 signals. No 2026 access, no parameter changes, no tuning, no live deployment.",
       "data_window": {
         "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -18,7 +47,46 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "TOP2-XAU-MT5-STRATEGY-TESTER-ANALYSIS",
+          "job_id": "TOP2-XAU-MT5-CANONICAL-REPLAY-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        }
+      ],
+      "executor": {
+        "kind": "powershell",
+        "path": "research/autonomous/run_top2_canonical_schedule_replay_v1_00.ps1",
+        "args": [
+          "-TerminalExe", "D:\\MT5_FundedNext\\terminal64.exe",
+          "-PhaseIbRoot", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
+          "-OutputDir", "{ROOT}\\top2_mt5_canonical_replay_v1",
+          "-ProgressFile", "{ROOT}\\progress\\TOP2-XAU-MT5-CANONICAL-REPLAY-R1.json"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 10800,
+        "expected_seconds": 3600,
+        "eta_multiplier": 4.0,
+        "history_p95_multiplier": 3.0,
+        "stale_heartbeat_seconds": 900,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\TOP2-XAU-MT5-CANONICAL-REPLAY-R1.json"
+      }
+    },
+    {
+      "id": "TOP2-XAU-MT5-CANONICAL-FIDELITY-AUDIT",
+      "revision": 2,
+      "enabled": true,
+      "priority": 69,
+      "class_key": "top2-xau-mt5-canonical-fidelity-audit",
+      "description": "Rerun exact 2024/2025 canonical entry/exit parity against the repaired schedule-replay MT5 output. PASS requires exact schedule parity for both frozen candidates. Any mismatch remains fidelity FAIL and cannot trigger R6 retuning. 2026 forbidden.",
+      "data_window": {
+        "start": "2024-01-01T00:00:00Z",
+        "end_exclusive": "2026-01-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "TOP2-XAU-MT5-CANONICAL-REPLAY",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
@@ -28,8 +96,8 @@
         "path": "research/autonomous/audit_top2_mt5_fidelity_vs_canonical_v1_00.py",
         "args": [
           "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--mt5-dir", "{ROOT}\\top2_mt5_strategy_tester_v1",
-          "--output-dir", "{ROOT}\\top2_mt5_fidelity_audit_v1",
+          "--mt5-dir", "{ROOT}\\top2_mt5_canonical_replay_v1",
+          "--output-dir", "{ROOT}\\top2_mt5_fidelity_audit_v2",
           "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
