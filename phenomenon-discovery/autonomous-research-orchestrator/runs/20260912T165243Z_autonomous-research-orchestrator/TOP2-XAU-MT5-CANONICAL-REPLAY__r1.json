@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 14400.0,
+  "class_key": "top2-xau-mt5-canonical-replay",
+  "duration_seconds": 25.00831399999879,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-12T16:52:43.686454+00:00",
+  "job_id": "TOP2-XAU-MT5-CANONICAL-REPLAY",
+  "main_commit": "49841593ebb00176af541e6eb8041f46181a157e",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T16:52:18.645656+00:00",
+  "status": "FAIL",
+  "stderr_tail": "R6B-347 replay produced too few trades: 0\nAt D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\run_top2_canonical_schedule_replay_v1_00.ps1:73 \nchar:77\n+ ... unt -lt 20){throw \"$Candidate replay produced too few trades: $($rows ...\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : OperationStopped: (R6B-347 replay ...o few trades: 0:String) [], RuntimeException\n    + FullyQualifiedErrorId : R6B-347 replay produced too few trades: 0\n ",
+  "stdout_tail": "{\"status\": \"PASS\", \"protected_2026_opened\": false, \"candidates\": {\"R6B-347\": 201, \"R6B-307\": 201}}"
+}

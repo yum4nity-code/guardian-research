@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\TOP2-XAU-MT5-CANONICAL-REPLAY__r1.json",
+  "main_commit": "49841593ebb00176af541e6eb8041f46181a157e",
+  "pid": 10260,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-12T16:52:43.698615+00:00",
+  "version": "1.01"
+}
