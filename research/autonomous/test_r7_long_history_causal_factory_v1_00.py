@@ -25,6 +25,11 @@ def main() -> int:
     assert math.isclose(m15.iloc[0]["open"], raw.iloc[0]["open"])
     assert math.isclose(m15.iloc[0]["close"], raw.iloc[2]["close"])
 
+    # An incomplete source bucket must be dropped instead of synthesizing a candle.
+    raw_gap = raw.drop(index=[1]).reset_index(drop=True)
+    m15_gap = r7.resample(raw_gap, "M15")
+    assert pd.Timestamp("2020-01-01T00:00:00Z") not in set(m15_gap["time"])
+
     # Discovery cutpoint cannot be changed by huge values added only in 2023+.
     t = pd.Series(pd.to_datetime(["2018-01-01", "2019-01-01", "2020-01-01", "2021-01-01", "2022-01-01"] * 300 + ["2023-01-01"] * 300, utc=True))
     f = pd.Series(list(np.linspace(0, 1, 1500)) + [1e9] * 300)
@@ -49,6 +54,12 @@ def main() -> int:
     gr = r7.causal_return(gap, gatr, 1, 1, "M15")
     assert np.isnan(gr[0])
 
+    # Holding paths crossing a year boundary fail closed.
+    ydf = frame("2020-12-31 23:30", 6, "15min")
+    yatr = pd.Series(np.ones(len(ydf)))
+    yr = r7.causal_return(ydf, yatr, 2, 1, "M15")
+    assert np.isnan(yr[0])
+
     # Rule IDs are deterministic and insensitive to dict insertion order.
     a = {"dataset":"BTC","timeframe":"M15","feature":"rsi14","operator":"lt","quantile":.1,"horizon_bars":6,"direction":1,"hour_start":None,"hour_width":None}
     b = dict(reversed(list(a.items())))
@@ -68,7 +79,7 @@ def main() -> int:
         except RuntimeError as exc:
             assert "protected 2026 row" in str(exc)
 
-    print('{"status":"PASS","tests":7,"protected_market_data_access":false}')
+    print('{"status":"PASS","tests":9,"protected_market_data_access":false}')
     return 0
 
 
