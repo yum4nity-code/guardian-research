@@ -1,16 +1,16 @@
 {
   "schema": 1,
-  "generation": 66,
-  "supersedes_generation": 65,
-  "closure": "Generation 65 time-alignment diagnostic executed successfully but its scientific diagnostic JSON remained local and was not published on the evidence bus. Preserve the frozen R6 hypotheses and publish that exact existing diagnostic artifact before deciding any replay repair. No 2026 access.",
+  "generation": 67,
+  "supersedes_generation": 66,
+  "closure": "Generation 66 published the generation-65 time-alignment diagnostic. Cold inspection found that its nearest-offset calculation mixed pandas integer datetime storage resolution with Timestamp.value nanoseconds, a known infrastructure regression class; therefore its ~-473k to -482k hour offsets are invalid evidence. Preserve the frozen R6 hypotheses. Run a deterministic resolution-safety regression test, then recompute and publish only the 2024/2025 timestamp diagnostic. Do not replay MT5 and do not access 2026 until the corrected diagnostic is reconciled.",
   "jobs": [
     {
-      "id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-PUBLISH",
+      "id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-R2-PREFLIGHT",
       "revision": 1,
       "enabled": true,
-      "priority": 71,
-      "class_key": "top2-xau-mt5-time-alignment-diagnostic-publish",
-      "description": "Publish the exact generation-65 local time-alignment diagnostic JSON to backtest-results so its timestamp-shift evidence can be independently inspected before any further MT5 replay repair. This job does not recompute signals, change hypotheses, or open 2026.",
+      "priority": 72,
+      "class_key": "top2-xau-mt5-time-alignment-diagnostic-preflight",
+      "description": "Deterministic regression test for the generation-65 pandas datetime-resolution bug. Verify nanosecond normalization across datetime64[us] and datetime64[ns], exact shifted pair matching, frozen R6 candidate ids and 2024/2025-only scope. No market-data inspection and no 2026 access.",
       "data_window": {
         "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -18,22 +18,57 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC",
+          "job_id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-PUBLISH",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/publish_top2_mt5_time_alignment_diagnostic_v1_00.py",
+        "path": "research/autonomous/test_diagnose_top2_mt5_time_alignment_v1_01.py",
+        "args": []
+      },
+      "timeout": {
+        "min_seconds": 120,
+        "expected_seconds": 30,
+        "eta_multiplier": 3.0,
+        "history_p95_multiplier": 3.0,
+        "stale_heartbeat_seconds": 120,
+        "poll_seconds": 2
+      }
+    },
+    {
+      "id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC",
+      "revision": 2,
+      "enabled": true,
+      "priority": 73,
+      "class_key": "top2-xau-mt5-time-alignment-diagnostic",
+      "description": "Recompute the existing TOP2 2024/2025 infrastructure timestamp-alignment diagnostic with resolution-safe nanosecond normalization, timestamp range/dtype provenance, and direct publication to backtest-results. Frozen R6 rules and canonical inputs are unchanged. No MT5 replay, no tuning, no 2026 access.",
+      "data_window": {
+        "start": "2024-01-01T00:00:00Z",
+        "end_exclusive": "2026-01-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "TOP2-XAU-MT5-TIME-ALIGNMENT-DIAGNOSTIC-R2-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/diagnose_top2_mt5_time_alignment_v1_01.py",
         "args": [
-          "--input", "{ROOT}\\diagnostics\\top2_mt5_time_alignment_v1.json",
+          "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
+          "--mt5-dir", "{ROOT}\\top2_mt5_strategy_tester_v1",
+          "--output", "{ROOT}\\diagnostics\\top2_mt5_time_alignment_v2.json",
           "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
         "min_seconds": 300,
-        "expected_seconds": 120,
+        "expected_seconds": 180,
         "eta_multiplier": 3.0,
         "history_p95_multiplier": 3.0,
         "stale_heartbeat_seconds": 300,
