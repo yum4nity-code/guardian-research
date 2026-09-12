@@ -1,77 +1,48 @@
 {
   "schema": 1,
-  "generation": 55,
-  "supersedes_generation": 54,
-  "closure": "R6 protected-2026 OOS preflight r1 failed before any market-data access because the cold test asserted that the preregistration policy string fail_closed_if_not_exactly_one_file_per_timeframe must literally appear in executor source. The executor already implements the frozen ambiguity policy semantically by raising unless exactly one matching CSV exists. Generation 55 is an infrastructure-only repair: preflight r2 replaces the brittle source-token assertion with deterministic temporary-file tests for unique, duplicate and missing inputs, while preserving the same committed preregistration, 12 frozen candidates, fixed OOS gates and human authorization. Protected 2026 remains untouched until repaired preflight PASS.",
+  "generation": 56,
+  "supersedes_generation": 55,
+  "closure": "R6 protected-2026 OOS preflight r2 passed, but OOS r2 failed before scientific evaluation because its executor searched phase_ib_v1 for exactly one XAUUSD 2026 M5 CSV and found none. This is an infrastructure/data-staging failure, not a scientific FAIL. Generation 56 does not rerun R6 OOS and does not retune any candidate. It inspects the already-authorized Jan-Aug 2026 transport sources previously prepared for Phase I-F, validates M1/M5 coverage metadata and probes read access to the canonical 2026 HCC so the next repair can preserve the frozen R6 M1 execution model.",
   "jobs": [
     {
-      "id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
-      "revision": 2,
+      "id": "R6-PROTECTED-2026-INPUT-PROBE",
+      "revision": 1,
       "enabled": true,
-      "priority": 49,
-      "class_key": "r6-protected-2026-oos-preflight",
-      "description": "Infrastructure-only repair of cold deterministic preflight for the human-authorized protected-2026 R6 OOS. Verifies frozen 12-candidate contract, fixed preregistered thresholds, semantic fail-closed input selection using synthetic temporary filenames only, no retuning hooks and deterministic candidate fingerprint. Must not access market data.",
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R6-PROVENANCE-INTEGRITY-AUDIT",
-          "revision": 1,
-          "accepted_status": ["PASS"]
-        }
-      ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/test_r6_protected_2026_oos_v1_01.py",
-        "args": []
-      },
-      "timeout": {
-        "min_seconds": 60,
-        "expected_seconds": 30,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 120,
-        "poll_seconds": 2
-      }
-    },
-    {
-      "id": "R6-PROTECTED-2026-OOS",
-      "revision": 2,
-      "enabled": true,
-      "priority": 50,
-      "class_key": "r6-protected-2026-oos",
-      "description": "Same frozen human-authorized protected 2026 OOS as r1, revisioned only because the prerequisite preflight infrastructure was repaired. Evaluates exactly the 12 frozen R6 breakout survivors under the already committed post-cost gates, BH-FDR and deterministic day-block bootstrap. No parameter changes, no rescue, no retuning, no live deployment.",
+      "priority": 51,
+      "class_key": "r6-protected-2026-input-infrastructure",
+      "description": "Infrastructure-only diagnostic after OOS r2 failed input selection. Inspect authorized Jan-Aug 2026 XAUUSD M1/M5 snapshot coverage, manifests, frozen news-mask presence and canonical HCC read availability. No R6 candidate evaluation, no retuning and no live deployment.",
       "data_window": {
         "start": "2026-01-01T00:00:00Z",
-        "end_exclusive": "2027-01-01T00:00:00Z"
+        "end_exclusive": "2026-09-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
+          "job_id": "R6-PROTECTED-2026-OOS",
           "revision": 2,
-          "accepted_status": ["PASS"]
+          "accepted_status": ["FAIL"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r6_protected_2026_oos_v1_00.py",
+        "path": "research/autonomous/probe_r6_2026_inputs_v1_00.py",
         "args": [
-          "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
-          "--r6-result", "{ROOT}\\r6_xau_low_turnover_breakout_r1\\r6_xau_low_turnover_breakout_result.json",
-          "--preregistration", "{DEPLOY}\\research\\autonomous\\r6_oos_2026_preregistration_v1.json",
-          "--output-dir", "{ROOT}\\r6_protected_2026_oos_r2",
-          "--progress-file", "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R2.json",
-          "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
+          "--m1-csv", "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m1_2026_jan_aug.csv",
+          "--m1-manifest", "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m1_2026_jan_aug_manifest.txt",
+          "--m5-csv", "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug.csv",
+          "--m5-manifest", "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if\\xauusd_m5_2026_jan_aug_manifest.txt",
+          "--hcc", "D:\\MT5_FundedNext\\Bases\\FundedNext-Server 2\\history\\XAUUSD\\2026.hcc",
+          "--news-mask", "{ROOT}\\phase_if_2026\\phase_if_xauusd_merged_news_mask_2026_jan_aug.csv",
+          "--output", "{ROOT}\\diagnostics\\r6_protected_2026_input_probe_r1.json"
         ]
       },
       "timeout": {
         "min_seconds": 300,
-        "expected_seconds": 900,
+        "expected_seconds": 120,
         "eta_multiplier": 2.5,
         "history_p95_multiplier": 3.0,
         "stale_heartbeat_seconds": 300,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R2.json"
+        "poll_seconds": 5
       }
     }
   ]
