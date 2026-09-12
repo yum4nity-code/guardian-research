@@ -360,3 +360,40 @@ Then:
 - final status PASS with survivors -> cold-audit semantics/provenance/statistics before any economic screen;
 - after a clean audit only -> decide the smallest next reject-only validation step.
 
+
+
+## 2026-09-12 resume update — R5 audit accepted, economic gate next
+
+Published R5 post-result cold audit r3 is terminal `PASS_INTERPRETABLE`:
+- 96 frozen survivors;
+- exact R5 result SHA256 matched;
+- all four canonical Phase I-B 2024/2025 hashes matched;
+- material semantic changes: 0;
+- provenance failures: 0;
+- protected 2026 opened: false.
+
+Interpretation: R5 may advance only to a separately preregistered reject-only economic robustness screen on 2024/2025. This is still pre-OOS and does not authorize protected 2026.
+
+The next frozen protocol is:
+`research/autonomous/R5_PRE_OOS_ECONOMIC_ROBUSTNESS_PREREGISTRATION_2026_09_12.md`
+
+Question: do any of the 96 frozen R5 survivors remain economically credible under first-available canonical raw-M1 execution references, chronological one-position replay, and the inherited E1/STRESS cost gates?
+
+Generation 50 was prepared for this screen but had not executed before the PC shutdown. Before resume, the code was cold-audited and the known Windows `os.replace` PermissionError failure mode was proactively hardened without changing scientific logic:
+- wrapper: `research/autonomous/r5_pre_oos_economic_robustness_v1_01.py`
+- deterministic infrastructure test: `research/autonomous/test_r5_pre_oos_economic_robustness_v1_01.py`
+- queue generation: **51**
+- preflight: `R5-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT r2`
+- main: `R5-PRE-OOS-ECONOMIC-ROBUSTNESS r2`
+
+Scientific logic remains frozen:
+- exact 96 R5 survivors;
+- exact R5 and cold-audit hashes;
+- exact four Phase I-B hashes;
+- first raw-M1 execution reference;
+- one position at a time per candidate;
+- E1/STRESS inherited costs;
+- inherited reject-only trade-count/net/stress/ex-best gates;
+- protected 2026 forbidden.
+
+On resume, let the orchestrator fetch generation 51. If local health/progress proves the economic r2 job is running, do not duplicate or restart it.
