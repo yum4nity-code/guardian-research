@@ -1,4 +1,4 @@
-# Guardian Autonomous Research Mandate v1.12
+# Guardian Autonomous Research Mandate v1.13
 
 Date: 2026-09-10
 Status: canonical for unattended alpha research and EA promotion
@@ -124,6 +124,51 @@ Production/live deployment remains a separate approval boundary. Research may au
 ## Portfolio objective
 
 The target is not one magic EA. Maintain a registry of validated/closed candidates and seek a portfolio of multiple EAs with differentiated mechanisms, instruments, horizons or regime exposures. When two candidates are materially redundant, prefer the simpler/more robust one.
+
+## Storage and engineering guardrails
+
+### Large-history storage
+
+All newly downloaded, generated or cached **large historical market-data files** must be stored on **D:**, preferably under `D:\\MT5_Backtests\\Research\\Data` or a campaign-specific subdirectory beneath `D:\\MT5_Backtests`.
+
+Do not place new bulk historical datasets, archives, extracted tick stores, cache trees, temporary research exports or large installer payloads on **C:**. Existing small MT5 metadata or pre-existing `FILE_COMMON` artifacts on C: may be read when required, but C: is not the destination for new large research history.
+
+Before any bulk download/export, estimate the target size, verify free space on D:, and record the final path in the campaign manifest.
+
+### Mandatory cold-audit after substantial code
+
+Any substantial research engine, data-ingestion pipeline, Strategy Tester harness, OOS evaluator or orchestrator change must receive a **cold read after coding and before execution**. The review must treat the code as unfamiliar and explicitly check:
+
+- data-window boundaries and year/period guards;
+- look-ahead and feature-availability timing;
+- entry/exit availability and one-position/overlap semantics;
+- cost, spread, commission and slippage conventions;
+- timestamp/timezone/unit conversions;
+- read/write destinations and large-file placement;
+- immutable candidate definitions and no silent retuning;
+- protected-data access rules;
+- expected artifacts proving that the requested execution actually occurred;
+- infrastructure failure versus scientific failure;
+- synthetic edge cases at start/end boundaries and missing-data conditions.
+
+Compilation or `py_compile` alone is never sufficient.
+
+### Known historical failure modes to prevent
+
+The following project mistakes are now regression cases and should be checked explicitly when relevant:
+
+1. **Read-only NumPy mutation:** arrays derived with `.to_numpy(...)` may be non-writeable. Code that mutates such arrays must request/cause a writable copy.
+2. **Hard-coded pre-OOS replay guards leaking into OOS:** a replay engine previously allowed only 2024/2025 and silently rejected 2026 trades. Authorized windows must be explicit parameters/contracts, not inherited magic-year guards.
+3. **Datetime epoch-resolution assumptions:** conversions must be resolution-safe; do not assume nanoseconds without normalizing the pandas timestamp/unit explicitly.
+4. **Stale orchestrator/deployment commit:** before claiming a queued generation is consumed or a job is running, verify the worker's `main_commit`/source commit matches the intended queue generation.
+5. **Terminal opened != Strategy Tester executed:** success requires Strategy Tester-specific evidence (tester-only guard plus produced trade/report artifacts), not merely a launched MT5 process.
+6. **Long-history availability assumptions:** probe earliest available broker history before committing to a bulk exporter. If the MT5 Python API cannot supply the requested old interval, fail fast and choose a validated acquisition path rather than opening the terminal and pretending a backtest has begun.
+7. **Receipt PASS != scientific PASS:** orchestrator execution success must never be reported as strategy success without reading the scientific result artifact.
+8. **Metadata/provenance flags are not proof:** claims such as protected-data untouched must be backed by actual source/window/hash behavior, not a hard-coded boolean.
+9. **Boundary exits:** tests must cover signals whose exit crosses year/OOS/end-of-window boundaries and verify the intended fail-closed behavior.
+10. **Wrong-source substitution:** when a specific historical file/version is required, do not substitute a current attachment, another dataset or a different broker feed because it is convenient.
+
+New cold audits should reuse these regression lessons rather than rediscovering them.
 
 ## Timeout/watchdog policy
 
