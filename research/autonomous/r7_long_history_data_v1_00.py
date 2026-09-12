@@ -29,7 +29,15 @@ def atomic_json(path: Path, obj: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(obj, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    os.replace(tmp, path)
+    delays = (0.05, 0.10, 0.20, 0.40, 0.80, 1.00)
+    for attempt, delay in enumerate(delays):
+        try:
+            os.replace(tmp, path)
+            return
+        except PermissionError:
+            if attempt == len(delays) - 1:
+                raise
+            time.sleep(delay)
 
 
 def heartbeat(path: Path | None, completed: int, total: int, stage: str, extra: dict | None = None) -> None:
@@ -178,6 +186,11 @@ def main() -> int:
 
     out = Path(args.output_dir)
     out.mkdir(parents=True, exist_ok=True)
+    usage = shutil.disk_usage(out)
+    required_free_bytes = 5 * 1024 ** 3
+    estimated_upper_bound_bytes = 1 * 1024 ** 3
+    if usage.free < required_free_bytes:
+        raise RuntimeError(f"insufficient free space on target volume: free={usage.free}, required={required_free_bytes}")
     progress = Path(args.progress_file) if args.progress_file else None
     month_list = months(args.start_month, args.end_month)
     total = len(month_list) * len(args.symbols)
@@ -191,6 +204,12 @@ def main() -> int:
         "start_month": args.start_month,
         "end_month": args.end_month,
         "protected_2026_opened": False,
+        "storage": {
+            "target": str(out),
+            "free_bytes_before": int(usage.free),
+            "estimated_upper_bound_bytes": int(estimated_upper_bound_bytes),
+            "required_free_bytes": int(required_free_bytes)
+        },
         "symbols": {},
     }
 
