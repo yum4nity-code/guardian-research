@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "r6_xau_low_turnover_breakout_result.json",
+      "sha256": "506c634ec1f423994050fb7c67b76885bfc9010dc4e7ae4d5bd18af8dd66dde3",
+      "size_bytes": 835401
+    },
+    {
+      "name": "r6_xau_low_turnover_breakout_candidates.csv",
+      "sha256": "53767bc31618ad4a899a6cf42f9e38b590d3a3aaf86ecfdf3310bcb58b56f3e3",
+      "size_bytes": 33913
+    }
+  ],
+  "generated_at_utc": "2026-09-12T12:02:12.093260+00:00",
+  "phase": "r6-xau-low-turnover-breakout",
+  "schema": 1,
+  "source_commit": "6555969c81fb97280a274c0ed62ed61d5812bb31",
+  "status": "PASS",
+  "summary": "R6 low-turnover breakout PASS: 12/15 2024 discovery candidates survive isolated 2025 economic confirmation; 2026 unopened."
+}
