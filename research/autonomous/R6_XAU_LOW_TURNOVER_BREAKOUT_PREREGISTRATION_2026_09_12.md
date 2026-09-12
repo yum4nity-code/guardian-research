@@ -25,7 +25,7 @@ For each M5 bar t, using only bars strictly before t:
 - long event: close[t] > rolling_high + buffer_ATR * ATR14[t]
 - short event: close[t] < rolling_low - buffer_ATR * ATR14[t]
 
-No feature quantile is fitted. No R5 feature/threshold is reused.
+No feature quantile is fitted. No R5 feature/threshold is reused. Discovery and confirmation are evaluated in separate calendar-year dataframes: rolling state and ATR are reset at the start of 2025, and no 2025 signal, return, replay, or metric is computed until the complete 2024 discovery set has been frozen.
 
 ## Frozen deterministic grid
 
@@ -54,7 +54,7 @@ The same deterministic cost formula and first-available raw-M1 execution semanti
 - E1 net excluding the best positive trade > 0
 - E1 profit factor > 1.0
 
-2025 is untouched until the 2024 discovery set is frozen in memory. For each discovery candidate require:
+2025 is untouched until the complete 2024 discovery set is frozen in memory. For each frozen discovery candidate require:
 - at least 30 executable 2025 trades
 - at least 12 trades in each 2025 half
 - E1 net > 0 in full 2025, H1 and H2
@@ -77,6 +77,7 @@ Before the market-data run, deterministic tests must verify at minimum:
 - session masks
 - inherited cost formula identity
 - chronological one-position replay and cross-year purge on synthetic data
+- year-isolated discovery/confirmation construction
 - Benjamini-Hochberg implementation
 - deterministic block-bootstrap behavior
 - protected-date rejection helper
