@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 7200.0,
+  "class_key": "r7-long-history-official-data",
+  "duration_seconds": 415.4418250000017,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T20:01:35.421443+00:00",
+  "job_id": "R7-LONG-HISTORY-DATA",
+  "main_commit": "282b1c2044d82389d5288805a132ae5dd5fb21e9",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T19:54:39.889441+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"manifest\": \"D:\\\\MT5_Backtests\\\\Research\\\\Data\\\\R7_LongHistory\\\\r7_long_history_data_manifest.json\", \"protected_2026_opened\": false, \"status\": \"PASS\", \"symbols\": {\"BTCUSDT\": {\"first_time\": \"2017-08-17T04:00:00+00:00\", \"gaps\": 33, \"last_time\": \"2025-12-31T23:55:00+00:00\", \"rows\": 879241}, \"ETHUSDT\": {\"first_time\": \"2017-08-17T04:00:00+00:00\", \"gaps\": 33, \"last_time\": \"2025-12-31T23:55:00+00:00\", \"rows\": 879241}}}"
+}
