@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "r5_pre_oos_economic_robustness.json",
+      "sha256": "b22f72442088fea55f049c358c5adfc8316fe77bed60af20774629c05d7f125a",
+      "size_bytes": 608613
+    },
+    {
+      "name": "r5_pre_oos_economic_robustness.csv",
+      "sha256": "383058cdb6a4dcd419be78d0daa34e05059bf17d9e0e8a23a0d5c44dc335fb45",
+      "size_bytes": 151693
+    }
+  ],
+  "generated_at_utc": "2026-09-12T11:22:25.549524+00:00",
+  "phase": "r5-pre-oos-economic-robustness",
+  "schema": 1,
+  "source_commit": "0d526817b2246198a141eb5d0623fab0e0138c7b",
+  "status": "FAIL",
+  "summary": "R5 pre-OOS economic robustness FAIL: 0/96 frozen survivors pass inherited E1/STRESS reject-only gates; 2026 unopened."
+}
