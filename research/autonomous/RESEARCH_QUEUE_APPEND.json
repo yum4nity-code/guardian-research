@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "generation": 50,
-  "supersedes_generation": 49,
-  "closure": "R5 causal next-open r2 is terminal PASS with 96 frozen survivors. R5 post-result cold audit r3 is terminal PASS_INTERPRETABLE with exact R5 hash match, zero material semantic changes, no provenance failures, and protected 2026 unopened. Generation 50 carries forward the audit receipts and preregisters a reject-only pre-OOS economic robustness screen using the inherited E1/STRESS cost gates on 2024/2025 only. No protected-2026 access or downstream OOS phase is authorized.",
+  "generation": 51,
+  "supersedes_generation": 50,
+  "closure": "R5 causal next-open r2 remains terminal PASS with 96 frozen survivors; post-result cold audit r3 remains terminal PASS_INTERPRETABLE with zero material semantic changes and protected 2026 unopened. Generation 51 supersedes the not-yet-executed economic generation 50 only to harden atomic progress/result JSON replacement against the workstation's known transient Windows PermissionError. Scientific protocol, costs, gates, hashes, 96 survivors and protected-2026 prohibition are unchanged.",
   "jobs": [
     {
       "id": "R5-POST-RESULT-COLD-AUDIT-PREFLIGHT",
@@ -16,13 +16,17 @@
           "kind": "receipt",
           "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN",
           "revision": 2,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         },
         {
           "kind": "receipt",
           "job_id": "R5-POST-RESULT-COLD-AUDIT-PREFLIGHT",
           "revision": 2,
-          "accepted_status": ["FAIL"]
+          "accepted_status": [
+            "FAIL"
+          ]
         }
       ],
       "executor": {
@@ -55,13 +59,17 @@
           "kind": "receipt",
           "job_id": "STRATEGY-FACTORY-R5-CAUSAL-NEXT-OPEN",
           "revision": 2,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         },
         {
           "kind": "receipt",
           "job_id": "R5-POST-RESULT-COLD-AUDIT-PREFLIGHT",
           "revision": 3,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         }
       ],
       "executor": {
@@ -93,7 +101,7 @@
     {
       "id": "R5-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 44,
       "class_key": "r5-pre-oos-economic-robustness-preflight",
       "description": "Deterministic no-market-data preflight for frozen cost accounting, first-available execution references, chronological overlap handling, year-boundary purge and inherited economic gates.",
@@ -102,7 +110,9 @@
           "kind": "receipt",
           "job_id": "R5-POST-RESULT-COLD-AUDIT",
           "revision": 3,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         }
       ],
       "executor": {
@@ -122,7 +132,7 @@
     {
       "id": "R5-PRE-OOS-ECONOMIC-ROBUSTNESS",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 45,
       "class_key": "r5-pre-oos-economic-robustness",
       "description": "Frozen reject-only economic feasibility screen for all 96 R5 causal-next-open survivors. Uses exact Phase I-B 2024/2025 hashes, first-available canonical raw-M1 execution, chronological one-position replay, and inherited E1/STRESS cost gates. Protected 2026 forbidden.",
@@ -135,13 +145,17 @@
           "kind": "receipt",
           "job_id": "R5-POST-RESULT-COLD-AUDIT",
           "revision": 3,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         },
         {
           "kind": "receipt",
           "job_id": "R5-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT",
           "revision": 1,
-          "accepted_status": ["PASS"]
+          "accepted_status": [
+            "PASS"
+          ]
         }
       ],
       "executor": {
@@ -170,6 +184,94 @@
         "stale_heartbeat_seconds": 600,
         "poll_seconds": 5,
         "progress_file": "{ROOT}\\progress\\R5-PRE-OOS-ECONOMIC-ROBUSTNESS-R1.json"
+      }
+    },
+    {
+      "id": "R5-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT",
+      "revision": 2,
+      "enabled": true,
+      "priority": 44,
+      "class_key": "r5-pre-oos-economic-robustness-preflight",
+      "description": "Infrastructure-only wrapper validation for the frozen economic robustness screen. Verifies scientific identity with v1_00 and bounded retry/exhaustion behavior for transient Windows PermissionError. No market-data access.",
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "R5-POST-RESULT-COLD-AUDIT",
+          "revision": 3,
+          "accepted_status": [
+            "PASS"
+          ]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/test_r5_pre_oos_economic_robustness_v1_01.py",
+        "args": []
+      },
+      "timeout": {
+        "min_seconds": 60,
+        "expected_seconds": 30,
+        "eta_multiplier": 2.5,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 120,
+        "poll_seconds": 2
+      }
+    },
+    {
+      "id": "R5-PRE-OOS-ECONOMIC-ROBUSTNESS",
+      "revision": 2,
+      "enabled": true,
+      "priority": 45,
+      "class_key": "r5-pre-oos-economic-robustness",
+      "description": "Same frozen reject-only 96-survivor economic screen as r1; revision 2 changes only atomic JSON replacement to bounded retry/backoff for the known Windows lock failure mode. Exact hashes, raw-M1 execution semantics, overlap policy, E1/STRESS costs, pass gates and protected-2026 prohibition are unchanged.",
+      "data_window": {
+        "start": "2024-01-01T00:00:00Z",
+        "end_exclusive": "2026-01-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "R5-POST-RESULT-COLD-AUDIT",
+          "revision": 3,
+          "accepted_status": [
+            "PASS"
+          ]
+        },
+        {
+          "kind": "receipt",
+          "job_id": "R5-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT",
+          "revision": 2,
+          "accepted_status": [
+            "PASS"
+          ]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/r5_pre_oos_economic_robustness_v1_01.py",
+        "args": [
+          "--r5-result",
+          "{ROOT}\\strategy_factory_r5_causal_next_open_r2\\strategy_factory_causal_result.json",
+          "--audit-result",
+          "{ROOT}\\r5_post_result_cold_audit_r3\\r5_post_result_cold_audit.json",
+          "--phase-ib-root",
+          "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
+          "--output-dir",
+          "{ROOT}\\r5_pre_oos_economic_robustness_r2",
+          "--progress-file",
+          "{ROOT}\\progress\\R5-PRE-OOS-ECONOMIC-ROBUSTNESS-R2.json",
+          "--publisher",
+          "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 600,
+        "expected_seconds": 1800,
+        "eta_multiplier": 2.5,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 600,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\R5-PRE-OOS-ECONOMIC-ROBUSTNESS-R2.json"
       }
     }
   ]
