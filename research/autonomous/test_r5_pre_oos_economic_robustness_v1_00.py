@@ -34,7 +34,10 @@ def test_first_available_and_overlap() -> None:
     first = ledger[0]
     assert first['entry_time'] == pd.Timestamp('2025-01-02 00:05:00', tz='UTC').isoformat()
     assert first['exit_time'] == pd.Timestamp('2025-01-02 00:15:00', tz='UTC').isoformat()
-    assert counts['ignored_overlap_signals'] >= 2
+    # Signal at source index 1 is inside the first trade and must be ignored.
+    # Signal at index 2 becomes admissible because exits are processed before a
+    # new signal at the same availability timestamp, which is the frozen rule.
+    assert counts['ignored_overlap_signals'] == 1
     for a, b in zip(ledger, ledger[1:]):
         assert pd.Timestamp(a['exit_time']) <= pd.Timestamp(b['entry_time'])
 
