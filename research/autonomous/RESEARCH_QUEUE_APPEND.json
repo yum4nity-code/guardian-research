@@ -1,52 +1,77 @@
 {
   "schema": 1,
-  "generation": 53,
-  "supersedes_generation": 52,
-  "closure": "R6-XAU-LOW-TURNOVER-BREAKOUT r1 completed executor PASS with 15 discovery passes and 12 isolated-2025 survivors. Scientific output states protected_2026_opened=false, while the generic orchestrator receipt carries protected_2026_untouched=false. Generation 53 does not rerun or retune R6 and does not open 2026; it performs a fail-closed provenance audit of the exact frozen 2024/2025 inputs and artifacts to classify the discrepancy before any OOS gate.",
+  "generation": 54,
+  "supersedes_generation": 53,
+  "closure": "R6 provenance audit r1 passed and classified the receipt discrepancy as a metadata mapping defect while independently confirming the frozen 2024/2025 inputs and 12 survivors. Human authorization for protected 2026 OOS was explicitly granted on 2026-09-12. Generation 54 preregisters fixed OOS gates, runs a no-market-data cold preflight, then evaluates exactly the 12 frozen R6 candidates on protected 2026 with no retuning and no live deployment.",
   "jobs": [
     {
-      "id": "R6-PROVENANCE-INTEGRITY-AUDIT",
+      "id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
       "revision": 1,
       "enabled": true,
-      "priority": 48,
-      "class_key": "r6-provenance-integrity-audit",
-      "description": "Fail-closed audit of R6 provenance. Verify the exact two frozen 2024/2025 input hashes and timestamp bounds, R6 PASS artifact counts, scientific protected_2026_opened=false, and the conflicting generic receipt flag. Classify metadata-only defect only if all independent checks pass. No R6 rerun, no retuning, no protected-2026 access.",
-      "data_window": {
-        "start": "2024-01-01T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
+      "priority": 49,
+      "class_key": "r6-protected-2026-oos-preflight",
+      "description": "Cold deterministic preflight for the human-authorized protected-2026 R6 OOS. Verifies frozen 12-candidate contract, fixed preregistered thresholds, fail-closed input selection, no retuning hooks and deterministic candidate fingerprint. Must not access market data.",
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R6-XAU-LOW-TURNOVER-BREAKOUT",
+          "job_id": "R6-PROVENANCE-INTEGRITY-AUDIT",
           "revision": 1,
-          "accepted_status": ["PASS"]
-        },
-        {
-          "kind": "github_result",
-          "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/r6-xau-low-turnover-breakout/LATEST.json",
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/audit_r6_provenance_v1_00.py",
+        "path": "research/autonomous/test_r6_protected_2026_oos_v1_00.py",
+        "args": []
+      },
+      "timeout": {
+        "min_seconds": 60,
+        "expected_seconds": 30,
+        "eta_multiplier": 2.5,
+        "history_p95_multiplier": 3.0,
+        "stale_heartbeat_seconds": 120,
+        "poll_seconds": 2
+      }
+    },
+    {
+      "id": "R6-PROTECTED-2026-OOS",
+      "revision": 1,
+      "enabled": true,
+      "priority": 50,
+      "class_key": "r6-protected-2026-oos",
+      "description": "Human-authorized protected 2026 OOS for exactly the 12 frozen R6 breakout survivors. Fixed preregistered post-cost gates, BH-FDR and deterministic day-block bootstrap. No parameter changes, no rescue, no retuning, no live deployment.",
+      "data_window": {
+        "start": "2026-01-01T00:00:00Z",
+        "end_exclusive": "2027-01-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/r6_protected_2026_oos_v1_00.py",
         "args": [
           "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
           "--r6-result", "{ROOT}\\r6_xau_low_turnover_breakout_r1\\r6_xau_low_turnover_breakout_result.json",
-          "--r6-receipt", "{ROOT}\\receipts\\R6-XAU-LOW-TURNOVER-BREAKOUT__r1.json",
-          "--output", "{ROOT}\\r6_provenance_audit_r1\\r6_provenance_audit.json",
+          "--preregistration", "{DEPLOY}\\research\\autonomous\\r6_oos_2026_preregistration_v1.json",
+          "--output-dir", "{ROOT}\\r6_protected_2026_oos_r1",
+          "--progress-file", "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R1.json",
           "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
-        "min_seconds": 120,
-        "expected_seconds": 60,
+        "min_seconds": 300,
+        "expected_seconds": 900,
         "eta_multiplier": 2.5,
         "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 180,
-        "poll_seconds": 2
+        "stale_heartbeat_seconds": 300,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R1.json"
       }
     }
   ]
