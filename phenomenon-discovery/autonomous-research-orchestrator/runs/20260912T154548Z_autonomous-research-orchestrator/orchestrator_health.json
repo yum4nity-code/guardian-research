@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "TOP2-XAU-MT5-CANONICAL-FIDELITY-AUDIT",
+    "revision": 1
+  },
+  "main_commit": "3dd467d8c5020a78c88c99bcf27a33960e14c967",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 63,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T15:45:48.196116+00:00",
+  "version": "1.01"
+}
