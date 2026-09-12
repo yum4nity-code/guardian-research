@@ -14,10 +14,11 @@ That dated handoff is the canonical source for the current R4/R5 research state.
 - R4 close-to-close family: **CLOSED**.
 - Main finding: about **99.5% of the B→C degradation is ENTRY_DELTA**, meaning most of the apparent R4 edge was realized before the first executable entry reference.
 - R5 causal-next-open r2 is **complete: PASS**, with **5,661 discovery candidates and 96 frozen 2025-confirmed survivors** after HAC/BH-FDR, four-quarter positivity and adjacent-quantile robustness.
-- R5 is still **not scientifically accepted for promotion** until the post-result cold execution/provenance audit passes.
-- Cold-audit preflight r1 and r2 both failed **before market-data access** on timestamp-unit infrastructure handling; these are not scientific FAILs.
-- Queue is now **generation 49**. Immutable preflight r3 + cold-audit r3 are queued with explicit pandas `as_unit('ns')` timestamp normalization and ns/us/ms invariance tests.
-- No downstream research phase is authorized until the cold audit completes cleanly. Protected 2026 remains forbidden.
+- R5 post-result cold audit r3 is **PASS_INTERPRETABLE**: exact R5 hash matched, all four canonical Phase I-B hashes matched, **0 material semantic changes**, **0 provenance failures**, protected 2026 unopened.
+- The next authorized step is a **reject-only pre-OOS economic robustness screen** on the frozen 96, using first-available raw-M1 execution and inherited E1/STRESS cost gates on 2024/2025 only.
+- Queue is now **generation 51**. Economic r1 was superseded before execution only to add bounded retry/backoff around atomic JSON writes for the workstation's known transient Windows PermissionError. Scientific logic/gates are unchanged.
+- Enabled next jobs: `R5-PRE-OOS-ECONOMIC-ROBUSTNESS-PREFLIGHT r2` then `R5-PRE-OOS-ECONOMIC-ROBUSTNESS r2`.
+- Protected 2026 remains forbidden. A PASS here is still not an EA and does not authorize OOS.
 - Do not use Codex for this workflow unless the operator explicitly changes that decision.
 - Do not deploy live.
 - Do not open protected 2026 OOS without explicit owner approval and preregistration.
