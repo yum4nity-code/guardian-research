@@ -36,7 +36,8 @@ def main():
     assert "FromDate=2016.12.01" in ps
     assert "ToDate=2026.07.31" in ps
     assert "AllowLiveTrading=0" in ps
-    assert "Close that window first" in ps
+    assert "waiting_for_fundednext_terminal_to_close" in ps
+    assert "Harness refused to stop or reuse it" in ps
     assert "Stop-Process -Id $proc.Id" in ps  # only process created by the harness on timeout
     assert "Get-SameTerminalProcess" in ps
     print(json.dumps({"status":"PASS","tests":2,"market_data_accessed":False,"live_action":False,"strategy_tester_commandline":True}))
