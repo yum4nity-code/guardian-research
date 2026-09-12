@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 180.0,
+  "class_key": "top2-xau-mt5-strategy-tester-analysis",
+  "duration_seconds": 4.003821300000709,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T15:06:26.389611+00:00",
+  "job_id": "TOP2-XAU-MT5-STRATEGY-TESTER-ANALYSIS",
+  "main_commit": "fc46a899fc81204ea9725c7af51648745d0eae83",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T15:06:22.339543+00:00",
+  "status": "PASS",
+  "stderr_tail": "D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\analyze_top2_xau_mt5_strategy_tester_v1_00.py:80: UserWarning: Converting to PeriodArray/Index representation will drop timezone information.\n  net_by_month=z.groupby(z.entry_time.dt.to_period(\"M\"))[\"net\"].sum()\nD:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\analyze_top2_xau_mt5_strategy_tester_v1_00.py:80: UserWarning: Converting to PeriodArray/Index representation will drop timezone information.\n  net_by_month=z.groupby(z.entry_time.dt.to_period(\"M\"))[\"net\"].sum()",
+  "stdout_tail": "{\"status\": \"PASS\", \"R6B-347\": {\"trades\": 825, \"net\": 47332.59, \"profit_factor\": 1.1172860080493001, \"win_rate\": 0.5139393939393939, \"avg_trade\": 57.37283636363636, \"median_trade\": 27.7, \"gross_profit\": 450898.12, \"gross_loss\": 403565.52999999997, \"max_drawdown_trade_close\": 37157.83999999996, \"best_trade\": 14345.36, \"worst_trade\": -17322.68, \"ex_best_positive_net\": 32987.229999999996, \"max_win_streak\": 9, \"max_loss_streak\": 8}, \"R6B-307\": {\"trades\": 929, \"net\": 57380.20000000001, \"profit_factor\": 1.186728510968651, \"win_rate\": 0.5091496232508074, \"avg_trade\": 61.765554359526384, \"median_trade\": 22.01, \"gross_profit\": 364672.32, \"gross_loss\": 307292.12, \"max_drawdown_trade_close\": 30034.55000000001, \"best_trade\": 7705.8, \"worst_trade\": -15765.04, \"ex_best_positive_net\": 49674.40000000001, \"max_win_streak\": 9, \"max_loss_streak\": 7}, \"pair_corr\": 0.8508470997675667}"
+}

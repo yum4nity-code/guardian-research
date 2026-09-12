@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\TOP2-XAU-MT5-STRATEGY-TESTER-ANALYSIS__r1.json",
+  "main_commit": "fc46a899fc81204ea9725c7af51648745d0eae83",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-12T15:06:26.393323+00:00",
+  "version": "1.01"
+}
