@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
+    "revision": 2
+  },
+  "main_commit": "ddfa678d2bbde7bace52f0d635d3cc0a08a60483",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 55,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T14:07:57.874760+00:00",
+  "version": "1.01"
+}
