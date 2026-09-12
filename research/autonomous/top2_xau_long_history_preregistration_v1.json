@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "phase": "top2-xau-long-history-characterization",
+  "version": "1.00",
+  "created_utc": "2026-09-12",
+  "purpose": "Descriptive long-history characterization of the two strongest candidates from the 2026-09-12 research day. This is intentionally post-selection and is not an independent OOS validation.",
+  "window": {
+    "start": "2017-01-01T00:00:00Z",
+    "end_exclusive": "2026-08-01T00:00:00Z",
+    "meaning": "2017 through 2026-07-31 inclusive"
+  },
+  "selection_rationale": {
+    "R6B-347": "Strongest combined 2024-2025 pre-OOS profitability plus strongest Jan-Aug 2026 STRESS net among the positive R6 survivors tested today.",
+    "R6B-307": "Best Jan-Aug 2026 E1 profit factor among the positive R6 survivors, positive STRESS, positive ex-best-trade result, and materially less H2 deterioration than the highest-net siblings."
+  },
+  "candidates": [
+    {
+      "candidate_id": "R6B-347",
+      "family": "R6-XAU-LOW-TURNOVER-BREAKOUT",
+      "lookback_bars": 96,
+      "buffer_atr": 0.1,
+      "horizon_bars": 96,
+      "session": "UTC00_08",
+      "session_start": 0,
+      "session_end": 8,
+      "direction": 1,
+      "direction_name": "LONG"
+    },
+    {
+      "candidate_id": "R6B-307",
+      "family": "R6-XAU-LOW-TURNOVER-BREAKOUT",
+      "lookback_bars": 96,
+      "buffer_atr": 0.0,
+      "horizon_bars": 48,
+      "session": "UTC00_08",
+      "session_start": 0,
+      "session_end": 8,
+      "direction": 1,
+      "direction_name": "LONG"
+    }
+  ],
+  "market_source": {
+    "terminal_exe": "D:\\MT5_FundedNext\\terminal64.exe",
+    "required_server": "FundedNext-Server 2",
+    "symbol": "XAUUSD",
+    "export_method": "read-only MetaTrader5 Python copy_rates_range in monthly chunks",
+    "timeframes": ["M1", "M5"],
+    "canonical_overlap_checks": [
+      "2024-2025 overlap must reconcile with frozen Phase I-B raw datasets",
+      "2026 Jan-Jul overlap must reconcile with frozen Phase I-F snapshots"
+    ]
+  },
+  "source_variants": {
+    "RAW_FULL_HISTORY": "Raw M5 signal source for the complete 2017-Jul2026 interval; raw M1 execution.",
+    "HYBRID_CANONICAL": "2017-2023 raw M5; exact frozen +/-5 minute high-impact USD masking for 2024-2025 and Jan-Jul 2026; raw M1 execution. Historical 2017-2023 calendar masking is unavailable in the current frozen lab and is therefore not invented."
+  },
+  "execution": {
+    "signal_timeframe": "M5",
+    "execution_timeframe": "M1",
+    "entry": "first raw-M1 open at or after signal bar close",
+    "exit": "first raw-M1 open at frozen M5 horizon boundary",
+    "overlap": "one position at a time per candidate; exit before equal-timestamp new entry",
+    "cost_profiles": ["E1", "STRESS"],
+    "parameter_retuning": false,
+    "sizing_optimization": false
+  },
+  "required_outputs": [
+    "full continuous replay metrics",
+    "isolated yearly metrics",
+    "monthly metrics",
+    "2026 monthly decay profile",
+    "rolling 6m and 12m metrics",
+    "best-trade concentration",
+    "drawdown and win/loss streak diagnostics",
+    "positive-year ratios under E1 and STRESS",
+    "RAW_FULL_HISTORY versus HYBRID_CANONICAL sensitivity",
+    "candidate monthly-PnL correlation and simple combined diagnostic"
+  ],
+  "operational_screen": {
+    "descriptive_only": true,
+    "full_e1_net_gt": 0,
+    "full_stress_net_gt": 0,
+    "full_e1_ex_best_gt": 0,
+    "minimum_positive_full_year_fraction_e1": 0.70,
+    "minimum_positive_full_year_fraction_stress": 0.60,
+    "2026_jan_jul_e1_net_gt": 0,
+    "2026_jan_jul_stress_net_gt": 0,
+    "maximum_single_year_share_of_positive_e1_net": 0.50
+  },
+  "interpretation": "A strong long-history result may justify building a prototype EA for controlled forward/live evaluation on a user-approved account. It does not become new independent validation because the candidates were selected before this retrospective scan. No live deployment is authorized by this job."
+}
