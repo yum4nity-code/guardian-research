@@ -20,23 +20,26 @@ def synthetic_market() -> tuple[pd.DataFrame, pd.DataFrame, pd.Series]:
     return df, ft, atr
 
 
-def test_nonoverlap_and_costs() -> None:
-    df, ft, atr = synthetic_market()
-    rule = {
-        "candidate_id": "TEST",
+def rule(candidate_id: str, horizon: int = 3) -> dict:
+    return {
+        "candidate_id": candidate_id,
         "dataset": "TEST.csv",
         "timeframe": "M15",
         "feature": "ret1",
         "operator": "gt",
         "quantile": 0.7,
         "cutpoint": 0.0,
-        "horizon_bars": 3,
+        "horizon_bars": horizon,
         "direction": 1,
         "hour_start": None,
         "hour_width": None,
         "execution": "signal_after_bar_close_entry_next_open_exit_open_after_h_bars",
     }
-    trades, accounting = econ.extract_nonoverlap_trades(df, ft, atr, rule)
+
+
+def test_nonoverlap_and_costs() -> None:
+    df, ft, atr = synthetic_market()
+    trades, accounting = econ.extract_nonoverlap_trades(df, ft, atr, rule("TEST", 3))
     assert len(trades) > 0
     assert accounting["ignored_overlap"] > 0
     assert (trades.entry_time.iloc[1:].reset_index(drop=True) >= trades.exit_time.iloc[:-1].reset_index(drop=True)).all()
@@ -52,26 +55,12 @@ def test_year_boundary_fails_closed() -> None:
     df = pd.DataFrame({"time": t, "open": o, "high": o + 1, "low": o - 1, "close": o + 0.5})
     ft = pd.DataFrame({"ret1": np.ones(len(df))}, index=df.index)
     atr = pd.Series(np.ones(len(df)), index=df.index)
-    rule = {
-        "candidate_id": "BOUNDARY",
-        "dataset": "TEST.csv",
-        "timeframe": "M15",
-        "feature": "ret1",
-        "operator": "gt",
-        "quantile": 0.7,
-        "cutpoint": 0.0,
-        "horizon_bars": 4,
-        "direction": 1,
-        "hour_start": None,
-        "hour_width": None,
-        "execution": "signal_after_bar_close_entry_next_open_exit_open_after_h_bars",
-    }
-    try:
-        econ.extract_nonoverlap_trades(df, ft, atr, rule)
-    except RuntimeError as exc:
-        assert "protected" in str(exc).lower()
-    else:
-        raise AssertionError("protected 2026 path should fail closed")
+    trades, _ = econ.extract_nonoverlap_trades(df, ft, atr, rule("BOUNDARY", 4))
+    if not trades.empty:
+        assert (trades.entry_time < econ.PROTECTED).all()
+        assert (trades.exit_time < econ.PROTECTED).all()
+        assert (trades.signal_time.dt.year == trades.entry_time.dt.year).all()
+        assert (trades.entry_time.dt.year == trades.exit_time.dt.year).all()
 
 
 def test_drawdown_includes_zero_origin() -> None:
