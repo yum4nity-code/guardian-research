@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R5-POST-RESULT-COLD-AUDIT-PREFLIGHT",
+    "revision": 2
+  },
+  "main_commit": "9976eb3d53f3be62b6f7211b3af0a53e73dd23aa",
+  "pid": 7580,
+  "protected_2026": false,
+  "queue_generation": 48,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T00:07:40.429764+00:00",
+  "version": "1.01"
+}
