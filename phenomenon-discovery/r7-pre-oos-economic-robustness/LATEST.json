@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    {
+      "name": "r7_pre_oos_economic_robustness_result.json",
+      "sha256": "09677329cc09719889264b14f563c94bf714e1f129084d9fe1257ae0770d8e42",
+      "size_bytes": 163101
+    },
+    {
+      "name": "r7_pre_oos_economic_robustness_diagnostics.csv",
+      "sha256": "3c722fa65fe82131803b4deff09234a7b367612d2c807e7ba45c7c7685b916f1",
+      "size_bytes": 4212
+    }
+  ],
+  "generated_at_utc": "2026-09-12T21:21:08.596340+00:00",
+  "phase": "r7-pre-oos-economic-robustness",
+  "published_run_path": "phenomenon-discovery/r7-pre-oos-economic-robustness/runs/20260912T212108Z_r7-pre-oos-economic-robustness",
+  "schema": 1,
+  "source_commit": "2c0b8d8f8a5d2dff2cf6de3000bc23972608f3b0",
+  "status": "FAIL",
+  "summary": "R7 pre-OOS economic robustness FAIL: 0/8 frozen candidates pass non-overlap and 10/20 bps round-trip reject-only cost gates; 2026 untouched."
+}
