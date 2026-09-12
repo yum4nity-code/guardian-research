@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 75.0,
+  "class_key": "r6-xau-low-turnover-breakout-preflight",
+  "duration_seconds": 2.00390569999945,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T12:00:10.103393+00:00",
+  "job_id": "R6-XAU-LOW-TURNOVER-BREAKOUT-PREFLIGHT",
+  "main_commit": "6555969c81fb97280a274c0ed62ed61d5812bb31",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T12:00:08.059112+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{'status': 'PASS', 'tests': 7, 'market_data_accessed': False, 'protected_2026_opened': False}"
+}
