@@ -78,7 +78,10 @@ def load_exact(path: Path) -> pd.DataFrame:
     })
     if "volume" in df:
         z["volume"] = pd.to_numeric(df["volume"], errors="coerce")
-    z = z.dropna(subset=["time", "open", "high", "low", "close"]).sort_values("time").drop_duplicates("time").reset_index(drop=True)
+    z = z.dropna(subset=["time", "open", "high", "low", "close"]).sort_values("time").reset_index(drop=True)
+    duplicate_count = int(z.time.duplicated().sum())
+    if duplicate_count:
+        raise RuntimeError(f"duplicate timestamps in {path}: {duplicate_count}")
     if (z.time >= PROTECTED).any():
         raise RuntimeError(f"protected 2026 row present: {path}")
     if z.time.min() > pd.Timestamp("2017-08-31 23:59:59", tz="UTC") or z.time.max() < pd.Timestamp("2025-12-31 23:50:00", tz="UTC"):
@@ -100,6 +103,23 @@ def resample(df: pd.DataFrame, timeframe: str) -> pd.DataFrame:
     y = y.loc[counts.eq(expected_rows)]
     y = y.dropna(subset=["open", "high", "low", "close"]).reset_index()
     return y
+
+
+def features_contiguous(df: pd.DataFrame, timeframe: str) -> tuple[pd.DataFrame, pd.Series]:
+    expected = {"M15": pd.Timedelta(minutes=15), "H1": pd.Timedelta(hours=1)}[timeframe]
+    breaks = df.time.diff().ne(expected)
+    if len(breaks):
+        breaks.iloc[0] = True
+    segment = breaks.cumsum()
+    feature_parts = []
+    atr_parts = []
+    for _, part in df.groupby(segment, sort=False):
+        ft, atr = base.features(part)
+        feature_parts.append(ft)
+        atr_parts.append(atr)
+    if not feature_parts:
+        return pd.DataFrame(index=df.index), pd.Series(index=df.index, dtype=float)
+    return pd.concat(feature_parts).sort_index(), pd.concat(atr_parts).sort_index()
 
 
 def fit_cutpoint(feature: pd.Series, times: pd.Series, quantile: float) -> float:
@@ -225,7 +245,7 @@ def main() -> int:
         input_hashes[path.name] = sha256_file(path)
         for tf in TIMEFRAMES:
             df = resample(raw, tf)
-            ft, atr = base.features(df)
+            ft, atr = features_contiguous(df, tf)
             markets.append({"dataset": path.name, "timeframe": tf, "df": df, "ft": ft, "atr": atr})
     if len(markets) != 4:
         raise RuntimeError("expected exactly BTC/ETH x M15/H1 markets")
