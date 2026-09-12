@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R9-BTC-ETH-CALENDAR-SESSION",
+    "revision": 1
+  },
+  "main_commit": "a0cf46c9c2742ab050fcc02641c225bf78aa3f03",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 70,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T23:14:47.353723+00:00",
+  "version": "1.01"
+}
