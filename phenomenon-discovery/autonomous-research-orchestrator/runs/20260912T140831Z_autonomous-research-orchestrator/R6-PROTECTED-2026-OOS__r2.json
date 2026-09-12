@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 2250.0,
+  "class_key": "r6-protected-2026-oos",
+  "duration_seconds": 5.001737399999911,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-12T14:08:31.157953+00:00",
+  "job_id": "R6-PROTECTED-2026-OOS",
+  "main_commit": "ddfa678d2bbde7bace52f0d635d3cc0a08a60483",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 2,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T14:08:26.127974+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r6_protected_2026_oos_v1_00.py\", line 247, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r6_protected_2026_oos_v1_00.py\", line 147, in main\n    m5_path = select_input(root, \"m5\")\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r6_protected_2026_oos_v1_00.py\", line 81, in select_input\n    raise RuntimeError(f\"expected exactly one XAUUSD 2026 {timeframe} CSV under {root}, found {len(hits)}: {[str(x) for x in hits]}\")\nRuntimeError: expected exactly one XAUUSD 2026 m5 CSV under D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1, found 0: []",
+  "stdout_tail": ""
+}

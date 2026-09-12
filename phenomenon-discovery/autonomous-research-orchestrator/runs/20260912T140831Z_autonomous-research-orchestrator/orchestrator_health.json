@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R6-PROTECTED-2026-OOS__r2.json",
+  "main_commit": "ddfa678d2bbde7bace52f0d635d3cc0a08a60483",
+  "pid": 10260,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-12T14:08:31.159803+00:00",
+  "version": "1.01"
+}
