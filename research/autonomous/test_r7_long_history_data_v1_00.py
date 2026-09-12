@@ -34,7 +34,14 @@ def main() -> int:
     assert s["gap_count_non_5m"] == 1
     assert s["duplicate_count"] == 0
 
-    print('{"status":"PASS","tests":4,"network_access":false,"protected_market_data_access":false}')
+    dup = pd.concat([vf, vf.iloc[[0]]], ignore_index=True)
+    try:
+        d.validate_symbol(dup, "BTCUSDT")
+        raise AssertionError("duplicate timestamp was not rejected")
+    except RuntimeError as exc:
+        assert "duplicate timestamps" in str(exc)
+
+    print('{"status":"PASS","tests":5,"network_access":false,"protected_market_data_access":false}')
     return 0
 
 
