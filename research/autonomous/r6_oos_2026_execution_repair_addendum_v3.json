@@ -1,0 +1,28 @@
+{
+  "schema": 3,
+  "phase": "r6-protected-2026-oos",
+  "version": "3.00-execution-repair",
+  "parent_preregistration": "research/autonomous/r6_oos_2026_preregistration_v2.json",
+  "parent_preregistration_sha256": "7037e2d532963a1abce25a042704a50bae285cc7ce8ed86394f355e5d141a2be",
+  "authorized_by_human": true,
+  "repair_only": true,
+  "r4_scientific_result_valid": false,
+  "r4_protected_2026_opened": true,
+  "r4_outcome_trades_evaluated": 0,
+  "r4_signal_counts_exposed": true,
+  "retuning_allowed": false,
+  "candidate_changes_allowed": false,
+  "gate_changes_allowed": false,
+  "window_changes_allowed": false,
+  "repair_reason": "R6 OOS r4 reused the R5 pre-OOS replay whose explicit guards reject every signal_year outside 2024/2025 and every modeled exit at or after 2026-01-01. Consequently all 2026 signals were rejected before entry and all 12 candidates had zero executable trades. The published 0/12 FAIL is therefore invalid technical output, not scientific evidence.",
+  "frozen_window": {
+    "start": "2026-01-01T00:00:00Z",
+    "split": "2026-05-01T00:00:00Z",
+    "end_exclusive": "2026-09-01T00:00:00Z"
+  },
+  "frozen_candidate_count": 12,
+  "scientific_contract": "All candidate definitions, transport inputs, news mask, E1/STRESS profiles, temporal split, bootstrap/FDR procedure and candidate/family pass criteria remain exactly those of parent preregistration v2.",
+  "permitted_code_change": "Replace only the inherited pre-OOS replay eligibility guard with a dedicated authorized frozen-window replay. Entry/exit timing, overlap suppression and costs remain unchanged.",
+  "integrity_note": "The invalid r4 run exposed per-candidate 2026 signal counts but no entry/exit outcomes, PnL, PF, drawdown or bootstrap outcome evidence. Those counts must not be used for any parameter, candidate, gate or window change.",
+  "live_deployment_authorized": false
+}
