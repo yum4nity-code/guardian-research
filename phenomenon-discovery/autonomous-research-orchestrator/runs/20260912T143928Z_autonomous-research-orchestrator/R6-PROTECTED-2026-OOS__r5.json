@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 2250.0,
+  "class_key": "r6-protected-2026-oos",
+  "duration_seconds": 20.024206399999457,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T14:39:28.123048+00:00",
+  "job_id": "R6-PROTECTED-2026-OOS",
+  "main_commit": "97182a0dcdead6aaeb783009b3d3b6c7ec6fd806",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 5,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T14:39:08.079045+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"pass_count\": 0, \"passing_candidate_ids\": [], \"protected_2026_opened\": true}"
+}
