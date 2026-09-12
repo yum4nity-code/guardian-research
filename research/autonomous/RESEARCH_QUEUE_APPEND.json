@@ -1,83 +1,124 @@
 {
   "schema": 1,
-  "generation": 60,
-  "supersedes_generation": 59,
-  "closure": "R5E-023 protected Jan-Aug 2026 OOS completed and is scientifically FAIL; no retuning is permitted. Separately, R6 protected OOS r4 is formally invalidated as a technical run, not a scientific FAIL: all 2026 signals were rejected before entry by the inherited R5 pre-OOS replay guards hard-coded to years 2024/2025 and exit < 2026-01-01, producing zero executable trades for all 12 candidates. Generation 60 performs an execution-only R6 repair. The 12 frozen definitions, Jan-Aug window, inputs, news mask, costs, temporal split and every preregistered pass/fail gate remain unchanged. The repair replaces only the pre-OOS eligibility guard with an explicit authorized Jan-Aug 2026 window guard. Cold synthetic audit must PASS first. No retuning and no live deployment.",
+  "generation": 61,
+  "supersedes_generation": 60,
+  "closure": "Owner explicitly requested a retrospective 2017-through-July-2026 backtest of the two best candidates from today's research and maximum diagnostics before considering an EA. R6 protected OOS r5 is complete. The selected pair is R6B-347 and R6B-307: R6B-347 has the strongest combined 2024-2025 evidence and strongest positive Jan-Aug-2026 STRESS result among today's positive R6 candidates; R6B-307 has the strongest Jan-Aug-2026 E1 PF among the positive R6 candidates and a comparatively smaller H2 deterioration. R5E-023 is not selected because its valid protected OOS had negative STRESS and severe May-Aug deterioration. Generation 61 is descriptive/post-selection only: exact parameters are frozen, no tuning, no sizing optimization and no live deployment. It first cold-audits the setup, then exports read-only FundedNext XAUUSD M1/M5 history in monthly chunks for 2017-01-01 through 2026-08-01 exclusive with canonical 2024-2026 reconciliation, then computes full, yearly, monthly, rolling, concentration, drawdown/streak, cost-stress and pair diagnostics.",
   "jobs": [
     {
-      "id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
-      "revision": 5,
+      "id": "TOP2-XAU-LONG-HISTORY-PREFLIGHT",
+      "revision": 1,
       "enabled": true,
-      "priority": 58,
-      "class_key": "r6-protected-2026-oos-preflight",
-      "description": "Cold synthetic semantic audit for the R6 r4 execution repair. Confirms the invalid r4 cause, exact v2 window and frozen contract, verifies that a synthetic 2026 signal can execute, true Jan-Aug boundary crossings fail closed, and the old 2024/2025/PROTECTED eligibility guard is absent. Must not access market data.",
+      "priority": 60,
+      "class_key": "top2-xau-long-history-preflight",
+      "description": "Cold audit only. Verifies exact frozen R6B-347/R6B-307 definitions, 2017-through-July-2026 window, no optimization/live action, canonical overlap reconciliation requirements, news-mask semantics and generic historical replay behavior. No market data access.",
       "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R5E023-PROTECTED-2026-OOS",
-          "revision": 1,
-          "accepted_status": ["PASS"]
-        },
         {
           "kind": "receipt",
           "job_id": "R6-PROTECTED-2026-OOS",
-          "revision": 4,
-          "accepted_status": ["PASS"]
-        }
-      ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/test_r6_protected_2026_oos_v1_04.py",
-        "args": []
-      },
-      "timeout": {
-        "min_seconds": 120,
-        "expected_seconds": 45,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 120,
-        "poll_seconds": 2
-      }
-    },
-    {
-      "id": "R6-PROTECTED-2026-OOS",
-      "revision": 5,
-      "enabled": true,
-      "priority": 59,
-      "class_key": "r6-protected-2026-oos",
-      "description": "First valid outcome-capable scientific protected-OOS evaluation of the unchanged 12 frozen R6 breakout survivors on Jan-Aug 2026 after invalidating r4's pre-OOS replay-guard failure. Uses the same validated M5/M1 snapshots, frozen news mask, first-available raw-M1 execution, one-position replay, E1/STRESS costs, split, bootstrap/FDR and gates. No candidate/gate/window change, rescue, retuning or live deployment.",
-      "data_window": {
-        "start": "2026-01-01T00:00:00Z",
-        "end_exclusive": "2026-09-01T00:00:00Z"
-      },
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
           "revision": 5,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r6_protected_2026_oos_v1_03.py",
+        "path": "research/autonomous/test_top2_xau_long_history_v1_00.py",
+        "args": []
+      },
+      "timeout": {
+        "min_seconds": 120,
+        "expected_seconds": 30,
+        "eta_multiplier": 3.0,
+        "history_p95_multiplier": 3.0,
+        "stale_heartbeat_seconds": 120,
+        "poll_seconds": 2
+      }
+    },
+    {
+      "id": "TOP2-XAU-LONG-HISTORY-MARKET-EXPORT",
+      "revision": 1,
+      "enabled": true,
+      "priority": 61,
+      "class_key": "top2-xau-long-history-market-export",
+      "description": "Read-only XAUUSD M1/M5 export from FundedNext-Server 2 for 2017-01-01 through 2026-08-01 exclusive, requested in monthly chunks. Fails closed unless 2024-2025 and Jan-Jul-2026 OHLC/time overlap reconcile with the frozen canonical datasets already used today. No trading action.",
+      "data_window": {
+        "start": "2017-01-01T00:00:00Z",
+        "end_exclusive": "2026-08-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "TOP2-XAU-LONG-HISTORY-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/top2_xau_long_history_market_export_v1_00.py",
         "args": [
+          "--terminal-exe", "D:\\MT5_FundedNext\\terminal64.exe",
+          "--symbol", "XAUUSD",
+          "--required-server", "FundedNext-Server 2",
+          "--start", "2017-01-01T00:00:00Z",
+          "--end-exclusive", "2026-08-01T00:00:00Z",
+          "--output-dir", "{ROOT}\\top2_xau_long_history_data_v1",
+          "--phase-ib-root", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
+          "--phase-if-common", "C:\\Users\\armor\\AppData\\Roaming\\MetaQuotes\\Terminal\\Common\\Files\\Guardian\\phase_if",
+          "--progress-file", "{ROOT}\\progress\\TOP2-XAU-LONG-HISTORY-MARKET-EXPORT-R1.json"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 1800,
+        "expected_seconds": 1800,
+        "eta_multiplier": 3.0,
+        "history_p95_multiplier": 3.0,
+        "stale_heartbeat_seconds": 600,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\TOP2-XAU-LONG-HISTORY-MARKET-EXPORT-R1.json"
+      }
+    },
+    {
+      "id": "TOP2-XAU-LONG-HISTORY-BACKTEST",
+      "revision": 1,
+      "enabled": true,
+      "priority": 62,
+      "class_key": "top2-xau-long-history-backtest",
+      "description": "Post-selection descriptive characterization of frozen R6B-347 and R6B-307 across 2017 through July 2026. Computes raw-full-history and hybrid-canonical variants, exact 2024-2025 replay parity, E1/STRESS full/year/month/rolling metrics, best-trade concentration, drawdown/streaks, recent decay, positive-year fractions and pair correlation. No tuning and no live deployment.",
+      "data_window": {
+        "start": "2017-01-01T00:00:00Z",
+        "end_exclusive": "2026-08-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "TOP2-XAU-LONG-HISTORY-MARKET-EXPORT",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/top2_xau_long_history_backtest_v1_00.py",
+        "args": [
+          "--preregistration", "{DEPLOY}\\research\\autonomous\\top2_xau_long_history_preregistration_v1.json",
+          "--market-dir", "{ROOT}\\top2_xau_long_history_data_v1",
+          "--market-manifest", "{ROOT}\\top2_xau_long_history_data_v1\\top2_long_history_market_manifest.json",
+          "--mask-2024-2025", "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ia_v1\\phase_ia_xauusd_merged_news_mask_2024_2025.csv",
+          "--mask-2026", "{ROOT}\\phase_if_2026\\phase_if_xauusd_merged_news_mask_2026_jan_aug.csv",
           "--r6-result", "{ROOT}\\r6_xau_low_turnover_breakout_r1\\r6_xau_low_turnover_breakout_result.json",
-          "--preregistration", "{DEPLOY}\\research\\autonomous\\r6_oos_2026_preregistration_v2.json",
-          "--root", "{ROOT}",
-          "--output-dir", "{ROOT}\\r6_protected_2026_oos_r5",
-          "--progress-file", "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R5.json",
+          "--output-dir", "{ROOT}\\top2_xau_long_history_result_v1",
+          "--progress-file", "{ROOT}\\progress\\TOP2-XAU-LONG-HISTORY-BACKTEST-R1.json",
           "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
-        "min_seconds": 300,
+        "min_seconds": 1200,
         "expected_seconds": 900,
-        "eta_multiplier": 2.5,
+        "eta_multiplier": 3.0,
         "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 300,
+        "stale_heartbeat_seconds": 600,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R5.json"
+        "progress_file": "{ROOT}\\progress\\TOP2-XAU-LONG-HISTORY-BACKTEST-R1.json"
       }
     }
   ]
