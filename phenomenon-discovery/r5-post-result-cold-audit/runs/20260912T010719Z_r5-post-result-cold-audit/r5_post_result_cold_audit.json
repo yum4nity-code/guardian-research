@@ -1,0 +1,41 @@
+{
+  "audit_type": "reject_only_r5_post_result_execution_semantics_and_provenance",
+  "canonical_provenance": [
+    {
+      "max_time": "2025-12-31 23:59:00+00:00",
+      "name": "xauusd_m1_2024_2025_raw.csv",
+      "rows": 710300,
+      "sha256": "f98a395961b27ca9dcb34cffa4ef8dd93720adb70292abf7bc96108667232445"
+    },
+    {
+      "max_time": "2025-12-31 23:59:00+00:00",
+      "name": "xauusd_m1_2024_2025_news_clean.csv",
+      "rows": 703387,
+      "sha256": "b116c61d0be7d73c455f4a4f897efdf0bf77a2b88594ed4b93ebee0d707570ee"
+    },
+    {
+      "max_time": "2025-12-31 23:55:00+00:00",
+      "name": "xauusd_m5_2024_2025_raw.csv",
+      "rows": 142549,
+      "sha256": "ba54c9b29755eac4284cb872805148736be529e954533c028e7f826bb444ce66"
+    },
+    {
+      "max_time": "2025-12-31 23:55:00+00:00",
+      "name": "xauusd_m5_2024_2025_news_clean.csv",
+      "rows": 140664,
+      "sha256": "972ecaf6c3cadf7136363f396d7a29e7a6246646b575fad5c3e677036004b503"
+    }
+  ],
+  "edge_drift_limit_atr": 0.005,
+  "expected_r5_result_sha256": "81dd16fabf001025c4dc144035d538fa46fab2fc768ba237610e027af1c7d34e",
+  "frozen_survivor_count": 96,
+  "generated_at_utc": "2026-09-12T01:07:18.955767+00:00",
+  "interpretation": "R5 r2 may proceed only to a separately preregistered economic/reject-only robustness screen; protected 2026 remains sealed.",
+  "material_semantic_change_count": 0,
+  "protected_2026_opened": false,
+  "provenance_failures": [],
+  "r5_result_sha256": "81dd16fabf001025c4dc144035d538fa46fab2fc768ba237610e027af1c7d34e",
+  "schema": 1,
+  "selected_reference_mismatch_limit": 0.01,
+  "status": "PASS_INTERPRETABLE"
+}

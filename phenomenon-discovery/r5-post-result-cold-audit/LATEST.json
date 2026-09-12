@@ -1,0 +1,26 @@
+{
+  "artifacts": [
+    {
+      "name": "r5_post_result_cold_audit.json",
+      "sha256": "ee3847d5a2c5c81b7cfb51290fa96d170c8e7fd4ac976d0bfca3cc03908fd628",
+      "size_bytes": 1665
+    },
+    {
+      "name": "r5_post_result_survivor_diagnostics.json",
+      "sha256": "78d066e8f49be56116d122476a56386bac4d4420f90d7a8cd664f03716c92884",
+      "size_bytes": 447627
+    },
+    {
+      "name": "r5_post_result_survivor_diagnostics.csv",
+      "sha256": "6e5c4f485fedd3d9407ee2910e81ba03e1fcb007d32eae78daecf14bd5ef51d1",
+      "size_bytes": 13617
+    }
+  ],
+  "generated_at_utc": "2026-09-12T01:07:19.388121+00:00",
+  "phase": "r5-post-result-cold-audit",
+  "published_run_path": "phenomenon-discovery/r5-post-result-cold-audit/runs/20260912T010719Z_r5-post-result-cold-audit",
+  "schema": 1,
+  "source_commit": "e5591f0a73588a6dc5aea3b9bc02ffab2cbbb91f",
+  "status": "PASS",
+  "summary": "R5 cold audit PASS_INTERPRETABLE; frozen survivors=96; material semantic changes=0; protected 2026 unopened."
+}
