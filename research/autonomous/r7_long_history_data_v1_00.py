@@ -137,8 +137,10 @@ def read_month(zip_path: Path) -> pd.DataFrame:
         "taker_buy_base": pd.to_numeric(df["taker_buy_base"], errors="coerce"),
         "taker_buy_quote": pd.to_numeric(df["taker_buy_quote"], errors="coerce"),
     })
-    out = out.dropna(subset=["time", "open", "high", "low", "close"])
-    out = out.sort_values("time").drop_duplicates("time")
+    out = out.dropna(subset=["time", "open", "high", "low", "close"]).sort_values("time")
+    duplicate_count = int(out["time"].duplicated().sum())
+    if duplicate_count:
+        raise RuntimeError(f"duplicate timestamps in {zip_path}: {duplicate_count}")
     if (out["time"] >= PROTECTED_START).any():
         raise RuntimeError(f"protected 2026 row present in {zip_path}")
     return out
@@ -147,7 +149,10 @@ def read_month(zip_path: Path) -> pd.DataFrame:
 def validate_symbol(df: pd.DataFrame, symbol: str) -> dict:
     if df.empty:
         raise RuntimeError(f"{symbol}: no rows")
-    df = df.sort_values("time").drop_duplicates("time").reset_index(drop=True)
+    df = df.sort_values("time").reset_index(drop=True)
+    duplicate_count = int(df["time"].duplicated().sum())
+    if duplicate_count:
+        raise RuntimeError(f"{symbol}: duplicate timestamps: {duplicate_count}")
     if not df["time"].is_monotonic_increasing:
         raise RuntimeError(f"{symbol}: non-monotonic time")
     if (df["time"] >= PROTECTED_START).any():
@@ -155,7 +160,6 @@ def validate_symbol(df: pd.DataFrame, symbol: str) -> dict:
     d = df["time"].diff().dropna()
     expected = pd.Timedelta(minutes=5)
     gap_count = int((d != expected).sum())
-    duplicate_count = int(df["time"].duplicated().sum())
     first = df["time"].iloc[0]
     last = df["time"].iloc[-1]
     if first > pd.Timestamp("2017-08-31 23:59:59", tz="UTC"):
@@ -238,8 +242,7 @@ def main() -> int:
             files.append({"month": ym, "path": str(target), "bytes": target.stat().st_size, "sha256": sha, "rows": int(len(frame))})
             done += 1
 
-        df = pd.concat(frames, ignore_index=True)
-        df = df.sort_values("time").drop_duplicates("time").reset_index(drop=True)
+        df = pd.concat(frames, ignore_index=True).sort_values("time").reset_index(drop=True)
         summary = validate_symbol(df, symbol)
         csv_path = out / f"{symbol}_spot_5m_2017_2025.csv"
         df.to_csv(csv_path, index=False, date_format="%Y-%m-%dT%H:%M:%S.%fZ")
