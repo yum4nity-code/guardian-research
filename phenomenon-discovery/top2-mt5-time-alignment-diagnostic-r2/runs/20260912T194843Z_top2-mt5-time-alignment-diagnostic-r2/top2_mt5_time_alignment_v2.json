@@ -1,0 +1,522 @@
+{
+  "candidates": {
+    "R6B-307": {
+      "years": {
+        "2024": {
+          "nearest_entry_offset_summary": {
+            "count": 95,
+            "mode_count": 5,
+            "mode_hours": 3.083,
+            "top_offsets_hours": [
+              {
+                "count": 5,
+                "hours": 3.083
+              },
+              {
+                "count": 4,
+                "hours": 2.583
+              },
+              {
+                "count": 3,
+                "hours": 0.333
+              },
+              {
+                "count": 3,
+                "hours": 2.083
+              },
+              {
+                "count": 3,
+                "hours": 3.25
+              },
+              {
+                "count": 3,
+                "hours": 2.25
+              },
+              {
+                "count": 2,
+                "hours": 2.75
+              },
+              {
+                "count": 2,
+                "hours": 0.5
+              },
+              {
+                "count": 2,
+                "hours": 2.667
+              },
+              {
+                "count": 2,
+                "hours": 2.167
+              }
+            ]
+          },
+          "shift_match_table": [
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": -3.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": -2.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": -1.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": 0.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 164,
+              "shift_hours": 1.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": 2.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": 3.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 164,
+              "shift_hours": 3.083
+            }
+          ],
+          "timestamp_inventory": {
+            "canonical": {
+              "count": 95,
+              "entry_dtype": "datetime64[us, UTC]",
+              "first_entry": "2024-01-12T01:00:00+00:00",
+              "first_entry_ns": 1705021200000000000,
+              "last_entry": "2024-12-31T01:00:00+00:00",
+              "last_entry_ns": 1735606800000000000
+            },
+            "mt5": {
+              "count": 164,
+              "entry_dtype": "datetime64[us, UTC]",
+              "first_entry": "2024-01-02T07:15:00+00:00",
+              "first_entry_ns": 1704179700000000000,
+              "last_entry": "2024-12-31T03:30:00+00:00",
+              "last_entry_ns": 1735615800000000000
+            }
+          }
+        },
+        "2025": {
+          "nearest_entry_offset_summary": {
+            "count": 106,
+            "mode_count": 7,
+            "mode_hours": 0.25,
+            "top_offsets_hours": [
+              {
+                "count": 7,
+                "hours": 0.25
+              },
+              {
+                "count": 4,
+                "hours": 0.417
+              },
+              {
+                "count": 3,
+                "hours": 1.75
+              },
+              {
+                "count": 3,
+                "hours": 2.5
+              },
+              {
+                "count": 3,
+                "hours": 3.083
+              },
+              {
+                "count": 3,
+                "hours": 0.667
+              },
+              {
+                "count": 3,
+                "hours": 1.167
+              },
+              {
+                "count": 3,
+                "hours": 3.5
+              },
+              {
+                "count": 2,
+                "hours": 3.333
+              },
+              {
+                "count": 2,
+                "hours": -18.25
+              }
+            ]
+          },
+          "shift_match_table": [
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": -3.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": -2.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": -1.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": 0.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 7,
+              "exact_pair_matches": 7,
+              "mt5_trades": 182,
+              "shift_hours": 0.25
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 182,
+              "shift_hours": 1.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 182,
+              "shift_hours": 2.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 182,
+              "shift_hours": 3.0
+            }
+          ],
+          "timestamp_inventory": {
+            "canonical": {
+              "count": 106,
+              "entry_dtype": "datetime64[us, UTC]",
+              "first_entry": "2025-01-07T01:00:00+00:00",
+              "first_entry_ns": 1736211600000000000,
+              "last_entry": "2025-12-26T01:00:00+00:00",
+              "last_entry_ns": 1766710800000000000
+            },
+            "mt5": {
+              "count": 182,
+              "entry_dtype": "datetime64[us, UTC]",
+              "first_entry": "2025-01-02T03:10:00+00:00",
+              "first_entry_ns": 1735787400000000000,
+              "last_entry": "2025-12-30T07:25:00+00:00",
+              "last_entry_ns": 1767079500000000000
+            }
+          }
+        }
+      }
+    },
+    "R6B-347": {
+      "years": {
+        "2024": {
+          "nearest_entry_offset_summary": {
+            "count": 95,
+            "mode_count": 4,
+            "mode_hours": 2.583,
+            "top_offsets_hours": [
+              {
+                "count": 4,
+                "hours": 2.583
+              },
+              {
+                "count": 4,
+                "hours": 3.083
+              },
+              {
+                "count": 3,
+                "hours": 2.167
+              },
+              {
+                "count": 3,
+                "hours": 3.25
+              },
+              {
+                "count": 3,
+                "hours": 2.25
+              },
+              {
+                "count": 2,
+                "hours": 2.75
+              },
+              {
+                "count": 2,
+                "hours": 0.5
+              },
+              {
+                "count": 2,
+                "hours": 2.083
+              },
+              {
+                "count": 2,
+                "hours": 0.333
+              },
+              {
+                "count": 2,
+                "hours": 4.583
+              }
+            ]
+          },
+          "shift_match_table": [
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -3.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -2.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -1.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": 0.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 1.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": 2.0
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": 2.583
+            },
+            {
+              "canonical_trades": 95,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 3.0
+            }
+          ],
+          "timestamp_inventory": {
+            "canonical": {
+              "count": 95,
+              "entry_dtype": "datetime64[us, UTC]",
+              "first_entry": "2024-01-12T01:00:00+00:00",
+              "first_entry_ns": 1705021200000000000,
+              "last_entry": "2024-12-31T01:00:00+00:00",
+              "last_entry_ns": 1735606800000000000
+            },
+            "mt5": {
+              "count": 152,
+              "entry_dtype": "datetime64[us, UTC]",
+              "first_entry": "2024-01-02T07:15:00+00:00",
+              "first_entry_ns": 1704179700000000000,
+              "last_entry": "2024-12-31T03:30:00+00:00",
+              "last_entry_ns": 1735615800000000000
+            }
+          }
+        },
+        "2025": {
+          "nearest_entry_offset_summary": {
+            "count": 106,
+            "mode_count": 7,
+            "mode_hours": 0.25,
+            "top_offsets_hours": [
+              {
+                "count": 7,
+                "hours": 0.25
+              },
+              {
+                "count": 3,
+                "hours": 4.333
+              },
+              {
+                "count": 3,
+                "hours": 3.083
+              },
+              {
+                "count": 3,
+                "hours": 3.25
+              },
+              {
+                "count": 3,
+                "hours": 0.667
+              },
+              {
+                "count": 3,
+                "hours": 1.167
+              },
+              {
+                "count": 2,
+                "hours": 3.333
+              },
+              {
+                "count": 2,
+                "hours": 1.75
+              },
+              {
+                "count": 2,
+                "hours": 1.833
+              },
+              {
+                "count": 2,
+                "hours": 1.583
+              }
+            ]
+          },
+          "shift_match_table": [
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -3.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -2.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": -1.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 0,
+              "exact_pair_matches": 0,
+              "mt5_trades": 152,
+              "shift_hours": 0.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 7,
+              "exact_pair_matches": 7,
+              "mt5_trades": 152,
+              "shift_hours": 0.25
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 1.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 2.0
+            },
+            {
+              "canonical_trades": 106,
+              "exact_entry_matches": 1,
+              "exact_pair_matches": 1,
+              "mt5_trades": 152,
+              "shift_hours": 3.0
+            }
+          ],
+          "timestamp_inventory": {
+            "canonical": {
+              "count": 106,
+              "entry_dtype": "datetime64[us, UTC]",
+              "first_entry": "2025-01-07T01:00:00+00:00",
+              "first_entry_ns": 1736211600000000000,
+              "last_entry": "2025-12-26T01:00:00+00:00",
+              "last_entry_ns": 1766710800000000000
+            },
+            "mt5": {
+              "count": 152,
+              "entry_dtype": "datetime64[us, UTC]",
+              "first_entry": "2025-01-02T03:10:00+00:00",
+              "first_entry_ns": 1735787400000000000,
+              "last_entry": "2025-12-30T03:55:00+00:00",
+              "last_entry_ns": 1767066900000000000
+            }
+          }
+        }
+      }
+    }
+  },
+  "canonical_inputs": {
+    "xauusd_m1_2024_2025_raw.csv": "f98a395961b27ca9dcb34cffa4ef8dd93720adb70292abf7bc96108667232445",
+    "xauusd_m5_2024_2025_news_clean.csv": "972ecaf6c3cadf7136363f396d7a29e7a6246646b575fad5c3e677036004b503"
+  },
+  "generated_at_utc": "2026-09-12T19:48:41.323831+00:00",
+  "phase": "top2-mt5-time-alignment-diagnostic-r2",
+  "protected_2026_opened": false,
+  "purpose": "Infrastructure timestamp diagnosis only; frozen R6 rules are unchanged.",
+  "repair": "Normalize every compared timestamp through pandas.Timestamp.value nanoseconds; never mix Series integer storage resolutions.",
+  "schema": 2
+}

@@ -1,0 +1,16 @@
+{
+  "artifacts": [
+    {
+      "name": "top2_mt5_time_alignment_v2.json",
+      "sha256": "5fb24c6dddd9ae1315d0e768d45500bd0940d3b46e5da686737fad76ccae2b13",
+      "size_bytes": 15701
+    }
+  ],
+  "generated_at_utc": "2026-09-12T19:48:43.300789+00:00",
+  "phase": "top2-mt5-time-alignment-diagnostic-r2",
+  "published_run_path": "phenomenon-discovery/top2-mt5-time-alignment-diagnostic-r2/runs/20260912T194843Z_top2-mt5-time-alignment-diagnostic-r2",
+  "schema": 1,
+  "source_commit": "e4e44576e619deddac61ba5167b0447e19589c68",
+  "status": "PASS",
+  "summary": "Resolution-safe MT5/canonical timestamp diagnostic; R6B-347 2024: nearest_mode=2.583h; best_shift=1.0h pair=1/95 entry=1/95; R6B-347 2025: nearest_mode=0.25h; best_shift=0.25h pair=7/106 entry=7/106; R6B-307 2024: nearest_mode=3.083h; best_shift=1.0h pair=1/95 entry=1/95; R6B-307 2025: nearest_mode=0.25h; best_shift=0.25h pair=7/106 entry=7/106; 2026 unopened."
+}
