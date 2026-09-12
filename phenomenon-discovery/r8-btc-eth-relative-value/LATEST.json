@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    {
+      "name": "r8_btc_eth_relative_value_result.json",
+      "sha256": "3a45899cf0dcd9d7469750ac9f52cf8b8d38cf1c90ccb8d38ab5793e7b7ef20e",
+      "size_bytes": 883
+    },
+    {
+      "name": "r8_btc_eth_relative_value_survivors.csv",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    }
+  ],
+  "generated_at_utc": "2026-09-12T22:45:48.385951+00:00",
+  "phase": "r8-btc-eth-relative-value",
+  "published_run_path": "phenomenon-discovery/r8-btc-eth-relative-value/runs/20260912T224548Z_r8-btc-eth-relative-value",
+  "schema": 1,
+  "source_commit": "deeba7577a131487b1abf0d3bf6401004355ad49",
+  "status": "FAIL",
+  "summary": "R8 BTC/ETH relative-value FAIL: 0 pre-OOS survivors after frozen 2018-22 discovery, 2023-24 confirmation and 2025 gate; 2026 untouched."
+}
