@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R7-LONG-HISTORY-DATA-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "282b1c2044d82389d5288805a132ae5dd5fb21e9",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 67,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T19:53:26.192536+00:00",
+  "version": "1.01"
+}
