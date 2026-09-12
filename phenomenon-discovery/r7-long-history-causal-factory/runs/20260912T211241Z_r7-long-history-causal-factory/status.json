@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "r7_long_history_causal_factory_result.json",
+      "sha256": "aeafdf64cb1d8e60b42fb6e1e3b872fcfcf40949410c0b456f895c250d949b1c",
+      "size_bytes": 48300
+    },
+    {
+      "name": "r7_long_history_causal_factory_survivors.csv",
+      "sha256": "c6da5a3e3642ce51fa2faffe3e42b34947d622376aac245414d24d6b46778f4b",
+      "size_bytes": 22647
+    }
+  ],
+  "generated_at_utc": "2026-09-12T21:12:41.312728+00:00",
+  "phase": "r7-long-history-causal-factory",
+  "schema": 1,
+  "source_commit": "282b1c2044d82389d5288805a132ae5dd5fb21e9",
+  "status": "PASS",
+  "summary": "R7 long-history causal factory PASS: 8 survivors after 2017-22 discovery, frozen 2023-24 confirmation and frozen 2025 pre-OOS gate; 2026 untouched."
+}
