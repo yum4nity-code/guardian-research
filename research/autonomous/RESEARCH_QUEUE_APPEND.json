@@ -1,17 +1,23 @@
 {
   "schema": 1,
-  "generation": 59,
-  "supersedes_generation": 58,
-  "closure": "R6 protected-2026 OOS r4 completed PASS. Owner explicitly authorized testing the previously set-aside frozen R5E-023 candidate next. Generation 59 preregisters R5E-023 exactly as observed in the published R5 pre-OOS economic robustness artifact: M5 news-clean sma5 < -1.1144146539095026, long, 48-bar horizon, UTC 01-03, next-open causal execution. Historical rejection was count-only (62 trades in 2024, 83 in 2025) while economic gates were otherwise positive. The protected Jan-Aug 2026 OOS uses the already validated M5/M1 snapshots and frozen news mask, inherited E1/STRESS costs, no parameter changes, no rescue, no retuning and no live deployment. A no-market-data cold audit must PASS before the OOS executor can open 2026.",
+  "generation": 60,
+  "supersedes_generation": 59,
+  "closure": "R5E-023 protected Jan-Aug 2026 OOS completed and is scientifically FAIL; no retuning is permitted. Separately, R6 protected OOS r4 is formally invalidated as a technical run, not a scientific FAIL: all 2026 signals were rejected before entry by the inherited R5 pre-OOS replay guards hard-coded to years 2024/2025 and exit < 2026-01-01, producing zero executable trades for all 12 candidates. Generation 60 performs an execution-only R6 repair. The 12 frozen definitions, Jan-Aug window, inputs, news mask, costs, temporal split and every preregistered pass/fail gate remain unchanged. The repair replaces only the pre-OOS eligibility guard with an explicit authorized Jan-Aug 2026 window guard. Cold synthetic audit must PASS first. No retuning and no live deployment.",
   "jobs": [
     {
-      "id": "R5E023-PROTECTED-2026-OOS-PREFLIGHT",
-      "revision": 1,
+      "id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
+      "revision": 5,
       "enabled": true,
-      "priority": 56,
-      "class_key": "r5e023-protected-2026-oos-preflight",
-      "description": "Cold semantic audit of the frozen single-candidate R5E-023 protected-OOS setup. Verifies exact historical candidate parameters and count-only rejection provenance, inherited E1/STRESS costs, explicit Jan-Aug 2026 transport, causal next-open/48-bar execution, fixed pass gates, no retuning and no live deployment. Must not access market data.",
+      "priority": 58,
+      "class_key": "r6-protected-2026-oos-preflight",
+      "description": "Cold synthetic semantic audit for the R6 r4 execution repair. Confirms the invalid r4 cause, exact v2 window and frozen contract, verifies that a synthetic 2026 signal can execute, true Jan-Aug boundary crossings fail closed, and the old 2024/2025/PROTECTED eligibility guard is absent. Must not access market data.",
       "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "R5E023-PROTECTED-2026-OOS",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        },
         {
           "kind": "receipt",
           "job_id": "R6-PROTECTED-2026-OOS",
@@ -21,7 +27,7 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r5e023_protected_2026_oos_v1_00.py",
+        "path": "research/autonomous/test_r6_protected_2026_oos_v1_04.py",
         "args": []
       },
       "timeout": {
@@ -34,12 +40,12 @@
       }
     },
     {
-      "id": "R5E023-PROTECTED-2026-OOS",
-      "revision": 1,
+      "id": "R6-PROTECTED-2026-OOS",
+      "revision": 5,
       "enabled": true,
-      "priority": 57,
-      "class_key": "r5e023-protected-2026-oos",
-      "description": "First and only frozen protected-OOS evaluation of R5E-023 on Jan-Aug 2026. Uses the existing provenance-validated M5/M1 snapshots, inherited frozen news mask, exact historical signal parameters, causal first-raw-M1-open execution, 48 M5-bar horizon, inherited E1/STRESS costs and preregistered robustness gates. No parameter changes, rescue, retuning or live deployment.",
+      "priority": 59,
+      "class_key": "r6-protected-2026-oos",
+      "description": "First valid outcome-capable scientific protected-OOS evaluation of the unchanged 12 frozen R6 breakout survivors on Jan-Aug 2026 after invalidating r4's pre-OOS replay-guard failure. Uses the same validated M5/M1 snapshots, frozen news mask, first-available raw-M1 execution, one-position replay, E1/STRESS costs, split, bootstrap/FDR and gates. No candidate/gate/window change, rescue, retuning or live deployment.",
       "data_window": {
         "start": "2026-01-01T00:00:00Z",
         "end_exclusive": "2026-09-01T00:00:00Z"
@@ -47,30 +53,31 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R5E023-PROTECTED-2026-OOS-PREFLIGHT",
-          "revision": 1,
+          "job_id": "R6-PROTECTED-2026-OOS-PREFLIGHT",
+          "revision": 5,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r5e023_protected_2026_oos_v1_00.py",
+        "path": "research/autonomous/r6_protected_2026_oos_v1_03.py",
         "args": [
-          "--preregistration", "{DEPLOY}\\research\\autonomous\\r5e023_protected_2026_oos_preregistration_v1.json",
+          "--r6-result", "{ROOT}\\r6_xau_low_turnover_breakout_r1\\r6_xau_low_turnover_breakout_result.json",
+          "--preregistration", "{DEPLOY}\\research\\autonomous\\r6_oos_2026_preregistration_v2.json",
           "--root", "{ROOT}",
-          "--output-dir", "{ROOT}\\r5e023_protected_2026_oos_r1",
-          "--progress-file", "{ROOT}\\progress\\R5E023-PROTECTED-2026-OOS-R1.json",
+          "--output-dir", "{ROOT}\\r6_protected_2026_oos_r5",
+          "--progress-file", "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R5.json",
           "--publisher", "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
         "min_seconds": 300,
-        "expected_seconds": 300,
+        "expected_seconds": 900,
         "eta_multiplier": 2.5,
         "history_p95_multiplier": 3.0,
-        "stale_heartbeat_seconds": 180,
-        "poll_seconds": 3,
-        "progress_file": "{ROOT}\\progress\\R5E023-PROTECTED-2026-OOS-R1.json"
+        "stale_heartbeat_seconds": 300,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\R6-PROTECTED-2026-OOS-R5.json"
       }
     }
   ]
