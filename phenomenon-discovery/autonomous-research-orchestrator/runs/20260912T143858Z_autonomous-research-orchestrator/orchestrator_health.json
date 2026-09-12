@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R6-PROTECTED-2026-OOS",
+    "revision": 5
+  },
+  "main_commit": "97182a0dcdead6aaeb783009b3d3b6c7ec6fd806",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 60,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-12T14:38:58.134521+00:00",
+  "version": "1.01"
+}
