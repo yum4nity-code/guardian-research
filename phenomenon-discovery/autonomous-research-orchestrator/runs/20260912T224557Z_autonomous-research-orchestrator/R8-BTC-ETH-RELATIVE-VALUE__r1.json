@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 3600.0,
+  "class_key": "r8-relative-value",
+  "duration_seconds": 330.0771883000052,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T22:45:57.376471+00:00",
+  "job_id": "R8-BTC-ETH-RELATIVE-VALUE",
+  "main_commit": "deeba7577a131487b1abf0d3bf6401004355ad49",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T22:40:27.276386+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"survivors\": 0, \"protected_2026_opened\": false}"
+}
