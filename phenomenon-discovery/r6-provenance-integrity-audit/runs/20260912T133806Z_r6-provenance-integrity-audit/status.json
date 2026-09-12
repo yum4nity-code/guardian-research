@@ -1,0 +1,15 @@
+{
+  "artifacts": [
+    {
+      "name": "r6_provenance_audit.json",
+      "sha256": "279aea6d80543bc7517f31a347ace9fb137686d0daae224305297a850ef17a31",
+      "size_bytes": 1308
+    }
+  ],
+  "generated_at_utc": "2026-09-12T13:38:06.145662+00:00",
+  "phase": "r6-provenance-integrity-audit",
+  "schema": 1,
+  "source_commit": "4056139b65c081b884bffdbadbed798691834ba8",
+  "status": "PASS",
+  "summary": "R6 provenance PASS_METADATA_MAPPING_DEFECT: exact frozen 2024/2025 inputs verified; 12 survivors frozen; protected 2026 not opened or authorized."
+}

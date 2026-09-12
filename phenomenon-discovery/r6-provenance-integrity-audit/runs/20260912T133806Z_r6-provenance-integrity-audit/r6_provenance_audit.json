@@ -1,0 +1,38 @@
+{
+  "discovery_passes": 15,
+  "generated_at_utc": "2026-09-12T13:38:05.810802+00:00",
+  "inputs": {
+    "xauusd_m1_2024_2025_raw.csv": {
+      "max_time": "2025-12-31T23:59:00+00:00",
+      "min_time": "2024-01-01T00:00:00+00:00",
+      "rows": 710300,
+      "sha256": "f98a395961b27ca9dcb34cffa4ef8dd93720adb70292abf7bc96108667232445",
+      "years": [
+        2024,
+        2025
+      ]
+    },
+    "xauusd_m5_2024_2025_news_clean.csv": {
+      "max_time": "2025-12-31T23:55:00+00:00",
+      "min_time": "2024-01-01T00:00:00+00:00",
+      "rows": 140664,
+      "sha256": "972ecaf6c3cadf7136363f396d7a29e7a6246646b575fad5c3e677036004b503",
+      "years": [
+        2024,
+        2025
+      ]
+    }
+  },
+  "interpretation": "Frozen R6 2024/2025 provenance verified. This audit does not authorize or open protected 2026 OOS and does not retune or rerun R6 science.",
+  "metadata_mapping_defect": true,
+  "oos_2026_authorized": false,
+  "r6_receipt_main_commit": "6555969c81fb97280a274c0ed62ed61d5812bb31",
+  "r6_receipt_status": "PASS",
+  "receipt_protected_2026_untouched": false,
+  "schema": 1,
+  "scientific_protected_2026_opened": false,
+  "scientific_run_reexecuted": false,
+  "status": "PASS",
+  "survivors_frozen": 12,
+  "verdict": "PASS_METADATA_MAPPING_DEFECT"
+}
