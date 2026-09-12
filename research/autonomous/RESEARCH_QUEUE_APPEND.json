@@ -1,27 +1,27 @@
 {
   "schema": 1,
-  "generation": 69,
-  "supersedes_generation": 68,
-  "closure": "R7 pre-OOS economic robustness is scientific FAIL: 0/8 frozen candidates survived non-overlap and 10/20 bps reject-only cost gates. R7 is closed without rescue and protected 2026 remains untouched. R8 is a genuinely independent BTC/ETH market-neutral relative-value mean-reversion family using synchronized H1 pair dynamics rather than R7 single-market directional feature tails.",
+  "generation": 70,
+  "supersedes_generation": 69,
+  "closure": "R8 BTC/ETH relative-value mean reversion is scientific FAIL: 0/54 definitions survived discovery, so R8 is closed without rescue; protected 2026 remains untouched. R9 is a genuinely independent BTC/ETH UTC calendar-session seasonality family using no market-state features, z-scores, pair spreads, or R7/R8 thresholds.",
   "jobs": [
     {
-      "id": "R8-BTC-ETH-RELATIVE-VALUE-PREFLIGHT",
+      "id": "R9-BTC-ETH-CALENDAR-SESSION-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r8-relative-value-preflight",
-      "description": "Run deterministic no-market-data regression tests for prior-bar z-score timing, next-open execution, pair PnL signs, costs, one-position semantics, gap fail-closed behavior, calendar-year purge and protected-2026 rejection.",
+      "class_key": "r9-calendar-session-preflight",
+      "description": "Deterministic cold-audit regression tests for frozen 672-rule calendar/session family: complete-H1 construction, UTC trigger timing, open-to-open PnL signs, costs, gap fail-closed behavior, year-boundary purge and protected-2026 rejection.",
       "requires": [
         {
           "kind": "github_result",
           "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/r7-pre-oos-economic-robustness/LATEST.json",
+          "path": "phenomenon-discovery/r8-btc-eth-relative-value/LATEST.json",
           "accepted_status": ["FAIL"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r8_btc_eth_relative_value_v1_00.py",
+        "path": "research/autonomous/test_r9_btc_eth_calendar_session_v1_00.py",
         "args": []
       },
       "timeout": {
@@ -34,12 +34,44 @@
       }
     },
     {
-      "id": "R8-BTC-ETH-RELATIVE-VALUE",
+      "id": "R9-BTC-ETH-CALENDAR-SESSION-INPUT-GATE",
+      "revision": 1,
+      "enabled": true,
+      "priority": 15,
+      "class_key": "r9-input-integrity",
+      "description": "Verify byte-for-byte identity of the existing BTC/ETH 2017-2025 inputs against the hashes proven by terminal R8 evidence; inspect hashes only, not market rows, and do not touch 2026.",
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "R9-BTC-ETH-CALENDAR-SESSION-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/r9_input_integrity_gate_v1_00.py",
+        "args": [
+          "--data-dir",
+          "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 300,
+        "expected_seconds": 60,
+        "eta_multiplier": 3,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 300,
+        "poll_seconds": 2
+      }
+    },
+    {
+      "id": "R9-BTC-ETH-CALENDAR-SESSION",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r8-relative-value",
-      "description": "Execute preregistered R8 BTC/ETH H1 relative-value mean-reversion: 54 frozen definitions, 2018-22 discovery, frozen 2023-24 confirmation, frozen 2025 pre-OOS gate, costs built in, protected 2026 forbidden.",
+      "class_key": "r9-calendar-session",
+      "description": "Execute preregistered independent R9 BTC/ETH H1 UTC calendar-session seasonality: 672 frozen definitions, 2018-22 discovery, frozen 2023-24 confirmation, frozen 2025 pre-OOS gate, 10/20 bps costs built in, protected 2026 forbidden.",
       "data_window": {
         "start": "2017-08-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -47,33 +79,33 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R8-BTC-ETH-RELATIVE-VALUE-PREFLIGHT",
+          "job_id": "R9-BTC-ETH-CALENDAR-SESSION-INPUT-GATE",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r8_btc_eth_relative_value_v1_00.py",
+        "path": "research/autonomous/r9_btc_eth_calendar_session_v1_00.py",
         "args": [
           "--data-dir",
           "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
           "--output-dir",
-          "{ROOT}\\r8_btc_eth_relative_value_v1",
+          "{ROOT}\\r9_btc_eth_calendar_session_v1",
           "--progress-file",
-          "{ROOT}\\progress\\R8-BTC-ETH-RELATIVE-VALUE-R1.json",
+          "{ROOT}\\progress\\R9-BTC-ETH-CALENDAR-SESSION-R1.json",
           "--publisher",
           "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
         "min_seconds": 3600,
-        "expected_seconds": 1200,
+        "expected_seconds": 1800,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
         "stale_heartbeat_seconds": 900,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R8-BTC-ETH-RELATIVE-VALUE-R1.json"
+        "progress_file": "{ROOT}\\progress\\R9-BTC-ETH-CALENDAR-SESSION-R1.json"
       }
     }
   ]
