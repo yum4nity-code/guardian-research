@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 120.0,
+  "class_key": "top2-xau-mt5-canonical-replay-preflight",
+  "duration_seconds": 2.0047964000004868,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-12T16:51:57.968191+00:00",
+  "job_id": "TOP2-XAU-MT5-CANONICAL-REPLAY-PREFLIGHT",
+  "main_commit": "49841593ebb00176af541e6eb8041f46181a157e",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T16:51:55.929414+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS canonical replay cold preflight"
+}
