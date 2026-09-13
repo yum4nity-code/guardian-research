@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "r12_btc_eth_compression_breakout_result.json",
+      "sha256": "85e4f392979b593f1610acc5da1dd365f6849a6490326ff631ec971b2deacdcd",
+      "size_bytes": 904
+    },
+    {
+      "name": "r12_btc_eth_compression_breakout_survivors.csv",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    }
+  ],
+  "generated_at_utc": "2026-09-13T06:16:57.574805+00:00",
+  "phase": "r12-btc-eth-compression-breakout",
+  "schema": 1,
+  "source_commit": "1994e1a3f1f753919053baab5c043a41fd0a016d",
+  "status": "FAIL",
+  "summary": "R12 BTC/ETH compression breakout FAIL: 0 pre-OOS survivors after frozen 2018-22 discovery, 2023-24 confirmation and 2025 gate; 2026 untouched."
+}
