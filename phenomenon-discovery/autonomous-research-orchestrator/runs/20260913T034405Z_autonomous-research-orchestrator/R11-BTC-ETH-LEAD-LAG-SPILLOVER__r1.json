@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 14883.205145700013,
+  "class_key": "r11-lead-lag-spillover",
+  "duration_seconds": 4966.069615799999,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T03:44:05.276536+00:00",
+  "job_id": "R11-BTC-ETH-LEAD-LAG-SPILLOVER",
+  "main_commit": "fad0887c2a70f498568f58fd405f37b9379b765f",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T02:21:19.184650+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"survivors\": 0, \"protected_2026_opened\": false}"
+}
