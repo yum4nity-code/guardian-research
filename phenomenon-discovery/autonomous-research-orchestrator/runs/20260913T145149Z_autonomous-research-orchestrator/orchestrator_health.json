@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R15-DUKASCOPY-SOURCE-PROBE__r2.json",
+  "main_commit": "d93daf21aa0d449346a9207f6a860670ca6bd29d",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-13T14:51:49.248610+00:00",
+  "version": "1.01"
+}

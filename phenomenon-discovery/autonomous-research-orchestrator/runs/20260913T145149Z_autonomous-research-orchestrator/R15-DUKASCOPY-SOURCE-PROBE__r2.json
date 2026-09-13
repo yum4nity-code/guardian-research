@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 600.0,
+  "class_key": "r15-dukascopy-source-probe",
+  "duration_seconds": 36.157572099997196,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T14:51:49.246802+00:00",
+  "job_id": "R15-DUKASCOPY-SOURCE-PROBE",
+  "main_commit": "d93daf21aa0d449346a9207f6a860670ca6bd29d",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 2,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T14:51:13.062519+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"probe\": [{\"date\": \"2005-06-01\", \"status\": \"ok\", \"transport\": \"curl\", \"retained_boundaries\": 4, \"hms\": [\"11:30\", \"12:00\", \"15:30\", \"16:00\"]}, {\"date\": \"2010-06-01\", \"status\": \"ok\", \"transport\": \"curl\", \"retained_boundaries\": 4, \"hms\": [\"11:30\", \"12:00\", \"15:30\", \"16:00\"]}, {\"date\": \"2019-05-01\", \"status\": \"ok\", \"transport\": \"curl\", \"retained_boundaries\": 4, \"hms\": [\"11:30\", \"12:00\", \"15:30\", \"16:00\"]}, {\"date\": \"2025-06-02\", \"status\": \"ok\", \"transport\": \"curl\", \"retained_boundaries\": 4, \"hms\": [\"11:30\", \"12:00\", \"15:30\", \"16:00\"]}], \"protected_2026_opened\": false}"
+}
