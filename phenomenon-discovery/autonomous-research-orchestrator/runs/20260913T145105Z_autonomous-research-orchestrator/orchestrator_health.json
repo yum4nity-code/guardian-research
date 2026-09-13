@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R15-DUKASCOPY-SOURCE-PROBE",
+    "revision": 2
+  },
+  "main_commit": "d93daf21aa0d449346a9207f6a860670ca6bd29d",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 79,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-13T14:51:05.821124+00:00",
+  "version": "1.01"
+}
