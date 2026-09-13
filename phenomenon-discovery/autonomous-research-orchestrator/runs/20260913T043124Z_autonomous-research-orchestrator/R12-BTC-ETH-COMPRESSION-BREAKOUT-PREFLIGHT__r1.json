@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r12-compression-breakout-preflight",
+  "duration_seconds": 4.0047397000016645,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T04:31:24.311571+00:00",
+  "job_id": "R12-BTC-ETH-COMPRESSION-BREAKOUT-PREFLIGHT",
+  "main_commit": "5889f4aa48afb3295c14a33fbfbd1cea2eeda7a3",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T04:31:20.241041+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS R12 deterministic cold tests"
+}

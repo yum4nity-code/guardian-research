@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R12-BTC-ETH-COMPRESSION-BREAKOUT-PREFLIGHT__r1.json",
+  "main_commit": "5889f4aa48afb3295c14a33fbfbd1cea2eeda7a3",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-13T04:31:24.314875+00:00",
+  "version": "1.01"
+}
