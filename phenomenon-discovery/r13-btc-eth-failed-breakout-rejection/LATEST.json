@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    {
+      "name": "r13_btc_eth_failed_breakout_rejection_result.json",
+      "sha256": "16b0863a1cf32b8f40acc5e1168ddc4d4d8a1da7fa12439b084f38bc3745492a",
+      "size_bytes": 869
+    },
+    {
+      "name": "r13_btc_eth_failed_breakout_rejection_survivors.csv",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    }
+  ],
+  "generated_at_utc": "2026-09-13T07:56:06.984635+00:00",
+  "phase": "r13-btc-eth-failed-breakout-rejection",
+  "published_run_path": "phenomenon-discovery/r13-btc-eth-failed-breakout-rejection/runs/20260913T075606Z_r13-btc-eth-failed-breakout-rejection",
+  "schema": 1,
+  "source_commit": "395031519a256b4ee765e15e1c892bd59f256cc7",
+  "status": "FAIL",
+  "summary": "R13 BTC/ETH failed-breakout rejection FAIL: 0 pre-OOS survivors after frozen 2018-22 discovery, 2023-24 confirmation and 2025 gate; 2026 untouched."
+}
