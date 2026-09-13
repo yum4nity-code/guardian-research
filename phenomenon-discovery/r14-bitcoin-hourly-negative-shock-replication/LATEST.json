@@ -1,0 +1,26 @@
+{
+  "artifacts": [
+    {
+      "name": "r14_bitcoin_hourly_negative_shock_replication_result.json",
+      "sha256": "52cc3200fa49fe65f7795705caa23e8ff30524c2508eb3a409aed1f468b46842",
+      "size_bytes": 1685
+    },
+    {
+      "name": "r14_bitcoin_hourly_negative_shock_replication_survivors.csv",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    },
+    {
+      "name": "r14_bitcoin_hourly_negative_shock_replication_diagnostics.csv",
+      "sha256": "f9037142ab1a1ac7573288873f1be5e7f4f0e5760760940544b3d4ac9fd1283d",
+      "size_bytes": 7521
+    }
+  ],
+  "generated_at_utc": "2026-09-13T13:23:00.189318+00:00",
+  "phase": "r14-bitcoin-hourly-negative-shock-replication",
+  "published_run_path": "phenomenon-discovery/r14-bitcoin-hourly-negative-shock-replication/runs/20260913T132300Z_r14-bitcoin-hourly-negative-shock-replication",
+  "schema": 1,
+  "source_commit": "10c4aece707548a5abf50e37b76a78e8959d42ea",
+  "status": "FAIL",
+  "summary": "R14 Bitcoin negative-shock literature replication FAIL: replication=47, confirmation=0, economic=0, pre-OOS survivors=0; protected 2026 untouched."
+}

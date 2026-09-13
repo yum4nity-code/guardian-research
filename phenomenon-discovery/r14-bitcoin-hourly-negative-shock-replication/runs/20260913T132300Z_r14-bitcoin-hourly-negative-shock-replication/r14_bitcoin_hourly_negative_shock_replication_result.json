@@ -1,0 +1,40 @@
+{
+  "architecture": "published_replication_then_independent_confirmation_then_economic_then_preoos",
+  "confirmation_candidate_count": 0,
+  "confirmation_frozen_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "confirmation_window": "2021-07-01/2024-12-31",
+  "definitions_tested": 48,
+  "economic_candidate_count": 0,
+  "economic_frozen_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "funnel": {
+    "confirmation_enough_n": 39,
+    "confirmation_fdr": 0,
+    "confirmation_pass": 0,
+    "confirmation_positive": 39,
+    "confirmation_stability": 38,
+    "economic_pass": 0,
+    "preoos_survivors": 0,
+    "replication_enough_n": 48,
+    "replication_fdr": 47,
+    "replication_pass": 47,
+    "replication_positive": 48,
+    "tested": 48
+  },
+  "generated_at_utc": "2026-09-13T13:22:59.791849+00:00",
+  "input_sha256": {
+    "BTCUSDT_spot_5m_2017_2025.csv": "75d0d48dcfa7e649192d1eb2c96e89a591aa49bcfac11d394a1f84113264f6e8"
+  },
+  "method": "bitcoin_hourly_negative_shock_literature_replication",
+  "preoos_window": "2025",
+  "preregistration": "research/autonomous/R14_BITCOIN_HOURLY_NEGATIVE_SHOCK_REPLICATION_PREREGISTRATION_2026_09_13.md",
+  "protected_2026_opened": false,
+  "replication_candidate_count": 47,
+  "replication_frozen_ids_sha256": "5265e2a94cc74665b567618b19be1c3b4a0f56dc3885bb879250e712bfc5d217",
+  "replication_window": "2017-08-17/2021-06-30",
+  "schema": 1,
+  "source_paper_doi": "10.1080/15140326.2022.2151253",
+  "source_paper_original_window": "2016-03-01/2021-06-30",
+  "source_revision": "R14-v1.00",
+  "survivor_count": 0,
+  "survivors": []
+}
