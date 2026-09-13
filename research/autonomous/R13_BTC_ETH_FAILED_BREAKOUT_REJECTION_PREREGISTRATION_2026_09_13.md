@@ -5,7 +5,7 @@ Status: frozen before execution
 
 ## Scientific question
 
-After price sweeps beyond a prior H1 channel but the completed decision bar closes back inside that channel, does the failed breakout predict short-horizon reversal strongly enough to survive realistic fixed costs and independent temporal gates?
+After price sweeps strictly beyond a prior H1 channel but the completed decision bar closes back inside that channel, does the failed breakout predict short-horizon reversal strongly enough to survive realistic fixed costs and independent temporal gates?
 
 This is a genuinely independent family from R8 relative-value mean reversion, R9 calendar/session seasonality, R10 multi-day trend, R11 cross-market lead-lag shock spillover, and R12 volatility-compression continuation. R12 is closed after clean scientific FAIL and is not retuned or rescued.
 
@@ -36,10 +36,10 @@ Total: 2 x 3 x 2 x 2 x 3 = 72 exact definitions.
 
 For prior channel high `H`, low `L`, range `R=H-L`:
 
-- upper failed breakout / short: decision high >= H + penetration*R AND decision close <= H - reentry*R
-- lower failed breakout / long: decision low <= L - penetration*R AND decision close >= L + reentry*R
+- upper failed breakout / short: decision high > H + penetration*R AND decision close <= H - reentry*R
+- lower failed breakout / long: decision low < L - penetration*R AND decision close >= L + reentry*R
 
-If both sides qualify on the same bar, reject the bar as ambiguous.
+The sweep inequality is deliberately strict so `penetration=0` still requires an actual excursion beyond the prior channel rather than a mere touch. If both sides qualify on the same bar, reject the bar as ambiguous.
 
 Entry is the next H1 open. Exit is the H1 open exactly `hold` hours later. One-position chronological replay applies per definition. Signals with missing required hourly timestamps, non-positive prior range, or exit crossing a calendar-year boundary are purged.
 
@@ -99,7 +99,7 @@ Before the expensive run, deterministic cold tests must verify:
 
 - exactly 72 unique stable definitions
 - prior channel excludes decision bar
-- sweep and re-entry inequalities are directional and symmetric
+- strict beyond-channel sweep and re-entry inequalities are directional and symmetric
 - ambiguous two-sided bars are rejected
 - next-H1-open entry and fixed open-to-open exit
 - one-position overlap semantics
