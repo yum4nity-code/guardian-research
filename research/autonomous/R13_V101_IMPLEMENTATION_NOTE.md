@@ -1,0 +1,1 @@
+R13 v1.01 keeps the exact v1.00 signal grid and replay semantics. It changes only stage gating to: gross discovery, independent gross confirmation, downstream E1/STRESS economic gate, then frozen 2025 pre-OOS. 2026 remains unopened. Mandatory outputs: full 72-definition discovery diagnostics plus funnel counts.
