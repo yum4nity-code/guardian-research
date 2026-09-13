@@ -1,27 +1,27 @@
 {
   "schema": 1,
-  "generation": 70,
-  "supersedes_generation": 69,
-  "closure": "R8 BTC/ETH relative-value mean reversion is scientific FAIL: 0/54 definitions survived discovery, so R8 is closed without rescue; protected 2026 remains untouched. R9 is a genuinely independent BTC/ETH UTC calendar-session seasonality family using no market-state features, z-scores, pair spreads, or R7/R8 thresholds.",
+  "generation": 71,
+  "supersedes_generation": 70,
+  "closure": "R9 BTC/ETH UTC calendar-session seasonality is scientific FAIL: 0/672 definitions survived discovery, so R9 is closed without rescue; protected 2026 remained untouched. R10 is a genuinely independent BTC/ETH multi-day time-series momentum family with causal next-H1-open execution, low turnover, long-history stage separation and frozen 10/20 bps round-trip costs.",
   "jobs": [
     {
-      "id": "R9-BTC-ETH-CALENDAR-SESSION-PREFLIGHT",
+      "id": "R10-BTC-ETH-MULTI-DAY-TREND-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r9-calendar-session-preflight",
-      "description": "Deterministic cold-audit regression tests for frozen 672-rule calendar/session family: complete-H1 construction, UTC trigger timing, open-to-open PnL signs, costs, gap fail-closed behavior, year-boundary purge and protected-2026 rejection.",
+      "class_key": "r10-multi-day-trend-preflight",
+      "description": "Deterministic cold methodology tests for the frozen 72-definition R10 trend family: rule cardinality/identity, causal next-H1-open timing, one-position overlap semantics, missing-hour fail-closed behavior, year-boundary purge, fixed costs and protected-2026 boundary.",
       "requires": [
         {
           "kind": "github_result",
           "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/r8-btc-eth-relative-value/LATEST.json",
+          "path": "phenomenon-discovery/r9-btc-eth-calendar-session/LATEST.json",
           "accepted_status": ["FAIL"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r9_btc_eth_calendar_session_v1_00.py",
+        "path": "research/autonomous/test_r10_btc_eth_multi_day_trend_v1_00.py",
         "args": []
       },
       "timeout": {
@@ -34,44 +34,12 @@
       }
     },
     {
-      "id": "R9-BTC-ETH-CALENDAR-SESSION-INPUT-GATE",
-      "revision": 1,
-      "enabled": true,
-      "priority": 15,
-      "class_key": "r9-input-integrity",
-      "description": "Verify byte-for-byte identity of the existing BTC/ETH 2017-2025 inputs against the hashes proven by terminal R8 evidence; inspect hashes only, not market rows, and do not touch 2026.",
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R9-BTC-ETH-CALENDAR-SESSION-PREFLIGHT",
-          "revision": 1,
-          "accepted_status": ["PASS"]
-        }
-      ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/r9_input_integrity_gate_v1_00.py",
-        "args": [
-          "--data-dir",
-          "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory"
-        ]
-      },
-      "timeout": {
-        "min_seconds": 300,
-        "expected_seconds": 60,
-        "eta_multiplier": 3,
-        "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 300,
-        "poll_seconds": 2
-      }
-    },
-    {
-      "id": "R9-BTC-ETH-CALENDAR-SESSION",
+      "id": "R10-BTC-ETH-MULTI-DAY-TREND",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r9-calendar-session",
-      "description": "Execute preregistered independent R9 BTC/ETH H1 UTC calendar-session seasonality: 672 frozen definitions, 2018-22 discovery, frozen 2023-24 confirmation, frozen 2025 pre-OOS gate, 10/20 bps costs built in, protected 2026 forbidden.",
+      "class_key": "r10-multi-day-trend",
+      "description": "Execute preregistered independent BTC/ETH multi-day time-series trend family: 72 frozen definitions, 2018-22 discovery, frozen 2023-24 confirmation, frozen 2025 pre-OOS, causal next-H1-open execution, one-position replay, exact input hashes, 10/20 bps costs, protected 2026 forbidden.",
       "data_window": {
         "start": "2017-08-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -79,21 +47,21 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R9-BTC-ETH-CALENDAR-SESSION-INPUT-GATE",
+          "job_id": "R10-BTC-ETH-MULTI-DAY-TREND-PREFLIGHT",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r9_btc_eth_calendar_session_v1_00.py",
+        "path": "research/autonomous/r10_btc_eth_multi_day_trend_v1_00.py",
         "args": [
           "--data-dir",
           "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
           "--output-dir",
-          "{ROOT}\\r9_btc_eth_calendar_session_v1",
+          "{ROOT}\\r10_btc_eth_multi_day_trend_v1",
           "--progress-file",
-          "{ROOT}\\progress\\R9-BTC-ETH-CALENDAR-SESSION-R1.json",
+          "{ROOT}\\progress\\R10-BTC-ETH-MULTI-DAY-TREND-R1.json",
           "--publisher",
           "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
@@ -105,7 +73,7 @@
         "history_p95_multiplier": 3,
         "stale_heartbeat_seconds": 900,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R9-BTC-ETH-CALENDAR-SESSION-R1.json"
+        "progress_file": "{ROOT}\\progress\\R10-BTC-ETH-MULTI-DAY-TREND-R1.json"
       }
     }
   ]
