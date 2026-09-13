@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 18922.82829149998,
+  "class_key": "r12-compression-breakout",
+  "duration_seconds": 6312.620250900007,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T06:17:05.370496+00:00",
+  "job_id": "R12-BTC-ETH-COMPRESSION-BREAKOUT",
+  "main_commit": "1994e1a3f1f753919053baab5c043a41fd0a016d",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T04:31:52.691354+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"survivors\": 0, \"protected_2026_opened\": false}"
+}
