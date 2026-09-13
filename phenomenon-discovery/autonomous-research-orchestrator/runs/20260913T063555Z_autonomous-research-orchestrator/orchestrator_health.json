@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R13-BTC-ETH-FAILED-BREAKOUT-REJECTION-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "4227687c9d703bd1c399315c1fb1ea2aaa33c69b",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 74,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-13T06:35:55.258371+00:00",
+  "version": "1.01"
+}
