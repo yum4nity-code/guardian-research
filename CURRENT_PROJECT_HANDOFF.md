@@ -23,40 +23,51 @@ Historical orchestrator PASS receipts mean executor success only and do not over
 R14 canonical closure:
 `research/autonomous/R14_CANONICAL_CLOSURE_2026_09_13.md`
 
-R15 preregistration:
+R15 base preregistration:
 `research/autonomous/R15_XAUUSD_GLD_INTRADAY_MOMENTUM_PREREGISTRATION_2026_09_13.md`
+
+R15 frozen source repair:
+`research/autonomous/R15_DUKASCOPY_SOURCE_AMENDMENT_2026_09_13.md`
+
+Cold audit:
+`research/autonomous/R15_V101_COLD_AUDIT_2026_09_13.md`
 
 External benchmark:
 Xu, Bouri, Saeed & Wen (2020), Resources Policy 69, 101830, DOI 10.1016/j.resourpol.2020.101830.
 
 Published GLD finding:
-- 13 half-hour US-equity intervals from 09:30 to 16:00 New York time;
-- fifth half-hour return r5 positively predicts final half-hour r13;
+- fifth US-session half-hour return r5 positively predicts final half-hour r13;
 - published beta 0.0436, Newey-West t=3.03, R-squared 0.49%;
-- published GLD sample 2004-11-08 through 2019-05-30;
-- paper also reports positive GLD OOS R-squared for r5.
+- published GLD sample 2004-11-08 through 2019-05-30.
 
-Guardian R15:
-- cross-instrument near-replication on provenance-clean FundedNext XAUUSD M1;
-- exact New York/DST clock mapping;
-- r5 = 11:30->12:00 ET;
-- r13 = 15:30->16:00 ET;
-- Stage 1 uses the available overlap with the published sample: 2017-01-01 through 2019-05-30;
+Critical source finding:
+- FundedNext cannot support R15 published-period recovery: a read-only depth probe returned no usable in-window M1 before 2025 and no usable M5 overlapping the paper end date.
+- This is infrastructure/source insufficiency, not an R15 scientific result.
+- No R15 market result existed before source repair.
+
+Canonical R15 v1.01 source:
+- Dukascopy public XAUUSD BID M1 daily candle feed;
+- downloader retains only exact New York 11:30, 12:00, 15:30 and 16:00 OPEN values;
+- absolute Dukascopy point scale is intentionally irrelevant because R15 uses ratios/log-ratios only;
+- daily compressed payload SHA256 provenance and compact-boundary SHA256 are persisted;
+- 2026 URLs/rows are hard-forbidden.
+
+Frozen chronology after source repair:
+- Stage 1 full published-date near-replication: 2004-11-08 through 2019-05-30;
 - Stage 2 independent confirmation: 2019-05-31 through 2024-12-31;
-- only the externally selected r5 predictor may advance;
-- published sign-based final-half-hour market-timing translation enters only after confirmation;
-- E1/STRESS costs remain downstream;
-- 2025 pre-OOS frozen;
-- 2026 forbidden.
+- Stage 3 executable/economic translation only after confirmation;
+- Stage 4 pre-OOS: calendar 2025;
+- protected final OOS: 2026 forbidden.
 
-Queue append generation 76 contains:
-1. `R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT r1`.
-2. `R15-XAUUSD-GLD-INTRADAY-MOMENTUM r1`, additionally gated on the already-completed provenance-clean long-history XAU market export.
+The cross-instrument limitation remains explicit: paper asset GLD, Guardian source XAUUSD.
 
-Cold audit is recorded at:
-`research/autonomous/R15_COLD_AUDIT_2026_09_13.md`
+Queue generation 78:
+1. `R15-DUKASCOPY-V101-PREFLIGHT r1`
+2. `R15-DUKASCOPY-SOURCE-PROBE r1`
+3. `R15-DUKASCOPY-BOUNDARY-EXPORT r1`
+4. `R15-XAUUSD-GLD-INTRADAY-MOMENTUM-V101 r1`
 
-If R15 is running or waiting normally, do not interfere. A Stage-1 failure is a near-replication failure and requires implementation/data-mapping review before interpretation; do not substitute another half-hour. A later-stage failure closes persistence/economic viability without rescue.
+Do not use the superseded FundedNext R15 exporter. Do not substitute another half-hour if r5 fails. If the remote Dukascopy source probe or deterministic preflight fails, classify as infrastructure and repair before any scientific interpretation.
 
 ## Research program — literature-first replication
 
