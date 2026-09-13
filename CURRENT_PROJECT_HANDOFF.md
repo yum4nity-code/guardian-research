@@ -13,38 +13,46 @@ Read `START_HERE_NEXT_AI.md`, this file, the durable mandates, the current queue
 - R10 BTC/ETH multi-day time-series trend: CLOSED, scientific FAIL, 0/72 discovery survivors.
 - R11 BTC/ETH cross-market lead-lag shock spillover: CLOSED, scientific FAIL, 0/72 discovery survivors.
 - R12 BTC/ETH volatility-compression channel breakout: CLOSED, scientific FAIL. 4/72 definitions survived frozen 2018-2022 discovery; 0 survived untouched 2023-2024 confirmation. Exact pre-2026 hashes matched; protected 2026 remained unopened.
+- R13 v1.01 BTC/ETH failed-breakout rejection: CLOSED, clean scientific FAIL under the corrected staged architecture. 72 tested; 66 enough-n; 24 gross-positive; 34 gross-stable; 0 passed BH-FDR discovery; 2026 unopened. R13 v1.00 remains historical protocol-nonconforming evidence only.
 
 Historical orchestrator PASS receipts mean executor success only and do not override scientific FAIL payloads.
 
-## Active P0 — R13 BTC/ETH failed-breakout rejection
+## Active P0 — R14 Bitcoin hourly negative-shock literature replication
 
-R13 is preregistered at:
-`research/autonomous/R13_BTC_ETH_FAILED_BREAKOUT_REJECTION_PREREGISTRATION_2026_09_13.md`
+R13 is closed canonically at:
+`research/autonomous/R13_V101_CANONICAL_CLOSURE_2026_09_13.md`
 
-Scientific question: after an H1 bar strictly sweeps beyond a prior price channel then closes back inside it, does the failed breakout predict reversal strongly enough to survive realistic fixed costs and independent time gates?
+R14 is preregistered at:
+`research/autonomous/R14_BITCOIN_HOURLY_NEGATIVE_SHOCK_REPLICATION_PREREGISTRATION_2026_09_13.md`
+
+External benchmark:
+Miralles-Quirós & Miralles-Quirós (2022), “Intraday Bitcoin price shocks: when bad news is good news”, Journal of Applied Economics 25(1), DOI 10.1080/15140326.2022.2151253.
+
+Scientific question: can Guardian recover the paper's published positive post-shock Bitcoin return after negative hourly shocks on the closest feasible Binance sample, and does the exact frozen effect then persist on later independent data and remain executable after realistic costs?
 
 Frozen design:
-- existing BTCUSDT/ETHUSDT spot 5m 2017-2025 files with exact SHA256 values pinned from prior terminal evidence;
-- complete H1 construction only, exactly 12 underlying M5 bars;
-- 72 deterministic definitions: 2 assets x channel 24/72/168 h x penetration fraction 0/0.05 x re-entry fraction 0/0.10 x hold 3/6/12 h;
-- strict beyond-channel sweep; prior channel excludes decision bar; ambiguous two-sided sweeps rejected;
-- entry at next H1 open, fixed open-to-open exit after frozen hold;
-- one-position chronological replay; missing-hour fail closed; cross-year exits purged;
-- fixed E1/STRESS round-trip costs 10/20 bps;
-- discovery 2018-2022; freeze IDs before confirmation;
-- confirmation 2023-2024 with BH-FDR 5%; freeze IDs before 2025;
-- 2025 pre-OOS gate with H1/H2, ex-best-trade and concentration rejection;
+- BTCUSDT only, exact pre-2026 Binance 5m hash already pinned;
+- complete H1 bars only, exactly 12 underlying M5 bars;
+- 48 published negative-shock cells: filters 0.5/1/1.5/2.5/3.5/5% x horizons 1/2/3/4/5/6/12/24h;
+- strict negative shock: hourly log return < -filter;
+- paper-style replication uses overlapping close-to-close event returns and no costs/one-position filter;
+- closest-feasible replication: 2017-08-17 through 2021-06-30;
+- freeze replicated cells before independent 2021-07-01 through 2024-12-31 confirmation;
+- BH-FDR 5% at replication and confirmation; no opposite-direction rescue;
+- only after confirmation, translate to causal next-H1-open LONG execution with one-position replay;
+- E1/STRESS round-trip costs 10/20 bps enter only at the economic stage;
+- frozen 2025 pre-OOS gate;
 - protected 2026 forbidden.
 
-Queue append generation 74 contains:
-1. `R13-BTC-ETH-FAILED-BREAKOUT-REJECTION-PREFLIGHT r1` — deterministic cold methodology/code tests, gated on terminal R12 scientific FAIL.
-2. `R13-BTC-ETH-FAILED-BREAKOUT-REJECTION r1` — executes only after preflight PASS and verifies exact input hashes internally.
+Queue append generation 75 contains:
+1. `R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT r1` — deterministic cold methodology/code tests, gated on canonical R13 v1.01 FAIL evidence.
+2. `R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION r1` — executes only after preflight PASS and publishes compact result/diagnostic artifacts.
 
-A cold read before execution caught and corrected one pre-execution issue: zero-penetration definitions now require a strict excursion beyond the channel rather than accepting a mere touch. No R13 result had been published before the correction.
+The supervisor performed an additional cold audit before queueing R14: exact 48-cell grid, strict negative-shock semantics, paper-stage cost isolation, overlapping event-study semantics, later executable one-position semantics, fixed chronology, pinned input hash and protected-2026 guards all passed. The deterministic synthetic preflight also passed locally before commit.
 
-If either R13 job is running or waiting normally, do not interfere or notify the owner. On terminal R13 result, verify provenance/integrity before any next action. R13 PASS is pre-OOS evidence only, not an EA or live authorization.
+If either R14 job is running or waiting normally, do not interfere or notify the owner. On terminal R14 result, first distinguish (a) failure to reproduce the published paper effect, which requires implementation/data-source audit, from (b) successful paper replication but later persistence/economic failure. R14 PASS is pre-OOS evidence only, not an EA or live authorization.
 
-## Next research program — literature-first replication
+## Research program — literature-first replication
 
 After R13, do not default to another blind parameter-family sweep.
 
@@ -138,6 +146,7 @@ Do not weaken final standards. The correction is to improve the source and diver
 - `research/autonomous/DISCOVERY_GATE_ARCHITECTURE_V1.md`
 - `research/autonomous/RESEARCH_QUEUE.json`
 - `research/autonomous/RESEARCH_QUEUE_APPEND.json`
-- `research/autonomous/R13_BTC_ETH_FAILED_BREAKOUT_REJECTION_PREREGISTRATION_2026_09_13.md`
+- `research/autonomous/R13_V101_CANONICAL_CLOSURE_2026_09_13.md`
+- `research/autonomous/R14_BITCOIN_HOURLY_NEGATIVE_SHOCK_REPLICATION_PREREGISTRATION_2026_09_13.md`
 
 Historical handoffs remain provenance only and must not override this current state.
