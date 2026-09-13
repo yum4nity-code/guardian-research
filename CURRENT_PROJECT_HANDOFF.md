@@ -1,45 +1,46 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-## Canonical current state — 2026-09-12
+## Canonical current state — 2026-09-13
 
 Read `START_HERE_NEXT_AI.md`, this file, the durable mandates, the current queue append, and latest `backtest-results` evidence before acting.
 
-## Closed R4 / R5 evidence
+## Closed evidence
 
-- R4 close-to-close family: **CLOSED** after causal-capture forensic work showed about 99.5% of B→C degradation came from ENTRY_DELTA before first executable entry.
-- R5 causal-next-open r2: technical/scientific discovery-confirmation PASS with 96 frozen gross survivors.
-- R5 post-result cold audit r3: PASS_INTERPRETABLE; exact hashes/provenance matched and 2026 was unopened.
-- R5 pre-OOS economic robustness r2: **scientific FAIL, 0/96** under the inherited E1/STRESS first-available-execution cost gates. Published phase: `phenomenon-discovery/r5-pre-oos-economic-robustness/LATEST.json`.
-- The orchestrator receipt for R5 economic r2 is PASS only because the executor exited cleanly; the research payload itself is FAIL. Do not confuse infrastructure success with scientific PASS.
-- R5 is now **CLOSED for tradable-alpha promotion**. Do not retune/rescue those 96 on 2025 and do not open 2026 for them.
+- R4 close-to-close XAU family: CLOSED after causal-capture forensic work.
+- R5 causal-next-open XAU family: CLOSED for tradable-alpha promotion after pre-OOS economic robustness scientific FAIL, 0/96 under inherited costs.
+- R8 BTC/ETH relative-value mean reversion: CLOSED, scientific FAIL, 0/54 discovery survivors.
+- R9 BTC/ETH UTC calendar/session seasonality: CLOSED, scientific FAIL, 0/672 discovery survivors. Published `phenomenon-discovery/r9-btc-eth-calendar-session/LATEST.json`; exact pre-2026 BTC/ETH input hashes matched and protected 2026 remained unopened.
 
-## Active P0 — R6 independent structured breakout family
+Historical orchestrator PASS receipts mean executor success only and do not override scientific FAIL payloads.
 
-R6 is preregistered as a genuinely independent family, not an R5 rescue:
-`research/autonomous/R6_XAU_LOW_TURNOVER_BREAKOUT_PREREGISTRATION_2026_09_12.md`
+## Active P0 — R10 independent BTC/ETH multi-day trend family
 
-Question: can low-turnover rolling-range XAU breakouts, defined independently of R5 one-feature tail rules, survive causal first-available raw-M1 execution and the inherited E1/STRESS costs?
+R10 is preregistered at:
+`research/autonomous/R10_BTC_ETH_MULTI_DAY_TREND_PREREGISTRATION_2026_09_13.md`
+
+Scientific question: can simple low-turnover multi-day BTC/ETH time-series momentum survive long-history discovery, independent confirmation, 2025 pre-OOS and fixed 10/20 bps round-trip costs using causal next-H1-open execution?
 
 Frozen design:
-- canonical Phase I-B M5 news-clean signals + raw M1 execution only;
-- exact Phase I-B hashes pinned;
-- 384 deterministic definitions: lookback 12/24/48/96, ATR buffer 0/.10/.20, horizon 12/24/48/96, long/short, ALL or one of three UTC 8-hour sessions;
-- prior-bar-only rolling breakout references;
-- one-position chronological replay; cross-year purge;
-- 2024 discovery evaluated completely and frozen before any 2025 signal/replay/metric computation;
-- 2025 confirmation with E1/STRESS positivity, H1/H2 stability, ex-best-trade concentration rejection, deterministic day-block bootstrap and BH-FDR 5%;
-- 2026 forbidden.
+- existing BTCUSDT/ETHUSDT spot 5m 2017-2025 files with exact SHA256 values pinned from terminal R9 evidence;
+- complete H1 construction only, exactly 12 underlying M5 bars;
+- 72 deterministic definitions: 2 assets x lookback 24/72/168/336 h x absolute momentum threshold 1/2/4% x holding 24/72/168 h;
+- decision once daily from completed 00:00 UTC H1 bar, entry at next H1 open;
+- one-position chronological replay; missing-hour fail closed; cross-year trades purged;
+- discovery 2018-2022; freeze IDs before confirmation;
+- confirmation 2023-2024 with BH-FDR 5%; freeze IDs before 2025;
+- 2025 pre-OOS gate with H1/H2, ex-best-trade and concentration rejection;
+- protected 2026 forbidden.
 
-Queue append is **generation 52**:
-1. `R6-XAU-LOW-TURNOVER-BREAKOUT-PREFLIGHT r1` — cold methodology/code audit + deterministic no-market-data tests.
-2. `R6-XAU-LOW-TURNOVER-BREAKOUT r1` — data-bearing run only if preflight PASS.
+Queue append generation 71 contains:
+1. `R10-BTC-ETH-MULTI-DAY-TREND-PREFLIGHT r1` — deterministic cold tests, gated on terminal R9 scientific FAIL.
+2. `R10-BTC-ETH-MULTI-DAY-TREND r1` — executes only after preflight PASS and verifies exact input hashes internally.
 
-If either job is running or waiting normally, do not interfere. On R6 terminal result, verify provenance/integrity before any next research action. R6 PASS is pre-OOS evidence only, not an EA and not permission to open 2026.
+If either R10 job is running or waiting normally, do not interfere or notify the owner. On terminal R10 result, verify provenance/integrity before any next action. R10 PASS is pre-OOS evidence only, not an EA or live authorization.
 
 ## Hard rules
 
 - Never deploy live automatically.
-- Never open protected 2026 without explicit owner approval plus committed preregistration.
+- Follow the canonical protected-OOS policy in `research/autonomous/AUTONOMOUS_RESEARCH_MANDATE.md`; no opportunistic 2026 access.
 - Distinguish scientific FAIL from infrastructure FAIL.
 - Never restart a healthy job or create duplicate revisions.
 - Jobs are immutable by `(id, revision)` once run.
@@ -47,16 +48,17 @@ If either job is running or waiting normally, do not interfere. On R6 terminal r
 - Before every expensive phase: cold audit, deterministic tests, then execute only if the gate passes.
 - No same-sample rescue of failed alpha.
 - No sizing or Challenge Lab rescue.
-- Codex remains out of circuit unless explicitly re-authorized.
+- Codex remains out of circuit unless mandate conditions are met.
 - Prefer Python; use MT5 only when broker/server/execution fidelity genuinely requires it.
 
 ## Canonical supporting documents
 
+- `START_HERE_NEXT_AI.md`
 - `GUARDIAN_MASTER_MANDATE.md`
 - `docs/RESEARCH_PROTOCOL.md`
 - `research/autonomous/AUTONOMOUS_RESEARCH_MANDATE.md`
 - `research/autonomous/RESEARCH_QUEUE.json`
 - `research/autonomous/RESEARCH_QUEUE_APPEND.json`
-- `research/autonomous/R6_XAU_LOW_TURNOVER_BREAKOUT_PREREGISTRATION_2026_09_12.md`
+- `research/autonomous/R10_BTC_ETH_MULTI_DAY_TREND_PREREGISTRATION_2026_09_13.md`
 
 Historical handoffs remain provenance only and must not override this current state.
