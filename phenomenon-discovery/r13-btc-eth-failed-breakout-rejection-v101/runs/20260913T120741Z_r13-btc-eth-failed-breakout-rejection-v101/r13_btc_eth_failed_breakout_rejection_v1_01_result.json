@@ -1,0 +1,32 @@
+{
+  "architecture": "phenomenon_then_confirmation_then_economic_then_preoos",
+  "confirmation_candidate_count": 0,
+  "confirmation_frozen_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "definitions_tested": 72,
+  "discovery_candidate_count": 0,
+  "discovery_frozen_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "economic_candidate_count": 0,
+  "economic_frozen_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "funnel": {
+    "confirmation_pass": 0,
+    "discovery_fdr": 0,
+    "discovery_pass": 0,
+    "economic_pass": 0,
+    "enough_n": 66,
+    "gross_positive": 24,
+    "gross_stability": 34,
+    "preoos_survivors": 0,
+    "tested": 72
+  },
+  "generated_at_utc": "2026-09-13T12:07:41.714667+00:00",
+  "input_sha256": {
+    "BTCUSDT_spot_5m_2017_2025.csv": "75d0d48dcfa7e649192d1eb2c96e89a591aa49bcfac11d394a1f84113264f6e8",
+    "ETHUSDT_spot_5m_2017_2025.csv": "21b170675eae6bd2e3d442391e2acb9392abdff443f517b5cb0ee1946a12aa13"
+  },
+  "method": "btc_eth_failed_breakout_rejection",
+  "protected_2026_opened": false,
+  "schema": 2,
+  "source_revision": "R13-v1.01",
+  "survivor_count": 0,
+  "survivors": []
+}
