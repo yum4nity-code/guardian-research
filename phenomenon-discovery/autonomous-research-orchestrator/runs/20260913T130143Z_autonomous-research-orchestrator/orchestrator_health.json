@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT__r1.json",
+  "main_commit": "1960373399e83447e63371753a3e318f6441b957",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-13T13:01:43.069587+00:00",
+  "version": "1.01"
+}

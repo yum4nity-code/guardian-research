@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r14-bitcoin-negative-shock-replication-preflight",
+  "duration_seconds": 12.025136299998849,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T13:01:43.061152+00:00",
+  "job_id": "R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT",
+  "main_commit": "1960373399e83447e63371753a3e318f6441b957",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T13:01:30.880442+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\":\"PASS\",\"tests\":\"R14 deterministic methodology/code preflight\",\"definitions\":48}"
+}
