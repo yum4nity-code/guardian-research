@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r13-failed-breakout-rejection-preflight",
+  "duration_seconds": 4.003532900009304,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T06:36:05.525754+00:00",
+  "job_id": "R13-BTC-ETH-FAILED-BREAKOUT-REJECTION-PREFLIGHT",
+  "main_commit": "4227687c9d703bd1c399315c1fb1ea2aaa33c69b",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T06:36:01.497821+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"tests\": \"R13 deterministic methodology/code preflight\", \"definitions\": 72}"
+}
