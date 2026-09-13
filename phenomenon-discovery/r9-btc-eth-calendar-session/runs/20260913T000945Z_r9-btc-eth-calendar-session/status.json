@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "r9_btc_eth_calendar_session_result.json",
+      "sha256": "df8b08b19f72d76c134f009c2ed2e8671b9d820b576948625c7c613e45bb737e",
+      "size_bytes": 863
+    },
+    {
+      "name": "r9_btc_eth_calendar_session_survivors.csv",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    }
+  ],
+  "generated_at_utc": "2026-09-13T00:09:45.518837+00:00",
+  "phase": "r9-btc-eth-calendar-session",
+  "schema": 1,
+  "source_commit": "a0cf46c9c2742ab050fcc02641c225bf78aa3f03",
+  "status": "FAIL",
+  "summary": "R9 BTC/ETH calendar-session FAIL: 0 pre-OOS survivors after frozen 2018-22 discovery, 2023-24 confirmation and 2025 gate; 2026 untouched."
+}
