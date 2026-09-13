@@ -119,6 +119,7 @@ def test_source_is_sequential_and_resumable():
     ok("payload_cache" in src, "resume cache missing")
     ok("--retry-all-errors" in src, "curl retry-all-errors missing")
     ok('"Connection: close"' in src, "connection-close transport guard missing")
+    ok("CREATE_NO_WINDOW" in src, "Windows curl console suppression missing")
 
 def main():
     for fn in [
