@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION",
+    "revision": 1
+  },
+  "main_commit": "10c4aece707548a5abf50e37b76a78e8959d42ea",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 75,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-13T13:02:02.332170+00:00",
+  "version": "1.01"
+}
