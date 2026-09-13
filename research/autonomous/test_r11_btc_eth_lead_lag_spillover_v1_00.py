@@ -28,12 +28,15 @@ def main():
  assert r11.COSTS=={'E1':.001,'STRESS':.002} and r11.LAG_RATIO==.5 and r11.VOL_WINDOW==168
 
  # Current completed return must not alter its own volatility denominator.
- d1=base_sync(); i=220; s1=float(d1.BTCUSDT_sigma_prior.iloc[i]);
+ d1=base_sync(); i=220; s1=float(d1.BTCUSDT_sigma_prior.iloc[i])
  d2=base_sync(); d2.loc[i,'BTCUSDT_close']*=1.50
- # Recompute from H1 inputs with only current completed close changed.
  btc=d2[['time','BTCUSDT_open','BTCUSDT_high','BTCUSDT_low','BTCUSDT_close']].rename(columns=lambda c:c.replace('BTCUSDT_',''))
  eth=d2[['time','ETHUSDT_open','ETHUSDT_high','ETHUSDT_low','ETHUSDT_close']].rename(columns=lambda c:c.replace('ETHUSDT_',''))
  d2b=r11.synchronize(btc,eth); s2=float(d2b.BTCUSDT_sigma_prior.iloc[i]); assert math.isclose(s1,s2,rel_tol=0,abs_tol=1e-15)
+
+ # A synchronized-hour gap must poison the 168-hour prior-volatility window instead of being treated as a one-hour return.
+ g=base_sync(n=380); btc=g[['time','BTCUSDT_open','BTCUSDT_high','BTCUSDT_low','BTCUSDT_close']].rename(columns=lambda c:c.replace('BTCUSDT_','')); eth=g[['time','ETHUSDT_open','ETHUSDT_high','ETHUSDT_low','ETHUSDT_close']].rename(columns=lambda c:c.replace('ETHUSDT_',''))
+ btc=btc.drop(index=190).reset_index(drop=True); gg=r11.synchronize(btc,eth); gap_i=int(np.where(gg.time.diff().eq(pd.Timedelta(hours=2)))[0][0]); assert pd.isna(gg.BTCUSDT_logret1.iloc[gap_i]); assert pd.isna(gg.BTCUSDT_sigma_prior.iloc[gap_i+10])
 
  # Frozen lag-ratio gate and direction transfer.
  d=manual_signal_frame(); i=10; d.loc[i-1,'BTCUSDT_close']=100; d.loc[i,'BTCUSDT_close']=100*math.exp(2.0); d.loc[i-1,'ETHUSDT_close']=50; d.loc[i,'ETHUSDT_close']=50*math.exp(.5)
@@ -69,7 +72,7 @@ def main():
   try: r11.load(p); raise AssertionError('protected filename was not rejected')
   except RuntimeError as e: assert 'protected filename forbidden' in str(e)
 
- print('PASS R11 deterministic preflight: 72 rules, causal prior-only normalization, lag gate, timing/overlap, continuity, costs, year purge, hashes and 2026 boundary verified.')
+ print('PASS R11 deterministic preflight: 72 rules, prior-only normalization, synchronized-gap fail-closed behavior, lag gate, timing/overlap, costs, year purge, hashes and 2026 boundary verified.')
  return 0
 
 if __name__=='__main__': raise SystemExit(main())
