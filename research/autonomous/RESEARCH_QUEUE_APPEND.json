@@ -1,27 +1,27 @@
 {
   "schema": 1,
-  "generation": 74,
-  "supersedes_generation": 73,
-  "closure": "R12 BTC/ETH volatility-compression channel breakout is a clean scientific FAIL: 4/72 definitions survived frozen 2018-2022 discovery and 0 survived untouched 2023-2024 confirmation; exact input hashes matched, executor completed normally and protected 2026 remained untouched. R12 is closed without rescue. R13 is a genuinely independent failed-breakout rejection family: completed H1 bars sweep beyond a prior 24/72/168h channel then close back inside, with causal next-H1-open reversal execution, fixed 10/20 bps costs, long-history discovery/confirmation/2025 gate and protected 2026 forbidden.",
+  "generation": 75,
+  "supersedes_generation": 74,
+  "closure": "R13 v1.01 protocol-restoration rerun is the canonical R13 result: clean scientific FAIL. 72 definitions tested; 66 met sample size; 24 were gross-positive; 34 gross-stable; 0 passed BH-FDR discovery; 0 downstream candidates; exact pre-2026 hashes matched; protected 2026 remained unopened. R13 is closed without rescue. R14 begins the mandated literature-first branch by near-replicating the published Bitcoin hourly negative-shock overreaction effect of Miralles-Quirós and Miralles-Quirós (2022) before later independent confirmation, economic translation and 2025 pre-OOS.",
   "jobs": [
     {
-      "id": "R13-BTC-ETH-FAILED-BREAKOUT-REJECTION-PREFLIGHT",
+      "id": "R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r13-failed-breakout-rejection-preflight",
-      "description": "Deterministic cold methodology/code tests for frozen R13: 72 exact definitions, stable IDs, prior channel excluding decision bar, symmetric sweep/re-entry logic, ambiguous two-sided bars rejected, causal next-H1-open execution, one-position semantics, missing-hour fail-closed behavior, year-boundary purge, frozen costs/hashes and protected-2026 contract.",
+      "class_key": "r14-bitcoin-negative-shock-replication-preflight",
+      "description": "Deterministic cold methodology/code tests for frozen R14 literature replication: exact 48 published negative-shock cells, strict threshold semantics, complete-H1 construction, overlapping paper-style event study, stage-boundary fail-closed behavior, causal next-H1-open executable translation, one-position economic replay, fixed costs, stage separation and protected-2026 guards.",
       "requires": [
         {
           "kind": "github_result",
           "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/r12-btc-eth-compression-breakout/LATEST.json",
+          "path": "phenomenon-discovery/r13-btc-eth-failed-breakout-rejection-v101/LATEST.json",
           "accepted_status": ["FAIL"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r13_btc_eth_failed_breakout_rejection_v1_00.py",
+        "path": "research/autonomous/test_r14_bitcoin_hourly_negative_shock_replication_v1_00.py",
         "args": []
       },
       "timeout": {
@@ -34,46 +34,46 @@
       }
     },
     {
-      "id": "R13-BTC-ETH-FAILED-BREAKOUT-REJECTION",
+      "id": "R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r13-failed-breakout-rejection",
-      "description": "Execute preregistered independent BTC/ETH failed-breakout rejection family: 72 frozen definitions, prior 24/72/168h channels, frozen sweep/re-entry fractions, causal next-H1-open reversal execution, one-position replay, exact input hashes, 10/20 bps costs, 2018-22 discovery, frozen 2023-24 confirmation, frozen 2025 pre-OOS gate, protected 2026 forbidden.",
+      "class_key": "r14-bitcoin-negative-shock-replication",
+      "description": "Near-replicate the published Bitcoin hourly negative-shock overreaction table on the closest feasible Binance sample, freeze statistically replicated cells, confirm on 2021H2-2024, then apply causal next-H1-open one-position 10/20 bps economic checks and frozen 2025 pre-OOS. Protected 2026 forbidden.",
       "data_window": {
-        "start": "2017-08-01T00:00:00Z",
+        "start": "2017-08-17T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R13-BTC-ETH-FAILED-BREAKOUT-REJECTION-PREFLIGHT",
+          "job_id": "R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r13_btc_eth_failed_breakout_rejection_v1_00.py",
+        "path": "research/autonomous/r14_bitcoin_hourly_negative_shock_replication_v1_00.py",
         "args": [
           "--data-dir",
           "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
           "--output-dir",
-          "{ROOT}\\r13_btc_eth_failed_breakout_rejection_v1",
+          "{ROOT}\\r14_bitcoin_hourly_negative_shock_replication_v1",
           "--progress-file",
-          "{ROOT}\\progress\\R13-BTC-ETH-FAILED-BREAKOUT-REJECTION-R1.json",
+          "{ROOT}\\progress\\R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-R1.json",
           "--publisher",
           "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
-        "min_seconds": 3600,
-        "expected_seconds": 1800,
+        "min_seconds": 1800,
+        "expected_seconds": 900,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 900,
+        "stale_heartbeat_seconds": 600,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R13-BTC-ETH-FAILED-BREAKOUT-REJECTION-R1.json"
+        "progress_file": "{ROOT}\\progress\\R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-R1.json"
       }
     }
   ]
