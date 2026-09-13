@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 9887.102253299992,
+  "class_key": "r9-calendar-session",
+  "duration_seconds": 3300.701895099999,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T00:09:54.510647+00:00",
+  "job_id": "R9-BTC-ETH-CALENDAR-SESSION",
+  "main_commit": "a0cf46c9c2742ab050fcc02641c225bf78aa3f03",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-12T23:14:53.789580+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"survivors\": 0, \"protected_2026_opened\": false}"
+}
