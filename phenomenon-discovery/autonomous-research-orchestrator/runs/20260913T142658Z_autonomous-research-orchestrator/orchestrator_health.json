@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R15-XAUUSD-PRE2026-MARKET-EXPORT",
+    "revision": 1
+  },
+  "main_commit": "047cd4f2996fcd7e019fb8c87930800688fbb5d1",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 77,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-13T14:26:58.552749+00:00",
+  "version": "1.01"
+}
