@@ -126,7 +126,14 @@ def _curl_fetch(url: str, timeout: int) -> tuple[int | None, bytes | None, str |
             "--write-out", "%{http_code}",
             url,
         ]
-        cp = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 30)
+        creationflags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
+        cp = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=timeout + 30,
+            creationflags=creationflags,
+        )
         code_txt = (cp.stdout or "").strip()
         http_code = int(code_txt[-3:]) if len(code_txt) >= 3 and code_txt[-3:].isdigit() else None
         if cp.returncode != 0:
