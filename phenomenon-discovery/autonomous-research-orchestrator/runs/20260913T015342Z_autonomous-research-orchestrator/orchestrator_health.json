@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R10-BTC-ETH-MULTI-DAY-TREND",
+    "revision": 1
+  },
+  "main_commit": "21323f52c6bf83dbe7fa3d0a7b4ddf2fdf6188b6",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 71,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-13T01:53:42.737578+00:00",
+  "version": "1.01"
+}
