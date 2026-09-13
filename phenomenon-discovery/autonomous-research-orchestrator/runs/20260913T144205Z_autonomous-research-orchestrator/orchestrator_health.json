@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R15-DUKASCOPY-V101-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "741f7afe6c8f39ecf1e9ce2dfdf8352cccab832f",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 78,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-13T14:42:05.016191+00:00",
+  "version": "1.01"
+}
