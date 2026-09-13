@@ -38,9 +38,9 @@ def h1(d):
  return y.loc[c.eq(12)].dropna().reset_index()
 def synchronize(btc,eth):
  b=btc.rename(columns={c:f'BTCUSDT_{c}' for c in ['open','high','low','close']}); e=eth.rename(columns={c:f'ETHUSDT_{c}' for c in ['open','high','low','close']})
- d=b.merge(e,on='time',how='inner',validate='one_to_one').sort_values('time').reset_index(drop=True)
+ d=b.merge(e,on='time',how='inner',validate='one_to_one').sort_values('time').reset_index(drop=True); hourly=d.time.diff().eq(pd.Timedelta(hours=1))
  for a in ASSETS:
-  lr=np.log(d[f'{a}_close']).diff(); d[f'{a}_logret1']=lr; d[f'{a}_sigma_prior']=lr.rolling(VOL_WINDOW,min_periods=VOL_WINDOW).std(ddof=1).shift(1)
+  lr=np.log(d[f'{a}_close']).diff().where(hourly); d[f'{a}_logret1']=lr; d[f'{a}_sigma_prior']=lr.rolling(VOL_WINDOW,min_periods=VOL_WINDOW).std(ddof=1).shift(1)
  return d
 def rules():
  return [{'leader':a,'follower':('ETHUSDT' if a=='BTCUSDT' else 'BTCUSDT'),'lookback_hours':l,'leader_z_threshold':z,'hold_hours':h,'lag_ratio':LAG_RATIO,'vol_window_hours':VOL_WINDOW} for a in ASSETS for l in LOOKBACKS for z in ZTHRESH for h in HOLDS]
