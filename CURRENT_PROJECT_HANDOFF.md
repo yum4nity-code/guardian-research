@@ -59,11 +59,33 @@ Guardian must add a literature-first replication branch:
 8. Include external/open-source EA strategies as benchmark controls where source code and rules are auditable; test them without marketing optimizations and under the same Guardian standards.
 9. Use replication failures diagnostically: if Guardian cannot recover a well-specified published in-sample effect, audit data, implementation, timing, and methodology before concluding the anomaly is absent.
 
+## Venue priority — owner decision
+
+The owner's intended prop firms are:
+- FTMO — primary long-term venue and default target for promotion;
+- FundedNext — secondary venue / portability target.
+
+FTMO should receive priority in downstream execution-fidelity work because the owner expects to use it most, especially for crypto strategies that may exploit weekend trading when the specific FTMO symbol is open.
+
+Research must NOT assume identical tradability across FTMO and FundedNext. For each promoted candidate, maintain venue-specific execution profiles covering at least:
+- eligible symbol mapping;
+- actual quote/trading sessions and weekend availability;
+- spread, commission and swap model;
+- leverage / margin constraints;
+- overnight and weekend holding restrictions by account type;
+- news/event restrictions;
+- platform/server-time conventions;
+- symbol-specific maintenance windows and exceptional closures.
+
+A scientific edge is venue-agnostic evidence until the economic/execution stage. A candidate may therefore PASS scientifically yet PASS FTMO and FAIL FundedNext, or vice versa. Do not collapse these outcomes into one generic cost model.
+
+For crypto specifically, retain weekend observations in scientific datasets when economically relevant; do not strip Saturday/Sunday merely for compatibility with a weekday-only venue. Instead evaluate a weekday-only execution mask and an FTMO-compatible weekend-capable mask separately downstream. This prevents FundedNext constraints from erasing a potentially valid FTMO weekend edge during discovery.
+
 ## Asset universe — critical scope rule
 
 Guardian is NOT restricted to BTC/ETH or crypto.
 
-The research universe may use the full set of instruments available for trading on the prop firms/accounts the owner actually uses, subject to data availability and each firm's current instrument/rule constraints. This may include, where available:
+The research universe may use the full set of instruments available for trading on FTMO and FundedNext, subject to data availability and each firm's current instrument/rule constraints. This may include, where available:
 - FX majors/minors;
 - equity indices;
 - metals such as XAU/XAG;
