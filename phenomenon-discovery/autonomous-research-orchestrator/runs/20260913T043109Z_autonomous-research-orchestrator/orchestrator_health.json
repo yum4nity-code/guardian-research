@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R12-BTC-ETH-COMPRESSION-BREAKOUT-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "5889f4aa48afb3295c14a33fbfbd1cea2eeda7a3",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 73,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-13T04:31:09.649333+00:00",
+  "version": "1.01"
+}
