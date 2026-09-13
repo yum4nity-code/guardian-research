@@ -61,13 +61,23 @@ Frozen chronology after source repair:
 
 The cross-instrument limitation remains explicit: paper asset GLD, Guardian source XAUUSD.
 
-Queue generation 78:
-1. `R15-DUKASCOPY-V101-PREFLIGHT r1`
-2. `R15-DUKASCOPY-SOURCE-PROBE r1`
-3. `R15-DUKASCOPY-BOUNDARY-EXPORT r1`
-4. `R15-XAUUSD-GLD-INTRADAY-MOMENTUM-V101 r1`
+Observed execution state:
+- deterministic R15 v1.01 methodology/source preflight PASS on the user's machine;
+- first remote Dukascopy source probe reached the second representative date and failed on 2010-06-01 with WinError 10054 after bounded urllib retries;
+- classification: transport/infrastructure FAIL only; no R15 market result and no scientific gate evaluated.
 
-Do not use the superseded FundedNext R15 exporter. Do not substitute another half-hour if r5 fails. If the remote Dukascopy source probe or deterministic preflight fails, classify as infrastructure and repair before any scientific interpretation.
+Frozen transport repair:
+`research/autonomous/R15_DUKASCOPY_TRANSPORT_REPAIR_2026_09_13.md`
+
+Queue generation 79:
+1. `R15-DUKASCOPY-TRANSPORT-PREFLIGHT r1`
+2. `R15-DUKASCOPY-SOURCE-PROBE r2`
+3. `R15-DUKASCOPY-BOUNDARY-EXPORT r2`
+4. `R15-XAUUSD-GLD-INTRADAY-MOMENTUM-V101 r2`
+
+Transport r2 is sequential and resumable, uses curl HTTP/1.1 primary with urllib fallback, forces connection close, caches successful compressed daily payloads atomically, and retains hard 2026 guards. The scientific engine remains unchanged.
+
+Do not use the superseded FundedNext R15 exporter or Dukascopy transport r1. Do not substitute another half-hour if r5 fails. Any further remote-source failure remains infrastructure until an actual R15 market result exists.
 
 ## Research program — literature-first replication
 
