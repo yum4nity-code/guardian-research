@@ -14,43 +14,49 @@ Read `START_HERE_NEXT_AI.md`, this file, the durable mandates, the current queue
 - R11 BTC/ETH cross-market lead-lag shock spillover: CLOSED, scientific FAIL, 0/72 discovery survivors.
 - R12 BTC/ETH volatility-compression channel breakout: CLOSED, scientific FAIL. 4/72 definitions survived frozen 2018-2022 discovery; 0 survived untouched 2023-2024 confirmation. Exact pre-2026 hashes matched; protected 2026 remained unopened.
 - R13 v1.01 BTC/ETH failed-breakout rejection: CLOSED, clean scientific FAIL under the corrected staged architecture. 72 tested; 66 enough-n; 24 gross-positive; 34 gross-stable; 0 passed BH-FDR discovery; 2026 unopened. R13 v1.00 remains historical protocol-nonconforming evidence only.
+- R14 Bitcoin negative-shock literature replication: CLOSED. Historical effect recovery was strong (48/48 positive; 47/48 replication pass), but 0 survived independent BH-FDR confirmation on 2021H2-2024. Protected 2026 unopened.
 
 Historical orchestrator PASS receipts mean executor success only and do not override scientific FAIL payloads.
 
-## Active P0 — R14 Bitcoin hourly negative-shock literature replication
+## Active P0 — R15 XAUUSD GLD intraday-momentum literature near-replication
 
-R13 is closed canonically at:
-`research/autonomous/R13_V101_CANONICAL_CLOSURE_2026_09_13.md`
+R14 canonical closure:
+`research/autonomous/R14_CANONICAL_CLOSURE_2026_09_13.md`
 
-R14 is preregistered at:
-`research/autonomous/R14_BITCOIN_HOURLY_NEGATIVE_SHOCK_REPLICATION_PREREGISTRATION_2026_09_13.md`
+R15 preregistration:
+`research/autonomous/R15_XAUUSD_GLD_INTRADAY_MOMENTUM_PREREGISTRATION_2026_09_13.md`
 
 External benchmark:
-Miralles-Quirós & Miralles-Quirós (2022), “Intraday Bitcoin price shocks: when bad news is good news”, Journal of Applied Economics 25(1), DOI 10.1080/15140326.2022.2151253.
+Xu, Bouri, Saeed & Wen (2020), Resources Policy 69, 101830, DOI 10.1016/j.resourpol.2020.101830.
 
-Scientific question: can Guardian recover the paper's published positive post-shock Bitcoin return after negative hourly shocks on the closest feasible Binance sample, and does the exact frozen effect then persist on later independent data and remain executable after realistic costs?
+Published GLD finding:
+- 13 half-hour US-equity intervals from 09:30 to 16:00 New York time;
+- fifth half-hour return r5 positively predicts final half-hour r13;
+- published beta 0.0436, Newey-West t=3.03, R-squared 0.49%;
+- published GLD sample 2004-11-08 through 2019-05-30;
+- paper also reports positive GLD OOS R-squared for r5.
 
-Frozen design:
-- BTCUSDT only, exact pre-2026 Binance 5m hash already pinned;
-- complete H1 bars only, exactly 12 underlying M5 bars;
-- 48 published negative-shock cells: filters 0.5/1/1.5/2.5/3.5/5% x horizons 1/2/3/4/5/6/12/24h;
-- strict negative shock: hourly log return < -filter;
-- paper-style replication uses overlapping close-to-close event returns and no costs/one-position filter;
-- closest-feasible replication: 2017-08-17 through 2021-06-30;
-- freeze replicated cells before independent 2021-07-01 through 2024-12-31 confirmation;
-- BH-FDR 5% at replication and confirmation; no opposite-direction rescue;
-- only after confirmation, translate to causal next-H1-open LONG execution with one-position replay;
-- E1/STRESS round-trip costs 10/20 bps enter only at the economic stage;
-- frozen 2025 pre-OOS gate;
-- protected 2026 forbidden.
+Guardian R15:
+- cross-instrument near-replication on provenance-clean FundedNext XAUUSD M1;
+- exact New York/DST clock mapping;
+- r5 = 11:30->12:00 ET;
+- r13 = 15:30->16:00 ET;
+- Stage 1 uses the available overlap with the published sample: 2017-01-01 through 2019-05-30;
+- Stage 2 independent confirmation: 2019-05-31 through 2024-12-31;
+- only the externally selected r5 predictor may advance;
+- published sign-based final-half-hour market-timing translation enters only after confirmation;
+- E1/STRESS costs remain downstream;
+- 2025 pre-OOS frozen;
+- 2026 forbidden.
 
-Queue append generation 75 contains:
-1. `R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT r1` — deterministic cold methodology/code tests, gated on canonical R13 v1.01 FAIL evidence.
-2. `R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION r1` — executes only after preflight PASS and publishes compact result/diagnostic artifacts.
+Queue append generation 76 contains:
+1. `R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT r1`.
+2. `R15-XAUUSD-GLD-INTRADAY-MOMENTUM r1`, additionally gated on the already-completed provenance-clean long-history XAU market export.
 
-The supervisor performed an additional cold audit before queueing R14: exact 48-cell grid, strict negative-shock semantics, paper-stage cost isolation, overlapping event-study semantics, later executable one-position semantics, fixed chronology, pinned input hash and protected-2026 guards all passed. The deterministic synthetic preflight also passed locally before commit.
+Cold audit is recorded at:
+`research/autonomous/R15_COLD_AUDIT_2026_09_13.md`
 
-If either R14 job is running or waiting normally, do not interfere or notify the owner. On terminal R14 result, first distinguish (a) failure to reproduce the published paper effect, which requires implementation/data-source audit, from (b) successful paper replication but later persistence/economic failure. R14 PASS is pre-OOS evidence only, not an EA or live authorization.
+If R15 is running or waiting normally, do not interfere. A Stage-1 failure is a near-replication failure and requires implementation/data-mapping review before interpretation; do not substitute another half-hour. A later-stage failure closes persistence/economic viability without rescue.
 
 ## Research program — literature-first replication
 
