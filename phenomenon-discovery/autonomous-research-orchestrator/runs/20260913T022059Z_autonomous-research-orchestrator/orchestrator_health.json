@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R11-BTC-ETH-LEAD-LAG-SPILLOVER-PREFLIGHT__r1.json",
+  "main_commit": "fad0887c2a70f498568f58fd405f37b9379b765f",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-13T02:20:59.288318+00:00",
+  "version": "1.01"
+}
