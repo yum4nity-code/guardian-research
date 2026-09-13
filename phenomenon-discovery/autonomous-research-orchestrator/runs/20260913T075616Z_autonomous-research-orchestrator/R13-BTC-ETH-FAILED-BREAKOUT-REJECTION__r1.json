@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 14358.07838040001,
+  "class_key": "r13-failed-breakout-rejection",
+  "duration_seconds": 4791.026853300005,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T07:56:16.341617+00:00",
+  "job_id": "R13-BTC-ETH-FAILED-BREAKOUT-REJECTION",
+  "main_commit": "395031519a256b4ee765e15e1c892bd59f256cc7",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T06:36:25.294588+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"survivors\": 0, \"protected_2026_opened\": false}"
+}

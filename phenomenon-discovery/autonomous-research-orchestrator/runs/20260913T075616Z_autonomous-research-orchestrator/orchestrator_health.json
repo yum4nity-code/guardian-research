@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R13-BTC-ETH-FAILED-BREAKOUT-REJECTION__r1.json",
+  "main_commit": "395031519a256b4ee765e15e1c892bd59f256cc7",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-13T07:56:16.343992+00:00",
+  "version": "1.01"
+}
