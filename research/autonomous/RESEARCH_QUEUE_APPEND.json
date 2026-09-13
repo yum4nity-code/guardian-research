@@ -1,16 +1,16 @@
 {
   "schema": 1,
-  "generation": 77,
-  "supersedes_generation": 76,
-  "closure": "R15 preflight passed deterministically. The previously referenced top-two XAU long-history manifest was not present at the expected local path, so generation 77 applies the frozen pre-execution infrastructure amendment: produce a dedicated read-only FundedNext XAUUSD M1 export strictly bounded to 2017-01-01 through 2026-01-01 exclusive, then run the unchanged R15 hypothesis. No R15 market result existed before this amendment; 2026 remains forbidden.",
+  "generation": 78,
+  "supersedes_generation": 77,
+  "closure": "R15 FundedNext depth probe proved the broker source cannot test the published-period effect: no usable in-window M1 before 2025 and no usable M5 overlap with the paper end date 2019-05-30. No R15 market result existed. Generation 78 therefore applies the frozen pre-result Dukascopy source amendment and upgrades R15 to v1.01 using boundary-only XAUUSD BID M1 data from the full paper era through 2025, with 2026 forbidden.",
   "jobs": [
     {
-      "id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT",
+      "id": "R15-DUKASCOPY-V101-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r15-xauusd-gld-intraday-momentum-preflight",
-      "description": "Deterministic cold tests for frozen R15 literature near-replication: New York DST-aware r5/r13 clock mapping, synthetic positive regression recovery, chronology, downstream-only economic assumptions, and protected-2026 source guards.",
+      "class_key": "r15-dukascopy-v101-preflight",
+      "description": "Deterministic source/parser/clock/stat/protection tests for R15 v1.01: zero-based Dukascopy month URLs, synthetic 24-byte candle parsing, summer/winter New York clock mapping, full published sample chronology, positive HAC recovery, manifest hashing and hard 2026 rejection.",
       "requires": [
         {
           "kind": "github_result",
@@ -21,7 +21,7 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r15_xauusd_gld_intraday_momentum_v1_00.py",
+        "path": "research/autonomous/test_r15_dukascopy_xauusd_v1_01.py",
         "args": []
       },
       "timeout": {
@@ -34,81 +34,110 @@
       }
     },
     {
-      "id": "R15-XAUUSD-PRE2026-MARKET-EXPORT",
+      "id": "R15-DUKASCOPY-SOURCE-PROBE",
       "revision": 1,
       "enabled": true,
-      "priority": 15,
-      "class_key": "r15-xauusd-pre2026-market-export",
-      "description": "Read-only FundedNext XAUUSD M1 export strictly from 2017-01-01 through 2025-12-31. Writes yearly files and SHA256 manifest and fails closed on any 2026 timestamp. No trading action.",
-      "data_window": {
-        "start": "2017-01-01T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
+      "priority": 12,
+      "class_key": "r15-dukascopy-source-probe",
+      "description": "Read-only remote source probe on four representative XAUUSD BID M1 dates spanning 2005, 2010, 2019 and 2025. Must decode all four New York boundary opens. Never requests 2026.",
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT",
+          "job_id": "R15-DUKASCOPY-V101-PREFLIGHT",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r15_xauusd_pre2026_market_export_v1_00.py",
+        "path": "research/autonomous/r15_dukascopy_xauusd_boundary_export_v1_00.py",
         "args": [
-          "--terminal-exe",
-          "D:\\MT5_FundedNext\\terminal64.exe",
-          "--required-server",
-          "FundedNext-Server 2",
-          "--symbol",
-          "XAUUSD",
           "--output-dir",
-          "{ROOT}\\r15_xauusd_pre2026_market_v1",
-          "--progress-file",
-          "{ROOT}\\progress\\R15-XAUUSD-PRE2026-MARKET-EXPORT-R1.json"
+          "{ROOT}\\r15_dukascopy_xauusd_v1",
+          "--probe-only"
         ]
       },
       "timeout": {
-        "min_seconds": 1800,
-        "expected_seconds": 1800,
+        "min_seconds": 300,
+        "expected_seconds": 60,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 600,
-        "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R15-XAUUSD-PRE2026-MARKET-EXPORT-R1.json"
+        "stale_heartbeat_seconds": 300,
+        "poll_seconds": 2
       }
     },
     {
-      "id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM",
-      "revision": 2,
+      "id": "R15-DUKASCOPY-BOUNDARY-EXPORT",
+      "revision": 1,
       "enabled": true,
-      "priority": 20,
-      "class_key": "r15-xauusd-gld-intraday-momentum",
-      "description": "Run the unchanged frozen GLD r5-to-r13 near-replication on the dedicated pre-2026 XAUUSD export, confirm on 2019H2-2024, then apply downstream economic translation and 2025 pre-OOS only if prior gates pass. Protected 2026 forbidden.",
+      "priority": 15,
+      "class_key": "r15-dukascopy-boundary-export",
+      "description": "Download only Dukascopy XAUUSD BID M1 weekday files from 2004-11-08 through 2025-12-31, retain exact New York 11:30/12:00/15:30/16:00 opens, hash source payloads, and publish a compact pre-2026 provenance manifest. No 2026 URL is permitted.",
       "data_window": {
-        "start": "2017-01-01T00:00:00Z",
+        "start": "2004-11-08T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R15-XAUUSD-PRE2026-MARKET-EXPORT",
+          "job_id": "R15-DUKASCOPY-SOURCE-PROBE",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r15_xauusd_gld_intraday_momentum_v1_00.py",
+        "path": "research/autonomous/r15_dukascopy_xauusd_boundary_export_v1_00.py",
         "args": [
-          "--market-dir",
-          "{ROOT}\\r15_xauusd_pre2026_market_v1",
-          "--market-manifest",
-          "{ROOT}\\r15_xauusd_pre2026_market_v1\\r15_xauusd_pre2026_market_manifest.json",
           "--output-dir",
-          "{ROOT}\\r15_xauusd_gld_intraday_momentum_v1",
+          "{ROOT}\\r15_dukascopy_xauusd_v1",
           "--progress-file",
-          "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-R2.json",
+          "{ROOT}\\progress\\R15-DUKASCOPY-BOUNDARY-EXPORT-R1.json",
+          "--workers",
+          "3"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 7200,
+        "expected_seconds": 3600,
+        "eta_multiplier": 3,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 900,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\R15-DUKASCOPY-BOUNDARY-EXPORT-R1.json"
+      }
+    },
+    {
+      "id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM-V101",
+      "revision": 1,
+      "enabled": true,
+      "priority": 20,
+      "class_key": "r15-xauusd-gld-intraday-momentum-v101",
+      "description": "Run the frozen GLD r5-to-r13 near-replication on Dukascopy XAUUSD using the full paper sample dates 2004-11-08 through 2019-05-30, independent confirmation through 2024, downstream economics only after confirmation, then 2025 pre-OOS. Protected 2026 forbidden.",
+      "data_window": {
+        "start": "2004-11-08T00:00:00Z",
+        "end_exclusive": "2026-01-01T00:00:00Z"
+      },
+      "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "R15-DUKASCOPY-BOUNDARY-EXPORT",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/r15_xauusd_gld_intraday_momentum_v1_01.py",
+        "args": [
+          "--boundary-csv",
+          "{ROOT}\\r15_dukascopy_xauusd_v1\\r15_dukascopy_xauusd_m1_boundaries_2004_2025.csv",
+          "--market-manifest",
+          "{ROOT}\\r15_dukascopy_xauusd_v1\\r15_dukascopy_market_manifest.json",
+          "--output-dir",
+          "{ROOT}\\r15_xauusd_gld_intraday_momentum_v101",
+          "--progress-file",
+          "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-V101-R1.json",
           "--publisher",
           "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
@@ -120,7 +149,7 @@
         "history_p95_multiplier": 3,
         "stale_heartbeat_seconds": 300,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-R2.json"
+        "progress_file": "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-V101-R1.json"
       }
     }
   ]
