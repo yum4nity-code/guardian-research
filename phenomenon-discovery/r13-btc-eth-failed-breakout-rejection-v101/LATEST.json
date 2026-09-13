@@ -1,0 +1,16 @@
+{
+  "artifacts": [
+    {
+      "name": "r13_btc_eth_failed_breakout_rejection_v1_01_result.json",
+      "sha256": "53566f8c400de55dc9e4a2d2d29135c3abccba5454abd73e4f07c55d2b0d337b",
+      "size_bytes": 1219
+    }
+  ],
+  "generated_at_utc": "2026-09-13T12:07:41.732644+00:00",
+  "phase": "r13-btc-eth-failed-breakout-rejection-v101",
+  "published_run_path": "phenomenon-discovery/r13-btc-eth-failed-breakout-rejection-v101/runs/20260913T120741Z_r13-btc-eth-failed-breakout-rejection-v101",
+  "schema": 1,
+  "source_commit": "5725f4d6d6fedb09090145e5706700d438980265",
+  "status": "FAIL",
+  "summary": "R13 v1.01 protocol-restoration rerun: scientific FAIL. 72 tested; 66 enough-n; 24 gross-positive; 34 gross-stable; 0 passed BH-FDR discovery; 0 discovery/confirmation/economic/pre-OOS survivors; protected 2026 untouched."
+}
