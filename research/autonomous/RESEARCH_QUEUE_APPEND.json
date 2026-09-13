@@ -1,27 +1,27 @@
 {
   "schema": 1,
-  "generation": 75,
-  "supersedes_generation": 74,
-  "closure": "R13 v1.01 protocol-restoration rerun is the canonical R13 result: clean scientific FAIL. 72 definitions tested; 66 met sample size; 24 were gross-positive; 34 gross-stable; 0 passed BH-FDR discovery; 0 downstream candidates; exact pre-2026 hashes matched; protected 2026 remained unopened. R13 is closed without rescue. R14 begins the mandated literature-first branch by near-replicating the published Bitcoin hourly negative-shock overreaction effect of Miralles-Quirós and Miralles-Quirós (2022) before later independent confirmation, economic translation and 2025 pre-OOS.",
+  "generation": 76,
+  "supersedes_generation": 75,
+  "closure": "R14 literature-first Bitcoin negative-shock replication recovered the published historical effect strongly (48/48 positive, 47/48 BH-FDR replication pass) but failed independent 2021H2-2024 confirmation (39 enough-n, 39 positive, 38 stable, 0 BH-FDR confirmation). R14 is closed without rescue; protected 2026 stayed unopened. R15 moves to a different asset and mechanism: the published GLD intraday-momentum result where the fifth US-session half-hour return predicts the last half-hour return, near-replicated on provenance-clean FundedNext XAUUSD M1 history.",
   "jobs": [
     {
-      "id": "R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT",
+      "id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r14-bitcoin-negative-shock-replication-preflight",
-      "description": "Deterministic cold methodology/code tests for frozen R14 literature replication: exact 48 published negative-shock cells, strict threshold semantics, complete-H1 construction, overlapping paper-style event study, stage-boundary fail-closed behavior, causal next-H1-open executable translation, one-position economic replay, fixed costs, stage separation and protected-2026 guards.",
+      "class_key": "r15-xauusd-gld-intraday-momentum-preflight",
+      "description": "Deterministic cold tests for frozen R15 literature near-replication: New York DST-aware r5/r13 clock mapping, synthetic positive regression recovery, chronology, downstream-only economic assumptions, and protected-2026 source guards.",
       "requires": [
         {
           "kind": "github_result",
           "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/r13-btc-eth-failed-breakout-rejection-v101/LATEST.json",
+          "path": "phenomenon-discovery/r14-bitcoin-hourly-negative-shock-replication/LATEST.json",
           "accepted_status": ["FAIL"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r14_bitcoin_hourly_negative_shock_replication_v1_00.py",
+        "path": "research/autonomous/test_r15_xauusd_gld_intraday_momentum_v1_00.py",
         "args": []
       },
       "timeout": {
@@ -34,46 +34,54 @@
       }
     },
     {
-      "id": "R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION",
+      "id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r14-bitcoin-negative-shock-replication",
-      "description": "Near-replicate the published Bitcoin hourly negative-shock overreaction table on the closest feasible Binance sample, freeze statistically replicated cells, confirm on 2021H2-2024, then apply causal next-H1-open one-position 10/20 bps economic checks and frozen 2025 pre-OOS. Protected 2026 forbidden.",
+      "class_key": "r15-xauusd-gld-intraday-momentum",
+      "description": "Near-replicate the published GLD r5-to-r13 intraday momentum effect on XAUUSD using the overlapping 2017-2019 paper period, freeze the rule, confirm on later 2019H2-2024 data, then apply the published sign-based final-half-hour translation with downstream 10/20 bps costs and frozen 2025 pre-OOS. Protected 2026 forbidden.",
       "data_window": {
-        "start": "2017-08-17T00:00:00Z",
+        "start": "2017-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT",
+          "job_id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": ["PASS"]
+        },
+        {
+          "kind": "receipt",
+          "job_id": "TOP2-XAU-LONG-HISTORY-MARKET-EXPORT",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r14_bitcoin_hourly_negative_shock_replication_v1_00.py",
+        "path": "research/autonomous/r15_xauusd_gld_intraday_momentum_v1_00.py",
         "args": [
-          "--data-dir",
-          "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
+          "--market-dir",
+          "{ROOT}\\top2_xau_long_history_data_v1",
+          "--market-manifest",
+          "{ROOT}\\top2_xau_long_history_data_v1\\top2_long_history_market_manifest.json",
           "--output-dir",
-          "{ROOT}\\r14_bitcoin_hourly_negative_shock_replication_v1",
+          "{ROOT}\\r15_xauusd_gld_intraday_momentum_v1",
           "--progress-file",
-          "{ROOT}\\progress\\R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-R1.json",
+          "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-R1.json",
           "--publisher",
           "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
       },
       "timeout": {
-        "min_seconds": 1800,
-        "expected_seconds": 900,
+        "min_seconds": 900,
+        "expected_seconds": 300,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 600,
+        "stale_heartbeat_seconds": 300,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-R1.json"
+        "progress_file": "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-R1.json"
       }
     }
   ]
