@@ -16,21 +16,23 @@ Do not infer current state from older D0xx handoffs or Codex exchanges when `CUR
 
 ## Current P0 — 2026-09-13
 
-R4/R5 XAU promotion paths and R8-R11 BTC/ETH families are closed under their frozen hypotheses. R11 cross-market lead-lag shock spillover completed normally but was a **scientific FAIL: 0/72 discovery survivors**; exact pre-2026 input hashes matched and protected 2026 remained unopened. The orchestrator PASS receipt means executor exit 0 only and does not reverse that scientific FAIL.
+R4/R5 XAU promotion paths and R8-R12 BTC/ETH families are closed under their frozen hypotheses.
 
-The active research family is now **R12 BTC/ETH volatility-compression channel breakout**, a genuinely independent family rather than a rescue of R8-R11. Its committed preregistration is:
-`research/autonomous/R12_BTC_ETH_COMPRESSION_BREAKOUT_PREREGISTRATION_2026_09_13.md`
+R12 BTC/ETH volatility-compression channel breakout completed normally but was a clean **scientific FAIL**: 4/72 definitions survived frozen 2018-2022 discovery and 0 survived untouched 2023-2024 confirmation; exact pre-2026 input hashes matched and protected 2026 remained unopened. The orchestrator PASS receipt means executor exit 0 only and does not reverse that scientific FAIL.
 
-Queue append generation 73 contains:
-- `R12-BTC-ETH-COMPRESSION-BREAKOUT-PREFLIGHT r1`: deterministic cold methodology/code tests.
-- `R12-BTC-ETH-COMPRESSION-BREAKOUT r1`: executes only after preflight PASS, uses 2018-2022 discovery frozen before isolated 2023-2024 confirmation, then a frozen 2025 pre-OOS gate, and forbids 2026.
+The active research family is now **R13 BTC/ETH failed-breakout rejection**, a genuinely independent reversal family rather than a rescue of R12. Its committed preregistration is:
+`research/autonomous/R13_BTC_ETH_FAILED_BREAKOUT_REJECTION_PREREGISTRATION_2026_09_13.md`
 
-If either R12 job is running or waiting normally, do not interfere or notify the owner.
+Queue append generation 74 contains:
+- `R13-BTC-ETH-FAILED-BREAKOUT-REJECTION-PREFLIGHT r1`: deterministic cold methodology/code tests.
+- `R13-BTC-ETH-FAILED-BREAKOUT-REJECTION r1`: executes only after preflight PASS, uses 2018-2022 discovery frozen before isolated 2023-2024 confirmation, then a frozen 2025 pre-OOS gate, and forbids 2026.
+
+If either R13 job is running or waiting normally, do not interfere or notify the owner.
 
 ## Hard operating rules
 
 - Never deploy live automatically.
-- Never open or inspect protected 2026 without explicit owner approval plus committed preregistration.
+- Never open or inspect protected 2026 unless the mandate's protected-OOS preregistration conditions are satisfied.
 - Distinguish scientific FAIL from infrastructure FAIL.
 - Never restart a healthy job or create a duplicate run.
 - Jobs are immutable by `(id, revision)` once run.
@@ -44,9 +46,9 @@ If either R12 job is running or waiting normally, do not interfere or notify the
 
 ## Scientific rules
 
-- For R12, discovery is 2018-2022, confirmation is 2023-2024, and 2025 is the pre-OOS temporal gate.
+- For R13, discovery is 2018-2022, confirmation is 2023-2024, and 2025 is the pre-OOS temporal gate.
 - Each survivor set must be frozen before the next period is computed.
-- 2026 remains protected final OOS and requires explicit owner approval plus committed preregistration before any inspection.
+- 2026 remains protected final OOS and may not be used for discovery or rescue.
 - Do not same-sample rescue a failed family.
 - Do not promote gross-return survivors directly to production.
 - Survivors still require reject-only robustness, realistic execution/cost feasibility where not already built in, red-team review and untouched OOS before promotion.
