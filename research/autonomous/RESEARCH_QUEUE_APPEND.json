@@ -1,27 +1,27 @@
 {
   "schema": 1,
-  "generation": 71,
-  "supersedes_generation": 70,
-  "closure": "R9 BTC/ETH UTC calendar-session seasonality is scientific FAIL: 0/672 definitions survived discovery, so R9 is closed without rescue; protected 2026 remained untouched. R10 is a genuinely independent BTC/ETH multi-day time-series momentum family with causal next-H1-open execution, low turnover, long-history stage separation and frozen 10/20 bps round-trip costs.",
+  "generation": 72,
+  "supersedes_generation": 71,
+  "closure": "R10 BTC/ETH multi-day time-series trend is a clean scientific FAIL at discovery: 0/72 definitions survived frozen 2018-2022 discovery; the executor completed normally and protected 2026 remained untouched. R10 is closed without rescue. R11 is a genuinely independent cross-market lead-lag shock-spillover family: one asset must show an abnormal standardized completed H1 move while the other has moved no more than half as much in standardized terms; the follower is then tested for continuation at causal next-H1-open execution under frozen 10/20 bps costs.",
   "jobs": [
     {
-      "id": "R10-BTC-ETH-MULTI-DAY-TREND-PREFLIGHT",
+      "id": "R11-BTC-ETH-LEAD-LAG-SPILLOVER-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r10-multi-day-trend-preflight",
-      "description": "Deterministic cold methodology tests for the frozen 72-definition R10 trend family: rule cardinality/identity, causal next-H1-open timing, one-position overlap semantics, missing-hour fail-closed behavior, year-boundary purge, fixed costs and protected-2026 boundary.",
+      "class_key": "r11-lead-lag-spillover-preflight",
+      "description": "Deterministic cold methodology tests for frozen R11: 72 exact definitions, immutable input hashes, prior-only 168h volatility normalization, synchronized-gap fail-closed behavior, fixed 0.5 follower lag gate, causal next-H1-open timing, one-position overlap semantics, year-boundary purge, fixed costs and protected-2026 rejection.",
       "requires": [
         {
           "kind": "github_result",
           "ref": "origin/backtest-results",
-          "path": "phenomenon-discovery/r9-btc-eth-calendar-session/LATEST.json",
+          "path": "phenomenon-discovery/r10-btc-eth-multi-day-trend/LATEST.json",
           "accepted_status": ["FAIL"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r10_btc_eth_multi_day_trend_v1_00.py",
+        "path": "research/autonomous/test_r11_btc_eth_lead_lag_spillover_v1_00.py",
         "args": []
       },
       "timeout": {
@@ -34,12 +34,12 @@
       }
     },
     {
-      "id": "R10-BTC-ETH-MULTI-DAY-TREND",
+      "id": "R11-BTC-ETH-LEAD-LAG-SPILLOVER",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r10-multi-day-trend",
-      "description": "Execute preregistered independent BTC/ETH multi-day time-series trend family: 72 frozen definitions, 2018-22 discovery, frozen 2023-24 confirmation, frozen 2025 pre-OOS, causal next-H1-open execution, one-position replay, exact input hashes, 10/20 bps costs, protected 2026 forbidden.",
+      "class_key": "r11-lead-lag-spillover",
+      "description": "Execute preregistered independent BTC/ETH lead-lag shock-spillover family: 72 frozen definitions, 2018-22 discovery, frozen 2023-24 confirmation, frozen 2025 pre-OOS gate, prior-only volatility scales, fixed follower lag-ratio, causal next-H1-open execution, synchronized-gap fail-closed handling, one-position replay, exact input hashes, 10/20 bps costs, protected 2026 forbidden.",
       "data_window": {
         "start": "2017-08-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -47,21 +47,21 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R10-BTC-ETH-MULTI-DAY-TREND-PREFLIGHT",
+          "job_id": "R11-BTC-ETH-LEAD-LAG-SPILLOVER-PREFLIGHT",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r10_btc_eth_multi_day_trend_v1_00.py",
+        "path": "research/autonomous/r11_btc_eth_lead_lag_spillover_v1_00.py",
         "args": [
           "--data-dir",
           "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
           "--output-dir",
-          "{ROOT}\\r10_btc_eth_multi_day_trend_v1",
+          "{ROOT}\\r11_btc_eth_lead_lag_spillover_v1",
           "--progress-file",
-          "{ROOT}\\progress\\R10-BTC-ETH-MULTI-DAY-TREND-R1.json",
+          "{ROOT}\\progress\\R11-BTC-ETH-LEAD-LAG-SPILLOVER-R1.json",
           "--publisher",
           "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
@@ -73,7 +73,7 @@
         "history_p95_multiplier": 3,
         "stale_heartbeat_seconds": 900,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R10-BTC-ETH-MULTI-DAY-TREND-R1.json"
+        "progress_file": "{ROOT}\\progress\\R11-BTC-ETH-LEAD-LAG-SPILLOVER-R1.json"
       }
     }
   ]
