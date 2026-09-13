@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 3766.408458900012,
+  "class_key": "r14-bitcoin-negative-shock-replication",
+  "duration_seconds": 1260.470853100007,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T13:23:12.982577+00:00",
+  "job_id": "R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION",
+  "main_commit": "10c4aece707548a5abf50e37b76a78e8959d42ea",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T13:02:12.436313+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"funnel\": {\"tested\": 48, \"replication_enough_n\": 48, \"replication_positive\": 48, \"replication_fdr\": 47, \"replication_pass\": 47, \"confirmation_enough_n\": 39, \"confirmation_positive\": 39, \"confirmation_stability\": 38, \"confirmation_fdr\": 0, \"confirmation_pass\": 0, \"economic_pass\": 0, \"preoos_survivors\": 0}, \"survivors\": 0, \"protected_2026_opened\": false}"
+}
