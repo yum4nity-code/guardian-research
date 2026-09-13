@@ -44,6 +44,55 @@ A cold read before execution caught and corrected one pre-execution issue: zero-
 
 If either R13 job is running or waiting normally, do not interfere or notify the owner. On terminal R13 result, verify provenance/integrity before any next action. R13 PASS is pre-OOS evidence only, not an EA or live authorization.
 
+## Next research program — literature-first replication
+
+After R13, do not default to another blind parameter-family sweep.
+
+Guardian must add a literature-first replication branch:
+1. Build a catalog of published market anomalies/edges with clear definitions, original sample, assets, horizon, data requirements, statistical result, and economic assumptions.
+2. Prioritize phenomena that can be reproduced exactly or near-exactly from available historical data.
+3. Reproduce the published phenomenon first on its original or closest feasible sample.
+4. Freeze the reproduced rule before independent later-period confirmation.
+5. Only after confirmation, apply realistic execution/cost robustness, then 2025 pre-OOS, then protected 2026 last.
+6. No post-hoc threshold rescue of failed papers or failed Guardian families.
+7. Maintain a paper-by-paper ledger: published result -> Guardian reproduction -> independent persistence -> economic robustness -> pre-OOS -> final OOS.
+8. Include external/open-source EA strategies as benchmark controls where source code and rules are auditable; test them without marketing optimizations and under the same Guardian standards.
+9. Use replication failures diagnostically: if Guardian cannot recover a well-specified published in-sample effect, audit data, implementation, timing, and methodology before concluding the anomaly is absent.
+
+## Asset universe — critical scope rule
+
+Guardian is NOT restricted to BTC/ETH or crypto.
+
+The research universe may use the full set of instruments available for trading on the prop firms/accounts the owner actually uses, subject to data availability and each firm's current instrument/rule constraints. This may include, where available:
+- FX majors/minors;
+- equity indices;
+- metals such as XAU/XAG;
+- energies/commodities;
+- crypto instruments;
+- other prop-firm-supported CFDs or futures-style products.
+
+Asset choice must be driven by the published anomaly or economic hypothesis, not by historical convenience. BTC/ETH remain valid research assets, but they are no longer the default universe for every new family.
+
+For every new replication/family:
+- record the intended prop-firm venue/account type and eligible symbol mapping;
+- verify trading hours, contract specifications, spread/commission model, news restrictions, overnight/weekend constraints and any symbol-specific rules before economic promotion;
+- keep discovery/confirmation scientific logic separated from downstream prop-firm execution fidelity;
+- never infer that an edge on one asset automatically transfers to another;
+- do not exclude an asset solely because no local dataset exists yet: first classify the additional data required and whether it is worth acquiring.
+
+## Research strategy correction
+
+The main bottleneck is no longer assumed to be parameter search depth. Millions of variants around a small number of OHLCV families are not equivalent to millions of independent hypotheses.
+
+Future work should therefore maximize:
+- diversity of genuine economic/behavioral hypotheses;
+- replication of independently published effects;
+- cross-asset breadth when the literature supports it;
+- transparent failure funnels;
+- and explicit testing of Guardian itself via benchmark strategies.
+
+Do not weaken final standards. The correction is to improve the source and diversity of hypotheses, not to lower acceptance thresholds.
+
 ## Hard rules
 
 - Never deploy live automatically.
@@ -64,6 +113,7 @@ If either R13 job is running or waiting normally, do not interfere or notify the
 - `GUARDIAN_MASTER_MANDATE.md`
 - `docs/RESEARCH_PROTOCOL.md`
 - `research/autonomous/AUTONOMOUS_RESEARCH_MANDATE.md`
+- `research/autonomous/DISCOVERY_GATE_ARCHITECTURE_V1.md`
 - `research/autonomous/RESEARCH_QUEUE.json`
 - `research/autonomous/RESEARCH_QUEUE_APPEND.json`
 - `research/autonomous/R13_BTC_ETH_FAILED_BREAKOUT_REJECTION_PREREGISTRATION_2026_09_13.md`
