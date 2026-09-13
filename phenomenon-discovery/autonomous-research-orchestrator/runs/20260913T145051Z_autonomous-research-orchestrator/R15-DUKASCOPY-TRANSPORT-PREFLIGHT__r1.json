@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r15-dukascopy-transport-preflight",
+  "duration_seconds": 2.007013399997959,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T14:50:51.285319+00:00",
+  "job_id": "R15-DUKASCOPY-TRANSPORT-PREFLIGHT",
+  "main_commit": "73365162bd88b932100532f2ea9b4fefc7f1ef66",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T14:50:49.242447+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\":\"PASS\",\"tests\":\"R15 Dukascopy resilient transport/cache/protection preflight\"}"
+}

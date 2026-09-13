@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R15-DUKASCOPY-TRANSPORT-PREFLIGHT__r1.json",
+  "main_commit": "73365162bd88b932100532f2ea9b4fefc7f1ef66",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-13T14:50:51.287474+00:00",
+  "version": "1.01"
+}
