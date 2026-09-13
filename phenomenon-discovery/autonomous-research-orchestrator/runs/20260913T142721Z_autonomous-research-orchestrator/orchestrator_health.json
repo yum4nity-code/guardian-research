@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R15-XAUUSD-PRE2026-MARKET-EXPORT__r1.json",
+  "main_commit": "047cd4f2996fcd7e019fb8c87930800688fbb5d1",
+  "pid": 10260,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-13T14:27:21.105619+00:00",
+  "version": "1.01"
+}

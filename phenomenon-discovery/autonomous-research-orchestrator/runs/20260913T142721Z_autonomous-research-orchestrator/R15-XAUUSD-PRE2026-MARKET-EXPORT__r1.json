@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 5400.0,
+  "class_key": "r15-xauusd-pre2026-market-export",
+  "duration_seconds": 15.005571100002271,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-13T14:27:21.078884+00:00",
+  "job_id": "R15-XAUUSD-PRE2026-MARKET-EXPORT",
+  "main_commit": "047cd4f2996fcd7e019fb8c87930800688fbb5d1",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T14:27:06.017440+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r15_xauusd_pre2026_market_export_v1_00.py\", line 138, in <module>\n    if __name__==\"__main__\": raise SystemExit(main())\n                                              ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r15_xauusd_pre2026_market_export_v1_00.py\", line 118, in main\n    if y not in by_year: raise RuntimeError(f\"missing entire year {y}\")\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: missing entire year 2017",
+  "stdout_tail": ""
+}
