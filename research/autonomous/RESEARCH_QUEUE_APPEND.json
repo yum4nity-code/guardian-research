@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "generation": 76,
-  "supersedes_generation": 75,
-  "closure": "R14 literature-first Bitcoin negative-shock replication recovered the published historical effect strongly (48/48 positive, 47/48 BH-FDR replication pass) but failed independent 2021H2-2024 confirmation (39 enough-n, 39 positive, 38 stable, 0 BH-FDR confirmation). R14 is closed without rescue; protected 2026 stayed unopened. R15 moves to a different asset and mechanism: the published GLD intraday-momentum result where the fifth US-session half-hour return predicts the last half-hour return, near-replicated on provenance-clean FundedNext XAUUSD M1 history.",
+  "generation": 77,
+  "supersedes_generation": 76,
+  "closure": "R15 preflight passed deterministically. The previously referenced top-two XAU long-history manifest was not present at the expected local path, so generation 77 applies the frozen pre-execution infrastructure amendment: produce a dedicated read-only FundedNext XAUUSD M1 export strictly bounded to 2017-01-01 through 2026-01-01 exclusive, then run the unchanged R15 hypothesis. No R15 market result existed before this amendment; 2026 remains forbidden.",
   "jobs": [
     {
       "id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT",
@@ -34,12 +34,12 @@
       }
     },
     {
-      "id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM",
+      "id": "R15-XAUUSD-PRE2026-MARKET-EXPORT",
       "revision": 1,
       "enabled": true,
-      "priority": 20,
-      "class_key": "r15-xauusd-gld-intraday-momentum",
-      "description": "Near-replicate the published GLD r5-to-r13 intraday momentum effect on XAUUSD using the overlapping 2017-2019 paper period, freeze the rule, confirm on later 2019H2-2024 data, then apply the published sign-based final-half-hour translation with downstream 10/20 bps costs and frozen 2025 pre-OOS. Protected 2026 forbidden.",
+      "priority": 15,
+      "class_key": "r15-xauusd-pre2026-market-export",
+      "description": "Read-only FundedNext XAUUSD M1 export strictly from 2017-01-01 through 2025-12-31. Writes yearly files and SHA256 manifest and fails closed on any 2026 timestamp. No trading action.",
       "data_window": {
         "start": "2017-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -50,10 +50,49 @@
           "job_id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT",
           "revision": 1,
           "accepted_status": ["PASS"]
-        },
+        }
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/r15_xauusd_pre2026_market_export_v1_00.py",
+        "args": [
+          "--terminal-exe",
+          "D:\\MT5_FundedNext\\terminal64.exe",
+          "--required-server",
+          "FundedNext-Server 2",
+          "--symbol",
+          "XAUUSD",
+          "--output-dir",
+          "{ROOT}\\r15_xauusd_pre2026_market_v1",
+          "--progress-file",
+          "{ROOT}\\progress\\R15-XAUUSD-PRE2026-MARKET-EXPORT-R1.json"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 1800,
+        "expected_seconds": 1800,
+        "eta_multiplier": 3,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 600,
+        "poll_seconds": 5,
+        "progress_file": "{ROOT}\\progress\\R15-XAUUSD-PRE2026-MARKET-EXPORT-R1.json"
+      }
+    },
+    {
+      "id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM",
+      "revision": 2,
+      "enabled": true,
+      "priority": 20,
+      "class_key": "r15-xauusd-gld-intraday-momentum",
+      "description": "Run the unchanged frozen GLD r5-to-r13 near-replication on the dedicated pre-2026 XAUUSD export, confirm on 2019H2-2024, then apply downstream economic translation and 2025 pre-OOS only if prior gates pass. Protected 2026 forbidden.",
+      "data_window": {
+        "start": "2017-01-01T00:00:00Z",
+        "end_exclusive": "2026-01-01T00:00:00Z"
+      },
+      "requires": [
         {
           "kind": "receipt",
-          "job_id": "TOP2-XAU-LONG-HISTORY-MARKET-EXPORT",
+          "job_id": "R15-XAUUSD-PRE2026-MARKET-EXPORT",
           "revision": 1,
           "accepted_status": ["PASS"]
         }
@@ -63,13 +102,13 @@
         "path": "research/autonomous/r15_xauusd_gld_intraday_momentum_v1_00.py",
         "args": [
           "--market-dir",
-          "{ROOT}\\top2_xau_long_history_data_v1",
+          "{ROOT}\\r15_xauusd_pre2026_market_v1",
           "--market-manifest",
-          "{ROOT}\\top2_xau_long_history_data_v1\\top2_long_history_market_manifest.json",
+          "{ROOT}\\r15_xauusd_pre2026_market_v1\\r15_xauusd_pre2026_market_manifest.json",
           "--output-dir",
           "{ROOT}\\r15_xauusd_gld_intraday_momentum_v1",
           "--progress-file",
-          "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-R1.json",
+          "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-R2.json",
           "--publisher",
           "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
         ]
@@ -81,7 +120,7 @@
         "history_p95_multiplier": 3,
         "stale_heartbeat_seconds": 300,
         "poll_seconds": 5,
-        "progress_file": "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-R1.json"
+        "progress_file": "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-R2.json"
       }
     }
   ]
