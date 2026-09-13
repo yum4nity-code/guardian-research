@@ -53,8 +53,8 @@ def simulate(d,r):
   hi=float(prior.high.max()); lo=float(prior.low.min()); rng=hi-lo
   if not np.isfinite(rng) or rng<=0: continue
   dh=float(d.high.iloc[i]); dl=float(d.low.iloc[i]); dc=float(d.close.iloc[i])
-  upper=(dh>=hi+pen*rng) and (dc<=hi-re*rng)
-  lower=(dl<=lo-pen*rng) and (dc>=lo+re*rng)
+  upper=(dh>hi+pen*rng) and (dc<=hi-re*rng)
+  lower=(dl<lo-pen*rng) and (dc>=lo+re*rng)
   if upper==lower: continue
   direction=-1 if upper else 1
   if t.year!=xt.year: continue
