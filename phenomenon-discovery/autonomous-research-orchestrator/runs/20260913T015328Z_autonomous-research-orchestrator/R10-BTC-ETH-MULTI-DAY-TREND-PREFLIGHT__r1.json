@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r10-multi-day-trend-preflight",
+  "duration_seconds": 2.0024307999992743,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T01:53:27.925319+00:00",
+  "job_id": "R10-BTC-ETH-MULTI-DAY-TREND-PREFLIGHT",
+  "main_commit": "21323f52c6bf83dbe7fa3d0a7b4ddf2fdf6188b6",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T01:53:25.902540+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS R10 deterministic cold tests"
+}
