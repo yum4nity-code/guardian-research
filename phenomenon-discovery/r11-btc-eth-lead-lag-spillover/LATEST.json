@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    {
+      "name": "r11_btc_eth_lead_lag_spillover_result.json",
+      "sha256": "bedca7c23a6cc6a591c243ea8fe36a49f0ea56ff8fb8df340db68231583f47fe",
+      "size_bytes": 944
+    },
+    {
+      "name": "r11_btc_eth_lead_lag_spillover_survivors.csv",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    }
+  ],
+  "generated_at_utc": "2026-09-13T03:43:59.091371+00:00",
+  "phase": "r11-btc-eth-lead-lag-spillover",
+  "published_run_path": "phenomenon-discovery/r11-btc-eth-lead-lag-spillover/runs/20260913T034359Z_r11-btc-eth-lead-lag-spillover",
+  "schema": 1,
+  "source_commit": "fad0887c2a70f498568f58fd405f37b9379b765f",
+  "status": "FAIL",
+  "summary": "R11 BTC/ETH lead-lag spillover FAIL: 0 pre-OOS survivors after frozen 2018-22 discovery, 2023-24 confirmation and 2025 gate; 2026 untouched."
+}
