@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r15-xauusd-gld-intraday-momentum-preflight",
+  "duration_seconds": 4.00635599999805,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T13:40:23.883304+00:00",
+  "job_id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT",
+  "main_commit": "29018631787a59ce133a90af378cb6dcf41f4438",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T13:40:19.821989+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\":\"PASS\",\"tests\":\"R15 deterministic methodology/code preflight\"}"
+}

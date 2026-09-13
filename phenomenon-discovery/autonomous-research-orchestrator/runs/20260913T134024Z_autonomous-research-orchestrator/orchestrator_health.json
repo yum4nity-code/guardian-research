@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT__r1.json",
+  "main_commit": "29018631787a59ce133a90af378cb6dcf41f4438",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-13T13:40:23.886547+00:00",
+  "version": "1.01"
+}
