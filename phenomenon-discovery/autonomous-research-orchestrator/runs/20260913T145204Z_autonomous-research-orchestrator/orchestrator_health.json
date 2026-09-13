@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R15-DUKASCOPY-BOUNDARY-EXPORT",
+    "revision": 2
+  },
+  "main_commit": "0e93314168be4e43b572a8e983f7c590a699d45c",
+  "pid": 10260,
+  "protected_2026": false,
+  "queue_generation": 79,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-13T14:52:04.384218+00:00",
+  "version": "1.01"
+}
