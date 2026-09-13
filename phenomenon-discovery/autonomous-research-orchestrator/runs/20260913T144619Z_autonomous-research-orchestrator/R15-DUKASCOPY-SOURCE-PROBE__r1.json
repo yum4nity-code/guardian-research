@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "r15-dukascopy-source-probe",
+  "duration_seconds": 222.22295250000025,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-13T14:46:19.040404+00:00",
+  "job_id": "R15-DUKASCOPY-SOURCE-PROBE",
+  "main_commit": "741f7afe6c8f39ecf1e9ce2dfdf8352cccab832f",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T14:42:36.791262+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r15_dukascopy_xauusd_boundary_export_v1_00.py\", line 260, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r15_dukascopy_xauusd_boundary_export_v1_00.py\", line 162, in main\n    r = fetch_one(d)\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r15_dukascopy_xauusd_boundary_export_v1_00.py\", line 115, in fetch_one\n    status, payload = fetch_payload(d)\n                      ~~~~~~~~~~~~~^^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r15_dukascopy_xauusd_boundary_export_v1_00.py\", line 105, in fetch_payload\n    raise RuntimeError(f\"{d}: download failed after {retries} attempts: {last}\")\nRuntimeError: 2010-06-01: download failed after 5 attempts: <urlopen error [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond>",
+  "stdout_tail": ""
+}
