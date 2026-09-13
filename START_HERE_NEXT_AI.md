@@ -16,25 +16,30 @@ Do not infer current state from older D0xx handoffs or Codex exchanges when `CUR
 
 ## Current P0 — 2026-09-13
 
-R4/R5 XAU promotion paths and R8-R13 prior BTC/ETH families are closed under their frozen hypotheses.
+R4/R5 XAU promotion paths and R8-R14 prior research families are closed under their frozen hypotheses.
 
-R13 v1.01 is the canonical R13 result: **clean scientific FAIL** under the corrected staged architecture. 72 definitions were tested; 66 met minimum sample size, 24 were gross-positive, 34 gross-stable, and 0 passed BH-FDR discovery. Infrastructure was healthy, exact pre-2026 hashes matched, and protected 2026 remained unopened. R13 v1.00 remains historical methodology-nonconforming evidence only.
+R14 is closed as a literature-replication benchmark: the published Bitcoin negative-shock effect was strongly recovered historically (48/48 positive, 47/48 BH-FDR replication pass), but 0 candidates survived independent BH-FDR confirmation on 2021H2-2024. Protected 2026 remained unopened. Do not rescue R14.
 
-The active research family is now **R14 Bitcoin hourly negative-shock literature replication**. It is the first implementation of the mandated literature-first branch rather than another blind parameter sweep.
+The active family is **R15 XAUUSD GLD intraday-momentum literature near-replication**.
 
-External benchmark:
-Miralles-Quirós & Miralles-Quirós (2022), “Intraday Bitcoin price shocks: when bad news is good news”, DOI 10.1080/15140326.2022.2151253.
+External source:
+Xu, Bouri, Saeed & Wen (2020), Resources Policy 69, 101830, DOI 10.1016/j.resourpol.2020.101830.
+
+Frozen published hypothesis:
+- GLD fifth half-hour return r5 predicts final half-hour r13 positively;
+- published beta 0.0436, Newey-West t=3.03, R-squared 0.49%;
+- Guardian maps r5 to 11:30->12:00 ET and r13 to 15:30->16:00 ET using DST-aware America/New_York timestamps.
 
 Committed preregistration:
-`research/autonomous/R14_BITCOIN_HOURLY_NEGATIVE_SHOCK_REPLICATION_PREREGISTRATION_2026_09_13.md`
+`research/autonomous/R15_XAUUSD_GLD_INTRADAY_MOMENTUM_PREREGISTRATION_2026_09_13.md`
 
-Queue append generation 75 contains:
-- `R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT r1`: deterministic cold methodology/code tests.
-- `R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION r1`: closest-feasible published-effect replication on 2017-08-17 through 2021-06-30, frozen independent 2021H2-2024 confirmation, downstream causal/economic translation, frozen 2025 pre-OOS, and protected 2026 forbidden.
+Queue generation 76:
+- `R15-XAUUSD-GLD-INTRADAY-MOMENTUM-PREFLIGHT r1`
+- `R15-XAUUSD-GLD-INTRADAY-MOMENTUM r1`
 
-The published grid is fixed at 48 negative-shock cells: 0.5/1/1.5/2.5/3.5/5% hourly log-return filters x 1/2/3/4/5/6/12/24h horizons. Do not add or remove thresholds after results.
+Stage 1 is the available 2017-01-01 through 2019-05-30 overlap with the paper sample. Stage 2 is independent 2019-05-31 through 2024-12-31 confirmation. Costs enter only after confirmation; 2025 is pre-OOS; 2026 is forbidden.
 
-If R14 is running or waiting normally, do not interfere or notify the owner. If the published effect fails to reproduce, audit implementation and the Binance-vs-Kraken/data-window difference before interpreting the result as an absent anomaly.
+If R15 is running or waiting normally, do not interfere. If Stage 1 fails, audit the XAUUSD-vs-GLD mapping and implementation; do not substitute another half-hour predictor.
 
 ## Hard operating rules
 
@@ -53,7 +58,7 @@ If R14 is running or waiting normally, do not interfere or notify the owner. If 
 
 ## Scientific rules
 
-- For R14, published-effect near-replication is 2017-08-17 through 2021-06-30, independent confirmation is 2021-07-01 through 2024-12-31, and 2025 is the pre-OOS temporal gate.
+- For R15, published-overlap near-replication is 2017-01-01 through 2019-05-30, independent confirmation is 2019-05-31 through 2024-12-31, and 2025 is the pre-OOS temporal gate.
 - Each survivor set must be frozen before the next period is computed.
 - 2026 remains protected final OOS and may not be used for discovery or rescue.
 - Do not same-sample rescue a failed family.
