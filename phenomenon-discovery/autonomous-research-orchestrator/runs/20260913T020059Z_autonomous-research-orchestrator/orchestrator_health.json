@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R10-BTC-ETH-MULTI-DAY-TREND__r1.json",
+  "main_commit": "21323f52c6bf83dbe7fa3d0a7b4ddf2fdf6188b6",
+  "pid": 10260,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-13T02:00:59.617942+00:00",
+  "version": "1.01"
+}

@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 5400.0,
+  "class_key": "r10-multi-day-trend",
+  "duration_seconds": 430.1007119999995,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-13T02:00:59.614734+00:00",
+  "job_id": "R10-BTC-ETH-MULTI-DAY-TREND",
+  "main_commit": "21323f52c6bf83dbe7fa3d0a7b4ddf2fdf6188b6",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": false,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-13T01:53:49.492040+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"FAIL\", \"survivors\": 0, \"protected_2026_opened\": false}"
+}
