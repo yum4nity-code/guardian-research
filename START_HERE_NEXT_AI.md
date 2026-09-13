@@ -16,18 +16,25 @@ Do not infer current state from older D0xx handoffs or Codex exchanges when `CUR
 
 ## Current P0 — 2026-09-13
 
-R4/R5 XAU promotion paths and R8-R12 BTC/ETH families are closed under their frozen hypotheses.
+R4/R5 XAU promotion paths and R8-R13 prior BTC/ETH families are closed under their frozen hypotheses.
 
-R12 BTC/ETH volatility-compression channel breakout completed normally but was a clean **scientific FAIL**: 4/72 definitions survived frozen 2018-2022 discovery and 0 survived untouched 2023-2024 confirmation; exact pre-2026 input hashes matched and protected 2026 remained unopened. The orchestrator PASS receipt means executor exit 0 only and does not reverse that scientific FAIL.
+R13 v1.01 is the canonical R13 result: **clean scientific FAIL** under the corrected staged architecture. 72 definitions were tested; 66 met minimum sample size, 24 were gross-positive, 34 gross-stable, and 0 passed BH-FDR discovery. Infrastructure was healthy, exact pre-2026 hashes matched, and protected 2026 remained unopened. R13 v1.00 remains historical methodology-nonconforming evidence only.
 
-The active research family is now **R13 BTC/ETH failed-breakout rejection**, a genuinely independent reversal family rather than a rescue of R12. Its committed preregistration is:
-`research/autonomous/R13_BTC_ETH_FAILED_BREAKOUT_REJECTION_PREREGISTRATION_2026_09_13.md`
+The active research family is now **R14 Bitcoin hourly negative-shock literature replication**. It is the first implementation of the mandated literature-first branch rather than another blind parameter sweep.
 
-Queue append generation 74 contains:
-- `R13-BTC-ETH-FAILED-BREAKOUT-REJECTION-PREFLIGHT r1`: deterministic cold methodology/code tests.
-- `R13-BTC-ETH-FAILED-BREAKOUT-REJECTION r1`: executes only after preflight PASS, uses 2018-2022 discovery frozen before isolated 2023-2024 confirmation, then a frozen 2025 pre-OOS gate, and forbids 2026.
+External benchmark:
+Miralles-Quirós & Miralles-Quirós (2022), “Intraday Bitcoin price shocks: when bad news is good news”, DOI 10.1080/15140326.2022.2151253.
 
-If either R13 job is running or waiting normally, do not interfere or notify the owner.
+Committed preregistration:
+`research/autonomous/R14_BITCOIN_HOURLY_NEGATIVE_SHOCK_REPLICATION_PREREGISTRATION_2026_09_13.md`
+
+Queue append generation 75 contains:
+- `R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION-PREFLIGHT r1`: deterministic cold methodology/code tests.
+- `R14-BITCOIN-HOURLY-NEGATIVE-SHOCK-REPLICATION r1`: closest-feasible published-effect replication on 2017-08-17 through 2021-06-30, frozen independent 2021H2-2024 confirmation, downstream causal/economic translation, frozen 2025 pre-OOS, and protected 2026 forbidden.
+
+The published grid is fixed at 48 negative-shock cells: 0.5/1/1.5/2.5/3.5/5% hourly log-return filters x 1/2/3/4/5/6/12/24h horizons. Do not add or remove thresholds after results.
+
+If R14 is running or waiting normally, do not interfere or notify the owner. If the published effect fails to reproduce, audit implementation and the Binance-vs-Kraken/data-window difference before interpreting the result as an absent anomaly.
 
 ## Hard operating rules
 
@@ -46,7 +53,7 @@ If either R13 job is running or waiting normally, do not interfere or notify the
 
 ## Scientific rules
 
-- For R13, discovery is 2018-2022, confirmation is 2023-2024, and 2025 is the pre-OOS temporal gate.
+- For R14, published-effect near-replication is 2017-08-17 through 2021-06-30, independent confirmation is 2021-07-01 through 2024-12-31, and 2025 is the pre-OOS temporal gate.
 - Each survivor set must be frozen before the next period is computed.
 - 2026 remains protected final OOS and may not be used for discovery or rescue.
 - Do not same-sample rescue a failed family.
