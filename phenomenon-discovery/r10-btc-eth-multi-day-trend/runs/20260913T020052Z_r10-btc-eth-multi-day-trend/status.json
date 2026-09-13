@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "r10_btc_eth_multi_day_trend_result.json",
+      "sha256": "1a6682be845d943a7ac84b540de3abbfa83074bf5c07c16e0f664f1d4e6057d1",
+      "size_bytes": 861
+    },
+    {
+      "name": "r10_btc_eth_multi_day_trend_survivors.csv",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    }
+  ],
+  "generated_at_utc": "2026-09-13T02:00:52.140098+00:00",
+  "phase": "r10-btc-eth-multi-day-trend",
+  "schema": 1,
+  "source_commit": "21323f52c6bf83dbe7fa3d0a7b4ddf2fdf6188b6",
+  "status": "FAIL",
+  "summary": "R10 BTC/ETH multi-day trend FAIL: 0 pre-OOS survivors after frozen 2018-22 discovery, 2023-24 confirmation and 2025 gate; 2026 untouched."
+}
