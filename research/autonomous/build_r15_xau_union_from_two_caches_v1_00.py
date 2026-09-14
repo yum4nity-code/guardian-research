@@ -60,9 +60,20 @@ def main():
     A=ap.parse_args()
 
     inv=json.loads(Path(A.inventory).read_text(encoding="utf-8"))
+    if inv.get("status")!="PASS" or inv.get("protected_2026_opened") is not False:
+        raise RuntimeError("unsafe/non-PASS inventory")
     known_missing=set(inv["known_missing_or_holiday_in_completed_prefix"])
     roots=[Path(A.source_cache),Path(A.fast_cache)]
     out=Path(A.output_dir); out.mkdir(parents=True,exist_ok=True)
+
+    # Freeze-point integrity: the original cache is immutable after inventory.
+    for ds,meta in inv.get("payloads",{}).items():
+        p=roots[0]/meta["relative_path"]
+        if not p.exists():
+            raise RuntimeError(f"original cached payload disappeared after inventory: {ds} {p}")
+        h=sha256(p)
+        if h!=meta["sha256"]:
+            raise RuntimeError(f"original cached payload hash changed after inventory: {ds} {h} != {meta['sha256']}")
 
     rows=[]; payloads=[]; missing=[]; dup_same=[]
     for d in iter_days(START,END_EXCLUSIVE):
