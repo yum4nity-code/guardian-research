@@ -1,0 +1,112 @@
+{
+  "confirmation": {
+    "alpha": -2.1124938063133013e-05,
+    "beta": -0.00841934508564918,
+    "lag": 7,
+    "n": 1458,
+    "p": 0.7159200155945847,
+    "r2": 0.00012066546620359553,
+    "t": -0.3639169652791975
+  },
+  "confirmation_pass": false,
+  "confirmation_window": "2019-05-31/2024-12-31",
+  "confirmation_years": {
+    "2020": {
+      "alpha": 3.520275980234921e-05,
+      "beta": -0.037970819424024506,
+      "lag": 4,
+      "n": 262,
+      "p": 0.515597522927647,
+      "r2": 0.002084905921916347,
+      "t": -0.650146611921956
+    },
+    "2021": {
+      "alpha": -4.659591103894551e-05,
+      "beta": -0.03098946664975216,
+      "lag": 4,
+      "n": 261,
+      "p": 0.40101147456132596,
+      "r2": 0.00199271083930197,
+      "t": -0.8398161541698838
+    },
+    "2022": {
+      "alpha": -5.088054665635527e-05,
+      "beta": -0.012272346699972611,
+      "lag": 4,
+      "n": 260,
+      "p": 0.7994209849080289,
+      "r2": 0.00031844145528503454,
+      "t": -0.25409652892381596
+    },
+    "2023": {
+      "alpha": -3.582708081217293e-05,
+      "beta": 0.02269469881442906,
+      "lag": 4,
+      "n": 260,
+      "p": 0.5549122953508263,
+      "r2": 0.001045781909640775,
+      "t": 0.5904152406038693
+    },
+    "2024": {
+      "alpha": -4.12861345720935e-05,
+      "beta": 0.05669974258261888,
+      "lag": 4,
+      "n": 262,
+      "p": 0.22942644834877926,
+      "r2": 0.005210525603533078,
+      "t": 1.2018376159868012
+    }
+  },
+  "economic": {
+    "n": 0
+  },
+  "economic_pass": false,
+  "funnel": {
+    "confirmation_pass": 0,
+    "economic_pass": 0,
+    "preoos_survivors": 0,
+    "replication_pass": 1
+  },
+  "generated_at_utc": "2026-09-14T11:53:06.288891+00:00",
+  "market_source": "Dukascopy XAUUSD BID M1 boundary opens",
+  "method": "xauusd_gld_intraday_momentum_dukascopy_near_replication",
+  "paper_reference": {
+    "asset": "GLD",
+    "beta": 0.0436,
+    "oos_r2": 0.0026,
+    "predictor": "r5",
+    "r2": 0.0049,
+    "sample": "2004-11-08/2019-05-30",
+    "t": 3.03,
+    "target": "r13"
+  },
+  "positive_confirmation_years_2020_2024": 2,
+  "preoos_2025": {
+    "n": 0
+  },
+  "preoos_h1": {
+    "n": 0
+  },
+  "preoos_h2": {
+    "n": 0
+  },
+  "preoos_window": "2025",
+  "preregistration": "research/autonomous/R15_XAUUSD_GLD_INTRADAY_MOMENTUM_PREREGISTRATION_2026_09_13.md",
+  "protected_2026_opened": false,
+  "replication": {
+    "alpha": -5.517360456230247e-06,
+    "beta": 0.0410846635809882,
+    "lag": 8,
+    "n": 3799,
+    "p": 0.005768009097887283,
+    "r2": 0.0037166376006682045,
+    "t": 2.7606860681225456
+  },
+  "replication_pass": true,
+  "replication_window": "2004-11-08/2019-05-30",
+  "schema": 1,
+  "source_amendment": "research/autonomous/R15_DUKASCOPY_SOURCE_AMENDMENT_2026_09_13.md",
+  "source_paper_doi": "10.1016/j.resourpol.2020.101830",
+  "source_revision": "R15-v1.01",
+  "survivor_count": 0
+}

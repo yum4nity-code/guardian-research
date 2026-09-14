@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "r15_xauusd_gld_intraday_momentum_v101_result.json",
+      "sha256": "07c5e5a344cac51ac0f110ffcbc58d22a3254ec16bf6a3ffe2fa0e7fdefee261",
+      "size_bytes": 2963
+    },
+    {
+      "name": "r15_xauusd_gld_intraday_momentum_v101_daily.csv",
+      "sha256": "938d48213a970e2639cae8148d59c475b6e71b86457c9942eb38bedd56cd30c6",
+      "size_bytes": 1320900
+    }
+  ],
+  "generated_at_utc": "2026-09-14T11:53:06.694568+00:00",
+  "phase": "r15-xauusd-gld-intraday-momentum-v101",
+  "schema": 1,
+  "source_commit": "7296f833b51f070660493f72e910acac49be420a",
+  "status": "FAIL",
+  "summary": "R15 v1.01 Dukascopy XAUUSD/GLD intraday-momentum near-replication FAIL: funnel={'replication_pass': 1, 'confirmation_pass': 0, 'economic_pass': 0, 'preoos_survivors': 0}; protected 2026 untouched."
+}
