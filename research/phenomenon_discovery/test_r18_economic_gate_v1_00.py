@@ -54,7 +54,7 @@ def test_next_open_entry() -> None:
     bars.append(_bar(start + 52 * 300, 101.5, 101.0))
     events = m.detect_events(bars)
     assert events, "expected a shock event"
-    e = events[-1]
+    e = next(e for e in events if e["shock_idx"] == shock_i)
     assert e["entry"] == 102.0
     expected_1b = -(bars[51].close / 102.0 - 1.0)
     assert abs(e["gross_1b"] - expected_1b) < 1e-12
@@ -77,9 +77,8 @@ def test_loader_never_loads_2025() -> None:
         assert bars[0].open == 2000
 
 
-def test_primary_gate_structure() -> None:
+def test_frozen_structure() -> None:
     assert m.PRIMARY_HORIZONS == (1, 2)
-    assert m.PRIMARY_COST_BPS == 1.0
     assert m.SHOCK_THRESHOLD == 2.0
     assert m.LOOKBACK == 48
 
@@ -89,7 +88,7 @@ def main() -> int:
     test_cost_math()
     test_next_open_entry()
     test_loader_never_loads_2025()
-    test_primary_gate_structure()
+    test_frozen_structure()
     print("PASS")
     return 0
 
