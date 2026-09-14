@@ -49,6 +49,8 @@ bool OpenAppendText(const string name,int &handle,const string header)
 
 string F(const double x){ return DoubleToString(x,_Digits); }
 string F8(const double x){ return DoubleToString(x,8); }
+string L(const long x){ return StringFormat("%I64d",x); }
+string U(const ulong x){ return StringFormat("%I64u",x); }
 
 double Mid(const MqlTick &t){ return (t.bid+t.ask)*0.5; }
 
@@ -76,7 +78,7 @@ bool AppendLine(const int handle,const string name,const string line)
 bool WriteTick(const MqlTick &t)
 {
    if(!InpLogEveryTick) return true;
-   string line=LongToString((long)t.time_msc)+","+
+   string line=L((long)t.time_msc)+","+
                TimeToString(t.time,TIME_DATE|TIME_SECONDS)+","+
                F(t.bid)+","+F(t.ask)+","+F(Mid(t))+","+F8(SpreadBps(t));
    if(!AppendLine(g_tick_file,TickFileName(),line)) return false;
@@ -95,10 +97,10 @@ bool WriteClosedBar()
       return false;
    }
 
-   string line=LongToString((long)r[0].time)+","+
+   string line=L((long)r[0].time)+","+
                TimeToString(r[0].time,TIME_DATE|TIME_MINUTES)+","+
                F(r[0].open)+","+F(r[0].high)+","+F(r[0].low)+","+F(r[0].close)+","+
-               LongToString((long)r[0].tick_volume);
+               L((long)r[0].tick_volume);
    if(!AppendLine(g_bar_file,BarFileName(),line)) return false;
    g_bar_rows++;
    return true;
@@ -108,8 +110,8 @@ void WriteStatus(const string tag)
 {
    if(g_status_file==INVALID_HANDLE) return;
    string line=TimeToString(TimeCurrent(),TIME_DATE|TIME_SECONDS)+","+tag+","+
-               LongToString(g_tick_rows)+","+LongToString(g_bar_rows)+","+
-               LongToString(FileSize(g_tick_file))+","+LongToString(FileSize(g_bar_file));
+               L(g_tick_rows)+","+L(g_bar_rows)+","+
+               U(FileSize(g_tick_file))+","+U(FileSize(g_bar_file));
    AppendLine(g_status_file,StatusFileName(),line);
 }
 
