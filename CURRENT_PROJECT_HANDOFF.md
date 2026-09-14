@@ -18,75 +18,29 @@ Read `START_HERE_NEXT_AI.md`, this file, the durable mandates, the current queue
 
 Historical orchestrator PASS receipts mean executor success only and do not override scientific FAIL payloads.
 
-## Active P0 — R15 XAUUSD GLD intraday-momentum literature near-replication
+## Closed R15 — XAUUSD GLD intraday-momentum literature near-replication
 
-R14 canonical closure:
-`research/autonomous/R14_CANONICAL_CLOSURE_2026_09_13.md`
+R15 v1.01 is CLOSED as a clean scientific FAIL at independent confirmation.
 
-R15 base preregistration:
-`research/autonomous/R15_XAUUSD_GLD_INTRADAY_MOMENTUM_PREREGISTRATION_2026_09_13.md`
+Canonical closure:
+`research/autonomous/R15_V101_CANONICAL_CLOSURE_2026_09_14.md`
 
-R15 frozen source repair:
-`research/autonomous/R15_DUKASCOPY_SOURCE_AMENDMENT_2026_09_13.md`
+Final published result:
+- historical near-replication PASS on 2004-11-08 through 2019-05-30;
+- n=3799, beta=0.0410846635809882, HAC t=2.7606860681225456, p=0.005768009097887283, R²=0.0037166376006682045;
+- published GLD benchmark beta=0.0436, t=3.03, R²=0.0049;
+- independent confirmation 2019-05-31 through 2024-12-31 FAIL;
+- n=1458, beta=-0.00841934508564918, t=-0.3639169652791975, p=0.7159200155945847;
+- only 2/5 confirmation years had positive beta (2023, 2024);
+- economic and 2025 pre-OOS gates were not opened;
+- protected 2026 remained unopened;
+- no rescue/retune of the same hypothesis.
 
-Cold audit:
-`research/autonomous/R15_V101_COLD_AUDIT_2026_09_13.md`
-
-External benchmark:
-Xu, Bouri, Saeed & Wen (2020), Resources Policy 69, 101830, DOI 10.1016/j.resourpol.2020.101830.
-
-Published GLD finding:
-- fifth US-session half-hour return r5 positively predicts final half-hour r13;
-- published beta 0.0436, Newey-West t=3.03, R-squared 0.49%;
-- published GLD sample 2004-11-08 through 2019-05-30.
-
-Critical source finding:
-- FundedNext cannot support R15 published-period recovery: a read-only depth probe returned no usable in-window M1 before 2025 and no usable M5 overlapping the paper end date.
-- This is infrastructure/source insufficiency, not an R15 scientific result.
-- No R15 market result existed before source repair.
-
-Reusable XAU data policy:
-- the ongoing Dukascopy acquisition downloads full daily **M1** payloads, not M15;
-- R15's compact study file keeps only four New York opens per eligible day, but the full daily M1 source payloads remain cached;
-- after completion, the cache is to be registered as Guardian's reusable XAUUSD historical master source for the covered dates;
-- future XAU studies must reuse the cache before remote redownload and derive M5/M15/M30/H1/H4/D1 locally from M1 when appropriate;
-- source cache remains immutable; study-specific derivatives are written separately;
-- policy: `research/autonomous/XAUUSD_DUKASCOPY_MASTER_CACHE_POLICY_2026_09_14.md`;
-- registrar: `research/autonomous/register_xauusd_dukascopy_master_cache_v1_00.py`.
-
-Canonical R15 v1.01 source:
-- Dukascopy public XAUUSD BID M1 daily candle feed;
-- downloader retains only exact New York 11:30, 12:00, 15:30 and 16:00 OPEN values;
-- absolute Dukascopy point scale is intentionally irrelevant because R15 uses ratios/log-ratios only;
-- daily compressed payload SHA256 provenance and compact-boundary SHA256 are persisted;
-- 2026 URLs/rows are hard-forbidden.
-
-Frozen chronology after source repair:
-- Stage 1 full published-date near-replication: 2004-11-08 through 2019-05-30;
-- Stage 2 independent confirmation: 2019-05-31 through 2024-12-31;
-- Stage 3 executable/economic translation only after confirmation;
-- Stage 4 pre-OOS: calendar 2025;
-- protected final OOS: 2026 forbidden.
-
-The cross-instrument limitation remains explicit: paper asset GLD, Guardian source XAUUSD.
-
-Observed execution state:
-- deterministic R15 v1.01 methodology/source preflight PASS on the user's machine;
-- first remote Dukascopy source probe reached the second representative date and failed on 2010-06-01 with WinError 10054 after bounded urllib retries;
-- classification: transport/infrastructure FAIL only; no R15 market result and no scientific gate evaluated.
-
-Frozen transport repair:
-`research/autonomous/R15_DUKASCOPY_TRANSPORT_REPAIR_2026_09_13.md`
-
-Queue generation 79:
-1. `R15-DUKASCOPY-TRANSPORT-PREFLIGHT r1`
-2. `R15-DUKASCOPY-SOURCE-PROBE r2`
-3. `R15-DUKASCOPY-BOUNDARY-EXPORT r2`
-4. `R15-XAUUSD-GLD-INTRADAY-MOMENTUM-V101 r2`
-
-Transport r2 is sequential and resumable, uses curl HTTP/1.1 primary with urllib fallback, forces connection close, caches successful compressed daily payloads atomically, and retains hard 2026 guards. The scientific engine remains unchanged.
-
-Do not use the superseded FundedNext R15 exporter or Dukascopy transport r1. Do not substitute another half-hour if r5 fails. Any further remote-source failure remains infrastructure until an actual R15 market result exists.
+Final XAU source union:
+- 5518 validated Dukascopy XAUUSD BID M1 payload days;
+- 5518 eligible R15 boundary days;
+- final union reported 0 missing/holiday days;
+- preserve both immutable cache roots as Guardian's reusable XAUUSD historical source.
 
 ## Owner-directed XAU acquisition optimization — 2026-09-14
 
