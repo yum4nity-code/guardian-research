@@ -37,8 +37,9 @@ def test_cost_math() -> None:
 
 
 def test_next_open_entry() -> None:
-    # Build 48 quiet returns, then one positive shock. Next-open differs from shock close,
-    # so using shock-close accidentally would produce a different PnL.
+    # Build 48 quiet returns, then one positive shock. The next bar opens away
+    # from the shock close so a shock-close implementation would produce a
+    # measurably different PnL.
     start = int(datetime(2019, 1, 2, tzinfo=timezone.utc).timestamp())
     bars: list[m.Bar] = []
     px = 100.0
@@ -46,17 +47,23 @@ def test_next_open_entry() -> None:
     for k in range(1, 50):
         px *= 1.0001 if k % 2 else 0.9999
         bars.append(_bar(start + k * 300, px))
+
     shock_i = 50
     shock_close = px * 1.01
     bars.append(_bar(start + shock_i * 300, px, shock_close))
-    # next open gaps up: contrarian short should use 102, not shock close ~101
     bars.append(_bar(start + 51 * 300, 102.0, 101.5))
     bars.append(_bar(start + 52 * 300, 101.5, 101.0))
+
     events = m.detect_events(bars)
     assert events, "expected a shock event"
     e = next(e for e in events if e["shock_idx"] == shock_i)
-    assert e["entry"] == 102.0
-    expected_1b = -(bars[51].close / 102.0 - 1.0)
+
+    # Causal entry contract: exactly the next M5 bar open.
+    assert e["entry_idx"] == shock_i + 1
+    assert e["entry"] == bars[e["entry_idx"]].open
+    assert e["entry"] != bars[shock_i].close
+
+    expected_1b = -(bars[51].close / bars[51].open - 1.0)
     assert abs(e["gross_1b"] - expected_1b) < 1e-12
 
 
