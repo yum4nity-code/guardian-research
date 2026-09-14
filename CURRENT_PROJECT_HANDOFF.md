@@ -45,6 +45,15 @@ Critical source finding:
 - This is infrastructure/source insufficiency, not an R15 scientific result.
 - No R15 market result existed before source repair.
 
+Reusable XAU data policy:
+- the ongoing Dukascopy acquisition downloads full daily **M1** payloads, not M15;
+- R15's compact study file keeps only four New York opens per eligible day, but the full daily M1 source payloads remain cached;
+- after completion, the cache is to be registered as Guardian's reusable XAUUSD historical master source for the covered dates;
+- future XAU studies must reuse the cache before remote redownload and derive M5/M15/M30/H1/H4/D1 locally from M1 when appropriate;
+- source cache remains immutable; study-specific derivatives are written separately;
+- policy: `research/autonomous/XAUUSD_DUKASCOPY_MASTER_CACHE_POLICY_2026_09_14.md`;
+- registrar: `research/autonomous/register_xauusd_dukascopy_master_cache_v1_00.py`.
+
 Canonical R15 v1.01 source:
 - Dukascopy public XAUUSD BID M1 daily candle feed;
 - downloader retains only exact New York 11:30, 12:00, 15:30 and 16:00 OPEN values;
