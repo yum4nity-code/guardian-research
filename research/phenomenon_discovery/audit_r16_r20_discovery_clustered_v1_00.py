@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Cluster-robust audit for R16-R20 discovery outputs.
+"""Cluster-robust audit for R16-R20 discovery/confirmation outputs.
 
-Reads the existing discovery JSON only. It does not touch confirmation/pre-OOS data.
+Reads an existing R16-R20 JSON only. It never opens raw data.
+Accepted stages are discovery and confirmation. Pre-OOS is refused.
 Computes cluster-robust standard errors for the mean with one cluster per event day.
-This is intended to correct the naive t-stat inflation caused by overlapping intraday events.
+This corrects naive t-stat inflation caused by overlapping intraday events.
 """
 from __future__ import annotations
 
@@ -16,6 +17,7 @@ from statistics import fmean
 
 DAY_KEYS = ("day_london", "day_new_york", "day")
 METRIC_PREFIXES = ("continuation_", "reversal_", "breakout_", "rejection_", "post_")
+ALLOWED_STAGES = {"discovery", "confirmation"}
 
 
 def _day_key(event: dict) -> str:
@@ -60,18 +62,19 @@ def cluster_stats(events: list[dict], metric: str) -> dict:
 
 def run(path: Path) -> dict:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("stage") != "discovery":
-        raise RuntimeError(f"refusing non-discovery input: stage={payload.get('stage')!r}")
+    stage = payload.get("stage")
+    if stage not in ALLOWED_STAGES:
+        raise RuntimeError(f"refusing unsupported stage: {stage!r}; allowed={sorted(ALLOWED_STAGES)}")
     if payload.get("protected_2026_opened") is not False:
         raise RuntimeError("protected 2026 flag is not false")
     if payload.get("pre_oos_2025_opened") is not False:
         raise RuntimeError("pre-OOS 2025 flag is not false")
 
     out = {
-        "schema": 1,
-        "audit": "R16-R20 discovery cluster-robust mean audit",
+        "schema": 2,
+        "audit": "R16-R20 cluster-robust mean audit",
         "source": str(path),
-        "stage": "discovery",
+        "stage": stage,
         "protected_2026_opened": False,
         "pre_oos_2025_opened": False,
         "results": {},
@@ -104,7 +107,7 @@ def main() -> int:
         out.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
     for name in ("R16", "R17", "R18", "R19", "R20"):
-        print(f"\n===== {name} CLUSTERED =====")
+        print(f"\n===== {name} CLUSTERED ({result['stage']}) =====")
         metrics = result["results"].get(name, {}).get("metrics", {})
         for metric, s in metrics.items():
             mean = s["mean"]
