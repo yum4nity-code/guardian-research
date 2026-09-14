@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R15-DUKASCOPY-BOUNDARY-EXPORT__r2.json",
+  "main_commit": "0e93314168be4e43b572a8e983f7c590a699d45c",
+  "pid": 10260,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-14T05:15:55.568691+00:00",
+  "version": "1.01"
+}
