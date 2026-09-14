@@ -88,6 +88,29 @@ Transport r2 is sequential and resumable, uses curl HTTP/1.1 primary with urllib
 
 Do not use the superseded FundedNext R15 exporter or Dukascopy transport r1. Do not substitute another half-hour if r5 fails. Any further remote-source failure remains infrastructure until an actual R15 market result exists.
 
+## Owner-directed XAU acquisition optimization — 2026-09-14
+
+The owner explicitly instructed Guardian to stop the healthy but excessively slow sequential Dukascopy downloader, preserve everything already acquired, determine the exact unresolved dates, anticipate two-part cache compatibility, and complete only the missing portion by a materially faster method.
+
+Canonical transition:
+- original sequential cache is frozen/immutable after stop;
+- final sequential progress is snapshotted;
+- exact inventory validates + hashes every original .bi5 payload and derives the unresolved date list from the frozen last_date boundary while preserving future probe files;
+- known pre-freeze absent weekdays are treated as already-attempted missing/holiday dates;
+- fastfill writes only to a separate cache, default 8 concurrent workers, bounded curl/urllib retries, atomic writes, explicit 404 markers, and continues past isolated transport failures;
+- original and fastfill caches are never physically merged or overwritten;
+- strict union builder verifies frozen original hashes, requires same-hash duplicates, requires every weekday to resolve to payload or known missing marker, then builds the R15 boundary CSV and reusable master payload index;
+- protected 2026 remains forbidden;
+- R15 scientific engine v1.01 is unchanged.
+
+Cold audit:
+`research/autonomous/R15_XAU_FASTFILL_TRANSITION_COLD_AUDIT_2026_09_14.md`
+
+Transition launcher:
+`research/autonomous/transition_r15_xau_to_fastfill_v1_00.ps1`
+
+Queue generation 80 intentionally disables orchestrator execution during the manual stop/freeze transition to prevent duplicate downloaders.
+
 ## Research program — literature-first replication
 
 After R13, do not default to another blind parameter-family sweep.
