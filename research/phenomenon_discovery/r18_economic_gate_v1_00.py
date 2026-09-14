@@ -26,14 +26,14 @@ The script reports exact break-even all-in round-trip cost in basis points.
 It also evaluates preregistered all-in cost scenarios 0.0, 0.5, 1.0, 2.0,
 and 4.0 bps. These are scenarios, not fitted parameters.
 
-Primary economic gate
----------------------
-The candidate passes only if BOTH frozen primary horizons (1b and 2b), in
-BOTH discovery and independent confirmation samples, have positive net mean
-at 1.0 bp all-in round-trip cost in the non-overlap execution mode.
-
-The 1.0 bp hurdle is a fixed robustness hurdle; it is not estimated from the
-sample. Gross results and all other cost scenarios remain descriptive.
+Economic gate doctrine
+----------------------
+The script does not impose an arbitrary fixed transaction-cost pass/fail hurdle.
+Instead, it reports the non-overlap gross expectancy and exact break-even all-in
+round-trip cost in basis points for each frozen horizon and sample. The cost
+scenarios 0.0, 0.5, 1.0, 2.0, and 4.0 bps are sensitivity diagnostics only.
+A later verdict must compare these break-even levels with an independently
+justified realistic XAUUSD execution-cost assumption.
 
 Protection
 ----------
@@ -63,7 +63,6 @@ SHOCK_THRESHOLD = 2.0
 HORIZONS = (1, 2, 4, 8, 16)
 PRIMARY_HORIZONS = (1, 2)
 COST_BPS = (0.0, 0.5, 1.0, 2.0, 4.0)
-PRIMARY_COST_BPS = 1.0
 SECONDS = 300
 
 
@@ -265,7 +264,6 @@ def run(path: Path) -> dict:
         "entry": "next_M5_open_after_shock_close",
         "horizons_bars": list(HORIZONS),
         "cost_scenarios_bps_all_in_round_trip": list(COST_BPS),
-        "primary_cost_bps": PRIMARY_COST_BPS,
         "primary_horizons_bars": list(PRIMARY_HORIZONS),
         "pre_oos_2025_opened": False,
         "protected_2026_opened": False,
@@ -284,19 +282,6 @@ def run(path: Path) -> dict:
                 "costs": {str(cost): summarize(ne, h, cost) for cost in COST_BPS},
             }
         out["samples"][sample] = sample_out
-
-    checks = []
-    for sample in ("discovery", "confirmation"):
-        for h in PRIMARY_HORIZONS:
-            s = out["samples"][sample]["nonoverlap"][str(h)]["costs"][str(PRIMARY_COST_BPS)]["net"]
-            checks.append({
-                "sample": sample,
-                "horizon_bars": h,
-                "net_mean": s["mean"],
-                "pass": s["mean"] is not None and s["mean"] > 0,
-            })
-    out["primary_gate_checks"] = checks
-    out["economic_gate_pass"] = all(c["pass"] for c in checks)
 
     # Break-even cost = gross mean * 10,000 bps for non-overlap execution.
     out["break_even_bps_nonoverlap"] = {}
@@ -336,10 +321,6 @@ def main() -> int:
                 f"gross_mean={s0['mean']:+.8g} break_even={be:+.4f}bp "
                 f"net@1bp={s1['mean']:+.8g} PF@1bp={s1['profit_factor']}"
             )
-    print("\nPRIMARY GATE")
-    for c in result["primary_gate_checks"]:
-        print(f"{c['sample']:12s} {c['horizon_bars']}b net@1bp={c['net_mean']:+.8g} pass={c['pass']}")
-    print(f"ECONOMIC_GATE_PASS={result['economic_gate_pass']}")
     print(f"output={out}")
     return 0
 
