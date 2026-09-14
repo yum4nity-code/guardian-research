@@ -67,6 +67,7 @@ def test_static_union_guards():
     ok("unresolved weekday neither payload nor missing marker" in merge_src,"union completeness guard missing")
     ok("protected 2026 boundary created" in merge_src,"union 2026 guard missing")
     ok("cache_roots" in merge_src and "payload_index_csv_sha256" in merge_src,"union provenance manifest missing")
+    ok("original cached payload hash changed after inventory" in merge_src,"original-cache freeze hash guard missing")
 
 def test_source_cache_immutability():
     s=(HERE/"r15_xau_dukascopy_fastfill_v1_00.py").read_text(encoding="utf-8")
