@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "generation": 81,
+  "supersedes_generation": 80,
+  "closure": "Control-plane resynchronization after manual scientific progression beyond generation 80. R15 is scientifically closed FAIL; R16/R19 confirmation FAIL; R17/R20 discovery FAIL; R18 is statistically confirmed but owner-closed as an executable/production candidate. R21-R25 are preregistered and unexecuted. Generation 81 is intentionally fail-closed: every new job is disabled until a separate independent cold audit passes and a later queue generation explicitly enables execution. No completed job is restarted. 2025 remains locked and 2026+ sealed.",
+  "jobs": [
+    {
+      "id": "R21-R25-CODE-PREFLIGHT",
+      "revision": 1,
+      "enabled": false,
+      "priority": 10,
+      "class_key": "r21-r25-code-preflight",
+      "description": "Run synthetic implementation tests for the common R21-R25 engine. Passing this test is necessary but not sufficient: a separate independent cold audit is still mandatory before discovery may be enabled.",
+      "executor": {
+        "kind": "python",
+        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_00.py",
+        "args": []
+      }
+    },
+    {
+      "id": "R21-R25-DATA-SLICE-PREFLIGHT",
+      "revision": 1,
+      "enabled": false,
+      "priority": 11,
+      "class_key": "r21-r25-data-slice-preflight",
+      "description": "Test the stage-bounded M5 builder. The discovery builder must not open 2025 payloads and must hard-fail any 2026+ index row.",
+      "executor": {
+        "kind": "python",
+        "path": "research/phenomenon_discovery/test_build_xau_m5_stage_slice_v1_00.py",
+        "args": []
+      }
+    },
+    {
+      "id": "R21-R25-DISCOVERY-M5-BUILD",
+      "revision": 1,
+      "enabled": false,
+      "priority": 20,
+      "class_key": "r21-r25-discovery-data-build",
+      "description": "Derive only the frozen discovery slice from the immutable R15 master payload index. Opens payloads from 2004-11-08 through 2019-06-30 only; 2025 is not read and 2026+ is forbidden.",
+      "requires": [
+        {"kind": "receipt", "job_id": "R21-R25-CODE-PREFLIGHT", "revision": 1, "accepted_status": ["PASS"]},
+        {"kind": "receipt", "job_id": "R21-R25-DATA-SLICE-PREFLIGHT", "revision": 1, "accepted_status": ["PASS"]}
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/phenomenon_discovery/build_xau_m5_stage_slice_v1_00.py",
+        "args": [
+          "--index", "{ROOT}\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
+          "--output", "{ROOT}\\r21_r25_xau_v1\\discovery_m5_20041108_20190630.csv",
+          "--start", "2004-11-08",
+          "--end", "2019-06-30"
+        ]
+      }
+    },
+    {
+      "id": "R21-R25-XAU-DISCOVERY",
+      "revision": 1,
+      "enabled": false,
+      "priority": 30,
+      "class_key": "r21-r25-xau-discovery",
+      "description": "Run only the frozen preregistered R21-R25 definitions on the sealed discovery slice. No PnL optimization, no parameter rescue, no confirmation data, no 2025, no 2026. This job must remain disabled in generation 81; a later generation may enable it only after independent cold-audit PASS.",
+      "data_window": {"start": "2004-11-08", "end_inclusive": "2019-06-30"},
+      "requires": [
+        {"kind": "receipt", "job_id": "R21-R25-DISCOVERY-M5-BUILD", "revision": 1, "accepted_status": ["PASS"]}
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/phenomenon_discovery/xau_edge_discovery_r21_r25_v1_00.py",
+        "args": [
+          "--input", "{ROOT}\\r21_r25_xau_v1\\discovery_m5_20041108_20190630.csv",
+          "--output", "{ROOT}\\r21_r25_xau_v1\\discovery.json",
+          "--stage", "discovery"
+        ]
+      }
+    }
+  ]
+}
