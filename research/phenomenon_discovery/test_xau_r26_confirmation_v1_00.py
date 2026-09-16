@@ -187,6 +187,8 @@ def test_run_pipeline_is_r26_only_and_keeps_2025_2026_closed():
         assert payload["pre_oos_2025_opened"] is False
         assert payload["protected_2026_opened"] is False
         assert payload["result"]["summary"]["event_count"] == 2
+        assert all(e["research"] == "R26" for e in payload["result"]["events"])
+        assert all(e["origin_research"] == "R24" for e in payload["result"]["events"])
         assert payload["confirmation_gate"]["primary_metrics"] == [
             "reversal_2b",
             "reversal_4b",
