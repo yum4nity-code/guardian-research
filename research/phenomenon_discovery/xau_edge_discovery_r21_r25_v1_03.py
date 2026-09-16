@@ -221,7 +221,7 @@ def load_generated_discovery_bars(path: Path) -> list[Bar]:
                 raise RuntimeError(f"generated discovery CSV escaped frozen window: {dt.isoformat()}")
             tf = row["timeframe"].strip().upper()
             if tf != "M5":
-                raise RuntimeError(f"R21-R25 v1.02 requires M5, got {tf}")
+                raise RuntimeError(f"R21-R25 v1.03 requires M5, got {tf}")
             o, h, l, c = map(float, (row["open"], row["high"], row["low"], row["close"]))
             if not all(math.isfinite(x) and x > 0 for x in (o, h, l, c)):
                 raise RuntimeError(f"invalid OHLC at {dt.isoformat()}")
