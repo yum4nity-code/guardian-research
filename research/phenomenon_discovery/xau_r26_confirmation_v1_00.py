@@ -264,7 +264,11 @@ def run_from_index(index_path: Path, progress_path: Path) -> dict:
             fraction=0.90,
             rows=len(bars),
         )
-        events = r26_event_extractor(bars)
+        raw_events = r26_event_extractor(bars)
+        events = [
+            {**event, "research": "R26", "origin_research": "R24"}
+            for event in raw_events
+        ]
         summary = {
             "research": "R26",
             "origin_event_definition": "R24 frozen opening-range breakout",
