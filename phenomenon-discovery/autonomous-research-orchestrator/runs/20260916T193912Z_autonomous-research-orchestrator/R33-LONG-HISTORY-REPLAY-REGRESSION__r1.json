@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r33-long-history-replay-regression",
+  "duration_seconds": 5.0027743999962695,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T19:39:12.274538+00:00",
+  "job_id": "R33-LONG-HISTORY-REPLAY-REGRESSION",
+  "main_commit": "2d4c1a8c12a98f2b85673450aaadcadae3967bec",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T19:39:07.255681+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"status\": \"PASS\", \"tests\": 4, \"market_data_accessed\": false, \"live_action\": false}"
+}
