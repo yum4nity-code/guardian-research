@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 2700.0,
+  "class_key": "r30-r6b-long-history-capital",
+  "duration_seconds": 35.01182129999506,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T19:00:33.144826+00:00",
+  "job_id": "R30-R6B-LONG-HISTORY-CAPITAL",
+  "main_commit": "e12c7c4abed1f76cab9d62e11493626b939019b6",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T18:59:58.110926+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"protected_2026_opened\": false, \"status\": \"PASS\", \"summary\": {\"R6B-307\": {\"E1\": {\"cagr_pct\": -6.785035102456883, \"ending_capital\": 2263.0532744648185, \"max_dd_pct\": 79.20930862933356, \"positive_full_years\": 1, \"return_pct\": -77.36946725535181, \"trades\": 4255}, \"STRESS\": {\"cagr_pct\": -15.949101369338958, \"ending_capital\": 253.660387753366, \"max_dd_pct\": 97.56872969114269, \"positive_full_years\": 0, \"return_pct\": -97.46339612246634, \"trades\": 4255}}, \"R6B-347\": {\"E1\": {\"cagr_pct\": -5.7729216058539645, \"ending_capital\": 2843.6673110975657, \"max_dd_pct\": 76.46536890121425, \"positive_full_years\": 5, \"return_pct\": -71.56332688902434, \"trades\": 3171}, \"STRESS\": {\"cagr_pct\": -12.766923547819376, \"ending_capital\": 556.6087102460004, \"max_dd_pct\": 94.96865960069363, \"positive_full_years\": 1, \"return_pct\": -94.43391289754, \"trades\": 3171}}}}"
+}
