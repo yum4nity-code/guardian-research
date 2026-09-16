@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r33-code-preflight",
+  "duration_seconds": 10.003480999992462,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T20:46:05.126648+00:00",
+  "job_id": "R33-CODE-PREFLIGHT",
+  "main_commit": "1cb72ea29874da0a7f9de1aa6e74a26d15951888",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T20:45:55.095821+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS: R33 corrected server-time long-history tests"
+}
