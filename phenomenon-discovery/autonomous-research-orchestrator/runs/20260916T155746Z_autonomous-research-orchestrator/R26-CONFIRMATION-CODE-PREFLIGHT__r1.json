@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r26-confirmation-code-preflight",
+  "duration_seconds": 5.002290100004757,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T15:57:46.039866+00:00",
+  "job_id": "R26-CONFIRMATION-CODE-PREFLIGHT",
+  "main_commit": "97e31c3e8bd95b970b3ec50561aacd7f9077fcbf",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T15:57:41.019769+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "progress build days=1/2 m5=8 fraction=0.400000\nprogress build days=2/2 m5=16 fraction=0.800000\nPASS: R26 opening-range reversal confirmation v1.00 tests"
+}
