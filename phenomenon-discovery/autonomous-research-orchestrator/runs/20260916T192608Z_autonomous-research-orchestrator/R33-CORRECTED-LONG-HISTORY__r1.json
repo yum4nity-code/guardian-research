@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 2700.0,
+  "class_key": "r33-corrected-long-history",
+  "duration_seconds": 30.00797330000205,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T19:26:07.952122+00:00",
+  "job_id": "R33-CORRECTED-LONG-HISTORY",
+  "main_commit": "d7c1cdda5f9c262b0f11ced4612f557ab03a63cd",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T19:25:37.916837+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"protected_2026_opened\": false, \"status\": \"PASS\", \"summary\": {\"R6B-307\": {\"E1\": {\"cagr_pct\": -5.283696728953613, \"ending_capital\": 3172.8196828161244, \"max_dd_pct\": 71.05320650927176, \"positive_full_years\": 3, \"return_pct\": -68.27180317183877, \"trades\": 3069}, \"STRESS\": {\"cagr_pct\": -12.09617040186023, \"ending_capital\": 654.504288969084, \"max_dd_pct\": 93.61744035375635, \"positive_full_years\": 0, \"return_pct\": -93.45495711030915, \"trades\": 3069}, \"overlap_2024_E1\": {\"delta_duk_minus_fn\": {\"PF\": -2.0861148358270087, \"ending_capital\": -1403.3082201051257, \"expectancy_bps\": -11.259263491755217, \"net\": -352.74359448632015, \"trades\": 90}, \"dukascopy_corrected\": {\"PF\": 0.7039637731795025, \"ending_capital\": 9347.28372986885, \"expectancy_bps\": -3.60805056242685, \"net\": -163.0516483889695, \"trades\": 185}, \"fundednext_raw\": {\"PF\": 2.7900786090065113, \"ending_capital\": 10750.591949973976, \"expectancy_bps\": 7.651212929328366, \"net\": 189.69194609735067, \"trades\": 95}}, \"overlap_2025_E1\": {\"delta_duk_minus_fn\": {\"PF\": -2.153647673295488, \"ending_capital\": -1782.9931206078818, \"expectancy_bps\": -17.42867077260847, \"net\": -546.6244087004411, \"trades\": 97}, \"dukascopy_corrected\": {\"PF\": 1.2438685091630093, \"ending_capital\": 10686.023961619248, \"expectancy_bps\": 3.332951527869275, \"net\": 247.54664595416583, \"trades\": 204}, \"fundednext_raw\": {\"PF\": 3.3975161824584976, \"ending_capital\": 12469.01708222713, \"expectancy_bps\": 20.761622300477747, \"net\": 794.1710546546069, \"trades\": 107}}}, \"R6B-347\": {\"E1\": {\"cagr_pct\": -5.591456903700831, \"ending_capital\": 2961.7935471327996, \"max_dd_pct\": 72.73986244329488, \"positive_full_years\": 2, \"return_pct\": -70.382064528672, \"trades\": 2641}, \"STRESS\": {\"cagr_pct\": -11.465225563338599, \"ending_capital\": 761.3740958218298, \"max_dd_pct\": 92.58508165993342, \"positive_full_years\": 0, \"return_pct\": -92.3862590417817, \"trades\": 2641}, \"overlap_2024_E1\": {\"delta_duk_minus_fn\": {\"PF\": -4.248328814460176, \"ending_capital\": -2123.5040629143095, \"expectancy_bps\": -19.688883897897487, \"net\": -490.93844672355397, \"trades\": 68}, \"dukascopy_corrected\": {\"PF\": 0.9116804325469001, \"ending_capital\": 9786.33791782953, \"expectancy_bps\": -1.2272509304586163, \"net\": -58.76670399666082, \"trades\": 163}, \"fundednext_raw\": {\"PF\": 5.160009247007076, \"ending_capital\": 11909.84198074384, \"expectancy_bps\": 18.46163296743887, \"net\": 432.1717427268931, \"trades\": 95}}, \"overlap_2025_E1\": {\"delta_duk_minus_fn\": {\"PF\": -3.816184136006454, \"ending_capital\": -3360.5263154389086, \"expectancy_bps\": -27.870549378676426, \"net\": -951.4843290753274, \"trades\": 61}, \"dukascopy_corrected\": {\"PF\": 1.2255883090962865, \"ending_capital\": 10740.163912484702, \"expectancy_bps\": 4.452425614129257, \"net\": 263.3096391982754, \"trades\": 168}, \"fundednext_raw\": {\"PF\": 5.04177244510274, \"ending_capital\": 14100.690227923611, \"expectancy_bps\": 32.32297499280568, \"net\": 1214.7939682736028, \"trades\": 107}}}}}"
+}
