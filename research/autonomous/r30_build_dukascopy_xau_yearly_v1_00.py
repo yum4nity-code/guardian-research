@@ -82,6 +82,12 @@ def main() -> int:
 
     if manifest_path.exists():
         raise RuntimeError("existing R30 build manifest detected; refusing overwrite")
+    out.mkdir(parents=True, exist_ok=True)
+    # A missing final manifest means a prior build did not complete. Clean only
+    # R30's dedicated yearly CSV surface so a failed partial run can restart.
+    for stale in list(out.glob("xauusd_m1_*.csv")) + list(out.glob("xauusd_m5_*.csv")):
+        if stale.is_file() and not stale.is_symlink():
+            stale.unlink()
     if sha256(index) != PINNED_INDEX_SHA256:
         raise RuntimeError("R30 pinned R15 index SHA256 mismatch")
 
@@ -91,7 +97,6 @@ def main() -> int:
     if date.fromisoformat(rows[-1]["date"]) >= PROTECTED_START:
         raise RuntimeError("protected 2026+ index row encountered")
 
-    out.mkdir(parents=True, exist_ok=True)
     total = len(rows)
     heartbeat(progress, 0, total, "decode_yearly")
 
