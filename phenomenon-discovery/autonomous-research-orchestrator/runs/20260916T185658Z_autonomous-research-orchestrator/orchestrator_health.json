@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R30-DUKASCOPY-YEARLY-BUILD",
+    "revision": 1
+  },
+  "main_commit": "e12c7c4abed1f76cab9d62e11493626b939019b6",
+  "pid": 13536,
+  "protected_2026": true,
+  "queue_generation": 110,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-16T18:56:58.353317+00:00",
+  "version": "1.03"
+}
