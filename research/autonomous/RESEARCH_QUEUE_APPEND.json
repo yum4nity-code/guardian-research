@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "generation": 90,
+  "generation": 91,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 90 owner-authorized DISCOVERY ONLY. Enable control-plane r1, code preflight r4, data-slice preflight r4 and discovery r5 together on one main commit so exact-main receipt binding forces all three preflights to PASS on this same commit before discovery can execute. Discovery timeout remains 30 minutes minimum. Confirmation, 2025, 2026, Guardian integration and live trading remain prohibited.",
+  "closure": "Generation 91 owner-authorized R21-R25 DISCOVERY r6 only. It replaces the failed r4/r5 timeout attempts with builder v1.02 + engine v1.03 heartbeat/progress, transient-only cleanup, and exact-main receipt binding. Control-plane r1, code preflight r5 and data-slice preflight r5 must all PASS on this exact main commit before discovery r6 can execute. Nominal adaptive time limits do not kill while the canonical progress heartbeat is fresh; stale-heartbeat threshold is 1 hour. Confirmation, 2025, 2026, Guardian integration and live trading remain prohibited.",
   "jobs": [
     {
       "id": "R21-R25-CONTROL-PLANE-PREFLIGHT",
@@ -12,7 +12,7 @@
       "enabled": true,
       "priority": 5,
       "class_key": "r21-r25-control-plane-preflight",
-      "description": "Run orchestrator v1.03 tests, including exact-main receipt binding, replacement-queue semantics, hot-reload reexec and same-PID lock continuity. Synthetic/infrastructure only; no market data.",
+      "description": "Run orchestrator v1.03 control-plane tests. Synthetic/infrastructure only; no market data.",
       "executor": {
         "kind": "python",
         "path": "research/autonomous/test_guardian_research_orchestrator_v1_00.py",
@@ -21,37 +21,37 @@
     },
     {
       "id": "R21-R25-CODE-PREFLIGHT",
-      "revision": 4,
+      "revision": 5,
       "enabled": true,
       "priority": 10,
       "class_key": "r21-r25-code-preflight",
-      "description": "Run v1.02 second-audit regression tests. Necessary but not sufficient; does not authorize historical discovery.",
+      "description": "Run v1.03 heartbeat/cleanup regression tests plus the prior v1.02 scientific regression suite.",
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_02.py",
+        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_03.py",
         "args": []
       }
     },
     {
       "id": "R21-R25-DATA-SLICE-PREFLIGHT",
-      "revision": 4,
+      "revision": 5,
       "enabled": true,
       "priority": 11,
       "class_key": "r21-r25-data-slice-preflight",
-      "description": "Re-run the sealed discovery-builder tests proving post-2019-06-30 payload bytes are never decoded and 2026 metadata hard-fails.",
+      "description": "Run discovery builder v1.02 heartbeat tests and prove post-discovery payloads remain unopened / 2026 metadata hard-fails.",
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/test_build_xau_m5_discovery_slice_v1_01.py",
+        "path": "research/phenomenon_discovery/test_build_xau_m5_discovery_slice_v1_02.py",
         "args": []
       }
     },
     {
       "id": "R21-R25-XAU-DISCOVERY",
-      "revision": 5,
+      "revision": 6,
       "enabled": true,
       "priority": 30,
       "class_key": "r21-r25-xau-discovery",
-      "description": "v1.02 accepts only the immutable R15 master index, internally builds a temporary sealed discovery CSV, enforces the absolute M5 grid, and runs the frozen R21-R25 discovery definitions. No arbitrary CSV input, confirmation, 2025, 2026 or live logic.",
+      "description": "v1.03 discovery only. Canonical pinned R15 index -> sealed builder v1.02 -> M5 -> frozen R21-R25 definitions. Writes atomic heartbeat progress; cleans only stale local R21-R25 transients. No confirmation, 2025, 2026 or live logic.",
       "data_window": {
         "start": "2004-11-08T00:00:00Z",
         "end_exclusive": "2019-07-01T00:00:00Z"
@@ -68,7 +68,7 @@
         {
           "kind": "receipt",
           "job_id": "R21-R25-CODE-PREFLIGHT",
-          "revision": 4,
+          "revision": 5,
           "accepted_status": [
             "PASS"
           ]
@@ -76,7 +76,7 @@
         {
           "kind": "receipt",
           "job_id": "R21-R25-DATA-SLICE-PREFLIGHT",
-          "revision": 4,
+          "revision": 5,
           "accepted_status": [
             "PASS"
           ]
@@ -84,20 +84,23 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/xau_edge_discovery_r21_r25_v1_02.py",
+        "path": "research/phenomenon_discovery/xau_edge_discovery_r21_r25_v1_03.py",
         "args": [
           "--index",
           "{ROOT}\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
           "--output",
-          "{ROOT}\\r21_r25_xau_v102\\discovery.json"
+          "{ROOT}\\r21_r25_xau_v103\\discovery.json",
+          "--progress",
+          "{ROOT}\\r21_r25_xau_v103\\progress.json"
         ]
       },
       "timeout": {
         "min_seconds": 1800,
-        "expected_seconds": 600,
+        "expected_seconds": 1800,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 1800,
+        "progress_file": "{ROOT}\\r21_r25_xau_v103\\progress.json",
+        "stale_heartbeat_seconds": 3600,
         "poll_seconds": 5
       }
     }
