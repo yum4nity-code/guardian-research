@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    {
+      "name": "r33_corrected_server_time_long_history_result.json",
+      "sha256": "704a7111090f98bbc3ac50aedfccbf6f5cf5adf8623ee819c7895fbfbb212979",
+      "size_bytes": 116041
+    },
+    {
+      "name": "r33_corrected_server_time_yearly.csv",
+      "sha256": "a92b6fec1dac46fc385e3e545e637f9930070499b4de0255864e349689096411",
+      "size_bytes": 22757
+    }
+  ],
+  "generated_at_utc": "2026-09-16T19:26:30.666807+00:00",
+  "phase": "r33-r6b-corrected-server-time-long-history",
+  "published_run_path": "phenomenon-discovery/r33-r6b-corrected-server-time-long-history/runs/20260916T192630Z_r33-r6b-corrected-server-time-long-history",
+  "schema": 1,
+  "source_commit": "d7c1cdda5f9c262b0f11ced4612f557ab03a63cd",
+  "status": "PASS",
+  "summary": "R33 corrected FundedNext-server-time Dukascopy R6B long-history characterization completed."
+}
