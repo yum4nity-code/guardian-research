@@ -1,18 +1,18 @@
 {
   "schema": 1,
-  "generation": 110,
+  "generation": 111,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 110 supersedes R30 generation 109 after code preflight exposed a cross-directory import bug in the R30 yearly builder. Builder v1.01 adds the explicit phenomenon_discovery import path; test harness v1.01 covers it. All exact-main preflights must rerun on the new commit before build.",
+  "closure": "Generation 111 launches R31 FundedNext 2024-2025 RAW-vs-NEWS_CLEAN ablation for frozen R6B-347/R6B-307. Exact-main control-plane, R31 code and frozen R6 regression must pass before Phase I-B files open. Same raw M1 execution, same rules and costs; only M5 signal source changes. No 2026, no tuning, no live action.",
   "jobs": [
     {
-      "id": "R30-CONTROL-PLANE-PREFLIGHT",
+      "id": "R31-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 5,
-      "class_key": "r30-control-plane-preflight",
-      "description": "Run orchestrator v1.03 control-plane tests.",
+      "class_key": "r31-control-plane-preflight",
+      "description": "Run orchestrator control-plane tests.",
       "executor": {
         "kind": "python",
         "path": "research/autonomous/test_guardian_research_orchestrator_v1_00.py",
@@ -20,38 +20,25 @@
       }
     },
     {
-      "id": "R30-CODE-PREFLIGHT",
+      "id": "R31-CODE-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r30-code-preflight",
-      "description": "Run R30 v1.01 synthetic tests for frozen candidates, import wiring, one-shot safety, 1x compounding and CAGR.",
+      "class_key": "r31-code-preflight",
+      "description": "Run R31 frozen-definition, hash-pin and capital synthetic tests.",
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r30_r6b_dukascopy_long_history_v1_01.py",
+        "path": "research/autonomous/test_r31_r6b_raw_vs_news_clean_v1_00.py",
         "args": []
       }
     },
     {
-      "id": "R30-R15-BUILDER-REGRESSION",
+      "id": "R31-R6-REGRESSION",
       "revision": 1,
       "enabled": true,
       "priority": 11,
-      "class_key": "r30-r15-builder-regression",
-      "description": "Run R15 full-master M5 builder regression tests protecting BI5 decode, SHA checks, aggregation and 2026 hard-fail semantics.",
-      "executor": {
-        "kind": "python",
-        "path": "research/phenomenon_discovery/test_build_xau_m5_from_r15_master_v1_00.py",
-        "args": []
-      }
-    },
-    {
-      "id": "R30-R6-REGRESSION",
-      "revision": 1,
-      "enabled": true,
-      "priority": 12,
-      "class_key": "r30-r6-regression",
-      "description": "Run frozen R6 low-turnover breakout regression tests before long-history reuse.",
+      "class_key": "r31-r6-regression",
+      "description": "Run frozen R6 low-turnover breakout regression tests.",
       "executor": {
         "kind": "python",
         "path": "research/autonomous/test_r6_xau_low_turnover_breakout_v1_00.py",
@@ -59,20 +46,20 @@
       }
     },
     {
-      "id": "R30-DUKASCOPY-YEARLY-BUILD",
+      "id": "R31-RAW-VS-NEWS-CLEAN",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r30-dukascopy-yearly-build",
-      "description": "Decode pinned R15 Dukascopy XAUUSD BID master index with R30 builder v1.01 into yearly raw M1 and exact complete-bucket M5 files for 2004-2025. Every BI5 payload SHA verified; 2026+ forbidden.",
+      "class_key": "r31-raw-vs-news-clean",
+      "description": "Replay frozen R6B-347/R6B-307 on exact FundedNext 2024-2025 raw M5 versus news-clean M5 with the same raw M1 execution and frozen costs.",
       "data_window": {
-        "start": "2004-11-08T00:00:00Z",
+        "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R30-CONTROL-PLANE-PREFLIGHT",
+          "job_id": "R31-CONTROL-PLANE-PREFLIGHT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -80,7 +67,7 @@
         },
         {
           "kind": "receipt",
-          "job_id": "R30-CODE-PREFLIGHT",
+          "job_id": "R31-CODE-PREFLIGHT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -88,15 +75,7 @@
         },
         {
           "kind": "receipt",
-          "job_id": "R30-R15-BUILDER-REGRESSION",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
-        },
-        {
-          "kind": "receipt",
-          "job_id": "R30-R6-REGRESSION",
+          "job_id": "R31-R6-REGRESSION",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -105,82 +84,34 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r30_build_dukascopy_xau_yearly_v1_01.py",
+        "path": "research/autonomous/r31_r6b_raw_vs_news_clean_v1_00.py",
         "args": [
-          "--index",
-          "{ROOT}\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
+          "--phase-ib-root",
+          "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
           "--output-dir",
-          "{ROOT}\\r30_dukascopy_yearly_v100",
-          "--manifest",
-          "{ROOT}\\r30_dukascopy_yearly_v100\\manifest.json",
-          "--progress-file",
-          "{ROOT}\\r30_dukascopy_yearly_v100\\build_progress.json"
+          "{ROOT}\\r31_r6b_raw_vs_news_clean_v100"
         ]
       },
       "timeout": {
-        "min_seconds": 5400,
-        "expected_seconds": 3600,
-        "eta_multiplier": 2.5,
-        "history_p95_multiplier": 3,
-        "progress_file": "{ROOT}\\r30_dukascopy_yearly_v100\\build_progress.json",
-        "stale_heartbeat_seconds": 1800,
-        "poll_seconds": 10
-      }
-    },
-    {
-      "id": "R30-R6B-LONG-HISTORY-CAPITAL",
-      "revision": 1,
-      "enabled": true,
-      "priority": 30,
-      "class_key": "r30-r6b-long-history-capital",
-      "description": "Replay frozen R6B-347/R6B-307 on yearly Dukascopy raw M5 with raw M1 execution, frozen E1/STRESS costs, and 10,000 initial capital at 1x notional. Produce annual and full-period capital metrics.",
-      "data_window": {
-        "start": "2004-11-08T00:00:00Z",
-        "end_exclusive": "2026-01-01T00:00:00Z"
-      },
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R30-DUKASCOPY-YEARLY-BUILD",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
-        }
-      ],
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/r30_r6b_dukascopy_long_history_v1_00.py",
-        "args": [
-          "--manifest",
-          "{ROOT}\\r30_dukascopy_yearly_v100\\manifest.json",
-          "--output-dir",
-          "{ROOT}\\r30_r6b_long_history_v100",
-          "--progress-file",
-          "{ROOT}\\r30_r6b_long_history_v100\\progress.json"
-        ]
-      },
-      "timeout": {
-        "min_seconds": 1800,
-        "expected_seconds": 900,
+        "min_seconds": 600,
+        "expected_seconds": 180,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
-        "progress_file": "{ROOT}\\r30_r6b_long_history_v100\\progress.json",
-        "stale_heartbeat_seconds": 1200,
+        "stale_heartbeat_seconds": 600,
         "poll_seconds": 5
       }
     },
     {
-      "id": "R30-RESULT-PUBLISH",
+      "id": "R31-RESULT-PUBLISH",
       "revision": 1,
       "enabled": true,
-      "priority": 40,
-      "class_key": "r30-result-publish",
-      "description": "Publish frozen R30 result artifacts after successful capital replay.",
+      "priority": 30,
+      "class_key": "r31-result-publish",
+      "description": "Publish frozen R31 ablation result.",
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R30-R6B-LONG-HISTORY-CAPITAL",
+          "job_id": "R31-RAW-VS-NEWS-CLEAN",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -192,19 +123,13 @@
         "path": "research/phenomenon_discovery/publish_phase_result_v1_00.py",
         "args": [
           "--phase",
-          "r30-r6b-dukascopy-long-history",
+          "r31-r6b-raw-vs-news-clean",
           "--status",
           "PASS",
           "--summary",
-          "R30 frozen R6B-347/R6B-307 Dukascopy 2004-2025 long-history capital characterization completed.",
+          "R31 FundedNext RAW-vs-NEWS_CLEAN ablation completed for frozen R6B-347/R6B-307.",
           "--artifact",
-          "{ROOT}\\r30_r6b_long_history_v100\\r30_r6b_dukascopy_long_history_result.json",
-          "--artifact",
-          "{ROOT}\\r30_r6b_long_history_v100\\r30_r6b_dukascopy_yearly.csv",
-          "--artifact",
-          "{ROOT}\\r30_r6b_long_history_v100\\r30_r6b_dukascopy_capital_curve.csv",
-          "--artifact",
-          "{ROOT}\\r30_dukascopy_yearly_v100\\manifest.json"
+          "{ROOT}\\r31_r6b_raw_vs_news_clean_v100\\r31_r6b_raw_vs_news_clean_result.json"
         ]
       },
       "timeout": {
