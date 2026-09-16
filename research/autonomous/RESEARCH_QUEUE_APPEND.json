@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "generation": 101,
+  "generation": 102,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 101 stages R28 compression-state directional-drift discovery preflights only. Real R28 discovery r1 is present but disabled. Control-plane, R28 code, full R21-R25 v1.03 regression, and sealed discovery-builder tests must all PASS on the same main commit before discovery data may be opened. Confirmation, 2025, 2026+, bottom20 rescue, alternate horizons, PnL optimization and live integration remain prohibited.",
+  "closure": "Generation 102 authorizes R28 directional-drift discovery r1 after preregistration, cold audit and generation-101 preflight PASS. Exact-main receipt binding requires control-plane, R28 code, R22/v1.03 regression and sealed discovery-builder preflights to PASS again on this commit before discovery payloads open. R28 remains discovery-only; confirmation, 2025, 2026+, bottom20 rescue, alternate horizons, PnL optimization and live integration remain prohibited.",
   "jobs": [
     {
       "id": "R28-DISCOVERY-CONTROL-PLANE-PREFLIGHT",
@@ -61,7 +61,7 @@
     {
       "id": "R28-XAU-DISCOVERY",
       "revision": 1,
-      "enabled": false,
+      "enabled": true,
       "priority": 30,
       "class_key": "r28-xau-discovery",
       "description": "R28 discovery only. Exact R22 bottom10 conditioning state; signed same-clock directional excess at 4b/8b; complete-estimator delete-one-UTC-day jackknife. PASS only if both horizons share one sign and both |t| > 2. Confirmation/2025/2026+ inaccessible.",
