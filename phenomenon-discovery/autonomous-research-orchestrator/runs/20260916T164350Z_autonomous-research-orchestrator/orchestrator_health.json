@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R28-DISCOVERY-CODE-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "0f169ed4f3b3f87a042c053fdf72ff0d72dbf319",
+  "pid": 13536,
+  "protected_2026": true,
+  "queue_generation": 101,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-16T16:43:50.251350+00:00",
+  "version": "1.03"
+}
