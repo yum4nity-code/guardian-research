@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 120.0,
+  "class_key": "r29-result-publish",
+  "duration_seconds": 10.002359599980991,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T18:14:50.018025+00:00",
+  "job_id": "R29-RESULT-PUBLISH",
+  "main_commit": "29e02d033bbe81f3d8f588d500485402d28044bb",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T18:14:39.991989+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PUBLISHED r29-r27-filter-r6-diagnostic FAIL commit=72bfe6c2dc3f9d983db8322aa2495a31ecd5a26a"
+}
