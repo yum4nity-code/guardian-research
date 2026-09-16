@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r30-r6-regression",
+  "duration_seconds": 5.0030468000040855,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T18:51:47.518996+00:00",
+  "job_id": "R30-R6-REGRESSION",
+  "main_commit": "172e4cf33e5afd6951636cc9c62a1388aa6105db",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T18:51:42.495546+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{'status': 'PASS', 'tests': 7, 'market_data_accessed': False, 'protected_2026_opened': False}"
+}

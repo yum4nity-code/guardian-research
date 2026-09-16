@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R30-R6-REGRESSION__r1.json",
+  "main_commit": "172e4cf33e5afd6951636cc9c62a1388aa6105db",
+  "pid": 13536,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-16T18:51:47.520801+00:00",
+  "version": "1.03"
+}
