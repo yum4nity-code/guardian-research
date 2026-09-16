@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "generation": 86,
+  "generation": 87,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 86 is owner-authorized for R21-R25 DISCOVERY ONLY after both revision-4 preflights passed on generation 85. Because receipt validity is bound to the exact main commit, CODE-PREFLIGHT and DATA-SLICE-PREFLIGHT remain enabled and must re-PASS on the generation-86 main commit before R21-R25-XAU-DISCOVERY can execute. Confirmation, 2025, 2026, Guardian integration and live authorization remain prohibited.",
+  "closure": "Generation 87 emergency fail-closed quarantine: discovery r4 was observed starting on main 7e958a07cc03538ed5689aea8edc79b84564e66b under a long-lived orchestrator process whose in-memory receipt logic predated exact-main-commit binding. The scientific engine code was unchanged from the preflight-PASS commit f12f17454ad77f5427be8dc7693b10840c916216, but the control-plane invariant was not enforced by the live process. Disable every job after the already-started child returns. Do not inspect/promote discovery output until control-plane restart/revalidation. No confirmation, 2025, 2026, Guardian integration or live authorization.",
   "jobs": [
     {
       "id": "R21-R25-CODE-PREFLIGHT",
       "revision": 4,
-      "enabled": true,
+      "enabled": false,
       "priority": 10,
       "class_key": "r21-r25-code-preflight",
       "description": "Run v1.02 second-audit regression tests. Necessary but not sufficient; does not authorize historical discovery.",
@@ -22,7 +22,7 @@
     {
       "id": "R21-R25-DATA-SLICE-PREFLIGHT",
       "revision": 4,
-      "enabled": true,
+      "enabled": false,
       "priority": 11,
       "class_key": "r21-r25-data-slice-preflight",
       "description": "Re-run the sealed discovery-builder tests proving post-2019-06-30 payload bytes are never decoded and 2026 metadata hard-fails.",
@@ -35,7 +35,7 @@
     {
       "id": "R21-R25-XAU-DISCOVERY",
       "revision": 4,
-      "enabled": true,
+      "enabled": false,
       "priority": 30,
       "class_key": "r21-r25-xau-discovery",
       "description": "v1.02 accepts only the immutable R15 master index, internally builds a temporary sealed discovery CSV, enforces the absolute M5 grid, and runs the frozen R21-R25 discovery definitions. No arbitrary CSV input, confirmation, 2025, 2026 or live logic.",
