@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R26-CONFIRMATION-CODE-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "15acb4496c709452e791091b5a0c11a339fc9c8d",
+  "pid": 13536,
+  "protected_2026": true,
+  "queue_generation": 95,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-16T15:54:52.508700+00:00",
+  "version": "1.03"
+}
