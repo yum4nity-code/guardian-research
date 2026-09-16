@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R21-R25-DATA-SLICE-PREFLIGHT",
+    "revision": 4
+  },
+  "main_commit": "f12f17454ad77f5427be8dc7693b10840c916216",
+  "pid": 4344,
+  "protected_2026": true,
+  "queue_generation": 85,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-16T13:24:27.072141+00:00",
+  "version": "1.01"
+}
