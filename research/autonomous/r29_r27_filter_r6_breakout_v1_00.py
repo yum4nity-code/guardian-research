@@ -401,6 +401,11 @@ def main() -> int:
     out = Path(args.output_dir)
     out.mkdir(parents=True, exist_ok=True)
     progress = Path(args.progress_file) if args.progress_file else None
+    result_path = out / "r29_r27_filter_r6_result.json"
+    if result_path.exists():
+        raise RuntimeError(
+            "existing R29 result detected; refusing scientific overwrite"
+        )
 
     heartbeat(progress, 0, 8, "load_canonical_inputs")
     source_all = r6.load_exact(root / "xauusd_m5_2024_2025_news_clean.csv")
@@ -461,7 +466,7 @@ def main() -> int:
     }
 
     heartbeat(progress, 6, 8, "serialize")
-    atomic_json(out / "r29_r27_filter_r6_result.json", payload)
+    atomic_json(result_path, payload)
 
     rows = []
     for cid, r in results.items():
