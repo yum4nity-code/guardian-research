@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r30-code-preflight",
+  "duration_seconds": 5.00212069999543,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-16T18:50:52.974334+00:00",
+  "job_id": "R30-CODE-PREFLIGHT",
+  "main_commit": "172e4cf33e5afd6951636cc9c62a1388aa6105db",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T18:50:47.941231+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\test_r30_r6b_dukascopy_long_history_v1_00.py\", line 11, in <module>\n    import r30_build_dukascopy_xau_yearly_v1_00 as build\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\autonomous\\r30_build_dukascopy_xau_yearly_v1_00.py\", line 18, in <module>\n    import build_xau_m5_from_r15_master_v1_00 as base\nModuleNotFoundError: No module named 'build_xau_m5_from_r15_master_v1_00'",
+  "stdout_tail": ""
+}
