@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R29-ECON-REGRESSION-PREFLIGHT__r1.json",
+  "main_commit": "9ac73726635ab0f05b7923c22dcbd112a0dbd3e9",
+  "pid": 13536,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-16T18:07:36.307539+00:00",
+  "version": "1.03"
+}
