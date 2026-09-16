@@ -1,17 +1,17 @@
 {
   "schema": 1,
-  "generation": 111,
+  "generation": 112,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 111 launches R31 FundedNext 2024-2025 RAW-vs-NEWS_CLEAN ablation for frozen R6B-347/R6B-307. Exact-main control-plane, R31 code and frozen R6 regression must pass before Phase I-B files open. Same raw M1 execution, same rules and costs; only M5 signal source changes. No 2026, no tuning, no live action.",
+  "closure": "Generation 112 launches R32 FundedNext-vs-Dukascopy M5 clock alignment. Shift is selected only by monthly return correlation, not strategy PnL. Exact-main control-plane and R32 synthetic preflights must pass before feeds open. No 2026, no tuning, no live action.",
   "jobs": [
     {
-      "id": "R31-CONTROL-PLANE-PREFLIGHT",
+      "id": "R32-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 5,
-      "class_key": "r31-control-plane-preflight",
+      "class_key": "r32-control-plane-preflight",
       "description": "Run orchestrator control-plane tests.",
       "executor": {
         "kind": "python",
@@ -20,38 +20,25 @@
       }
     },
     {
-      "id": "R31-CODE-PREFLIGHT",
+      "id": "R32-CODE-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r31-code-preflight",
-      "description": "Run R31 frozen-definition, hash-pin and capital synthetic tests.",
+      "class_key": "r32-code-preflight",
+      "description": "Run R32 contiguous-return and shift-convention synthetic tests.",
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r31_r6b_raw_vs_news_clean_v1_00.py",
+        "path": "research/autonomous/test_r32_fundednext_dukascopy_clock_alignment_v1_00.py",
         "args": []
       }
     },
     {
-      "id": "R31-R6-REGRESSION",
-      "revision": 1,
-      "enabled": true,
-      "priority": 11,
-      "class_key": "r31-r6-regression",
-      "description": "Run frozen R6 low-turnover breakout regression tests.",
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/test_r6_xau_low_turnover_breakout_v1_00.py",
-        "args": []
-      }
-    },
-    {
-      "id": "R31-RAW-VS-NEWS-CLEAN",
+      "id": "R32-CLOCK-ALIGNMENT",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r31-raw-vs-news-clean",
-      "description": "Replay frozen R6B-347/R6B-307 on exact FundedNext 2024-2025 raw M5 versus news-clean M5 with the same raw M1 execution and frozen costs.",
+      "class_key": "r32-clock-alignment",
+      "description": "Infer monthly FundedNext server-clock to Dukascopy UTC shift by M5 return correlation on 2024-2025 overlap.",
       "data_window": {
         "start": "2024-01-01T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
@@ -59,7 +46,7 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R31-CONTROL-PLANE-PREFLIGHT",
+          "job_id": "R32-CONTROL-PLANE-PREFLIGHT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -67,15 +54,7 @@
         },
         {
           "kind": "receipt",
-          "job_id": "R31-CODE-PREFLIGHT",
-          "revision": 1,
-          "accepted_status": [
-            "PASS"
-          ]
-        },
-        {
-          "kind": "receipt",
-          "job_id": "R31-R6-REGRESSION",
+          "job_id": "R32-CODE-PREFLIGHT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -84,17 +63,19 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r31_r6b_raw_vs_news_clean_v1_00.py",
+        "path": "research/autonomous/r32_fundednext_dukascopy_clock_alignment_v1_00.py",
         "args": [
           "--phase-ib-root",
           "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
+          "--r30-manifest",
+          "{ROOT}\\r30_dukascopy_yearly_v100\\manifest.json",
           "--output-dir",
-          "{ROOT}\\r31_r6b_raw_vs_news_clean_v100"
+          "{ROOT}\\r32_clock_alignment_v100"
         ]
       },
       "timeout": {
         "min_seconds": 600,
-        "expected_seconds": 180,
+        "expected_seconds": 120,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
         "stale_heartbeat_seconds": 600,
@@ -102,16 +83,16 @@
       }
     },
     {
-      "id": "R31-RESULT-PUBLISH",
+      "id": "R32-RESULT-PUBLISH",
       "revision": 1,
       "enabled": true,
       "priority": 30,
-      "class_key": "r31-result-publish",
-      "description": "Publish frozen R31 ablation result.",
+      "class_key": "r32-result-publish",
+      "description": "Publish frozen R32 alignment result.",
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R31-RAW-VS-NEWS-CLEAN",
+          "job_id": "R32-CLOCK-ALIGNMENT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -123,13 +104,13 @@
         "path": "research/phenomenon_discovery/publish_phase_result_v1_00.py",
         "args": [
           "--phase",
-          "r31-r6b-raw-vs-news-clean",
+          "r32-fundednext-dukascopy-clock-alignment",
           "--status",
           "PASS",
           "--summary",
-          "R31 FundedNext RAW-vs-NEWS_CLEAN ablation completed for frozen R6B-347/R6B-307.",
+          "R32 FundedNext-vs-Dukascopy M5 clock alignment diagnostic completed.",
           "--artifact",
-          "{ROOT}\\r31_r6b_raw_vs_news_clean_v100\\r31_r6b_raw_vs_news_clean_result.json"
+          "{ROOT}\\r32_clock_alignment_v100\\r32_fundednext_dukascopy_clock_alignment.json"
         ]
       },
       "timeout": {
