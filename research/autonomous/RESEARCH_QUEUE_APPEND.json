@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "generation": 109,
-  "supersedes_generation": 108,
+  "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 109 launches R30: frozen R6B-347/R6B-307 raw Dukascopy XAUUSD 2004-2025 long-history capital characterization. Four exact-main preflights must pass, then pinned R15 BI5 data are exported to yearly raw M1/M5, then both strategies are replayed year-isolated with frozen E1/STRESS costs and EUR 10,000-equivalent 1x compounded capital. No parameter search, no R27 filter, no invented news mask, no 2026+ access, no live deployment.",
+  "closure": "Generation 109 launches R30: frozen R6B-347/R6B-307 raw Dukascopy XAUUSD 2004-2025 long-history capital characterization. Four exact-main preflights must pass, then pinned R15 BI5 data are exported to yearly raw M1/M5, then both strategies are replayed year-isolated with frozen E1/STRESS costs and EUR 10,000-equivalent 1x compounded capital. No parameter search, no R27 filter, no invented news mask, no 2026+ access, no live deployment. Queue replacement correctly supersedes immutable base generation 83.",
   "jobs": [
     {
       "id": "R30-CONTROL-PLANE-PREFLIGHT",
