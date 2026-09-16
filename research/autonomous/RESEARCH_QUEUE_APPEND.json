@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "generation": 98,
+  "generation": 99,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 98 stages R27 compression-persistence confirmation preflights only. R27 is a new preregistered inverse study inspired by the failed R22 expansion hypothesis. Real confirmation r1 is present but disabled. Control-plane, R27 code, full R22/v1.03 regression, and sealed confirmation-builder tests must all PASS on the same main commit before market payloads may open. 2025, 2026+, state/horizon rescue, PnL optimization and live integration remain prohibited.",
+  "closure": "Generation 99 authorizes R27 compression-persistence confirmation r1 after preregistration, cold audit and generation-98 preflight PASS. Exact-main receipt binding requires control-plane, R27 code, R22/v1.03 regression and sealed confirmation-builder preflights to PASS again on this commit before payloads open. R27 primary state is bottom10; PASS requires persistence_4b and persistence_8b means >0 and complete-jackknife t >2.0. 2025, 2026+, state/horizon rescue, PnL optimization and live integration remain prohibited.",
   "jobs": [
     {
       "id": "R27-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
@@ -61,7 +61,7 @@
     {
       "id": "R27-XAU-CONFIRMATION",
       "revision": 1,
-      "enabled": false,
+      "enabled": true,
       "priority": 30,
       "class_key": "r27-xau-confirmation",
       "description": "R27 independent outcome confirmation only. Exact R22 bottom10 compression events and complete-estimator jackknife; primary persistence_4b + persistence_8b. PASS requires both means >0 and both jackknife t >2. 2025/2026+ inaccessible.",
