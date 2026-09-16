@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r26-confirmation-data-slice-preflight",
+  "duration_seconds": 5.003418799984502,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T15:55:41.261469+00:00",
+  "job_id": "R26-CONFIRMATION-DATA-SLICE-PREFLIGHT",
+  "main_commit": "15acb4496c709452e791091b5a0c11a339fc9c8d",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T15:55:36.230580+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS: sealed R21 confirmation builder v1.00 tests"
+}
