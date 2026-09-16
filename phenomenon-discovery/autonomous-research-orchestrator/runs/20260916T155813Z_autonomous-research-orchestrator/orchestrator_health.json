@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R26-CONFIRMATION-DATA-SLICE-PREFLIGHT__r1.json",
+  "main_commit": "97e31c3e8bd95b970b3ec50561aacd7f9077fcbf",
+  "pid": 13536,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-16T15:58:13.866962+00:00",
+  "version": "1.03"
+}
