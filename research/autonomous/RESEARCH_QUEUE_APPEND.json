@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "generation": 84,
+  "generation": 85,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 84 supersedes the empty fail-closed generation-83 base. It replaces all base jobs with exactly three disabled R21-R25 jobs at revision 4, binds dependency receipts to the executing main commit, confines output to the canonical R21-R25 directory, and persists the R15 pin attestation. No execution, confirmation, 2025, 2026, Guardian integration or live authorization.",
+  "closure": "Generation 85 is owner-authorized for PRE-FLIGHT EXECUTION ONLY after independent audit PASS of main a871ba5e6bc4dfe090d702c8a3aae944d9d31c76. It replaces the empty generation-83 base with the same three R21-R25 revision-4 jobs, enabling only CODE-PREFLIGHT and DATA-SLICE-PREFLIGHT. R21-R25-XAU-DISCOVERY remains disabled. No historical discovery, confirmation, 2025, 2026, Guardian integration or live authorization.",
   "jobs": [
     {
       "id": "R21-R25-CODE-PREFLIGHT",
       "revision": 4,
-      "enabled": false,
+      "enabled": true,
       "priority": 10,
       "class_key": "r21-r25-code-preflight",
       "description": "Run v1.02 second-audit regression tests. Necessary but not sufficient; does not authorize historical discovery.",
@@ -22,7 +22,7 @@
     {
       "id": "R21-R25-DATA-SLICE-PREFLIGHT",
       "revision": 4,
-      "enabled": false,
+      "enabled": true,
       "priority": 11,
       "class_key": "r21-r25-data-slice-preflight",
       "description": "Re-run the sealed discovery-builder tests proving post-2019-06-30 payload bytes are never decoded and 2026 metadata hard-fails.",
