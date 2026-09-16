@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "attestation": "R15 canonical payload-index pin",
+  "recorded_at_utc": "2026-09-16T12:53:51.8007018Z",
+  "source_manifest_generated_at_utc": "2026-09-14T11:53:03.736860+00:00",
+  "source_manifest_path": "D:\\MT5_Backtests\\Research\\Autonomous\\r15_dukascopy_xauusd_union_v1\\r15_dukascopy_market_manifest.json",
+  "source_manifest_sha256_raw_crlf": "68a88804e404c6281f02a0c2914785107d3e393c25a6f49c5d661698cdc4159b",
+  "phase": "r15-dukascopy-xauusd-boundary-union",
+  "source": "Dukascopy XAUUSD BID M1 public historical feed",
+  "status": "PASS",
+  "payload_count": 5518,
+  "eligible_boundary_days": 5518,
+  "known_missing_or_holiday_weekdays": 0,
+  "duplicate_same_hash_dates": [],
+  "payload_index_csv": "D:\\MT5_Backtests\\Research\\Autonomous\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
+  "payload_index_csv_sha256": "d77fb76e5b5ee0600a488c331084e70972a8800a33ae59a957c1044dc39ef566",
+  "boundary_csv": "D:\\MT5_Backtests\\Research\\Autonomous\\r15_dukascopy_xauusd_union_v1\\r15_dukascopy_xauusd_m1_boundaries_2004_2025.csv",
+  "boundary_csv_sha256": "1ac57fa81289e5eaba248e76c6852e707ba07bf84ba7b7dab9007c92c7e1fd6e",
+  "window": {
+    "start": "2004-11-08",
+    "end_exclusive": "2026-01-01"
+  },
+  "protected_2026_opened": false,
+  "reuse_policy": "immutable multi-root M1 master cache; derive higher timeframes locally",
+  "evidence_scope": "Metadata-only snapshot of the local canonical PASS manifest. Market payload bytes are not stored in Git."
+}

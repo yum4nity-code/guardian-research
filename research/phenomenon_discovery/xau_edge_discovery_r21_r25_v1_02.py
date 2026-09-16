@@ -43,6 +43,13 @@ CANONICAL_R15_INDEX = Path(
     "xauusd_dukascopy_master_payload_index.csv"
 )
 CANONICAL_R15_INDEX_SHA256 = "d77fb76e5b5ee0600a488c331084e70972a8800a33ae59a957c1044dc39ef566"
+R15_PIN_ATTESTATION = Path(__file__).with_name(
+    "R15_INDEX_PIN_ATTESTATION_2026_09_16.json"
+)
+CANONICAL_OUTPUT_DIR = Path(
+    "D:/MT5_Backtests/Research/Autonomous/r21_r25_xau_v102"
+)
+CANONICAL_OUTPUT = CANONICAL_OUTPUT_DIR / "discovery.json"
 
 # Reuse only phenomenon definitions that the second independent audit found
 # coherent on valid M5 input.
@@ -58,6 +65,22 @@ _metric_summary = base._metric_summary
 _r25_fill_summary = base._r25_fill_summary
 
 
+def _validate_pin_attestation() -> dict:
+    try:
+        attestation = json.loads(R15_PIN_ATTESTATION.read_text(encoding="utf-8"))
+    except Exception as exc:
+        raise RuntimeError("R15 pin attestation missing or invalid") from exc
+    required = {
+        "status": "PASS",
+        "payload_index_csv_sha256": CANONICAL_R15_INDEX_SHA256,
+        "protected_2026_opened": False,
+    }
+    for key, expected in required.items():
+        if attestation.get(key) != expected:
+            raise RuntimeError(f"R15 pin attestation mismatch: {key}")
+    return attestation
+
+
 def _read_canonical_r15_index(index_path: Path) -> bytes:
     """Admit only the pinned metadata file, before opening any user path.
 
@@ -70,10 +93,28 @@ def _read_canonical_r15_index(index_path: Path) -> bytes:
         raise RuntimeError("refusing to open non-canonical R15 index path")
     if index_path.resolve(strict=True) != trusted:
         raise RuntimeError("refusing redirected canonical R15 index path")
+    _validate_pin_attestation()
     content = index_path.read_bytes()
     if hashlib.sha256(content).hexdigest() != CANONICAL_R15_INDEX_SHA256:
         raise RuntimeError("canonical R15 index SHA256 mismatch; builder not called")
     return content
+
+
+def _validate_output_path(output: Path) -> Path:
+    """Admit only the canonical R21-R25 discovery artifact path."""
+    if not output.is_absolute() or output.absolute() != CANONICAL_OUTPUT.absolute():
+        raise RuntimeError("output must be the canonical R21-R25 discovery.json path")
+    root = CANONICAL_OUTPUT_DIR.absolute()
+    if root.parent.resolve(strict=True) != root.parent.absolute():
+        raise RuntimeError("canonical R21-R25 output parent is redirected")
+    root.mkdir(parents=True, exist_ok=True)
+    if root.resolve(strict=True) != root:
+        raise RuntimeError("canonical R21-R25 output directory is redirected")
+    if output.is_symlink() or (
+        output.exists() and output.resolve(strict=True) != output.absolute()
+    ):
+        raise RuntimeError("canonical R21-R25 output file is redirected")
+    return output.absolute()
 
 
 def load_generated_discovery_bars(path: Path) -> list[Bar]:
@@ -387,11 +428,9 @@ def main() -> int:
         default=["R21", "R22", "R23", "R24", "R25"],
     )
     a = ap.parse_args()
-    if a.output.resolve() == CANONICAL_R15_INDEX.absolute():
-        raise RuntimeError("output must not overwrite the canonical R15 index")
+    output = _validate_output_path(a.output)
     payload = run_from_index(a.index, a.research)
-    a.output.parent.mkdir(parents=True, exist_ok=True)
-    a.output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in payload.items() if k != "results"}, indent=2, sort_keys=True))
     for name, item in payload["results"].items():
         print(f"{name}: events={item['summary']['event_count']} days={item['summary']['day_count']}")

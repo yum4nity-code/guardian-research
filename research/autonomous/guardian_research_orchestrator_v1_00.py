@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION = "1.01"
+VERSION = "1.02"
 DEFAULT_REMOTE = "git@github.com:yum4nity-code/guardian-research.git"
 DEFAULT_DEPLOY = r"D:\MT5_Backtests\guardian-autonomous-main"
 DEFAULT_ROOT = r"D:\MT5_Backtests\Research\Autonomous"
@@ -118,10 +118,24 @@ def load_queue(deploy):
         extra = load_json(append_path)
         if extra.get("schema") != 1 or not isinstance(extra.get("jobs"), list):
             raise ValueError("invalid queue append schema")
-        queue["jobs"] = [*queue.get("jobs", []), *extra["jobs"]]
-        queue["generation"] = max(
-            int(queue.get("generation", 0)), int(extra.get("generation", 0))
-        )
+        if extra.get("replace_base_jobs"):
+            base_generation = int(queue.get("generation", 0))
+            supersedes = int(extra.get("supersedes_generation", -1))
+            generation = int(extra.get("generation", 0))
+            if supersedes != base_generation or generation <= supersedes:
+                raise ValueError(
+                    "replacement queue must supersede the exact base generation"
+                )
+            queue["jobs"] = list(extra["jobs"])
+            queue["generation"] = generation
+            queue["human_approved_2026"] = bool(
+                extra.get("human_approved_2026", False)
+            )
+        else:
+            queue["jobs"] = [*queue.get("jobs", []), *extra["jobs"]]
+            queue["generation"] = max(
+                int(queue.get("generation", 0)), int(extra.get("generation", 0))
+            )
     return queue
 
 
@@ -143,13 +157,30 @@ def validate_queue(queue):
             raise ValueError(f"protected 2026 blocked: {key}")
 
 
-def dep_ok(dep, deploy, receipts):
+def receipt_matches_job_commit(path, job_id, revision, expected_main_commit):
+    if not path.exists():
+        return False, f"missing {path.name}"
+    try:
+        obj = load_json(path)
+    except Exception:
+        return False, f"invalid json {path.name}"
+    if obj.get("job_id") != job_id or int(obj.get("revision", -1)) != int(revision):
+        return False, f"{path.name} identity mismatch"
+    if obj.get("main_commit") != expected_main_commit:
+        return False, f"{path.name} main_commit mismatch"
+    return True, obj
+
+
+def dep_ok(dep, deploy, receipts, expected_main_commit):
     kind = dep["kind"]
     if kind == "receipt":
         path = receipts / f"{dep['job_id']}__r{dep['revision']}.json"
-        if not path.exists():
-            return False, f"missing {path.name}"
-        status = load_json(path).get("status")
+        matches, obj = receipt_matches_job_commit(
+            path, dep["job_id"], dep["revision"], expected_main_commit
+        )
+        if not matches:
+            return False, obj
+        status = obj.get("status")
         return status in dep.get("accepted_status", ["PASS"]), f"{path.name} status {status}"
     if kind == "github_result":
         ref = dep.get("ref", "origin/backtest-results")
@@ -434,11 +465,15 @@ def once(deploy, root, remote, pub=True):
             int(item.get("revision", 0)),
         ),
     ):
-        if receipt(receipts, job).exists():
+        current_receipt = receipt(receipts, job)
+        current, _ = receipt_matches_job_commit(
+            current_receipt, job["id"], job["revision"], commit
+        )
+        if current:
             continue
         bad = []
         for dep in job.get("requires", []):
-            ok, why = dep_ok(dep, deploy, receipts)
+            ok, why = dep_ok(dep, deploy, receipts, commit)
             if not ok:
                 bad.append(why)
         if not bad:

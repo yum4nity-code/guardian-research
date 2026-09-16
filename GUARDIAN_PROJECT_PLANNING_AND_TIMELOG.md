@@ -565,3 +565,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - No historical backtest, market payload access, data modification, deployment or live authorization. Only the R15 provenance manifest and index metadata were read to establish the pin.
 - Next safe action: independent cold review of the corrective commit, before any later queue activation. Correcting-author tests are not an independent audit.
 - Human active time: NOT QUANTIFIED. Automated execution time is not human time.
+
+## 2026-09-16 — R21–R25 control-plane hardening
+
+- Confirmed that the deployed orchestrator resets its checkout to `origin/main`; the then-current GitHub main queue was generation 80 with legacy enabled jobs and therefore remained unsafe to restart.
+- Prepared generation 84 as an explicit replacement of the empty generation-83 base: exactly three R21–R25 jobs, all revision 4, all disabled, and `human_approved_2026=false`.
+- Bound local dependency and completion receipts to exact job identity, revision and executing `main_commit`; receipts from another commit cannot unlock or suppress a job.
+- Confined v1.02 output to the canonical R21–R25 discovery JSON and added redirect/symlink rejection. Persisted the metadata-only R15 PASS-manifest attestation and linked it to the engine pin.
+- No orchestrator restart, historical backtest, market-payload access, job activation, confirmation, 2025/2026 access, deployment or live authorization.
+- Next safe action: independent cold audit of the small control-plane diff. Discovery stays disabled until that audit passes and the owner separately authorizes it.
+- Human active time: NOT QUANTIFIED. Automated test runtime is separate.

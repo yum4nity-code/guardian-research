@@ -1,5 +1,18 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
+## R21–R25 control-plane hardening — 2026-09-16
+
+Generation 84 is the pending fail-closed queue state: the append explicitly
+supersedes generation 83 and replaces the base job list with exactly three
+revision-4 R21–R25 jobs, all disabled, with `human_approved_2026=false`.
+Receipt dependencies and completed-job receipts must match the exact executing
+`main_commit`. The v1.02 output is confined to the canonical
+`r21_r25_xau_v102/discovery.json` path, and the R15 index pin now has a committed
+metadata attestation. No orchestrator restart, historical run, confirmation,
+2025/2026 access, production or live authorization occurred. The next safe
+action is an independent cold audit of this small diff; discovery remains
+disabled until that review passes and the owner separately authorizes it.
+
 ## R21–R25 scoped correction — 2026-09-16
 
 Owner-requested fixes after the third cold-audit FAIL are implemented in v1.02:
@@ -7,8 +20,9 @@ canonical R15 index path/digest admission before builder access, a private verif
 index snapshot, and accurate R22 baseline coverage when no event label is usable.
 See `research/phenomenon_discovery/R21_R25_THIRD_AUDIT_FIXES_2026_09_16.md`.
 Synthetic tests pass; independent review of this correction remains pending.
-Generation 83 stays at 3 jobs / 0 enabled / no 2026 authorization. No historical
-or live job was launched. Earlier project state below is preserved as history.
+Generation 83 was superseded by the disabled generation-84 control-plane
+hardening above. No historical or live job was launched. Earlier project state
+below is preserved as history.
 
 ## Canonical current state — 2026-09-13
 

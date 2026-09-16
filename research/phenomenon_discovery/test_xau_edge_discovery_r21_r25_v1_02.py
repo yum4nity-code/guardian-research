@@ -151,7 +151,8 @@ def test_untrusted_index_paths_rejected_before_any_open_or_builder():
             else:
                 raise AssertionError(f"untrusted index accepted: {path}")
         with patch.object(sys, "argv", ["engine", "--index", str(alternatives[1]),
-                                        "--output", "synthetic_never_written.json"]):
+                                        "--output", str(m.CANONICAL_OUTPUT)]), \
+             patch.object(m, "_validate_output_path", return_value=m.CANONICAL_OUTPUT):
             try:
                 m.main()
             except RuntimeError as e:
@@ -182,6 +183,7 @@ def test_index_digest_mismatch_blocks_builder():
         p.write_bytes(b"synthetic modified metadata")
         with patch.object(m, "CANONICAL_R15_INDEX", p), \
              patch.object(m, "CANONICAL_R15_INDEX_SHA256", "0" * 64), \
+             patch.object(m, "_validate_pin_attestation", return_value={}), \
              patch.object(m.sealed_builder, "build") as builder:
             try:
                 m.run_from_index(p, ["R21"])
@@ -192,17 +194,35 @@ def test_index_digest_mismatch_blocks_builder():
             builder.assert_not_called()
 
 
-def test_output_cannot_overwrite_trusted_index():
-    with patch.object(sys, "argv", ["engine", "--index", str(m.CANONICAL_R15_INDEX),
-                                    "--output", str(m.CANONICAL_R15_INDEX)]), \
-         patch.object(m, "run_from_index") as run:
-        try:
-            m.main()
-        except RuntimeError as e:
-            assert "overwrite the canonical" in str(e)
-        else:
-            raise AssertionError("canonical index allowed as output")
-        run.assert_not_called()
+def test_output_is_confined_to_canonical_discovery_path():
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td) / "r21_r25_xau_v102"
+        canonical = root / "discovery.json"
+        forbidden = [
+            Path(td) / "payload.bi5",
+            Path(td) / "r15_manifest.json",
+            root / "other.json",
+            root / "nested" / "discovery.json",
+        ]
+        with patch.object(m, "CANONICAL_OUTPUT_DIR", root), \
+             patch.object(m, "CANONICAL_OUTPUT", canonical):
+            assert m._validate_output_path(canonical) == canonical.absolute()
+            for path in forbidden:
+                try:
+                    m._validate_output_path(path)
+                except RuntimeError as e:
+                    assert "canonical R21-R25 discovery.json" in str(e)
+                else:
+                    raise AssertionError(f"unsafe output accepted: {path}")
+
+
+def test_committed_r15_pin_attestation_matches_engine_constant():
+    attestation = m._validate_pin_attestation()
+    assert attestation["payload_index_csv_sha256"] == m.CANONICAL_R15_INDEX_SHA256
+    assert attestation["source_manifest_sha256_raw_crlf"] == (
+        "68a88804e404c6281f02a0c2914785107d3e393c25a6f49c5d661698cdc4159b"
+    )
+    assert attestation["protected_2026_opened"] is False
 
 
 def test_builder_receipt_must_match_frozen_discovery_contract():
@@ -269,7 +289,8 @@ def test_run_from_index_uses_internal_temp_builder_output_not_external_csv():
         m.sealed_builder.build = fake_build
         try:
             with patch.object(m, "CANONICAL_R15_INDEX", index), \
-                 patch.object(m, "CANONICAL_R15_INDEX_SHA256", hashlib.sha256(b"metadata only").hexdigest()):
+                 patch.object(m, "CANONICAL_R15_INDEX_SHA256", hashlib.sha256(b"metadata only").hexdigest()), \
+                 patch.object(m, "_validate_pin_attestation", return_value={}):
                 payload = m.run_from_index(index, ["R21"])
         finally:
             m.sealed_builder.build = old_build
@@ -314,6 +335,7 @@ def test_pinned_index_real_builder_synthetic_integration():
 
         with patch.object(m, "CANONICAL_R15_INDEX", index), \
              patch.object(m, "CANONICAL_R15_INDEX_SHA256", digest), \
+             patch.object(m, "_validate_pin_attestation", return_value={}), \
              patch.object(Path, "open", observe):
             result = m.run_from_index(index, ["R21"])
         assert result["rows"] == 4
@@ -334,7 +356,8 @@ def main():
     test_untrusted_index_paths_rejected_before_any_open_or_builder()
     test_redirected_canonical_path_rejected_before_open()
     test_index_digest_mismatch_blocks_builder()
-    test_output_cannot_overwrite_trusted_index()
+    test_output_is_confined_to_canonical_discovery_path()
+    test_committed_r15_pin_attestation_matches_engine_constant()
     test_builder_receipt_must_match_frozen_discovery_contract()
     test_run_from_index_uses_internal_temp_builder_output_not_external_csv()
     test_pinned_index_real_builder_synthetic_integration()

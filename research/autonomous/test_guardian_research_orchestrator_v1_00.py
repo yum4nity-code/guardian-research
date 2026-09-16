@@ -48,9 +48,54 @@ class TestOrchestrator(unittest.TestCase):
     def test_receipt_dependency(self):
         with tempfile.TemporaryDirectory() as td:
             r = Path(td)
-            (r / "A__r1.json").write_text(json.dumps({"status": "PASS"}), encoding="utf-8")
-            ok, why = orch.dependency_satisfied({"kind": "receipt", "job_id": "A", "revision": 1}, Path(td), r)
+            commit = "a" * 40
+            (r / "A__r1.json").write_text(json.dumps({
+                "job_id": "A", "revision": 1, "status": "PASS", "main_commit": commit
+            }), encoding="utf-8")
+            ok, why = orch.dependency_satisfied(
+                {"kind": "receipt", "job_id": "A", "revision": 1},
+                Path(td), r, commit,
+            )
             self.assertTrue(ok, why)
+
+    def test_receipt_dependency_rejects_other_commit(self):
+        with tempfile.TemporaryDirectory() as td:
+            r = Path(td)
+            (r / "A__r1.json").write_text(json.dumps({
+                "job_id": "A", "revision": 1, "status": "PASS", "main_commit": "a" * 40
+            }), encoding="utf-8")
+            ok, why = orch.dependency_satisfied(
+                {"kind": "receipt", "job_id": "A", "revision": 1},
+                Path(td), r, "b" * 40,
+            )
+            self.assertFalse(ok)
+            self.assertIn("main_commit mismatch", why)
+
+    def test_replacement_queue_discards_unsafe_base(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            queue_dir = root / "research" / "autonomous"
+            queue_dir.mkdir(parents=True)
+            (root / orch.QUEUE_REL).write_text(json.dumps({
+                "schema": 1,
+                "generation": 83,
+                "human_approved_2026": True,
+                "jobs": [{"id": "OLD", "revision": 1, "enabled": True,
+                          "executor": {"kind": "noop"}}],
+            }), encoding="utf-8")
+            (root / orch.QUEUE_APPEND_REL).write_text(json.dumps({
+                "schema": 1,
+                "generation": 84,
+                "supersedes_generation": 83,
+                "replace_base_jobs": True,
+                "human_approved_2026": False,
+                "jobs": [{"id": "SAFE", "revision": 4, "enabled": False,
+                          "executor": {"kind": "noop"}}],
+            }), encoding="utf-8")
+            queue = orch.load_queue(root)
+            self.assertEqual(queue["generation"], 84)
+            self.assertFalse(queue["human_approved_2026"])
+            self.assertEqual([job["id"] for job in queue["jobs"]], ["SAFE"])
 
     def test_noop_job(self):
         with tempfile.TemporaryDirectory() as td:
