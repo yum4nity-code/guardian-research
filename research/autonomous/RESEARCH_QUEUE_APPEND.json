@@ -1,29 +1,29 @@
 {
   "schema": 1,
-  "generation": 82,
-  "supersedes_generation": 81,
-  "closure": "Independent cold audit of generation 81 returned FAIL. Generation 82 stages only audit-corrected R21-R25 v1.01 discovery code. All jobs remain disabled pending a new independent cold audit PASS. v1.01 cannot open confirmation, 2025, or 2026+.",
+  "generation": 83,
+  "supersedes_generation": 82,
+  "closure": "Second independent cold audit found two HIGH, one MEDIUM and one LOW issue in v1.01. Generation 83 stages only the v1.02 corrective wrapper plus sealed-builder tests. All jobs remain disabled pending a third independent cold-audit PASS.",
   "jobs": [
     {
       "id": "R21-R25-CODE-PREFLIGHT",
-      "revision": 2,
+      "revision": 3,
       "enabled": false,
       "priority": 10,
       "class_key": "r21-r25-code-preflight",
-      "description": "Run audit-regression tests for discovery-only R21-R25 v1.01. Does not authorize historical discovery execution.",
+      "description": "Run v1.02 second-audit regression tests. Necessary but not sufficient; does not authorize historical discovery.",
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_01.py",
+        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_02.py",
         "args": []
       }
     },
     {
       "id": "R21-R25-DATA-SLICE-PREFLIGHT",
-      "revision": 2,
+      "revision": 3,
       "enabled": false,
       "priority": 11,
       "class_key": "r21-r25-data-slice-preflight",
-      "description": "Verify the v1.01 discovery builder cannot open post-2019-06-30 payloads and hard-fails protected 2026 metadata.",
+      "description": "Re-run the sealed discovery-builder tests proving post-2019-06-30 payload bytes are never decoded and 2026 metadata hard-fails.",
       "executor": {
         "kind": "python",
         "path": "research/phenomenon_discovery/test_build_xau_m5_discovery_slice_v1_01.py",
@@ -31,12 +31,12 @@
       }
     },
     {
-      "id": "R21-R25-DISCOVERY-M5-BUILD",
-      "revision": 2,
+      "id": "R21-R25-XAU-DISCOVERY",
+      "revision": 3,
       "enabled": false,
-      "priority": 20,
-      "class_key": "r21-r25-discovery-data-build",
-      "description": "Build only the frozen 2004-11-08 through 2019-06-30 XAUUSD M5 discovery slice from immutable R15 payloads. No confirmation/pre-OOS mode exists in this builder.",
+      "priority": 30,
+      "class_key": "r21-r25-xau-discovery",
+      "description": "v1.02 accepts only the immutable R15 master index, internally builds a temporary sealed discovery CSV, enforces the absolute M5 grid, and runs the frozen R21-R25 discovery definitions. No arbitrary CSV input, confirmation, 2025, 2026 or live logic.",
       "data_window": {
         "start": "2004-11-08T00:00:00Z",
         "end_exclusive": "2019-07-01T00:00:00Z"
@@ -45,7 +45,7 @@
         {
           "kind": "receipt",
           "job_id": "R21-R25-CODE-PREFLIGHT",
-          "revision": 2,
+          "revision": 3,
           "accepted_status": [
             "PASS"
           ]
@@ -53,7 +53,7 @@
         {
           "kind": "receipt",
           "job_id": "R21-R25-DATA-SLICE-PREFLIGHT",
-          "revision": 2,
+          "revision": 3,
           "accepted_status": [
             "PASS"
           ]
@@ -61,44 +61,12 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/build_xau_m5_discovery_slice_v1_01.py",
+        "path": "research/phenomenon_discovery/xau_edge_discovery_r21_r25_v1_02.py",
         "args": [
           "--index",
           "{ROOT}\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
           "--output",
-          "{ROOT}\\r21_r25_xau_v101\\discovery_m5_20041108_20190630.csv"
-        ]
-      }
-    },
-    {
-      "id": "R21-R25-XAU-DISCOVERY",
-      "revision": 2,
-      "enabled": false,
-      "priority": 30,
-      "class_key": "r21-r25-xau-discovery",
-      "description": "Run only the frozen preregistered R21-R25 definitions on the physically sealed discovery slice. No confirmation, no PnL optimization, no parameter rescue, no 2025, no 2026.",
-      "data_window": {
-        "start": "2004-11-08T00:00:00Z",
-        "end_exclusive": "2019-07-01T00:00:00Z"
-      },
-      "requires": [
-        {
-          "kind": "receipt",
-          "job_id": "R21-R25-DISCOVERY-M5-BUILD",
-          "revision": 2,
-          "accepted_status": [
-            "PASS"
-          ]
-        }
-      ],
-      "executor": {
-        "kind": "python",
-        "path": "research/phenomenon_discovery/xau_edge_discovery_r21_r25_v1_01.py",
-        "args": [
-          "--input",
-          "{ROOT}\\r21_r25_xau_v101\\discovery_m5_20041108_20190630.csv",
-          "--output",
-          "{ROOT}\\r21_r25_xau_v101\\discovery.json"
+          "{ROOT}\\r21_r25_xau_v102\\discovery.json"
         ]
       }
     }
