@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "generation": 92,
+  "generation": 93,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 92 stages R21 confirmation preflights only after the frozen R21-R25 discovery result. Real confirmation r1 is present but disabled. No confirmation payload may be opened until control-plane, R21 code, and R21 sealed-builder preflights all PASS on the same main commit. 2025, 2026+, R22-R25 confirmation, PnL optimization and live integration remain prohibited.",
+  "closure": "Generation 93 authorizes R21 independent confirmation r1 after the frozen discovery result, cold audit, and generation-92 preflight PASS. Exact-main receipt binding requires control-plane, R21 code and sealed-builder preflights to PASS again on this commit before market payloads open. Confirmation is R21 only, fixed 2019-07-01 through 2024-12-31, with frozen post_15m gate mean > 0 and day-clustered t > +2.0. 2025, 2026+, R22-R25 confirmation, PnL optimization and live integration remain prohibited.",
   "jobs": [
     {
       "id": "R21-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
@@ -48,7 +48,7 @@
     {
       "id": "R21-XAU-CONFIRMATION",
       "revision": 1,
-      "enabled": false,
+      "enabled": true,
       "priority": 30,
       "class_key": "r21-xau-confirmation",
       "description": "R21 independent confirmation only, frozen 2019-07-01 through 2024-12-31. Primary post_15m gate: mean > 0 and day-clustered t > +2.0. 2025 and 2026+ inaccessible.",
