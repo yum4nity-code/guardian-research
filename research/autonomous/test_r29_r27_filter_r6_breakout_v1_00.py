@@ -233,6 +233,33 @@ def test_classify_ledger_uses_original_signal_index():
     ]
 
 
+
+def test_existing_result_refuses_rerun():
+    with tempfile.TemporaryDirectory() as td:
+        out = Path(td) / "out"
+        out.mkdir()
+        (out / "r29_r27_filter_r6_result.json").write_text(
+            '{"status":"EXISTING"}',
+            encoding="utf-8",
+        )
+        with patch(
+            "sys.argv",
+            [
+                "r29",
+                "--phase-ib-root",
+                str(Path(td) / "phase"),
+                "--output-dir",
+                str(out),
+            ],
+        ):
+            try:
+                m.main()
+            except RuntimeError as exc:
+                assert "refusing scientific overwrite" in str(exc)
+            else:
+                raise AssertionError("existing R29 result was overwritten")
+
+
 def main():
     test_frozen_candidate_definitions()
     test_active_state_excludes_current_bar_return()
@@ -241,6 +268,7 @@ def main():
     test_day_block_bootstrap_is_deterministic()
     test_filter_lead_gate_requires_every_condition()
     test_classify_ledger_uses_original_signal_index()
+    test_existing_result_refuses_rerun()
     print("PASS: R29 R27-filter × R6 interaction tests")
 
 
