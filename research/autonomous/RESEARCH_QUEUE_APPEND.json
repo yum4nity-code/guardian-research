@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "generation": 88,
+  "generation": 89,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 88 stages the post-timeout recovery in a fully disabled state. It adds a control-plane v1.03 preflight and promotes discovery to revision 5 solely to carry an explicit 30-minute infrastructure timeout. Scientific R21-R25 definitions, discovery window, R15 pin and protected-period rules are unchanged. All jobs remain disabled until the Windows Scheduled Task is restarted on the refreshed v1.03 daemon.",
+  "closure": "Generation 89 restart-verification only. Enable solely R21-R25-CONTROL-PLANE-PREFLIGHT r1 to prove the Windows Scheduled Task is executing the refreshed orchestrator v1.03 on the exact current main commit. No market-data preflight or discovery is enabled.",
   "jobs": [
     {
       "id": "R21-R25-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
-      "enabled": false,
+      "enabled": true,
       "priority": 5,
       "class_key": "r21-r25-control-plane-preflight",
       "description": "Run orchestrator v1.03 tests, including exact-main receipt binding, replacement-queue semantics, hot-reload reexec and same-PID lock continuity. Synthetic/infrastructure only; no market data.",
