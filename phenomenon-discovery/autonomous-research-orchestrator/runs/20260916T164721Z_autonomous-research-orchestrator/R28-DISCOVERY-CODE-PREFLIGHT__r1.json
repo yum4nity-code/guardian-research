@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r28-discovery-code-preflight",
+  "duration_seconds": 5.002708199986955,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T16:47:21.100815+00:00",
+  "job_id": "R28-DISCOVERY-CODE-PREFLIGHT",
+  "main_commit": "1cbc9a0cafb37d4440199f5d57df47b46f80355d",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T16:47:16.084690+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS: R28 compression-state directional discovery v1.00 tests"
+}
