@@ -1,0 +1,15 @@
+{
+  "artifacts": [
+    {
+      "name": "r31_r6b_raw_vs_news_clean_result.json",
+      "sha256": "46120b2f3fe648058c2560ead475d2471279fa7ef1ea08d4ff8594a1c52ef368",
+      "size_bytes": 30816
+    }
+  ],
+  "generated_at_utc": "2026-09-16T19:13:29.714538+00:00",
+  "phase": "r31-r6b-raw-vs-news-clean",
+  "schema": 1,
+  "source_commit": "6b7498238fddaa987f89a759becef7e882c98cd5",
+  "status": "PASS",
+  "summary": "R31 FundedNext RAW-vs-NEWS_CLEAN ablation completed for frozen R6B-347/R6B-307."
+}

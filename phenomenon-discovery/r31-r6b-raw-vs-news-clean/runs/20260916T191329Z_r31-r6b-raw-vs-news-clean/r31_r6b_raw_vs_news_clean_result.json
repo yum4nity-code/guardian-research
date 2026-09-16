@@ -1,0 +1,836 @@
+{
+  "candidates": {
+    "R6B-307": {
+      "NEWS_CLEAN": {
+        "2024": {
+          "accounting": {
+            "excluded_year_boundary_signals": 0,
+            "executable_trades": 95,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 95
+          },
+          "capital": {
+            "E1": {
+              "ending": 10768.612965345796,
+              "initial": 10000.0,
+              "max_dd_pct": 1.3955207238833183,
+              "return_pct": 7.686129653457963,
+              "trades": 95
+            },
+            "STRESS": {
+              "ending": 10255.375349873435,
+              "initial": 10000.0,
+              "max_dd_pct": 2.4707595769021657,
+              "return_pct": 2.5537534987343458,
+              "trades": 95
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 2.833918931622563,
+              "best_trade": 25.772836377576148,
+              "commission": 3.1859817670379997,
+              "ex_best_positive_net": 167.8431198553883,
+              "expectancy": 2.0380626971890994,
+              "expectancy_bps": 7.82763140758123,
+              "gross": 287.8300000000024,
+              "max_drawdown_realized": 30.77659856318395,
+              "net": 193.61595623296444,
+              "slippage": 45.514031,
+              "spread": 45.514031,
+              "trades": 95,
+              "win_rate": 0.6210526315789474,
+              "worst_trade": -19.984425106655966
+            },
+            "STRESS": {
+              "PF": 1.4814132338046326,
+              "best_trade": 24.44790384909215,
+              "commission": 6.371962526671,
+              "ex_best_positive_net": 52.196994124239275,
+              "expectancy": 0.8067883997192782,
+              "expectancy_bps": 2.684555148169481,
+              "gross": 287.8300000000024,
+              "max_drawdown_realized": 54.24130931118504,
+              "net": 76.64489797333142,
+              "slippage": 91.028062,
+              "spread": 113.7850775,
+              "trades": 95,
+              "win_rate": 0.4631578947368421,
+              "worst_trade": -21.15697227995196
+            }
+          }
+        },
+        "2025": {
+          "accounting": {
+            "excluded_year_boundary_signals": 0,
+            "executable_trades": 106,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 106
+          },
+          "capital": {
+            "E1": {
+              "ending": 12499.492964504449,
+              "initial": 10000.0,
+              "max_dd_pct": 1.6328206339162752,
+              "return_pct": 24.994929645044483,
+              "trades": 106
+            },
+            "STRESS": {
+              "ending": 11837.06591299474,
+              "initial": 10000.0,
+              "max_dd_pct": 2.199226384648102,
+              "return_pct": 18.3706591299474,
+              "trades": 106
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 3.4831193137185745,
+              "best_trade": 67.37429258625001,
+              "commission": 5.092685355926,
+              "ex_best_positive_net": 734.9376880578207,
+              "expectancy": 7.5689809494723645,
+              "expectancy_bps": 21.187502650601424,
+              "gross": 952.9099999999967,
+              "max_drawdown_realized": 55.41395648808748,
+              "net": 802.3119806440707,
+              "slippage": 72.752667,
+              "spread": 72.752667,
+              "trades": 106,
+              "win_rate": 0.6792452830188679,
+              "worst_trade": -45.25739031144633
+            },
+            "STRESS": {
+              "PF": 2.596887607193209,
+              "best_trade": 65.66628891312499,
+              "commission": 10.185367376667001,
+              "ex_best_positive_net": 549.6713422102047,
+              "expectancy": 5.805071991729525,
+              "expectancy_bps": 16.04099225888301,
+              "gross": 952.9099999999967,
+              "max_drawdown_realized": 74.78154455536915,
+              "net": 615.3376311233296,
+              "slippage": 145.505334,
+              "spread": 181.8816675,
+              "trades": 106,
+              "win_rate": 0.6509433962264151,
+              "worst_trade": -46.95506827650733
+            }
+          }
+        },
+        "pooled": {
+          "capital": {
+            "E1": {
+              "ending": 13460.220199781135,
+              "initial": 10000.0,
+              "max_dd_pct": 1.6328206339162554,
+              "return_pct": 34.60220199781134,
+              "trades": 201
+            },
+            "STRESS": {
+              "ending": 12139.355397895346,
+              "initial": 10000.0,
+              "max_dd_pct": 2.4707595769021657,
+              "return_pct": 21.393553978953463,
+              "trades": 201
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 3.323235293424929,
+              "best_trade": 67.37429258625001,
+              "commission": 8.278667122964,
+              "ex_best_positive_net": 928.5536442907851,
+              "expectancy": 4.95486535759719,
+              "expectancy_bps": 14.873135645193868,
+              "gross": 1240.739999999999,
+              "max_drawdown_realized": 55.41395648808759,
+              "net": 995.9279368770351,
+              "slippage": 118.266698,
+              "spread": 118.266698,
+              "trades": 201,
+              "win_rate": 0.6517412935323383,
+              "worst_trade": -45.25739031144633
+            },
+            "STRESS": {
+              "PF": 2.2707566144779294,
+              "best_trade": 65.66628891312499,
+              "commission": 16.557329903338,
+              "ex_best_positive_net": 626.3162401835361,
+              "expectancy": 3.4426991497346324,
+              "expectancy_bps": 9.728248350834328,
+              "gross": 1240.739999999999,
+              "max_drawdown_realized": 74.78154455536907,
+              "net": 691.9825290966611,
+              "slippage": 236.533396,
+              "spread": 295.666745,
+              "trades": 201,
+              "win_rate": 0.5621890547263682,
+              "worst_trade": -46.95506827650733
+            }
+          }
+        }
+      },
+      "RAW": {
+        "2024": {
+          "accounting": {
+            "excluded_year_boundary_signals": 0,
+            "executable_trades": 95,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 95
+          },
+          "capital": {
+            "E1": {
+              "ending": 10750.591949973976,
+              "initial": 10000.0,
+              "max_dd_pct": 1.4135015484012887,
+              "return_pct": 7.505919499739755,
+              "trades": 95
+            },
+            "STRESS": {
+              "ending": 10238.208817986491,
+              "initial": 10000.0,
+              "max_dd_pct": 2.5386801652726723,
+              "return_pct": 2.3820881798649163,
+              "trades": 95
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 2.7900786090065113,
+              "best_trade": 25.772836377576148,
+              "commission": 3.183073902652,
+              "ex_best_positive_net": 163.91910971977453,
+              "expectancy": 1.9967573273405332,
+              "expectancy_bps": 7.651212929328366,
+              "gross": 283.82000000000266,
+              "max_drawdown_realized": 31.170118202483952,
+              "net": 189.69194609735067,
+              "slippage": 45.47249,
+              "spread": 45.47249,
+              "trades": 95,
+              "win_rate": 0.6105263157894737,
+              "worst_trade": -19.984425106655966
+            },
+            "STRESS": {
+              "PF": 1.4531591048881123,
+              "best_trade": 24.44790384909215,
+              "commission": 6.366146811934001,
+              "ex_best_positive_net": 48.379744338976515,
+              "expectancy": 0.7666068230323018,
+              "expectancy_bps": 2.5081820179880645,
+              "gross": 283.82000000000266,
+              "max_drawdown_realized": 55.744174588035044,
+              "net": 72.82764818806866,
+              "slippage": 90.94498,
+              "spread": 113.681225,
+              "trades": 95,
+              "win_rate": 0.45263157894736844,
+              "worst_trade": -21.15697227995196
+            }
+          }
+        },
+        "2025": {
+          "accounting": {
+            "excluded_year_boundary_signals": 0,
+            "executable_trades": 107,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 107
+          },
+          "capital": {
+            "E1": {
+              "ending": 12469.01708222713,
+              "initial": 10000.0,
+              "max_dd_pct": 1.6328206339162739,
+              "return_pct": 24.690170822271295,
+              "trades": 107
+            },
+            "STRESS": {
+              "ending": 11802.127047194665,
+              "initial": 10000.0,
+              "max_dd_pct": 2.2775135313874033,
+              "return_pct": 18.021270471946636,
+              "trades": 107
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 3.3975161824584976,
+              "best_trade": 67.37429258625001,
+              "commission": 5.13938334539,
+              "ex_best_positive_net": 726.7967620683569,
+              "expectancy": 7.422159389295391,
+              "expectancy_bps": 20.761622300477747,
+              "gross": 946.1499999999969,
+              "max_drawdown_realized": 55.41395648808748,
+              "net": 794.1710546546069,
+              "slippage": 73.419781,
+              "spread": 73.419781,
+              "trades": 107,
+              "win_rate": 0.6728971962616822,
+              "worst_trade": -45.25739031144633
+            },
+            "STRESS": {
+              "PF": 2.5321255315083295,
+              "best_trade": 65.66628891312499,
+              "commission": 10.278763379255,
+              "ex_best_positive_net": 539.8159332076169,
+              "expectancy": 5.658712356268616,
+              "expectancy_bps": 15.615221380583016,
+              "gross": 946.1499999999969,
+              "max_drawdown_realized": 77.48363411404068,
+              "net": 605.4822221207419,
+              "slippage": 146.839562,
+              "spread": 183.5494525,
+              "trades": 107,
+              "win_rate": 0.6448598130841121,
+              "worst_trade": -46.95506827650733
+            }
+          }
+        },
+        "pooled": {
+          "capital": {
+            "E1": {
+              "ending": 13404.931466827904,
+              "initial": 10000.0,
+              "max_dd_pct": 1.6328206339162579,
+              "return_pct": 34.04931466827903,
+              "trades": 202
+            },
+            "STRESS": {
+              "ending": 12083.264120558522,
+              "initial": 10000.0,
+              "max_dd_pct": 2.5386801652726723,
+              "return_pct": 20.832641205585233,
+              "trades": 202
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 3.2502908744937336,
+              "best_trade": 67.37429258625001,
+              "commission": 8.322457248042,
+              "ex_best_positive_net": 916.4887081657075,
+              "expectancy": 4.870608914613651,
+              "expectancy_bps": 14.595835715036205,
+              "gross": 1229.9699999999996,
+              "max_drawdown_realized": 55.41395648808759,
+              "net": 983.8630007519575,
+              "slippage": 118.89227100000001,
+              "spread": 118.89227100000001,
+              "trades": 202,
+              "win_rate": 0.6435643564356436,
+              "worst_trade": -45.25739031144633
+            },
+            "STRESS": {
+              "PF": 2.2201968729330095,
+              "best_trade": 65.66628891312499,
+              "commission": 16.644910191189002,
+              "ex_best_positive_net": 612.6435813956856,
+              "expectancy": 3.3579696549941116,
+              "expectancy_bps": 9.451019700154697,
+              "gross": 1229.9699999999996,
+              "max_drawdown_realized": 77.48363411404063,
+              "net": 678.3098703088106,
+              "slippage": 237.78454200000002,
+              "spread": 297.2306775,
+              "trades": 202,
+              "win_rate": 0.5544554455445545,
+              "worst_trade": -46.95506827650733
+            }
+          }
+        }
+      },
+      "definition": {
+        "buffer_atr": 0.0,
+        "candidate_id": "R6B-307",
+        "direction": 1,
+        "horizon_bars": 48,
+        "lookback_bars": 96,
+        "session_end": 8,
+        "session_start": 0
+      },
+      "delta_news_clean_minus_raw": {
+        "2024": {
+          "E1": {
+            "ending_capital_delta": 18.021015371819885,
+            "expectancy_delta": 0.04130536984856614,
+            "net_delta": 3.92401013561377,
+            "pf_delta": 0.04384032261605153,
+            "return_pct_delta": 0.1802101537182077,
+            "trades_delta": 0
+          },
+          "STRESS": {
+            "ending_capital_delta": 17.16653188694363,
+            "expectancy_delta": 0.04018157668697642,
+            "net_delta": 3.81724978526276,
+            "pf_delta": 0.02825412891652035,
+            "return_pct_delta": 0.17166531886942948,
+            "trades_delta": 0
+          }
+        },
+        "2025": {
+          "E1": {
+            "ending_capital_delta": 30.475882277318306,
+            "expectancy_delta": 0.14682156017697334,
+            "net_delta": 8.140925989463767,
+            "pf_delta": 0.0856031312600769,
+            "return_pct_delta": 0.3047588227731879,
+            "trades_delta": -1
+          },
+          "STRESS": {
+            "ending_capital_delta": 34.93886580007529,
+            "expectancy_delta": 0.14635963546090913,
+            "net_delta": 9.855409002587749,
+            "pf_delta": 0.06476207568487968,
+            "return_pct_delta": 0.3493886580007626,
+            "trades_delta": -1
+          }
+        },
+        "pooled": {
+          "E1": {
+            "ending_capital_delta": 55.288732953231374,
+            "expectancy_delta": 0.08425644298353863,
+            "net_delta": 12.064936125077566,
+            "pf_delta": 0.07294441893119563,
+            "return_pct_delta": 0.5528873295323109,
+            "trades_delta": -1
+          },
+          "STRESS": {
+            "ending_capital_delta": 56.09127733682362,
+            "expectancy_delta": 0.08472949474052083,
+            "net_delta": 13.672658787850537,
+            "pf_delta": 0.050559741544919934,
+            "return_pct_delta": 0.56091277336823,
+            "trades_delta": -1
+          }
+        }
+      }
+    },
+    "R6B-347": {
+      "NEWS_CLEAN": {
+        "2024": {
+          "accounting": {
+            "excluded_year_boundary_signals": 0,
+            "executable_trades": 95,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 95
+          },
+          "capital": {
+            "E1": {
+              "ending": 11937.714880557098,
+              "initial": 10000.0,
+              "max_dd_pct": 0.6964246733935652,
+              "return_pct": 19.377148805570975,
+              "trades": 95
+            },
+            "STRESS": {
+              "ending": 11369.057762443392,
+              "initial": 10000.0,
+              "max_dd_pct": 0.798682376048875,
+              "return_pct": 13.690577624433908,
+              "trades": 95
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.214045354604957,
+              "best_trade": 30.89244410465964,
+              "commission": 3.18769096513,
+              "ex_best_positive_net": 406.8929589302137,
+              "expectancy": 4.608267400367088,
+              "expectancy_bps": 18.708317661216256,
+              "gross": 532.0500000000034,
+              "max_drawdown_realized": 16.12334034989405,
+              "net": 437.78540303487335,
+              "slippage": 45.538453000000004,
+              "spread": 45.538453000000004,
+              "trades": 95,
+              "win_rate": 0.7368421052631579,
+              "worst_trade": -13.07452669696789
+            },
+            "STRESS": {
+              "PF": 3.3327412615434127,
+              "best_trade": 29.641517320969637,
+              "commission": 6.375380068085001,
+              "ex_best_positive_net": 291.1100641109487,
+              "expectancy": 3.3763324361254563,
+              "expectancy_bps": 13.562444539806174,
+              "gross": 532.0500000000034,
+              "max_drawdown_realized": 18.635457180039197,
+              "net": 320.75158143191834,
+              "slippage": 91.07690600000001,
+              "spread": 113.8461325,
+              "trades": 95,
+              "win_rate": 0.6526315789473685,
+              "worst_trade": -14.259615436355892
+            }
+          }
+        },
+        "2025": {
+          "accounting": {
+            "excluded_year_boundary_signals": 0,
+            "executable_trades": 106,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 106
+          },
+          "capital": {
+            "E1": {
+              "ending": 14107.375525148376,
+              "initial": 10000.0,
+              "max_dd_pct": 1.950754225212761,
+              "return_pct": 41.07375525148376,
+              "trades": 106
+            },
+            "STRESS": {
+              "ending": 13360.149921554857,
+              "initial": 10000.0,
+              "max_dd_pct": 2.1023993650318147,
+              "return_pct": 33.60149921554858,
+              "trades": 106
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.068455112682391,
+              "best_trade": 76.38643170947982,
+              "commission": 5.095583826116,
+              "ex_best_positive_net": 1139.9898204644028,
+              "expectancy": 11.475247662017761,
+              "expectancy_bps": 32.67261500887396,
+              "gross": 1367.0599999999986,
+              "max_drawdown_realized": 62.37273994175962,
+              "net": 1216.3762521738827,
+              "slippage": 72.794082,
+              "spread": 72.794082,
+              "trades": 106,
+              "win_rate": 0.7452830188679245,
+              "worst_trade": -50.01544763819404
+            },
+            "STRESS": {
+              "PF": 3.9390002692519213,
+              "best_trade": 74.13480369265983,
+              "commission": 10.191162867522001,
+              "ex_best_positive_net": 955.1606644398167,
+              "expectancy": 9.710334605023364,
+              "expectancy_bps": 27.52315238844931,
+              "gross": 1367.0599999999986,
+              "max_drawdown_realized": 67.30507908791964,
+              "net": 1029.2954681324766,
+              "slippage": 145.588164,
+              "spread": 181.985205,
+              "trades": 106,
+              "win_rate": 0.7169811320754716,
+              "worst_trade": -51.63622094687304
+            }
+          }
+        },
+        "pooled": {
+          "capital": {
+            "E1": {
+              "ending": 16840.982673217077,
+              "initial": 10000.0,
+              "max_dd_pct": 1.9507542252127628,
+              "return_pct": 68.40982673217077,
+              "trades": 201
+            },
+            "STRESS": {
+              "ending": 15189.231617306057,
+              "initial": 10000.0,
+              "max_dd_pct": 2.102399365031828,
+              "return_pct": 51.89231617306058,
+              "trades": 201
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.105998650261412,
+              "best_trade": 76.38643170947982,
+              "commission": 8.283274791245999,
+              "ex_best_positive_net": 1577.775223499276,
+              "expectancy": 8.229659976162965,
+              "expectancy_bps": 26.072573973911368,
+              "gross": 1899.110000000002,
+              "max_drawdown_realized": 62.37273994175962,
+              "net": 1654.161655208756,
+              "slippage": 118.33253500000001,
+              "spread": 118.33253500000001,
+              "trades": 201,
+              "win_rate": 0.7412935323383084,
+              "worst_trade": -50.01544763819404
+            },
+            "STRESS": {
+              "PF": 3.7680812586007666,
+              "best_trade": 74.13480369265983,
+              "commission": 16.566542935607,
+              "ex_best_positive_net": 1275.9122458717352,
+              "expectancy": 6.716651987882562,
+              "expectancy_bps": 20.924807882871708,
+              "gross": 1899.110000000002,
+              "max_drawdown_realized": 67.3050790879197,
+              "net": 1350.047049564395,
+              "slippage": 236.66507000000001,
+              "spread": 295.8313375,
+              "trades": 201,
+              "win_rate": 0.6865671641791045,
+              "worst_trade": -51.63622094687304
+            }
+          }
+        }
+      },
+      "RAW": {
+        "2024": {
+          "accounting": {
+            "excluded_year_boundary_signals": 0,
+            "executable_trades": 95,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 95
+          },
+          "capital": {
+            "E1": {
+              "ending": 11909.84198074384,
+              "initial": 10000.0,
+              "max_dd_pct": 0.6964246733935671,
+              "return_pct": 19.098419807438404,
+              "trades": 95
+            },
+            "STRESS": {
+              "ending": 11342.505795726853,
+              "initial": 10000.0,
+              "max_dd_pct": 0.7986823760488725,
+              "return_pct": 13.425057957268539,
+              "trades": 95
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.160009247007076,
+              "best_trade": 30.89244410465964,
+              "commission": 3.18477127311,
+              "ex_best_positive_net": 401.27929862223345,
+              "expectancy": 4.549176239230454,
+              "expectancy_bps": 18.46163296743887,
+              "gross": 526.3500000000031,
+              "max_drawdown_realized": 16.12334034989405,
+              "net": 432.1717427268931,
+              "slippage": 45.496743,
+              "spread": 45.496743,
+              "trades": 95,
+              "win_rate": 0.7368421052631579,
+              "worst_trade": -13.07452669696789
+            },
+            "STRESS": {
+              "PF": 3.292694196033043,
+              "best_trade": 29.641517320969637,
+              "commission": 6.369540703995,
+              "ex_best_positive_net": 285.60359847503844,
+              "expectancy": 3.3183696399579796,
+              "expectancy_bps": 13.315823255912083,
+              "gross": 526.3500000000031,
+              "max_drawdown_realized": 18.635457180039197,
+              "net": 315.24511579600806,
+              "slippage": 90.993486,
+              "spread": 113.74185750000001,
+              "trades": 95,
+              "win_rate": 0.6526315789473685,
+              "worst_trade": -14.259615436355892
+            }
+          }
+        },
+        "2025": {
+          "accounting": {
+            "excluded_year_boundary_signals": 0,
+            "executable_trades": 107,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 107
+          },
+          "capital": {
+            "E1": {
+              "ending": 14100.690227923611,
+              "initial": 10000.0,
+              "max_dd_pct": 1.950754225212761,
+              "return_pct": 41.006902279236115,
+              "trades": 107
+            },
+            "STRESS": {
+              "ending": 13346.951813187265,
+              "initial": 10000.0,
+              "max_dd_pct": 2.1023993650318147,
+              "return_pct": 33.46951813187265,
+              "trades": 107
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.04177244510274,
+              "best_trade": 76.38643170947982,
+              "commission": 5.142327726396,
+              "ex_best_positive_net": 1138.407536564123,
+              "expectancy": 11.353214656762644,
+              "expectancy_bps": 32.32297499280568,
+              "gross": 1366.8599999999988,
+              "max_drawdown_realized": 62.37273994175962,
+              "net": 1214.7939682736028,
+              "slippage": 73.46185200000001,
+              "spread": 73.46185200000001,
+              "trades": 107,
+              "win_rate": 0.7383177570093458,
+              "worst_trade": -50.01544763819404
+            },
+            "STRESS": {
+              "PF": 3.9022479541960466,
+              "best_trade": 74.13480369265983,
+              "commission": 10.284650668782001,
+              "ex_best_positive_net": 951.8622116385569,
+              "expectancy": 9.588757152628194,
+              "expectancy_bps": 27.17360224675579,
+              "gross": 1366.8599999999988,
+              "max_drawdown_realized": 67.30507908791964,
+              "net": 1025.9970153312167,
+              "slippage": 146.92370400000001,
+              "spread": 183.65463,
+              "trades": 107,
+              "win_rate": 0.7102803738317757,
+              "worst_trade": -51.63622094687304
+            }
+          }
+        },
+        "pooled": {
+          "capital": {
+            "E1": {
+              "ending": 16793.699243398918,
+              "initial": 10000.0,
+              "max_dd_pct": 1.950754225212763,
+              "return_pct": 67.93699243398919,
+              "trades": 202
+            },
+            "STRESS": {
+              "ending": 15138.787829636341,
+              "initial": 10000.0,
+              "max_dd_pct": 2.1023993650318182,
+              "return_pct": 51.38787829636342,
+              "trades": 202
+            }
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.0721430339516,
+              "best_trade": 76.38643170947982,
+              "commission": 8.327098999506,
+              "ex_best_positive_net": 1570.579279291016,
+              "expectancy": 8.153295599012356,
+              "expectancy_bps": 25.804027010578714,
+              "gross": 1893.2100000000019,
+              "max_drawdown_realized": 62.37273994175962,
+              "net": 1646.965711000496,
+              "slippage": 118.958595,
+              "spread": 118.958595,
+              "trades": 202,
+              "win_rate": 0.7376237623762376,
+              "worst_trade": -50.01544763819404
+            },
+            "STRESS": {
+              "PF": 3.731554476231197,
+              "best_trade": 74.13480369265983,
+              "commission": 16.654191372777,
+              "ex_best_positive_net": 1267.107327434565,
+              "expectancy": 6.639812530332796,
+              "expectancy_bps": 20.656329949081773,
+              "gross": 1893.2100000000019,
+              "max_drawdown_realized": 67.3050790879197,
+              "net": 1341.2421311272249,
+              "slippage": 237.91719,
+              "spread": 297.3964875,
+              "trades": 202,
+              "win_rate": 0.6831683168316832,
+              "worst_trade": -51.63622094687304
+            }
+          }
+        }
+      },
+      "definition": {
+        "buffer_atr": 0.1,
+        "candidate_id": "R6B-347",
+        "direction": 1,
+        "horizon_bars": 96,
+        "lookback_bars": 96,
+        "session_end": 8,
+        "session_start": 0
+      },
+      "delta_news_clean_minus_raw": {
+        "2024": {
+          "E1": {
+            "ending_capital_delta": 27.87289981325739,
+            "expectancy_delta": 0.059091161136633374,
+            "net_delta": 5.61366030798024,
+            "pf_delta": 0.05403610759788169,
+            "return_pct_delta": 0.27872899813257135,
+            "trades_delta": 0
+          },
+          "STRESS": {
+            "ending_capital_delta": 26.551966716539027,
+            "expectancy_delta": 0.05796279616747668,
+            "net_delta": 5.506465635910274,
+            "pf_delta": 0.04004706551036952,
+            "return_pct_delta": 0.26551966716536946,
+            "trades_delta": 0
+          }
+        },
+        "2025": {
+          "E1": {
+            "ending_capital_delta": 6.685297224765236,
+            "expectancy_delta": 0.12203300525511729,
+            "net_delta": 1.58228390027989,
+            "pf_delta": 0.02668266757965032,
+            "return_pct_delta": 0.06685297224764497,
+            "trades_delta": -1
+          },
+          "STRESS": {
+            "ending_capital_delta": 13.198108367592795,
+            "expectancy_delta": 0.12157745239517048,
+            "net_delta": 3.2984528012598275,
+            "pf_delta": 0.03675231505587462,
+            "return_pct_delta": 0.13198108367593164,
+            "trades_delta": -1
+          }
+        },
+        "pooled": {
+          "E1": {
+            "ending_capital_delta": 47.283429818158766,
+            "expectancy_delta": 0.07636437715060929,
+            "net_delta": 7.195944208260016,
+            "pf_delta": 0.03385561630981204,
+            "return_pct_delta": 0.4728342981815814,
+            "trades_delta": -1
+          },
+          "STRESS": {
+            "ending_capital_delta": 50.443787669715675,
+            "expectancy_delta": 0.07683945754976573,
+            "net_delta": 8.804918437170045,
+            "pf_delta": 0.03652678236956941,
+            "return_pct_delta": 0.5044378766971604,
+            "trades_delta": -1
+          }
+        }
+      }
+    }
+  },
+  "generated_at_utc": "2026-09-16T19:13:05.972605+00:00",
+  "inputs": {
+    "xauusd_m1_2024_2025_raw.csv": "f98a395961b27ca9dcb34cffa4ef8dd93720adb70292abf7bc96108667232445",
+    "xauusd_m5_2024_2025_news_clean.csv": "972ecaf6c3cadf7136363f396d7a29e7a6246646b575fad5c3e677036004b503",
+    "xauusd_m5_2024_2025_raw.csv": "ba54c9b29755eac4284cb872805148736be529e954533c028e7f826bb444ce66"
+  },
+  "protected_2026_opened": false,
+  "research": "R31",
+  "retuning_performed": false,
+  "schema": 1
+}
