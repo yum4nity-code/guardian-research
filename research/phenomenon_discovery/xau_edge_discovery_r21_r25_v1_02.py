@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import math
 import statistics
@@ -34,6 +35,15 @@ PROTECTED_START = base.PROTECTED_START
 POST_BARS = base.POST_BARS
 POST_MINUTES = base.POST_MINUTES
 
+# Trust anchor from the R15 PASS union manifest generated 2026-09-14T11:53:03Z.
+# Neither the path nor the digest can be supplied through CLI/environment input.
+# Relocating/rebuilding this immutable index requires a reviewed code change.
+CANONICAL_R15_INDEX = Path(
+    "D:/MT5_Backtests/Research/Autonomous/r15_dukascopy_xauusd_union_v1/"
+    "xauusd_dukascopy_master_payload_index.csv"
+)
+CANONICAL_R15_INDEX_SHA256 = "d77fb76e5b5ee0600a488c331084e70972a8800a33ae59a957c1044dc39ef566"
+
 # Reuse only phenomenon definitions that the second independent audit found
 # coherent on valid M5 input.
 r21_comex_unconditional_drift = base.r21_comex_unconditional_drift
@@ -46,6 +56,24 @@ cluster_stats = base.cluster_stats
 yearly_stability = base.yearly_stability
 _metric_summary = base._metric_summary
 _r25_fill_summary = base._r25_fill_summary
+
+
+def _read_canonical_r15_index(index_path: Path) -> bytes:
+    """Admit only the pinned metadata file, before opening any user path.
+
+    Compare the lexical absolute path first, then reject symlink/junction
+    redirection. Read the admitted index once; the builder receives a private
+    snapshot of precisely the bytes whose digest was checked.
+    """
+    trusted = CANONICAL_R15_INDEX.absolute()
+    if index_path.absolute() != trusted:
+        raise RuntimeError("refusing to open non-canonical R15 index path")
+    if index_path.resolve(strict=True) != trusted:
+        raise RuntimeError("refusing redirected canonical R15 index path")
+    content = index_path.read_bytes()
+    if hashlib.sha256(content).hexdigest() != CANONICAL_R15_INDEX_SHA256:
+        raise RuntimeError("canonical R15 index SHA256 mismatch; builder not called")
+    return content
 
 
 def load_generated_discovery_bars(path: Path) -> list[Bar]:
@@ -121,24 +149,26 @@ def r22_complete_estimator_day_jackknife(
     ]
     method = "delete_one_utc_day_complete_estimator_fail_closed"
     event_days = sorted({str(e["cluster_day"]) for e in ev})
+    base_obs = base._baseline_observations(bars, horizon)
+    baseline_days_set = {day for day, _, _ in base_obs}
     if not ev:
+        # With no events, deleting any baseline day also leaves no events:
+        # every required replication is analytically undefined, not absent.
+        days = sorted(baseline_days_set)
         return {
             "n": 0,
             "clusters": 0,
-            "baseline_days": 0,
+            "baseline_days": len(days),
             "event_days": 0,
-            "required_replicates": 0,
+            "required_replicates": len(days),
             "valid_replicates": 0,
-            "undefined_delete_days": [],
+            "undefined_delete_days": days,
             "mean": None,
             "cluster_se": None,
             "cluster_t": None,
             "method": method,
             "reason": "no qualifying events",
         }
-
-    base_obs = base._baseline_observations(bars, horizon)
-    baseline_days_set = {day for day, _, _ in base_obs}
 
     total_base_count: dict[int, int] = defaultdict(int)
     total_base_sum: dict[int, float] = defaultdict(float)
@@ -292,9 +322,12 @@ def summarize(name: str, events: Sequence[dict], bars: Sequence[Bar]) -> dict:
 
 def run_from_index(index_path: Path, selected: Sequence[str]) -> dict:
     """Build the discovery slice internally, then analyze it. No external CSV accepted."""
+    index_content = _read_canonical_r15_index(index_path)
     with tempfile.TemporaryDirectory(prefix="guardian_r21r25_v102_") as td:
+        verified_index = Path(td) / "verified_r15_index.csv"
+        verified_index.write_bytes(index_content)
         generated_csv = Path(td) / "sealed_discovery_m5.csv"
-        receipt = sealed_builder.build(index_path, generated_csv)
+        receipt = sealed_builder.build(verified_index, generated_csv)
         _validate_builder_receipt(receipt, generated_csv)
         bars = load_generated_discovery_bars(generated_csv)
 
@@ -316,8 +349,9 @@ def run_from_index(index_path: Path, selected: Sequence[str]) -> dict:
             "version": "1.02",
             "generated_at_utc": datetime.now(timezone.utc).isoformat(),
             "stage": "discovery",
-            "source_contract": "sealed_builder_from_immutable_r15_master_index_only",
+            "source_contract": "sealed_builder_from_canonical_sha256_pinned_r15_index",
             "source_index": str(index_path),
+            "source_index_sha256": CANONICAL_R15_INDEX_SHA256,
             "builder_receipt": receipt,
             "rows": len(bars),
             "first_epoch": bars[0].epoch,
@@ -343,7 +377,7 @@ def main() -> int:
         "--index",
         required=True,
         type=Path,
-        help="Immutable R15 XAUUSD master payload index; arbitrary M5 CSV input is not accepted.",
+        help="Canonical R15 index only; fixed path and SHA256 checked before building discovery.",
     )
     ap.add_argument("--output", required=True, type=Path)
     ap.add_argument(
@@ -353,6 +387,8 @@ def main() -> int:
         default=["R21", "R22", "R23", "R24", "R25"],
     )
     a = ap.parse_args()
+    if a.output.resolve() == CANONICAL_R15_INDEX.absolute():
+        raise RuntimeError("output must not overwrite the canonical R15 index")
     payload = run_from_index(a.index, a.research)
     a.output.parent.mkdir(parents=True, exist_ok=True)
     a.output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")

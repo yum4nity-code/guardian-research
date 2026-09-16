@@ -1,5 +1,15 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
+## R21–R25 scoped correction — 2026-09-16
+
+Owner-requested fixes after the third cold-audit FAIL are implemented in v1.02:
+canonical R15 index path/digest admission before builder access, a private verified
+index snapshot, and accurate R22 baseline coverage when no event label is usable.
+See `research/phenomenon_discovery/R21_R25_THIRD_AUDIT_FIXES_2026_09_16.md`.
+Synthetic tests pass; independent review of this correction remains pending.
+Generation 83 stays at 3 jobs / 0 enabled / no 2026 authorization. No historical
+or live job was launched. Earlier project state below is preserved as history.
+
 ## Canonical current state — 2026-09-13
 
 Read `START_HERE_NEXT_AI.md`, this file, the durable mandates, the current queue append, and latest `backtest-results` evidence before acting.

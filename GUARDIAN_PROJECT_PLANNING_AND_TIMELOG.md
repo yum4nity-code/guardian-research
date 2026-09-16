@@ -555,3 +555,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - The already-running R5 r2 child is not restarted or interrupted by this change.
 - No new downstream research phase is authorized merely by restoring the existing R5 queue entries; R5 completion still requires the planned cold methodology/code/provenance audit before new research work is added.
 - Operator intends to leave the PC running overnight and shut it down tomorrow.
+
+
+## 2026-09-16 — R21–R25 third-audit corrections
+
+- Owner requested implementation after cold audit FAIL on cd40d686e002792753dd5e1a4d562340108de04d.
+- Fixed canonical R15 metadata-path admission and pinned its SHA256 against the existing PASS union manifest; the builder uses a private snapshot of verified bytes. Fixed R22 baseline/replication diagnostics for horizons without valid event labels.
+- Added regression tests; native synthetic engine/dependency/builder/queue suites PASS. Effective generation 83 remains exactly 3 jobs, 0 enabled, human_approved_2026=false.
+- No historical backtest, market payload access, data modification, deployment or live authorization. Only the R15 provenance manifest and index metadata were read to establish the pin.
+- Next safe action: independent cold review of the corrective commit, before any later queue activation. Correcting-author tests are not an independent audit.
+- Human active time: NOT QUANTIFIED. Automated execution time is not human time.
