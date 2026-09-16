@@ -212,25 +212,11 @@ def _naive_primary(events: list[dict]) -> dict:
     out = {}
     for h in (4, 8):
         key = f"excess_abs_{h}b"
-        raw = discovery.signed_stats(
-            e[key]
+        persistence = discovery.signed_stats(
+            -float(e[key])
             for e in bottom10
             if isinstance(e.get(key), (int, float))
         )
-        persistence = dict(raw)
-        persistence["mean"] = (
-            -float(raw["mean"]) if _finite_number(raw.get("mean")) else None
-        )
-        persistence["median"] = (
-            -float(raw["median"]) if _finite_number(raw.get("median")) else None
-        )
-        persistence["t"] = (
-            -float(raw["t"]) if _finite_number(raw.get("t")) else None
-        )
-        if _finite_number(raw.get("positive_fraction")):
-            persistence["positive_fraction"] = (
-                1.0 - float(raw["positive_fraction"])
-            )
         out[f"persistence_{h}b"] = persistence
     return out
 
