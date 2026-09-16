@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R27-CONFIRMATION-CONTROL-PLANE-PREFLIGHT__r1.json",
+  "main_commit": "a41c5467041e75395c7b2fbb25289e71fa0aee71",
+  "pid": 13536,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-16T16:04:44.857609+00:00",
+  "version": "1.03"
+}

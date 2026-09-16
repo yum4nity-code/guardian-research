@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r27-confirmation-control-plane-preflight",
+  "duration_seconds": 5.0204318999894895,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T16:04:44.855645+00:00",
+  "job_id": "R27-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
+  "main_commit": "a41c5467041e75395c7b2fbb25289e71fa0aee71",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T16:04:39.819359+00:00",
+  "status": "PASS",
+  "stderr_tail": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.040s\n\nOK",
+  "stdout_tail": ""
+}
