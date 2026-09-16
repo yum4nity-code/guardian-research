@@ -19,6 +19,7 @@ CONFIRMATION_START = date(2019, 7, 1)
 CONFIRMATION_END = date(2024, 12, 31)
 PREOOS_START = date(2025, 1, 1)
 PROTECTED_START = date(2026, 1, 1)
+EXPECTED_SOURCE_DAYS = 1437
 
 
 def parse_confirmation_rows(index_csv: Path) -> list[dict[str, str]]:
@@ -43,6 +44,17 @@ def parse_confirmation_rows(index_csv: Path) -> list[dict[str, str]]:
                 selected.append(row)
     if not selected:
         raise RuntimeError("no payload rows in frozen R21 confirmation window")
+    first = date.fromisoformat(selected[0]["date"])
+    last = date.fromisoformat(selected[-1]["date"])
+    if first != CONFIRMATION_START or last != CONFIRMATION_END:
+        raise RuntimeError(
+            f"confirmation boundary coverage mismatch: {first}..{last}"
+        )
+    if len(selected) != EXPECTED_SOURCE_DAYS:
+        raise RuntimeError(
+            f"confirmation source-day count mismatch: "
+            f"{len(selected)} != {EXPECTED_SOURCE_DAYS}"
+        )
     return selected
 
 
@@ -139,6 +151,7 @@ def build(
         "stage_start": CONFIRMATION_START.isoformat(),
         "stage_end_inclusive": CONFIRMATION_END.isoformat(),
         "source_days": len(rows),
+        "expected_source_days": EXPECTED_SOURCE_DAYS,
         "first_opened_payload_date": opened_dates[0],
         "last_opened_payload_date": opened_dates[-1],
         "decoded_m1": total_m1,
