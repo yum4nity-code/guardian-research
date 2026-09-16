@@ -224,6 +224,54 @@ def test_run_pipeline_uses_confirmation_only_and_writes_gate():
         assert "post_30m" in payload["confirmation_gate"]["descriptive_metrics_cannot_rescue_primary"]
 
 
+
+def test_pin_attestation_requires_full_frozen_provenance():
+    with tempfile.TemporaryDirectory() as td:
+        p = Path(td) / "attestation.json"
+        p.write_text(
+            m.json.dumps({
+                "status": "PASS",
+                "phase": "r15-dukascopy-xauusd-boundary-union",
+                "payload_count": 5517,
+                "eligible_boundary_days": 5518,
+                "known_missing_or_holiday_weekdays": 0,
+                "payload_index_csv_sha256": m.CANONICAL_R15_INDEX_SHA256,
+                "protected_2026_opened": False,
+                "window": {
+                    "start": "2004-11-08",
+                    "end_exclusive": "2026-01-01",
+                },
+            }),
+            encoding="utf-8",
+        )
+        with patch.object(m, "R15_PIN_ATTESTATION", p):
+            try:
+                m._validate_pin_attestation()
+            except RuntimeError as exc:
+                assert "payload_count" in str(exc)
+            else:
+                raise AssertionError("incomplete R15 provenance was accepted")
+
+
+def test_existing_confirmation_result_refuses_rerun():
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td) / "r21_xau_confirmation_v100"
+        root.mkdir(parents=True)
+        output = root / "confirmation.json"
+        progress = root / "progress.json"
+        output.write_text('{"status":"EXISTING"}', encoding="utf-8")
+
+        with patch.object(m, "CANONICAL_OUTPUT_DIR", root), \
+             patch.object(m, "CANONICAL_OUTPUT", output), \
+             patch.object(m, "CANONICAL_PROGRESS", progress):
+            try:
+                m.run_from_index(Path("unused.csv"), progress)
+            except RuntimeError as exc:
+                assert "refusing scientific overwrite" in str(exc)
+            else:
+                raise AssertionError("existing confirmation result was overwritten")
+
+
 def test_output_and_progress_paths_are_confined():
     with tempfile.TemporaryDirectory() as td:
         root = Path(td) / "r21_xau_confirmation_v100"
@@ -252,6 +300,8 @@ def main():
     test_confirmation_loader_rejects_outside_window_and_off_grid()
     test_builder_receipt_rejects_2025_claim()
     test_run_pipeline_uses_confirmation_only_and_writes_gate()
+    test_pin_attestation_requires_full_frozen_provenance()
+    test_existing_confirmation_result_refuses_rerun()
     test_output_and_progress_paths_are_confined()
     print("PASS: R21 confirmation v1.00 tests")
 
