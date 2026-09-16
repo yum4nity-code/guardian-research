@@ -1,3 +1,9 @@
+# SUPERSEDED — INDEPENDENT COLD AUDIT FAIL
+
+The v1.00 implementation documented below failed independent cold audit at commit `f0213f86dc74a2e2955224143d2b1405b969efa9` and MUST NOT be executed or used for scientific inference. See `R21_R25_COLD_AUDIT_FAIL_AND_V101_FIXES_2026_09_16.md` and the v1.01 files for the corrective candidate. Generation 81 is archived and disabled.
+
+---
+
 # R21-R25 implementation notes — v1.00 candidate — 2026-09-16
 
 This document records implementation choices for the already-preregistered `R21_R25_XAU_RESEARCH_PLAN_2026_09_14.md`. It does not change scientific hypotheses.
