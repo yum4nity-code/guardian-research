@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R27-XAU-CONFIRMATION__r1.json",
+  "main_commit": "46ad63ffe215ceb9a034aa5b696146e0c3f0e77f",
+  "pid": 13536,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-16T16:28:19.133972+00:00",
+  "version": "1.03"
+}
