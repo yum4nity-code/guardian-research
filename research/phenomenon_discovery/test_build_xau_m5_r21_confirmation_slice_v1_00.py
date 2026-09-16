@@ -13,10 +13,12 @@ def test_builder_opens_only_confirmation_payloads_and_heartbeats():
     with tempfile.TemporaryDirectory() as td:
         root = Path(td)
         p_discovery = root / "2019-06-28.bi5"
-        p_confirmation = root / "2019-07-01.bi5"
+        p_confirmation_start = root / "2019-07-01.bi5"
+        p_confirmation_end = root / "2024-12-31.bi5"
         p_2025 = root / "2025-01-02.bi5"
         p_discovery.write_bytes(b"DISCOVERY-MUST-NOT-OPEN")
-        p_confirmation.write_bytes(b"CONFIRMATION")
+        p_confirmation_start.write_bytes(b"CONFIRMATION-START")
+        p_confirmation_end.write_bytes(b"CONFIRMATION-END")
         p_2025.write_bytes(b"2025-MUST-NOT-OPEN")
 
         idx = root / "index.csv"
@@ -28,7 +30,8 @@ def test_builder_opens_only_confirmation_payloads_and_heartbeats():
             w.writeheader()
             for d, p in (
                 ("2019-06-28", p_discovery),
-                ("2019-07-01", p_confirmation),
+                ("2019-07-01", p_confirmation_start),
+                ("2024-12-31", p_confirmation_end),
                 ("2025-01-02", p_2025),
             ):
                 w.writerow({
@@ -51,13 +54,19 @@ def test_builder_opens_only_confirmation_payloads_and_heartbeats():
 
         def fake_decode(d, p, h, n):
             opened.append((d, str(p)))
-            assert d == date(2019, 7, 1)
-            assert p == p_confirmation
-            base = 1561939200
+            if d == date(2019, 7, 1):
+                assert p == p_confirmation_start
+                base = 1561939200
+            elif d == date(2024, 12, 31):
+                assert p == p_confirmation_end
+                base = 1735603200
+            else:
+                raise AssertionError(f"unexpected opened date: {d}")
             return [M1(base + i * 60) for i in range(5)]
 
         def fake_agg(m1):
-            return [(1561939200, 1400.0, 1401.0, 1399.0, 1400.5)], 0
+            epoch = m1[0].epoch
+            return [(epoch, 1400.0, 1401.0, 1399.0, 1400.5)], 0
 
         old = s._canonical_builder_api
         old_expected = s.EXPECTED_SOURCE_DAYS
@@ -66,7 +75,7 @@ def test_builder_opens_only_confirmation_payloads_and_heartbeats():
             fake_agg,
             lambda p: "f" * 64,
         )
-        s.EXPECTED_SOURCE_DAYS = 1
+        s.EXPECTED_SOURCE_DAYS = 2
         try:
             result = s.build(
                 idx,
@@ -77,12 +86,15 @@ def test_builder_opens_only_confirmation_payloads_and_heartbeats():
             s._canonical_builder_api = old
             s.EXPECTED_SOURCE_DAYS = old_expected
 
-        assert opened == [(date(2019, 7, 1), str(p_confirmation))]
-        assert callbacks[-1]["completed"] == 1
-        assert callbacks[-1]["total"] == 1
+        assert opened == [
+            (date(2019, 7, 1), str(p_confirmation_start)),
+            (date(2024, 12, 31), str(p_confirmation_end)),
+        ]
+        assert callbacks[-1]["completed"] == 2
+        assert callbacks[-1]["total"] == 2
         assert result["stage"] == "confirmation"
         assert result["first_opened_payload_date"] == "2019-07-01"
-        assert result["last_opened_payload_date"] == "2019-07-01"
+        assert result["last_opened_payload_date"] == "2024-12-31"
         assert result["confirmation_opened"] is True
         assert result["pre_oos_2025_opened"] is False
         assert result["protected_2026_opened"] is False
