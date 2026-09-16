@@ -127,6 +127,8 @@ def test_builder_receipt_rejects_2025_claim():
             "stage": "confirmation",
             "stage_start": m.CONFIRMATION_START.isoformat(),
             "stage_end_inclusive": m.CONFIRMATION_END.isoformat(),
+            "source_days": m.sealed_builder.EXPECTED_SOURCE_DAYS,
+            "expected_source_days": m.sealed_builder.EXPECTED_SOURCE_DAYS,
             "confirmation_opened": True,
             "pre_oos_2025_opened": False,
             "protected_2026_opened": False,
@@ -156,10 +158,13 @@ def test_run_pipeline_uses_confirmation_only_and_writes_gate():
         def fake_build(index_path: Path, generated_csv: Path, progress_callback=None):
             assert index_path.read_bytes() == index_bytes
 
-            # Two NY trading days. In July New York is UTC-4, so 08:20 NY = 12:20 UTC.
+            # Two synthetic event days placed on the exact confirmation boundaries.
             rows = []
-            for day, gain in ((1, 1.0), (2, 2.0)):
-                start = datetime(2020, 7, day, 12, 20, tzinfo=timezone.utc)
+            starts_and_gains = (
+                (datetime(2019, 7, 1, 12, 20, tzinfo=timezone.utc), 1.0),
+                (datetime(2024, 12, 31, 13, 20, tzinfo=timezone.utc), 2.0),
+            )
+            for start, gain in starts_and_gains:
                 prices = [1400.0, 1400.0, 1400.0, 1400.0 + gain]
                 for i, price in enumerate(prices):
                     rows.append((start + timedelta(minutes=5 * i), price))
@@ -170,14 +175,14 @@ def test_run_pipeline_uses_confirmation_only_and_writes_gate():
                 progress_callback({
                     "completed": 1,
                     "total": 2,
-                    "last_opened_payload_date": "2020-07-01",
+                    "last_opened_payload_date": "2019-07-01",
                     "decoded_m1": 100,
                     "emitted_m5": 4,
                 })
                 progress_callback({
                     "completed": 2,
                     "total": 2,
-                    "last_opened_payload_date": "2020-07-02",
+                    "last_opened_payload_date": "2024-12-31",
                     "decoded_m1": 200,
                     "emitted_m5": 8,
                 })
@@ -188,8 +193,9 @@ def test_run_pipeline_uses_confirmation_only_and_writes_gate():
                 "stage_start": m.CONFIRMATION_START.isoformat(),
                 "stage_end_inclusive": m.CONFIRMATION_END.isoformat(),
                 "source_days": 2,
-                "first_opened_payload_date": "2020-07-01",
-                "last_opened_payload_date": "2020-07-02",
+                "expected_source_days": 2,
+                "first_opened_payload_date": "2019-07-01",
+                "last_opened_payload_date": "2024-12-31",
                 "decoded_m1": 200,
                 "emitted_m5": 8,
                 "dropped_partial_m5_buckets": 0,
@@ -208,6 +214,7 @@ def test_run_pipeline_uses_confirmation_only_and_writes_gate():
              patch.object(m, "CANONICAL_OUTPUT_DIR", outdir), \
              patch.object(m, "CANONICAL_OUTPUT", output), \
              patch.object(m, "CANONICAL_PROGRESS", progress), \
+             patch.object(m.sealed_builder, "EXPECTED_SOURCE_DAYS", 2), \
              patch.object(m.sealed_builder, "build", side_effect=fake_build):
             payload = m.run_from_index(index, progress)
 
