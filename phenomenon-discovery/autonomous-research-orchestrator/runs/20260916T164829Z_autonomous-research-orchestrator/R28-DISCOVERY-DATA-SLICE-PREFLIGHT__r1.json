@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r28-discovery-data-slice-preflight",
+  "duration_seconds": 5.003004400001373,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T16:48:28.853662+00:00",
+  "job_id": "R28-DISCOVERY-DATA-SLICE-PREFLIGHT",
+  "main_commit": "1cbc9a0cafb37d4440199f5d57df47b46f80355d",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T16:48:23.838500+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS: discovery-only M5 builder v1.02 heartbeat tests"
+}
