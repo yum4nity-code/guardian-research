@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R32-CONTROL-PLANE-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "af24377010c0881da70d03145240eaea3899c702",
+  "pid": 13536,
+  "protected_2026": true,
+  "queue_generation": 112,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-16T19:22:47.850329+00:00",
+  "version": "1.03"
+}
