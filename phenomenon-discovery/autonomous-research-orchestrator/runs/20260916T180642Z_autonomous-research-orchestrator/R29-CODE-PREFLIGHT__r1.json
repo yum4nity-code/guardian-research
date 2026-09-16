@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r29-code-preflight",
+  "duration_seconds": 10.006338200008031,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T18:06:42.339184+00:00",
+  "job_id": "R29-CODE-PREFLIGHT",
+  "main_commit": "9ac73726635ab0f05b7923c22dcbd112a0dbd3e9",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T18:06:32.309145+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS: R29 R27-filter \ufffd R6 interaction tests"
+}
