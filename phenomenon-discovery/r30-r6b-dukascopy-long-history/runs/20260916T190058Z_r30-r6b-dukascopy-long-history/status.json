@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "name": "r30_r6b_dukascopy_long_history_result.json",
+      "sha256": "525adbbf13e50bcd8911c1427bcb6a2e8b5595e7ec52d5cd4b0600c107e8ddce",
+      "size_bytes": 2108200
+    },
+    {
+      "name": "r30_r6b_dukascopy_yearly.csv",
+      "sha256": "025ea131fdca2f1826fd727a160b56b881c775c3a60f78e3a1ecd3f8da03a843",
+      "size_bytes": 23313
+    },
+    {
+      "name": "r30_r6b_dukascopy_capital_curve.csv",
+      "sha256": "65833da55a55db368eda6d7320ac3363a148f99b0358fe27848510be61fd0e0f",
+      "size_bytes": 939666
+    },
+    {
+      "name": "manifest.json",
+      "sha256": "7e4c7139f66cff7c20bd9c75de0a824bf7a38672baa1d58882717df1526c5d8d",
+      "size_bytes": 12973
+    }
+  ],
+  "generated_at_utc": "2026-09-16T19:00:58.665099+00:00",
+  "phase": "r30-r6b-dukascopy-long-history",
+  "schema": 1,
+  "source_commit": "e12c7c4abed1f76cab9d62e11493626b939019b6",
+  "status": "PASS",
+  "summary": "R30 frozen R6B-347/R6B-307 Dukascopy 2004-2025 long-history capital characterization completed."
+}
