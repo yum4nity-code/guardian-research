@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "generation": 102,
+  "generation": 103,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 102 authorizes R28 directional-drift discovery r1 after preregistration, cold audit and generation-101 preflight PASS. Exact-main receipt binding requires control-plane, R28 code, R22/v1.03 regression and sealed discovery-builder preflights to PASS again on this commit before discovery payloads open. R28 remains discovery-only; confirmation, 2025, 2026+, bottom20 rescue, alternate horizons, PnL optimization and live integration remain prohibited.",
+  "closure": "Generation 103 closes R28 after discovery r1 completed cleanly but failed the frozen directional discovery gate. directional_excess_4b mean -4.854271374062158e-06 with complete-jackknife t -0.7658432829100201; directional_excess_8b mean +7.248238240213489e-07 with t +0.07751058364997827. Signs disagree and neither |t| exceeds 2. All R28 jobs disabled. Confirmation, 2025, 2026+, rescue tuning, PnL optimization and live integration remain prohibited.",
   "jobs": [
     {
       "id": "R28-DISCOVERY-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 5,
       "class_key": "r28-discovery-control-plane-preflight",
       "description": "Run orchestrator v1.03 control-plane tests. Synthetic/infrastructure only.",
@@ -22,7 +22,7 @@
     {
       "id": "R28-DISCOVERY-CODE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 10,
       "class_key": "r28-discovery-code-preflight",
       "description": "Run R28 directional-drift discovery v1.00 synthetic tests: exact R22 state reuse, signed estimator, complete jackknife fail-closed, joint discovery gate, one-shot and path confinement.",
@@ -35,7 +35,7 @@
     {
       "id": "R28-R22-REGRESSION-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 11,
       "class_key": "r28-r22-regression-preflight",
       "description": "Run full R21-R25 v1.03 regression suite protecting the frozen R22 compression-state definition and prior complete-jackknife behavior.",
@@ -48,7 +48,7 @@
     {
       "id": "R28-DISCOVERY-DATA-SLICE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 12,
       "class_key": "r28-discovery-data-slice-preflight",
       "description": "Run sealed discovery-builder v1.02 tests proving discovery-only payload opening, post-discovery non-opening and 2026 hard-fail.",
@@ -61,7 +61,7 @@
     {
       "id": "R28-XAU-DISCOVERY",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 30,
       "class_key": "r28-xau-discovery",
       "description": "R28 discovery only. Exact R22 bottom10 conditioning state; signed same-clock directional excess at 4b/8b; complete-estimator delete-one-UTC-day jackknife. PASS only if both horizons share one sign and both |t| > 2. Confirmation/2025/2026+ inaccessible.",
