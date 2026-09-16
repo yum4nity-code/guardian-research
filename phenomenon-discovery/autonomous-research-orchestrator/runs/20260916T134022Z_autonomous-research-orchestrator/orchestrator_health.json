@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R21-R25-CODE-PREFLIGHT__r4.json",
+  "main_commit": "904c78c839de0b1ad1ac589055e16bcf3af44a40",
+  "pid": 13536,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-16T13:40:22.706403+00:00",
+  "version": "1.03"
+}
