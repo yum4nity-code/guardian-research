@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R33-CORRECTED-LONG-HISTORY__r1.json",
+  "main_commit": "1cb72ea29874da0a7f9de1aa6e74a26d15951888",
+  "pid": 13536,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-16T20:47:47.567635+00:00",
+  "version": "1.03"
+}
