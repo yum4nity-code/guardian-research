@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r27-r22-regression-preflight",
+  "duration_seconds": 5.00196589998086,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T16:08:33.386906+00:00",
+  "job_id": "R27-R22-REGRESSION-PREFLIGHT",
+  "main_commit": "46ad63ffe215ceb9a034aa5b696146e0c3f0e77f",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T16:08:28.378205+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS: R21-R25 v1.02 second-audit regression tests\nprogress build days=1/10 m5=20 fraction=0.075000\nprogress build days=5/10 m5=100 fraction=0.375000\nprogress build days=10/10 m5=200 fraction=0.750000\nPASS: R21-R25 v1.03 heartbeat/cleanup regression tests"
+}
