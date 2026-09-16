@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r28-discovery-control-plane-preflight",
+  "duration_seconds": 5.01577799997176,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T16:43:32.448228+00:00",
+  "job_id": "R28-DISCOVERY-CONTROL-PLANE-PREFLIGHT",
+  "main_commit": "0f169ed4f3b3f87a042c053fdf72ff0d72dbf319",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T16:43:27.407083+00:00",
+  "status": "PASS",
+  "stderr_tail": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.082s\n\nOK",
+  "stdout_tail": ""
+}
