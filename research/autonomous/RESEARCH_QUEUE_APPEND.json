@@ -1,18 +1,18 @@
 {
   "schema": 1,
-  "generation": 91,
+  "generation": 92,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 91 owner-authorized R21-R25 DISCOVERY r6 only. It replaces the failed r4/r5 timeout attempts with builder v1.02 + engine v1.03 heartbeat/progress, transient-only cleanup, and exact-main receipt binding. Control-plane r1, code preflight r5 and data-slice preflight r5 must all PASS on this exact main commit before discovery r6 can execute. Nominal adaptive time limits do not kill while the canonical progress heartbeat is fresh; stale-heartbeat threshold is 1 hour. Confirmation, 2025, 2026, Guardian integration and live trading remain prohibited.",
+  "closure": "Generation 92 stages R21 confirmation preflights only after the frozen R21-R25 discovery result. Real confirmation r1 is present but disabled. No confirmation payload may be opened until control-plane, R21 code, and R21 sealed-builder preflights all PASS on the same main commit. 2025, 2026+, R22-R25 confirmation, PnL optimization and live integration remain prohibited.",
   "jobs": [
     {
-      "id": "R21-R25-CONTROL-PLANE-PREFLIGHT",
+      "id": "R21-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 5,
-      "class_key": "r21-r25-control-plane-preflight",
-      "description": "Run orchestrator v1.03 control-plane tests. Synthetic/infrastructure only; no market data.",
+      "class_key": "r21-confirmation-control-plane-preflight",
+      "description": "Run orchestrator v1.03 control-plane tests. Synthetic/infrastructure only; no market payloads.",
       "executor": {
         "kind": "python",
         "path": "research/autonomous/test_guardian_research_orchestrator_v1_00.py",
@@ -20,46 +20,46 @@
       }
     },
     {
-      "id": "R21-R25-CODE-PREFLIGHT",
-      "revision": 5,
+      "id": "R21-CONFIRMATION-CODE-PREFLIGHT",
+      "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r21-r25-code-preflight",
-      "description": "Run v1.03 heartbeat/cleanup regression tests plus the prior v1.02 scientific regression suite.",
+      "class_key": "r21-confirmation-code-preflight",
+      "description": "Run R21 confirmation v1.00 synthetic contract, gate, provenance, one-shot and path-confinement tests. No market payloads.",
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_03.py",
+        "path": "research/phenomenon_discovery/test_xau_r21_confirmation_v1_00.py",
         "args": []
       }
     },
     {
-      "id": "R21-R25-DATA-SLICE-PREFLIGHT",
-      "revision": 5,
+      "id": "R21-CONFIRMATION-DATA-SLICE-PREFLIGHT",
+      "revision": 1,
       "enabled": true,
       "priority": 11,
-      "class_key": "r21-r25-data-slice-preflight",
-      "description": "Run discovery builder v1.02 heartbeat tests and prove post-discovery payloads remain unopened / 2026 metadata hard-fails.",
+      "class_key": "r21-confirmation-data-slice-preflight",
+      "description": "Run sealed R21 confirmation builder synthetic tests proving exact boundary selection, 2025 non-opening and 2026 hard-fail. No real market payloads.",
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/test_build_xau_m5_discovery_slice_v1_02.py",
+        "path": "research/phenomenon_discovery/test_build_xau_m5_r21_confirmation_slice_v1_00.py",
         "args": []
       }
     },
     {
-      "id": "R21-R25-XAU-DISCOVERY",
-      "revision": 6,
-      "enabled": true,
+      "id": "R21-XAU-CONFIRMATION",
+      "revision": 1,
+      "enabled": false,
       "priority": 30,
-      "class_key": "r21-r25-xau-discovery",
-      "description": "v1.03 discovery only. Canonical pinned R15 index -> sealed builder v1.02 -> M5 -> frozen R21-R25 definitions. Writes atomic heartbeat progress; cleans only stale local R21-R25 transients. No confirmation, 2025, 2026 or live logic.",
+      "class_key": "r21-xau-confirmation",
+      "description": "R21 independent confirmation only, frozen 2019-07-01 through 2024-12-31. Primary post_15m gate: mean > 0 and day-clustered t > +2.0. 2025 and 2026+ inaccessible.",
       "data_window": {
-        "start": "2004-11-08T00:00:00Z",
-        "end_exclusive": "2019-07-01T00:00:00Z"
+        "start": "2019-07-01T00:00:00Z",
+        "end_exclusive": "2025-01-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R21-R25-CONTROL-PLANE-PREFLIGHT",
+          "job_id": "R21-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -67,16 +67,16 @@
         },
         {
           "kind": "receipt",
-          "job_id": "R21-R25-CODE-PREFLIGHT",
-          "revision": 5,
+          "job_id": "R21-CONFIRMATION-CODE-PREFLIGHT",
+          "revision": 1,
           "accepted_status": [
             "PASS"
           ]
         },
         {
           "kind": "receipt",
-          "job_id": "R21-R25-DATA-SLICE-PREFLIGHT",
-          "revision": 5,
+          "job_id": "R21-CONFIRMATION-DATA-SLICE-PREFLIGHT",
+          "revision": 1,
           "accepted_status": [
             "PASS"
           ]
@@ -84,22 +84,22 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/xau_edge_discovery_r21_r25_v1_03.py",
+        "path": "research/phenomenon_discovery/xau_r21_confirmation_v1_00.py",
         "args": [
           "--index",
           "{ROOT}\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
           "--output",
-          "{ROOT}\\r21_r25_xau_v103\\discovery.json",
+          "{ROOT}\\r21_xau_confirmation_v100\\confirmation.json",
           "--progress",
-          "{ROOT}\\r21_r25_xau_v103\\progress.json"
+          "{ROOT}\\r21_xau_confirmation_v100\\progress.json"
         ]
       },
       "timeout": {
         "min_seconds": 1800,
-        "expected_seconds": 1800,
+        "expected_seconds": 1200,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
-        "progress_file": "{ROOT}\\r21_r25_xau_v103\\progress.json",
+        "progress_file": "{ROOT}\\r21_xau_confirmation_v100\\progress.json",
         "stale_heartbeat_seconds": 3600,
         "poll_seconds": 5
       }
