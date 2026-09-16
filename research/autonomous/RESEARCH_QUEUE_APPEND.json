@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "generation": 96,
+  "generation": 97,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 96 authorizes R26 opening-range reversal confirmation r1 after preregistration, cold audit, and generation-95 preflight PASS. Exact-main receipt binding requires control-plane, R26 code and sealed confirmation-builder preflights to PASS again on this commit before market payloads open. R26 uses the frozen R24 event definition and joint reversal_2b + reversal_4b gate: both means >0 and both clustered t >2.0. 2025, 2026+, horizon rescue, PnL optimization and live integration remain prohibited.",
+  "closure": "Generation 97 closes R26 after confirmation r1 completed cleanly but failed the frozen joint scientific gate. reversal_2b mean +6.245276678524023e-05, clustered t +1.847727211281781; reversal_4b mean +3.413179040851612e-05, clustered t +0.7032756601472466. All R26 jobs disabled. 2025 and 2026+ remain prohibited; no horizon rescue, rerun, economic gate or live integration is authorized.",
   "jobs": [
     {
       "id": "R26-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 5,
       "class_key": "r26-confirmation-control-plane-preflight",
       "description": "Run orchestrator v1.03 control-plane tests. Synthetic/infrastructure only; no market payloads.",
@@ -22,7 +22,7 @@
     {
       "id": "R26-CONFIRMATION-CODE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 10,
       "class_key": "r26-confirmation-code-preflight",
       "description": "Run R26 opening-range reversal v1.00 synthetic tests for exact extractor reuse, joint gate, sign convention, one-shot safety and path confinement. No market payloads.",
@@ -35,7 +35,7 @@
     {
       "id": "R26-CONFIRMATION-DATA-SLICE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 11,
       "class_key": "r26-confirmation-data-slice-preflight",
       "description": "Re-run the audited sealed confirmation builder tests proving exact 2019-07-01..2024-12-31 coverage, 2025 non-opening and 2026 hard-fail. Synthetic only.",
@@ -48,7 +48,7 @@
     {
       "id": "R26-XAU-CONFIRMATION",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 30,
       "class_key": "r26-xau-confirmation",
       "description": "R26 independent outcome confirmation only. Frozen R24 opening-range event definition, reversal sign, joint primary reversal_2b + reversal_4b. PASS requires both means >0 and both clustered t >2. 2025 and 2026+ inaccessible.",
