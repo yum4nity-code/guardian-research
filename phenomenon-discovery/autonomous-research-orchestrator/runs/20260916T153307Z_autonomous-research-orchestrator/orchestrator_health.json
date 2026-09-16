@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R21-R25-CONTROL-PLANE-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "a6b8fcbc057ec4157e921e6e41e0495f98c267f6",
+  "pid": 13536,
+  "protected_2026": true,
+  "queue_generation": 91,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-16T15:33:07.391951+00:00",
+  "version": "1.03"
+}
