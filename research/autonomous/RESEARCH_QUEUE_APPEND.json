@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "generation": 89,
+  "generation": 90,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 89 restart-verification only. Enable solely R21-R25-CONTROL-PLANE-PREFLIGHT r1 to prove the Windows Scheduled Task is executing the refreshed orchestrator v1.03 on the exact current main commit. No market-data preflight or discovery is enabled.",
+  "closure": "Generation 90 owner-authorized DISCOVERY ONLY. Enable control-plane r1, code preflight r4, data-slice preflight r4 and discovery r5 together on one main commit so exact-main receipt binding forces all three preflights to PASS on this same commit before discovery can execute. Discovery timeout remains 30 minutes minimum. Confirmation, 2025, 2026, Guardian integration and live trading remain prohibited.",
   "jobs": [
     {
       "id": "R21-R25-CONTROL-PLANE-PREFLIGHT",
@@ -22,7 +22,7 @@
     {
       "id": "R21-R25-CODE-PREFLIGHT",
       "revision": 4,
-      "enabled": false,
+      "enabled": true,
       "priority": 10,
       "class_key": "r21-r25-code-preflight",
       "description": "Run v1.02 second-audit regression tests. Necessary but not sufficient; does not authorize historical discovery.",
@@ -35,7 +35,7 @@
     {
       "id": "R21-R25-DATA-SLICE-PREFLIGHT",
       "revision": 4,
-      "enabled": false,
+      "enabled": true,
       "priority": 11,
       "class_key": "r21-r25-data-slice-preflight",
       "description": "Re-run the sealed discovery-builder tests proving post-2019-06-30 payload bytes are never decoded and 2026 metadata hard-fails.",
@@ -48,7 +48,7 @@
     {
       "id": "R21-R25-XAU-DISCOVERY",
       "revision": 5,
-      "enabled": false,
+      "enabled": true,
       "priority": 30,
       "class_key": "r21-r25-xau-discovery",
       "description": "v1.02 accepts only the immutable R15 master index, internally builds a temporary sealed discovery CSV, enforces the absolute M5 grid, and runs the frozen R21-R25 discovery definitions. No arbitrary CSV input, confirmation, 2025, 2026 or live logic.",
