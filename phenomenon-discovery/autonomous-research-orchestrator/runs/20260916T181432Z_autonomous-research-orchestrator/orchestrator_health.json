@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R29-RESULT-PUBLISH",
+    "revision": 1
+  },
+  "main_commit": "29e02d033bbe81f3d8f588d500485402d28044bb",
+  "pid": 13536,
+  "protected_2026": true,
+  "queue_generation": 107,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-16T18:14:32.713355+00:00",
+  "version": "1.03"
+}
