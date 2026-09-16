@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 900.2287932001054,
+  "class_key": "r29-r27-filter-r6-diagnostic",
+  "duration_seconds": 80.02066750000813,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T18:12:13.288515+00:00",
+  "job_id": "R29-R27-FILTER-R6-DIAGNOSTIC",
+  "main_commit": "eef412cd5024a1b0cb4f02379f964ea94da5d5b0",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T18:10:53.226820+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"R6B-307_pooled_E1_difference\": -0.8203835804569053, \"R6B-347_bootstrap_upper\": 3.367004739321356, \"R6B-347_pooled_E1_difference\": -1.9059823459182557, \"protected_2026_opened\": false, \"status\": \"NO_FILTER_LEAD\"}"
+}
