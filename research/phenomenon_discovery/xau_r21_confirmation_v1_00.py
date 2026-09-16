@@ -132,6 +132,7 @@ def _write_progress(
     *,
     phase: str,
     fraction: float,
+    confirmation_opened: bool = False,
     **extra,
 ) -> None:
     fraction = max(0.0, min(1.0, float(fraction)))
@@ -146,7 +147,8 @@ def _write_progress(
             "phase": phase,
             "fraction": fraction,
             "updated_at_utc": datetime.now(timezone.utc).isoformat(),
-            "confirmation_opened": True,
+            "confirmation_authorized": True,
+            "confirmation_opened": bool(confirmation_opened),
             "pre_oos_2025_opened": False,
             "protected_2026_opened": False,
             **extra,
@@ -161,7 +163,11 @@ def _cleanup_stale_transients() -> list[str]:
     root = CANONICAL_OUTPUT_DIR
     try:
         if root.exists() and root.resolve(strict=True) == root.absolute():
-            for name in ("confirmation.json", "progress.json"):
+            for name in (
+                "progress.json",
+                "progress.json.tmp",
+                "confirmation.json.tmp",
+            ):
                 p = root / name
                 if (
                     p.exists()
@@ -302,13 +308,18 @@ def _confirmation_gate(summary: dict) -> dict:
 
 
 def run_from_index(index_path: Path, progress_path: Path) -> dict:
-    cleaned = _cleanup_stale_transients()
     progress_path = _validate_progress_path(progress_path)
+    if CANONICAL_OUTPUT.exists():
+        raise RuntimeError(
+            "existing R21 confirmation result detected; refusing scientific overwrite"
+        )
+    cleaned = _cleanup_stale_transients()
 
     _write_progress(
         progress_path,
         phase="starting",
         fraction=0.0,
+        confirmation_opened=False,
         cleaned_transients=cleaned,
     )
 
@@ -321,6 +332,7 @@ def run_from_index(index_path: Path, progress_path: Path) -> dict:
         _write_progress(
             progress_path,
             phase="build_m5",
+            confirmation_opened=True,
             fraction=fraction,
             completed=completed,
             total=total,
@@ -351,6 +363,7 @@ def run_from_index(index_path: Path, progress_path: Path) -> dict:
         _write_progress(
             progress_path,
             phase="load_m5",
+            confirmation_opened=True,
             fraction=0.84,
             builder_receipt=receipt,
         )
@@ -359,6 +372,7 @@ def run_from_index(index_path: Path, progress_path: Path) -> dict:
         _write_progress(
             progress_path,
             phase="analyze_R21",
+            confirmation_opened=True,
             fraction=0.90,
             rows=len(bars),
         )
@@ -374,6 +388,7 @@ def run_from_index(index_path: Path, progress_path: Path) -> dict:
         _write_progress(
             progress_path,
             phase="serialize",
+            confirmation_opened=True,
             fraction=0.99,
             rows=len(bars),
             event_count=len(events),
@@ -438,13 +453,11 @@ def main() -> int:
     progress_path = _validate_progress_path(a.progress)
 
     payload = run_from_index(a.index, progress_path)
-    output.write_text(
-        json.dumps(payload, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+    _atomic_json(output, payload)
     _write_progress(
         progress_path,
         phase="complete",
+        confirmation_opened=True,
         fraction=1.0,
         output=str(output),
         rows=payload["rows"],
