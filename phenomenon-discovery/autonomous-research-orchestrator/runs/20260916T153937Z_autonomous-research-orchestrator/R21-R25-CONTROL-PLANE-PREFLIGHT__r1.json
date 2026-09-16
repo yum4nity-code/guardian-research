@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r21-r25-control-plane-preflight",
+  "duration_seconds": 5.005692599981558,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T15:39:37.069929+00:00",
+  "job_id": "R21-R25-CONTROL-PLANE-PREFLIGHT",
+  "main_commit": "e228055c282e77e7664fd1193899d78ae7012eb9",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T15:39:32.017950+00:00",
+  "status": "PASS",
+  "stderr_tail": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.066s\n\nOK",
+  "stdout_tail": ""
+}
