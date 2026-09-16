@@ -1,107 +1,75 @@
 {
   "schema": 1,
-  "generation": 80,
-  "supersedes_generation": 79,
-  "closure": "Owner-directed transport optimization on 2026-09-14: stop the healthy but excessively slow sequential Dukascopy R15/XAU acquisition, preserve and freeze all completed M1 source payloads, inventory exact remaining dates from the stopped progress prefix, then fill only unresolved dates into a separate cache with bounded 8-way parallel transport. No scientific R15 rule changes. Generation 80 is intentionally disabled for orchestrator execution during the manual stop/freeze transition to prevent duplicate downloaders.",
+  "generation": 81,
+  "supersedes_generation": 80,
+  "closure": "Control-plane resynchronization after manual scientific progression beyond generation 80. R15 is scientifically closed FAIL; R16/R19 confirmation FAIL; R17/R20 discovery FAIL; R18 is statistically confirmed but owner-closed as an executable/production candidate. R21-R25 are preregistered and unexecuted. Generation 81 is intentionally fail-closed: every new job is disabled until a separate independent cold audit passes and a later queue generation explicitly enables execution. No completed job is restarted. 2025 remains locked and 2026+ sealed.",
   "jobs": [
     {
-      "id": "R15-XAU-FASTFILL-PREFLIGHT",
+      "id": "R21-R25-CODE-PREFLIGHT",
       "revision": 1,
       "enabled": false,
       "priority": 10,
-      "class_key": "r15-xau-fastfill-preflight",
-      "description": "Deterministic checks for immutable original-cache inventory, separate parallel fastfill cache, 404 markers, strict two-cache hash compatibility and 2026 protection.",
+      "class_key": "r21-r25-code-preflight",
+      "description": "Run synthetic implementation tests for the common R21-R25 engine. Passing this test is necessary but not sufficient: a separate independent cold audit is still mandatory before discovery may be enabled.",
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r15_xau_fastfill_union_v1_00.py",
+        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_00.py",
         "args": []
       }
     },
     {
-      "id": "R15-XAU-CACHE-INVENTORY",
+      "id": "R21-R25-DATA-SLICE-PREFLIGHT",
       "revision": 1,
       "enabled": false,
-      "priority": 12,
-      "class_key": "r15-xau-cache-inventory",
-      "description": "After the old sequential downloader is stopped, freeze hashes of every original payload and derive the exact unresolved weekday list from the final sequential last_date plus valid future probe cache files.",
+      "priority": 11,
+      "class_key": "r21-r25-data-slice-preflight",
+      "description": "Test the stage-bounded M5 builder. The discovery builder must not open 2025 payloads and must hard-fail any 2026+ index row.",
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/inventory_r15_xau_cache_before_fastfill_v1_00.py",
-        "args": [
-          "--cache-dir",
-          "{ROOT}\\r15_dukascopy_xauusd_v1\\payload_cache",
-          "--progress-file",
-          "{ROOT}\\progress\\R15-DUKASCOPY-BOUNDARY-EXPORT-R2.json",
-          "--output",
-          "{ROOT}\\r15_dukascopy_xauusd_v1\\fastfill_inventory.json"
-        ]
+        "path": "research/phenomenon_discovery/test_build_xau_m5_stage_slice_v1_00.py",
+        "args": []
       }
     },
     {
-      "id": "R15-XAU-DUKASCOPY-FASTFILL",
+      "id": "R21-R25-DISCOVERY-M5-BUILD",
       "revision": 1,
-      "enabled": false,
-      "priority": 15,
-      "class_key": "r15-xau-dukascopy-fastfill",
-      "description": "Fetch only unresolved post-freeze XAUUSD BID M1 weekdays into a separate immutable fastfill cache with 8 concurrent workers, bounded curl/urllib retries, atomic writes and persisted 404 markers. Continue past individual transport errors and report INCOMPLETE for retry rather than losing progress.",
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/r15_xau_dukascopy_fastfill_v1_00.py",
-        "args": [
-          "--inventory",
-          "{ROOT}\\r15_dukascopy_xauusd_v1\\fastfill_inventory.json",
-          "--dest-cache",
-          "{ROOT}\\xauusd_dukascopy_fastfill_v1\\payload_cache",
-          "--progress-file",
-          "{ROOT}\\progress\\R15-XAU-DUKASCOPY-FASTFILL-R1.json",
-          "--workers",
-          "8"
-        ]
-      }
-    },
-    {
-      "id": "R15-XAU-TWO-CACHE-UNION",
-      "revision": 1,
-      "enabled": false,
-      "priority": 18,
-      "class_key": "r15-xau-two-cache-union",
-      "description": "Verify frozen original-cache SHA256s, reject mismatched duplicates/unresolved dates, then derive R15 boundary CSV plus reusable master payload index from the original and fastfill cache roots without mutating either.",
-      "executor": {
-        "kind": "python",
-        "path": "research/autonomous/build_r15_xau_union_from_two_caches_v1_00.py",
-        "args": [
-          "--inventory",
-          "{ROOT}\\r15_dukascopy_xauusd_v1\\fastfill_inventory.json",
-          "--source-cache",
-          "{ROOT}\\r15_dukascopy_xauusd_v1\\payload_cache",
-          "--fast-cache",
-          "{ROOT}\\xauusd_dukascopy_fastfill_v1\\payload_cache",
-          "--output-dir",
-          "{ROOT}\\r15_dukascopy_xauusd_union_v1"
-        ]
-      }
-    },
-    {
-      "id": "R15-XAUUSD-GLD-INTRADAY-MOMENTUM-V101",
-      "revision": 3,
       "enabled": false,
       "priority": 20,
-      "class_key": "r15-xauusd-gld-intraday-momentum-v101",
-      "description": "Unchanged scientific R15 v1.01 engine on the strict two-cache union after fastfill completion. Full paper-period near-replication, independent 2019H2-2024 confirmation, downstream economics only after confirmation, then 2025 pre-OOS. Protected 2026 forbidden.",
+      "class_key": "r21-r25-discovery-data-build",
+      "description": "Derive only the frozen discovery slice from the immutable R15 master payload index. Opens payloads from 2004-11-08 through 2019-06-30 only; 2025 is not read and 2026+ is forbidden.",
+      "requires": [
+        {"kind": "receipt", "job_id": "R21-R25-CODE-PREFLIGHT", "revision": 1, "accepted_status": ["PASS"]},
+        {"kind": "receipt", "job_id": "R21-R25-DATA-SLICE-PREFLIGHT", "revision": 1, "accepted_status": ["PASS"]}
+      ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r15_xauusd_gld_intraday_momentum_v1_01.py",
+        "path": "research/phenomenon_discovery/build_xau_m5_stage_slice_v1_00.py",
         "args": [
-          "--boundary-csv",
-          "{ROOT}\\r15_dukascopy_xauusd_union_v1\\r15_dukascopy_xauusd_m1_boundaries_2004_2025.csv",
-          "--market-manifest",
-          "{ROOT}\\r15_dukascopy_xauusd_union_v1\\r15_dukascopy_market_manifest.json",
-          "--output-dir",
-          "{ROOT}\\r15_xauusd_gld_intraday_momentum_v101",
-          "--progress-file",
-          "{ROOT}\\progress\\R15-XAUUSD-GLD-INTRADAY-MOMENTUM-V101-R3.json",
-          "--publisher",
-          "{DEPLOY}\\research\\phenomenon_discovery\\publish_phase_result_v1_00.py"
+          "--index", "{ROOT}\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
+          "--output", "{ROOT}\\r21_r25_xau_v1\\discovery_m5_20041108_20190630.csv",
+          "--start", "2004-11-08",
+          "--end", "2019-06-30"
+        ]
+      }
+    },
+    {
+      "id": "R21-R25-XAU-DISCOVERY",
+      "revision": 1,
+      "enabled": false,
+      "priority": 30,
+      "class_key": "r21-r25-xau-discovery",
+      "description": "Run only the frozen preregistered R21-R25 definitions on the sealed discovery slice. No PnL optimization, no parameter rescue, no confirmation data, no 2025, no 2026. This job must remain disabled in generation 81; a later generation may enable it only after independent cold-audit PASS.",
+      "data_window": {"start": "2004-11-08", "end_inclusive": "2019-06-30"},
+      "requires": [
+        {"kind": "receipt", "job_id": "R21-R25-DISCOVERY-M5-BUILD", "revision": 1, "accepted_status": ["PASS"]}
+      ],
+      "executor": {
+        "kind": "python",
+        "path": "research/phenomenon_discovery/xau_edge_discovery_r21_r25_v1_00.py",
+        "args": [
+          "--input", "{ROOT}\\r21_r25_xau_v1\\discovery_m5_20041108_20190630.csv",
+          "--output", "{ROOT}\\r21_r25_xau_v1\\discovery.json",
+          "--stage", "discovery"
         ]
       }
     }
