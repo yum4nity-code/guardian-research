@@ -585,3 +585,4 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Signal matching found zero pairs at exact, ±5 or ±10 minutes; no ex-post widening. Status COMPLETE, no tuning/live action, `protected_2026_opened=false`.
 - Next safe action: independent result audit or separately preregistered feed-construction diagnostic; preserve R6B-347 unchanged.
 - Human active time: NOT QUANTIFIED. Automated compute/review runtime is separate.
+- Control-plane follow-up: generation 114 explicitly supersedes generation 113 and replaces all R33 jobs with an empty list. No R33/R34 calculation was relaunched and existing results were not modified.
