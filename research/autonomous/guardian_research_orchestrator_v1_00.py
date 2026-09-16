@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import ctypes
+import hashlib
 import json
 import math
 import os
@@ -14,7 +15,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION = "1.02"
+VERSION = "1.03"
 DEFAULT_REMOTE = "git@github.com:yum4nity-code/guardian-research.git"
 DEFAULT_DEPLOY = r"D:\MT5_Backtests\guardian-autonomous-main"
 DEFAULT_ROOT = r"D:\MT5_Backtests\Research\Autonomous"
@@ -24,6 +25,16 @@ SELF_REL = Path("research/autonomous/guardian_research_orchestrator_v1_00.py")
 PUBLISHER_REL = Path("research/phenomenon_discovery/publish_phase_result_v1_00.py")
 PROTECTED_2026_EPOCH = datetime(2026, 1, 1, tzinfo=timezone.utc)
 WINDOW_CREATION_FLAGS = getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0
+
+def file_sha256(path):
+    h = hashlib.sha256()
+    with Path(path).open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+RUNNING_SELF_SHA256 = file_sha256(Path(__file__).resolve())
 
 
 def now():
@@ -85,6 +96,23 @@ def sync_runtime_copy(deploy):
         return False
 
 
+def restart_if_code_changed(deploy):
+    """Re-exec before selecting work if git updated this daemon's source.
+
+    Long-lived Python processes keep old function objects even after git reset
+    replaces the source file on disk. Compare the deployed source to the digest
+    captured at process start and overlay the process with the deployed script
+    when they differ. The lock permits the same PID after exec.
+    """
+    deployed = (deploy / SELF_REL).resolve()
+    if not deployed.exists():
+        return False
+    if file_sha256(deployed) == RUNNING_SELF_SHA256:
+        return False
+    os.execv(sys.executable, [sys.executable, str(deployed), *sys.argv[1:]])
+    raise RuntimeError("os.execv returned while refreshing orchestrator code")
+
+
 def ensure_clone(deploy, remote):
     if not (deploy / ".git").exists():
         deploy.parent.mkdir(parents=True, exist_ok=True)
@@ -96,6 +124,7 @@ def ensure_clone(deploy, remote):
     git(deploy, "reset", "--hard", "origin/main")
     commit = git(deploy, "rev-parse", "HEAD")
     sync_runtime_copy(deploy)
+    restart_if_code_changed(deploy)
     return commit
 
 
@@ -618,6 +647,8 @@ def lock(root):
             pid = int(path.read_text(encoding="utf-8").strip())
         except (ValueError, OSError) as exc:
             raise RuntimeError(f"lock exists and is unreadable: {exc}") from exc
+        if pid == os.getpid():
+            return path
         if pid_alive(pid):
             raise RuntimeError(f"already running pid={pid}")
         try:
