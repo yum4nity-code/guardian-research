@@ -576,3 +576,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Next safe action: independent cold audit of the small control-plane diff. Discovery stays disabled until that audit passes and the owner separately authorizes it.
 - After explicit owner authorization, GitHub `main` was fast-forwarded to `74a12f25e2b665d1019ddee947d906559c2d1395`. The branch, `origin/main` and the local HEAD matched; the effective queue was recalculated as generation 84 with 3 jobs, 0 enabled and no 2026 authorization. The orchestrator was not restarted.
 - Human active time: NOT QUANTIFIED. Automated test runtime is separate.
+
+## 2026-09-16 — R34 signal/execution feed factorial
+
+- Preregistered, independently cold-reviewed and executed immutable R34 v1.00 for frozen R6B-347, 2024–2025 only.
+- Synthetic R34 and R33/R6/top2 regressions passed before launch. First cold review findings were corrected; second review found no blocker.
+- Actual run completed: `SIGNAL_FEED_DOMINANT`, signal score 0.609622 versus execution 0.028650. FN signal produced 95/107 executed trades; Duka signal 163/168. Diagonals exactly reproduce R31/R33.
+- Signal matching found zero pairs at exact, ±5 or ±10 minutes; no ex-post widening. Status COMPLETE, no tuning/live action, `protected_2026_opened=false`.
+- Next safe action: independent result audit or separately preregistered feed-construction diagnostic; preserve R6B-347 unchanged.
+- Human active time: NOT QUANTIFIED. Automated compute/review runtime is separate.

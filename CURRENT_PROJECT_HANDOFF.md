@@ -1,5 +1,9 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
+## R34 feed-factorial diagnostic — 2026-09-16
+
+R34 v1.00 completed after preregistration, synthetic/regression preflights and independent cold review. Frozen R6B-347 classifies `SIGNAL_FEED_DOMINANT`: signal score `0.609622`, execution score `0.028650`. FN signals generate 95/107 executed trades versus 163/168 for Duka; execution-feed substitution has only a small effect. There are zero signal pairs at exact, ±5 or ±10 minutes, so matched price/ATR/threshold differences are not estimable and the window was not widened. Diagonals reproduce R31/R33 exactly. Status `COMPLETE`, no tuning, `protected_2026_opened=false`. See `research/autonomous/R34_SIGNAL_EXECUTION_FEED_FACTORIAL_RESULT_2026_09_16.md`. Next: independent artefact audit or a separately preregistered feed-construction diagnostic; do not tune R6B-347.
+
 ## R21–R25 control-plane hardening — 2026-09-16
 
 GitHub `main` was fast-forwarded to the fail-closed control-plane commit
