@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "generation": 107,
+  "generation": 108,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 107 publishes the already-computed R29 result artifacts only. It does not rerun R29 and does not read market data. R29 scientific verdict is frozen NO_FILTER_LEAD.",
+  "closure": "Generation 108 closes R29 publication after the frozen NO_FILTER_LEAD result artifacts were published. All jobs disabled. R29 remains closed; 2026+, rescue tuning and Guardian/live modification remain prohibited.",
   "jobs": [
     {
       "id": "R29-RESULT-PUBLISH",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 5,
       "class_key": "r29-result-publish",
       "description": "Publish existing R29 result JSON and summary CSV to backtest-results. No market-data computation.",
