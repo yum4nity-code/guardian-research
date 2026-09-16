@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r21-confirmation-code-preflight",
+  "duration_seconds": 5.005776599980891,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T15:40:45.054323+00:00",
+  "job_id": "R21-CONFIRMATION-CODE-PREFLIGHT",
+  "main_commit": "123fa5b3962ec7ff83198350f4b792d31bba4f1a",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T15:40:40.005835+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "progress build days=1/2 m5=4 fraction=0.400000\nprogress build days=2/2 m5=8 fraction=0.800000\nPASS: R21 confirmation v1.00 tests"
+}
