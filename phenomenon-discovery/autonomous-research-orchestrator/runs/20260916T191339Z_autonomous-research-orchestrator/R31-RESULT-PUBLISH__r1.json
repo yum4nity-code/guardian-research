@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 120.0,
+  "class_key": "r31-result-publish",
+  "duration_seconds": 10.003654300002381,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T19:13:39.626359+00:00",
+  "job_id": "R31-RESULT-PUBLISH",
+  "main_commit": "6b7498238fddaa987f89a759becef7e882c98cd5",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T19:13:29.601055+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PUBLISHED r31-r6b-raw-vs-news-clean PASS commit=879b2168c8ca548a8752e4c71d2fe0f8598eef49"
+}
