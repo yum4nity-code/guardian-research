@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r21-r25-code-preflight",
+  "duration_seconds": 5.022707800002536,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T13:24:08.381211+00:00",
+  "job_id": "R21-R25-CODE-PREFLIGHT",
+  "main_commit": "f12f17454ad77f5427be8dc7693b10840c916216",
+  "orchestrator_version": "1.01",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 4,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T13:24:03.193604+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS: R21-R25 v1.02 second-audit regression tests"
+}
