@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 1800.0,
+  "class_key": "r21-r25-xau-discovery",
+  "duration_seconds": 1800.3524178999942,
+  "exit_code": null,
+  "finished_at_utc": "2026-09-16T14:11:13.060734+00:00",
+  "job_id": "R21-R25-XAU-DISCOVERY",
+  "main_commit": "904c78c839de0b1ad1ac589055e16bcf3af44a40",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "adaptive timeout elapsed=1800.2s limit=1800.0s",
+  "revision": 5,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T13:41:12.687453+00:00",
+  "status": "TIMEOUT",
+  "stderr_tail": "",
+  "stdout_tail": ""
+}

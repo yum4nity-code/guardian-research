@@ -1,0 +1,10 @@
+{
+  "last_reason": "adaptive timeout elapsed=1800.2s limit=1800.0s",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R21-R25-XAU-DISCOVERY__r5.json",
+  "main_commit": "904c78c839de0b1ad1ac589055e16bcf3af44a40",
+  "pid": 13536,
+  "schema": 1,
+  "status": "TIMEOUT",
+  "updated_at_utc": "2026-09-16T14:11:13.065218+00:00",
+  "version": "1.03"
+}
