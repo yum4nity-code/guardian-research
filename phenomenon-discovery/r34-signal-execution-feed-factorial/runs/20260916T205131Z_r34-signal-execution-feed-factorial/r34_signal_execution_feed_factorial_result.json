@@ -1,0 +1,671 @@
+{
+  "candidate": {
+    "buffer_atr": 0.1,
+    "candidate_id": "R6B-347",
+    "direction": 1,
+    "direction_name": "LONG",
+    "horizon_bars": 96,
+    "lookback_bars": 96,
+    "session_end": 8,
+    "session_start": 0
+  },
+  "clock_model": "R33 UTC+3 New York DST, otherwise UTC+2",
+  "factorial_classification": {
+    "classification": "SIGNAL_FEED_DOMINANT",
+    "detail": [
+      {
+        "execution_effect": 0.0,
+        "metric": "trades",
+        "signal_effect": 0.4171779141104294,
+        "year": 2024
+      },
+      {
+        "execution_effect": 0.04756199317016032,
+        "metric": "net",
+        "signal_effect": 1.1295124990573702,
+        "year": 2024
+      },
+      {
+        "execution_effect": 0.05321789698094669,
+        "metric": "expectancy_bps",
+        "signal_effect": 1.0629380520629477,
+        "year": 2024
+      },
+      {
+        "execution_effect": 0.00973724965060471,
+        "metric": "PF",
+        "signal_effect": 0.4355836796225864,
+        "year": 2024
+      },
+      {
+        "execution_effect": 0.0,
+        "metric": "trades",
+        "signal_effect": 0.3630952380952381,
+        "year": 2025
+      },
+      {
+        "execution_effect": 0.048938198002621607,
+        "metric": "net",
+        "signal_effect": 0.7836594252843443,
+        "year": 2025
+      },
+      {
+        "execution_effect": 0.050369434865948616,
+        "metric": "expectancy_bps",
+        "signal_effect": 0.8623370761942343,
+        "year": 2025
+      },
+      {
+        "execution_effect": 0.00687293664533984,
+        "metric": "PF",
+        "signal_effect": 0.34463126534308497,
+        "year": 2025
+      }
+    ],
+    "execution_score": 0.028649621410382516,
+    "signal_score": 0.6096215524534654
+  },
+  "generated_at_utc": "2026-09-16T20:35:56.690686+00:00",
+  "input_provenance": {
+    "dukascopy_yearly": {
+      "2023": {
+        "m1": "5c25f97041bfc3ec28195785fd4fab974189c27f3f9106ba90c895272f5b887d",
+        "m5": "0e5cabc904cf8634a07173ce088602e2970baa647436dee2fd0faaabc7fc9e72"
+      },
+      "2024": {
+        "m1": "cff7d7c5e33afaf390c2f38596a6cc61764e03c993c9817c1cb2957e054ca8a6",
+        "m5": "985274f52d13fd8c343ad0616456418e6364872c5fbda6027d1c14a2c6a7b48c"
+      },
+      "2025": {
+        "m1": "8a19a7daa89e836c72d43c015d2bf1ec2b40589c9e4b6050aab7507d4639fc1c",
+        "m5": "b7014e0dd22472a335983a05b2604a28a513eb2c7944e6d3475c289bf866df99"
+      }
+    },
+    "fundednext_m1": {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m1_2024_2025_raw.csv",
+      "sha256": "f98a395961b27ca9dcb34cffa4ef8dd93720adb70292abf7bc96108667232445"
+    },
+    "fundednext_m5": {
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1\\xauusd_m5_2024_2025_raw.csv",
+      "sha256": "ba54c9b29755eac4284cb872805148736be529e954533c028e7f826bb444ce66"
+    },
+    "r30_manifest": {
+      "path": "D:\\MT5_Backtests\\Research\\Autonomous\\r30_dukascopy_yearly_v100\\manifest.json",
+      "sha256": "7e4c7139f66cff7c20bd9c75de0a824bf7a38672baa1d58882717df1526c5d8d"
+    }
+  },
+  "matrix": {
+    "DUKA_SIGNAL__DUKA_EXECUTION": {
+      "2024": {
+        "accounting": {
+          "excluded_boundary_signals": 0,
+          "executable_trades": 163,
+          "ignored_overlap_signals": 400,
+          "missing_reference_trades": 0,
+          "signals_total": 563
+        },
+        "capital": {
+          "E1": {
+            "ending": 9786.33791782953,
+            "initial": 10000.0,
+            "max_dd_pct": 4.404765234806042,
+            "return_pct": -2.1366208217046934,
+            "trades": 163
+          },
+          "STRESS": {
+            "ending": 8999.42298500068,
+            "initial": 10000.0,
+            "max_dd_pct": 10.401774378045715,
+            "return_pct": -10.005770149993209,
+            "trades": 163
+          }
+        },
+        "metrics": {
+          "E1": {
+            "PF": 0.9116804325469001,
+            "best_trade": 21.825850090790137,
+            "commission": 5.497762796666,
+            "ex_best_positive_net": -80.59255408745096,
+            "expectancy": -0.36053192635988235,
+            "expectancy_bps": -1.2272509304586163,
+            "gross": 103.81000000000518,
+            "max_drawdown_realized": 120.71493969499014,
+            "net": -58.76670399666082,
+            "slippage": 78.5394706,
+            "spread": 78.5394706,
+            "trades": 163,
+            "win_rate": 0.5214723926380368,
+            "worst_trade": -48.28817592704243
+          },
+          "STRESS": {
+            "PF": 0.6610377318081075,
+            "best_trade": 20.731862111054436,
+            "commission": 10.995525229997,
+            "ex_best_positive_net": -281.3450050410463,
+            "expectancy": -1.598853637607312,
+            "expectancy_bps": -6.367999647680436,
+            "gross": 103.81000000000518,
+            "max_drawdown_realized": 270.24107394602174,
+            "net": -260.61314292999185,
+            "slippage": 157.0789412,
+            "spread": 196.3486765,
+            "trades": 163,
+            "win_rate": 0.4723926380368098,
+            "worst_trade": -49.672718169190134
+          }
+        }
+      },
+      "2025": {
+        "accounting": {
+          "excluded_boundary_signals": 0,
+          "executable_trades": 168,
+          "ignored_overlap_signals": 564,
+          "missing_reference_trades": 0,
+          "signals_total": 732
+        },
+        "capital": {
+          "E1": {
+            "ending": 10740.163912484702,
+            "initial": 10000.0,
+            "max_dd_pct": 5.791391145643053,
+            "return_pct": 7.401639124847015,
+            "trades": 168
+          },
+          "STRESS": {
+            "ending": 9851.421419688608,
+            "initial": 10000.0,
+            "max_dd_pct": 7.654182921979573,
+            "return_pct": -1.485785803113926,
+            "trades": 168
+          }
+        },
+        "metrics": {
+          "E1": {
+            "PF": 1.2255883090962865,
+            "best_trade": 63.76568260128027,
+            "commission": 8.0831178017254,
+            "ex_best_positive_net": 199.54395659699514,
+            "expectancy": 1.5673192809421157,
+            "expectancy_bps": 4.452425614129257,
+            "gross": 502.33900000000085,
+            "max_drawdown_realized": 239.99799891161194,
+            "net": 263.3096391982754,
+            "slippage": 115.4731215,
+            "spread": 115.4731215,
+            "trades": 168,
+            "win_rate": 0.5654761904761905,
+            "worst_trade": -118.30923815326835
+          },
+          "STRESS": {
+            "PF": 0.9743386565889952,
+            "best_trade": 61.98491193076027,
+            "commission": 16.1662338452643,
+            "ex_best_positive_net": -95.44119252602371,
+            "expectancy": -0.1991445273527586,
+            "expectancy_bps": -0.6897830543419692,
+            "gross": 502.33900000000085,
+            "max_drawdown_realized": 277.32920882996166,
+            "net": -33.45628059526344,
+            "slippage": 230.946243,
+            "spread": 288.68280375,
+            "trades": 168,
+            "win_rate": 0.5178571428571429,
+            "worst_trade": -120.40650521470634
+          }
+        }
+      }
+    },
+    "DUKA_SIGNAL__FN_EXECUTION": {
+      "2024": {
+        "accounting": {
+          "excluded_boundary_signals": 0,
+          "executable_trades": 163,
+          "ignored_overlap_signals": 400,
+          "missing_reference_trades": 0,
+          "signals_total": 563
+        },
+        "capital": {
+          "E1": {
+            "ending": 9791.705383559587,
+            "initial": 10000.0,
+            "max_dd_pct": 4.391241251386968,
+            "return_pct": -2.0829461644041314,
+            "trades": 163
+          },
+          "STRESS": {
+            "ending": 9004.360120744264,
+            "initial": 10000.0,
+            "max_dd_pct": 10.351496346321976,
+            "return_pct": -9.956398792557353,
+            "trades": 163
+          }
+        },
+        "metrics": {
+          "E1": {
+            "PF": 0.9136354341209066,
+            "best_trade": 21.808827941766054,
+            "commission": 5.498005722818,
+            "ex_best_positive_net": -79.26271566458601,
+            "expectancy": -0.35247783879030653,
+            "expectancy_bps": -1.1934972144451053,
+            "gross": 105.12999999999806,
+            "max_drawdown_realized": 120.35370809548165,
+            "net": -57.453887722819964,
+            "slippage": 78.542941,
+            "spread": 78.542941,
+            "trades": 163,
+            "win_rate": 0.5153374233128835,
+            "worst_trade": -48.37524568616422
+          },
+          "STRESS": {
+            "PF": 0.6625107039162719,
+            "best_trade": 20.71481246294705,
+            "commission": 10.996011077681,
+            "ex_best_positive_net": -280.02405804063,
+            "expectancy": -1.590854267347748,
+            "expectancy_bps": -6.334254608002534,
+            "gross": 105.12999999999806,
+            "max_drawdown_realized": 268.9338624656941,
+            "net": -259.30924557768293,
+            "slippage": 157.085882,
+            "spread": 196.35735250000002,
+            "trades": 163,
+            "win_rate": 0.4723926380368098,
+            "worst_trade": -49.75987453773822
+          }
+        }
+      },
+      "2025": {
+        "accounting": {
+          "excluded_boundary_signals": 0,
+          "executable_trades": 168,
+          "ignored_overlap_signals": 564,
+          "missing_reference_trades": 0,
+          "signals_total": 732
+        },
+        "capital": {
+          "E1": {
+            "ending": 10698.15687559752,
+            "initial": 10000.0,
+            "max_dd_pct": 5.794808554472073,
+            "return_pct": 6.981568755975198,
+            "trades": 168
+          },
+          "STRESS": {
+            "ending": 9812.880518763735,
+            "initial": 10000.0,
+            "max_dd_pct": 7.927919697543735,
+            "return_pct": -1.871194812362642,
+            "trades": 168
+          }
+        },
+        "metrics": {
+          "E1": {
+            "PF": 1.2121553685004711,
+            "best_trade": 63.67554598115413,
+            "commission": 8.083741555848,
+            "ex_best_positive_net": 185.9566484629945,
+            "expectancy": 1.4859059193104085,
+            "expectancy_bps": 4.219902092512456,
+            "gross": 488.67999999999665,
+            "max_drawdown_realized": 240.1748049698583,
+            "net": 249.63219444414864,
+            "slippage": 115.482032,
+            "spread": 115.482032,
+            "trades": 168,
+            "win_rate": 0.5595238095238095,
+            "worst_trade": -117.90952588270827
+          },
+          "STRESS": {
+            "PF": 0.9640971296736252,
+            "best_trade": 61.89460569019313,
+            "commission": 16.167481401316,
+            "ex_best_positive_net": -109.0512310915125,
+            "expectancy": -0.28069419881737717,
+            "expectancy_bps": -0.9222468061808217,
+            "gross": 488.67999999999665,
+            "max_drawdown_realized": 287.6448868948054,
+            "net": -47.15662540131937,
+            "slippage": 230.964064,
+            "spread": 288.70508,
+            "trades": 168,
+            "win_rate": 0.5178571428571429,
+            "worst_trade": -120.00715017218626
+          }
+        }
+      }
+    },
+    "FN_SIGNAL__DUKA_EXECUTION": {
+      "2024": {
+        "accounting": {
+          "excluded_boundary_signals": 0,
+          "executable_trades": 95,
+          "ignored_overlap_signals": 0,
+          "missing_reference_trades": 0,
+          "signals_total": 95
+        },
+        "capital": {
+          "E1": {
+            "ending": 12089.831357996069,
+            "initial": 10000.0,
+            "max_dd_pct": 0.6354516762999854,
+            "return_pct": 20.898313579960682,
+            "trades": 95
+          },
+          "STRESS": {
+            "ending": 11513.96554320791,
+            "initial": 10000.0,
+            "max_dd_pct": 0.7377564321193012,
+            "return_pct": 15.139655432079113,
+            "trades": 95
+          }
+        },
+        "metrics": {
+          "E1": {
+            "PF": 5.81781833589717,
+            "best_trade": 28.29197835102018,
+            "commission": 3.1843788546318,
+            "ex_best_positive_net": 437.80436739434634,
+            "expectancy": 4.906277323635437,
+            "expectancy_bps": 20.04373024804823,
+            "gross": 560.2629999999983,
+            "max_drawdown_realized": 14.702996727905514,
+            "net": 466.09634574536653,
+            "slippage": 45.4911377,
+            "spread": 45.4911377,
+            "trades": 95,
+            "win_rate": 0.7578947368421053,
+            "worst_trade": -12.134292785651835
+          },
+          "STRESS": {
+            "PF": 3.709659177449813,
+            "best_trade": 27.040473304590183,
+            "commission": 6.3687557483431005,
+            "ex_best_positive_net": 322.14365129706505,
+            "expectancy": 3.6756223642279497,
+            "expectancy_bps": 14.89751386109136,
+            "gross": 560.2629999999983,
+            "max_drawdown_realized": 17.972511543868364,
+            "net": 349.18412460165524,
+            "slippage": 90.9822754,
+            "spread": 113.72784425,
+            "trades": 95,
+            "win_rate": 0.6631578947368421,
+            "worst_trade": -13.319091110433837
+          }
+        }
+      },
+      "2025": {
+        "accounting": {
+          "excluded_boundary_signals": 0,
+          "executable_trades": 107,
+          "ignored_overlap_signals": 0,
+          "missing_reference_trades": 0,
+          "signals_total": 107
+        },
+        "capital": {
+          "E1": {
+            "ending": 13871.081921612096,
+            "initial": 10000.0,
+            "max_dd_pct": 2.4375773111945187,
+            "return_pct": 38.71081921612096,
+            "trades": 107
+          },
+          "STRESS": {
+            "ending": 13129.562760697741,
+            "initial": 10000.0,
+            "max_dd_pct": 2.588594272403559,
+            "return_pct": 31.295627606977416,
+            "trades": 107
+          }
+        },
+        "metrics": {
+          "E1": {
+            "PF": 5.324586341366578,
+            "best_trade": 62.34379657982386,
+            "commission": 5.1423612015118,
+            "ex_best_positive_net": 1096.652184018663,
+            "expectancy": 10.831738136434458,
+            "expectancy_bps": 30.7548304081265,
+            "gross": 1311.0629999999987,
+            "max_drawdown_realized": 78.42572076422988,
+            "net": 1158.995980598487,
+            "slippage": 73.4623291,
+            "spread": 73.4623291,
+            "trades": 107,
+            "win_rate": 0.7289719626168224,
+            "worst_trade": -49.675230287717895
+          },
+          "STRESS": {
+            "PF": 4.014382606053044,
+            "best_trade": 60.08889688420785,
+            "commission": 10.2847178143031,
+            "ex_best_positive_net": 910.1089043514877,
+            "expectancy": 9.067269170427062,
+            "expectancy_bps": 25.605860750989812,
+            "gross": 1311.0629999999987,
+            "max_drawdown_realized": 83.36176078903486,
+            "net": 970.1978012356956,
+            "slippage": 146.9246582,
+            "spread": 183.65582275,
+            "trades": 107,
+            "win_rate": 0.7009345794392523,
+            "worst_trade": -51.29573374473089
+          }
+        }
+      }
+    },
+    "FN_SIGNAL__FN_EXECUTION": {
+      "2024": {
+        "accounting": {
+          "excluded_boundary_signals": 0,
+          "executable_trades": 95,
+          "ignored_overlap_signals": 0,
+          "missing_reference_trades": 0,
+          "signals_total": 95
+        },
+        "capital": {
+          "E1": {
+            "ending": 11909.84198074384,
+            "initial": 10000.0,
+            "max_dd_pct": 0.6964246733935671,
+            "return_pct": 19.098419807438404,
+            "trades": 95
+          },
+          "STRESS": {
+            "ending": 11342.505795726853,
+            "initial": 10000.0,
+            "max_dd_pct": 0.7986823760488725,
+            "return_pct": 13.425057957268539,
+            "trades": 95
+          }
+        },
+        "metrics": {
+          "E1": {
+            "PF": 5.160009247007076,
+            "best_trade": 30.89244410465964,
+            "commission": 3.18477127311,
+            "ex_best_positive_net": 401.27929862223345,
+            "expectancy": 4.549176239230454,
+            "expectancy_bps": 18.46163296743887,
+            "gross": 526.3500000000031,
+            "max_drawdown_realized": 16.12334034989405,
+            "net": 432.1717427268931,
+            "slippage": 45.496743,
+            "spread": 45.496743,
+            "trades": 95,
+            "win_rate": 0.7368421052631579,
+            "worst_trade": -13.07452669696789
+          },
+          "STRESS": {
+            "PF": 3.292694196033043,
+            "best_trade": 29.641517320969637,
+            "commission": 6.369540703995,
+            "ex_best_positive_net": 285.60359847503844,
+            "expectancy": 3.3183696399579796,
+            "expectancy_bps": 13.315823255912083,
+            "gross": 526.3500000000031,
+            "max_drawdown_realized": 18.635457180039197,
+            "net": 315.24511579600806,
+            "slippage": 90.993486,
+            "spread": 113.74185750000001,
+            "trades": 95,
+            "win_rate": 0.6526315789473685,
+            "worst_trade": -14.259615436355892
+          }
+        }
+      },
+      "2025": {
+        "accounting": {
+          "excluded_boundary_signals": 0,
+          "executable_trades": 107,
+          "ignored_overlap_signals": 0,
+          "missing_reference_trades": 0,
+          "signals_total": 107
+        },
+        "capital": {
+          "E1": {
+            "ending": 14100.690227923611,
+            "initial": 10000.0,
+            "max_dd_pct": 1.950754225212761,
+            "return_pct": 41.006902279236115,
+            "trades": 107
+          },
+          "STRESS": {
+            "ending": 13346.951813187265,
+            "initial": 10000.0,
+            "max_dd_pct": 2.1023993650318147,
+            "return_pct": 33.46951813187265,
+            "trades": 107
+          }
+        },
+        "metrics": {
+          "E1": {
+            "PF": 5.04177244510274,
+            "best_trade": 76.38643170947982,
+            "commission": 5.142327726396,
+            "ex_best_positive_net": 1138.407536564123,
+            "expectancy": 11.353214656762644,
+            "expectancy_bps": 32.32297499280568,
+            "gross": 1366.8599999999988,
+            "max_drawdown_realized": 62.37273994175962,
+            "net": 1214.7939682736028,
+            "slippage": 73.46185200000001,
+            "spread": 73.46185200000001,
+            "trades": 107,
+            "win_rate": 0.7383177570093458,
+            "worst_trade": -50.01544763819404
+          },
+          "STRESS": {
+            "PF": 3.9022479541960466,
+            "best_trade": 74.13480369265983,
+            "commission": 10.284650668782001,
+            "ex_best_positive_net": 951.8622116385569,
+            "expectancy": 9.588757152628194,
+            "expectancy_bps": 27.17360224675579,
+            "gross": 1366.8599999999988,
+            "max_drawdown_realized": 67.30507908791964,
+            "net": 1025.9970153312167,
+            "slippage": 146.92370400000001,
+            "spread": 183.65463,
+            "trades": 107,
+            "win_rate": 0.7102803738317757,
+            "worst_trade": -51.63622094687304
+          }
+        }
+      }
+    }
+  },
+  "protected_2026_opened": false,
+  "research": "R34",
+  "retuning_performed": false,
+  "schema": 1,
+  "signal_similarity": {
+    "2024": {
+      "differences": {
+        "atr": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        },
+        "close": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        },
+        "high": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        },
+        "prior_96_high": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        },
+        "threshold": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        }
+      },
+      "duka_only_after_10_minutes": 563,
+      "duka_signals": 563,
+      "exact_timestamp": 0,
+      "fn_only_after_10_minutes": 95,
+      "fn_signals": 95,
+      "within_10_minutes_cumulative": 0,
+      "within_5_minutes_cumulative": 0
+    },
+    "2025": {
+      "differences": {
+        "atr": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        },
+        "close": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        },
+        "high": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        },
+        "prior_96_high": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        },
+        "threshold": {
+          "matched": 0,
+          "mean_absolute": null,
+          "mean_signed_duka_minus_fn": null,
+          "median_absolute": null
+        }
+      },
+      "duka_only_after_10_minutes": 732,
+      "duka_signals": 732,
+      "exact_timestamp": 0,
+      "fn_only_after_10_minutes": 107,
+      "fn_signals": 107,
+      "within_10_minutes_cumulative": 0,
+      "within_5_minutes_cumulative": 0
+    }
+  },
+  "years": [
+    2024,
+    2025
+  ]
+}

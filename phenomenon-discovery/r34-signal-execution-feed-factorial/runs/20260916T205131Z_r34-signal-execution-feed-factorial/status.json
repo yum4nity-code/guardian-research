@@ -1,0 +1,55 @@
+{
+  "artifacts": [
+    {
+      "name": "r34_signal_execution_feed_factorial_result.json",
+      "sha256": "88815d299349cfd62b77cfd6062ca66b651cbe2562773c7f86f505678a81ced2",
+      "size_bytes": 22590
+    },
+    {
+      "name": "r34_matrix_yearly.csv",
+      "sha256": "44bb1f4dd542dd1f73b6041e93304f568e8e20e4c4c34125c8affaa71f86047f",
+      "size_bytes": 5980
+    },
+    {
+      "name": "r34_signal_pairs.csv",
+      "sha256": "3f8715f8d0e8ff8d46419eb135368733c92ebeef038e1252b8141e70ba11e9a6",
+      "size_bytes": 168336
+    },
+    {
+      "name": "r34_fn_signals.csv",
+      "sha256": "e25073473b20e931d84816b0dd1d0da7c92002066ca05e9e2bef9e443a3ff2d5",
+      "size_bytes": 18721
+    },
+    {
+      "name": "r34_duka_signals.csv",
+      "sha256": "59606465d541ed4c6fa080ec48ce5ec43486900694c7f4d8d1c62c81e6ad8328",
+      "size_bytes": 124488
+    },
+    {
+      "name": "r34_ledger_fn_signal__fn_execution.csv",
+      "sha256": "6002ecea2ef1800d22cce54f8ccf197bd4ea0340348163f26552154cf6296f85",
+      "size_bytes": 109899
+    },
+    {
+      "name": "r34_ledger_fn_signal__duka_execution.csv",
+      "sha256": "002a8f733e0d4f00d8b0ed9ec9a386be96f1222d0fb61e301e1c4992394dd7de",
+      "size_bytes": 111491
+    },
+    {
+      "name": "r34_ledger_duka_signal__fn_execution.csv",
+      "sha256": "37a3948251efe9457e77239dff02c3cfa19a6aff72a5feac8c6fd205b30e598e",
+      "size_bytes": 180465
+    },
+    {
+      "name": "r34_ledger_duka_signal__duka_execution.csv",
+      "sha256": "53f2b46621b4027034254b844f70e02745a344acbd7be4f23138ebfa8ef08a85",
+      "size_bytes": 183075
+    }
+  ],
+  "generated_at_utc": "2026-09-16T20:51:31.069995+00:00",
+  "phase": "r34-signal-execution-feed-factorial",
+  "schema": 1,
+  "source_commit": "68e9435c37c1340588e32e96ca392e3d56de262e",
+  "status": "PASS",
+  "summary": "R34 completed diagnostic: SIGNAL_FEED_DOMINANT; raw 2x2 matrix, signal matching and ledgers; no 2026, no tuning."
+}
