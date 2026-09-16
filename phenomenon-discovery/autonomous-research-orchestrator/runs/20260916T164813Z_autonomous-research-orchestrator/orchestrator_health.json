@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R28-DISCOVERY-DATA-SLICE-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "1cbc9a0cafb37d4440199f5d57df47b46f80355d",
+  "pid": 13536,
+  "protected_2026": true,
+  "queue_generation": 102,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-16T16:48:13.596981+00:00",
+  "version": "1.03"
+}
