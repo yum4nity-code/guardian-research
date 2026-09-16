@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "R27-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
+    "revision": 1
+  },
+  "main_commit": "46ad63ffe215ceb9a034aa5b696146e0c3f0e77f",
+  "pid": 13536,
+  "protected_2026": true,
+  "queue_generation": 99,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-16T16:07:26.846229+00:00",
+  "version": "1.03"
+}
