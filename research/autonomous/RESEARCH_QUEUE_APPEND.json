@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "generation": 95,
+  "generation": 96,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 95 stages R26 opening-range reversal confirmation preflights only. R26 is a new preregistered study inspired by the failed R24 continuation result. Real R26 confirmation r1 is present but disabled. Control-plane, R26 code, and reused sealed confirmation-builder tests must all PASS on the same main commit before market payloads may open. 2025, 2026+, horizon rescue, PnL optimization and live integration remain prohibited.",
+  "closure": "Generation 96 authorizes R26 opening-range reversal confirmation r1 after preregistration, cold audit, and generation-95 preflight PASS. Exact-main receipt binding requires control-plane, R26 code and sealed confirmation-builder preflights to PASS again on this commit before market payloads open. R26 uses the frozen R24 event definition and joint reversal_2b + reversal_4b gate: both means >0 and both clustered t >2.0. 2025, 2026+, horizon rescue, PnL optimization and live integration remain prohibited.",
   "jobs": [
     {
       "id": "R26-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
@@ -48,7 +48,7 @@
     {
       "id": "R26-XAU-CONFIRMATION",
       "revision": 1,
-      "enabled": false,
+      "enabled": true,
       "priority": 30,
       "class_key": "r26-xau-confirmation",
       "description": "R26 independent outcome confirmation only. Frozen R24 opening-range event definition, reversal sign, joint primary reversal_2b + reversal_4b. PASS requires both means >0 and both clustered t >2. 2025 and 2026+ inaccessible.",
