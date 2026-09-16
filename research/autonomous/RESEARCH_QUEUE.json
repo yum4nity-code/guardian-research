@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generation": 82,
+  "generation": 83,
   "updated_at": "2026-09-16",
   "mode": "AUTONOMOUS_SCIENTIFIC_RESEARCH",
   "human_approved_2026": false,
@@ -9,6 +9,6 @@
     "max_requests_per_24h": 1,
     "minimum_deterministic_failures_before_request": 2
   },
-  "closure": "Control-plane reset after independent cold audit FAIL of generation 81. Legacy queue generation 16 is archived under research/autonomous/archive and must not execute. Canonical effective base queue is intentionally empty; only the disabled generation-82 append may define future R21-R25 staging jobs. No 2025 or 2026 authorization.",
+  "closure": "Generation 82 failed the second independent cold audit. Generations 16/81/82 are archived provenance only. Canonical effective base queue is empty and fail-closed; only disabled generation-83 R21-R25 v1.02 staging jobs may exist. No confirmation, 2025, 2026, Guardian integration or live authorization.",
   "jobs": []
 }
