@@ -1,0 +1,15 @@
+{
+  "artifacts": [
+    {
+      "name": "r32_fundednext_dukascopy_clock_alignment.json",
+      "sha256": "35e60a5ba43805ed623062826c2c6392e8e79177285cf6cefcf07c904a2e1c19",
+      "size_bytes": 38186
+    }
+  ],
+  "generated_at_utc": "2026-09-16T19:19:26.577575+00:00",
+  "phase": "r32-fundednext-dukascopy-clock-alignment",
+  "schema": 1,
+  "source_commit": "096b0c8c687c691fc4e77bc692f08c65dc1890e3",
+  "status": "PASS",
+  "summary": "R32 FundedNext-vs-Dukascopy M5 clock alignment diagnostic completed."
+}
