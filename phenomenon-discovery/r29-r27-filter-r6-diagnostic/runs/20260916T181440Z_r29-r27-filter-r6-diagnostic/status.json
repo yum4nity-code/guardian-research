@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "r29_r27_filter_r6_result.json",
+      "sha256": "1c64e29b772cf02b00e3d9d67d30565ea679c62df94dde2c6926cee6836d206f",
+      "size_bytes": 527415
+    },
+    {
+      "name": "r29_r27_filter_r6_summary.csv",
+      "sha256": "465fd1b1ac4494ef9ce960ebd58cb931233bd8abeb47760887d1268200dfce0b",
+      "size_bytes": 3018
+    }
+  ],
+  "generated_at_utc": "2026-09-16T18:14:40.113014+00:00",
+  "phase": "r29-r27-filter-r6-diagnostic",
+  "schema": 1,
+  "source_commit": "29e02d033bbe81f3d8f588d500485402d28044bb",
+  "status": "FAIL",
+  "summary": "R29 NO_FILTER_LEAD: pooled E1 interaction differences negative for R6B-347 and R6B-307, but frozen robust-veto gate failed; 2026 untouched."
+}
