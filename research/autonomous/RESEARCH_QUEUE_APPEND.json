@@ -1,17 +1,17 @@
 {
   "schema": 1,
-  "generation": 112,
+  "generation": 113,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 112 launches R32 FundedNext-vs-Dukascopy M5 clock alignment. Shift is selected only by monthly return correlation, not strategy PnL. Exact-main control-plane and R32 synthetic preflights must pass before feeds open. No 2026, no tuning, no live action.",
+  "closure": "Generation 113 launches R33 corrected FundedNext-server-time Dukascopy long history. Clock mapping is derived from R32 return-correlation evidence and FundedNext GMT+2/GMT+3 DST behavior, not from R6 PnL. Four exact-main preflights must pass before R30 yearly market files open. R33 compares corrected Dukascopy 2024-2025 against exact R31 FundedNext RAW, then characterizes 2004-2025 capital. No tuning, no leverage search, no 2026, no live action.",
   "jobs": [
     {
-      "id": "R32-CONTROL-PLANE-PREFLIGHT",
+      "id": "R33-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 5,
-      "class_key": "r32-control-plane-preflight",
+      "class_key": "r33-control-plane-preflight",
       "description": "Run orchestrator control-plane tests.",
       "executor": {
         "kind": "python",
@@ -20,33 +20,59 @@
       }
     },
     {
-      "id": "R32-CODE-PREFLIGHT",
+      "id": "R33-CODE-PREFLIGHT",
       "revision": 1,
       "enabled": true,
       "priority": 10,
-      "class_key": "r32-code-preflight",
-      "description": "Run R32 contiguous-return and shift-convention synthetic tests.",
+      "class_key": "r33-code-preflight",
+      "description": "Run R33 frozen-definition, historical DST mapping and 1x capital tests.",
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/test_r32_fundednext_dukascopy_clock_alignment_v1_00.py",
+        "path": "research/autonomous/test_r33_corrected_server_time_long_history_v1_00.py",
         "args": []
       }
     },
     {
-      "id": "R32-CLOCK-ALIGNMENT",
+      "id": "R33-R6-REGRESSION",
+      "revision": 1,
+      "enabled": true,
+      "priority": 11,
+      "class_key": "r33-r6-regression",
+      "description": "Run frozen R6 regression tests.",
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/test_r6_xau_low_turnover_breakout_v1_00.py",
+        "args": []
+      }
+    },
+    {
+      "id": "R33-LONG-HISTORY-REPLAY-REGRESSION",
+      "revision": 1,
+      "enabled": true,
+      "priority": 12,
+      "class_key": "r33-long-history-replay-regression",
+      "description": "Run existing long-history replay synthetic tests.",
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/test_top2_xau_long_history_v1_00.py",
+        "args": []
+      }
+    },
+    {
+      "id": "R33-CORRECTED-LONG-HISTORY",
       "revision": 1,
       "enabled": true,
       "priority": 20,
-      "class_key": "r32-clock-alignment",
-      "description": "Infer monthly FundedNext server-clock to Dukascopy UTC shift by M5 return correlation on 2024-2025 overlap.",
+      "class_key": "r33-corrected-long-history",
+      "description": "Replay frozen R6B-347/R6B-307 on pinned Dukascopy 2004-2025 after UTC->synthetic FundedNext server-time conversion using America/New_York DST (+3 DST/+2 standard); compare 2024-2025 to exact R31 FundedNext RAW.",
       "data_window": {
-        "start": "2024-01-01T00:00:00Z",
+        "start": "2004-11-08T00:00:00Z",
         "end_exclusive": "2026-01-01T00:00:00Z"
       },
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R32-CONTROL-PLANE-PREFLIGHT",
+          "job_id": "R33-CONTROL-PLANE-PREFLIGHT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -54,7 +80,23 @@
         },
         {
           "kind": "receipt",
-          "job_id": "R32-CODE-PREFLIGHT",
+          "job_id": "R33-CODE-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": [
+            "PASS"
+          ]
+        },
+        {
+          "kind": "receipt",
+          "job_id": "R33-R6-REGRESSION",
+          "revision": 1,
+          "accepted_status": [
+            "PASS"
+          ]
+        },
+        {
+          "kind": "receipt",
+          "job_id": "R33-LONG-HISTORY-REPLAY-REGRESSION",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -63,36 +105,39 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/autonomous/r32_fundednext_dukascopy_clock_alignment_v1_00.py",
+        "path": "research/autonomous/r33_corrected_server_time_long_history_v1_00.py",
         "args": [
-          "--phase-ib-root",
-          "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\phase_ib_v1",
           "--r30-manifest",
           "{ROOT}\\r30_dukascopy_yearly_v100\\manifest.json",
+          "--r31-result",
+          "{ROOT}\\r31_r6b_raw_vs_news_clean_v100\\r31_r6b_raw_vs_news_clean_result.json",
           "--output-dir",
-          "{ROOT}\\r32_clock_alignment_v100"
+          "{ROOT}\\r33_corrected_server_time_v100",
+          "--progress-file",
+          "{ROOT}\\r33_corrected_server_time_v100\\progress.json"
         ]
       },
       "timeout": {
-        "min_seconds": 600,
-        "expected_seconds": 120,
+        "min_seconds": 1800,
+        "expected_seconds": 900,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
-        "stale_heartbeat_seconds": 600,
+        "progress_file": "{ROOT}\\r33_corrected_server_time_v100\\progress.json",
+        "stale_heartbeat_seconds": 1200,
         "poll_seconds": 5
       }
     },
     {
-      "id": "R32-RESULT-PUBLISH",
+      "id": "R33-RESULT-PUBLISH",
       "revision": 1,
       "enabled": true,
       "priority": 30,
-      "class_key": "r32-result-publish",
-      "description": "Publish frozen R32 alignment result.",
+      "class_key": "r33-result-publish",
+      "description": "Publish R33 corrected long-history artifacts.",
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R32-CLOCK-ALIGNMENT",
+          "job_id": "R33-CORRECTED-LONG-HISTORY",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -104,13 +149,15 @@
         "path": "research/phenomenon_discovery/publish_phase_result_v1_00.py",
         "args": [
           "--phase",
-          "r32-fundednext-dukascopy-clock-alignment",
+          "r33-r6b-corrected-server-time-long-history",
           "--status",
           "PASS",
           "--summary",
-          "R32 FundedNext-vs-Dukascopy M5 clock alignment diagnostic completed.",
+          "R33 corrected FundedNext-server-time Dukascopy R6B long-history characterization completed.",
           "--artifact",
-          "{ROOT}\\r32_clock_alignment_v100\\r32_fundednext_dukascopy_clock_alignment.json"
+          "{ROOT}\\r33_corrected_server_time_v100\\r33_corrected_server_time_long_history_result.json",
+          "--artifact",
+          "{ROOT}\\r33_corrected_server_time_v100\\r33_corrected_server_time_yearly.csv"
         ]
       },
       "timeout": {
