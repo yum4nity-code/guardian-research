@@ -60,11 +60,13 @@ def test_builder_opens_only_confirmation_payloads_and_heartbeats():
             return [(1561939200, 1400.0, 1401.0, 1399.0, 1400.5)], 0
 
         old = s._canonical_builder_api
+        old_expected = s.EXPECTED_SOURCE_DAYS
         s._canonical_builder_api = lambda: (
             fake_decode,
             fake_agg,
             lambda p: "f" * 64,
         )
+        s.EXPECTED_SOURCE_DAYS = 1
         try:
             result = s.build(
                 idx,
@@ -73,6 +75,7 @@ def test_builder_opens_only_confirmation_payloads_and_heartbeats():
             )
         finally:
             s._canonical_builder_api = old
+            s.EXPECTED_SOURCE_DAYS = old_expected
 
         assert opened == [(date(2019, 7, 1), str(p_confirmation))]
         assert callbacks[-1]["completed"] == 1
