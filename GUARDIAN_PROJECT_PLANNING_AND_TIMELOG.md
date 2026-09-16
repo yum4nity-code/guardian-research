@@ -574,4 +574,5 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Confined v1.02 output to the canonical R21–R25 discovery JSON and added redirect/symlink rejection. Persisted the metadata-only R15 PASS-manifest attestation and linked it to the engine pin.
 - No orchestrator restart, historical backtest, market-payload access, job activation, confirmation, 2025/2026 access, deployment or live authorization.
 - Next safe action: independent cold audit of the small control-plane diff. Discovery stays disabled until that audit passes and the owner separately authorizes it.
+- After explicit owner authorization, GitHub `main` was fast-forwarded to `74a12f25e2b665d1019ddee947d906559c2d1395`. The branch, `origin/main` and the local HEAD matched; the effective queue was recalculated as generation 84 with 3 jobs, 0 enabled and no 2026 authorization. The orchestrator was not restarted.
 - Human active time: NOT QUANTIFIED. Automated test runtime is separate.

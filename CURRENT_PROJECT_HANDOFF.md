@@ -2,7 +2,9 @@
 
 ## R21–R25 control-plane hardening — 2026-09-16
 
-Generation 84 is the pending fail-closed queue state: the append explicitly
+GitHub `main` was fast-forwarded to the fail-closed control-plane commit
+`74a12f25e2b665d1019ddee947d906559c2d1395`. Generation 84 is the current queue
+state: the append explicitly
 supersedes generation 83 and replaces the base job list with exactly three
 revision-4 R21–R25 jobs, all disabled, with `human_approved_2026=false`.
 Receipt dependencies and completed-job receipts must match the exact executing
@@ -10,7 +12,7 @@ Receipt dependencies and completed-job receipts must match the exact executing
 `r21_r25_xau_v102/discovery.json` path, and the R15 index pin now has a committed
 metadata attestation. No orchestrator restart, historical run, confirmation,
 2025/2026 access, production or live authorization occurred. The next safe
-action is an independent cold audit of this small diff; discovery remains
+action is an independent cold audit of the control-plane diff; discovery remains
 disabled until that review passes and the owner separately authorizes it.
 
 ## R21–R25 scoped correction — 2026-09-16
