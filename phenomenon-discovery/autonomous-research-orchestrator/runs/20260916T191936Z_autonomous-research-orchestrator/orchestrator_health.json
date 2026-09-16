@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 0",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\R32-RESULT-PUBLISH__r1.json",
+  "main_commit": "096b0c8c687c691fc4e77bc692f08c65dc1890e3",
+  "pid": 13536,
+  "schema": 1,
+  "status": "PASS",
+  "updated_at_utc": "2026-09-16T19:19:36.488126+00:00",
+  "version": "1.03"
+}
