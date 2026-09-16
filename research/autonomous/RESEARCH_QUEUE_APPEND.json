@@ -1,11 +1,24 @@
 {
   "schema": 1,
-  "generation": 87,
+  "generation": 88,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 87 emergency fail-closed quarantine: discovery r4 was observed starting on main 7e958a07cc03538ed5689aea8edc79b84564e66b under a long-lived orchestrator process whose in-memory receipt logic predated exact-main-commit binding. The scientific engine code was unchanged from the preflight-PASS commit f12f17454ad77f5427be8dc7693b10840c916216, but the control-plane invariant was not enforced by the live process. Disable every job after the already-started child returns. Do not inspect/promote discovery output until control-plane restart/revalidation. No confirmation, 2025, 2026, Guardian integration or live authorization.",
+  "closure": "Generation 88 stages the post-timeout recovery in a fully disabled state. It adds a control-plane v1.03 preflight and promotes discovery to revision 5 solely to carry an explicit 30-minute infrastructure timeout. Scientific R21-R25 definitions, discovery window, R15 pin and protected-period rules are unchanged. All jobs remain disabled until the Windows Scheduled Task is restarted on the refreshed v1.03 daemon.",
   "jobs": [
+    {
+      "id": "R21-R25-CONTROL-PLANE-PREFLIGHT",
+      "revision": 1,
+      "enabled": false,
+      "priority": 5,
+      "class_key": "r21-r25-control-plane-preflight",
+      "description": "Run orchestrator v1.03 tests, including exact-main receipt binding, replacement-queue semantics, hot-reload reexec and same-PID lock continuity. Synthetic/infrastructure only; no market data.",
+      "executor": {
+        "kind": "python",
+        "path": "research/autonomous/test_guardian_research_orchestrator_v1_00.py",
+        "args": []
+      }
+    },
     {
       "id": "R21-R25-CODE-PREFLIGHT",
       "revision": 4,
@@ -34,7 +47,7 @@
     },
     {
       "id": "R21-R25-XAU-DISCOVERY",
-      "revision": 4,
+      "revision": 5,
       "enabled": false,
       "priority": 30,
       "class_key": "r21-r25-xau-discovery",
@@ -44,6 +57,14 @@
         "end_exclusive": "2019-07-01T00:00:00Z"
       },
       "requires": [
+        {
+          "kind": "receipt",
+          "job_id": "R21-R25-CONTROL-PLANE-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": [
+            "PASS"
+          ]
+        },
         {
           "kind": "receipt",
           "job_id": "R21-R25-CODE-PREFLIGHT",
@@ -70,6 +91,14 @@
           "--output",
           "{ROOT}\\r21_r25_xau_v102\\discovery.json"
         ]
+      },
+      "timeout": {
+        "min_seconds": 1800,
+        "expected_seconds": 600,
+        "eta_multiplier": 3,
+        "history_p95_multiplier": 3,
+        "stale_heartbeat_seconds": 1800,
+        "poll_seconds": 5
       }
     }
   ]
