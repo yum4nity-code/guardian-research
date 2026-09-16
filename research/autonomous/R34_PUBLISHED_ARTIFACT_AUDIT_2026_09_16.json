@@ -1,0 +1,468 @@
+{
+  "hash_checks": [
+    {
+      "name": "r34_signal_execution_feed_factorial_result.json",
+      "published_sha256": "171147ccee8b71b2d1260d02e7783286da8b180d178fe5f2eb8e6020a1b37e76",
+      "source_match": "LF_TO_CRLF"
+    },
+    {
+      "name": "r34_matrix_yearly.csv",
+      "published_sha256": "357a862719d82338965318fcc2ff7973fe3b5dc0eed50aedbaaf2be40b466a5d",
+      "source_match": "LF_TO_CRLF"
+    },
+    {
+      "name": "r34_signal_pairs.csv",
+      "published_sha256": "14a81cf65f45e802f701c89930a34eb96084e2fe4f17eaeb5265e17c0e2d94c7",
+      "source_match": "LF_TO_CRLF"
+    },
+    {
+      "name": "r34_fn_signals.csv",
+      "published_sha256": "1135ac28289b8b47cf20636ad1827d95504835736589032c5a872d69721213cb",
+      "source_match": "LF_TO_CRLF"
+    },
+    {
+      "name": "r34_duka_signals.csv",
+      "published_sha256": "5630b12f3f7e112c4627cf30d69f0e8f1bc8d7ddddd75c5027f730e7b9abd6d7",
+      "source_match": "LF_TO_CRLF"
+    },
+    {
+      "name": "r34_ledger_fn_signal__fn_execution.csv",
+      "published_sha256": "321274720accede2ae65596aee783a0b6ebaef41838ad45406e6b1d48fe22812",
+      "source_match": "LF_TO_CRLF"
+    },
+    {
+      "name": "r34_ledger_fn_signal__duka_execution.csv",
+      "published_sha256": "c1be9ded9b79ee47125f8e3feb64384c7e8d9f53d62b8b47b851ff79e3241230",
+      "source_match": "LF_TO_CRLF"
+    },
+    {
+      "name": "r34_ledger_duka_signal__fn_execution.csv",
+      "published_sha256": "641e56ef030d1df747dd13d6da0bc15c7fd949b531b7832d8187133587559fac",
+      "source_match": "LF_TO_CRLF"
+    },
+    {
+      "name": "r34_ledger_duka_signal__duka_execution.csv",
+      "published_sha256": "9048fe13e43fc188f0deeccd7569fb93f057a04f3fd6496d07716bea8a5cdb77",
+      "source_match": "LF_TO_CRLF"
+    }
+  ],
+  "scope": "existing 2024/2025 R34 artifacts only; no replay",
+  "years": {
+    "2024": {
+      "cells": {
+        "DUKA_SIGNAL__DUKA_EXECUTION": {
+          "accounting": {
+            "excluded_boundary_signals": 0,
+            "executable_trades": 163,
+            "ignored_overlap_signals": 400,
+            "missing_reference_trades": 0,
+            "signals_total": 563
+          },
+          "entry_wait_minutes": {
+            "max": 5,
+            "median": 5,
+            "min": 5
+          },
+          "metrics": {
+            "E1": {
+              "PF": 0.9116804325469001,
+              "net": -58.76670399666082
+            },
+            "STRESS": {
+              "PF": 0.6610377318081075,
+              "net": -260.61314292999185
+            }
+          }
+        },
+        "DUKA_SIGNAL__FN_EXECUTION": {
+          "accounting": {
+            "excluded_boundary_signals": 0,
+            "executable_trades": 163,
+            "ignored_overlap_signals": 400,
+            "missing_reference_trades": 0,
+            "signals_total": 563
+          },
+          "entry_wait_minutes": {
+            "max": 5,
+            "median": 5,
+            "min": 5
+          },
+          "metrics": {
+            "E1": {
+              "PF": 0.9136354341209066,
+              "net": -57.453887722819964
+            },
+            "STRESS": {
+              "PF": 0.6625107039162719,
+              "net": -259.30924557768293
+            }
+          }
+        },
+        "FN_SIGNAL__DUKA_EXECUTION": {
+          "accounting": {
+            "excluded_boundary_signals": 0,
+            "executable_trades": 95,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 95
+          },
+          "entry_wait_minutes": {
+            "max": 180,
+            "median": 5,
+            "min": 5
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.81781833589717,
+              "net": 466.09634574536653
+            },
+            "STRESS": {
+              "PF": 3.709659177449813,
+              "net": 349.18412460165524
+            }
+          }
+        },
+        "FN_SIGNAL__FN_EXECUTION": {
+          "accounting": {
+            "excluded_boundary_signals": 0,
+            "executable_trades": 95,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 95
+          },
+          "entry_wait_minutes": {
+            "max": 61,
+            "median": 60,
+            "min": 60
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.160009247007076,
+              "net": 432.1717427268931
+            },
+            "STRESS": {
+              "PF": 3.292694196033043,
+              "net": 315.24511579600806
+            }
+          }
+        }
+      },
+      "duka": {
+        "hours": {
+          "01:00": 3,
+          "01:05": 2,
+          "01:10": 3,
+          "01:15": 6,
+          "01:20": 4,
+          "01:25": 3,
+          "01:30": 3,
+          "01:35": 2,
+          "01:40": 2,
+          "01:45": 2,
+          "01:50": 1,
+          "01:55": 1,
+          "02:00": 5,
+          "02:05": 5,
+          "02:10": 2,
+          "02:15": 3,
+          "02:20": 2,
+          "02:25": 3,
+          "02:30": 7,
+          "02:35": 6,
+          "02:40": 3,
+          "02:45": 2,
+          "02:50": 3,
+          "02:55": 7,
+          "03:00": 25,
+          "03:05": 14,
+          "03:10": 10,
+          "03:15": 8,
+          "03:20": 8,
+          "03:25": 6,
+          "03:30": 18,
+          "03:35": 10,
+          "03:40": 10,
+          "03:45": 4,
+          "03:50": 6,
+          "03:55": 5,
+          "04:00": 12,
+          "04:05": 7,
+          "04:10": 14,
+          "04:15": 15,
+          "04:20": 13,
+          "04:25": 10,
+          "04:30": 12,
+          "04:35": 15,
+          "04:40": 8,
+          "04:45": 6,
+          "04:50": 7,
+          "04:55": 8,
+          "05:00": 7,
+          "05:05": 4,
+          "05:10": 7,
+          "05:15": 5,
+          "05:20": 7,
+          "05:25": 10,
+          "05:30": 9,
+          "05:35": 11,
+          "05:40": 8,
+          "05:45": 7,
+          "05:50": 6,
+          "05:55": 9,
+          "06:00": 7,
+          "06:05": 8,
+          "06:10": 4,
+          "06:15": 4,
+          "06:20": 3,
+          "06:25": 4,
+          "06:30": 1,
+          "06:35": 3,
+          "06:40": 5,
+          "06:45": 6,
+          "06:50": 8,
+          "06:55": 7,
+          "07:00": 12,
+          "07:05": 7,
+          "07:10": 8,
+          "07:15": 2,
+          "07:20": 2,
+          "07:25": 4,
+          "07:30": 11,
+          "07:35": 4,
+          "07:40": 9,
+          "07:45": 11,
+          "07:50": 6,
+          "07:55": 6
+        },
+        "median_high_minus_close": 0.2300000000000182,
+        "signals": 563,
+        "unique_dates": 163
+      },
+      "fn": {
+        "hours": {
+          "00:00": 95
+        },
+        "median_high_minus_close": 4.769999999999982,
+        "signals": 95,
+        "unique_dates": 95
+      },
+      "nearest_fn_to_duka_minutes": {
+        "median": 255,
+        "minimum": 60,
+        "within_10": 0
+      },
+      "pair_stages": {
+        "DUKA_ONLY": 563,
+        "FN_ONLY": 95
+      }
+    },
+    "2025": {
+      "cells": {
+        "DUKA_SIGNAL__DUKA_EXECUTION": {
+          "accounting": {
+            "excluded_boundary_signals": 0,
+            "executable_trades": 168,
+            "ignored_overlap_signals": 564,
+            "missing_reference_trades": 0,
+            "signals_total": 732
+          },
+          "entry_wait_minutes": {
+            "max": 5,
+            "median": 5,
+            "min": 5
+          },
+          "metrics": {
+            "E1": {
+              "PF": 1.2255883090962865,
+              "net": 263.3096391982754
+            },
+            "STRESS": {
+              "PF": 0.9743386565889952,
+              "net": -33.45628059526344
+            }
+          }
+        },
+        "DUKA_SIGNAL__FN_EXECUTION": {
+          "accounting": {
+            "excluded_boundary_signals": 0,
+            "executable_trades": 168,
+            "ignored_overlap_signals": 564,
+            "missing_reference_trades": 0,
+            "signals_total": 732
+          },
+          "entry_wait_minutes": {
+            "max": 18,
+            "median": 5,
+            "min": 5
+          },
+          "metrics": {
+            "E1": {
+              "PF": 1.2121553685004711,
+              "net": 249.63219444414864
+            },
+            "STRESS": {
+              "PF": 0.9640971296736252,
+              "net": -47.15662540131937
+            }
+          }
+        },
+        "FN_SIGNAL__DUKA_EXECUTION": {
+          "accounting": {
+            "excluded_boundary_signals": 0,
+            "executable_trades": 107,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 107
+          },
+          "entry_wait_minutes": {
+            "max": 180,
+            "median": 5,
+            "min": 5
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.324586341366578,
+              "net": 1158.995980598487
+            },
+            "STRESS": {
+              "PF": 4.014382606053044,
+              "net": 970.1978012356956
+            }
+          }
+        },
+        "FN_SIGNAL__FN_EXECUTION": {
+          "accounting": {
+            "excluded_boundary_signals": 0,
+            "executable_trades": 107,
+            "ignored_overlap_signals": 0,
+            "missing_reference_trades": 0,
+            "signals_total": 107
+          },
+          "entry_wait_minutes": {
+            "max": 62,
+            "median": 60,
+            "min": 60
+          },
+          "metrics": {
+            "E1": {
+              "PF": 5.04177244510274,
+              "net": 1214.7939682736028
+            },
+            "STRESS": {
+              "PF": 3.9022479541960466,
+              "net": 1025.9970153312167
+            }
+          }
+        }
+      },
+      "duka": {
+        "hours": {
+          "01:00": 16,
+          "01:05": 10,
+          "01:10": 13,
+          "01:15": 9,
+          "01:20": 10,
+          "01:25": 5,
+          "01:30": 5,
+          "01:35": 11,
+          "01:40": 4,
+          "01:45": 5,
+          "01:50": 5,
+          "01:55": 1,
+          "02:00": 8,
+          "02:05": 12,
+          "02:10": 7,
+          "02:15": 7,
+          "02:20": 4,
+          "02:25": 6,
+          "02:30": 7,
+          "02:35": 5,
+          "02:40": 7,
+          "02:45": 7,
+          "02:50": 5,
+          "02:55": 6,
+          "03:00": 27,
+          "03:05": 19,
+          "03:10": 13,
+          "03:15": 12,
+          "03:20": 17,
+          "03:25": 12,
+          "03:30": 16,
+          "03:35": 10,
+          "03:40": 10,
+          "03:45": 6,
+          "03:50": 9,
+          "03:55": 7,
+          "04:00": 18,
+          "04:05": 17,
+          "04:10": 18,
+          "04:15": 18,
+          "04:20": 12,
+          "04:25": 9,
+          "04:30": 8,
+          "04:35": 13,
+          "04:40": 14,
+          "04:45": 9,
+          "04:50": 9,
+          "04:55": 8,
+          "05:00": 10,
+          "05:05": 12,
+          "05:10": 6,
+          "05:15": 5,
+          "05:20": 6,
+          "05:25": 3,
+          "05:30": 6,
+          "05:35": 5,
+          "05:40": 7,
+          "05:45": 8,
+          "05:50": 7,
+          "05:55": 5,
+          "06:00": 3,
+          "06:05": 9,
+          "06:10": 10,
+          "06:15": 4,
+          "06:20": 4,
+          "06:25": 6,
+          "06:30": 7,
+          "06:35": 5,
+          "06:40": 13,
+          "06:45": 10,
+          "06:50": 8,
+          "06:55": 5,
+          "07:00": 2,
+          "07:05": 5,
+          "07:10": 4,
+          "07:15": 6,
+          "07:20": 7,
+          "07:25": 5,
+          "07:30": 12,
+          "07:35": 9,
+          "07:40": 8,
+          "07:45": 5,
+          "07:50": 10,
+          "07:55": 9
+        },
+        "median_high_minus_close": 0.4600000000000364,
+        "signals": 732,
+        "unique_dates": 168
+      },
+      "fn": {
+        "hours": {
+          "00:00": 107
+        },
+        "median_high_minus_close": 6.929999999999836,
+        "signals": 107,
+        "unique_dates": 107
+      },
+      "nearest_fn_to_duka_minutes": {
+        "median": 210,
+        "minimum": 60,
+        "within_10": 0
+      },
+      "pair_stages": {
+        "DUKA_ONLY": 732,
+        "FN_ONLY": 107
+      }
+    }
+  }
+}

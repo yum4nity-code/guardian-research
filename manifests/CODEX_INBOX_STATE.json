@@ -3,6 +3,7 @@
   "last_checked_at": "2026-09-01T08:02:53Z",
   "last_reviewed_commit": "5c0adb06961664dfb24a40e859fb3c11310810aa",
   "unread_notes": [
+    "handoff/chatgpt_to_codex/2026/09/16/R34_MIDNIGHT_SOURCE_AUDIT_ACTION.md",
     "handoff/chatgpt_to_codex/2026/09/08/CHALLENGE_PIPELINE_V101_PREREG_STANDARD.md",
     "handoff/chatgpt_to_codex/2026/09/07/CHALLENGE_PROBABILITY_AUTO_POST_VALIDATION_STANDARD.md",
     "handoff/chatgpt_to_codex/2026/09/06/D023_V108_2023_HARNESS_COMPILE_SMOKE_REQUEST_2026_09_06.md",
@@ -32,5 +33,5 @@
     "handoff/chatgpt_to_codex/2026/09/01/D017_V11_16_PREOOS_GENERALIZATION_WORKERS.md",
     "handoff/chatgpt_to_codex/2026/09/01/GUARDIAN_V11_16_MIN_RISK_SCALING_RESOLUTION.md"
   ],
-  "notes": "PROCESS UPDATE 2026-09-08: read CHALLENGE_PIPELINE_V101_PREREG_STANDARD.md first; it supersedes the Sep-7 Challenge process note where different. Canonical flow is frozen scorer JSON + preregistered Challenge policy + canonical challenge_day/adverse_r trade export + SHA-pinned challenge profile -> post_validation_pipeline_v1_01.py -> fail-closed eligibility -> lower-level gate/Lab only after alpha/OOS success. Do not retrofit closed D053/D054 and do not choose accepted verdict, seed or risk grid after seeing a result. Older unread notes remain historical/action context and must be reconciled against current real state before execution."
+  "notes": "2026-09-16: new R34 midnight source-audit action at handoff/chatgpt_to_codex/2026/09/16/R34_MIDNIGHT_SOURCE_AUDIT_ACTION.md. Preserve generation 114 empty queue and all closed runs. PROCESS UPDATE 2026-09-08: read CHALLENGE_PIPELINE_V101_PREREG_STANDARD.md first; it supersedes the Sep-7 Challenge process note where different. Canonical flow is frozen scorer JSON + preregistered Challenge policy + canonical challenge_day/adverse_r trade export + SHA-pinned challenge profile -> post_validation_pipeline_v1_01.py -> fail-closed eligibility -> lower-level gate/Lab only after alpha/OOS success. Do not retrofit closed D053/D054 and do not choose accepted verdict, seed or risk grid after seeing a result. Older unread notes remain historical/action context and must be reconciled against current real state before execution."
 }

@@ -1,5 +1,9 @@
 # Research Status
 
+## 2026-09-16 — R34 artifact audit: midnight source anomaly
+
+All 202 FN signals are timestamped 00:00 (95/107); Duka signals are 563/732, zero at midnight, with 163/168 executable after overlap exclusions. Existing ledger net/PF and nine source hashes reconcile (explicit LF/CRLF normalization). No ±10-minute pairs exist. HCC parser block/timeframe admission is a concrete code weakness; actual record contamination/lookahead remains unproven pending local source trace. No alpha promotion based on these FN signals until causal availability is established. See `research/autonomous/R34_MIDNIGHT_SOURCE_AUDIT_2026_09_16.md` for evidence and frozen source-only diagnostic. Windows/HCC sources were not accessed by this audit. Generation 114 stays empty; no R33/R34 replay or output alteration. Next safe action: local read-only source diagnostic, not strategy tuning.
+
 Document vivant maintenu par Codex.
 
 ## 2026-09-11 — Issue #3 final feasibility implementation READY

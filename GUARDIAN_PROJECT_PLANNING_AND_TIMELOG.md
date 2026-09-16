@@ -586,3 +586,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Next safe action: independent result audit or separately preregistered feed-construction diagnostic; preserve R6B-347 unchanged.
 - Human active time: NOT QUANTIFIED. Automated compute/review runtime is separate.
 - Control-plane follow-up: generation 114 explicitly supersedes generation 113 and replaces all R33 jobs with an empty list. No R33/R34 calculation was relaunched and existing results were not modified.
+
+
+## 2026-09-16 — R34 published-artifact independent audit
+
+- Read pinned R34 source and published outputs. Independently recomputed eight year/cell ledger counts and E1/STRESS net/PF; nine Windows-source SHA256/size checks pass after explicit LF-to-CRLF reconstruction.
+- Found all 95/107 FN signals at midnight versus zero Duka midnight signals; no ±10m pairs. Corrected '468 missing paired events' interpretation. Identified HCC record timeframe-admission weakness; real HCC contamination/availability is NOT yet established.
+- Published read-only reproducible artifact auditor, measurements, source-diagnostic plan and ACTION_REQUISE handoff; inbox updated. No market replay, no R33/R34 rerun, no source/result/production changes, no 2026 access. Effective queue generation 114 remains untouched with no jobs.
+- Next: Codex on the PC traces source records and causality under the frozen diagnostic. Local Windows access is unavailable in this session; no claim of running work there.
+- Human active time: NOT QUANTIFIED. Automated audit runtime is separate.
