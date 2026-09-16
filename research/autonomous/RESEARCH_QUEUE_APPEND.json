@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "generation": 93,
+  "generation": 94,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 93 authorizes R21 independent confirmation r1 after the frozen discovery result, cold audit, and generation-92 preflight PASS. Exact-main receipt binding requires control-plane, R21 code and sealed-builder preflights to PASS again on this commit before market payloads open. Confirmation is R21 only, fixed 2019-07-01 through 2024-12-31, with frozen post_15m gate mean > 0 and day-clustered t > +2.0. 2025, 2026+, R22-R25 confirmation, PnL optimization and live integration remain prohibited.",
+  "closure": "Generation 94 closes R21 confirmation after r1 completed successfully at the infrastructure level but failed the frozen scientific gate. R21 confirmation observed post_15m mean +3.477260504570511e-05 and day-clustered t +0.610477337333653, so R21 is not promoted. All jobs disabled. 2025 and 2026+ remain prohibited; no rescue, rerun, economic gate, Guardian integration or live deployment is authorized.",
   "jobs": [
     {
       "id": "R21-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 5,
       "class_key": "r21-confirmation-control-plane-preflight",
       "description": "Run orchestrator v1.03 control-plane tests. Synthetic/infrastructure only; no market payloads.",
@@ -22,7 +22,7 @@
     {
       "id": "R21-CONFIRMATION-CODE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 10,
       "class_key": "r21-confirmation-code-preflight",
       "description": "Run R21 confirmation v1.00 synthetic contract, gate, provenance, one-shot and path-confinement tests. No market payloads.",
@@ -35,7 +35,7 @@
     {
       "id": "R21-CONFIRMATION-DATA-SLICE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 11,
       "class_key": "r21-confirmation-data-slice-preflight",
       "description": "Run sealed R21 confirmation builder synthetic tests proving exact boundary selection, 2025 non-opening and 2026 hard-fail. No real market payloads.",
@@ -48,7 +48,7 @@
     {
       "id": "R21-XAU-CONFIRMATION",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 30,
       "class_key": "r21-xau-confirmation",
       "description": "R21 independent confirmation only, frozen 2019-07-01 through 2024-12-31. Primary post_15m gate: mean > 0 and day-clustered t > +2.0. 2025 and 2026+ inaccessible.",
