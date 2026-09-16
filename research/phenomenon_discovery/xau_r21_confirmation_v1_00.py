@@ -64,12 +64,19 @@ def _validate_pin_attestation() -> dict:
 
     required = {
         "status": "PASS",
+        "phase": "r15-dukascopy-xauusd-boundary-union",
+        "payload_count": 5518,
+        "eligible_boundary_days": 5518,
+        "known_missing_or_holiday_weekdays": 0,
         "payload_index_csv_sha256": CANONICAL_R15_INDEX_SHA256,
         "protected_2026_opened": False,
     }
     for key, expected in required.items():
         if attestation.get(key) != expected:
             raise RuntimeError(f"R15 pin attestation mismatch: {key}")
+    window = attestation.get("window")
+    if window != {"start": "2004-11-08", "end_exclusive": "2026-01-01"}:
+        raise RuntimeError("R15 pin attestation window mismatch")
     return attestation
 
 
