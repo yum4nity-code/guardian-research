@@ -1,75 +1,104 @@
 {
   "schema": 1,
-  "generation": 81,
-  "supersedes_generation": 80,
-  "closure": "Control-plane resynchronization after manual scientific progression beyond generation 80. R15 is scientifically closed FAIL; R16/R19 confirmation FAIL; R17/R20 discovery FAIL; R18 is statistically confirmed but owner-closed as an executable/production candidate. R21-R25 are preregistered and unexecuted. Generation 81 is intentionally fail-closed: every new job is disabled until a separate independent cold audit passes and a later queue generation explicitly enables execution. No completed job is restarted. 2025 remains locked and 2026+ sealed.",
+  "generation": 82,
+  "supersedes_generation": 81,
+  "closure": "Independent cold audit of generation 81 returned FAIL. Generation 82 stages only audit-corrected R21-R25 v1.01 discovery code. All jobs remain disabled pending a new independent cold audit PASS. v1.01 cannot open confirmation, 2025, or 2026+.",
   "jobs": [
     {
       "id": "R21-R25-CODE-PREFLIGHT",
-      "revision": 1,
+      "revision": 2,
       "enabled": false,
       "priority": 10,
       "class_key": "r21-r25-code-preflight",
-      "description": "Run synthetic implementation tests for the common R21-R25 engine. Passing this test is necessary but not sufficient: a separate independent cold audit is still mandatory before discovery may be enabled.",
+      "description": "Run audit-regression tests for discovery-only R21-R25 v1.01. Does not authorize historical discovery execution.",
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_00.py",
+        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_01.py",
         "args": []
       }
     },
     {
       "id": "R21-R25-DATA-SLICE-PREFLIGHT",
-      "revision": 1,
+      "revision": 2,
       "enabled": false,
       "priority": 11,
       "class_key": "r21-r25-data-slice-preflight",
-      "description": "Test the stage-bounded M5 builder. The discovery builder must not open 2025 payloads and must hard-fail any 2026+ index row.",
+      "description": "Verify the v1.01 discovery builder cannot open post-2019-06-30 payloads and hard-fails protected 2026 metadata.",
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/test_build_xau_m5_stage_slice_v1_00.py",
+        "path": "research/phenomenon_discovery/test_build_xau_m5_discovery_slice_v1_01.py",
         "args": []
       }
     },
     {
       "id": "R21-R25-DISCOVERY-M5-BUILD",
-      "revision": 1,
+      "revision": 2,
       "enabled": false,
       "priority": 20,
       "class_key": "r21-r25-discovery-data-build",
-      "description": "Derive only the frozen discovery slice from the immutable R15 master payload index. Opens payloads from 2004-11-08 through 2019-06-30 only; 2025 is not read and 2026+ is forbidden.",
+      "description": "Build only the frozen 2004-11-08 through 2019-06-30 XAUUSD M5 discovery slice from immutable R15 payloads. No confirmation/pre-OOS mode exists in this builder.",
+      "data_window": {
+        "start": "2004-11-08T00:00:00Z",
+        "end_exclusive": "2019-07-01T00:00:00Z"
+      },
       "requires": [
-        {"kind": "receipt", "job_id": "R21-R25-CODE-PREFLIGHT", "revision": 1, "accepted_status": ["PASS"]},
-        {"kind": "receipt", "job_id": "R21-R25-DATA-SLICE-PREFLIGHT", "revision": 1, "accepted_status": ["PASS"]}
+        {
+          "kind": "receipt",
+          "job_id": "R21-R25-CODE-PREFLIGHT",
+          "revision": 2,
+          "accepted_status": [
+            "PASS"
+          ]
+        },
+        {
+          "kind": "receipt",
+          "job_id": "R21-R25-DATA-SLICE-PREFLIGHT",
+          "revision": 2,
+          "accepted_status": [
+            "PASS"
+          ]
+        }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/build_xau_m5_stage_slice_v1_00.py",
+        "path": "research/phenomenon_discovery/build_xau_m5_discovery_slice_v1_01.py",
         "args": [
-          "--index", "{ROOT}\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
-          "--output", "{ROOT}\\r21_r25_xau_v1\\discovery_m5_20041108_20190630.csv",
-          "--start", "2004-11-08",
-          "--end", "2019-06-30"
+          "--index",
+          "{ROOT}\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
+          "--output",
+          "{ROOT}\\r21_r25_xau_v101\\discovery_m5_20041108_20190630.csv"
         ]
       }
     },
     {
       "id": "R21-R25-XAU-DISCOVERY",
-      "revision": 1,
+      "revision": 2,
       "enabled": false,
       "priority": 30,
       "class_key": "r21-r25-xau-discovery",
-      "description": "Run only the frozen preregistered R21-R25 definitions on the sealed discovery slice. No PnL optimization, no parameter rescue, no confirmation data, no 2025, no 2026. This job must remain disabled in generation 81; a later generation may enable it only after independent cold-audit PASS.",
-      "data_window": {"start": "2004-11-08", "end_inclusive": "2019-06-30"},
+      "description": "Run only the frozen preregistered R21-R25 definitions on the physically sealed discovery slice. No confirmation, no PnL optimization, no parameter rescue, no 2025, no 2026.",
+      "data_window": {
+        "start": "2004-11-08T00:00:00Z",
+        "end_exclusive": "2019-07-01T00:00:00Z"
+      },
       "requires": [
-        {"kind": "receipt", "job_id": "R21-R25-DISCOVERY-M5-BUILD", "revision": 1, "accepted_status": ["PASS"]}
+        {
+          "kind": "receipt",
+          "job_id": "R21-R25-DISCOVERY-M5-BUILD",
+          "revision": 2,
+          "accepted_status": [
+            "PASS"
+          ]
+        }
       ],
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/xau_edge_discovery_r21_r25_v1_00.py",
+        "path": "research/phenomenon_discovery/xau_edge_discovery_r21_r25_v1_01.py",
         "args": [
-          "--input", "{ROOT}\\r21_r25_xau_v1\\discovery_m5_20041108_20190630.csv",
-          "--output", "{ROOT}\\r21_r25_xau_v1\\discovery.json",
-          "--stage", "discovery"
+          "--input",
+          "{ROOT}\\r21_r25_xau_v101\\discovery_m5_20041108_20190630.csv",
+          "--output",
+          "{ROOT}\\r21_r25_xau_v101\\discovery.json"
         ]
       }
     }
