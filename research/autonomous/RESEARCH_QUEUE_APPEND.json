@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "generation": 105,
+  "generation": 106,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 105 authorizes R29 post-selection R27-filter × R6 diagnostic after preregistration, cold audit and generation-104 preflight PASS. Exact-main receipt binding requires control-plane, R29 code, R6 regression and economic/execution regression to PASS again on this commit before canonical 2024-2025 files open. 2026+, threshold/window rescue, R6 retuning, PnL optimization and Guardian/live modification remain prohibited.",
+  "closure": "Generation 106 closes R29 after diagnostic r1 completed cleanly with scientific verdict NO_FILTER_LEAD. Pooled E1 interaction differences were negative for both frozen candidates (R6B-347 -1.9059823459182557; R6B-307 -0.8203835804569053), but R6B-347 pooled E1 bootstrap 95% upper bound was +3.367004739321356, so the preregistered robust-veto gate failed. All R29 market-data jobs disabled. 2026+, rescue tuning and Guardian/live modification remain prohibited.",
   "jobs": [
     {
       "id": "R29-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 5,
       "class_key": "r29-control-plane-preflight",
       "description": "Run orchestrator v1.03 control-plane tests. Synthetic/infrastructure only.",
@@ -22,7 +22,7 @@
     {
       "id": "R29-CODE-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 10,
       "class_key": "r29-code-preflight",
       "description": "Run R29 synthetic tests for frozen R6 definitions, no-lookahead active bottom10 state, gap handling, interaction difference, deterministic day-block bootstrap, strict FILTER_LEAD gate and one-shot safety.",
@@ -35,7 +35,7 @@
     {
       "id": "R29-R6-REGRESSION-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 11,
       "class_key": "r29-r6-regression-preflight",
       "description": "Run frozen R6 low-turnover breakout regression tests before R29 reuses R6 signal and replay semantics.",
@@ -48,7 +48,7 @@
     {
       "id": "R29-ECON-REGRESSION-PREFLIGHT",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 12,
       "class_key": "r29-econ-regression-preflight",
       "description": "Run frozen R5 economic/execution regression tests protecting E1/STRESS cost and chronological replay semantics.",
@@ -61,7 +61,7 @@
     {
       "id": "R29-R27-FILTER-R6-DIAGNOSTIC",
       "revision": 1,
-      "enabled": true,
+      "enabled": false,
       "priority": 30,
       "class_key": "r29-r27-filter-r6-diagnostic",
       "description": "Post-selection interaction diagnostic only: classify exact R6B-347/R6B-307 canonical 2024-2025 trades by preregistered R27-compatible active bottom10 state and test whether compression degrades E1/STRESS trade quality. No 2026 access and no production authorization.",
