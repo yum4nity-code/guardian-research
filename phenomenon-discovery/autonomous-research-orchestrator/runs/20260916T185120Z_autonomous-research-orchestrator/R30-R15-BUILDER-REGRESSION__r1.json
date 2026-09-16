@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 150.0,
+  "class_key": "r30-r15-builder-regression",
+  "duration_seconds": 5.002436199982185,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T18:51:20.379175+00:00",
+  "job_id": "R30-R15-BUILDER-REGRESSION",
+  "main_commit": "172e4cf33e5afd6951636cc9c62a1388aa6105db",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T18:51:15.351017+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "PASS"
+}
