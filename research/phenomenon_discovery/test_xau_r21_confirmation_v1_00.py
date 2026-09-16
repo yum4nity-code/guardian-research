@@ -139,7 +139,7 @@ def test_builder_receipt_rejects_2025_claim():
         try:
             m._validate_builder_receipt(receipt, p)
         except RuntimeError as exc:
-            assert "post-confirmation payload" in str(exc)
+            assert "last_opened_payload_date" in str(exc)
         else:
             raise AssertionError("receipt claiming 2025 payload was accepted")
 
