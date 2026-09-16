@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 600.0,
+  "class_key": "r31-raw-vs-news-clean",
+  "duration_seconds": 5.004621000000043,
+  "exit_code": 0,
+  "finished_at_utc": "2026-09-16T19:13:07.852573+00:00",
+  "job_id": "R31-RAW-VS-NEWS-CLEAN",
+  "main_commit": "6b7498238fddaa987f89a759becef7e882c98cd5",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 0",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-16T19:13:02.826790+00:00",
+  "status": "PASS",
+  "stderr_tail": "",
+  "stdout_tail": "{\"protected_2026_opened\": false, \"status\": \"PASS\", \"summary\": {\"R6B-307\": {\"E1\": {\"clean_2024_net\": 193.61595623296444, \"clean_2025_net\": 802.3119806440707, \"clean_pooled_capital\": 13460.220199781135, \"raw_2024_net\": 189.69194609735067, \"raw_2025_net\": 794.1710546546069, \"raw_pooled_capital\": 13404.931466827904}, \"STRESS\": {\"clean_2024_net\": 76.64489797333142, \"clean_2025_net\": 615.3376311233296, \"clean_pooled_capital\": 12139.355397895346, \"raw_2024_net\": 72.82764818806866, \"raw_2025_net\": 605.4822221207419, \"raw_pooled_capital\": 12083.264120558522}}, \"R6B-347\": {\"E1\": {\"clean_2024_net\": 437.78540303487335, \"clean_2025_net\": 1216.3762521738827, \"clean_pooled_capital\": 16840.982673217077, \"raw_2024_net\": 432.1717427268931, \"raw_2025_net\": 1214.7939682736028, \"raw_pooled_capital\": 16793.699243398918}, \"STRESS\": {\"clean_2024_net\": 320.75158143191834, \"clean_2025_net\": 1029.2954681324766, \"clean_pooled_capital\": 15189.231617306057, \"raw_2024_net\": 315.24511579600806, \"raw_2025_net\": 1025.9970153312167, \"raw_pooled_capital\": 15138.787829636341}}}}"
+}
