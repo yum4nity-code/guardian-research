@@ -3,6 +3,7 @@ import json
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -96,6 +97,29 @@ class TestOrchestrator(unittest.TestCase):
             self.assertEqual(queue["generation"], 84)
             self.assertFalse(queue["human_approved_2026"])
             self.assertEqual([job["id"] for job in queue["jobs"]], ["SAFE"])
+
+
+    def test_restart_if_code_changed_reexecs(self):
+        with tempfile.TemporaryDirectory() as td:
+            deploy = Path(td)
+            target = deploy / orch.SELF_REL
+            target.parent.mkdir(parents=True)
+            target.write_text("new orchestrator bytes", encoding="utf-8")
+            with patch.object(orch, "RUNNING_SELF_SHA256", "old"), \
+                 patch.object(orch, "file_sha256", return_value="new"), \
+                 patch.object(orch.os, "execv", side_effect=SystemExit(0)) as execv:
+                with self.assertRaises(SystemExit):
+                    orch.restart_if_code_changed(deploy)
+            execv.assert_called_once()
+            argv = execv.call_args.args[1]
+            self.assertEqual(Path(argv[1]), target.resolve())
+
+    def test_lock_accepts_same_pid_after_exec(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            lock_path = root / "orchestrator.lock"
+            lock_path.write_text(f"{orch.os.getpid()}\n", encoding="utf-8")
+            self.assertEqual(orch.lock(root), lock_path)
 
     def test_noop_job(self):
         with tempfile.TemporaryDirectory() as td:
