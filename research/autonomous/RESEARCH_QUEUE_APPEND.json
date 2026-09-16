@@ -1,18 +1,18 @@
 {
   "schema": 1,
-  "generation": 97,
+  "generation": 98,
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Generation 97 closes R26 after confirmation r1 completed cleanly but failed the frozen joint scientific gate. reversal_2b mean +6.245276678524023e-05, clustered t +1.847727211281781; reversal_4b mean +3.413179040851612e-05, clustered t +0.7032756601472466. All R26 jobs disabled. 2025 and 2026+ remain prohibited; no horizon rescue, rerun, economic gate or live integration is authorized.",
+  "closure": "Generation 98 stages R27 compression-persistence confirmation preflights only. R27 is a new preregistered inverse study inspired by the failed R22 expansion hypothesis. Real confirmation r1 is present but disabled. Control-plane, R27 code, full R22/v1.03 regression, and sealed confirmation-builder tests must all PASS on the same main commit before market payloads may open. 2025, 2026+, state/horizon rescue, PnL optimization and live integration remain prohibited.",
   "jobs": [
     {
-      "id": "R26-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
+      "id": "R27-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
       "revision": 1,
-      "enabled": false,
+      "enabled": true,
       "priority": 5,
-      "class_key": "r26-confirmation-control-plane-preflight",
-      "description": "Run orchestrator v1.03 control-plane tests. Synthetic/infrastructure only; no market payloads.",
+      "class_key": "r27-confirmation-control-plane-preflight",
+      "description": "Run orchestrator v1.03 control-plane tests. Synthetic/infrastructure only.",
       "executor": {
         "kind": "python",
         "path": "research/autonomous/test_guardian_research_orchestrator_v1_00.py",
@@ -20,25 +20,38 @@
       }
     },
     {
-      "id": "R26-CONFIRMATION-CODE-PREFLIGHT",
+      "id": "R27-CONFIRMATION-CODE-PREFLIGHT",
       "revision": 1,
-      "enabled": false,
+      "enabled": true,
       "priority": 10,
-      "class_key": "r26-confirmation-code-preflight",
-      "description": "Run R26 opening-range reversal v1.00 synthetic tests for exact extractor reuse, joint gate, sign convention, one-shot safety and path confinement. No market payloads.",
+      "class_key": "r27-confirmation-code-preflight",
+      "description": "Run R27 compression-persistence v1.00 synthetic tests for exact component reuse, sign transform, joint gate, one-shot safety and path confinement.",
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/test_xau_r26_confirmation_v1_00.py",
+        "path": "research/phenomenon_discovery/test_xau_r27_confirmation_v1_00.py",
         "args": []
       }
     },
     {
-      "id": "R26-CONFIRMATION-DATA-SLICE-PREFLIGHT",
+      "id": "R27-R22-REGRESSION-PREFLIGHT",
       "revision": 1,
-      "enabled": false,
+      "enabled": true,
       "priority": 11,
-      "class_key": "r26-confirmation-data-slice-preflight",
-      "description": "Re-run the audited sealed confirmation builder tests proving exact 2019-07-01..2024-12-31 coverage, 2025 non-opening and 2026 hard-fail. Synthetic only.",
+      "class_key": "r27-r22-regression-preflight",
+      "description": "Run the full R21-R25 v1.03 regression suite, including R22 complete-estimator jackknife fail-closed behavior.",
+      "executor": {
+        "kind": "python",
+        "path": "research/phenomenon_discovery/test_xau_edge_discovery_r21_r25_v1_03.py",
+        "args": []
+      }
+    },
+    {
+      "id": "R27-CONFIRMATION-DATA-SLICE-PREFLIGHT",
+      "revision": 1,
+      "enabled": true,
+      "priority": 12,
+      "class_key": "r27-confirmation-data-slice-preflight",
+      "description": "Re-run the audited sealed confirmation builder synthetic tests proving exact 2019-07-01..2024-12-31 coverage, 2025 non-opening and 2026 hard-fail.",
       "executor": {
         "kind": "python",
         "path": "research/phenomenon_discovery/test_build_xau_m5_r21_confirmation_slice_v1_00.py",
@@ -46,12 +59,12 @@
       }
     },
     {
-      "id": "R26-XAU-CONFIRMATION",
+      "id": "R27-XAU-CONFIRMATION",
       "revision": 1,
       "enabled": false,
       "priority": 30,
-      "class_key": "r26-xau-confirmation",
-      "description": "R26 independent outcome confirmation only. Frozen R24 opening-range event definition, reversal sign, joint primary reversal_2b + reversal_4b. PASS requires both means >0 and both clustered t >2. 2025 and 2026+ inaccessible.",
+      "class_key": "r27-xau-confirmation",
+      "description": "R27 independent outcome confirmation only. Exact R22 bottom10 compression events and complete-estimator jackknife; primary persistence_4b + persistence_8b. PASS requires both means >0 and both jackknife t >2. 2025/2026+ inaccessible.",
       "data_window": {
         "start": "2019-07-01T00:00:00Z",
         "end_exclusive": "2025-01-01T00:00:00Z"
@@ -59,7 +72,7 @@
       "requires": [
         {
           "kind": "receipt",
-          "job_id": "R26-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
+          "job_id": "R27-CONFIRMATION-CONTROL-PLANE-PREFLIGHT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -67,7 +80,7 @@
         },
         {
           "kind": "receipt",
-          "job_id": "R26-CONFIRMATION-CODE-PREFLIGHT",
+          "job_id": "R27-CONFIRMATION-CODE-PREFLIGHT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -75,7 +88,15 @@
         },
         {
           "kind": "receipt",
-          "job_id": "R26-CONFIRMATION-DATA-SLICE-PREFLIGHT",
+          "job_id": "R27-R22-REGRESSION-PREFLIGHT",
+          "revision": 1,
+          "accepted_status": [
+            "PASS"
+          ]
+        },
+        {
+          "kind": "receipt",
+          "job_id": "R27-CONFIRMATION-DATA-SLICE-PREFLIGHT",
           "revision": 1,
           "accepted_status": [
             "PASS"
@@ -84,22 +105,22 @@
       ],
       "executor": {
         "kind": "python",
-        "path": "research/phenomenon_discovery/xau_r26_confirmation_v1_00.py",
+        "path": "research/phenomenon_discovery/xau_r27_confirmation_v1_00.py",
         "args": [
           "--index",
           "{ROOT}\\r15_dukascopy_xauusd_union_v1\\xauusd_dukascopy_master_payload_index.csv",
           "--output",
-          "{ROOT}\\r26_xau_confirmation_v100\\confirmation.json",
+          "{ROOT}\\r27_xau_confirmation_v100\\confirmation.json",
           "--progress",
-          "{ROOT}\\r26_xau_confirmation_v100\\progress.json"
+          "{ROOT}\\r27_xau_confirmation_v100\\progress.json"
         ]
       },
       "timeout": {
         "min_seconds": 1800,
-        "expected_seconds": 1200,
+        "expected_seconds": 1800,
         "eta_multiplier": 3,
         "history_p95_multiplier": 3,
-        "progress_file": "{ROOT}\\r26_xau_confirmation_v100\\progress.json",
+        "progress_file": "{ROOT}\\r27_xau_confirmation_v100\\progress.json",
         "stale_heartbeat_seconds": 3600,
         "poll_seconds": 5
       }
