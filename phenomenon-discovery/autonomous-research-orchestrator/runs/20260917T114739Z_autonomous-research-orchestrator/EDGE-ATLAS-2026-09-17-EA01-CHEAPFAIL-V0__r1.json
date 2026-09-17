@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "EDGE_ATLAS_CHEAP_FAIL_XAU_M5",
+  "duration_seconds": 2.008482200006256,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-17T11:47:39.791030+00:00",
+  "job_id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
+  "main_commit": "a873180fec75cbcde6b0be97b1d9c87819f20e16",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-17T11:47:37.774714+00:00",
+  "status": "FAIL",
+  "stderr_tail": "",
+  "stdout_tail": ""
+}
