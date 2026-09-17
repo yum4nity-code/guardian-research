@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "campaign_id": "EDGE-ATLAS-2026-09-17",
+  "updated_at": "2026-09-17T11:08:41+01:00",
+  "status": "PREFLIGHT_PASS_NO_RUN",
+  "source_inspection_commit": "e7352b28e89a2f681d3c4b547b12f90fbf4cb67b",
+  "branch": "research/edge-atlas-2026-09-17",
+  "machine_truth_precedence": true,
+  "services_preserved": true,
+  "no_service_stopped_restarted_or_modified": true,
+  "no_backtest_worker_mimo_metatester_or_edge_strategy_launched": true,
+  "reconciliation": {
+    "manifests_CODEX_SESSION_CHECKPOINT": "OBSOLETE: 2026-09-01 primary campaign, MT5 and MiMo PIDs no longer exist",
+    "local_SESSION_CHECKPOINT": "OBSOLETE_AND_SUSPECT: wrong repository, stale PIDs/campaigns and declared 2026-covered work",
+    "CURRENT_QUEUE": "OBSOLETE_FOR_EXECUTION: Phase B marked READY but no matching process; no Edge Atlas item exists",
+    "CURRENT_PROJECT_HANDOFF": "PARTIALLY_CURRENT: correctly closes R33/R34 and identifies effective generation 114 empty; predates this reconciliation",
+    "EDGE_ATLAS_CHECKPOINT": "SUPERSEDED: prohibitions remain valid, but machine is now inspected and admitted data is known"
+  },
+  "process_truth": {
+    "guardian_live_or_infrastructure": [
+      "PID 18168 FundedNext terminal",
+      "PID 14912 MetaEditor",
+      "PID 13536 Guardian orchestrator (idle polling, effective queue empty)",
+      "PIDs 4324/12056/12124 multivenue collector",
+      "PIDs 6340/12164 PropFirmGuard",
+      "PID 1060 live-status synchronizer"
+    ],
+    "potential_legacy_campaign_processes": [
+      "PID 820 D023-named generic CSV autosynchronizer",
+      "PID 5960 unattributed PowerShell session"
+    ],
+    "effective_jobs": [
+      "Multivenue external-intelligence collection",
+      "PropFirmGuard hourly watcher",
+      "CSV/live-status synchronization",
+      "Guardian orchestrator polling with no queued job"
+    ],
+    "declared_but_nonexistent_jobs": [
+      "PHENOMENON-DISCOVERY-LAB-PHASE-B-ATLAS",
+      "D017-V11-16-GENERALIZATION-PREOOS",
+      "MIMO-CODE-INITIALIZE-PARALLELWORKERS-INPUTS",
+      "All stale local-checkpoint research runners"
+    ],
+    "r33_active": false,
+    "r34_active": false,
+    "r35_active": false,
+    "edge_atlas_active": false,
+    "mimo_active": false,
+    "metatester_active": false,
+    "worker_accessing_2026": false,
+    "non_worker_live_collector_writing_2026_archive": true
+  },
+  "control_plane": {
+    "effective_autonomous_queue_generation": 114,
+    "effective_autonomous_jobs": 0,
+    "edge_atlas_jobs_in_CURRENT_QUEUE": 0,
+    "production_guardian_diff_from_main": false
+  },
+  "admitted_manifest": "research/campaigns/EDGE_ATLAS_2026_09_17/ADMITTED_DATA_MANIFEST.json",
+  "selected_ids": ["EA01", "EA02", "EA03", "EA04", "EA08", "EA09", "EA11", "EA12", "EA16", "EA20"],
+  "removed_ids": ["EA06", "EA07", "EA15"],
+  "added_ids": ["EA09", "EA16", "EA20"],
+  "technical_preflight": {
+    "python_compile": "PASS",
+    "synthetic_tests": {"status": "PASS", "passed": 14, "total": 14},
+    "independent_cold_review": "PASS",
+    "real_histories_read": false,
+    "presence_2026_read": false,
+    "cheap_fail_launched": false,
+    "result": "research/campaigns/EDGE_ATLAS_2026_09_17/PREFLIGHT_RESULT.json",
+    "code_manifest": "research/campaigns/EDGE_ATLAS_2026_09_17/CODE_MANIFEST.json"
+  },
+  "next_safe_action": "Preregister and request explicit authorization for one bounded read-only cheap-fail using only admitted sources; do not launch it automatically."
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-17T11:22:00+01:00",
+  "scope": "synthetic_only",
+  "py_compile": "PASS",
+  "unittest": {"command": "python -m unittest discover -s research/campaigns/EDGE_ATLAS_2026_09_17/tests -p test_*v1.py -v", "passed": 28, "failed": 0, "errors": 0},
+  "historical_data_read": false,
+  "2026_read": false,
+  "dispatcher_called": false,
+  "services_changed": false,
+  "status": "PASS"
+}

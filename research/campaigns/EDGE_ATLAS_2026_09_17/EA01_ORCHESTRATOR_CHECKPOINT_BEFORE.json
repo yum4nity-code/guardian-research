@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-17T11:15:00+01:00",
+  "branch": "research/edge-atlas-2026-09-17",
+  "base_commit": "ee0c1749f3c195b3fd945afa9b8dff8f5f9d1208",
+  "status": "INSPECTING_DISPATCH_NO_RUN",
+  "job_id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
+  "job_status": "WAITING_CODEX",
+  "queue_modified": false,
+  "execution_launched": false,
+  "real_history_read": false,
+  "protected_2026_opened": false,
+  "production_modified": false,
+  "r33_r34_r35_touched": false,
+  "next_action": "Inspect the local Guardian dispatcher and implement a research-only fail-closed adapter with synthetic tests."
+}

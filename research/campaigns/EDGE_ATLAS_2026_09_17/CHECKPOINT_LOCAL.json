@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-17T09:58:32+01:00",
+  "status": "BLOCKED_PROCESS_ACTIVE",
+  "observed_commit": "e3eaa0d6e29e2e5411bfa14aa2ac832760c3120a",
+  "branch": "research/edge-atlas-2026-09-17",
+  "inspection_worktree": "D:\\MT5_Backtests\\guardian-edge-atlas-inspection",
+  "no_backtest_launched": true,
+  "no_campaign_launched": true,
+  "no_worker_launched": true,
+  "no_mimo_task_launched": true,
+  "no_queue_change": true,
+  "no_production_change": true,
+  "no_existing_result_changed": true,
+  "no_file_deleted": true,
+  "no_2026_content_admitted": true,
+  "presence_of_2026_detected": true,
+  "machine_truth": {
+    "active_processes_material_to_lab": 11,
+    "metatester_active": false,
+    "orchestrator_active": true,
+    "external_collector_active": true,
+    "mt5_terminal_active": true,
+    "metaeditor_active": true
+  },
+  "reconciliation": {
+    "current_queue": "Stale: still names Phenomenon Discovery Phase B as READY and does not describe Edge Atlas or the effective empty autonomous queue generation 114",
+    "repo_checkpoint": "Stale since 2026-09-01; recorded PIDs and primary campaign do not match the machine",
+    "local_checkpoint": "Stale and suspect: points to another repository, old PIDs, old campaigns and declares 2026-covered/quarantined work; no further use for admission",
+    "github_vs_pc": "Branch and remote SHA matched before artifact creation; real PC processes and datasets are materially newer than branch checkpoint files",
+    "precedence": "Observed process table and filesystem metadata override all checkpoints"
+  },
+  "admissible_source_ids": ["DUKASCOPY_XAUUSD_RAW_BI5_UNION", "BINANCE_SPOT_BTC_ETH_M5_2017_2025"],
+  "blocked_source_ids": ["BYBIT_BTC_ETH_M5_PRICE_OI_2024_2025", "BYBIT_DERIVATIVE_AND_FUNDING_2024_2025", "LIVE_EXTERNAL_CRYPTO_ARCHIVE", "FUNDEDNEXT_XAU_2024_2025"],
+  "suspect_source_ids": ["DUKASCOPY_XAUUSD_YEARLY_M1_M5_2023_2025"],
+  "next_safe_action": "Reconcile the active services and stale control-plane/checkpoint state. After they are explicitly cleared for coexistence, implement a read-only admission gate using only the indexed pre-2026 Dukascopy raw payloads and pre-2026 Binance price archives. Obtain a separate pre-2026 Bybit/OI extract before considering EA06, EA07, EA08 or EA15."
+}

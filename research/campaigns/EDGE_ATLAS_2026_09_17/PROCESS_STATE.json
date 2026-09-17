@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-17T09:55:25+01:00",
+  "verdict": "BLOCKED_PROCESS_ACTIVE",
+  "no_process_started_stopped_or_restarted": true,
+  "processes": [
+    {"pid": 18168, "parent_pid": 7416, "name": "terminal64.exe", "started": "2026-09-17T09:02:22+01:00", "duration_seconds_observed": 3183, "command": "D:\\MT5_FundedNext\\terminal64.exe /portable", "role": "FundedNext MT5 terminal", "log": "Not opened; terminal log path/date may contain 2026", "status": "ACTIVE_GUI; no metatester64 child observed"},
+    {"pid": 14912, "parent_pid": 18168, "name": "MetaEditor64.exe", "started": "2026-09-17T09:03:28+01:00", "duration_seconds_observed": 3117, "command": "D:\\MT5_FundedNext\\metaeditor64.exe /language:English /portable", "role": "MetaEditor", "log": "None identified", "status": "ACTIVE_GUI"},
+    {"pid": 13536, "parent_pid": 2212, "name": "pythonw.exe", "started": "2026-09-16T14:35:51+01:00", "duration_seconds_observed": 69574, "command": "guardian_research_orchestrator_v1_00.py --root D:\\MT5_Backtests\\Research\\Autonomous --deploy D:\\MT5_Backtests\\guardian-autonomous-main --poll-seconds 60", "role": "Guardian autonomous orchestrator", "log": "D:\\MT5_Backtests\\Research\\Autonomous\\logs; newest research-job logs were R33 and stale, while an ephemeral git fetch was observed", "status": "ACTIVE_POLLING; current main queue generation 114 is empty; no worker child observed"},
+    {"pid": 820, "parent_pid": 2212, "name": "powershell.exe", "started": "2026-09-14T13:34:08+01:00", "duration_seconds_observed": 246077, "command": "Guardian_Backtest_CSV_AutoSync_v1_06_D023_GENERIC.ps1", "role": "Backtest CSV synchronizer", "log": "D:\\MT5_Backtests\\logs\\guardian-backtest-csv-sync-v106.log", "status": "ACTIVE; log modified at observation time"},
+    {"pid": 1060, "parent_pid": 2212, "name": "powershell.exe", "started": "2026-09-14T13:34:08+01:00", "duration_seconds_observed": 246077, "command": "D:\\MT5_Backtests\\guardian-research\\automation\\live_status_sync_v2.ps1", "role": "Live status synchronizer", "log": "Not identified without deeper script execution", "status": "ACTIVE"},
+    {"pid": 4324, "parent_pid": 2212, "name": "powershell.exe", "started": "2026-09-14T13:34:08+01:00", "duration_seconds_observed": 246077, "command": "run_shared_multivenue_autostart_v1.ps1", "role": "External-intelligence supervisor", "log": "D:\\MT5_Backtests\\Research\\ExternalIntelligence (2026-dated files; not opened)", "status": "ACTIVE"},
+    {"pid": 12056, "parent_pid": 4324, "name": "python.exe", "started": "2026-09-14T13:34:17+01:00", "duration_seconds_observed": 246068, "command": "shared_runtime_multivenue_bridge_v1.py --data-dir D:\\MT5_Backtests\\Research\\ExternalIntelligence", "role": "Multivenue collector bridge", "log": "2026-dated Bybit/Binance JSONL files; not opened", "status": "ACTIVE_WRITING"},
+    {"pid": 12124, "parent_pid": 12056, "name": "python.exe", "started": "2026-09-14T13:34:17+01:00", "duration_seconds_observed": 246068, "command": "shared_runtime_multivenue_bridge_v1.py --data-dir D:\\MT5_Backtests\\Research\\ExternalIntelligence", "role": "Collector runtime child", "log": "2026-dated Bybit/Binance JSONL files; not opened", "status": "ACTIVE_WRITING"},
+    {"pid": 6340, "parent_pid": 2212, "name": "powershell.exe", "started": "2026-09-14T13:34:08+01:00", "duration_seconds_observed": 246077, "command": "Run-PropFirmGuard.ps1", "role": "PropFirmGuard supervisor", "log": "Not identified during bounded inspection", "status": "ACTIVE"},
+    {"pid": 12164, "parent_pid": 6340, "name": "python.exe", "started": "2026-09-14T13:34:17+01:00", "duration_seconds_observed": 246068, "command": "watcher.py --loop --interval 3600", "role": "PropFirmGuard watcher", "log": "Not identified during bounded inspection", "status": "ACTIVE_SLEEP/POLL"},
+    {"pid": 5960, "parent_pid": 7416, "name": "powershell.exe", "started": "2026-09-16T14:35:44+01:00", "duration_seconds_observed": 69581, "command": "powershell.exe", "role": "Unattributed interactive shell", "log": "None", "status": "ACTIVE_UNATTRIBUTED"}
+  ],
+  "not_observed": ["metatester64.exe", "independent MiMo worker", "strategy_factory engine", "Edge Atlas worker", "EA01-EA15 process", "download utility curl.exe/wget.exe"],
+  "checkpoint_pid_reconciliation": {
+    "repo_checkpoint_pids_all_stale": true,
+    "local_checkpoint_pids_all_stale": true,
+    "actual_orchestrator_pid": 13536,
+    "checkpoint_orchestrator_pids": [13908, 9188, 9496, 7580],
+    "actual_mt5_pid": 18168,
+    "checkpoint_mt5_pids": [2912, 7476]
+  },
+  "next_safe_action": "Do not launch, stop or restart anything. Reconcile ownership and necessity of the active orchestrator, synchronizers and collector before any admission gate."
+}
