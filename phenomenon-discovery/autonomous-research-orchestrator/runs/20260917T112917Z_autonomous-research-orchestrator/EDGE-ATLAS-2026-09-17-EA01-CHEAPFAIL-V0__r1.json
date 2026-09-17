@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "EDGE_ATLAS_CHEAP_FAIL_XAU_M5",
+  "duration_seconds": 2.0228497000061907,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-17T11:29:17.215332+00:00",
+  "job_id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
+  "main_commit": "bbe47d16e43efc700f4808f42f9c12b3a2936af9",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-17T11:29:15.126597+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\campaigns\\EDGE_ATLAS_2026_09_17\\edge_atlas_cheap_fail_adapter_v1.py\", line 142, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\campaigns\\EDGE_ATLAS_2026_09_17\\edge_atlas_cheap_fail_adapter_v1.py\", line 120, in main\n    paths = validate_job(job, args.repo, execution_requested=args.execute)\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\campaigns\\EDGE_ATLAS_2026_09_17\\edge_atlas_cheap_fail_adapter_v1.py\", line 69, in validate_job\n    raise AdmissionError(f\"{key} hash mismatch\")\ndata_loader_v1.AdmissionError: runner hash mismatch",
+  "stdout_tail": ""
+}
