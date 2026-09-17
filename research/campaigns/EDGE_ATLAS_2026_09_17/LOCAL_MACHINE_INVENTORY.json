@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-17T09:58:32+01:00",
+  "verdict": "BLOCKED_PROCESS_ACTIVE",
+  "repository": {
+    "operational_checkout": "D:\\MT5_Backtests\\guardian-autonomous-main",
+    "inspection_worktree": "D:\\MT5_Backtests\\guardian-edge-atlas-inspection",
+    "branch": "research/edge-atlas-2026-09-17",
+    "observed_commit": "e3eaa0d6e29e2e5411bfa14aa2ac832760c3120a",
+    "remote": "https://github.com/yum4nity-code/guardian-research.git",
+    "remote_branch_commit": "e3eaa0d6e29e2e5411bfa14aa2ac832760c3120a",
+    "working_tree_clean_before_artifacts": true,
+    "ahead_of_main_commits": 4,
+    "behind_main_commits": 0,
+    "main_commit": "55ae12e7365cbe501e3271308a6b54776e614f16"
+  },
+  "requested_paths": [
+    {"path": "D:\\MT5_Backtests", "exists": true},
+    {"path": "D:\\MT5_Backtests\\Research", "exists": true},
+    {"path": "D:\\MT5_Backtests\\Research\\EA_Research", "exists": true, "empty_at_top_level": true},
+    {"path": "D:\\MT5_Backtests\\Research\\Strategies", "exists": true, "empty_at_top_level": true},
+    {"path": "D:\\MT5_Backtests\\Research\\Campaigns", "exists": true, "suspect_child_names": ["2026-08-31"]},
+    {"path": "D:\\MT5_Backtests\\Research\\RawResults", "exists": true, "empty_at_top_level": true},
+    {"path": "D:\\MT5_Backtests\\Validated", "exists": false},
+    {"path": "D:\\MT5_Backtests\\Rejected", "exists": false},
+    {"path": "C:\\Users\\armor\\Desktop\\ChatGPT", "exists": false}
+  ],
+  "sources": [
+    {
+      "id": "DUKASCOPY_XAUUSD_RAW_BI5_UNION",
+      "status": "ADMISSIBLE",
+      "paths": [
+        "D:\\MT5_Backtests\\Research\\Autonomous\\r15_dukascopy_xauusd_v1\\payload_cache",
+        "D:\\MT5_Backtests\\Research\\Autonomous\\xauusd_dukascopy_fastfill_v1\\payload_cache"
+      ],
+      "asset": "XAUUSD",
+      "granularity": "Dukascopy daily .bi5 tick payloads; bar aggregation not assumed",
+      "timezone": "UTC by Dukascopy path/date convention; payload decoding still requires the frozen audited decoder",
+      "first_date": "2004-11-08",
+      "last_date": "2025-12-31",
+      "file_count": 5518,
+      "total_bytes": 80219635,
+      "paths_with_2026": 0,
+      "duplicate_dates": 0,
+      "index_sha256": "d77fb76e5b5ee0600a488c331084e70972a8800a33ae59a957c1044dc39ef566",
+      "provenance": "Dukascopy XAUUSD BID payload caches; original and fastfill roots kept separate and indexed",
+      "gaps": "No duplicate indexed dates; calendar/session absences require admission logic and were not inferred as market gaps during this inspection",
+      "limitations": "Admissible only at raw payload/index level; derived filled CSVs are not admitted"
+    },
+    {
+      "id": "DUKASCOPY_XAUUSD_YEARLY_M1_M5_2023_2025",
+      "status": "SUSPECT",
+      "path": "D:\\MT5_Backtests\\Research\\Autonomous\\r30_dukascopy_yearly_v100",
+      "asset": "XAUUSD",
+      "granularity": ["M1", "M5"],
+      "timezone": "UTC",
+      "first_date": "2023-01-02T00:00:00Z",
+      "last_date": "2025-12-31T23:59:00Z",
+      "file_count": 6,
+      "total_bytes": 113657394,
+      "paths_with_2026": 0,
+      "gaps": "Sample cadence is exactly 60/300 seconds, but holiday/weekend rows are forward-filled with constant prices; apparent zero gaps are artificial",
+      "provenance": "R30 derivatives of the Dukascopy payload union",
+      "sha256": {
+        "xauusd_m1_2023.csv": "5c25f97041bfc3ec28195785fd4fab974189c27f3f9106ba90c895272f5b887d",
+        "xauusd_m5_2023.csv": "0e5cabc904cf8634a07173ce088602e2970baa647436dee2fd0faaabc7fc9e72",
+        "xauusd_m1_2024.csv": "cff7d7c5e33afaf390c2f38596a6cc61764e03c993c9817c1cb2957e054ca8a6",
+        "xauusd_m5_2024.csv": "985274f52d13fd8c343ad0616456418e6364872c5fbda6027d1c14a2c6a7b48c",
+        "xauusd_m1_2025.csv": "8a19a7daa89e836c72d43c015d2bf1ec2b40589c9e4b6050aab7507d4639fc1c",
+        "xauusd_m5_2025.csv": "b7014e0dd22472a335983a05b2604a28a513eb2c7944e6d3475c289bf866df99"
+      },
+      "reason": "Continuous calendar filling is unsuitable as raw causal market evidence without a separately audited missing-session mask"
+    },
+    {
+      "id": "BINANCE_SPOT_BTC_ETH_M5_2017_2025",
+      "status": "ADMISSIBLE",
+      "path": "D:\\MT5_Backtests\\Research\\Data\\R7_LongHistory",
+      "assets": ["BTCUSDT", "ETHUSDT"],
+      "granularity": "M5 spot OHLCV",
+      "timezone": "UTC",
+      "first_date": "2017-08-17T04:00:00Z",
+      "last_date": "2025-12-31T23:55:00Z",
+      "merged_file_count": 2,
+      "merged_total_bytes": 203634419,
+      "raw_archive_files": 202,
+      "raw_archive_bytes": 89663446,
+      "paths_with_2026": 0,
+      "gaps": "Small beginning/end samples have 5-minute cadence; zero-volume carried bars exist and must remain explicit",
+      "provenance": "Binance public monthly spot archives",
+      "sha256": {
+        "BTCUSDT_spot_5m_2017_2025.csv": "75d0d48dcfa7e649192d1eb2c96e89a591aa49bcfac11d394a1f84113264f6e8",
+        "ETHUSDT_spot_5m_2017_2025.csv": "21b170675eae6bd2e3d442391e2acb9392abdff443f517b5cb0ee1946a12aa13"
+      },
+      "limitations": "Price-only source; does not satisfy Bybit or open-interest requirements"
+    },
+    {
+      "id": "BYBIT_BTC_ETH_M5_PRICE_OI_2024_2025",
+      "status": "BLOQUÉ",
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\historical_v1",
+      "assets": ["BTCUSDT", "ETHUSDT"],
+      "granularity": "M5 price plus OI",
+      "candidate_data_file_count": 2,
+      "candidate_data_total_bytes": 58838961,
+      "presence_of_2026": true,
+      "reason": "Every candidate filename and its manifest explicitly cover through 2026-01-01; content was not inspected"
+    },
+    {
+      "id": "BYBIT_DERIVATIVE_AND_FUNDING_2024_2025",
+      "status": "BLOQUÉ",
+      "path": "D:\\MT5_Backtests\\Research\\PhenomenonDiscovery\\derivative_context_v1",
+      "assets": ["BTCUSDT", "ETHUSDT"],
+      "granularity": "M5 derivative context and funding",
+      "candidate_data_file_count": 4,
+      "candidate_data_total_bytes": 37454927,
+      "presence_of_2026": true,
+      "reason": "Every candidate filename and its manifest explicitly cover through 2026-01-01; content was not inspected"
+    },
+    {
+      "id": "LIVE_EXTERNAL_CRYPTO_ARCHIVE",
+      "status": "BLOQUÉ",
+      "path": "D:\\MT5_Backtests\\Research\\ExternalIntelligence",
+      "assets": ["BTCUSDT", "ETHUSDT"],
+      "observed_jsonl_file_count": 28,
+      "presence_of_2026": true,
+      "reason": "Archive filenames encode 2026 dates and are actively written by the multivenue collector; no content was opened"
+    },
+    {
+      "id": "FUNDEDNEXT_XAU_2024_2025",
+      "status": "BLOQUÉ",
+      "reason": "Explicitly excluded by mission and previously causally quarantined; not inventoried as evidence"
+    }
+  ],
+  "excluded_or_suspect": [
+    "Any path, coverage or data marked 2026",
+    "D:\\MT5_Backtests\\Research\\SESSION_CHECKPOINT.json after its declared 2026 coverage was observed",
+    "All FundedNext XAU 2024-2025 sources",
+    "R30 filled Dukascopy yearly CSVs as raw-market evidence",
+    "Existing R33, R34 and R35 outputs",
+    "production\\guardian"
+  ],
+  "next_safe_action": "Stop here. Reconcile active services and stale checkpoints without stopping or restarting them; then build a source-admission gate around the indexed pre-2026 Dukascopy .bi5 payloads and the price-only Binance archives. Do not admit the Bybit/OI files until a physically separate pre-2026 extract with independent hashes exists."
+}

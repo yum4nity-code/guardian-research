@@ -595,3 +595,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Published read-only reproducible artifact auditor, measurements, source-diagnostic plan and ACTION_REQUISE handoff; inbox updated. No market replay, no R33/R34 rerun, no source/result/production changes, no 2026 access. Effective queue generation 114 remains untouched with no jobs.
 - Next: Codex on the PC traces source records and causality under the frozen diagnostic. Local Windows access is unavailable in this session; no claim of running work there.
 - Human active time: NOT QUANTIFIED. Automated audit runtime is separate.
+
+## 2026-09-17 — Edge Atlas local-machine inspection
+
+- Inspected Git state, canonical queue/checkpoints, real Windows processes and bounded filesystem/source metadata without launching any backtest, campaign, worker, MiMo task, cheap-fail or EA01–EA15 strategy.
+- Persisted the four Edge Atlas inspection artifacts. Verdict `BLOCKED_PROCESS_ACTIVE`: orchestrator, external collector, synchronizers, PropFirmGuard, FundedNext terminal and MetaEditor are active; no metatester or research worker was observed.
+- Admitted only the indexed pre-2026 raw Dukascopy `.bi5` union and price-only Binance 2017–2025 archives. Quarantined derived filled Dukascopy CSVs; blocked Bybit/OI and live external archives because their paths/coverage include 2026. FundedNext XAU remains excluded.
+- Next safe action: reconcile active service ownership and stale checkpoints, then implement a read-only source admission gate; do not run Edge Atlas yet.
+- Human active time: NOT QUANTIFIED. No automated research execution occurred.
