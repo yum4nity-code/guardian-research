@@ -3,7 +3,7 @@
   "recorded_at": "2026-09-17T11:22:00+01:00",
   "branch": "research/edge-atlas-2026-09-17",
   "base_commit": "ee0c1749f3c195b3fd945afa9b8dff8f5f9d1208",
-  "status": "READY_AUTHORIZED_NOT_LAUNCHED",
+  "status": "CORRECTION_VALIDATED_NOT_DEPLOYED",
   "job_id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
   "revision": 1,
   "job_status": "READY",
@@ -20,16 +20,18 @@
   "guardian_live_processes_stopped_or_modified": false,
   "py_compile": "PASS",
   "synthetic_tests": {"passed": 28, "total": 28, "status": "PASS"},
+  "diagnostic_tests": {"passed": 29, "total": 29, "status": "PASS"},
   "cold_review": "PASS",
   "files_sha256": {
-    "data_loader_v1.py": "a124189b7aac8d44b75a20dad62a3c5f02be7540fb41055f11c79ef0a22f500c",
+    "data_loader_v1.py": "8eb4d3bbe4648a9c1fe5bc8845f55e5ac78cfb8dae98b18f10cc6ce86e82403e",
     "preflight_v1.py": "3a48bb26d8d9bf5da1b3f47b9bbbf4c264e01220fe820090faeef268d60a3f45",
     "ea01_cheap_fail_v1.py": "3aa7411e1f0aa5c0ba80f7b6182f58d512cba0e1a918d471fdb6ce613b8846ec",
     "edge_atlas_cheap_fail_adapter_v1.py": "56d05f7448453afb1095e99ebc3a9b8b708b2e23ccb942083f91a4249fd5bda5",
     "ADMITTED_DATA_MANIFEST.json": "6e1883d6d94e83a93a6083785a6c717114103c3a189e40c309868f841189b107",
     "RESEARCH_QUEUE_APPEND_EDGE_ATLAS_115_PROPOSAL.json": "3c39b5ebca4bafe58bfe7366594446b634a69bc01ce57a5a920de8142e718154",
     "test_ea01_cheap_fail_v1.py": "435326ea98bb92c7a7ca9fa84c9a032d05ccc05caebda693d0de6055be77b431",
+    "test_data_loader_v1.py": "50fbd0cbd8dedfdf0e9d2d89da4c70514d6841a5703191486317f539029a6399",
     "test_edge_atlas_adapter_v1.py": "66a7bb16c271ffe5b83779bddb0298f42bf15e3c3e5b297597b1aceec9b03e38"
   },
-  "next_action": "Publish the explicit generation-115 replacement to the approved active control plane, then run only the single bounded EA01 cheap-fail if launch is separately confirmed."
+  "next_action": "Promote the BI5 field-order correction to main; do not relaunch EA01 until the new main commit is observed by Guardian."
 }

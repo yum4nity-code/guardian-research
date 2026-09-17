@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "receipt_main_commit": "a873180fec75cbcde6b0be97b1d9c87819f20e16",
+  "status": "DIAGNOSED_INFRASTRUCTURE_BUG",
+  "dataset": "DUKASCOPY_XAUUSD_BID_M1_BI5_2004_2025",
+  "file": "D:\\MT5_Backtests\\Research\\Autonomous\\xauusd_dukascopy_fastfill_v1\\payload_cache\\2017\\01\\02.bi5",
+  "date": "2017-01-02",
+  "sha256": "a981fa9852e58ea5beab703606cfab674666b5c5d51b4ed9bb6eecf54690d1de",
+  "format": {"compressed": "LZMA", "record_bytes": 24, "endian": "big", "layout": "second, open, close, low, high, volume"},
+  "first_invalid": {"offset": 33120, "record_index": 1380, "second": 82800, "raw_ints": [1150000, 1150921, 1150000, 1150971], "scale": 0.001},
+  "cause": "EA01 loader assigned BI5 fields 3-5 as high, low, close; validated R30 decoder assigns them as close, low, high. The payload is valid under the canonical layout.",
+  "neighbors": "Not replaced or downloaded; inspection was limited to the failing payload and immediate record context.",
+  "correction": "Swap BI5 decode assignment to second, open, close, low, high, volume; retain OHLC geometry gate.",
+  "real_2026_read": false,
+  "queue_modified": false,
+  "ea01_relaunched": false
+}
