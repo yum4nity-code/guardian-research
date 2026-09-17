@@ -1,0 +1,29 @@
+{
+  "status": "RECOVERY_RECONCILED",
+  "recorded_at_utc": "2026-09-17T13:21:04.799918+00:00",
+  "job_id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
+  "revision": 1,
+  "queue_generation": 115,
+  "base_main": "d0451c15a458212689fa342ab2651ede4123e5f2",
+  "marker_already_quarantined_before_this_session": true,
+  "marker_sha256": "e82621132fa7f874864437609b1ad986d65684dedc487fcad7fb40c1850d7ec9",
+  "quarantine": "D:\\MT5_Backtests\\Research\\Autonomous\\edge_atlas\\EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0\\quarantine\\status_RUNNING_20260917T122919Z_e82621132fa7f874864437609b1ad986d65684dedc487fcad7fb40c1850d7ec9.json",
+  "marker_recorded_at_utc": "2026-09-17T11:47:37.956861+00:00",
+  "receipt_finished_at_utc": "2026-09-17T12:29:19.640260+00:00",
+  "receipt_sha256": "45ee6b150acedb6ed42284b466295398d7d28be19181cdd82ea079c2f2486eae",
+  "receipt_snapshot": "D:\\MT5_Backtests\\Research\\Autonomous\\edge_atlas\\EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0\\quarantine\\receipt_before_recovery.json",
+  "process_inventory": "D:\\MT5_Backtests\\Research\\Autonomous\\edge_atlas\\EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0\\quarantine\\recovery_process_inventory.json",
+  "process_inventory_sha256": "900ee67b814da7aeaae024892bdcdfdfbbcf6e80e56eac671d0ca646682133c2",
+  "ea01_process_observed": false,
+  "orchestrator_pid": 13536,
+  "protected_2026_opened": false,
+  "r33_r34_r35_modified": false,
+  "py_compile": "PASS",
+  "synthetic_tests": "37/37 PASS",
+  "cold_review": "PASS_LOCAL_REVIEW",
+  "next_action": "Publish reviewed correction once; existing orchestrator dispatch only; never manually run EA01.",
+  "old_bi5_error_quarantined": {
+    "path": "D:\\MT5_Backtests\\Research\\Autonomous\\edge_atlas\\EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0\\quarantine\\status_INFRASTRUCTURE_ERROR_5f605d8843800b430ffedb5a3b0458bd515639d0858c334fcba006dbeb54af6d.json",
+    "sha256": "5f605d8843800b430ffedb5a3b0458bd515639d0858c334fcba006dbeb54af6d"
+  }
+}

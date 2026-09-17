@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import ctypes
 import json
 import os
 import subprocess
@@ -87,12 +88,93 @@ def validate_job(job: dict, repo: Path, execution_requested: bool = False) -> di
 
 
 def atomic_status(path: Path, payload: dict) -> None:
-    if path.exists():
-        raise AdmissionError(f"refusing to overwrite status: {path}")
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    os.replace(tmp, path)
+    # Exclusive creation: concurrent attempts must never replace an existing file.
+    # A partial file after interruption deliberately blocks further execution.
+    try:
+        with path.open("x", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2, sort_keys=True)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+    except FileExistsError as exc:
+        raise AdmissionError(f"refusing to overwrite status: {path}") from exc
+
+
+def _parse_utc(value: str) -> datetime:
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise AdmissionError("status timestamp timezone absent")
+    return parsed.astimezone(timezone.utc)
+
+
+def _pid_absent(pid: object) -> bool:
+    if type(pid) is not int or pid <= 0 or os.name != "nt":
+        return False
+    kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+    kernel.OpenProcess.argtypes = [ctypes.c_ulong, ctypes.c_int, ctypes.c_ulong]
+    kernel.OpenProcess.restype = ctypes.c_void_p
+    kernel.CloseHandle.argtypes = [ctypes.c_void_p]
+    handle = kernel.OpenProcess(0x1000, False, pid)
+    if handle:
+        kernel.CloseHandle(handle)
+        return False
+    return ctypes.get_last_error() == 87  # Invalid PID; access denied stays blocked.
+
+
+def recover_stale_running(running_path: Path, output_dir: Path, root: Path, job_id: str, revision: int, *, processes_absent: bool | None = None) -> dict | None:
+    """Recover one stale RUNNING marker only when a finished receipt proves termination."""
+    if not running_path.exists():
+        return None
+    # Offline recovery only; absence must be established by a fresh full process
+    # inventory. Missing/ambiguous evidence is never permission to move a marker.
+    if processes_absent is not True:
+        raise AdmissionError("fresh process absence evidence required; BLOCKED")
+    marker_hash = hashlib.sha256(running_path.read_bytes()).hexdigest()
+    try:
+        marker = json.loads(running_path.read_text(encoding="utf-8"))
+        if marker.get("status") != "RUNNING" or marker.get("job_id") != job_id:
+            raise AdmissionError("incoherent RUNNING status marker")
+        recorded = _parse_utc(str(marker["recorded_at"]))
+    except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
+        raise AdmissionError("incoherent RUNNING status marker") from exc
+    if "pid" in marker and not _pid_absent(marker["pid"]):
+        raise AdmissionError("marker PID is live or ambiguous; BLOCKED")
+    receipt_path = root / "receipts" / f"{job_id}__r{revision}.json"
+    try:
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        finished = _parse_utc(str(receipt["finished_at_utc"]))
+        if receipt.get("job_id") != job_id or int(receipt.get("revision", -1)) != revision:
+            raise AdmissionError("receipt identity does not match RUNNING marker")
+        if receipt.get("status") not in {"FAIL", "TIMEOUT", "BLOCKED"} or finished <= recorded:
+            raise AdmissionError("RUNNING marker is active or receipt does not prove termination")
+    except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
+        raise AdmissionError("missing or incoherent terminal receipt for RUNNING marker") from exc
+    quarantine = output_dir / "quarantine"
+    quarantine.mkdir(parents=True, exist_ok=True)
+    destination = quarantine / f"status_RUNNING_{marker_hash}.json"
+    event_path = output_dir / f"status_RECOVERY_{marker_hash}.json"
+    if destination.exists() or event_path.exists():
+        raise AdmissionError("quarantine destination already exists")
+    if hashlib.sha256(running_path.read_bytes()).hexdigest() != marker_hash:
+        raise AdmissionError("RUNNING marker changed during recovery")
+    # Windows rename refuses an existing destination; never replace/delete.
+    if os.name != "nt":
+        raise AdmissionError("offline recovery requires Windows no-replace rename")
+    running_path.rename(destination)
+    event = {"status": "RECOVERY_QUARANTINED", "job_id": job_id, "revision": revision,
+             "source": str(running_path), "quarantine": str(destination), "sha256": marker_hash,
+             "receipt": str(receipt_path), "protected_2026_opened": False}
+    atomic_status(event_path, event)
+    return event
+
+
+def claim_attempt(output_dir: Path) -> None:
+    atomic_status(output_dir / "status_ATTEMPT_CONSUMED.json", {
+        "job_id": ID, "pid": os.getpid(), "recorded_at": datetime.now(timezone.utc).isoformat(),
+        "reason": "One authorized recovery attempt; never automatically rearm",
+        "protected_2026_opened": False,
+    })
 
 
 def validate_output_dir(output_dir: Path) -> Path:
@@ -126,8 +208,12 @@ def main() -> int:
         print(json.dumps({"status": "VALIDATED_NOT_STARTED", "job_id": ID}))
         return 0
     running_path = output_dir / "status_RUNNING.json"
-    atomic_status(running_path, {"status": "RUNNING", "job_id": ID,
-                                "recorded_at": datetime.now(timezone.utc).isoformat(), "protected_2026_opened": False})
+    if running_path.exists():
+        raise AdmissionError("RUNNING marker requires offline recovery; BLOCKED")
+    claim_attempt(output_dir)
+    atomic_status(running_path, {"status": "RUNNING", "job_id": ID, "pid": os.getpid(),
+                                "recorded_at": datetime.now(timezone.utc).isoformat(),
+                                "protected_2026_opened": False})
     result_path = output_dir / "result.json"
     cp = subprocess.run([sys.executable, str(paths["runner"]), "--manifest", str(paths["manifest"]),
                          "--output", str(result_path), "--execute"], cwd=str(args.repo), text=True,

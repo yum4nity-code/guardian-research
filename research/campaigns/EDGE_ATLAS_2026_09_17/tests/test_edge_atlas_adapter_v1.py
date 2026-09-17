@@ -10,7 +10,7 @@ CAMPAIGN = Path(__file__).parents[1]
 sys.path.insert(0, str(CAMPAIGN))
 
 from data_loader_v1 import AdmissionError
-from edge_atlas_cheap_fail_adapter_v1 import ID, TYPE, file_sha256, validate_job, validate_output_dir
+from edge_atlas_cheap_fail_adapter_v1 import ID, TYPE, file_sha256, atomic_status, claim_attempt, recover_stale_running, validate_job, validate_output_dir
 
 
 class AdapterTests(unittest.TestCase):
@@ -97,6 +97,86 @@ class AdapterTests(unittest.TestCase):
         fake = {"DUKASCOPY_XAUUSD_BID_M1_BI5_2004_2025": {"asset": "EURUSD", "timezone": "LOCAL", "granularity": "M1"}}
         with patch("edge_atlas_cheap_fail_adapter_v1.canonical_manifest_sha256", return_value="67c602f2a42ef09c60c6ca86eca7b876e5af6bc3a81e053a29a545be0fd2c75c"), patch("edge_atlas_cheap_fail_adapter_v1.validate_manifest", return_value=fake):
             with self.assertRaises(AdmissionError): validate_job(self.job, self.repo)
+
+    def _receipt(self, root, finished="2026-09-17T12:30:00+00:00", status="FAIL"):
+        path = root / "receipts" / f"{ID}__r1.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({"job_id": ID, "revision": 1, "status": status, "finished_at_utc": finished}), encoding="utf-8")
+
+    def test_running_active_pid_is_refused(self):
+        out = self.repo / "runtime" / "edge_atlas" / ID
+        out.mkdir(parents=True)
+        marker = out / "status_RUNNING.json"
+        marker.write_text(json.dumps({"status":"RUNNING","job_id":ID,"pid":__import__("os").getpid(),"recorded_at":"2026-09-17T12:00:00+00:00"}), encoding="utf-8")
+        with self.assertRaises(AdmissionError): recover_stale_running(marker, out, self.repo / "runtime", ID, 1, processes_absent=True)
+        self.assertTrue(marker.exists())
+
+    def test_running_stale_without_process_is_quarantined(self):
+        out = self.repo / "runtime" / "edge_atlas" / ID
+        out.mkdir(parents=True)
+        marker = out / "status_RUNNING.json"
+        marker.write_text(json.dumps({"status":"RUNNING","job_id":ID,"recorded_at":"2026-09-17T12:00:00+00:00"}), encoding="utf-8")
+        self._receipt(self.repo / "runtime")
+        event = recover_stale_running(marker, out, self.repo / "runtime", ID, 1, processes_absent=True)
+        self.assertEqual(event["status"], "RECOVERY_QUARANTINED")
+        self.assertFalse(marker.exists())
+        archived = Path(event["quarantine"])
+        self.assertTrue(archived.exists())
+        self.assertEqual(event["sha256"], __import__("hashlib").sha256(archived.read_bytes()).hexdigest())
+
+    def test_incoherent_running_marker_is_blocked(self):
+        out = self.repo / "runtime" / "edge_atlas" / ID
+        out.mkdir(parents=True)
+        marker = out / "status_RUNNING.json"
+        marker.write_text(json.dumps({"status":"COMPLETE","job_id":ID}), encoding="utf-8")
+        with self.assertRaises(AdmissionError): recover_stale_running(marker, out, self.repo / "runtime", ID, 1)
+        self.assertTrue(marker.exists())
+
+    def test_existing_quarantine_destination_is_not_overwritten(self):
+        out = self.repo / "runtime" / "edge_atlas" / ID
+        out.mkdir(parents=True)
+        marker = out / "status_RUNNING.json"
+        marker.write_text(json.dumps({"status":"RUNNING","job_id":ID,"recorded_at":"2026-09-17T12:00:00+00:00"}), encoding="utf-8")
+        self._receipt(self.repo / "runtime")
+        destination = out / "quarantine" / f"status_RUNNING_{file_sha256(marker)}.json"
+        destination.parent.mkdir(parents=True)
+        destination.write_text("sentinel", encoding="utf-8")
+        with self.assertRaises(AdmissionError): recover_stale_running(marker, out, self.repo / "runtime", ID, 1, processes_absent=True)
+        self.assertEqual(destination.read_text(encoding="utf-8"), "sentinel")
+        self.assertTrue(marker.exists())
+
+    def test_missing_pid_is_not_absence_evidence(self):
+        out = self.repo / "runtime" / "edge_atlas" / ID
+        out.mkdir(parents=True)
+        marker = out / "status_RUNNING.json"
+        marker.write_text(json.dumps({"status":"RUNNING","job_id":ID,"recorded_at":"2026-09-17T12:00:00+00:00"}))
+        self._receipt(self.repo / "runtime")
+        for evidence in (None, False):
+            with self.assertRaises(AdmissionError):
+                recover_stale_running(marker, out, self.repo / "runtime", ID, 1, processes_absent=evidence)
+        self.assertTrue(marker.exists())
+
+    def test_old_receipt_cannot_recover_new_marker(self):
+        out = self.repo / "runtime" / "edge_atlas" / ID
+        out.mkdir(parents=True)
+        marker = out / "status_RUNNING.json"
+        marker.write_text(json.dumps({"status":"RUNNING","job_id":ID,"recorded_at":"2026-09-17T13:00:00+00:00"}))
+        self._receipt(self.repo / "runtime")
+        with self.assertRaises(AdmissionError):
+            recover_stale_running(marker, out, self.repo / "runtime", ID, 1, processes_absent=True)
+        self.assertTrue(marker.exists())
+
+    def test_exclusive_status_preserves_existing_bytes(self):
+        p = self.repo / "status.json"
+        p.write_bytes(b"sentinel")
+        with self.assertRaises(AdmissionError): atomic_status(p, {"new": True})
+        self.assertEqual(p.read_bytes(), b"sentinel")
+
+    def test_attempt_cannot_be_consumed_twice(self):
+        claim_attempt(self.repo)
+        original = (self.repo / "status_ATTEMPT_CONSUMED.json").read_bytes()
+        with self.assertRaises(AdmissionError): claim_attempt(self.repo)
+        self.assertEqual((self.repo / "status_ATTEMPT_CONSUMED.json").read_bytes(), original)
 
 
 if __name__ == "__main__":

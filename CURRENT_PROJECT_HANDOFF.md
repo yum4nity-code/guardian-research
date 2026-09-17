@@ -1,3 +1,7 @@
+# EA01 recovery - 2026-09-17
+
+Stale RUNNING evidence reconciled and preserved; see research/campaigns/EDGE_ATLAS_2026_09_17/EA01_RECOVERY_EVENT.json and EA01_RECOVERY_COLD_REVIEW.md. 37 synthetic tests and local cold review PASS. Checkpoint persisted before publication. One existing-orchestrator attempt authorized after this correction reaches main; persistent attempt claim forbids a second engine run. No manual launch. Generation 115 unchanged; protected 2026 unopened; R33/R34/R35 preserved. Next: inspect receipt and real process state, never rearm automatically.
+
 # Guardian Research — CURRENT PROJECT HANDOFF
 
 ## 2026-09-16 — R34 artifact audit: midnight source anomaly

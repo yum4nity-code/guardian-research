@@ -606,3 +606,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Read-only reconciliation completed without touching active services. Stale checkpoints/declared jobs were separated from real Guardian/live infrastructure; R33/R34/R35, MiMo, metatester and Edge Atlas workers were confirmed absent.
 - Frozen admission manifest now allows only indexed Dukascopy BID M1 payloads through 2025 and exact-grid Binance spot M5 rows for 2024–2025. Bybit/OI, external 2026 archives, FundedNext XAU and artificial R30 CSVs are permanently excluded from this campaign.
 - Shortlist revised before results: removed EA06/EA07/EA15; added catalogued EA09/EA16/EA20 using spot-only inputs. No cheap-fail launched. Next safe action is loader/preflight implementation, synthetic tests and independent cold review.
+
+
+## 2026-09-17 - EA01 interruption recovery
+
+- Inspected real processes, logs, receipt, quarantine, main queue and stale checkpoints without launching a job. Marker was already quarantined before this session; raw hash and receipt chronology verified.
+- Rejected unsafe interrupted recovery draft; added offline-only recovery admission, Windows PID checks, exclusive statuses and persistent one-attempt guard. Preserved old receipt and BI5 error evidence.
+- py_compile and 37 synthetic tests PASS; local cold review PASS. Checkpoint persisted before main publication. Only existing orchestrator may dispatch one recovery attempt.
+- No protected 2026 payload opened; R33/R34/R35 unchanged. Next: observe single attempt receipt without manual rerun.
+- Human active time: NOT QUANTIFIED; automated test time separate.
