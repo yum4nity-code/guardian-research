@@ -195,8 +195,9 @@ def decode_dukascopy_m1_day(
     previous: datetime | None = None
     base = datetime(day.year, day.month, day.day, tzinfo=UTC)
     for offset in range(0, len(raw), 24):
-        second, op, hi, lo, cl, volume = struct.unpack_from(">5If", raw, offset)
-        if not 0 <= second < 86400 or min(op, hi, lo, cl) <= 0:
+        # Dukascopy BI5 order is second, open, close, low, high, volume.
+        second, op, cl, lo, hi, volume = struct.unpack_from(">5If", raw, offset)
+        if not 0 <= second < 86400 or min(op, cl, lo, hi) <= 0:
             raise AdmissionError("invalid Dukascopy candle record")
         ts = base + timedelta(seconds=second)
         if ts >= PROTECTED_START:

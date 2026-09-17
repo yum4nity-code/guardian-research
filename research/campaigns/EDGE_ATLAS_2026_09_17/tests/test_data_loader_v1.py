@@ -30,7 +30,7 @@ def row(ts):
 
 class LoaderTests(unittest.TestCase):
     def test_rejects_2026_row(self):
-        with tempfile.TemporaryDirectory(dir=ROOT) as td:
+        with tempfile.TemporaryDirectory(dir="D:\\MT5_Backtests") as td:
             p=Path(td)/"spot.csv"; write_csv(p,[row("2025-12-31T23:55:00Z"),row("2026-01-01T00:00:00Z")])
             with self.assertRaises(dl.AdmissionError):list(dl.iter_binance_spot_m5(p,dl.sha256(p),datetime(2025,12,31,23,55,tzinfo=timezone.utc),dl.PROTECTED_START))
 
@@ -64,6 +64,15 @@ class LoaderTests(unittest.TestCase):
             p=Path(td)/"day.bi5";raw=b"".join(struct.pack(">5If",s,1000,1100,900,1050,1.0) for s in (0,120));p.write_bytes(lzma.compress(raw))
             meta={"path":str(p),"date":"2025-01-01","bytes":str(p.stat().st_size),"sha256":dl.sha256(p)}
             with self.assertRaises(dl.AdmissionError):list(dl.decode_dukascopy_m1_day(meta,expected_records=2))
+
+    def test_dukascopy_bi5_field_order_is_open_close_low_high(self):
+        with tempfile.TemporaryDirectory(dir="D:\\MT5_Backtests") as td:
+            p=Path(td)/"day.bi5"
+            raw=b"".join(struct.pack(">5If",s,1150000,1150921,1150000,1150971,1.0) for s in (0,60))
+            p.write_bytes(lzma.compress(raw))
+            meta={"path":str(p),"date":"2017-01-02","bytes":str(p.stat().st_size),"sha256":dl.sha256(p)}
+            bars=list(dl.decode_dukascopy_m1_day(meta,expected_records=2))
+            self.assertEqual((bars[0].open,bars[0].high,bars[0].low,bars[0].close),(1150.0,1150.971,1150.0,1150.921))
 
     def test_dukascopy_index_rejects_weekday_gap(self):
         with tempfile.TemporaryDirectory(dir=ROOT) as td:
