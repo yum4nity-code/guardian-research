@@ -603,3 +603,6 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Admitted only the indexed pre-2026 raw Dukascopy `.bi5` union and price-only Binance 2017–2025 archives. Quarantined derived filled Dukascopy CSVs; blocked Bybit/OI and live external archives because their paths/coverage include 2026. FundedNext XAU remains excluded.
 - Next safe action: reconcile active service ownership and stale checkpoints, then implement a read-only source admission gate; do not run Edge Atlas yet.
 - Human active time: NOT QUANTIFIED. No automated research execution occurred.
+- Read-only reconciliation completed without touching active services. Stale checkpoints/declared jobs were separated from real Guardian/live infrastructure; R33/R34/R35, MiMo, metatester and Edge Atlas workers were confirmed absent.
+- Frozen admission manifest now allows only indexed Dukascopy BID M1 payloads through 2025 and exact-grid Binance spot M5 rows for 2024–2025. Bybit/OI, external 2026 archives, FundedNext XAU and artificial R30 CSVs are permanently excluded from this campaign.
+- Shortlist revised before results: removed EA06/EA07/EA15; added catalogued EA09/EA16/EA20 using spot-only inputs. No cheap-fail launched. Next safe action is loader/preflight implementation, synthetic tests and independent cold review.
