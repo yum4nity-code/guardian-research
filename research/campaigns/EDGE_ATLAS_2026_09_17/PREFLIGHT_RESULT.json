@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "status": "PREFLIGHT_PASS_NO_RUN",
+  "scope": "synthetic code gate only",
+  "files_inspected": 0,
+  "files_admitted": [],
+  "files_rejected": [],
+  "rejection_causes": [],
+  "coverage": "VALIDATED_SYNTHETICALLY; REAL_DATA_NOT_OPENED",
+  "granularity": "VALIDATED_SYNTHETICALLY; REAL_DATA_NOT_OPENED",
+  "timezone": "VALIDATED_SYNTHETICALLY; REAL_DATA_NOT_OPENED",
+  "hashes": "VALIDATED_SYNTHETICALLY; REAL_DATA_NOT_OPENED",
+  "presence_2026": "NOT_READ",
+  "causal_availability": "PASS_SYNTHETIC",
+  "synthetic_tests": {
+    "count": 14,
+    "passed": 14,
+    "failed": 0
+  },
+  "cold_review": "PASS",
+  "real_histories_read": false,
+  "cheap_fail_launched": false
+}

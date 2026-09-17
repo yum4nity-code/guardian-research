@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "campaign_id": "EDGE-ATLAS-2026-09-17",
-  "updated_at": "2026-09-17T10:12:00+01:00",
-  "status": "READY_FOR_READ_ONLY_CHEAP_FAIL",
+  "updated_at": "2026-09-17T11:08:41+01:00",
+  "status": "PREFLIGHT_PASS_NO_RUN",
   "source_inspection_commit": "e7352b28e89a2f681d3c4b547b12f90fbf4cb67b",
   "branch": "research/edge-atlas-2026-09-17",
   "machine_truth_precedence": true,
@@ -60,5 +60,15 @@
   "selected_ids": ["EA01", "EA02", "EA03", "EA04", "EA08", "EA09", "EA11", "EA12", "EA16", "EA20"],
   "removed_ids": ["EA06", "EA07", "EA15"],
   "added_ids": ["EA09", "EA16", "EA20"],
-  "next_safe_action": "Implement and independently review read-only admission/preflight code for one bounded cheap-fail at a time. Do not launch any cheap-fail in this reconciliation step."
+  "technical_preflight": {
+    "python_compile": "PASS",
+    "synthetic_tests": {"status": "PASS", "passed": 14, "total": 14},
+    "independent_cold_review": "PASS",
+    "real_histories_read": false,
+    "presence_2026_read": false,
+    "cheap_fail_launched": false,
+    "result": "research/campaigns/EDGE_ATLAS_2026_09_17/PREFLIGHT_RESULT.json",
+    "code_manifest": "research/campaigns/EDGE_ATLAS_2026_09_17/CODE_MANIFEST.json"
+  },
+  "next_safe_action": "Preregister and request explicit authorization for one bounded read-only cheap-fail using only admitted sources; do not launch it automatically."
 }
