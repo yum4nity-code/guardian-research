@@ -1,26 +1,56 @@
 {
   "schema": 1,
   "generation": 115,
-  "supersedes_generation": 114,
+  "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Prepared Edge Atlas EA01 cheap-fail only. Not activated until runner cold review and local adapter admission pass. R33/R34/R35 remain closed; 2026 forbidden.",
+  "closure": "Research-only generation-115 proposal. It uses the orchestrator's existing Python executor schema and replaces the invalid generation-114 append relative to canonical base generation 83. EA01 remains disabled/WAITING_CODEX; no calculation is authorized.",
   "jobs": [
     {
       "id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
       "revision": 1,
       "priority": 0,
       "status": "WAITING_CODEX",
-      "type": "edge_atlas_cheap_fail",
+      "enabled": false,
+      "type": "EDGE_ATLAS_CHEAP_FAIL",
+      "class_key": "EDGE_ATLAS_CHEAP_FAIL_XAU_M5",
       "owner": "Codex",
-      "preregistration": "research/campaigns/EDGE_ATLAS_2026_09_17/SHORTLIST_REVISED.md",
+      "preregistration": "research/campaigns/EDGE_ATLAS_2026_09_17/EA01_CHEAP_FAIL_PREREGISTRATION.md",
+      "preregistration_sha256": "619cd126143738aa045c744226710108900096ec35fcdc3c58d6da9585275c71",
       "runner": "research/campaigns/EDGE_ATLAS_2026_09_17/ea01_cheap_fail_v1.py",
+      "runner_sha256": "3aa7411e1f0aa5c0ba80f7b6182f58d512cba0e1a918d471fdb6ce613b8846ec",
       "manifest": "research/campaigns/EDGE_ATLAS_2026_09_17/ADMITTED_DATA_MANIFEST.json",
-      "discovery_start": "2017-01-01",
-      "discovery_end": "2022-12-31",
-      "protected_2026": false,
-      "requires_local_adapter": true,
-      "goal": "Bounded EA01 XAU M5 reversal cheap-fail; no confirmation, no OOS, no production."
+      "launch_authorization": "research/campaigns/EDGE_ATLAS_2026_09_17/EA01_LAUNCH_AUTHORIZATION.json",
+      "protected_2026_opened": false,
+      "estimated_duration_seconds": 240,
+      "data_window": {
+        "start": "2017-01-01T00:00:00Z",
+        "end_exclusive": "2023-01-01T00:00:00Z",
+        "partition": "discovery"
+      },
+      "executor": {
+        "kind": "python",
+        "path": "research/campaigns/EDGE_ATLAS_2026_09_17/edge_atlas_cheap_fail_adapter_v1.py",
+        "args": [
+          "--job-spec",
+          "{DEPLOY}/research/autonomous/RESEARCH_QUEUE_APPEND_EDGE_ATLAS_115_PROPOSAL.json",
+          "--repo",
+          "{DEPLOY}",
+          "--output-dir",
+          "{ROOT}/edge_atlas/EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
+          "--execute"
+        ]
+      },
+      "timeout": {
+        "min_seconds": 300,
+        "expected_seconds": 120,
+        "eta_multiplier": 2.5,
+        "history_p95_multiplier": 0,
+        "stale_heartbeat_seconds": 300,
+        "poll_seconds": 2
+      },
+      "requires": [],
+      "goal": "Prepare bounded EA01 XAU M5 reversal baseline plus continuation control; discovery only; no execution while disabled."
     }
   ]
 }

@@ -1,26 +1,57 @@
-import json
-import subprocess
 import sys
+import unittest
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-RUNNER = Path(__file__).parents[1] / "ea01_cheap_fail_v1.py"
+CAMPAIGN = Path(__file__).parents[1]
+sys.path.insert(0, str(CAMPAIGN))
 
-def test_preflight_only(tmp_path):
-    manifest = tmp_path / "m.json"
-    manifest.write_text(json.dumps({"status":"ADMITTED","files":[{"asset":"XAUUSD","coverage":"2004-2025"}]}))
-    p = subprocess.run([sys.executable,str(RUNNER),"--manifest",str(manifest),"--output",str(tmp_path/"o")],capture_output=True,text=True)
-    assert p.returncode == 0
-    assert "PREFLIGHT_ONLY" in p.stdout
+from data_loader_v1 import AdmissionError, Bar
+from ea01_cheap_fail_v1 import evaluate_bars
 
-def test_execute_refuses_missing_adapter(tmp_path):
-    manifest = tmp_path / "m.json"
-    manifest.write_text(json.dumps({"status":"ADMITTED","files":[{"asset":"XAUUSD","coverage":"2004-2025"}]}))
-    p = subprocess.run([sys.executable,str(RUNNER),"--manifest",str(manifest),"--output",str(tmp_path/"o"),"--execute"],capture_output=True,text=True)
-    assert p.returncode != 0
-    assert "adapter" in (p.stderr+p.stdout).lower()
 
-def test_rejects_2026(tmp_path):
-    manifest = tmp_path / "m.json"
-    manifest.write_text(json.dumps({"status":"ADMITTED","files":[{"asset":"XAUUSD","coverage":"2004-2026"}]}))
-    p = subprocess.run([sys.executable,str(RUNNER),"--manifest",str(manifest),"--output",str(tmp_path/"o")],capture_output=True,text=True)
-    assert p.returncode != 0
+def bar(ts, op, hi, lo, close):
+    return Bar(ts, ts + timedelta(minutes=5), op, hi, lo, close, 1.0)
+
+
+class EA01EngineTests(unittest.TestCase):
+    def test_next_open_two_variants_and_three_bar_exit(self):
+        start = datetime(2017, 1, 2, tzinfo=timezone.utc)
+        bars = [bar(start + timedelta(minutes=5*i), 100, 100.5, 99.5, 100) for i in range(20)]
+        for close in (101, 102, 103):
+            ts = start + timedelta(minutes=5*len(bars))
+            bars.append(bar(ts, close - 0.2, close + 0.4, close - 0.6, close))
+        entry_ts = start + timedelta(minutes=5*len(bars))
+        bars.extend([bar(entry_ts, 103.0, 103.4, 102.6, 103.1),
+                     bar(entry_ts + timedelta(minutes=5), 103.1, 103.4, 102.7, 103.0),
+                     bar(entry_ts + timedelta(minutes=10), 103.0, 103.3, 102.8, 103.2)])
+        metrics, trades = evaluate_bars(bars)
+        target = [t for t in trades if t.entry_time == entry_ts.isoformat()]
+        self.assertEqual({t.variant for t in target}, {"reversal", "continuation"})
+        self.assertTrue(all(t.exit_reason == "TIME_3_BARS" for t in target))
+        self.assertEqual({t.exit_time for t in target}, {(entry_ts + timedelta(minutes=15)).isoformat()})
+        self.assertEqual(set(metrics), {"reversal", "continuation"})
+
+    def test_stop_has_priority_on_third_bar(self):
+        start = datetime(2017, 2, 1, tzinfo=timezone.utc)
+        bars = [bar(start + timedelta(minutes=5*i), 100, 101, 99, 100) for i in range(20)]
+        for close in (101, 102, 103):
+            ts = start + timedelta(minutes=5*len(bars))
+            bars.append(bar(ts, close, close + .5, close - .5, close))
+        entry = start + timedelta(minutes=5*len(bars))
+        bars.extend([bar(entry, 103, 103.2, 102.8, 103),
+                     bar(entry+timedelta(minutes=5), 103, 103.2, 102.8, 103),
+                     bar(entry+timedelta(minutes=10), 103, 110, 96, 103)])
+        _, trades = evaluate_bars(bars)
+        target = [t for t in trades if t.entry_time == entry.isoformat()]
+        self.assertEqual(len(target), 2)
+        self.assertTrue(all(t.exit_reason == "STOP" for t in target))
+
+    def test_rejects_bar_outside_discovery(self):
+        ts = datetime(2023, 1, 1, tzinfo=timezone.utc)
+        with self.assertRaises(AdmissionError):
+            evaluate_bars([bar(ts, 1, 1, 1, 1)])
+
+
+if __name__ == "__main__":
+    unittest.main()
