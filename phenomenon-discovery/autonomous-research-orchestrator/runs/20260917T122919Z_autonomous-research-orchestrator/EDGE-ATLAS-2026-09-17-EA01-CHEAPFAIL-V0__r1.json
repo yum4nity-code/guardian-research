@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "EDGE_ATLAS_CHEAP_FAIL_XAU_M5",
+  "duration_seconds": 2.0100398000213318,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-17T12:29:19.640260+00:00",
+  "job_id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
+  "main_commit": "d0451c15a458212689fa342ab2651ede4123e5f2",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-17T12:29:17.596937+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\campaigns\\EDGE_ATLAS_2026_09_17\\edge_atlas_cheap_fail_adapter_v1.py\", line 145, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\campaigns\\EDGE_ATLAS_2026_09_17\\edge_atlas_cheap_fail_adapter_v1.py\", line 129, in main\n    atomic_status(running_path, {\"status\": \"RUNNING\", \"job_id\": ID,\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                \"recorded_at\": datetime.now(timezone.utc).isoformat(), \"protected_2026_opened\": False})\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\campaigns\\EDGE_ATLAS_2026_09_17\\edge_atlas_cheap_fail_adapter_v1.py\", line 91, in atomic_status\n    raise AdmissionError(f\"refusing to overwrite status: {path}\")\ndata_loader_v1.AdmissionError: refusing to overwrite status: D:\\MT5_Backtests\\Research\\Autonomous\\edge_atlas\\EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0\\status_RUNNING.json",
+  "stdout_tail": ""
+}
