@@ -4,14 +4,14 @@
   "supersedes_generation": 83,
   "replace_base_jobs": true,
   "human_approved_2026": false,
-  "closure": "Research-only generation-115 proposal. It uses the orchestrator's existing Python executor schema and replaces the invalid generation-114 append relative to canonical base generation 83. EA01 remains disabled/WAITING_CODEX; no calculation is authorized.",
+  "closure": "Research-only generation-115 activation authorized by the user after adapter validation. It uses the orchestrator's existing Python executor schema and replaces the invalid generation-114 append relative to canonical base generation 83. EA01 is enabled for one bounded discovery-only cheap-fail; 2026 remains protected.",
   "jobs": [
     {
       "id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
       "revision": 1,
       "priority": 0,
-      "status": "WAITING_CODEX",
-      "enabled": false,
+      "status": "READY",
+      "enabled": true,
       "type": "EDGE_ATLAS_CHEAP_FAIL",
       "class_key": "EDGE_ATLAS_CHEAP_FAIL_XAU_M5",
       "owner": "Codex",
@@ -50,7 +50,7 @@
         "poll_seconds": 2
       },
       "requires": [],
-      "goal": "Prepare bounded EA01 XAU M5 reversal baseline plus continuation control; discovery only; no execution while disabled."
+      "goal": "Run exactly one bounded EA01 XAU M5 reversal baseline plus continuation control; discovery only; no confirmation, pre-OOS, OOS or 2026 access."
     }
   ]
 }

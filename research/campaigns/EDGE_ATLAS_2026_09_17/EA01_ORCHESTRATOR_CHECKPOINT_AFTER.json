@@ -3,13 +3,15 @@
   "recorded_at": "2026-09-17T11:22:00+01:00",
   "branch": "research/edge-atlas-2026-09-17",
   "base_commit": "ee0c1749f3c195b3fd945afa9b8dff8f5f9d1208",
-  "status": "ADAPTER_VALIDATED_WAITING_CODEX",
+  "status": "READY_AUTHORIZED_NOT_LAUNCHED",
   "job_id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
   "revision": 1,
-  "job_status": "WAITING_CODEX",
-  "enabled": false,
+  "job_status": "READY",
+  "enabled": true,
   "queue_generation_proposal": 115,
   "queue_modified": false,
+  "active_origin_main_generation": 114,
+  "active_origin_main_jobs": 0,
   "execution_launched": false,
   "real_history_read": false,
   "protected_2026_opened": false,
@@ -29,5 +31,5 @@
     "test_ea01_cheap_fail_v1.py": "435326ea98bb92c7a7ca9fa84c9a032d05ccc05caebda693d0de6055be77b431",
     "test_edge_atlas_adapter_v1.py": "66a7bb16c271ffe5b83779bddb0298f42bf15e3c3e5b297597b1aceec9b03e38"
   },
-  "next_action": "Keep proposal WAITING_CODEX. Do not set READY or launch until explicit checkpoint authorization and queue publication protocol are approved."
+  "next_action": "Publish the explicit generation-115 replacement to the approved active control plane, then run only the single bounded EA01 cheap-fail if launch is separately confirmed."
 }

@@ -2,7 +2,7 @@
   "schema": 1,
   "job_id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
   "revision": 1,
-  "launch_authorized": false,
+  "launch_authorized": true,
   "protected_2026_opened": false,
-  "reason": "Adapter preparation and synthetic validation only. No launch is authorized in this checkpoint."
+  "reason": "Explicit user authorization received in chat on 2026-09-17; EA01 discovery-only cheap-fail may be activated under the frozen gates."
 }

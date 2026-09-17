@@ -55,7 +55,7 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(proposal["supersedes_generation"], base["generation"])
         merged = dict(base, generation=proposal["generation"], jobs=proposal["jobs"], human_approved_2026=False)
         module.validate_queue(merged)
-        self.assertFalse(any(job.get("enabled") for job in merged["jobs"]))
+        self.assertTrue(any(job.get("enabled") and job.get("status") == "READY" for job in merged["jobs"]))
 
     def test_rejects_ready_or_enabled(self):
         with self.assertRaises(AdmissionError): self.admit(dict(self.job, status="READY", enabled=True))
