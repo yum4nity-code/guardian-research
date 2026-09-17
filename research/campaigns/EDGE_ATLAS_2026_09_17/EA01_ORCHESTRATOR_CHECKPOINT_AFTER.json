@@ -25,7 +25,7 @@
     "data_loader_v1.py": "a124189b7aac8d44b75a20dad62a3c5f02be7540fb41055f11c79ef0a22f500c",
     "preflight_v1.py": "3a48bb26d8d9bf5da1b3f47b9bbbf4c264e01220fe820090faeef268d60a3f45",
     "ea01_cheap_fail_v1.py": "3aa7411e1f0aa5c0ba80f7b6182f58d512cba0e1a918d471fdb6ce613b8846ec",
-    "edge_atlas_cheap_fail_adapter_v1.py": "698d9446011bb823bdb05790ad2b8069a235cd5875f2f43475d168ad382dd911",
+    "edge_atlas_cheap_fail_adapter_v1.py": "56d05f7448453afb1095e99ebc3a9b8b708b2e23ccb942083f91a4249fd5bda5",
     "ADMITTED_DATA_MANIFEST.json": "6e1883d6d94e83a93a6083785a6c717114103c3a189e40c309868f841189b107",
     "RESEARCH_QUEUE_APPEND_EDGE_ATLAS_115_PROPOSAL.json": "3c39b5ebca4bafe58bfe7366594446b634a69bc01ce57a5a920de8142e718154",
     "test_ea01_cheap_fail_v1.py": "435326ea98bb92c7a7ca9fa84c9a032d05ccc05caebda693d0de6055be77b431",

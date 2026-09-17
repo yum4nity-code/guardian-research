@@ -24,10 +24,13 @@ AUTH_REL = "research/campaigns/EDGE_ATLAS_2026_09_17/EA01_LAUNCH_AUTHORIZATION.j
 
 
 def file_sha256(path: Path) -> str:
+    # Guardian deploys on Windows with CRLF checkout conversion. Hash the
+    # canonical LF byte stream so the audited Git artifact and deployed copy
+    # remain identical for admission purposes.
     digest = hashlib.sha256()
     with path.open("rb") as handle:
         for chunk in iter(lambda: handle.read(1 << 20), b""):
-            digest.update(chunk)
+            digest.update(chunk.replace(b"\r\n", b"\n"))
     return digest.hexdigest()
 
 
