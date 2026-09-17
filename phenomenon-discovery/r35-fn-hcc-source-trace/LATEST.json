@@ -1,0 +1,51 @@
+{
+  "artifacts": [
+    {
+      "name": "availability_verdict.json",
+      "sha256": "a659314cc7b4f57bf78a6a856c41b6a86392cd73244a5eb3beabe3b6ada75c7c",
+      "size_bytes": 227
+    },
+    {
+      "name": "coverage_cadence.json",
+      "sha256": "2d13720049c83c2c391e4f219de99ee95988db1a787b70eb272ac9572c0bb0a9",
+      "size_bytes": 66334
+    },
+    {
+      "name": "csv_m1_m5_trace.csv",
+      "sha256": "d8fa6c952733c4e5e09ef078b543fc47346ef3e8767662d342d69228ad8345c9",
+      "size_bytes": 86271
+    },
+    {
+      "name": "dependent_study_inventory.json",
+      "sha256": "839e17d8c47806177fe5c43e88889eceac5fab6b82056aabda2f0e621e58aa58",
+      "size_bytes": 1339
+    },
+    {
+      "name": "ohlc_comparison.csv",
+      "sha256": "7b6d192010587214dcacee0da3a93291be3c296abe873261b34eeb1ee1b13858",
+      "size_bytes": 69088
+    },
+    {
+      "name": "physical_neighbor_trace.csv",
+      "sha256": "0343ce682305995875e28cf7a4ac1462cbfebc5ce70443fa090cbcf08a1b5af0",
+      "size_bytes": 131303
+    },
+    {
+      "name": "REPORT.md",
+      "sha256": "471f1f248913affe3edb316108075844ab8d5a4c77b8ffb6d7d79b4c9efab4b7",
+      "size_bytes": 239
+    },
+    {
+      "name": "source_trace.csv",
+      "sha256": "0037105cc1e735bd837729a3489ce3b435982924fef64df1797b99f19fd87ceb",
+      "size_bytes": 82892
+    }
+  ],
+  "generated_at_utc": "2026-09-17T07:43:08.835466+00:00",
+  "phase": "r35-fn-hcc-source-trace",
+  "published_run_path": "phenomenon-discovery/r35-fn-hcc-source-trace/runs/20260917T074308Z_r35-fn-hcc-source-trace",
+  "schema": 1,
+  "source_commit": "55ae12e7365cbe501e3271308a6b54776e614f16",
+  "status": "PASS",
+  "summary": "R35 source-only diagnostic completed on pinned 2024-2025 inputs; availability verdict UNRESOLVED; 202/202 midnight HCC rows exactly match full same-day OHLC; R34 FundedNext signal leg causally quarantined; no PnL, tuning, or 2026 access."
+}

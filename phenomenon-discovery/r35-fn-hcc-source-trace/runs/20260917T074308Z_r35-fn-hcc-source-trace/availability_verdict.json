@@ -1,0 +1,6 @@
+{
+  "verdict": "UNRESOLVED",
+  "reason": "No independent native export or structural available_at proof; same-source comparisons cannot validate causality.",
+  "inspected_signals": 202,
+  "protected_2026_opened": false
+}

@@ -1,0 +1,22 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "files": [
+    "research\\autonomous\\R5_POST_RESULT_COLD_AUDIT_PREREGISTRATION_2026_09_11.md",
+    "research\\autonomous\\R5_PRE_OOS_ECONOMIC_ROBUSTNESS_PREREGISTRATION_2026_09_12.md",
+    "research\\autonomous\\R6_XAU_LOW_TURNOVER_BREAKOUT_PREREGISTRATION_2026_09_12.md",
+    "research\\autonomous\\TOP2_XAU_MT5_CANONICAL_REPLAY_REPAIR_PREREGISTRATION_2026_09_12.md",
+    "research\\autonomous\\archive\\RESEARCH_QUEUE_G16_20260909.json",
+    "research\\autonomous\\audit_r5_post_result_execution_semantics_v1_00.py",
+    "research\\autonomous\\phase_ib_mt5_python_extract_v1_00.py",
+    "research\\autonomous\\phase_ib_mt5_python_extract_v1_01.py",
+    "research\\autonomous\\pre_oos_economic_feasibility_v1_00.py",
+    "research\\autonomous\\r31_r6b_raw_vs_news_clean_v1_00.py",
+    "research\\autonomous\\r32_fundednext_dukascopy_clock_alignment_v1_00.py",
+    "research\\autonomous\\r4_causal_capture_forensic_audit_v1_00.py",
+    "research\\autonomous\\r5_pre_oos_economic_robustness_v1_00.py",
+    "research\\autonomous\\r6_oos_2026_preregistration_v1.json",
+    "research\\autonomous\\r6_xau_low_turnover_breakout_v1_00.py",
+    "research\\autonomous\\test_r31_r6b_raw_vs_news_clean_v1_00.py",
+    "research\\autonomous\\test_top2_canonical_schedule_replay_v1_00.py"
+  ]
+}
