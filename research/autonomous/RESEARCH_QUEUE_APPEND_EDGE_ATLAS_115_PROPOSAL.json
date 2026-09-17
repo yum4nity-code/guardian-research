@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "generation": 115,
+  "supersedes_generation": 114,
+  "replace_base_jobs": true,
+  "human_approved_2026": false,
+  "closure": "Prepared Edge Atlas EA01 cheap-fail only. Not activated until runner cold review and local adapter admission pass. R33/R34/R35 remain closed; 2026 forbidden.",
+  "jobs": [
+    {
+      "id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
+      "revision": 1,
+      "priority": 0,
+      "status": "WAITING_CODEX",
+      "type": "edge_atlas_cheap_fail",
+      "owner": "Codex",
+      "preregistration": "research/campaigns/EDGE_ATLAS_2026_09_17/SHORTLIST_REVISED.md",
+      "runner": "research/campaigns/EDGE_ATLAS_2026_09_17/ea01_cheap_fail_v1.py",
+      "manifest": "research/campaigns/EDGE_ATLAS_2026_09_17/ADMITTED_DATA_MANIFEST.json",
+      "discovery_start": "2017-01-01",
+      "discovery_end": "2022-12-31",
+      "protected_2026": false,
+      "requires_local_adapter": true,
+      "goal": "Bounded EA01 XAU M5 reversal cheap-fail; no confirmation, no OOS, no production."
+    }
+  ]
+}
