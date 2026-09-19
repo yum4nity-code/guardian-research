@@ -1,0 +1,10 @@
+{
+  "last_reason": "executor exit 1",
+  "last_receipt": "D:\\MT5_Backtests\\Research\\Autonomous\\receipts\\EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0__r1.json",
+  "main_commit": "5d2d743b2bb03d1b2966fe7c2c0769d641eb9329",
+  "pid": 13536,
+  "schema": 1,
+  "status": "FAIL",
+  "updated_at_utc": "2026-09-19T13:44:46.577408+00:00",
+  "version": "1.03"
+}
