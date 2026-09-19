@@ -175,6 +175,17 @@ py -m py_compile $Py
 if($LASTEXITCODE -ne 0){throw "GEF Python compile failed"}
 $hash=(Get-FileHash $Py -Algorithm SHA256).Hash
 Write-Host "GEF PY SHA256: $hash"
+
+# pandas rank/Spearman correlation requires scipy. Install only if missing.
+py -c "import scipy" 2>$null
+if($LASTEXITCODE -ne 0){
+  Write-Host "SciPy missing - installing..."
+  py -m pip install --disable-pip-version-check scipy
+  if($LASTEXITCODE -ne 0){throw "SciPy installation failed"}
+}
+py -c "import pandas, numpy, pyarrow, scipy; print('PYTHON DEPS OK')"
+if($LASTEXITCODE -ne 0){throw "Python dependency check failed"}
+
 if(!$SkipRun){
   py $Py
   if($LASTEXITCODE -ne 0){throw "GEF run failed"}
