@@ -176,15 +176,21 @@ if($LASTEXITCODE -ne 0){throw "GEF Python compile failed"}
 $hash=(Get-FileHash $Py -Algorithm SHA256).Hash
 Write-Host "GEF PY SHA256: $hash"
 
-# pandas rank/Spearman correlation requires scipy. Install only if missing.
-py -c "import scipy" 2>$null
+# pandas rank/Spearman correlation requires scipy.
+# Do the probe/install in a child PowerShell so native stderr cannot trip this script's Stop policy.
+$depCmd = @'
+$ErrorActionPreference = "Continue"
+py -c "import scipy" *> $null
 if($LASTEXITCODE -ne 0){
   Write-Host "SciPy missing - installing..."
   py -m pip install --disable-pip-version-check scipy
-  if($LASTEXITCODE -ne 0){throw "SciPy installation failed"}
+  if($LASTEXITCODE -ne 0){ exit 31 }
 }
 py -c "import pandas, numpy, pyarrow, scipy; print('PYTHON DEPS OK')"
-if($LASTEXITCODE -ne 0){throw "Python dependency check failed"}
+exit $LASTEXITCODE
+'@
+powershell -NoProfile -Command $depCmd
+if($LASTEXITCODE -ne 0){ throw "Python dependency bootstrap failed with exit code $LASTEXITCODE" }
 
 if(!$SkipRun){
   py $Py
