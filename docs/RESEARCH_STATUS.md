@@ -2,30 +2,18 @@
 
 **Canonical status: 2026-09-20**
 
-For current alpha-research state, this document is subordinate to `CURRENT_PROJECT_HANDOFF.md` and `EDGE_FAMILY_MAP.md`. Historical Rxx/D0xx/live-runtime material remains in Git history and research artifacts and must not be mistaken for the current Edge Factory queue.
+## Latest result
+GEF V32–V37 regime/shock lineage: **CLOSED BEFORE LOCKED OOS**.
 
-## Active
-- **GEF V32/V33 — volatility-regime × price-shock**: EXPLORING.
-- V32 discovery 2010–2013: 192 cells, 56 screen survivors, 16 frozen.
-- V33 is the current next action: exact 2014–2017 replication of all 16; no retuning; all four years required; stop before 2018.
-- Runner: `automation/Run-GuardianEdgeFactoryV33.ps1`.
+The sole V34 survivor (XAGUSD normal-regime shock reversal H240) was frozen in V35, passed independent 2018–2022 validation in V36 (+3.375 bp/trade), then failed the final V37 pre-OOS forensic because removing the best 2% of trades changed the 2010–2022 mean to **-1.339 bp/trade**. The predeclared gate therefore fails. 2023–2025 and 2026 remain unopened.
 
-## Recently closed
-- GBP60 V3–V10: DEAD — timestamp lookahead confirmed; causal rebuild negative.
-- XAG zret H240: CLOSED before locked OOS — failed strict tail robustness.
-- XAU/XAG V20–V28: CLOSED before locked OOS — cross-market divergence had insufficient incremental information over XAG mean reversion after forensic attribution.
-- XAG-only V29–V31: CLOSED before validation — 12 frozen, 7 replicated, 0 robust.
+## Active next family
+**Implied volatility / volatility term structure (families 7–8).**
 
-## Protected data
-- 2018–2022: validation only for a lineage that first survives replication + pre-validation robustness.
-- 2023–2025: locked OOS; currently unopened for active lineage.
-- 2026: protected final OOS.
+Use Cboe/CFE external-information data with causal availability and the same discovery→replication→robustness→freeze→validation discipline.
 
-## Research map
-See `EDGE_FAMILY_MAP.md` for the 28-family possibility-space map. Most external-information families remain untouched. Priority after the active lineage: implied vol/term structure -> rates/real yields/breakevens -> CFTC -> macro/FOMC -> Treasury auctions.
+## Protected periods
+- 2023–2025 locked OOS: unopened.
+- 2026 protected: unopened.
 
-## Data / causal constraints
-Causal timestamp availability is mandatory. CFTC publication lag must be enforced. Revised macro requires vintage-correct data where relevant. EIA is blocked from alpha use until AVAILABLE_AT is built. Generic cost surfaces are sensitivity analyses, not broker-cost evidence.
-
-## Repository note
-Older detailed status reports are intentionally retained in Git history and dated research artifacts for provenance. They are no longer duplicated here because doing so made the current operational state ambiguous.
+See `EDGE_FAMILY_MAP.md` and `CURRENT_PROJECT_HANDOFF.md` for the canonical queue and closed-lineage ledger.
