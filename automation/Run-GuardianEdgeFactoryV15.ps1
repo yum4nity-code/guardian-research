@@ -22,7 +22,7 @@ eligible["strength"]=eligible.gross_bp.abs()*np.sqrt(eligible.n)*eligible.years_
 frozen=[]
 used=set()
 for _,r in eligible.sort_values("strength",ascending=False).iterrows():
- key=(r.market,r.family)
+ key=(r["market"],r["family"])
  if key in used: continue
  frozen.append(r)
  used.add(key)
@@ -54,7 +54,7 @@ def feature(d,name):
  raise ValueError(name)
 results=[]; total=len(FZ)
 for i,r in FZ.reset_index(drop=True).iterrows():
- m=r.market; fn=r.feature; h=int(r.horizon_min); tail=float(r.tail); rho=float(r.rho)
+ m=r["market"]; fn=r["feature"]; h=int(r["horizon_min"]); tail=float(r["tail"]); rho=float(r["rho"])
  disc=load(m,range(2010,2014)); rep=load(m,range(2014,2018))
  xd=feature(disc,fn); xr=feature(rep,fn); yd=exact_fwd(disc.close,h); yr=exact_fwd(rep.close,h)
  qd=pd.concat([xd,yd],axis=1).dropna();qd.columns=["x","y"];qr=pd.concat([xr,yr],axis=1).dropna();qr.columns=["x","y"]
