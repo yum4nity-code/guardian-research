@@ -57,7 +57,7 @@ for j,r in F.iterrows():
   if last is None or ts-last>=gap:chosen.append((ts,v));last=ts
  no=pd.Series([v for _,v in chosen],index=[x for x,_ in chosen],dtype=float)
  yrs=p.groupby(p.index.year).mean();pos=float((yrs>0).mean()) if len(yrs) else 0
- checks={"minimum_events":n>=80,"gross_mean_bp":p.mean()>0,"positive_year_fraction":pos>=.60,"trim_best_1pct_mean_bp":tr1.mean()>0,"trim_best_2pct_mean_bp":tr2.mean()>0,"remove_best_5_events_mean_bp":rm5.mean()>0,"nonoverlap_mean_bp":len(no)>0 and no.mean()>0,"extra_information_lag_1obs_mean_bp":px.mean()>0}
+ checks={"minimum_events":bool(n>=80),"gross_mean_bp":bool(p.mean()>0),"positive_year_fraction":bool(pos>=.60),"trim_best_1pct_mean_bp":bool(tr1.mean()>0),"trim_best_2pct_mean_bp":bool(tr2.mean()>0),"remove_best_5_events_mean_bp":bool(rm5.mean()>0),"nonoverlap_mean_bp":bool(len(no)>0 and no.mean()>0),"extra_information_lag_1obs_mean_bp":bool(px.mean()>0)}
  passed=all(checks.values())
  rows.append({"candidate_id":r["candidate_id"],"source":r["source"],"target":r["target"],"feature":r["feature"],"tail":r["tail"],"horizon_days":r["horizon_days"],"mode":r["mode"],"n":n,"gross_bp":float(p.mean()),"hit":float((p>0).mean()),"positive_year_fraction":pos,"trim1_bp":float(tr1.mean()),"trim2_bp":float(tr2.mean()),"remove_best5_bp":float(rm5.mean()),"nonoverlap_n":len(no),"nonoverlap_bp":float(no.mean()),"extra_lag1_bp":float(px.mean()),"yearly":";".join(f"{int(y)}:{v:.6f}" for y,v in yrs.items()),"gate_checks":json.dumps(checks,sort_keys=True),"validation_pass":passed})
  prog(4+j,12,f"{r['candidate_id']} {r['source']}->{r['target']} | n={n} gross={p.mean():.2f} trim2={tr2.mean():.2f} nonov={no.mean():.2f} lag+1={px.mean():.2f} years+={pos:.0%} | {'PASS' if passed else 'FAIL'}")
