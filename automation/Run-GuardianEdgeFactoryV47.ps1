@@ -74,13 +74,18 @@ for k,v0 in base.items():
 cells=[];pnls={}
 join_diag=[]
 for name,s0 in base.items():
- s0=s0[~s0.index.duplicated(keep="last")].sort_index()
+ s0=s0.groupby(level=0).last().sort_index()
  feats={"level_pct":s0.rolling(252,min_periods=126).rank(pct=True),"chg1":s0.diff(1),"chg5":s0.diff(5),"z20":(s0-s0.rolling(20,min_periods=15).mean())/s0.rolling(20,min_periods=15).std()}
  for fn,raw in feats.items():
   x=raw.shift(1)
-  lo=x.rolling(252,min_periods=126).quantile(.10).shift(1);hi=x.rolling(252,min_periods=126).quantile(.90).shift(1)
+  if fn=="level_pct":
+   lo=pd.Series(.10,index=x.index);hi=pd.Series(.90,index=x.index)
+  else:
+   lo=x.rolling(252,min_periods=126).quantile(.10).shift(1);hi=x.rolling(252,min_periods=126).quantile(.90).shift(1)
   for m,a in spot.items():
-   q=pd.concat([x.rename("x"),lo.rename("lo"),hi.rename("hi"),a.rename("px")],axis=1,join="inner").dropna();q=q[(q.index.year>=2010)&(q.index.year<=2013)]; join_diag.append((name,fn,m,len(q),int((q.x<=q.lo).sum()),int((q.x>=q.hi).sum())))
+   pre=pd.DataFrame({"x":x,"lo":lo,"hi":hi}).dropna()
+   q=pre.join(a.rename("px"),how="inner").dropna();q=q[(q.index.year>=2010)&(q.index.year<=2013)]
+   join_diag.append((name,fn,m,int(x.notna().sum()),len(pre),len(q),int((q.x<=q.lo).sum()),int((q.x>=q.hi).sum())))
    for tail,mask in [(.1,q.x<=q.lo),(.9,q.x>=q.hi)]:
     for h in [1,5]:
      ret=np.log(q.px.shift(-h)/q.px)*1e4
@@ -92,7 +97,7 @@ for name,s0 in base.items():
       cells.append({"source_feature":name,"target":m,"feature":fn,"tail":tail,"horizon_days":h,"mode":mode,"n":n,"gross_bp":mu,"hit":hit,"positive_year_fraction":pos,"key":key})
 prog(5,12,f"evaluated {len(cells)} cells")
 if not cells:
- pd.DataFrame(join_diag,columns=["source_feature","feature","target","join_n","low_n","high_n"]).to_csv(O/"JOIN_DIAGNOSTICS.csv",index=False)
+ pd.DataFrame(join_diag,columns=["source_feature","feature","target","x_finite","threshold_ready","join_n","low_n","high_n"]).to_csv(O/"JOIN_DIAGNOSTICS.csv",index=False)
  raise RuntimeError("No discovery cells after validated source/spot overlaps; JOIN_DIAGNOSTICS.csv written")
 R=pd.DataFrame(cells)
 # Screen is deliberately modest; replication is the real filter.
