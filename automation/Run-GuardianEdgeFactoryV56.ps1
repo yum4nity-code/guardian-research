@@ -48,7 +48,7 @@ for mi,(sym,name) in enumerate(maps.items(),1):
   cc[f+"_pct"]=cc[f].rolling(156,min_periods=52).rank(pct=True)
  s=spot_daily(sym); df=pd.DataFrame({"px":s})
  # merge_asof ensures only CFTC data already AVAILABLE_AT is visible
- df=df.reset_index().rename(columns={df.index.name or "index":"dt"}).sort_values("dt")
+ df=df.reset_index().rename(columns={df.index.name or "index":"dt"}).sort_values("dt");df["dt"]=pd.to_datetime(df["dt"],errors="coerce");df=df.dropna(subset=["dt"]).set_index("dt",drop=False)
  use=cc[["AVAILABLE_AT"]+features+[f+"_chg1" for f in features]+[f+"_pct" for f in features]].sort_values("AVAILABLE_AT")
  df=pd.merge_asof(df,use,left_on="dt",right_on="AVAILABLE_AT",direction="backward")
  for h in horizons:df[f"r{h}"]=df.px.shift(-h)/df.px-1
@@ -64,7 +64,7 @@ for mi,(sym,name) in enumerate(maps.items(),1):
     if len(rr)<40:continue
     for mode,sg in [("continuation",1 if tail=="hi" else -1),("reversal",-1 if tail=="hi" else 1)]:
      x=rr*sg; trials+=1
-     years=x.groupby(x.index.year).mean()
+     years=x.groupby(pd.to_datetime(df.loc[x.index,"dt"]).dt.year.to_numpy()).mean()
      rows.append({"key":f"{sym}|{base}|{col.split('_')[-1]}|{tail}|{q}|H{h}|{mode}","market":sym,"cftc_market":name,"feature":base,"transform":col,"tail":tail,"q":q,"h":h,"mode":mode,"n":len(x),"gross_bp":x.mean()*10000,"hit":(x>0).mean(),"positive_year_fraction":(years>0).mean() if len(years) else np.nan})
  prog(2+mi,12,f"{sym} complete | trials={trials}")
 R=pd.DataFrame(rows);R.to_csv(O/"ALL_CELLS.csv",index=False)
