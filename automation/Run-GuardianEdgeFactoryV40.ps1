@@ -45,7 +45,7 @@ def source_feature(source,feat):
  return x.shift(1)
 rows=[]
 for j,r in F.iterrows():
- source,target,feat=str(r.source),str(r.target),str(r.feature);tail=float(r.tail);h=int(r.horizon_days);mode=str(r["mode"])
+ source,target,feat=str(r.source),str(r.target),str(r.feature);tail=float(r["tail"]);h=int(r["horizon_days"]);mode=str(r["mode"])
  x=source_feature(source,feat);a=spot[target];q=pd.concat([x.rename("x"),a.rename("px")],axis=1,join="inner").dropna();q=q[(q.index.year>=2014)&(q.index.year<=2017)]
  if feat=="level_pct":mask=q.x<=tail if tail==.10 else q.x>=tail
  else:
