@@ -1,78 +1,31 @@
 # Research Status
 
-## 2026-09-16 — R34 artifact audit: midnight source anomaly
+**Canonical status: 2026-09-20**
 
-All 202 FN signals are timestamped 00:00 (95/107); Duka signals are 563/732, zero at midnight, with 163/168 executable after overlap exclusions. Existing ledger net/PF and nine source hashes reconcile (explicit LF/CRLF normalization). No ±10-minute pairs exist. HCC parser block/timeframe admission is a concrete code weakness; actual record contamination/lookahead remains unproven pending local source trace. No alpha promotion based on these FN signals until causal availability is established. See `research/autonomous/R34_MIDNIGHT_SOURCE_AUDIT_2026_09_16.md` for evidence and frozen source-only diagnostic. Windows/HCC sources were not accessed by this audit. Generation 114 stays empty; no R33/R34 replay or output alteration. Next safe action: local read-only source diagnostic, not strategy tuning.
-
-Document vivant maintenu par Codex.
-
-## 2026-09-11 — Issue #3 final feasibility implementation READY
-
-Owner-frozen protocol v2 and validator v1_00 implemented for all 500 R4 rules, with 32 annotation only. Code cold audit PASS for selecting candidates for a realistic backtest, not validated profitability. 43 synthetic tests PASS / 0 FAIL; final reduced smoke PASS (eight candidates, 1,148 ledger checks, four verified pre-2026 CSV reads). No full run yet at this code milestone. Authorizes the owner's requested single immutable queue registration after publication; no manual full launch, no automatic OOS chain. FundedNext remains optional UNRESOLVED/DISABLED, financing unmodeled and overnight/weekend exposure reported. Source R4 and consolidation preserved; separate recertification mandatory before protected OOS. Evidence: `research/protocols/pre_oos_economic_feasibility_screen_v2/`.
+For current alpha-research state, this document is subordinate to `CURRENT_PROJECT_HANDOFF.md` and `EDGE_FAMILY_MAP.md`. Historical Rxx/D0xx/live-runtime material remains in Git history and research artifacts and must not be mistaken for the current Edge Factory queue.
 
 ## Active
+- **GEF V32/V33 — volatility-regime × price-shock**: EXPLORING.
+- V32 discovery 2010–2013: 192 cells, 56 screen survivors, 16 frozen.
+- V33 is the current next action: exact 2014–2017 replication of all 16; no retuning; all four years required; stop before 2018.
+- Runner: `automation/Run-GuardianEdgeFactoryV33.ps1`.
 
-- `D017-V11-16-MIN-RISK-SCALING-DIVERGENCE` — `VALIDATED / RESOLVED`. La candidate v11.16.1 RISKFIX correspond au hash ChatGPT, compile sans erreur ni avertissement et son auto-test runtime confirme 25 USD sur 10k / 250 USD sur 100k.
-- `D017-V11-16-GENERALIZATION-PREOOS` — `RUNNING_MT5 / IMPORT`. Manifeste et criteres geles avant resultat; trois workers isoles importent AUDUSD, EURJPY, NZDUSD, USDCAD, USDCHF et XAUUSD en excluant tout timestamp a partir du 2026-06-28. Aucun tuning et OOS ferme.
-- `GUARDIAN-V11-15-SAFE-RUNTIME-DIVERGENCE` — `REJECTED / SUPERSEDED`. La ligne v11.15 est close et remplacee par v11.16; elle ne doit plus etre patchee, testee ni redeployee.
-- `D017-V11-16-PROVENANCE-AUDIT` — `CANDIDATE`. Parite du coeur Momentum confirmee; la non-regression empirique n'etait pas comparable car les flux differaient.
-- `D017-V11-16-EXACT-FEED-CONTROL` — `READY`. Controle unique sur EURUSD_BT/GBPUSD_BT, parametres D017 geles, sans OOS.
-- `AUTONOMY-RECOVERY-001` — `RUNNING_MIMO`. Orchestrateur PID 9188; worker `MIMO-DEEP-WALKFORWARD-COUNTEREVIDENCE` repris sans doublon. Le controle `_BT` long n'a pas ete lance.
-- `GUARDIAN-V11-16-11-LIVE-RSI-MOMENTUM` — `LIVE_VALIDATION / RESEARCH`. Baseline utilisateur actuelle: v11.16.11 avec switches `InpEnableMomentum` / `InpEnableRSISniper`, RSI Sniper integre, notifications lifecycle, under-risk max-volume >=50 USD et diagnostics BUY1/BUY2 explicites. Voir `docs/GUARDIAN_V11_16_5_TO_11_16_11_CHANGELOG.md` et `docs/RSI_SNIPER_IMPLEMENTED_ADDENDUM_2026_09_02.md`.
-- `BTC-ENGINE-ISOLATION-2026-09-02` — `RUNNING_MANUAL_MT5`. Meme fenetre/ticks/depot que le baseline combo. Combo reproduit exactement +17499.93 USD / PF 1.35 / equity DD 3.76% / 628 trades. RSI-only: +9451.57 USD / PF 1.19 / equity DD 4.20% / 621 trades. Momentum-only baseline (`InpCryptoPostShockBars=2`) en cours.
-- `GUARDIAN-EXTERNAL-INTELLIGENCE-BUS-V1` — `IMPLEMENTED / OFFLINE TESTED / LIVE SMOKE PENDING`. Collecteur Bybit public BTC/ETH + replay strict deja pousses sous `research/external_intelligence/`. Donnees: spot, perpetual, OI, funding, liquidations long/short, health/staleness. `py_compile` passe et 4/4 tests offline passent. Prochain gate Codex: installation sur `D:\MT5_Backtests\Research\ExternalIntelligence`, 30+ min de collecte reelle, coupure/reconnexion, deduplication, latence, staleness et replay sur sample reel. Ne pas reecrire avant evidence d'un bug concret.
+## Recently closed
+- GBP60 V3–V10: DEAD — timestamp lookahead confirmed; causal rebuild negative.
+- XAG zret H240: CLOSED before locked OOS — failed strict tail robustness.
+- XAU/XAG V20–V28: CLOSED before locked OOS — cross-market divergence had insufficient incremental information over XAG mean reversion after forensic attribution.
+- XAG-only V29–V31: CLOSED before validation — 12 frozen, 7 replicated, 0 robust.
 
-## Candidates
+## Protected data
+- 2018–2022: validation only for a lineage that first survives replication + pre-validation robustness.
+- 2023–2025: locked OOS; currently unopened for active lineage.
+- 2026: protected final OOS.
 
-- Guardian v11.16 Momentum PROD — candidat nouveau, non equivalent a une non-regression exacte D017 tant que la provenance n'est pas reconciliee.
-- `D021-MICRO-REV-M1-V0` — hypothese crypto independante preregistree pour event study cheap-fail sur `BTCUSD_BT` et `ETHUSD_BT`. Aucun EA ni backtest long autorise; execution seulement apres audit fail-closed des donnees/couts et recolte du job MiMo actif.
-- RSI Sniper integrated sleeve — candidate active, profitable on BTC isolated over current two-month research window, not yet validated cross-market. BUY2/SL architecture and exit distribution remain open research questions.
-- `D025-LIQUIDITY-EXHAUSTION-RECLAIM` — `PREREGISTERED / BLOCKED BEFORE OBSERVER`. Strategie mid-term distincte de RSI/Momentum : niveau objectif -> sweep/cascade -> exhaustion/impact marginal decroissant -> reclaim -> acceptance/retest. V0 doit rester observation/trade virtuel; sorties non fixees avant MFE/MAE. Crypto+ pourra utiliser le bus externe, mais LER Core doit rester autonome MT5.
+## Research map
+See `EDGE_FAMILY_MAP.md` for the 28-family possibility-space map. Most external-information families remain untouched. Priority after the active lineage: implied vol/term structure -> rates/real yields/breakevens -> CFTC -> macro/FOMC -> Treasury auctions.
 
-## Validated
+## Data / causal constraints
+Causal timestamp availability is mandatory. CFTC publication lag must be enforced. Revised macro requires vintage-correct data where relevant. EIA is blocked from alpha use until AVAILABLE_AT is built. Generic cost surfaces are sensitivity analyses, not broker-cost evidence.
 
-- Aucun nouveau candidat valide pendant ce bootstrap.
-
-## Rejected / quarantined
-
-- Guardian v11.15: ligne production legacy, resolue et supersedee par v11.16 self-contained. Aucun patch, test supplementaire ou redeploiement.
-- USDJPY v11.16 manuel: quarantaine, car le test jusqu'au 2026-08-30 traverse l'OOS verrouille.
-- SOLUSD v11.16 manuel: incomplet, donc inexploitable.
-- MiMo deep walk-forward METHOD/COSTS/DATA: echecs techniques par timeout; contre-audit partiel/interrompu.
-
-## Etat du laboratoire au 2026-08-31 20:22Z
-
-- Depot synchronise: `ee5ad9914156cb66462ee321d40632a38d3714bf`.
-- Terminaux ouverts: FTMO normal et FundedNext; aucun `metatester64` actif.
-- PropFirmGuard est actif. MiMo a ete relance apres reconciliation et recupere sa file persistante.
-- Aucun backtest MT5 n'a ete relance durant le bootstrap ou la reprise MiMo.
-- Exigence v11.17+: les invariants strategiques critiques doivent etre compiles et controles fail-closed; aucune dependance a un `.set` pour preserver la semantique validee.
-
-## Etat ChatGPT / live au 2026-09-02
-
-- Ligne live utilisateur: Guardian v11.16.11 `STRATEGY_SWITCHES`.
-- FundedNext: l'utilisateur a confirme par appel que l'EA est autorisee sur le profil utilise; ne pas deduire une interdiction FundedNext d'un message `AutoTrading disabled by server` sans verifier d'abord l'etat Algo Trading local/compte. Un cas observe provenait simplement de l'algo desactive par l'utilisateur.
-- Telegram: doit rester absent du code Guardian actuel.
-- Notifications MT5/mobile validees en live avec semantique WHITE/entry, GREEN/TP1, BLUE/protected/TP2, RED/dry loss before TP, pour RSI/Momentum/manual.
-- Under-risk max-volume valide en live: LNK ~32 USD bloque sous le seuil 50 USD; SOL ~192 USD autorise au max broker 5 lots.
-- BUY1 silent-block diagnostic corrige en v11.16.10: toute sortie false apres signal confirme doit exposer une raison.
-- BUY2: ne pas modifier pour l'instant. Mesurer le conflit potentiel entre structural SL BUY1 et second oversold episode, ainsi que l'effet du filtre de divergence.
-- Cout d'entree RSI a SL tres court: a mesurer comme spread + commission en % du risque; cas USDCAD 12.45 lots / SL ~2.2 pips avec drawdown immediat important.
-- Backtests: travailler principalement avec rapports synthetiques standardises; n'exiger des logs complets qu'en diagnostic cible. Ajouter plus tard un resume de Strategy Tester en fin de run.
-- Optimisation performance a faire sans changer les resultats: si Momentum OFF, court-circuiter les calculs strictement Momentum; si RSI OFF, court-circuiter les calculs strictement RSI.
-
-## Etat ChatGPT / architecture au 2026-09-04
-
-- D025 LER preregistre dans `research/campaigns/D025_LIQUIDITY_EXHAUSTION_RECLAIM_PREREGISTRATION.md`.
-- EIB V1 code dans `research/external_intelligence/collector_v1.py` + `replay_v1.py`; implementation report: `research/results/D025_EIB_V1_IMPLEMENTATION_REPORT.md`.
-- Provider V1 volontairement simple: Bybit public, BTCUSDT/ETHUSDT. Le ticker public fournit spot/linear; le linear expose OI et funding, et `allLiquidation` fournit les evenements de liquidation. Aucun credential ni endpoint de trading.
-- Le notional liquidation V1 est une estimation `size * bankruptcy_price`, explicitement marquee comme telle.
-- Invariant backtest renforce: une observation n'est accessible que si `available_at_ms <= simulated_time_ms`; le timestamp source seul ne suffit jamais.
-- Si flux externe indisponible/stale, Guardian Core et protections continuent; les features Crypto+ dependantes deviennent indisponibles plutot que d'utiliser une donnee ancienne silencieusement.
-- Aucun signal LER live, aucun poids, seuil ou plan de sortie n'est autorise avant le smoke data puis l'event study.
-
-## 2026-09-11 — Issue #3 economic/execution gate BLOCKED
-
-The 500 published R4 survivors remain the reference population; 32 frozen are secondary only. Cold preflight is BLOCKED before economic implementation: conflicting official FundedNext commission-side descriptions and no positively identified account model; no executable Bid/Ask in the four HCC-derived XAUUSD M1/M5 datasets. M5 spread is from the last M1, not an entry quote. Historical R4 inventory includes two 2026 files and the loader reads before filtering, so the hardcoded untouched flag is not proof of no access; this audit did not open them. Source publication equality is verified after LF normalization; all four pre-2026 dataset hashes match Phase I-B provenance. No new PnL, retuning, engine, job, protected OOS or live changes.
-
-Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `data_provenance_audit.json`. Autonomous queue remains generation 34. Next safe action: resolve exact FundedNext model/commission sides, verify symbol units and execution-feed convention, then complete frozen protocol, validator, tests, smoke and second cold audit before any queue activation. Human time NOT QUANTIFIED; automated audit time is not human time.
+## Repository note
+Older detailed status reports are intentionally retained in Git history and dated research artifacts for provenance. They are no longer duplicated here because doing so made the current operational state ambiguous.
