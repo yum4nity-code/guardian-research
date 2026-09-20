@@ -1,67 +1,51 @@
 {
   "schema_version": 2,
   "updated_at": "2026-09-20",
-  "active_primary": "GEF-V33-REGIME-SHOCK-REPLICATION",
+  "active_primary": "EDGE-FAMILY-07-08-IMPLIED-VOL",
   "items": [
     {
-      "id": "GEF-V33-REGIME-SHOCK-REPLICATION",
+      "id": "GEF-V32-V37-REGIME-SHOCK",
       "priority": 0,
-      "status": "READY",
-      "owner": "ChatGPT/User",
-      "type": "independent_replication",
-      "goal": "Replicate all 16 frozen V32 volatility-regime × price-shock candidates on 2014-2017 exactly, require all four years, no retuning, stop before 2018."
-    },
-    {
-      "id": "GEF-V33-ROBUSTNESS",
-      "priority": 1,
-      "status": "BLOCKED",
-      "owner": "ChatGPT",
-      "type": "pre_validation_robustness",
-      "goal": "If V33 has survivors, apply delay, tail concentration, best-day, non-overlap, year stability and dependence-aware null controls on replication only.",
-      "blocking": "Requires V33 survivors."
+      "status": "CLOSED_PREOOS",
+      "type": "closed_lineage",
+      "goal": "Preserve evidence. Do not rescue or open locked OOS.",
+      "result": "V36 validation PASS; V37 forensic FAIL because best-2% trim = -1.339 bp/trade."
     },
     {
       "id": "EDGE-FAMILY-07-08-IMPLIED-VOL",
-      "priority": 2,
-      "status": "READY_AFTER_ACTIVE_LINEAGE",
-      "owner": "ChatGPT",
+      "priority": 1,
+      "status": "READY",
       "type": "new_family",
-      "goal": "After current lineage closes, test implied-volatility state and term-structure hypotheses using Cboe/CFE with causal timestamps."
+      "goal": "Design and run causal 2010-2013 discovery for implied-volatility state and volatility term structure using Cboe/CFE plus spot. Audit timestamp semantics first."
     },
     {
       "id": "EDGE-FAMILY-11-12-RATES",
-      "priority": 3,
-      "status": "READY_AFTER_ACTIVE_LINEAGE",
-      "owner": "ChatGPT",
+      "priority": 2,
+      "status": "QUEUED",
       "type": "new_family",
-      "goal": "Test nominal rates, real yields and breakevens with economically directed targets and vintage-safe data."
+      "goal": "Nominal rates, real yields and breakevens."
     },
     {
       "id": "EDGE-FAMILY-10-CFTC",
-      "priority": 4,
-      "status": "READY_AFTER_ACTIVE_LINEAGE",
-      "owner": "ChatGPT",
+      "priority": 3,
+      "status": "QUEUED",
       "type": "new_family",
-      "goal": "Test positioning/crowding hypotheses with publication lag enforced."
+      "goal": "Positioning/crowding with publication lag."
     },
     {
       "id": "LOCKED-OOS-2023-2025",
       "priority": 99,
       "status": "BLOCKED",
-      "owner": "Human review",
       "type": "protected_data",
-      "goal": "Remain unopened until a candidate passes discovery, replication, robustness, validation and pre-OOS forensic.",
-      "blocking": "No candidate currently qualifies."
+      "goal": "Remain unopened until a future lineage passes all pre-OOS gates."
     },
     {
       "id": "PROTECTED-2026",
       "priority": 100,
       "status": "BLOCKED",
-      "owner": "Human review",
       "type": "protected_data",
-      "goal": "Remain protected final OOS.",
-      "blocking": "Mandate gates not satisfied."
+      "goal": "Remain protected final OOS."
     }
   ],
-  "notes": "Historical CURRENT_QUEUE content was stale relative to the 2026-09-20 Edge Factory. Historical queue evidence remains in Git history/research artifacts; this file now represents only actionable current state."
+  "notes": "V32-V37 closed without spending locked OOS. Current work moves to an external-information family rather than retuning the failed price-only lineage."
 }
