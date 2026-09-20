@@ -30,7 +30,7 @@ def parse_dir(folder,prefix):
  d=pd.DataFrame(rows).drop_duplicates().reset_index(drop=True)
  dc=next((c for c in d if "DATE" in c),None)
  if dc is None:raise RuntimeError(f"No date parsed {folder}; cols={list(d)[:20]}")
- dates=pd.to_datetime(d[dc],errors="coerce"); keep=dates.notna().to_numpy(); d=d.loc[keep].copy(); dates=dates.loc[keep]; d.index=pd.DatetimeIndex(dates.to_numpy()); d=d.sort_index()
+ dates=pd.to_datetime(d[dc],errors="coerce"); keep=dates.notna().to_numpy(); d=d.loc[keep].copy(); dates=dates.loc[keep]; d.index=pd.DatetimeIndex(dates.to_numpy()).tz_localize(None).normalize(); d=d.sort_index()
  out={}
  for c in d.columns:
   if c==dc:continue
@@ -65,10 +65,14 @@ for m in markets:
   p=RAW/m/"M1"/f"{m}_M1_{y}.parquet"
   if not p.exists():continue
   d=pd.read_parquet(p);tc=next(c for c in d if c.lower() in ("datetime","time","timestamp"));d.index=pd.to_datetime(d[tc]);z.append(d[["close"]])
- if z:spot[m]=pd.concat(z).sort_index()["close"].resample("1D").last().dropna()
+ if z:spot[m]=pd.concat(z).sort_index()["close"].resample("1D").last().dropna(); spot[m].index=pd.DatetimeIndex(spot[m].index).tz_localize(None).normalize()
 prog(4,12,f"loaded discovery targets {len(spot)} | 2010-2013 only")
+for k,v0 in base.items():
+ ov={m:len(v0.index.intersection(a.index)) for m,a in spot.items()}
+ if max(ov.values(),default=0)<100:raise RuntimeError(f"Insufficient date overlap for {k}: {ov}")
 # Conservative next-observation availability. Feature families frozen: level percentile, 1d/5d changes, z20.
 cells=[];pnls={}
+join_diag=[]
 for name,s0 in base.items():
  s0=s0[~s0.index.duplicated(keep="last")].sort_index()
  feats={"level_pct":s0.rolling(252,min_periods=126).rank(pct=True),"chg1":s0.diff(1),"chg5":s0.diff(5),"z20":(s0-s0.rolling(20,min_periods=15).mean())/s0.rolling(20,min_periods=15).std()}
@@ -76,7 +80,7 @@ for name,s0 in base.items():
   x=raw.shift(1)
   lo=x.rolling(252,min_periods=126).quantile(.10).shift(1);hi=x.rolling(252,min_periods=126).quantile(.90).shift(1)
   for m,a in spot.items():
-   q=pd.concat([x.rename("x"),lo.rename("lo"),hi.rename("hi"),a.rename("px")],axis=1,join="inner").dropna();q=q[(q.index.year>=2010)&(q.index.year<=2013)]
+   q=pd.concat([x.rename("x"),lo.rename("lo"),hi.rename("hi"),a.rename("px")],axis=1,join="inner").dropna();q=q[(q.index.year>=2010)&(q.index.year<=2013)]; join_diag.append((name,fn,m,len(q),int((q.x<=q.lo).sum()),int((q.x>=q.hi).sum())))
    for tail,mask in [(.1,q.x<=q.lo),(.9,q.x>=q.hi)]:
     for h in [1,5]:
      ret=np.log(q.px.shift(-h)/q.px)*1e4
@@ -87,6 +91,9 @@ for name,s0 in base.items():
       key=f"{name}|{m}|{fn}|{tail}|{h}|{mode}";pnls[key]=p
       cells.append({"source_feature":name,"target":m,"feature":fn,"tail":tail,"horizon_days":h,"mode":mode,"n":n,"gross_bp":mu,"hit":hit,"positive_year_fraction":pos,"key":key})
 prog(5,12,f"evaluated {len(cells)} cells")
+if not cells:
+ pd.DataFrame(join_diag,columns=["source_feature","feature","target","join_n","low_n","high_n"]).to_csv(O/"JOIN_DIAGNOSTICS.csv",index=False)
+ raise RuntimeError("No discovery cells after validated source/spot overlaps; JOIN_DIAGNOSTICS.csv written")
 R=pd.DataFrame(cells)
 # Screen is deliberately modest; replication is the real filter.
 S=R[(R.gross_bp>8)&(R.hit>=.54)&(R.positive_year_fraction>=.75)].copy().sort_values("gross_bp",ascending=False)
