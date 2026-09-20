@@ -169,3 +169,35 @@ The next AI should behave as an execution partner, not a lecturer:
 - keep OOS scarce
 - do not repeat generic warnings
 - when results arrive, interpret quickly and move to the next scientifically justified step
+
+
+## V44 independent validation — COMPLETE (2026-09-20)
+Run: GEF44-20260920-122842
+- V43 manifest verified: 7f91a922b5bf12d067c4d7bdba271903c38f19f2b24103bd4ac1ea9d33ac097b
+- V43 gate verified: 1aa64b6d46ca1f465c1ef68f89e1f67cbc92fa633f10ab3f9a4dbf15cc58836e
+- Validation period: 2018-2022
+- 1/5 passed frozen gate; no retuning/rescue.
+- Results SHA: c4a637e41c1396a4ae86c9a939ce56b56b9277990bdf60c8ffff527716ca16bd
+- Survivor SHA: 772c2b2b5541223c96af312608bcc9a871efd22c5a1e1d3ddf55373cdf615702
+- Locked OOS 2023-2025 untouched; 2026 untouched.
+
+Sole validated survivor: IV-03
+- VIX -> NSXUSD
+- feature: level_pct, upper tail 0.90
+- horizon: 5 trading days
+- mode: continuation
+- n=185
+- gross +30.124586 bp
+- hit 58.9189%
+- positive years 5/5
+- trim best 1% +19.168764 bp
+- trim best 2% +9.738061 bp
+- remove best 5 events +5.054496 bp
+- non-overlap n=54, +25.304112 bp
+- extra information lag +1 obs +29.747805 bp
+- yearly: 2018 +14.242716; 2019 +356.040327; 2020 +53.408317; 2021 +49.468868; 2022 +11.445053 bp
+
+Failed validation: IV-01, IV-02, IV-04, IV-05. Do not rescue them. IV-04 failed only the frozen positive-year-fraction gate (2/5 positive years) despite positive aggregate/tail diagnostics; gate stands.
+
+### NEXT ACTION AFTER V44
+STOP before locked OOS. Human review first. Before opening 2023-2025, perform a final pre-OOS audit of IV-03 using ONLY <=2022 data and without changing the frozen specification. Focus on whether the very large 2019 contribution indicates event/regime concentration, exact event-date clustering, leave-one-year-out, tail concentration beyond existing trim tests, transaction-cost/delay plausibility, threshold-neighbor diagnostics as diagnostics only, and causal/date-join semantics. Do not use any result to retune IV-03. If audit fails a predeclared gate, close lineage without opening OOS. If it passes, create an immutable OOS gate and require human approval before 2023-2025.
