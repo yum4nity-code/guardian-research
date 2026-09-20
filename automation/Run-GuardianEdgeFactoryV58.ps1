@@ -72,7 +72,8 @@ for i,r in S.iterrows():
  # true greedy non-overlap by entry date
  ordx=tmp.sort_values("dt");keep=[];last=None
  for _,z in ordx.iterrows():
-  zdt=pd.Timestamp(z["dt"]); zx=float(z["x"]);\n  if last is None or zdt>=last+pd.Timedelta(days=h):keep.append(zx);last=zdt
+  zdt=pd.Timestamp(z["dt"]); zx=float(z["x"]);
+  if last is None or zdt>=last+pd.Timedelta(days=h):keep.append(zx);last=zdt
  non=pd.Series(keep,dtype=float)
  # threshold neighbours on same replication window, diagnostic only
  neigh={}
