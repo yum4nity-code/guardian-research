@@ -9,3 +9,7 @@ V32–V37 regime/shock is CLOSED. Do not rescue it. Its sole candidate passed V3
 **Next task:** design the clean discovery campaign for families 7–8: implied-volatility state / volatility term structure using Cboe/CFE plus spot, discovery period 2010–2013 only. Audit causal timestamp semantics before computing signals. Freeze the design/grid before reading later periods.
 
 Do not reconstruct current state from old Rxx/D0xx queue files.
+
+
+## 2026-09-20 continuity note
+For the latest operational state, execution style, active V38-V43 lineage, hashes, and exact next action, read **NEXT_AI_HANDOFF.md** before writing or running new research code.
