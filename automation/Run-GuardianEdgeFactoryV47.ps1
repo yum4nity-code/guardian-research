@@ -27,10 +27,10 @@ def parse_dir(folder,prefix):
     txt=(x.text or "").strip()
     if txt and (tag.startswith("NEW_DATE") or tag.startswith("BC_") or tag.startswith("TC_") or tag=="NEW_DATE"):vals[tag]=txt
    if vals:rows.append(vals)
- d=pd.DataFrame(rows).drop_duplicates()
+ d=pd.DataFrame(rows).drop_duplicates().reset_index(drop=True)
  dc=next((c for c in d if "DATE" in c),None)
  if dc is None:raise RuntimeError(f"No date parsed {folder}; cols={list(d)[:20]}")
- d.index=pd.to_datetime(d[dc],errors="coerce");d=d[~d.index.isna()].sort_index()
+ dates=pd.to_datetime(d[dc],errors="coerce"); keep=dates.notna().to_numpy(); d=d.loc[keep].copy(); dates=dates.loc[keep]; d.index=pd.DatetimeIndex(dates.to_numpy()); d=d.sort_index()
  out={}
  for c in d.columns:
   if c==dc:continue
@@ -53,8 +53,8 @@ for ty in [2,5,10,30]:
 if 2 in nommap and 10 in nommap:base["NOM10_2"]=nommap[10]-nommap[2]
 if 5 in realmap and 10 in realmap:base["REAL10_5"]=realmap[10]-realmap[5]
 if 5 in base and False:pass
-if len(base)<4:raise RuntimeError(f"Too few canonical rate series {list(base)}")
-prog(3,12,"canonical features: "+",".join(base))
+if len(base)<4:raise RuntimeError(f"Too few canonical rate series {list(base)}")\nfor k,v0 in base.items():\n if v0.notna().sum()<300:raise RuntimeError(f"Rate series {k} has only {v0.notna().sum()} finite observations")
+prog(3,12,"canonical features validated: "+",".join(f"{k}[{v0.notna().sum()}]" for k,v0 in base.items()))
 markets=["XAUUSD","XAGUSD","UDXUSD","EURUSD","USDJPY","SPXUSD","NSXUSD"]
 spot={}
 for m in markets:
