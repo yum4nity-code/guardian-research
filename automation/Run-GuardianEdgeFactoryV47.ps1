@@ -53,7 +53,9 @@ for ty in [2,5,10,30]:
 if 2 in nommap and 10 in nommap:base["NOM10_2"]=nommap[10]-nommap[2]
 if 5 in realmap and 10 in realmap:base["REAL10_5"]=realmap[10]-realmap[5]
 if 5 in base and False:pass
-if len(base)<4:raise RuntimeError(f"Too few canonical rate series {list(base)}")\nfor k,v0 in base.items():\n if v0.notna().sum()<300:raise RuntimeError(f"Rate series {k} has only {v0.notna().sum()} finite observations")
+if len(base)<4:raise RuntimeError(f"Too few canonical rate series {list(base)}")
+for k,v0 in base.items():
+ if v0.notna().sum()<300:raise RuntimeError(f"Rate series {k} has only {v0.notna().sum()} finite observations")
 prog(3,12,"canonical features validated: "+",".join(f"{k}[{v0.notna().sum()}]" for k,v0 in base.items()))
 markets=["XAUUSD","XAGUSD","UDXUSD","EURUSD","USDJPY","SPXUSD","NSXUSD"]
 spot={}
