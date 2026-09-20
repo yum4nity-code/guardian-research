@@ -79,11 +79,11 @@ for i,r in F.iterrows():
  else:lo=x.rolling(252,min_periods=126).quantile(.10).shift(1);hi=x.rolling(252,min_periods=126).quantile(.90).shift(1)
  q=pd.DataFrame({"x":x,"lo":lo,"hi":hi}).dropna().join(spot[r.target].rename("px"),how="inner").dropna()
  q=q[(q.index.year>=2014)&(q.index.year<=2017)]
- mask=q.x<=q.lo if float(r.tail)<.5 else q.x>=q.hi
+ mask=q.x<=q.lo if float(r['tail'])<.5 else q.x>=q.hi
  h=int(r.horizon_days);ret=np.log(q.px.shift(-h)/q.px)*1e4
- sgn=(1 if float(r.tail)>.5 else -1) if r["mode"]=="continuation" else (-1 if float(r.tail)>.5 else 1)
+ sgn=(1 if float(r['tail'])>.5 else -1) if r["mode"]=="continuation" else (-1 if float(r['tail'])>.5 else 1)
  p=(sgn*ret[mask]).dropna();yrs=p.groupby(p.index.year).mean()
- rec={"key":r.key,"source_feature":r.source_feature,"target":r.target,"feature":r.feature,"tail":float(r.tail),"horizon_days":h,"mode":r["mode"],"n":len(p),"gross_bp":float(p.mean()) if len(p) else np.nan,"hit":float((p>0).mean()) if len(p) else np.nan,"positive_year_fraction":float((yrs>0).mean()) if len(yrs) else 0.0}
+ rec={"key":r.key,"source_feature":r.source_feature,"target":r.target,"feature":r.feature,"tail":float(r['tail']),"horizon_days":h,"mode":r["mode"],"n":len(p),"gross_bp":float(p.mean()) if len(p) else np.nan,"hit":float((p>0).mean()) if len(p) else np.nan,"positive_year_fraction":float((yrs>0).mean()) if len(yrs) else 0.0}
  rec["replication_pass"]=bool(rec["n"]>=40 and rec["gross_bp"]>0 and rec["hit"]>=.52 and rec["positive_year_fraction"]>=.50)
  rows.append(rec)
  prog(4+i,36,f"{i+1}/24 {r.key} | n={rec['n']} gross={rec['gross_bp']:.2f}bp | {'PASS' if rec['replication_pass'] else 'FAIL'}")
