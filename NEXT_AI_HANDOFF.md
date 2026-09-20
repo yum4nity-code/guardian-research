@@ -201,3 +201,31 @@ Failed validation: IV-01, IV-02, IV-04, IV-05. Do not rescue them. IV-04 failed 
 
 ### NEXT ACTION AFTER V44
 STOP before locked OOS. Human review first. Before opening 2023-2025, perform a final pre-OOS audit of IV-03 using ONLY <=2022 data and without changing the frozen specification. Focus on whether the very large 2019 contribution indicates event/regime concentration, exact event-date clustering, leave-one-year-out, tail concentration beyond existing trim tests, transaction-cost/delay plausibility, threshold-neighbor diagnostics as diagnostics only, and causal/date-join semantics. Do not use any result to retune IV-03. If audit fails a predeclared gate, close lineage without opening OOS. If it passes, create an immutable OOS gate and require human approval before 2023-2025.
+
+
+## V45 final pre-OOS forensic — FAIL / LINEAGE CLOSED (2026-09-20)
+Run: GEF45-20260920-123018
+- Candidate: IV-03 only
+- V44 survivor SHA verified: 772c2b2b5541223c96af312608bcc9a871efd22c5a1e1d3ddf55373cdf615702
+- Forensic SHA: a66e43bddd895c1bc03f9c81f9720e4c32ef9cf248ed0c1547184e93b8eb7318
+- 2018-2022 forensic only; 2023-2025 NOT opened; 2026 NOT opened.
+- final_preoos_pass=false. **Close this implied-vol IV-03 lineage. Do not rescue or retune it. Do not spend locked OOS on it.**
+
+Key results:
+- n=185, gross +30.1246 bp
+- all five validation years positive
+- leave-one-year-out remained positive (minimum +22.9220 bp)
+- non-overlap +25.3041 bp
+- extra info lag +1/+2/+3: +29.7478 / +29.0926 / +9.2194 bp
+- threshold neighbors 0.85 and 0.95 remained positive
+- net after 10 bp diagnostic cost +20.1246 bp
+BUT:
+- remove best 10 events = **-18.4277 bp** -> FAIL
+- remove best month (2020-04) = **-9.1857 bp** -> FAIL
+- event bootstrap 95% CI = **[-38.9530, +97.6884] bp** -> FAIL
+- year-block bootstrap stayed positive, but frozen final gate requires all checks.
+
+Interpretation: the phenomenon is interesting and temporally persistent, but the estimated payoff is too concentrated in a small set of events/months to justify consuming locked OOS under the predeclared gate. Preserve as scientific evidence, not deployable alpha.
+
+### NEXT RESEARCH ACTION
+Return to EDGE_FAMILY_MAP priority queue. Do NOT reopen this IV-03 specification. Next untouched/high-priority family after implied-volatility is **rates / real yields / breakevens (families 11-12)**, using causal availability and the same staged protocol: source/timestamp audit -> discovery 2010-2013 -> immutable freeze -> replication 2014-2017 -> robustness/multiplicity -> immutable validation freeze -> 2018-2022 validation -> final pre-OOS forensic. Keep 2023-2025 locked and 2026 protected.
