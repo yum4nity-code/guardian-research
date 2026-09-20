@@ -35,7 +35,7 @@ def parse_dir(folder,prefix):
  for c in d.columns:
   if c==dc:continue
   s=pd.to_numeric(d[c],errors="coerce")
-  if s.notna().sum()>300:out[f"{prefix}_{c}"]=pd.Series(s.values,index=d.index)
+  if s.notna().sum()>300:out[f"{prefix}_{c}"]=pd.Series(s.to_numpy(),index=d.index)
  return out
 nom=parse_dir("nominal_yield_curve","NOM");real=parse_dir("real_yield_curve","REAL");series={**nom,**real}
 if not series:raise RuntimeError("No Treasury rate series parsed")
