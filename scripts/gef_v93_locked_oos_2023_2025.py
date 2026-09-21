@@ -283,8 +283,10 @@ for idx,r in enumerate(panel.itertuples(index=False),1):
     raw,mins=target_cache[r.target]
     ret=(1.0 if r.direction=="LONG" else -1.0)*raw
     h=pd.Timedelta(minutes=mins)
-    sel=oos & ((post2013_grid+h)<=OOS_END)
-    rv=ret[sel]; mv=mask[sel]
+    rv=np.array(ret[oos],dtype=np.float64,copy=True)
+    mv=np.asarray(mask[oos],dtype=bool)
+    boundary_ok=np.asarray((oos_times+h)<=OOS_END)
+    rv[~boundary_ok]=np.nan
     gated=np.where(mv,rv,np.nan)
     m=metrics(gated)
     ct=cluster_positive(gated,blocks)
