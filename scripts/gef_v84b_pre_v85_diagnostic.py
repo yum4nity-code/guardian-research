@@ -56,7 +56,7 @@ for c in rate_cols:
     })
 R=pd.DataFrame(rate_diag)
 R.to_csv(OUT/"RATES_FEATURE_DIAGNOSTIC.csv",index=False)
-status(3,7,"rates feature coverage inspected",rate_columns=len(rate_cols),rates_eligible=int(((R.coverage>=.45)&(R.nunique>=10)).sum()) if len(R) else 0)
+status(3,7,"rates feature coverage inspected",rate_columns=len(rate_cols),rates_eligible=int(((R["coverage"]>=.45)&(R["nunique"]>=10)).sum()) if len(R) else 0)
 
 train_s=S.index.year<=2012
 train_f=F.index.year<=2012
@@ -77,11 +77,11 @@ status(5,7,"family counts written")
 
 rate_summary={
     "rate_columns_present":len(rate_cols),
-    "rate_columns_coverage_ge_45pct":int((R.coverage>=.45).sum()) if len(R) else 0,
-    "rate_columns_nunique_ge_10":int((R.nunique>=10).sum()) if len(R) else 0,
-    "rate_columns_eligible_both":int(((R.coverage>=.45)&(R.nunique>=10)).sum()) if len(R) else 0,
-    "max_rate_coverage":float(R.coverage.max()) if len(R) else 0.0,
-    "median_rate_coverage":float(R.coverage.median()) if len(R) else 0.0
+    "rate_columns_coverage_ge_45pct":int((R["coverage"]>=.45).sum()) if len(R) else 0,
+    "rate_columns_nunique_ge_10":int((R["nunique"]>=10).sum()) if len(R) else 0,
+    "rate_columns_eligible_both":int(((R["coverage"]>=.45)&(R["nunique"]>=10)).sum()) if len(R) else 0,
+    "max_rate_coverage":float(R["coverage"].max()) if len(R) else 0.0,
+    "median_rate_coverage":float(R["coverage"].median()) if len(R) else 0.0
 }
 status(6,7,"diagnosis complete",**rate_summary)
 
