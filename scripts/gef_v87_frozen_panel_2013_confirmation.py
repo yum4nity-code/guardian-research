@@ -625,7 +625,7 @@ show_cols = [
     "panel_rank", "raw_rank", "family_i", "state_i", "family_j", "state_j",
     "target", "direction",
     "n_train", "mean_bp_train", "positive_years", "worst_year_mean_bp",
-    "trim_top5_mean_bp", "net_1p0bp_mean_bp_train",
+    "trim_top5_mean_bp_train", "net_1p0bp_mean_bp_train",
     "n_2013", "mean_bp_2013", "win_rate_pct_2013",
     "holdout_p_primary_one", "bh_q_primary", "holm_p_primary",
     "net_1p0bp_mean_bp_2013", "net_2p0bp_mean_bp_2013",
