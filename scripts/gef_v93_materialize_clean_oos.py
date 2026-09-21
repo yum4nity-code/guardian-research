@@ -54,6 +54,9 @@ def get_token(html):
         if m: return m.group(1)
     return None
 
+class TokenMissingError(RuntimeError):
+    pass
+
 def download_year(session,pair,year,zip_path,max_attempts=6):
     referer=f"{REFERER_PREFIX}{pair.lower()}/{year}"
     last_error=None
@@ -70,7 +73,7 @@ def download_year(session,pair,year,zip_path,max_attempts=6):
             if not token:
                 title=re.search(r"<title[^>]*>(.*?)</title>",r1.text,re.I|re.S)
                 title=re.sub(r"\\s+"," ",title.group(1)).strip() if title else "NO_TITLE"
-                raise RuntimeError(
+                raise TokenMissingError(
                     f"token missing status={r1.status_code} bytes={len(r1.content)} title={title!r}"
                 )
             data={
@@ -106,6 +109,8 @@ def download_year(session,pair,year,zip_path,max_attempts=6):
                 "content_disposition":r.headers.get("Content-Disposition"),
                 "attempts":attempt,
             }
+        except TokenMissingError:
+            raise
         except Exception as e:
             last_error=repr(e)
             if attempt>=max_attempts:
@@ -122,7 +127,87 @@ def download_year(session,pair,year,zip_path,max_attempts=6):
         f"HistData download failed for {pair} {year} after {max_attempts} attempts: {last_error}"
     )
 
-def parse_zip(zip_path,pair,year):
+def download_month(session,pair,year,month,zip_path,max_attempts=4):
+    referer=f"{REFERER_PREFIX}{pair.lower()}/{year}/{int(month)}"
+    last_error=None
+    for attempt in range(1,max_attempts+1):
+        try:
+            r1=session.get(
+                referer,
+                headers={
+                    "Cache-Control":"no-cache",
+                    "Pragma":"no-cache",
+                    "Referer":"https://www.histdata.com/download-free-forex-data/",
+                },
+                timeout=60,
+                allow_redirects=True,
+            )
+            r1.raise_for_status()
+            token=get_token(r1.text)
+            if not token:
+                title=re.search(r"<title[^>]*>(.*?)</title>",r1.text,re.I|re.S)
+                title=re.sub(r"\s+"," ",title.group(1)).strip() if title else "NO_TITLE"
+                raise TokenMissingError(
+                    f"monthly token missing {pair} {year}-{month:02d} "
+                    f"status={r1.status_code} bytes={len(r1.content)} title={title!r}"
+                )
+            data={
+                "tk":token,
+                "date":str(year),
+                "datemonth":f"{year}{int(month):02d}",
+                "platform":"ASCII",
+                "timeframe":"M1",
+                "fxpair":pair,
+            }
+            headers={
+                "Referer":referer,
+                "Origin":"https://www.histdata.com",
+                "Content-Type":"application/x-www-form-urlencoded",
+                "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            }
+            r=session.post(POST_URL,data=data,headers=headers,timeout=180)
+            r.raise_for_status()
+            body=r.content
+            if len(body)<1000 or not body.startswith(b"PK"):
+                head=body[:200].decode("utf-8","replace")
+                raise RuntimeError(
+                    f"monthly non-ZIP/too-small payload {pair} {year}-{month:02d} "
+                    f"bytes={len(body)} head={head!r}"
+                )
+            zip_path.parent.mkdir(parents=True,exist_ok=True)
+            zip_path.write_bytes(body)
+            with zipfile.ZipFile(zip_path,"r") as zf:
+                bad=zf.testzip()
+                if bad:
+                    raise RuntimeError(f"monthly corrupt ZIP member {bad}")
+            return {
+                "referer":referer,
+                "bytes":len(body),
+                "zip_sha256":sha256(zip_path),
+                "content_disposition":r.headers.get("Content-Disposition"),
+                "attempts":attempt,
+                "month":int(month),
+            }
+        except TokenMissingError:
+            raise
+        except Exception as e:
+            last_error=repr(e)
+            if attempt>=max_attempts:
+                break
+            delay=min(12,2**attempt)
+            print(
+                f"[GEF93M] {pair} {year}-{month:02d}: attempt {attempt}/{max_attempts} "
+                f"failed ({last_error}); retry in {delay}s",
+                flush=True,
+            )
+            time.sleep(delay)
+            session.cookies.clear()
+    raise RuntimeError(
+        f"HistData monthly download failed for {pair} {year}-{month:02d} "
+        f"after {max_attempts} attempts: {last_error}"
+    )
+
+def parse_zip(zip_path,pair,year,month=None,min_rows=100000):
     with zipfile.ZipFile(zip_path,"r") as zf:
         members=[n for n in zf.namelist() if n.lower().endswith((".csv",".txt"))]
         data_members=[n for n in members if "M1" in n.upper() and not n.upper().endswith("STATUS.TXT")]
@@ -142,9 +227,14 @@ def parse_zip(zip_path,pair,year):
     raw_rows=len(d)
     d=d.dropna(subset=["datetime","open","high","low","close"]).copy()
     d=d[d["datetime"].dt.year==int(year)].copy()
+    if month is not None:
+        d=d[d["datetime"].dt.month==int(month)].copy()
     d=d.sort_values("datetime").drop_duplicates("datetime",keep="last").reset_index(drop=True)
-    if len(d)<100000:
-        raise RuntimeError(f"{pair} {year}: implausibly few M1 rows {len(d)} of raw {raw_rows}")
+    if len(d)<int(min_rows):
+        suffix=f"-{int(month):02d}" if month is not None else ""
+        raise RuntimeError(
+            f"{pair} {year}{suffix}: implausibly few M1 rows {len(d)} of raw {raw_rows}"
+        )
     if d["datetime"].duplicated().any() or not d["datetime"].is_monotonic_increasing:
         raise RuntimeError(f"{pair} {year}: timestamp integrity failed")
     bad=((d["high"]<d[["open","close","low"]].max(axis=1)) |
@@ -157,6 +247,60 @@ def parse_zip(zip_path,pair,year):
         d[c]=d[c].astype("float64")
     d["volume"]=d["volume"].fillna(0).astype("float64")
     return d,member
+
+def load_histdata_year_with_fallback(session,pair,year):
+    annual_zip=ROOT/"DataLake"/"raw"/"histdata"/"_downloads"/pair/f"HISTDATA_COM_ASCII_{pair}_M1{year}.zip"
+    try:
+        meta=download_year(session,pair,year,annual_zip,max_attempts=3)
+        d,member=parse_zip(annual_zip,pair,year)
+        return d,{
+            "mode":"annual",
+            "referers":[meta["referer"]],
+            "zip_paths":[str(annual_zip)],
+            "zip_sha256":[meta["zip_sha256"]],
+            "members":[member],
+            "attempts":meta.get("attempts",1),
+        }
+    except TokenMissingError as e:
+        print(
+            f"[GEF93M] {pair} {year}: annual page has no token; "
+            f"falling back to 12 monthly HistData files",
+            flush=True,
+        )
+
+    parts=[]
+    referers=[]
+    zip_paths=[]
+    zip_hashes=[]
+    members=[]
+    attempts=0
+    for month in range(1,13):
+        zp=ROOT/"DataLake"/"raw"/"histdata"/"_downloads"/pair/f"HISTDATA_COM_ASCII_{pair}_M1{year}{month:02d}.zip"
+        mm=download_month(session,pair,year,month,zp,max_attempts=4)
+        dm,member=parse_zip(zp,pair,year,month=month,min_rows=1000)
+        parts.append(dm)
+        referers.append(mm["referer"])
+        zip_paths.append(str(zp))
+        zip_hashes.append(mm["zip_sha256"])
+        members.append(member)
+        attempts+=int(mm.get("attempts",1))
+        print(
+            f"[GEF93M] {pair} {year}: monthly fallback {month}/12 rows={len(dm)}",
+            flush=True,
+        )
+    d=pd.concat(parts,ignore_index=True).sort_values("datetime").drop_duplicates("datetime",keep="last").reset_index(drop=True)
+    if len(d)<100000:
+        raise RuntimeError(f"{pair} {year}: monthly fallback produced only {len(d)} M1 rows")
+    if d["datetime"].dt.year.nunique()!=1 or int(d["datetime"].dt.year.iloc[0])!=int(year):
+        raise RuntimeError(f"{pair} {year}: monthly fallback year integrity failed")
+    return d,{
+        "mode":"monthly_fallback",
+        "referers":referers,
+        "zip_paths":zip_paths,
+        "zip_sha256":zip_hashes,
+        "members":members,
+        "attempts":attempts,
+    }
 
 # ---------- load latest immutable V92 freeze ----------
 runs=sorted((ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v92").glob("GEF92-*"))
@@ -222,9 +366,7 @@ t0=time.time()
 for idx,target in enumerate(missing,1):
     m=re.fullmatch(r"([A-Z]+)_M1_(2023|2024|2025)\.parquet",target.name)
     pair=m.group(1); year=int(m.group(2))
-    zip_path=ROOT/"DataLake"/"raw"/"histdata"/"_downloads"/pair/f"HISTDATA_COM_ASCII_{pair}_M1{year}.zip"
-    meta=download_year(session,pair,year,zip_path)
-    d,member=parse_zip(zip_path,pair,year)
+    d,meta=load_histdata_year_with_fallback(session,pair,year)
     med=float(d["close"].median())
     ratio=med/ref_median[pair] if ref_median[pair] else np.nan
     if not np.isfinite(ratio) or ratio<0.20 or ratio>5.0:
@@ -237,9 +379,10 @@ for idx,target in enumerate(missing,1):
     tmp.replace(target)
     rec={"pair":pair,"year":year,"rows":len(d),"first_source_est":str(d["datetime"].iloc[0]),
          "last_source_est":str(d["datetime"].iloc[-1]),"median_close":med,
-         "continuity_ratio_vs_2022_median":ratio,"zip_member":member,
-         "zip_sha256":meta["zip_sha256"],"download_attempts":meta.get("attempts",1),"parquet_sha256":sha256(target),
-         "parquet":str(target),"source_referer":meta["referer"],
+         "continuity_ratio_vs_2022_median":ratio,"download_mode":meta["mode"],
+         "zip_members":meta["members"],"zip_sha256":meta["zip_sha256"],
+         "download_attempts":meta.get("attempts",1),"parquet_sha256":sha256(target),
+         "parquet":str(target),"source_referers":meta["referers"],
          "raw_time_semantics":"HistData source EST UTC-5 fixed; research engine converts +5h exactly as older files"}
     records.append(rec)
     ref_median[pair]=med
