@@ -54,31 +54,73 @@ def get_token(html):
         if m: return m.group(1)
     return None
 
-def download_year(session,pair,year,zip_path):
+def download_year(session,pair,year,zip_path,max_attempts=6):
     referer=f"{REFERER_PREFIX}{pair.lower()}/{year}"
-    r1=session.get(referer,timeout=60,allow_redirects=True)
-    r1.raise_for_status()
-    token=get_token(r1.text)
-    if not token:
-        raise RuntimeError(f"HistData token not found for {pair} {year}")
-    data={"tk":token,"date":str(year),"datemonth":str(year),
-          "platform":"ASCII","timeframe":"M1","fxpair":pair}
-    headers={"Referer":referer,"Origin":"https://www.histdata.com",
-             "Content-Type":"application/x-www-form-urlencoded",
-             "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
-    r=session.post(POST_URL,data=data,headers=headers,timeout=180)
-    r.raise_for_status()
-    body=r.content
-    if len(body)<1000 or not body.startswith(b"PK"):
-        head=body[:200].decode("utf-8","replace")
-        raise RuntimeError(f"{pair} {year}: non-ZIP/too-small HistData payload bytes={len(body)} head={head!r}")
-    zip_path.parent.mkdir(parents=True,exist_ok=True)
-    zip_path.write_bytes(body)
-    with zipfile.ZipFile(zip_path,"r") as zf:
-        bad=zf.testzip()
-        if bad: raise RuntimeError(f"{pair} {year}: corrupt ZIP member {bad}")
-    return {"referer":referer,"bytes":len(body),"zip_sha256":sha256(zip_path),
-            "content_disposition":r.headers.get("Content-Disposition")}
+    last_error=None
+    for attempt in range(1,max_attempts+1):
+        try:
+            get_headers={
+                "Cache-Control":"no-cache",
+                "Pragma":"no-cache",
+                "Referer":"https://www.histdata.com/download-free-forex-data/",
+            }
+            r1=session.get(referer,headers=get_headers,timeout=60,allow_redirects=True)
+            r1.raise_for_status()
+            token=get_token(r1.text)
+            if not token:
+                title=re.search(r"<title[^>]*>(.*?)</title>",r1.text,re.I|re.S)
+                title=re.sub(r"\\s+"," ",title.group(1)).strip() if title else "NO_TITLE"
+                raise RuntimeError(
+                    f"token missing status={r1.status_code} bytes={len(r1.content)} title={title!r}"
+                )
+            data={
+                "tk":token,
+                "date":str(year),
+                "datemonth":str(year),
+                "platform":"ASCII",
+                "timeframe":"M1",
+                "fxpair":pair,
+            }
+            headers={
+                "Referer":referer,
+                "Origin":"https://www.histdata.com",
+                "Content-Type":"application/x-www-form-urlencoded",
+                "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            }
+            r=session.post(POST_URL,data=data,headers=headers,timeout=180)
+            r.raise_for_status()
+            body=r.content
+            if len(body)<1000 or not body.startswith(b"PK"):
+                head=body[:200].decode("utf-8","replace")
+                raise RuntimeError(f"non-ZIP/too-small payload bytes={len(body)} head={head!r}")
+            zip_path.parent.mkdir(parents=True,exist_ok=True)
+            zip_path.write_bytes(body)
+            with zipfile.ZipFile(zip_path,"r") as zf:
+                bad=zf.testzip()
+                if bad:
+                    raise RuntimeError(f"corrupt ZIP member {bad}")
+            return {
+                "referer":referer,
+                "bytes":len(body),
+                "zip_sha256":sha256(zip_path),
+                "content_disposition":r.headers.get("Content-Disposition"),
+                "attempts":attempt,
+            }
+        except Exception as e:
+            last_error=repr(e)
+            if attempt>=max_attempts:
+                break
+            delay=min(20,2**attempt)
+            print(
+                f"[GEF93M] {pair} {year}: attempt {attempt}/{max_attempts} failed "
+                f"({last_error}); retry in {delay}s",
+                flush=True,
+            )
+            time.sleep(delay)
+            session.cookies.clear()
+    raise RuntimeError(
+        f"HistData download failed for {pair} {year} after {max_attempts} attempts: {last_error}"
+    )
 
 def parse_zip(zip_path,pair,year):
     with zipfile.ZipFile(zip_path,"r") as zf:
@@ -133,16 +175,20 @@ if freeze.get("2023_plus_values_accessed") or freeze.get("protected_2026_accesse
 if set(freeze["contaminated_markets_excluded"])!={"EURUSD","NSXUSD","XAGUSD"}:
     raise RuntimeError("Unexpected V92 contaminated-market set")
 
-missing=[Path(x) for x in presence.get("missing_files",[])]
+original_missing=[Path(x) for x in presence.get("missing_files",[])]
 allowed_markets=set(freeze["oos_markets"])
-for p in missing:
-    m=re.fullmatch(r"([A-Z]+)_M1_(2023|2024|2025)\.parquet",p.name)
+for p in original_missing:
+    m=re.fullmatch(r"([A-Z]+)_M1_(2023|2024|2025)\\.parquet",p.name)
     if not m or m.group(1) not in allowed_markets:
         raise RuntimeError(f"Unexpected missing OOS file {p}")
 
+# Resume-safe: preserve files created by an interrupted materialization run.
+missing=[p for p in original_missing if not p.exists()]
+already_materialized=[p for p in original_missing if p.exists()]
+
 RID="GEF93M-"+pd.Timestamp.now("UTC").strftime("%Y%m%d-%H%M%S")
 OUT=BASE/RID; OUT.mkdir(parents=True,exist_ok=False)
-status(OUT,1,8,"V92 panel/freeze verified; no rule changes",source_v92=V92.name,panel_size=freeze["panel_size"],missing=len(missing))
+status(OUT,1,8,"V92 panel/freeze verified; no rule changes",source_v92=V92.name,panel_size=freeze["panel_size"],remaining_missing=len(missing),already_materialized=len(already_materialized))
 
 if not missing:
     receipt={"run_id":RID,"status":"COMPLETE_NO_MATERIALIZATION_NEEDED","source_v92":V92.name,
@@ -192,7 +238,7 @@ for idx,target in enumerate(missing,1):
     rec={"pair":pair,"year":year,"rows":len(d),"first_source_est":str(d["datetime"].iloc[0]),
          "last_source_est":str(d["datetime"].iloc[-1]),"median_close":med,
          "continuity_ratio_vs_2022_median":ratio,"zip_member":member,
-         "zip_sha256":meta["zip_sha256"],"parquet_sha256":sha256(target),
+         "zip_sha256":meta["zip_sha256"],"download_attempts":meta.get("attempts",1),"parquet_sha256":sha256(target),
          "parquet":str(target),"source_referer":meta["referer"],
          "raw_time_semantics":"HistData source EST UTC-5 fixed; research engine converts +5h exactly as older files"}
     records.append(rec)
