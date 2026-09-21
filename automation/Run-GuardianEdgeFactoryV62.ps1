@@ -82,10 +82,7 @@ for i,r in F.iterrows():
 R=pd.DataFrame(out);R.to_csv(O/"LOCKED_OOS_RESULTS.csv",index=False)
 receipt={"run_id":rid,"status":"COMPLETE_LOCKED_OOS_2023_2025","eligible_sha256":EXPECTED,"oos_gate_sha256":gsha,"tested":len(R),"passed":int(R.OOS_PASS.sum()),"protected_2026_accessed":False,"retuning":False,"post_oos_action":"STOP_FOR_INTERPRETATION_AND_EXECUTION_DESIGN"}
 (O/"RUN_RECEIPT.json").write_text(json.dumps(receipt,indent=2));prog(7,8,f"OOS complete passed={receipt['passed']}/{len(R)}");prog(8,8,"HARD STOP; 2026 UNTOUCHED")
-print("
-=== V62 RECEIPT ===");print(json.dumps(receipt,indent=2));print("
-=== LOCKED OOS RESULTS ===");print(R.to_string(index=False));print("
-RUN:",O)
+print()\nprint("=== V62 RECEIPT ===")\nprint(json.dumps(receipt,indent=2))\nprint()\nprint("=== LOCKED OOS RESULTS ===")\nprint(R.to_string(index=False))\nprint()\nprint("RUN:",O)
 '@
 Set-Content $Py $code -Encoding UTF8
 py -m py_compile $Py
