@@ -22,6 +22,10 @@ prog(1,8,f"LOCKED OOS authorization input verified sha={EXPECTED[:12]} candidate
 # Predeclare final OOS gate BEFORE reading OOS.
 gate={"window":"2023-2025","candidate_sha256":EXPECTED,"requirements":{"n_min":20,"gross_bp_gt":0,"hit_rate_min":0.50,"positive_year_fraction_min":2/3,"trim_best_1pct_bp_gt":0,"remove_best_3_days_bp_gt":0,"true_nonoverlap_bp_gt":0},"no_retuning":True,"protected_2026":"DO_NOT_OPEN"}
 (O/"OOS_GATE_PREDECLARED.json").write_text(json.dumps(gate,indent=2));gsha=hashlib.sha256((O/"OOS_GATE_PREDECLARED.json").read_bytes()).hexdigest();prog(2,8,f"OOS gate frozen sha={gsha[:12]}")
+# Preflight file discovery only; no OOS returns are computed here.
+for sym in F["market"].tolist():
+ cands=list(DL.rglob(f"*{sym}*.parquet"))
+ print(f"[GEF62] preflight {sym}: parquet_candidates={len(cands)}",flush=True)
 # CFTC feature history 2020-2025; targets strictly 2023-2025. Never read 2026.
 files=sorted((DL/"raw"/"cftc"/"futures_only_reports").glob("*excel*.zip"));use=[p for p in files if any(str(y) in p.name for y in range(2020,2026)) and "2026" not in p.name]
 rows=[]
@@ -51,20 +55,33 @@ wd=C.REPORT_DATE.dt.weekday;days=(7-wd)%7;days=days.where(days>0,7);C["AVAILABLE
 if (C.AVAILABLE_AT.dt.year>=2026).any():raise RuntimeError("2026 contamination")
 prog(3,8,f"CFTC <=2025 loaded rows={len(C)}")
 def spot(sym):
- fs=[]
- for q in DL.rglob(f"*{sym}*.parquet"):
-  ys=[int(x) for x in re.findall(r"20\d{2}",q.name)]
-  if any(y>=2026 for y in ys):continue
-  if ys and not any(2023<=y<=2025 for y in ys):continue
+ fs=[];scanned=0;usable=[]
+ candidates=list(DL.rglob(f"*{sym}*.parquet"))
+ print(f"[GEF62] spot discovery {sym}: candidates={len(candidates)}",flush=True)
+ for q in candidates:
+  scanned+=1
   try:
-   d=pd.read_parquet(q);dc2=next((c for c in d.columns if str(c).lower() in ["datetime","timestamp","time","date"]),None);pc=next((c for c in d.columns if str(c).lower() in ["close","bidclose","price"]),None)
-   if dc2 is None and isinstance(d.index,pd.DatetimeIndex):d=d.reset_index();dc2=d.columns[0]
+   d=pd.read_parquet(q)
+   dc2=next((c for c in d.columns if str(c).lower() in ["datetime","timestamp","time","date"]),None)
+   pc=next((c for c in d.columns if str(c).lower() in ["close","bidclose","price"]),None)
+   if dc2 is None and isinstance(d.index,pd.DatetimeIndex):
+    d=d.reset_index();dc2=d.columns[0]
    if dc2 is None or pc is None:continue
-   x=pd.DataFrame({"dt":pd.to_datetime(d[dc2],errors="coerce"),"px":pd.to_numeric(d[pc],errors="coerce")}).dropna();x=x[(x.dt.dt.year>=2023)&(x.dt.dt.year<=2025)]
-   if len(x):fs.append(x)
-  except:pass
- if not fs:raise RuntimeError("No 2023-2025 spot parquet for "+sym)
- x=pd.concat(fs).sort_values("dt").drop_duplicates("dt");return x.set_index("dt").px.resample("1D").last().dropna()
+   dt=pd.to_datetime(d[dc2],errors="coerce")
+   if dt.notna().sum()==0:continue
+   if int(dt.dt.year.min())>=2026:continue
+   x=pd.DataFrame({"dt":dt,"px":pd.to_numeric(d[pc],errors="coerce")}).dropna()
+   x=x[(x.dt.dt.year>=2023)&(x.dt.dt.year<=2025)]
+   if len(x):
+    fs.append(x);usable.append(str(q))
+  except Exception:
+   continue
+ if not fs:
+  raise RuntimeError(f"No 2023-2025 spot parquet for {sym}; scanned={scanned}; candidates={candidates[:20]}")
+ print(f"[GEF62] spot {sym}: usable_files={len(usable)} rows={sum(len(x) for x in fs)}",flush=True)
+ x=pd.concat(fs).sort_values("dt").drop_duplicates("dt")
+ return x.set_index("dt").px.resample("1D").last().dropna()
+
 out=[]
 for i,r in F.iterrows():
  H=C[C[mc]==r.cftc_market].sort_values("AVAILABLE_AT").copy();base=r.feature;H["pct"]=H[base].rolling(156,min_periods=52).rank(pct=True);H=H[(H.AVAILABLE_AT.dt.year>=2023)&(H.AVAILABLE_AT.dt.year<=2025)]
