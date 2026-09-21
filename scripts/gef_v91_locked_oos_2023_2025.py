@@ -348,11 +348,17 @@ got_e2=float(Ydev[Ydev["year"].between(2014,2017)].apply(
     lambda _: 0,axis=1
 ).sum()) if False else None
 # Exact aggregate parity is checked directly by recomputing the two eras below.
-def subset_eval(start,end):
+def subset_eval(start,end,mask_forward_boundary=False):
     s=np.asarray((post2013_grid>=start)&(post2013_grid<=end))
-    return eval_window(post2013_grid[s],y[s],base[s],gate[s])
+    tt=post2013_grid[s]
+    yy=np.array(y[s],dtype=np.float64,copy=True)
+    if mask_forward_boundary:
+        yy[(tt+pd.Timedelta(minutes=15))>end]=np.nan
+    return eval_window(tt,yy,base[s],gate[s])
 dev_e2=subset_eval(pd.Timestamp("2014-01-01"),pd.Timestamp("2017-12-31 23:55"))
-dev_e3=subset_eval(pd.Timestamp("2018-01-01"),pd.Timestamp("2022-12-31 23:55"))
+# V90 had data only through 2022, so 2022 decisions whose +15m target crossed into 2023
+# were unavailable. Reproduce that exact boundary before comparing E3.
+dev_e3=subset_eval(pd.Timestamp("2018-01-01"),pd.Timestamp("2022-12-31 23:55"),mask_forward_boundary=True)
 got_e2=float(dev_e2["joint_stats"]["mean_bp"])
 got_e3=float(dev_e3["joint_stats"]["mean_bp"])
 if not np.isclose(got_e2,expected_e2,rtol=0,atol=1e-9):
