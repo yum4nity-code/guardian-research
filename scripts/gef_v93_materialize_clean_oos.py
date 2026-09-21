@@ -482,16 +482,11 @@ def load_histdata_year_with_fallback(session,pair,year):
                 flush=True,
             )
     except TokenMissingError as e:
-        if pair in DUKA_INSTRUMENT:
-            print(
-                f"[GEF93M] {pair} {year}: HistData annual AND monthly token unavailable; "
-                f"switching to prevalidated Dukascopy bridge",
-                flush=True,
-            )
-            return load_dukascopy_year_after_bridge(pair,year)
+        # Do not keep hammering an alternate source after a 429. Preserve the frozen panel,
+        # mark this market-year unavailable, and let V93 score only hypotheses whose
+        # complete original-source OOS data are present.
         raise RuntimeError(
-            f"{pair} {year}: HistData annual and monthly downloads unavailable, "
-            f"and no predeclared alternate-source bridge exists: {e}"
+            f"SOURCE_UNAVAILABLE {pair} {year}: HistData annual and monthly token unavailable; {e}"
         )
 
     d=pd.concat(parts,ignore_index=True).sort_values("datetime").drop_duplicates("datetime",keep="last").reset_index(drop=True)
@@ -569,69 +564,128 @@ for pair in sorted({re.fullmatch(r"([A-Z]+)_M1_202[345]\.parquet",p.name).group(
 status(OUT,2,8,"2022 continuity references loaded",markets=len(ref_median))
 
 records=[]
+unresolved=[]
 t0=time.time()
 for idx,target in enumerate(missing,1):
     m=re.fullmatch(r"([A-Z]+)_M1_(2023|2024|2025)\.parquet",target.name)
     pair=m.group(1); year=int(m.group(2))
-    d,meta=load_histdata_year_with_fallback(session,pair,year)
-    med=float(d["close"].median())
-    ratio=med/ref_median[pair] if ref_median[pair] else np.nan
-    if not np.isfinite(ratio) or ratio<0.20 or ratio>5.0:
-        raise RuntimeError(f"{pair} {year}: price-scale continuity failed median={med} ref={ref_median[pair]} ratio={ratio}")
-    target.parent.mkdir(parents=True,exist_ok=True)
-    tmp=target.with_suffix(".parquet.tmp")
-    d.to_parquet(tmp,index=False)
-    chk=pd.read_parquet(tmp)
-    if len(chk)!=len(d): raise RuntimeError(f"{pair} {year}: parquet roundtrip row mismatch")
-    tmp.replace(target)
-    rec={"pair":pair,"year":year,"rows":len(d),"first_source_est":str(d["datetime"].iloc[0]),
-         "last_source_est":str(d["datetime"].iloc[-1]),"median_close":med,
-         "continuity_ratio_vs_2022_median":ratio,"download_mode":meta["mode"],
-         "zip_members":meta["members"],"zip_sha256":meta["zip_sha256"],
-         "download_attempts":meta.get("attempts",1),"parquet_sha256":sha256(target),
-         "parquet":str(target),"source_referers":meta["referers"],
-         "raw_time_semantics":(
-             "Dukascopy UTC converted to equivalent fixed UTC-5 storage so V93 +5h loader reproduces UTC"
-             if meta["mode"]=="dukascopy_bridge_validated"
-             else "HistData source EST UTC-5 fixed; research engine converts +5h exactly as older files"
-         ),
-         "source_bridge":meta.get("bridge")}
-    records.append(rec)
-    ref_median[pair]=med
-    elapsed=time.time()-t0; rate=idx/max(elapsed,1e-9); eta=(len(missing)-idx)/max(rate,1e-9)
-    print(f"[GEF93M] file {idx}/{len(missing)} {pair} {year} rows={len(d)} | elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",flush=True)
+    try:
+        d,meta=load_histdata_year_with_fallback(session,pair,year)
+        med=float(d["close"].median())
+        ratio=med/ref_median[pair] if ref_median[pair] else np.nan
+        if not np.isfinite(ratio) or ratio<0.20 or ratio>5.0:
+            raise RuntimeError(
+                f"{pair} {year}: price-scale continuity failed median={med} "
+                f"ref={ref_median[pair]} ratio={ratio}"
+            )
+        target.parent.mkdir(parents=True,exist_ok=True)
+        tmp=target.with_suffix(".parquet.tmp")
+        d.to_parquet(tmp,index=False)
+        chk=pd.read_parquet(tmp)
+        if len(chk)!=len(d):
+            raise RuntimeError(f"{pair} {year}: parquet roundtrip row mismatch")
+        tmp.replace(target)
+        rec={
+            "pair":pair,"year":year,"rows":len(d),
+            "first_source_est":str(d["datetime"].iloc[0]),
+            "last_source_est":str(d["datetime"].iloc[-1]),
+            "median_close":med,
+            "continuity_ratio_vs_2022_median":ratio,
+            "download_mode":meta["mode"],
+            "zip_members":meta["members"],
+            "zip_sha256":meta["zip_sha256"],
+            "download_attempts":meta.get("attempts",1),
+            "parquet_sha256":sha256(target),
+            "parquet":str(target),
+            "source_referers":meta["referers"],
+            "raw_time_semantics":(
+                "Dukascopy UTC converted to equivalent fixed UTC-5 storage so V93 +5h loader reproduces UTC"
+                if meta["mode"]=="dukascopy_bridge_validated"
+                else "HistData source EST UTC-5 fixed; research engine converts +5h exactly as older files"
+            ),
+            "source_bridge":meta.get("bridge")
+        }
+        records.append(rec)
+        ref_median[pair]=med
+        print(f"[GEF93M] file {idx}/{len(missing)} {pair} {year} rows={len(d)} MATERIALIZED",flush=True)
+    except Exception as e:
+        unresolved.append({"pair":pair,"year":year,"path":str(target),"error":repr(e)})
+        print(
+            f"[GEF93M] file {idx}/{len(missing)} {pair} {year} UNRESOLVED; "
+            f"continuing without changing frozen panel | {repr(e)}",
+            flush=True,
+        )
+    elapsed=time.time()-t0
+    rate=idx/max(elapsed,1e-9)
+    eta=(len(missing)-idx)/max(rate,1e-9)
+    print(
+        f"[GEF93M] progress {idx}/{len(missing)} | elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
+        flush=True,
+    )
 
-status(OUT,3,8,"all missing clean OOS files materialized",files=len(records))
+status(OUT,3,8,"materialization attempts complete; unresolved files will remain unscored",materialized=len(records),unresolved=len(unresolved))
 
-# Cross-year structural audit per market. This opens OOS values only for integrity after freeze; no strategy outcomes.
+# Structural audit only for files that exist. Missing market-years are availability metadata,
+# not a reason to mutate or discard frozen hypotheses.
 audit=[]
+audit_missing=[]
 for pair in sorted(allowed_markets):
     prev=None
     for year in (2023,2024,2025):
         p=ROOT/"DataLake"/"raw"/"histdata"/pair/"M1"/f"{pair}_M1_{year}.parquet"
-        if not p.exists(): raise RuntimeError(f"Still missing {p}")
+        if not p.exists():
+            audit_missing.append(str(p))
+            continue
         d=pd.read_parquet(p)
-        dc=next((c for c in d.columns if str(c).lower() in ["datetime","timestamp","time","date"]),None)
-        cc=next((c for c in d.columns if str(c).lower()=="close"),None)
-        if dc is None or cc is None: raise RuntimeError(f"Invalid schema {p}")
-        tt=pd.to_datetime(d[dc],errors="coerce"); cl=pd.to_numeric(d[cc],errors="coerce")
-        if tt.isna().any() or cl.isna().all(): raise RuntimeError(f"Invalid values {p}")
+        dc=next((x for x in d.columns if str(x).lower() in ["datetime","timestamp","time","date"]),None)
+        cc=next((x for x in d.columns if str(x).lower()=="close"),None)
+        if dc is None or cc is None:
+            raise RuntimeError(f"Invalid schema {p}")
+        tt=pd.to_datetime(d[dc],errors="coerce")
+        cl=pd.to_numeric(d[cc],errors="coerce")
+        if tt.isna().any() or cl.isna().all():
+            raise RuntimeError(f"Invalid values {p}")
         first,last=tt.min(),tt.max()
-        if prev is not None and first<=prev: raise RuntimeError(f"{pair} cross-year overlap at {year}")
+        if prev is not None and first<=prev:
+            raise RuntimeError(f"{pair} cross-year overlap at {year}")
         prev=last
-        audit.append({"pair":pair,"year":year,"rows":len(d),"first":str(first),"last":str(last),
-                      "median_close":float(cl.median()),"sha256":sha256(p)})
+        audit.append({
+            "pair":pair,"year":year,"rows":len(d),
+            "first":str(first),"last":str(last),
+            "median_close":float(cl.median()),"sha256":sha256(p)
+        })
 pd.DataFrame(audit).to_csv(OUT/"CLEAN_OOS_2023_2025_DATA_AUDIT.csv",index=False)
-status(OUT,4,8,"all frozen-panel OOS source files pass structural audit",markets=len(allowed_markets),rows=sum(x["rows"] for x in audit))
+write_json(OUT/"UNRESOLVED_OOS_FILES.json",{
+    "unresolved_downloads":unresolved,
+    "still_missing_files":audit_missing,
+    "panel_changed":False
+})
+status(
+    OUT,4,8,
+    "available frozen-panel OOS source files audited; unavailable files preserved as unscored",
+    audited_files=len(audit),still_missing=len(audit_missing)
+)
 
-receipt={"run_id":RID,"status":"COMPLETE_CLEAN_OOS_MATERIALIZATION","source_v92":V92.name,
-         "panel_sha256":freeze["panel_sha256"],"files_materialized":len(records),"records":records,
-         "integrity_only_oos_values_accessed":True,"strategy_outcomes_computed":False,
-         "frozen_rule_changed":False,
-         "mixed_source_bridge_used":any(r.get("download_mode")=="dukascopy_bridge_validated" for r in records),
-         "protected_2026_accessed":False,"next":"RUN_V93_LOCKED_OOS"}
+receipt={
+    "run_id":RID,
+    "status":(
+        "COMPLETE_CLEAN_OOS_MATERIALIZATION"
+        if not audit_missing
+        else "COMPLETE_PARTIAL_CLEAN_OOS_MATERIALIZATION"
+    ),
+    "source_v92":V92.name,
+    "panel_sha256":freeze["panel_sha256"],
+    "files_materialized_this_run":len(records),
+    "unresolved_downloads":unresolved,
+    "still_missing_files":audit_missing,
+    "integrity_only_oos_values_accessed":True,
+    "strategy_outcomes_computed":False,
+    "frozen_rule_changed":False,
+    "protected_2026_accessed":False,
+    "next":"RUN_V93_LOCKED_OOS_AVAILABLE_HYPOTHESES"
+}
 write_json(OUT/"RUN_RECEIPT.json",receipt)
-status(OUT,5,8,"materialization receipt written")
+status(OUT,5,8,"materialization receipt written",status=receipt["status"],still_missing=len(audit_missing))
 status(OUT,6,8,"V92 hypothesis panel remains byte-for-byte frozen",panel_sha256=freeze["panel_sha256"][:16])
 status(OUT,7,8,"2026 remains untouched")
 status(OUT,8,8,"DONE")
