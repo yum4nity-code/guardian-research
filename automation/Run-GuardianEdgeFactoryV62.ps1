@@ -9,7 +9,13 @@ ROOT=Path(r"D:\MT5_Backtests");DL=ROOT/"DataLake";SRC=ROOT/"Research"/"Autonomou
 EXPECTED="41d36d378fa85a1ef44a4dcda41c9adccae0e0f3d122c935168aa5451fd339c0"
 runs=sorted(SRC.glob("GEF61-*")); assert runs,"No V61 run"; V61=runs[-1]; fp=V61/"OOS_ELIGIBLE_CANDIDATES.csv"
 if hashlib.sha256(fp.read_bytes()).hexdigest()!=EXPECTED:raise RuntimeError("V61 eligible SHA mismatch")
-F=pd.read_csv(fp);\n# Rehydrate immutable candidate specifications because V61 forensic output only carries metrics.\nSPEC=ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v59"/"GEF59-20260920-184355"/"V60_IMMUTABLE_CANDIDATES.csv"\nSPECS=pd.read_csv(SPEC)\nF=F.merge(SPECS[["key","cftc_market","feature","tail","q","h","trade_side"]],on="key",how="left",validate="one_to_one")\nif F[["cftc_market","feature","tail","q","h","trade_side"]].isna().any().any():raise RuntimeError("Incomplete candidate spec rehydration")\nt=time.time();rid="GEF62-"+datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S");O=OUT/rid;O.mkdir()
+F=pd.read_csv(fp);
+# Rehydrate immutable candidate specifications because V61 forensic output only carries metrics.
+SPEC=ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v59"/"GEF59-20260920-184355"/"V60_IMMUTABLE_CANDIDATES.csv"
+SPECS=pd.read_csv(SPEC)
+F=F.merge(SPECS[["key","cftc_market","feature","tail","q","h","trade_side"]],on="key",how="left",validate="one_to_one")
+if F[["cftc_market","feature","tail","q","h","trade_side"]].isna().any().any():raise RuntimeError("Incomplete candidate spec rehydration")
+t=time.time();rid="GEF62-"+datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S");O=OUT/rid;O.mkdir()
 def prog(i,n,msg):
  e=time.time()-t;eta=e/i*(n-i) if i else 0;print(f"[GEF62] {i}/{n} {100*i/n:.0f}% | elapsed {e/60:.1f}m | ETA {eta/60:.1f}m | {msg}",flush=True)
 prog(1,8,f"LOCKED OOS authorization input verified sha={EXPECTED[:12]} candidates={len(F)}")
@@ -76,7 +82,10 @@ for i,r in F.iterrows():
 R=pd.DataFrame(out);R.to_csv(O/"LOCKED_OOS_RESULTS.csv",index=False)
 receipt={"run_id":rid,"status":"COMPLETE_LOCKED_OOS_2023_2025","eligible_sha256":EXPECTED,"oos_gate_sha256":gsha,"tested":len(R),"passed":int(R.OOS_PASS.sum()),"protected_2026_accessed":False,"retuning":False,"post_oos_action":"STOP_FOR_INTERPRETATION_AND_EXECUTION_DESIGN"}
 (O/"RUN_RECEIPT.json").write_text(json.dumps(receipt,indent=2));prog(7,8,f"OOS complete passed={receipt['passed']}/{len(R)}");prog(8,8,"HARD STOP; 2026 UNTOUCHED")
-print("\n=== V62 RECEIPT ===");print(json.dumps(receipt,indent=2));print("\n=== LOCKED OOS RESULTS ===");print(R.to_string(index=False));print("\nRUN:",O)
+print("
+=== V62 RECEIPT ===");print(json.dumps(receipt,indent=2));print("
+=== LOCKED OOS RESULTS ===");print(R.to_string(index=False));print("
+RUN:",O)
 '@
 Set-Content $Py $code -Encoding UTF8
 py -m py_compile $Py
