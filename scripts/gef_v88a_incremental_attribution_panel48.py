@@ -202,7 +202,9 @@ status(OUT,4,8,"exact state parity passed; joint mask reconstructed",joint_rows=
 # Build same non-overlapping SHORT XAG 15m target.
 k=15//5
 raw_y=P["XAGUSD"].shift(-k)/P["XAGUSD"]-1
-y=(-raw_y.reindex(ext_grid)).to_numpy(dtype=np.float64)
+y=np.array(-raw_y.reindex(ext_grid),dtype=np.float64,copy=True)
+if not y.flags.writeable:
+    raise RuntimeError("V88A target array unexpectedly read-only")
 minute=(ext_grid.view("int64")//60_000_000_000).astype(np.int64)
 y[(minute%15)!=0]=np.nan
 valid=np.isfinite(y)
