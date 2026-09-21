@@ -532,9 +532,41 @@ for p in original_missing:
 missing=[p for p in original_missing if not p.exists()]
 already_materialized=[p for p in original_missing if p.exists()]
 
+# Reuse source-unavailable decisions from the latest completed partial run for this exact
+# frozen V92 panel. Do not repeatedly hammer a provider that already proved unavailable.
+# If a file later appears on disk, it automatically becomes available again.
+known_unavailable=set()
+for prior in sorted(BASE.glob("GEF93M-*"),reverse=True):
+    rp=prior/"RUN_RECEIPT.json"
+    if not rp.exists():
+        continue
+    try:
+        pr=json.loads(rp.read_text(encoding="utf-8"))
+    except Exception:
+        continue
+    if pr.get("source_v92")!=V92.name or pr.get("panel_sha256")!=freeze["panel_sha256"]:
+        continue
+    if pr.get("status")!="COMPLETE_PARTIAL_CLEAN_OOS_MATERIALIZATION":
+        continue
+    for x in pr.get("unresolved_downloads",[]):
+        p=Path(x.get("path",""))
+        if p in missing and not p.exists():
+            known_unavailable.add(p)
+    break
+missing_to_attempt=[p for p in missing if p not in known_unavailable]
+
 RID="GEF93M-"+pd.Timestamp.now("UTC").strftime("%Y%m%d-%H%M%S")
 OUT=BASE/RID; OUT.mkdir(parents=True,exist_ok=False)
-status(OUT,1,8,"V92 panel/freeze verified; no rule changes",source_v92=V92.name,panel_size=freeze["panel_size"],remaining_missing=len(missing),already_materialized=len(already_materialized))
+status(
+    OUT,1,8,
+    "V92 panel/freeze verified; no rule changes",
+    source_v92=V92.name,
+    panel_size=freeze["panel_size"],
+    remaining_missing=len(missing),
+    retryable_missing=len(missing_to_attempt),
+    known_source_unavailable=len(known_unavailable),
+    already_materialized=len(already_materialized),
+)
 
 if not missing:
     receipt={"run_id":RID,"status":"COMPLETE_NO_MATERIALIZATION_NEEDED","source_v92":V92.name,
@@ -552,7 +584,7 @@ session.headers.update({"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) 
 
 # 2022 medians are development data, safe to use for parsing/scale integrity.
 ref_median={}
-for pair in sorted({re.fullmatch(r"([A-Z]+)_M1_202[345]\.parquet",p.name).group(1) for p in missing}):
+for pair in sorted({re.fullmatch(r"([A-Z]+)_M1_202[345]\.parquet",p.name).group(1) for p in missing_to_attempt}):
     p=ROOT/"DataLake"/"raw"/"histdata"/pair/"M1"/f"{pair}_M1_2022.parquet"
     if not p.exists(): raise RuntimeError(f"Missing 2022 continuity reference {p}")
     d=pd.read_parquet(p)
@@ -564,9 +596,17 @@ for pair in sorted({re.fullmatch(r"([A-Z]+)_M1_202[345]\.parquet",p.name).group(
 status(OUT,2,8,"2022 continuity references loaded",markets=len(ref_median))
 
 records=[]
-unresolved=[]
+unresolved=[
+    {
+        "pair":re.fullmatch(r"([A-Z]+)_M1_(2023|2024|2025)\.parquet",p.name).group(1),
+        "year":int(re.fullmatch(r"([A-Z]+)_M1_(2023|2024|2025)\.parquet",p.name).group(2)),
+        "path":str(p),
+        "error":"KNOWN_SOURCE_UNAVAILABLE_FROM_PRIOR_VERIFIED_ATTEMPT",
+    }
+    for p in sorted(known_unavailable)
+]
 t0=time.time()
-for idx,target in enumerate(missing,1):
+for idx,target in enumerate(missing_to_attempt,1):
     m=re.fullmatch(r"([A-Z]+)_M1_(2023|2024|2025)\.parquet",target.name)
     pair=m.group(1); year=int(m.group(2))
     try:
@@ -607,19 +647,19 @@ for idx,target in enumerate(missing,1):
         }
         records.append(rec)
         ref_median[pair]=med
-        print(f"[GEF93M] file {idx}/{len(missing)} {pair} {year} rows={len(d)} MATERIALIZED",flush=True)
+        print(f"[GEF93M] file {idx}/{len(missing_to_attempt)} {pair} {year} rows={len(d)} MATERIALIZED",flush=True)
     except Exception as e:
         unresolved.append({"pair":pair,"year":year,"path":str(target),"error":repr(e)})
         print(
-            f"[GEF93M] file {idx}/{len(missing)} {pair} {year} UNRESOLVED; "
+            f"[GEF93M] file {idx}/{len(missing_to_attempt)} {pair} {year} UNRESOLVED; "
             f"continuing without changing frozen panel | {repr(e)}",
             flush=True,
         )
     elapsed=time.time()-t0
     rate=idx/max(elapsed,1e-9)
-    eta=(len(missing)-idx)/max(rate,1e-9)
+    eta=(len(missing_to_attempt)-idx)/max(rate,1e-9)
     print(
-        f"[GEF93M] progress {idx}/{len(missing)} | elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
+        f"[GEF93M] progress {idx}/{len(missing_to_attempt)} | elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",
         flush=True,
     )
 
