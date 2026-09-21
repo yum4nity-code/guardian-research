@@ -163,28 +163,111 @@ def bh_adjust(p):
 # ---------- immutable V92 panel ----------
 runs=sorted((ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v92").glob("GEF92-*"))
 runs=[p for p in runs if (p/"RUN_RECEIPT.json").exists() and (p/"FINAL_OOS_FREEZE.json").exists()]
-if not runs: raise RuntimeError("No completed V92 freeze")
+if not runs:
+    raise RuntimeError("No completed V92 freeze")
 V92=runs[-1]
 r92=json.loads((V92/"RUN_RECEIPT.json").read_text(encoding="utf-8"))
 frz=json.loads((V92/"FINAL_OOS_FREEZE.json").read_text(encoding="utf-8"))
 panel_path=V92/"FROZEN_CLEAN_OOS_PANEL.csv"
-panel=pd.read_csv(panel_path)
-if r92.get("status")!="COMPLETE_V92_CLEAN_TEMPORAL_LADDER": raise RuntimeError("V92 incomplete")
-if r92.get("2023_plus_values_accessed") or r92.get("protected_2026_accessed"): raise RuntimeError("V92 access assertion violated")
-if sha256(panel_path)!=frz["panel_sha256"]: raise RuntimeError("V92 panel hash mismatch")
-if len(panel)!=int(frz["panel_size"]): raise RuntimeError("V92 panel size mismatch")
-if set(frz["contaminated_markets_excluded"])!={"EURUSD","NSXUSD","XAGUSD"}: raise RuntimeError("Unexpected contamination set")
+panel_all=pd.read_csv(panel_path)
+if r92.get("status")!="COMPLETE_V92_CLEAN_TEMPORAL_LADDER":
+    raise RuntimeError("V92 incomplete")
+if r92.get("2023_plus_values_accessed") or r92.get("protected_2026_accessed"):
+    raise RuntimeError("V92 access assertion violated")
+if sha256(panel_path)!=frz["panel_sha256"]:
+    raise RuntimeError("V92 panel hash mismatch")
+if len(panel_all)!=int(frz["panel_size"]):
+    raise RuntimeError("V92 panel size mismatch")
+if set(frz["contaminated_markets_excluded"])!={"EURUSD","NSXUSD","XAGUSD"}:
+    raise RuntimeError("Unexpected contamination set")
 
 RID="GEF93-"+pd.Timestamp.now("UTC").strftime("%Y%m%d-%H%M%S")
-OUT=BASE/RID; OUT.mkdir(parents=True,exist_ok=False)
-status(OUT,1,11,"frozen V92 panel loaded; OOS scoring spec not yet applied",source_v92=V92.name,panel=len(panel))
+OUT=BASE/RID
+OUT.mkdir(parents=True,exist_ok=False)
+status(OUT,1,12,"frozen V92 panel loaded; checking file availability before scoring",source_v92=V92.name,panel=len(panel_all))
 
-spec={"run_id":RID,"status":"V93_LOCKED_OOS_SCORING_SPEC_FROZEN","source_v92":V92.name,
-      "panel_sha256":frz["panel_sha256"],"oos_window":"2023-2025","generic_cost_bp":GENERIC_COST_BP,
-      "oos_rule":OOS_RULE,"2023_2025_strategy_outcomes_accessed":False,"protected_2026_accessed":False}
+# Availability is determined only from file existence, before any OOS strategy outcomes are read.
+availability=[]
+for r in panel_all.itertuples(index=False):
+    req_markets={
+        feature_market(r.feature_i),
+        feature_market(r.feature_j),
+        target_market(r.target),
+    }
+    req_markets.discard(None)
+    missing=[]
+    for sym in sorted(req_markets):
+        for year in (2023,2024,2025):
+            p=ROOT/"DataLake"/"raw"/"histdata"/sym/"M1"/f"{sym}_M1_{year}.parquet"
+            if not p.exists():
+                missing.append(str(p))
+    availability.append({
+        "development_rank":int(r.development_rank),
+        "trial_index":int(r.trial_index),
+        "scorable":len(missing)==0,
+        "required_markets":sorted(req_markets),
+        "missing_files":missing,
+    })
+
+write_json(OUT/"OOS_AVAILABILITY_FREEZE_BEFORE_SCORING.json",{
+    "run_id":RID,
+    "source_v92":V92.name,
+    "panel_sha256":frz["panel_sha256"],
+    "availability":availability,
+    "availability_rule":"score every frozen hypothesis with complete 2023-2025 source files; leave others unscored; no replacement or retuning",
+    "strategy_outcomes_accessed_at_freeze":False,
+    "protected_2026_accessed":False,
+})
+A=pd.DataFrame(availability)
+scorable_ranks=set(A.loc[A["scorable"],"development_rank"].astype(int).tolist())
+panel=panel_all[panel_all["development_rank"].astype(int).isin(scorable_ranks)].copy()
+unscored=panel_all[~panel_all["development_rank"].astype(int).isin(scorable_ranks)].copy()
+A.to_json(OUT/"OOS_AVAILABILITY_TABLE.json",orient="records",indent=2)
+if len(unscored):
+    unscored.to_csv(OUT/"UNSCORED_DATA_UNAVAILABLE.csv",index=False)
+
+status(
+    OUT,2,12,
+    "availability mask frozen before OOS outcomes",
+    scorable=len(panel),
+    unscored=len(unscored),
+    total=len(panel_all),
+)
+
+if panel.empty:
+    receipt={
+        "run_id":RID,
+        "status":"STOP_NO_FROZEN_HYPOTHESIS_HAS_COMPLETE_OOS_DATA",
+        "source_v92":V92.name,
+        "frozen_hypotheses":len(panel_all),
+        "scored_hypotheses":0,
+        "unscored_data_unavailable":len(unscored),
+        "2023_2025_strategy_outcomes_accessed":False,
+        "protected_2026_accessed":False,
+    }
+    write_json(OUT/"RUN_RECEIPT.json",receipt)
+    print("\n=== V93 LOCKED OOS RECEIPT ===")
+    print(json.dumps(receipt,indent=2))
+    raise SystemExit(0)
+
+spec={
+    "run_id":RID,
+    "status":"V93_LOCKED_OOS_SCORING_SPEC_FROZEN",
+    "source_v92":V92.name,
+    "panel_sha256":frz["panel_sha256"],
+    "oos_window":"2023-2025",
+    "generic_cost_bp":GENERIC_COST_BP,
+    "oos_rule":OOS_RULE,
+    "scorable_development_ranks":sorted(scorable_ranks),
+    "unscored_due_only_to_missing_files":sorted(
+        set(panel_all["development_rank"].astype(int))-scorable_ranks
+    ),
+    "2023_2025_strategy_outcomes_accessed":False,
+    "protected_2026_accessed":False,
+}
 write_json(OUT/"V93_LOCKED_OOS_SCORING_FREEZE.json",spec)
 spec_sha=sha256(OUT/"V93_LOCKED_OOS_SCORING_FREEZE.json")
-status(OUT,2,11,"OOS scoring/economic criteria physically frozen",freeze_sha256=spec_sha[:16])
+status(OUT,3,12,"OOS scoring/economic criteria frozen for available hypotheses",freeze_sha256=spec_sha[:16])
 
 # ---------- lineage ----------
 V85=ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v85"/r92["source_v85"]
@@ -209,8 +292,9 @@ for t in needed_targets:
     needed_markets.add(target_market(t))
 needed_markets.discard(None)
 if {"EURUSD","NSXUSD","XAGUSD"} & needed_markets: raise RuntimeError("Contaminated market leaked into V93")
-if sorted(needed_markets)!=sorted(frz["oos_markets"]): raise RuntimeError("V93 market set != V92 frozen market set")
-status(OUT,3,11,"original architecture and exact frozen market set resolved",markets=len(needed_markets),features=len(needed_features),targets=len(needed_targets))
+if not needed_markets.issubset(set(frz["oos_markets"])):
+    raise RuntimeError("V93 scorable market set is not a subset of V92 frozen market set")
+status(OUT,4,12,"original architecture and frozen scorable market set resolved",markets=len(needed_markets),features=len(needed_features),targets=len(needed_targets))
 
 # all OOS files must exist before any scoring
 missing=[]
@@ -218,8 +302,8 @@ for sym in sorted(needed_markets):
     for year in range(2023,2026):
         p=ROOT/"DataLake"/"raw"/"histdata"/sym/"M1"/f"{sym}_M1_{year}.parquet"
         if not p.exists(): missing.append(str(p))
-if missing: raise RuntimeError(f"Missing V93 OOS files after materialization: {missing}")
-status(OUT,4,11,"all 2023-2025 frozen-panel files present",files=len(needed_markets)*3)
+if missing: raise RuntimeError(f"Availability freeze inconsistency; scorable hypothesis file missing: {missing}")
+status(OUT,5,12,"all 2023-2025 scorable-hypothesis files present",files=len(needed_markets)*3)
 
 # ---------- causal continuation through 2025 ----------
 warm_grid=pd.date_range("2013-12-01 00:00",OOS_END,freq="5min")
@@ -231,7 +315,7 @@ for i,sym in enumerate(sorted(needed_markets),1):
     P[sym]=raw.resample("5min",label="right",closed="left").last().reindex(warm_grid).astype("float64")
     elapsed=time.time()-tp; rate=i/max(elapsed,1e-9); eta=(len(needed_markets)-i)/max(rate,1e-9)
     print(f"[GEF93] market {i}/{len(needed_markets)} {sym} | elapsed={elapsed/60:.1f}m eta={eta/60:.1f}m",flush=True)
-status(OUT,5,11,"2014-2025 causal price continuation materialized; 2026 untouched",rows=len(post2013_grid))
+status(OUT,6,12,"2014-2025 causal price continuation materialized; 2026 untouched",rows=len(post2013_grid))
 
 states={}
 for i,feat in enumerate(needed_features,1):
@@ -247,7 +331,7 @@ for i,feat in enumerate(needed_features,1):
     states[(feat,"LO")]=lo[hist_rows:]; states[(feat,"HI")]=hi[hist_rows:]
     if i==1 or i==len(needed_features) or i%10==0:
         print(f"[GEF93] state parity {i}/{len(needed_features)}",flush=True)
-status(OUT,6,11,"2010-2013 state parity exact for every frozen feature",features=len(needed_features))
+status(OUT,7,12,"2010-2013 state parity exact for every scorable frozen feature",features=len(needed_features))
 
 # ---------- reproduce V92 E2/E3 exactly before OOS scoring ----------
 target_cache={}
@@ -271,7 +355,7 @@ for r in panel.itertuples(index=False):
     if not ok:
         raise RuntimeError(f"V92 parity failed development_rank={r.development_rank}")
 pd.DataFrame(parity).to_csv(OUT/"V92_DEVELOPMENT_PARITY.csv",index=False)
-status(OUT,7,11,"all 15 frozen hypotheses reproduce V92 development exactly",hypotheses=len(panel))
+status(OUT,8,12,"all scorable frozen hypotheses reproduce V92 development exactly",hypotheses=len(panel))
 
 # ---------- locked OOS ----------
 oos=np.asarray((post2013_grid>=OOS_START)&(post2013_grid<=OOS_END))
@@ -322,25 +406,42 @@ R=pd.DataFrame(records)
 R["bh_q_panel"]=bh_adjust(R["cluster_p_one"].to_numpy(dtype=float))
 R["bh_q10_diagnostic"]=R["bh_q_panel"]<=0.10
 R=R.sort_values(["economic_oos_pass","net_1bp_mean_bp","cluster_p_one"],ascending=[False,False,True],kind="mergesort").reset_index(drop=True)
-R.to_csv(OUT/"LOCKED_OOS_2023_2025_ALL_15.csv",index=False)
+R.to_csv(OUT/"LOCKED_OOS_2023_2025_SCORED.csv",index=False)
 
-status(OUT,8,11,"locked OOS scored for entire frozen panel",economic_pass=int(R["economic_oos_pass"].sum()),bh_q10=int(R["bh_q10_diagnostic"].sum()))
+status(OUT,9,12,"locked OOS scored for every available frozen hypothesis",economic_pass=int(R["economic_oos_pass"].sum()),bh_q10=int(R["bh_q10_diagnostic"].sum()))
 
-receipt={"run_id":RID,"status":"COMPLETE_V93_LOCKED_OOS_2023_2025","engine_version":ENGINE_VERSION,
-         "source_v92":V92.name,"panel_sha256":frz["panel_sha256"],"scoring_freeze_sha256":spec_sha,
-         "frozen_hypotheses":len(R),"economic_oos_pass":int(R["economic_oos_pass"].sum()),
-         "nominal_cluster_p05":int((R["cluster_p_one"]<=0.05).sum()),
-         "bh_q10_diagnostic":int(R["bh_q10_diagnostic"].sum()),
-         "best_net1bp_mean_bp":float(R["net_1bp_mean_bp"].max()) if len(R) else None,
-         "2023_2025_strategy_outcomes_accessed":True,"protected_2026_accessed":False,
-         "next":"STOP_FOR_HUMAN_REVIEW_DO_NOT_RETUNE_ON_2023_2025"}
+receipt={
+    "run_id":RID,
+    "status":(
+        "COMPLETE_V93_LOCKED_OOS_2023_2025"
+        if len(unscored)==0
+        else "COMPLETE_PARTIAL_V93_LOCKED_OOS_2023_2025"
+    ),
+    "engine_version":ENGINE_VERSION,
+    "source_v92":V92.name,
+    "panel_sha256":frz["panel_sha256"],
+    "scoring_freeze_sha256":spec_sha,
+    "frozen_hypotheses":len(panel_all),
+    "scored_hypotheses":len(R),
+    "unscored_data_unavailable":len(unscored),
+    "scored_development_ranks":sorted(R["development_rank"].astype(int).tolist()),
+    "unscored_development_ranks":sorted(unscored["development_rank"].astype(int).tolist()),
+    "economic_oos_pass_among_scored":int(R["economic_oos_pass"].sum()),
+    "nominal_cluster_p05_among_scored":int((R["cluster_p_one"]<=0.05).sum()),
+    "bh_q10_diagnostic_among_scored":int(R["bh_q10_diagnostic"].sum()),
+    "best_net1bp_mean_bp_among_scored":float(R["net_1bp_mean_bp"].max()) if len(R) else None,
+    "panelwide_inference_complete":bool(len(unscored)==0),
+    "2023_2025_strategy_outcomes_accessed":True,
+    "protected_2026_accessed":False,
+    "next":"STOP_FOR_HUMAN_REVIEW_DO_NOT_RETUNE_ON_2023_2025"
+}
 write_json(OUT/"RUN_RECEIPT.json",receipt)
-status(OUT,9,11,"OOS receipt written",economic_pass=receipt["economic_oos_pass"],bh_q10=receipt["bh_q10_diagnostic"])
-status(OUT,10,11,"2026 remains protected and unopened")
-status(OUT,11,11,"DONE")
+status(OUT,10,12,"OOS receipt written",economic_pass=receipt["economic_oos_pass_among_scored"],bh_q10=receipt["bh_q10_diagnostic_among_scored"],scored=receipt["scored_hypotheses"],unscored=receipt["unscored_data_unavailable"])
+status(OUT,11,12,"2026 remains protected and unopened")
+status(OUT,12,12,"DONE")
 
 print("\n=== V93 LOCKED OOS RECEIPT ==="); print(json.dumps(receipt,indent=2))
-print("\n=== V93 LOCKED OOS ALL 15 ===")
+print("\n=== V93 LOCKED OOS AVAILABLE FROZEN HYPOTHESES ===")
 cols=["development_rank","family_i","state_i","family_j","state_j","target","direction","n","mean_bp","net_1bp_mean_bp",
       "positive_net1bp_years","coverage_years_ge3signals","cluster_p_one","bh_q_panel","economic_oos_pass",
       "y2023_n","y2023_mean_bp","y2024_n","y2024_mean_bp","y2025_n","y2025_mean_bp"]
