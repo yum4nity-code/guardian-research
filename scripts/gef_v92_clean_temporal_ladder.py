@@ -289,6 +289,7 @@ else:
     def collect_from_ledger(name,pmap):
         top_i,top_p=top_global_indices(pmap,TOP_RAW_SCAN_PER_LEDGER)
         accepted=0
+        ledger_seen=set()
         for global_rank,(trial,pv) in enumerate(zip(top_i,top_p),1):
             d=decode_trial(int(trial),singletons,nt,pair_i,pair_j)
             if d["kind"]!="pair":
@@ -317,6 +318,9 @@ else:
                 np.packbits(mask).tobytes()+str(targets[ti]).encode()+str(direction).encode(),
                 digest_size=16
             ).hexdigest()
+            if keyhash in ledger_seen:
+                continue
+            ledger_seen.add(keyhash)
             row=candidate_map.get(keyhash)
             if row is None:
                 row={
@@ -439,7 +443,7 @@ status(OUT,"5/12","2014-2022 clean price continuation materialized",rows=len(ext
 # ---------- exact state extension with per-feature cache/resume ----------
 cache_dir=OUT/"state_cache"; cache_dir.mkdir(parents=True,exist_ok=True)
 state_ext={}
-feature_index={str(row.feature):i for i,row in catalog.iterrows()}
+feature_index={str(row["feature"]):i for i,row in catalog.iterrows()}
 tstates=time.time()
 last_print=tstates
 for i,feat in enumerate(needed_features,1):
@@ -482,8 +486,9 @@ for target,grp in pool.groupby("target",sort=False):
     for r in grp.itertuples(index=False):
         mask=np.asarray(state_ext[(r.feature_i,r.state_i)]) & np.asarray(state_ext[(r.feature_j,r.state_j)])
         ret=float(r.direction_sign)*raw_target
-        e2_sel=np.asarray((ext_grid>=E2_START)&(ext_grid<=E2_END))
-        e3_sel=np.asarray((ext_grid>=E3_START)&(ext_grid<=E3_END))
+        horizon=pd.Timedelta(minutes=int(r.horizon_min))
+        e2_sel=np.asarray((ext_grid>=E2_START)&(ext_grid<=E2_END)&((ext_grid+horizon)<=E2_END))
+        e3_sel=np.asarray((ext_grid>=E3_START)&(ext_grid<=E3_END)&((ext_grid+horizon)<=E3_END))
         e2=metrics(np.where(mask&e2_sel,ret,np.nan))
         e3=metrics(np.where(mask&e3_sel,ret,np.nan))
 
