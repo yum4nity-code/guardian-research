@@ -41,6 +41,12 @@ def causal_states(s,min_periods):
     z=((s-mu)/sd).to_numpy(dtype=np.float32)
     return np.isfinite(z)&(z<=-1.0),np.isfinite(z)&(z>=1.0)
 
+# Deterministic preflight for taxonomy and DataFrame-column access.
+_test=pd.DataFrame({"feature":["price_USDJPY_ret_5m","cftc_EURUSD_x"],"family":["price_USDJPY","cftc_EURUSD"]})
+assert any(_test["family"]=="price_USDJPY")
+assert list(_test[_test["family"]=="cftc_EURUSD"]["feature"])==["cftc_EURUSD_x"]
+del _test
+
 status("1/10","load V83B repaired slow state + immutable V83 5m layers; benchmark only")
 b_runs=sorted((ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v83b").glob("GEF83B-*"))
 b_runs=[p for p in b_runs if (p/"RUN_RECEIPT.json").exists()]
@@ -76,14 +82,14 @@ catalog=pd.DataFrame(
     [{"feature":c,"layer":"fast","family":family(c),"train_non_null":int(pd.to_numeric(F.loc[train_f,c],errors="coerce").notna().sum())} for c in fast_cols]
 )
 catalog.to_csv(OUT/"ELIGIBLE_FEATURES.csv",index=False)
-bad=catalog[catalog.family=="other"]
-if len(bad): raise RuntimeError(f"Unclassified eligible features remain: {bad.feature.tolist()[:20]}")
+bad=catalog[catalog["family"]=="other"]
+if len(bad): raise RuntimeError(f"Unclassified eligible features remain: {bad["feature"].tolist()[:20]}")
 counts=catalog.groupby(["layer","family"]).size().reset_index(name="features")
 counts.to_csv(OUT/"FEATURE_FAMILY_COUNTS.csv",index=False)
 
-missing_price=[m for m in MARKETS if not any(catalog.family==f"price_{m}")]
+missing_price=[m for m in MARKETS if not any(catalog["family"]==f"price_{m}")]
 if missing_price: raise RuntimeError(f"Price families missing after active-support eligibility: {missing_price}")
-if not any(catalog.family=="rates_yields"): raise RuntimeError("Rates still absent after V83B repair")
+if not any(catalog["family"]=="rates_yields"): raise RuntimeError("Rates still absent after V83B repair")
 status("3/10","corrected eligibility passed",eligible_slow=len(slow_cols),eligible_fast=len(fast_cols),families=len(counts),missing_price_families=0)
 
 sample_features=[]
