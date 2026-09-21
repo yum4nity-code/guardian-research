@@ -81,6 +81,12 @@ def featurewise_asof(grid, frame):
         cols[c]=z[c].to_numpy()
     return pd.DataFrame(cols,index=grid)
 
+# Deterministic preflight for pandas column-access hazards used later in this script.
+_test=pd.DataFrame({"coverage":[0.5],"nunique":[10],"feature":["x_level"]})
+assert bool(((_test["coverage"]>=.45)&(_test["nunique"]>=10)).iloc[0])
+assert bool(_test["feature"].str.endswith("_level",na=False).iloc[0])
+del _test
+
 status(1,9,"load latest completed V83; repair rates only, no edge search")
 runs=sorted((ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v83").glob("GEF83-*"))
 runs=[p for p in runs if (p/"RUN_RECEIPT.json").exists()]
@@ -149,7 +155,7 @@ for c in Rjoined.columns:
     })
 D=pd.DataFrame(diag)
 D.to_csv(OUT/"RATES_FEATURE_COVERAGE.csv",index=False)
-level=D[D.feature.str.endswith("_level",na=False)]
+level=D[D["feature"].str.endswith("_level",na=False)]
 if level.empty:
     raise RuntimeError("No level rate features after repair")
 max_cov=float(level["coverage"].max())
