@@ -28,12 +28,12 @@ for (iy,iw),w in d.groupby(["iso_year","iso_week"],sort=True):
  fri=w[w.dow==4]
  if fri.empty:continue
  last=fri.iloc[-1]
- future=d[d.dt>last.dt]
+ future=d[d.dt>last["dt"]]
  # first actual quote after Friday, require <=96h so holidays are visible but bounded
- future=future[future.dt<=last.dt+pd.Timedelta(hours=96)]
+ future=future[future.dt<=last["dt"]+pd.Timedelta(hours=96)]
  if future.empty:continue
  first=future.iloc[0]
- rows.append({"iso_year":iy,"iso_week":iw,"entry_dt":last.dt,"entry_px":last.px,"exit_dt":first.dt,"exit_px":first.px,"gap_hours":(first.dt-last.dt).total_seconds()/3600,"ret":first.px/last.px-1})
+ rows.append({"iso_year":iy,"iso_week":iw,"entry_dt":last["dt"],"entry_px":last["px"],"exit_dt":first["dt"],"exit_px":first["px"],"gap_hours":(first["dt"]-last["dt"]).total_seconds()/3600,"ret":first["px"]/last["px"]-1})
 g=pd.DataFrame(rows);g["year"]=g.entry_dt.dt.year;g["era"]=np.where(g.year<=2022,"PRE_2010_2022","OOS_2023_2025")
 if (g.year>=2026).any():raise RuntimeError("2026 contamination")
 prog(3,7,f"actual close->reopen weekends reconstructed n={len(g)}")
