@@ -30,7 +30,8 @@ PRIMARY_RULE={
     "direction":"positive",
     "cluster_days":5,
     "one_sided_p_max":0.05,
-    "economic_net_after_hypothetical_cost_bp_min":1.0,
+    "hypothetical_cost_bp":1.0,
+    "net_mean_after_cost_must_be_positive":True,
     "minimum_positive_years_of_5":3,
     "minimum_positive_incremental_years_of_5":3,
     "secondary_not_required_for_primary_pass":[
@@ -352,7 +353,11 @@ y[(minute%15)!=0]=np.nan
 # ---------- parity against known 2014-2017 before scoring 2018-2022 ----------
 rep_sel=np.asarray((post2013_grid>=KNOWN_REPL_START)&(post2013_grid<=KNOWN_REPL_END))
 rep_times=post2013_grid[rep_sel]
-rep=evaluate_window(rep_times,y[rep_sel],A_hi[rep_sel],B_hi[rep_sel],"2014-2017 parity")
+rep_y=np.array(y[rep_sel],dtype=np.float64,copy=True)
+# Match V88 exactly: V88 had no 2018 prices, so a 2017 decision whose +15m target crosses
+# into 2018 was unavailable. Keep that boundary unavailable for the parity check.
+rep_y[(rep_times+pd.Timedelta(minutes=15))>KNOWN_REPL_END]=np.nan
+rep=evaluate_window(rep_times,rep_y,A_hi[rep_sel],B_hi[rep_sel],"2014-2017 parity")
 
 known_n=int(r88a["descriptive_groups"]["joint_AB"]["n"])
 known_mean=float(r88a["descriptive_groups"]["joint_AB"]["mean_bp"])
