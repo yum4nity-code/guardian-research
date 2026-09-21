@@ -93,7 +93,7 @@ dups=[]
 for h,v in state_groups.items():
     if len(v)>1:
         dups.append({"hash":h,"size":len(v),"members":" | ".join(f"{catalog.iloc[fi]['feature']}::{['LO','HI'][st]}" for fi,st in v[:20])})
-pd.DataFrame(dups).sort_values("size",ascending=False).to_csv(OUT/"EXACT_DUPLICATE_FEATURE_STATES.csv",index=False)
+dup_df=pd.DataFrame(dups,columns=["hash","size","members"])\nif len(dup_df): dup_df=dup_df.sort_values("size",ascending=False)\ndup_df.to_csv(OUT/"EXACT_DUPLICATE_FEATURE_STATES.csv",index=False)
 status(5,9,"exact feature-state duplication audited",raw_states=nf*2,unique_states=unique_states,duplicate_excess=dup_states,max_duplicate_group=max_group)
 
 # Sample exact pair-mask duplication to determine whether the 1.56m discoveries are largely repeated conditions.
