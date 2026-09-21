@@ -152,9 +152,9 @@ D.to_csv(OUT/"RATES_FEATURE_COVERAGE.csv",index=False)
 level=D[D.feature.str.endswith("_level",na=False)]
 if level.empty:
     raise RuntimeError("No level rate features after repair")
-max_cov=float(level.coverage.max())
-med_cov=float(level.coverage.median())
-eligible=int(((D.coverage>=.45)&(D.nunique>=10)).sum())
+max_cov=float(level["coverage"].max())
+med_cov=float(level["coverage"].median())
+eligible=int(((D["coverage"]>=.45)&(D["nunique"]>=10)).sum())
 if max_cov<0.90 or eligible<20:
     raise RuntimeError(f"Rates repair failed validation max_cov={max_cov:.3f} eligible={eligible}")
 status(6,9,"rates validation passed",max_level_coverage=round(max_cov,4),median_level_coverage=round(med_cov,4),eligible_rate_features=eligible)
