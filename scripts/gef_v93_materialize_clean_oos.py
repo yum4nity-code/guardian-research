@@ -7,6 +7,8 @@ import re
 import zipfile
 import requests
 import time
+import subprocess
+import shutil
 from html.parser import HTMLParser
 
 ROOT=Path(r"D:\MT5_Backtests")
@@ -15,6 +17,21 @@ BASE.mkdir(parents=True,exist_ok=True)
 
 REFERER_PREFIX="https://www.histdata.com/download-free-forex-historical-data/?/ascii/1-minute-bar-quotes/"
 POST_URL="https://www.histdata.com/get.php"
+
+# HistData stops exposing a free download token for some recent commodity pages.
+# We do NOT silently substitute a different feed. A Dukascopy fallback is allowed
+# only after a predeclared 2022 overlap bridge passes on the same instrument.
+DUKA_INSTRUMENT={"WTIUSD":"lightcmdusd"}
+DUKA_BRIDGE_RULE={
+    "reference_year":2022,
+    "min_overlap_5m_rows":20000,
+    "min_return_corr_each_horizon":0.97,
+    "max_median_abs_return_diff_bp_each_horizon":3.0,
+    "min_sign_agreement_each_horizon":0.80,
+    "horizons_min":[5,15,60,240],
+}
+DUKA_DIR=ROOT/"DataLake"/"raw"/"dukascopy_bridge"
+_DUKA_BRIDGE_CACHE={}
 
 def write_json(path,obj):
     path.write_text(json.dumps(obj,indent=2,default=str),encoding="utf-8")
@@ -207,6 +224,182 @@ def download_month(session,pair,year,month,zip_path,max_attempts=4):
         f"after {max_attempts} attempts: {last_error}"
     )
 
+def _find_npx():
+    return shutil.which("npx.cmd") or shutil.which("npx")
+
+def download_dukascopy_m1(pair,year):
+    instrument=DUKA_INSTRUMENT.get(pair)
+    if not instrument:
+        raise RuntimeError(f"No predeclared Dukascopy bridge instrument for {pair}")
+    npx=_find_npx()
+    if not npx:
+        raise RuntimeError("npx not found; cannot use validated Dukascopy bridge")
+    outdir=DUKA_DIR/pair
+    outdir.mkdir(parents=True,exist_ok=True)
+    stem=f"{pair}_DUKA_M1_{year}"
+    # Reuse a previously completed raw CSV.
+    existing=sorted(outdir.glob(stem+"*.csv"))
+    if existing:
+        csv_path=existing[-1]
+    else:
+        cmd=[
+            npx,"--yes","dukascopy-node",
+            "-i",instrument,
+            "-from",f"{year}-01-01",
+            "-to",f"{year+1}-01-01",
+            "-t","m1",
+            "-p","bid",
+            "-f","csv",
+            "-utc","0",
+            "-dir",str(outdir),
+            "-fn",stem,
+            "-r","3",
+            "-rp","1000",
+            "-s",
+        ]
+        print(f"[GEF93M] {pair} {year}: Dukascopy fallback download starting",flush=True)
+        proc=subprocess.run(cmd,capture_output=True,text=True,timeout=1200)
+        if proc.returncode!=0:
+            raise RuntimeError(
+                f"Dukascopy CLI failed {pair} {year} rc={proc.returncode} "
+                f"stdout={proc.stdout[-800:]!r} stderr={proc.stderr[-800:]!r}"
+            )
+        existing=sorted(outdir.glob(stem+"*.csv"))
+        if not existing:
+            raise RuntimeError(
+                f"Dukascopy CLI returned success but no CSV matching {stem}*.csv in {outdir}"
+            )
+        csv_path=existing[-1]
+
+    d=pd.read_csv(csv_path)
+    required={"timestamp","open","high","low","close"}
+    if not required.issubset(d.columns):
+        raise RuntimeError(f"Dukascopy CSV schema missing {required-set(d.columns)} in {csv_path}")
+    ts=pd.to_datetime(pd.to_numeric(d["timestamp"],errors="coerce"),unit="ms",utc=True,errors="coerce")
+    out=pd.DataFrame({
+        "datetime_utc":ts.dt.tz_convert(None),
+        "open":pd.to_numeric(d["open"],errors="coerce"),
+        "high":pd.to_numeric(d["high"],errors="coerce"),
+        "low":pd.to_numeric(d["low"],errors="coerce"),
+        "close":pd.to_numeric(d["close"],errors="coerce"),
+        "volume":pd.to_numeric(d["volume"],errors="coerce") if "volume" in d.columns else 0.0,
+    }).dropna(subset=["datetime_utc","open","high","low","close"])
+    out=out[out["datetime_utc"].dt.year==int(year)].copy()
+    out=out.sort_values("datetime_utc").drop_duplicates("datetime_utc",keep="last").reset_index(drop=True)
+    if len(out)<100000:
+        raise RuntimeError(f"Dukascopy {pair} {year}: implausibly few M1 rows {len(out)}")
+    return out,csv_path,instrument
+
+def validate_dukascopy_bridge(pair):
+    if pair in _DUKA_BRIDGE_CACHE:
+        return _DUKA_BRIDGE_CACHE[pair]
+
+    ref_year=int(DUKA_BRIDGE_RULE["reference_year"])
+    hist_path=ROOT/"DataLake"/"raw"/"histdata"/pair/"M1"/f"{pair}_M1_{ref_year}.parquet"
+    if not hist_path.exists():
+        raise RuntimeError(f"Dukascopy bridge reference missing {hist_path}")
+
+    h=pd.read_parquet(hist_path)
+    hdc=next((x for x in h.columns if str(x).lower() in ["datetime","timestamp","time","date"]),None)
+    hcc=next((x for x in h.columns if str(x).lower()=="close"),None)
+    if hdc is None or hcc is None:
+        raise RuntimeError(f"Cannot parse bridge reference {hist_path}")
+    hist=pd.DataFrame({
+        "utc":pd.to_datetime(h[hdc],errors="coerce")+pd.Timedelta(hours=5),
+        "close":pd.to_numeric(h[hcc],errors="coerce"),
+    }).dropna().drop_duplicates("utc",keep="last").set_index("utc").sort_index()
+
+    duka,csv_path,instrument=download_dukascopy_m1(pair,ref_year)
+    duk=duka.set_index("datetime_utc")["close"].sort_index()
+
+    # Reproduce research-engine 5m bar construction for both sources.
+    h5=hist["close"].resample("5min",label="right",closed="left").last()
+    d5=duk.resample("5min",label="right",closed="left").last()
+    z=pd.concat([h5.rename("hist"),d5.rename("duka")],axis=1,join="inner").dropna()
+    if len(z)<int(DUKA_BRIDGE_RULE["min_overlap_5m_rows"]):
+        raise RuntimeError(f"{pair} Dukascopy bridge overlap too small: {len(z)}")
+
+    checks=[]
+    passed=True
+    for mins in DUKA_BRIDGE_RULE["horizons_min"]:
+        k=int(mins)//5
+        rh=z["hist"]/z["hist"].shift(k)-1.0
+        rd=z["duka"]/z["duka"].shift(k)-1.0
+        q=pd.concat([rh.rename("hist"),rd.rename("duka")],axis=1).dropna()
+        corr=float(q["hist"].corr(q["duka"])) if len(q)>2 else np.nan
+        mad_bp=float(np.median(np.abs(q["hist"]-q["duka"]))*1e4) if len(q) else np.nan
+        nz=(np.abs(q["hist"])>1e-12)|(np.abs(q["duka"])>1e-12)
+        sign=float((np.sign(q.loc[nz,"hist"])==np.sign(q.loc[nz,"duka"])).mean()) if nz.any() else np.nan
+        ok=bool(
+            np.isfinite(corr)
+            and corr>=DUKA_BRIDGE_RULE["min_return_corr_each_horizon"]
+            and np.isfinite(mad_bp)
+            and mad_bp<=DUKA_BRIDGE_RULE["max_median_abs_return_diff_bp_each_horizon"]
+            and np.isfinite(sign)
+            and sign>=DUKA_BRIDGE_RULE["min_sign_agreement_each_horizon"]
+        )
+        passed=passed and ok
+        checks.append({
+            "horizon_min":int(mins),
+            "n":int(len(q)),
+            "return_corr":corr,
+            "median_abs_return_diff_bp":mad_bp,
+            "sign_agreement":sign,
+            "pass":ok,
+        })
+
+    receipt={
+        "pair":pair,
+        "reference_year":ref_year,
+        "histdata_reference":str(hist_path),
+        "dukascopy_reference_csv":str(csv_path),
+        "dukascopy_instrument":instrument,
+        "overlap_5m_rows":int(len(z)),
+        "rule":DUKA_BRIDGE_RULE,
+        "checks":checks,
+        "pass":bool(passed),
+    }
+    bridge_path=BASE/f"DUKASCOPY_BRIDGE_{pair}_{ref_year}.json"
+    write_json(bridge_path,receipt)
+    if not passed:
+        raise RuntimeError(
+            f"{pair} Dukascopy bridge FAILED predeclared overlap rule; "
+            f"refusing mixed-source OOS. See {bridge_path}"
+        )
+    print(
+        f"[GEF93M] {pair}: Dukascopy bridge PASSED on {ref_year} "
+        f"({len(z)} aligned 5m rows)",
+        flush=True,
+    )
+    _DUKA_BRIDGE_CACHE[pair]=receipt
+    return receipt
+
+def load_dukascopy_year_after_bridge(pair,year):
+    bridge=validate_dukascopy_bridge(pair)
+    d,csv_path,instrument=download_dukascopy_m1(pair,year)
+    # V93 loader expects the historical HistData convention: stored source time
+    # is fixed UTC-5 and then +5h is applied. Store an equivalent fixed-UTC-5
+    # timestamp so downstream time semantics remain unchanged.
+    out=pd.DataFrame({
+        "datetime":d["datetime_utc"]-pd.Timedelta(hours=5),
+        "open":d["open"].to_numpy(dtype=np.float64),
+        "high":d["high"].to_numpy(dtype=np.float64),
+        "low":d["low"].to_numpy(dtype=np.float64),
+        "close":d["close"].to_numpy(dtype=np.float64),
+        "volume":pd.to_numeric(d["volume"],errors="coerce").fillna(0).to_numpy(dtype=np.float64),
+    })
+    return out,{
+        "mode":"dukascopy_bridge_validated",
+        "referers":["https://www.dukascopy.com/api/data/get/historical-data-export"],
+        "zip_paths":[str(csv_path)],
+        "zip_sha256":[sha256(csv_path)],
+        "members":[csv_path.name],
+        "attempts":1,
+        "dukascopy_instrument":instrument,
+        "bridge":bridge,
+    }
+
+
 def parse_zip(zip_path,pair,year,month=None,min_rows=100000):
     with zipfile.ZipFile(zip_path,"r") as zf:
         members=[n for n in zf.namelist() if n.lower().endswith((".csv",".txt"))]
@@ -261,10 +454,9 @@ def load_histdata_year_with_fallback(session,pair,year):
             "members":[member],
             "attempts":meta.get("attempts",1),
         }
-    except TokenMissingError as e:
+    except TokenMissingError:
         print(
-            f"[GEF93M] {pair} {year}: annual page has no token; "
-            f"falling back to 12 monthly HistData files",
+            f"[GEF93M] {pair} {year}: annual page has no token; trying monthly HistData",
             flush=True,
         )
 
@@ -274,20 +466,34 @@ def load_histdata_year_with_fallback(session,pair,year):
     zip_hashes=[]
     members=[]
     attempts=0
-    for month in range(1,13):
-        zp=ROOT/"DataLake"/"raw"/"histdata"/"_downloads"/pair/f"HISTDATA_COM_ASCII_{pair}_M1{year}{month:02d}.zip"
-        mm=download_month(session,pair,year,month,zp,max_attempts=4)
-        dm,member=parse_zip(zp,pair,year,month=month,min_rows=1000)
-        parts.append(dm)
-        referers.append(mm["referer"])
-        zip_paths.append(str(zp))
-        zip_hashes.append(mm["zip_sha256"])
-        members.append(member)
-        attempts+=int(mm.get("attempts",1))
-        print(
-            f"[GEF93M] {pair} {year}: monthly fallback {month}/12 rows={len(dm)}",
-            flush=True,
+    try:
+        for month in range(1,13):
+            zp=ROOT/"DataLake"/"raw"/"histdata"/"_downloads"/pair/f"HISTDATA_COM_ASCII_{pair}_M1{year}{month:02d}.zip"
+            mm=download_month(session,pair,year,month,zp,max_attempts=2)
+            dm,member=parse_zip(zp,pair,year,month=month,min_rows=1000)
+            parts.append(dm)
+            referers.append(mm["referer"])
+            zip_paths.append(str(zp))
+            zip_hashes.append(mm["zip_sha256"])
+            members.append(member)
+            attempts+=int(mm.get("attempts",1))
+            print(
+                f"[GEF93M] {pair} {year}: monthly fallback {month}/12 rows={len(dm)}",
+                flush=True,
+            )
+    except TokenMissingError as e:
+        if pair in DUKA_INSTRUMENT:
+            print(
+                f"[GEF93M] {pair} {year}: HistData annual AND monthly token unavailable; "
+                f"switching to prevalidated Dukascopy bridge",
+                flush=True,
+            )
+            return load_dukascopy_year_after_bridge(pair,year)
+        raise RuntimeError(
+            f"{pair} {year}: HistData annual and monthly downloads unavailable, "
+            f"and no predeclared alternate-source bridge exists: {e}"
         )
+
     d=pd.concat(parts,ignore_index=True).sort_values("datetime").drop_duplicates("datetime",keep="last").reset_index(drop=True)
     if len(d)<100000:
         raise RuntimeError(f"{pair} {year}: monthly fallback produced only {len(d)} M1 rows")
@@ -301,6 +507,7 @@ def load_histdata_year_with_fallback(session,pair,year):
         "members":members,
         "attempts":attempts,
     }
+
 
 # ---------- load latest immutable V92 freeze ----------
 runs=sorted((ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v92").glob("GEF92-*"))
@@ -383,7 +590,12 @@ for idx,target in enumerate(missing,1):
          "zip_members":meta["members"],"zip_sha256":meta["zip_sha256"],
          "download_attempts":meta.get("attempts",1),"parquet_sha256":sha256(target),
          "parquet":str(target),"source_referers":meta["referers"],
-         "raw_time_semantics":"HistData source EST UTC-5 fixed; research engine converts +5h exactly as older files"}
+         "raw_time_semantics":(
+             "Dukascopy UTC converted to equivalent fixed UTC-5 storage so V93 +5h loader reproduces UTC"
+             if meta["mode"]=="dukascopy_bridge_validated"
+             else "HistData source EST UTC-5 fixed; research engine converts +5h exactly as older files"
+         ),
+         "source_bridge":meta.get("bridge")}
     records.append(rec)
     ref_median[pair]=med
     elapsed=time.time()-t0; rate=idx/max(elapsed,1e-9); eta=(len(missing)-idx)/max(rate,1e-9)
@@ -415,7 +627,9 @@ status(OUT,4,8,"all frozen-panel OOS source files pass structural audit",markets
 receipt={"run_id":RID,"status":"COMPLETE_CLEAN_OOS_MATERIALIZATION","source_v92":V92.name,
          "panel_sha256":freeze["panel_sha256"],"files_materialized":len(records),"records":records,
          "integrity_only_oos_values_accessed":True,"strategy_outcomes_computed":False,
-         "frozen_rule_changed":False,"protected_2026_accessed":False,"next":"RUN_V93_LOCKED_OOS"}
+         "frozen_rule_changed":False,
+         "mixed_source_bridge_used":any(r.get("download_mode")=="dukascopy_bridge_validated" for r in records),
+         "protected_2026_accessed":False,"next":"RUN_V93_LOCKED_OOS"}
 write_json(OUT/"RUN_RECEIPT.json",receipt)
 status(OUT,5,8,"materialization receipt written")
 status(OUT,6,8,"V92 hypothesis panel remains byte-for-byte frozen",panel_sha256=freeze["panel_sha256"][:16])
