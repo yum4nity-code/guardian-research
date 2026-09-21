@@ -427,7 +427,7 @@ for idx,r in enumerate(FROZEN.itertuples(index=False),1):
 
     primary_days=int(r.primary_block_days)
     ct=cluster_positive(ret,block_ids(ext_grid,primary_days,pd.Timestamp("2014-01-01")))
-    keyhash=hashlib.blake2b(np.packbits(mask).tobytes()+str(r.target).encode()+str(r.direction).encode(),digest_size=16).hexdigest()
+    keyhash=hashlib.blake2b(np.packbits(mask).tobytes()+str(r.target).encode()+str(r.direction).encode()+str(primary_days).encode(),digest_size=16).hexdigest()
 
     rec={
         "panel_rank":int(r.panel_rank),
@@ -454,9 +454,9 @@ R=pd.DataFrame(records)
 status(OUT,8,12,"all frozen candidates evaluated", candidates=len(R), positive_mean=int((R["mean_bp"]>0).sum()), net1bp_positive=int((R["net_1p0bp_mean_bp"]>0).sum()))
 
 # ---------- deduplicate only for multiplicity accounting; retain all rows ----------
-groups=R.groupby("condition_hash",sort=False)
-U=groups.first().reset_index()
-U["aliases"]=groups.size().reindex(U["condition_hash"]).to_numpy()
+alias_counts=R.groupby("condition_hash",sort=False).size()
+U=R.drop_duplicates("condition_hash",keep="first").copy().reset_index(drop=True)
+U["aliases"]=U["condition_hash"].map(alias_counts).astype(int)
 p=U["replication_p_one"].to_numpy(dtype=np.float64)
 U["bh_q_unique"]=bh_adjust(p)
 U["holm_p_unique"]=holm_adjust(p)
