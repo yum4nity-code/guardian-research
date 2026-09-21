@@ -231,7 +231,7 @@ status(
     "availability mask frozen before OOS outcomes",
     scorable=len(panel),
     unscored=len(unscored),
-    total=len(panel_all),
+    frozen_total=len(panel_all),
 )
 
 if panel.empty:
