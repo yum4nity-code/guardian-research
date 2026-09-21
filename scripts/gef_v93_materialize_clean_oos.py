@@ -178,7 +178,7 @@ if set(freeze["contaminated_markets_excluded"])!={"EURUSD","NSXUSD","XAGUSD"}:
 original_missing=[Path(x) for x in presence.get("missing_files",[])]
 allowed_markets=set(freeze["oos_markets"])
 for p in original_missing:
-    m=re.fullmatch(r"([A-Z]+)_M1_(2023|2024|2025)\\.parquet",p.name)
+    m=re.fullmatch(r"([A-Z]+)_M1_(2023|2024|2025)\.parquet",p.name)
     if not m or m.group(1) not in allowed_markets:
         raise RuntimeError(f"Unexpected missing OOS file {p}")
 
