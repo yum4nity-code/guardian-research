@@ -117,7 +117,9 @@ targets = [c for c in Y.columns if "_fwd_" in str(c)]
 if len(targets) != int(design["targets"]):
     raise RuntimeError("Target count mismatch")
 
-YA = Y[targets].to_numpy(dtype=np.float32)
+YA = np.array(Y[targets], dtype=np.float32, copy=True)
+if not YA.flags.writeable:
+    raise RuntimeError("YA must be writable before horizon masking")
 minute = (bench_times.view("int64") // 60_000_000_000).astype(np.int64)
 horizons = []
 for ti, c in enumerate(targets):
