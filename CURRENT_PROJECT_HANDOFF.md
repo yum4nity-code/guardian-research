@@ -27,7 +27,7 @@ Run GEF106-20260922-152746:
   - coverage 2000-2022
   - 39 tables with causal vintage semantics
 
-## V107.1 — ACTIVE
+## V107.2 — ACTIVE
 
 Standalone ALFRED first-vintage event-level research.
 
@@ -39,7 +39,7 @@ Canonical causal rule inherited from V80C:
 
 Critical statistical rule:
 **one observation per ALFRED release event**.
-V107.1 uses sparse-event support gates and a physical price firewall: <=2013 before discovery freeze, <=2017 after freeze, <=2022 only after pre-validation freeze.
+V107.2 uses one release per observation, NEG/POS states for d1/d3, prior-median-side states for level/z24, and a physical price firewall: <=2013 before discovery freeze, <=2017 after freeze, <=2022 only after pre-validation freeze.
 Do not count every 5-minute bar while a released macro value remains carried forward.
 
 Features per series:
