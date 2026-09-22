@@ -1,0 +1,12 @@
+{
+  "source_run": "GEF108-20260922-160137",
+  "original_status": "COMPLETE_V108_TREASURY_SOURCE_NOT_READY",
+  "corrected_interpretation": "TREASURY_SOURCE_READY",
+  "reason": "The source/schema audit itself showed both raw and normalized tables cover 1979-10-31 through 2022-12-29 with usable auction_date, bid-to-cover, and high yield/rate fields. V108 incorrectly computed preview coverage from q.head(500) per table, truncating the preview to the oldest rows and producing max_year=1982.",
+  "source_rows": 9496,
+  "canonical_source": "D:\\MT5_Backtests\\DataLake\\normalized\\treasury_auctions_pre2023\\treasury_auctions_PRE2023.csv",
+  "causal_rule": "auction_date + 1 calendar day, conservative",
+  "edge_trials_in_v108": 0,
+  "market_returns_in_v108": false,
+  "2023_plus_rows_used": false
+}
