@@ -1,40 +1,78 @@
 # Guardian Research — CURRENT PROJECT HANDOFF
 
-**Canonical current state: 2026-09-20**
+**Canonical current state: 2026-09-22**
 
-## Current decision
-The V32–V37 volatility-regime × price-shock lineage is **CLOSED BEFORE LOCKED OOS**.
+## V100 — frozen forward/shadow package
 
-Pipeline:
-- V32 discovery 2010–2013: 192 cells, 56 screen survivors, 16 frozen.
-- V33 replication 2014–2017: 9/16 passed.
-- V34 pre-validation robustness: 1/9 passed.
-- V35 immutable freeze: XAGUSD / normal regime / M15 shock reversal / H240. Manifest SHA256 `9438361bd3e8112619c1f0214d621ce57b4db04929e23a6423b69408cbe60369`.
-- V36 independent validation 2018–2022: PASS, gross +3.375 bp/trade; 4/5 years positive; +0.327 bp after best-1% trim; +0.369 bp non-overlap.
-- V37 final forensic 2010–2022: **FAIL**. Baseline +4.539 bp; best-1% trim +0.911; best-2% trim **-1.339**. Day bootstrap 95% CI [2.069, 6.867], daily sign-flip p≈0.00020, but the predeclared 2% tail gate failed.
-- Locked OOS 2023–2025: **UNOPENED**.
-- 2026: **UNOPENED**.
+Operator receipt supplied from the completed run:
 
-Do not loosen the 2% trim gate, retune the regime/shock definition, or spend locked OOS to rescue this lineage.
+- run_id: GEF100-20260922-094644
+- status: V100_FORWARD_SHADOW_PACKAGE_FROZEN
+- source_v97e: GEF97E-20260922-085850
+- source_v99: GEF99-20260922-092305
+- frozen ranks: **7, 9**
+- frozen panel SHA256: 0dd255ce02f1ac528ecc8b38293213d779d0647a79b2a9f065eee5ee550810f4
+- MQL compile: **PASS — 0 errors, 0 warnings**
+- activation_not_before: **2027-01-02 00:00**
+- shadow_only: **true**
+- real_seed_included: **false**
+- order_sending_code_present: **false**
+- 2026 market values accessed: **false**
 
-## Next primary research
-Move to a genuinely new information source: **families 7–8, implied volatility state / volatility term structure** using Cboe/CFE plus spot data. This is preferred over another nearby price transform because it adds external information.
+Interpretation: V100 is the frozen execution/shadow package for an existing validated lineage. It is not the next discovery experiment. Do not alter ranks 7/9, thresholds, candidate identities or activation lock.
 
-Then: rates/real yields/breakevens → CFTC → macro/FOMC → Treasury auctions.
+The repository also contains V100B parity-audit code. Do not assume V100B has been executed unless a local V100B receipt proves it.
 
-## Temporal discipline
-Discovery 2010–2013; replication 2014–2017; validation 2018–2022; locked OOS 2023–2025; protected 2026. Freeze definitions before each new temporal period.
+## Next primary research — V101
 
-## Hard operating rules
-- Causal availability timestamps only.
-- Progress x/y, %, elapsed, ETA for nontrivial jobs.
-- Inspect current code/provenance before modifying runners.
-- Preserve failed lineages; no post-hoc rescue.
-- Costs/non-overlap/tail dependence before promotion.
-- No automatic locked-OOS opening and no live deployment without explicit approval.
-- CFTC publication lag; ALFRED vintage correctness; EIA blocked until AVAILABLE_AT exists.
+V101 is preregistered as a genuinely new bounded interaction class:
 
-## Canonical navigation
-`GUARDIAN_MASTER_MANDATE.md` → `EDGE_FAMILY_MAP.md` → this handoff → `START_HERE_NEXT_AI.md` → `docs/RESEARCH_PROTOCOL.md`.
+**PRICE STATE A × PRICE STATE B × RATES/REAL-YIELD/BREAKEVEN STATE → target return**
 
-Historical D0xx/Rxx/GEF artifacts remain provenance, not current instructions.
+Files:
+- research/campaigns/GEF_V101_SPARSE_TRIPLE_RATES_2026_09_22.md
+- scripts/gef_v101_sparse_triple_rates.py
+- automation/Run-GuardianEdgeFactoryV101.ps1
+
+Design:
+- 2010-2012 discovery
+- 2013 internal discovery holdout
+- freeze
+- 2014-2017 replication
+- freeze
+- 2018-2022 validation
+- STOP
+
+V101 may never read 2023-2025 or 2026.
+
+## Important temporal nuance
+
+The lineage that became V100 has already used 2023-2025 historically. Those years therefore cannot be described globally as untouched.
+
+For V101, however, 2023-2025 are explicitly forbidden as selection/evaluation data. They are not reusable merely because another frozen lineage saw them.
+
+2026 remains protected and unopened according to the V100 receipt.
+
+## Why V101 is not a duplicate
+
+V85 already scanned a large singleton + pair universe. Running the same search again would only add multiplicity.
+
+V101 therefore:
+- reuses the frozen V85 state/target infrastructure;
+- selects atoms using only the original discovery windows;
+- tests exactly three-condition interactions;
+- requires two price states from different price families plus one causal rates state;
+- reproduces selected 2010-2013 states exactly before replication;
+- fails closed on any parity mismatch;
+- freezes candidates before each later temporal window.
+
+## Next action
+
+Run:
+
+powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV101.ps1 -Root D:\MT5_Backtests
+
+Then inspect the newest RUN_RECEIPT.json under:
+D:\MT5_Backtests\Research\Autonomous\guardian_edge_factory_v101_sparse_triple_rates\GEF101-*
+
+Do not open or score 2023-2025/2026 after V101 without a new explicit decision.
