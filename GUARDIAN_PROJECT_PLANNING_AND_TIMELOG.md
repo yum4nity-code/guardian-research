@@ -615,3 +615,17 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - py_compile and 37 synthetic tests PASS; local cold review PASS. Checkpoint persisted before main publication. Only existing orchestrator may dispatch one recovery attempt.
 - No protected 2026 payload opened; R33/R34/R35 unchanged. Next: observe single attempt receipt without manual rerun.
 - Human active time: NOT QUANTIFIED; automated test time separate.
+
+
+## 2026-09-22 — Return to crossed economic phenomena
+
+- Audited the existing Guardian Edge Factory architecture and confirmed that the repository already contains the multi-resolution causal matrix, slow->fast as-of bridge, cross-family interaction machinery, conditional-edge machinery, and External Intelligence Bus needed for the original multi-source research vision.
+- Explicitly avoided repeating V85's broad cross-family LO/HI conjunction search.
+- Inventoried currently usable data: 13 core intraday markets, US nominal/real Treasury curves and breakevens/slopes, causal CFTC mappings/transforms, Treasury-auction archive, and BTC/ETH replayable external intelligence.
+- Created and published GUARDIAN_CROSSED_PHENOMENA_MATRIX_V1_2026_09_22 with 16 historical phenomena and 3 forward-only crypto phenomena.
+- Recommended Batch A: P01 real-yield+USD->gold, P04 oil->CAD residual, P06 NSX/SPX divergence x rates, P08 synthetic USD breadth divergence, P11 XAU/XAG relative value, P12 CFTC crowding x price shock.
+- Explicitly blocked immediate mining of CBOE/CFE, financial conditions, FOMC, EIA and ALFRED where availability/provenance or architecture is not yet defensible.
+- Preserved the V112 AUDUSD H21 120m SHORT locked-OOS result as a frozen separate lineage; no post-OOS optimization.
+- No new edge trial was run and no 2026 data was accessed.
+- Next safe action: preregister Batch A as separate economic-phenomenon lineages using the common causal infrastructure, before any computation.
+- Human active time: NOT QUANTIFIED. No autonomous research compute is counted as human time.
