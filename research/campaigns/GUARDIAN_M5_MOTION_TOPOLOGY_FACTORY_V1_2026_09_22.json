@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-22",
+  "status": "DESIGN_FROZEN_BEFORE_COMPUTE",
+  "campaign": "GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1",
+  "universe": [
+    "XAUUSD",
+    "XAGUSD",
+    "UDXUSD",
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "AUDUSD",
+    "USDCHF",
+    "USDCAD",
+    "SPXUSD",
+    "NSXUSD",
+    "WTIUSD",
+    "BCOUSD"
+  ],
+  "base_frequency": "5m",
+  "forward_horizons_min": [
+    15,
+    30,
+    60
+  ],
+  "past_move_lookbacks_min": [
+    15,
+    30,
+    60
+  ],
+  "tradability": {
+    "recurring_availability_min": 0.95,
+    "closure_buffer_min": 30,
+    "joint_mask": true
+  },
+  "temporal": {
+    "warmup": [
+      2011
+    ],
+    "discovery": [
+      2012,
+      2013,
+      2014
+    ],
+    "replication": [
+      2015,
+      2016,
+      2017
+    ],
+    "validation": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "locked_oos": [
+      2023,
+      2024,
+      2025
+    ],
+    "protected": [
+      2026
+    ]
+  },
+  "first_engine_max_outcome_year": 2014,
+  "event_cooldown_min": 30,
+  "motif_min_occurrences": 100,
+  "discovery_min_independent_episodes": 200,
+  "discovery_min_days": 120,
+  "discovery_bh_q": 0.05,
+  "replication_min_independent_episodes": 100,
+  "replication_min_days": 60,
+  "replication_one_sided_p": 0.05,
+  "families": [
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "M06",
+    "M07",
+    "M08",
+    "M09",
+    "M10",
+    "M11",
+    "M12"
+  ]
+}
