@@ -663,3 +663,16 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - No economic hypothesis, parameter, threshold, window, horizon or statistical gate was changed.
 - 2017 and all later protected windows remained unopened by the failed run.
 - Next step is read-only support revalidation before any new alpha scoring.
+
+
+### 2026-09-22 — Batch A V2 scientific closure
+
+- Final valid run: GEFBA2-20260922-193022, engine BATCH-A-V2-DISCOVERY-1.2.
+- All 66 preregistered variants passed the minimum validity/support gate.
+- Discovery 2013-2016 produced 2 BH discoveries, both in P11 XAU/XAG relative value.
+- The two P11 candidates were frozen before 2017 was opened.
+- Both failed the preregistered 2017 temporal holdout, leaving 0 survivors.
+- P01/P04/P06/P08/P12 had no BH discovery; P11 failed holdout.
+- Batch A V2 is therefore scientifically closed with no rescue or retuning.
+- 2018+ / 2023-2025 / 2026 remained unopened.
+- Next research wave: Batch B P02/P03/P05/P07/P09/P10/P13/P14.
