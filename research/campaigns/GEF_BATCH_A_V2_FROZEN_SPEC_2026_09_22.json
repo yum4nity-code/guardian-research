@@ -1,0 +1,72 @@
+{
+  "schema_version": 2,
+  "date": "2026-09-22",
+  "status": "FROZEN_BEFORE_V2_COMPUTE",
+  "ancestry": {
+    "v1_run": "GEFBA-20260922-181339",
+    "v1_interpretation": "INVALID_SUPPORT_NOT_SCIENTIFIC_CLOSURE"
+  },
+  "warmup": [
+    2012
+  ],
+  "discovery": [
+    2013,
+    2014,
+    2015,
+    2016
+  ],
+  "temporal_holdout": [
+    2017
+  ],
+  "future_replication": [
+    2018,
+    2019
+  ],
+  "future_validation": [
+    2020,
+    2021,
+    2022
+  ],
+  "locked_oos": [
+    2023,
+    2024,
+    2025
+  ],
+  "protected": [
+    2026
+  ],
+  "discovery_engine_max_year_read": 2017,
+  "variant_count": 66,
+  "lineages": {
+    "P01": 9,
+    "P04": 6,
+    "P06": 9,
+    "P08": 6,
+    "P11": 3,
+    "P12": 33
+  },
+  "parameters": {
+    "beta_window_hours": 480,
+    "beta_min_periods": 240,
+    "fast_z_min_periods": 250,
+    "rate_daily_z_min_periods": 126,
+    "event_abs_z": 1.5,
+    "event_cooldown_minutes": 240,
+    "horizons_minutes": [
+      60,
+      120,
+      240
+    ],
+    "bh_q": 0.05,
+    "holdout_one_sided_p": 0.1,
+    "min_discovery_n": 120,
+    "min_discovery_clusters": 80,
+    "min_holdout_n": 40,
+    "min_holdout_clusters": 20
+  },
+  "source_semantics": {
+    "histdata": "M1 raw timestamp +5h; 5min right-labelled/left-closed; top-of-hour decisions",
+    "rates": "V102/V103 raw Treasury XML; observation_date +1 calendar day",
+    "cftc": "V104/V105 raw Futures Only archive; next-Sunday AVAILABLE_AT"
+  }
+}
