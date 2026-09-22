@@ -1,7 +1,7 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V103-RATES-PREOOS-FORENSIC",
+  "active_primary": "GEF-V104-STANDALONE-CFTC",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -20,43 +20,39 @@
       "priority": 0,
       "status": "CLOSED_VALIDATION_FAIL",
       "type": "closed_lineage",
-      "reference_run": "GEF101-20260922-142601",
-      "result": "17417 attempted -> 150 frozen -> 2 replicated -> 0 validated."
+      "reference_run": "GEF101-20260922-142601"
     },
     {
-      "id": "GEF-V102-STANDALONE-RATES",
+      "id": "GEF-V102-V103-STANDALONE-RATES",
       "priority": 0,
-      "status": "VALIDATED_PREOOS_AWAITING_FORENSIC",
-      "type": "validated_preoos_lineage",
-      "reference_run": "GEF102-20260922-143744",
-      "result": "10902 finite tests -> 200 frozen -> 34 replicated -> 27 robust -> 5 validation survivors.",
-      "final_survivors_sha256": "f6aa7d91488a5e52eeb1d5fa3c614dcff918ac3f1e4dd680ec3e3cac7060b865",
+      "status": "CLOSED_PREOOS_FORENSIC_FAIL",
+      "type": "closed_lineage",
+      "reference_run": "GEF103-20260922-145228",
+      "result": "V102 produced 5 validation survivors / 3 signal families; V103 final pre-OOS forensic passed 0/5. Locked OOS not opened.",
       "2023_2025_accessed": false,
       "2026_accessed": false
     },
     {
-      "id": "GEF-V103-RATES-PREOOS-FORENSIC",
+      "id": "GEF-V104-STANDALONE-CFTC",
       "priority": 1,
       "status": "READY_TO_RUN",
-      "type": "final_preoos_forensic",
-      "goal": "Audit exact five V102 survivors for concentration, repeated-regime dependence, timing robustness, uncertainty and dependency before any locked OOS.",
-      "preregistration": "research/campaigns/GEF_V103_RATES_PREOOS_FORENSIC_2026_09_22.md",
-      "runner": "automation/Run-GuardianEdgeFactoryV103.ps1",
-      "engine": "scripts/gef_v103_rates_preoos_forensic.py"
+      "type": "new_family",
+      "goal": "Test standalone causal CFTC Futures Only positioning states using the frozen V85 feature family and V82D/V83 availability semantics.",
+      "preregistration": "research/campaigns/GEF_V104_STANDALONE_CFTC_2026_09_22.md",
+      "runner": "automation/Run-GuardianEdgeFactoryV104.ps1",
+      "engine": "scripts/gef_v104_standalone_cftc.py"
     },
     {
       "id": "LOCKED-OOS-2023-2025",
       "priority": 99,
       "status": "BLOCKED",
-      "type": "protected_data",
-      "goal": "Do not open automatically after V103. Requires separate frozen V104 protocol and human decision."
+      "type": "protected_data"
     },
     {
       "id": "PROTECTED-2026",
       "priority": 100,
       "status": "BLOCKED",
-      "type": "protected_final_holdout",
-      "goal": "Remain protected."
+      "type": "protected_final_holdout"
     }
   ]
 }
