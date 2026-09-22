@@ -260,3 +260,43 @@ No scientific parameter changed.
 
 Next action:
 rerun ONLY automation/Diagnose-CrossedPhenomenaBatchAV2Objects.ps1 and confirm support recovery before any alpha rerun.
+
+
+## Batch A V2 — CLOSED AT TEMPORAL HOLDOUT
+
+Final run:
+GEFBA2-20260922-193022
+
+Engine:
+BATCH-A-V2-DISCOVERY-1.2
+
+Result:
+- 66/66 preregistered tests valid in 2013-2016 discovery
+- 2 BH discoveries
+- both discoveries were in P11 XAU/XAG relative-value lineage
+- 2 candidates frozen before opening 2017
+- 2 candidates tested on 2017 holdout
+- 0 temporal survivors
+- no candidate advanced to 2018-2019 replication
+
+Lineage result:
+- P01 CLOSED — no BH discovery
+- P04 CLOSED — no BH discovery
+- P06 CLOSED — no BH discovery
+- P08 CLOSED — no BH discovery
+- P11 CLOSED — 2 BH discoveries, both failed 2017 holdout
+- P12 CLOSED — no BH discovery
+
+Scientific interpretation:
+Batch A V2 is a valid negative result after infrastructure repair.
+P11 produced discovery-stage signal but did not replicate temporally in the preregistered 2017 holdout.
+No rescue, threshold change, alternate horizon or retuning is permitted within this lineage.
+
+Data firewall:
+- 2017 accessed for the two frozen P11 holdout candidates
+- 2018+ not accessed
+- 2023-2025 not accessed
+- 2026 not accessed
+
+Next program:
+Batch B design for P02/P03/P05/P07/P09/P10/P13/P14.
