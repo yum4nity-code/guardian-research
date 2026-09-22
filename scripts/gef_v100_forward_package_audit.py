@@ -81,6 +81,9 @@ required_literals=[
     "WriteSignal(9",
     "a7.lo && b7.hi",
     "a9.hi && b9.hi",
+    'input string RuntimeStateFile="GuardianEdgeForward\\\\runtime_state_v100.csv";',
+    "CatchUpToLatest()",
+    "SaveRuntimeState()",
 ]
 missing=[x for x in required_literals if x not in src]
 if missing:
