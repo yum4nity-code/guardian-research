@@ -44,14 +44,31 @@ Guardian HistData markets with sufficient local M1 coverage; horizons 60, 120 an
 
 ## Temporal protocol
 
-Discovery 2010-2012: minimum 18 releases, raw p <= .05, BH q <= .10; direction selected only from discovery mean.
-2013 confirmation: minimum 6 releases and same directional mean > 0.
-Freeze <=150 before 2014+.
+Discovery 2010-2013: minimum 8 release-events spanning at least 3 calendar years, raw p <= .05, BH q <= .10; direction selected only from discovery mean. Freeze <=150 before 2014+.
 
-Replication 2014-2017: min 20 releases, mean >0, net 1 bp >0, positive-year fraction >=.50, remove best 2 releases >0.
+Replication 2014-2017: min 8 releases, mean >0, net 1 bp >0, positive-year fraction >=.50, remove best 2 releases >0.
 
 Pre-validation robustness: remove best 3 >0, remove best month >0, leave-one-year-out minimum >0, z0.9 >0, z1.1 >0, additional +1 calendar-day availability delay >0.
 
-Validation 2018-2022: min 25 releases, mean >0, net 1 bp >0, positive-year fraction >=.60, remove best 3 >0, remove best 5 >0, remove best month >0, leave-one-year-out minimum >0.
+Validation 2018-2022: min 10 releases, mean >0, net 1 bp >0, positive-year fraction >=.60, remove best 3 >0, remove best 5 >0, remove best month >0, leave-one-year-out minimum >0.
 
 STOP after validation. Do not open 2023-2025. Do not open 2026.
+
+
+## V107.1 sparse-event design correction
+
+The first V107.0 run stopped with "No finite ALFRED discovery tests" before any candidate p-value table existed.
+
+Root cause: the preregistered support requirements (18 discovery extreme-state events plus a separate 2013 holdout) were structurally incompatible with monthly/quarterly macro release frequency.
+
+V107.1 changes the temporal design before any finite alpha test:
+- discovery becomes 2010-2013 as one discovery block;
+- minimum discovery support = 8 release-events spanning >=3 years;
+- replication minimum = 8 events;
+- validation minimum = 10 events;
+- the z=1 state definition, BH correction, target horizons, directions and robustness gates are unchanged.
+
+Physical firewall correction:
+- V107.0 loaded price histories through 2022 before failing, although it did not form or score any finite discovery test;
+- V107.1 loads prices only through 2013 before the discovery freeze, through 2017 only after that freeze, and through 2022 only after the pre-validation freeze;
+- 2023-2025 and 2026 remain unopened.
