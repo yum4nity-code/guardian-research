@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.1",
+  "date": "2026-09-22",
+  "status": "FROZEN_BEFORE_ANY_ALPHA_TEST",
+  "campaign": "GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_1",
+  "parent": "GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1",
+  "reason": "V1 recurring UTC slot mask failed session-shape integrity audit before alpha testing",
+  "universe": [
+    "XAUUSD",
+    "XAGUSD",
+    "UDXUSD",
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "AUDUSD",
+    "USDCHF",
+    "USDCAD",
+    "SPXUSD",
+    "NSXUSD",
+    "WTIUSD",
+    "BCOUSD"
+  ],
+  "base_frequency": "5m",
+  "past_move_lookbacks_min": [
+    15,
+    30,
+    60
+  ],
+  "forward_horizons_min": [
+    15,
+    30,
+    60
+  ],
+  "tradability": {
+    "method": "observed_contiguous_source_runs",
+    "source_present": "finite M5 close",
+    "boundary_buffer_min": 30,
+    "missing_is_nontradable": true,
+    "pair_group_requires_joint_tradability": true,
+    "target_requires_full_past_and_future_tradability": true
+  },
+  "temporal": {
+    "warmup": [
+      2011
+    ],
+    "discovery": [
+      2012,
+      2013,
+      2014
+    ],
+    "replication": [
+      2015,
+      2016,
+      2017
+    ],
+    "validation": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "locked_oos": [
+      2023,
+      2024,
+      2025
+    ],
+    "protected": [
+      2026
+    ]
+  },
+  "first_engine_max_outcome_year": 2014,
+  "alpha_tests_before_amendment": 0,
+  "edge_trials_before_amendment": 0,
+  "families": [
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "M06",
+    "M07",
+    "M08",
+    "M09",
+    "M10",
+    "M11",
+    "M12"
+  ]
+}
