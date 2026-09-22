@@ -24,7 +24,7 @@ def main():
     ap=argparse.ArgumentParser();ap.add_argument("--root",default=r"D:\MT5_Backtests");args=ap.parse_args()
     root=Path(args.root);repo=root/"guardian-research";m=load_engine(repo)
     print("=== BATCH A V2 OBJECT-SUPPORT DIAGNOSTIC ===")
-    print("READ ONLY; NO OLS; NO 2017+")
+    print("READ ONLY; NO OLS; NO 2017+; uses engine aligned_mask")
     P=m.load_hour_prices(root,2012,2016)
     times=P.index
     disc=np.asarray((times>=pd.Timestamp("2013-01-01"))&(times<pd.Timestamp("2017-01-01")))
