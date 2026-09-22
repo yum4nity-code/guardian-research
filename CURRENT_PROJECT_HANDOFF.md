@@ -5,47 +5,58 @@
 ## V100
 Frozen forward/shadow package. Ranks 7/9. 2026 protected.
 
-## Rates lineage — CLOSED
-V102 produced five validation survivors; V103 final pre-OOS forensic passed 0/5.
-Locked OOS not opened.
+## Closed before locked OOS
+- rates standalone: V103 pre-OOS forensic 0/5
+- CFTC standalone: V105 report-level pre-OOS forensic 0/7
 
-## CFTC lineage — CLOSED
-V104 run GEF104-20260922-145941:
-- 5,872 finite tests
-- 200 discovery frozen
-- 65 replication survivors
-- 39 robustness survivors
-- 7 validation survivors
+2023-2025 was not spent on either lineage.
 
-V105 run GEF105-20260922-151045:
-- 7 candidates audited
-- 5 unique information families
-- 0 final pre-OOS passes
-- several large intraday means collapsed to only 1-4 distinct CFTC reports
-- 2023-2025 not accessed
-- 2026 not accessed
+## V106 source audit — COMPLETE
 
-Decision: close standalone CFTC lineage before locked OOS.
+Run GEF106-20260922-152746:
+- 127 candidate source files audited
+- zero edge trials
+- financial_conditions: not ready, no causal release field
+- treasury_auctions: not safely inspectable yet
+- fomc_fed: not safely inspectable yet
+- cfe_volume_oi: no causal release field
+- cboe_vol: no causal release field under this audit
+- **alfred_vintage: READY**
+  - 53 candidate files
+  - 39 safely inspected tables
+  - coverage 2000-2022
+  - 39 tables with causal vintage semantics
 
-Canonical closure:
-research/results/GEF105_CFTC_CLOSURE_2026_09_22.json
+## V107 — ACTIVE
 
-## V106 — ACTIVE SOURCE AUDIT
+Standalone ALFRED first-vintage event-level research.
 
-Do not jump blindly to another alpha scan.
+Canonical causal rule inherited from V80C:
+- use first_vintage only as release provenance
+- use first_value only as value
+- AVAILABLE_AT = first_vintage + 1 calendar day
+- never use last_vintage, last_value, was_revised, vintage_count or final revised values
 
-V106 inventories the remaining local causal sources and existing V85 taxonomy for:
-- financial conditions / stress
-- Treasury auctions
-- FOMC/Fed event material
-- ALFRED/vintage macro
-- CFE volume/open interest
-- remaining Cboe volatility provenance
+Critical statistical rule:
+**one observation per ALFRED release event**.
+Do not count every 5-minute bar while a released macro value remains carried forward.
 
-V106 runs ZERO edge trials.
-It does not read 2023+ market returns.
+Features per series:
+- level
+- d1
+- d3
+- z24
+with causal release-space standardization.
 
-It outputs FAMILY_READINESS.csv and recommends the next family only when source coverage and causal timing are defensible.
+Targets:
+- local Guardian HistData markets
+- 60 / 120 / 240 minute horizons
+
+Temporal ladder:
+2010-2012 discovery -> 2013 confirmation -> freeze -> 2014-2017 replication -> robustness -> freeze -> 2018-2022 validation -> STOP.
+
+No 2023-2025.
+No 2026.
 
 Run:
-powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV106.ps1 -Root D:\MT5_Backtests
+powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV107.ps1 -Root D:\MT5_Backtests
