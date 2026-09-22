@@ -2,62 +2,57 @@
 
 **Canonical current state: 2026-09-22**
 
-## V100 — frozen forward/shadow lineage
-
-- run_id: GEF100-20260922-094644
-- frozen ranks: 7, 9
-- panel SHA256: 0dd255ce02f1ac528ecc8b38293213d779d0647a79b2a9f065eee5ee550810f4
-- compile PASS
-- shadow only
-- activation not before 2027-01-02 00:00
-- 2026 market values not accessed
-
-Do not retune V100 or use ranks 7/9 to select new research.
+## V100
+Frozen forward/shadow package. Ranks 7/9. 2026 protected.
 
 ## V101 — CLOSED
+GEF101-20260922-142601:
+- 17,417 sparse triples attempted
+- 150 frozen
+- 2 replication survivors
+- 0 validation survivors
+Decision: closed, no rescue.
 
-Completed:
-- run_id: GEF101-20260922-142601
-- engine: V101.2
-- atomic shortlist: 3641
-- attempted triples: 17417
-- finite discovery triples: 187
-- discovery frozen: 150
-- replication survivors: 2
-- validation survivors: **0**
-- 2023-2025 accessed: false
-- 2026 accessed: false
+## V102 — VALIDATED PRE-OOS
+GEF102-20260922-143744:
+- 10,902 finite standalone-rate tests
+- 200 discovery candidates frozen
+- 34 replication survivors
+- 27 robustness survivors
+- 5 validation survivors
+- final survivor SHA256: f6aa7d91488a5e52eeb1d5fa3c614dcff918ac3f1e4dd680ec3e3cac7060b865
+- 2023-2025 not accessed
+- 2026 not accessed
 
-Decision: close sparse PRICE × PRICE × RATES interaction lineage. No rescue of the two replication survivors.
+Five survivors:
+1. NOM 1M level HI -> USDJPY 240m SHORT
+2. REAL 7Y d1 LO -> GBPUSD 120m LONG
+3. REAL 7Y d1 LO -> AUDUSD 120m LONG
+4. REAL 7Y d1 LO -> EURUSD 120m LONG
+5. NOM 3M d5 HI -> USDCHF 120m SHORT
 
-Canonical receipt:
-research/results/GEF101_CLOSURE_2026_09_22.json
+The three REAL 7Y candidates share the same signal definition and count as one economic signal family for independence analysis.
 
-## V102 — ACTIVE NEXT TEST
+## V103 — ACTIVE NEXT
+Final <=2022 forensic of the exact five V102 survivors.
 
-Question: do standalone nominal-rate / real-yield / breakeven / yield-curve states carry reproducible predictive information without requiring a price-state interaction?
+Tests include:
+- tail concentration;
+- remove best 10 events;
+- remove best calendar month;
+- leave-one-year-out;
+- horizon non-overlap;
+- one signal per day;
+- one signal per contiguous state episode;
+- z 0.9 / 1.1;
+- +1d / +2d information delay;
+- 1/2/3/5 bp cost diagnostics;
+- month-block bootstrap;
+- signal overlap and common-timestamp return correlations.
 
-Protocol:
-- 2010-2012 discovery
-- 2013 internal confirmation
-- freeze
-- 2014-2017 replication
-- robustness
-- immutable freeze
-- 2018-2022 validation
-- STOP
+V103 does not optimize a portfolio and does not open 2023-2025 or 2026.
 
-No 2023-2025.
-No 2026.
+Run:
+powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV103.ps1 -Root D:\MT5_Backtests
 
-Files:
-- research/campaigns/GEF_V102_STANDALONE_RATES_2026_09_22.md
-- scripts/gef_v102_standalone_rates.py
-- automation/Run-GuardianEdgeFactoryV102.ps1
-- automation/Watch-GuardianEdgeFactoryV102.ps1
-
-V102 deliberately reuses the canonical V83B/V85 rate state lineage and the V101.2 reconstruction semantics. V101 triple outcomes are not used to choose V102 candidates.
-
-## Run
-
-powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV102.ps1 -Root D:\MT5_Backtests
+Regardless of result, STOP after V103. A separate preregistered V104 plus human decision is required before any 2023-2025 access.
