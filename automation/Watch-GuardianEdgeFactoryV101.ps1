@@ -1,5 +1,5 @@
-param([string]$Root="D:\\MT5_Backtests")
-$Base=Join-Path $Root "Research\\Autonomous\\guardian_edge_factory_v101_sparse_triple_rates"
+param([string]$Root="D:\MT5_Backtests")
+$Base=Join-Path $Root "Research\Autonomous\guardian_edge_factory_v101_sparse_triple_rates"
 if(!(Test-Path $Base)){ throw "No V101 base directory yet: $Base" }
 $Run=Get-ChildItem $Base -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if(!$Run){ throw "No V101 run directory yet" }
