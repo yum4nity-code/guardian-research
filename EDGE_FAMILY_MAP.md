@@ -15,7 +15,7 @@ A broad family is not called exhausted merely because one implementation failed.
 | 7 | Implied volatility -> spot | UNTOUCHED | **NEXT PRIMARY FAMILY.** Cboe VIX/VIX9D/VVIX/GVZ/OVX + spot. |
 | 8 | Volatility term structure | UNTOUCHED | Pair with family 7 where causal availability is clean. |
 | 9 | Volume / open interest | UNTOUCHED | CFE archive available <=2022. |
-| 10 | CFTC positioning | EXPLORING | V104 standalone Futures Only positioning active; conservative next-Monday availability. |
+| 10 | CFTC positioning | CLOSED_SPECIFIC_LINEAGE | V104 validated 7 candidates, but V105 report-level pre-OOS forensic passed 0/7; locked OOS not opened. |
 | 11 | Nominal rates | CLOSED_SPECIFIC_LINEAGE | V102 validated candidates but V103 final pre-OOS forensic passed 0/5; locked OOS not opened. |
 | 12 | Real yields / breakevens | CLOSED_SPECIFIC_LINEAGE | V102/V103 standalone lineage closed before OOS; REAL 7Y survivors were concentrated in one month/year. |
 | 13 | Financial conditions / stress | UNTOUCHED | Vintage correctness where revisions matter. |
