@@ -9,7 +9,7 @@ A broad family is not called exhausted merely because one implementation failed.
 | 1 | Price momentum / continuation | DEEP_TESTED_NO_SURVIVOR | Multiple simple price-only campaigns produced no robust survivor. Revisit only with a genuinely new mechanism/information source. |
 | 2 | Price mean reversion | DEEP_TESTED_NO_SURVIVOR | GBP lookahead lineage dead; XAG V19 tail fail; clean XAG V29–31 produced 0/7 robust. |
 | 3 | Volatility regime × price shock | CLOSED_SPECIFIC_LINEAGE | V32→V37. 192 discovery cells → 16 frozen → 9 replicated → 1 robust → XAG normal/reversal H240 validated 2018–22, then **failed V37 pre-OOS forensic** because trim-best-2% = -1.339 bp. 2023–25 never opened. Do not rescue this specification. |
-| 4 | Intraday / calendar structure | VALIDATED_PREOOS | V111 passed 3 candidates / 2 structural families. V112 locked OOS is preregistered and awaiting explicit human approval; 2023–2025 remains unopened. |
+| 4 | Intraday / calendar structure | OOS_CONFIRMED_SPECIFIC_LINEAGE | V112 locked OOS 2023–2025 confirmed AUDUSD H21 120m SHORT; USDCHF H23 failed both frozen horizons and is closed. 2026 remains protected. |
 | 5 | Cross-asset lead/lag | PARTIAL | V20–28 price-only XAU/XAG lineage closed; does not exhaust economically directed lead/lag. |
 | 6 | Relative value / spreads | UNTOUCHED | Genuine spread/stat-arb family not tested. |
 | 7 | Implied volatility -> spot | UNTOUCHED | **NEXT PRIMARY FAMILY.** Cboe VIX/VIX9D/VVIX/GVZ/OVX + spot. |
