@@ -16,8 +16,8 @@ A broad family is not called exhausted merely because one implementation failed.
 | 8 | Volatility term structure | UNTOUCHED | Pair with family 7 where causal availability is clean. |
 | 9 | Volume / open interest | UNTOUCHED | CFE archive available <=2022. |
 | 10 | CFTC positioning | UNTOUCHED | Enforce publication lag. |
-| 11 | Nominal rates | UNTOUCHED | Treasury/FRED + FX/equity/gold. |
-| 12 | Real yields / breakevens | UNTOUCHED | High-priority, especially XAU. |
+| 11 | Nominal rates | EXPLORING | V102 standalone rates lineage active after V101 interaction family closed with 0 validation survivors. |
+| 12 | Real yields / breakevens | EXPLORING | V102 tests standalone causal states across the frozen Guardian target universe. |
 | 13 | Financial conditions / stress | UNTOUCHED | Vintage correctness where revisions matter. |
 | 14 | Macro releases / surprises | UNTOUCHED | Requires exact causal release timestamps. |
 | 15 | FOMC events | UNTOUCHED | Fed/FOMC corpus available. |
