@@ -8,6 +8,7 @@ import re
 import hashlib
 import time
 import subprocess
+import os
 
 ROOT=Path(r"D:\MT5_Backtests")
 BASE=ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v97"
@@ -189,8 +190,9 @@ def _looks_ftmo(identity):
 def _running_terminal_paths():
     cmd=[
         "powershell","-NoProfile","-Command",
-        "(Get-Process terminal64 -ErrorAction SilentlyContinue | "
-        "Select-Object -ExpandProperty Path | Sort-Object -Unique) -join [Environment]::NewLine"
+        "(Get-CimInstance Win32_Process -Filter \"Name='terminal64.exe'\" -ErrorAction SilentlyContinue | "
+        "Select-Object -ExpandProperty ExecutablePath | Where-Object { $_ } | Sort-Object -Unique) "
+        "-join [Environment]::NewLine"
     ]
     try:
         p=subprocess.run(cmd,capture_output=True,text=True,timeout=20)
@@ -200,38 +202,143 @@ def _running_terminal_paths():
     except Exception:
         return []
 
+def _installed_terminal_paths():
+    # Known resolution from prior Guardian MT5 work: bind MetaTrader5 explicitly to
+    # terminal64.exe and, when applicable, use portable=True. Search common install roots
+    # instead of trusting whichever terminal MetaTrader5.initialize() chooses by default.
+    candidates=[]
+
+    override=os.environ.get("GEF_FTMO_TERMINAL","").strip()
+    if override:
+        candidates.append(override)
+
+    candidates.extend(_running_terminal_paths())
+
+    common=[
+        r"D:\MT5_FTMO\terminal64.exe",
+        r"D:\FTMO\terminal64.exe",
+        r"C:\Program Files\FTMO MetaTrader 5\terminal64.exe",
+        r"C:\Program Files\MetaTrader 5\terminal64.exe",
+        r"C:\Program Files (x86)\FTMO MetaTrader 5\terminal64.exe",
+    ]
+    candidates.extend(common)
+
+    # Bounded filesystem discovery only. Do not recurse through the whole machine.
+    ps=r"""
+$roots=@(
+  'D:\',
+  'C:\Program Files',
+  'C:\Program Files (x86)',
+  $env:LOCALAPPDATA
+) | Where-Object { $_ -and (Test-Path $_) }
+$out=@()
+foreach($r in $roots){
+  try {
+    $out += Get-ChildItem -Path $r -Filter terminal64.exe -File -Recurse -Depth 4 -ErrorAction SilentlyContinue |
+      Select-Object -ExpandProperty FullName
+  } catch {}
+}
+$out | Sort-Object -Unique
+"""
+    try:
+        p=subprocess.run(
+            ["powershell","-NoProfile","-Command",ps],
+            capture_output=True,text=True,timeout=60
+        )
+        if p.returncode==0:
+            candidates.extend(x.strip() for x in p.stdout.splitlines() if x.strip())
+    except Exception:
+        pass
+
+    out=[]
+    seen=set()
+    for x in candidates:
+        try:
+            p=str(Path(x))
+        except Exception:
+            continue
+        key=p.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        if Path(p).exists():
+            out.append(p)
+    return out
+
 def connect_ftmo_terminal(mt5,out):
     attempts=[]
-    # First inspect whatever MetaTrader5.initialize() chooses by default.
-    if mt5.initialize():
-        ident=_identity(mt5)
-        attempts.append({"mode":"default","path":None,**ident})
-        if ident["connected"] and _looks_ftmo(ident):
-            write_json(out/"MT5_TERMINAL_RESOLUTION.json",{
-                "status":"FTMO_TERMINAL_RESOLVED",
-                "selected":attempts[-1],
-                "attempts":attempts,
-            })
-            return ident
-        mt5.shutdown()
 
-    # Known prior resolution: bind the Python API to the actual running broker terminal,
-    # rather than assuming the default terminal process is the right one.
-    for path in _running_terminal_paths():
-        try:
-            ok=mt5.initialize(path=path)
-        except TypeError:
-            ok=mt5.initialize(path)
-        if not ok:
-            attempts.append({"mode":"explicit_path","path":path,"initialize":False,"last_error":str(mt5.last_error())})
+    # Probe explicit terminal binaries first. The working Guardian pattern is:
+    # mt5.initialize(TERMINAL, timeout=60000, portable=True)
+    paths=_installed_terminal_paths()
+    for path in paths:
+        for portable in (True,False):
+            try:
+                ok=mt5.initialize(path=path,timeout=60000,portable=portable)
+            except TypeError:
+                try:
+                    ok=mt5.initialize(path,timeout=60000,portable=portable)
+                except Exception as e:
+                    ok=False
+                    attempts.append({
+                        "mode":"explicit_path",
+                        "path":path,
+                        "portable":portable,
+                        "initialize":False,
+                        "exception":repr(e),
+                    })
+                    continue
+            if not ok:
+                attempts.append({
+                    "mode":"explicit_path",
+                    "path":path,
+                    "portable":portable,
+                    "initialize":False,
+                    "last_error":str(mt5.last_error()),
+                })
+                mt5.shutdown()
+                continue
+
+            ident=_identity(mt5)
+            row={
+                "mode":"explicit_path",
+                "path":path,
+                "portable":portable,
+                "initialize":True,
+                **ident,
+            }
+            attempts.append(row)
+            print(
+                "[GEF97] MT5 probe | "
+                f"path={path} | portable={portable} | "
+                f"server={ident.get('server')} | company={ident.get('account_company')} | "
+                f"login={ident.get('login')} | connected={ident.get('connected')}",
+                flush=True,
+            )
+            if ident["connected"] and _looks_ftmo(ident):
+                write_json(out/"MT5_TERMINAL_RESOLUTION.json",{
+                    "status":"FTMO_TERMINAL_RESOLVED",
+                    "selected":row,
+                    "attempts":attempts,
+                })
+                return ident
             mt5.shutdown()
-            continue
+
+    # Last-resort default initialization, only after explicit candidates were inspected.
+    if mt5.initialize(timeout=60000):
         ident=_identity(mt5)
-        attempts.append({"mode":"explicit_path","path":path,**ident})
+        row={"mode":"default","path":None,"portable":None,"initialize":True,**ident}
+        attempts.append(row)
+        print(
+            "[GEF97] MT5 default probe | "
+            f"server={ident.get('server')} | company={ident.get('account_company')} | "
+            f"login={ident.get('login')} | connected={ident.get('connected')}",
+            flush=True,
+        )
         if ident["connected"] and _looks_ftmo(ident):
             write_json(out/"MT5_TERMINAL_RESOLUTION.json",{
                 "status":"FTMO_TERMINAL_RESOLVED",
-                "selected":attempts[-1],
+                "selected":row,
                 "attempts":attempts,
             })
             return ident
@@ -240,11 +347,27 @@ def connect_ftmo_terminal(mt5,out):
     write_json(out/"MT5_TERMINAL_RESOLUTION.json",{
         "status":"FTMO_TERMINAL_NOT_FOUND",
         "selected":None,
+        "candidate_paths":paths,
         "attempts":attempts,
     })
+
+    print("[GEF97] FTMO terminal resolution failed. Probed terminals:",flush=True)
+    for a in attempts:
+        print(
+            "  - "
+            f"path={a.get('path')} portable={a.get('portable')} "
+            f"server={a.get('server')} company={a.get('account_company')} "
+            f"login={a.get('login')} connected={a.get('connected')} "
+            f"init={a.get('initialize')}",
+            flush=True,
+        )
+
     raise RuntimeError(
-        "No connected FTMO MT5 terminal was found. Open/log in to the FTMO terminal and rerun. "
-        "See MT5_TERMINAL_RESOLUTION.json for every terminal/account that was probed."
+        "No connected FTMO MT5 account found after explicit terminal64.exe discovery. "
+        "Known working pattern is explicit terminal path + portable=True. "
+        "If FTMO is installed under a nonstandard path, rerun the wrapper with "
+        "-TerminalExe \"C:\\...\\terminal64.exe\". "
+        "No historical market values were requested."
     )
 
 def _norm_symbol(s):
@@ -440,7 +563,7 @@ Fhist.index=pd.to_datetime(Fhist.index)
 RID="GEF97-"+pd.Timestamp.now("UTC").strftime("%Y%m%d-%H%M%S")
 OUT=BASE/RID
 OUT.mkdir(parents=True,exist_ok=False)
-status(OUT,1,12,"exact V94 frozen 3 loaded; V97 bridge spec not yet connected to MT5",source_v94=V94.name)
+status(OUT,1,12,"exact V94 frozen 3 loaded; V97 will bind explicitly to the FTMO MT5 terminal",source_v94=V94.name)
 
 freeze={
     "run_id":RID,
