@@ -1,7 +1,7 @@
 {
-  "schema_version": 19,
+  "schema_version": 20,
   "updated_at": "2026-09-22",
-  "active_primary": "CROSSED-PHENOMENA-BATCH-B-DESIGN",
+  "active_primary": "M5-MOTION-TOPOLOGY-V1",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -190,6 +190,37 @@
       "id": "PROTECTED-2026",
       "priority": 100,
       "status": "BLOCKED"
+    },
+    {
+      "id": "M5-MOTION-TOPOLOGY-V1",
+      "status": "DESIGN_FROZEN_READY_FOR_ENGINE_BUILD",
+      "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
+      "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
+      "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
+      "families": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08",
+        "M09",
+        "M10",
+        "M11",
+        "M12"
+      ],
+      "temporal": {
+        "warmup": "2011",
+        "discovery": "2012-2014",
+        "replication": "2015-2017",
+        "validation": "2018-2022",
+        "locked_oos": "2023-2025",
+        "protected": "2026"
+      },
+      "first_engine_rule": "DO_NOT_OPEN_2015_PLUS_OUTCOMES_BEFORE_DISCOVERY_FREEZE"
     }
-  ]
+  ],
+  "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
 }
