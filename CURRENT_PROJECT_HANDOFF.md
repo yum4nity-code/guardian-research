@@ -27,7 +27,7 @@ Run GEF106-20260922-152746:
   - coverage 2000-2022
   - 39 tables with causal vintage semantics
 
-## V107.3 — ACTIVE
+## V107.4 — ACTIVE
 
 Standalone ALFRED first-vintage event-level research.
 
@@ -66,3 +66,7 @@ powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\auto
 ### V107.3 correction
 Earlier V107.0-2 runs produced zero finite discovery tests.
 V107.3 now audits all ALFRED pre-2023 tables, measures event support before reading returns, uses all-release symmetric directional scoring rather than sparse state buckets, and exits with a valid receipt instead of raising if support is insufficient.
+
+
+### V107.4 target bridge
+V107.3 measured strong event support (104 eligible features, max 209 discovery events) but produced zero tradable samples. This is classified as infrastructure failure, not negative alpha evidence. V107.4 precomputes canonical sparse forward targets and maps each release to the first finite target; it also writes DISCOVERY_TARGET_DIAGNOSTICS.csv.
