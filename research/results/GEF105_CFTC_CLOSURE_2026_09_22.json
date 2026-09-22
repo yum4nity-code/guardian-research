@@ -1,0 +1,17 @@
+{
+  "run_id": "GEF105-20260922-151045",
+  "status": "COMPLETE_V105_CFTC_PREOOS_FORENSIC",
+  "engine_version": "V105.0",
+  "source_v104": "GEF104-20260922-145941",
+  "source_final_sha256": "428ce6c9f5bd5b4acaaf4fbc619b1d07fd0c6abd5ec716403d6b2b4e01a9b68e",
+  "candidates_audited": 7,
+  "candidate_preoos_passes": 0,
+  "unique_information_families_all": 5,
+  "unique_information_families_passing": 0,
+  "forensic_results_sha256": "4ba24fd018d757abd882f62e106f4bb10639607b134a7cccc09cb285f9e1e24b",
+  "final_preoos_survivors_sha256": "4ba9c922f96a43c41cd9ad9e24e0141eb6b543db5ae8e52007ce4bba22717d9e",
+  "2023_2025_accessed": false,
+  "2026_accessed": false,
+  "decision": "CLOSE_CFTC_LINEAGE_BEFORE_LOCKED_OOS",
+  "reason": "0/7 candidates passed the preregistered report-level final pre-OOS forensic; validation effects collapsed to 1-4 distinct CFTC reports for several candidates."
+}
