@@ -157,7 +157,10 @@ def month_starts(start_year,end_year_inclusive):
     for y in range(start_year,end_year_inclusive+1):
         for m in range(1,13):
             a=pd.Timestamp(year=y,month=m,day=1,tz="UTC")
-            if m==12:
+            if y==2025 and m==12:
+                # Hard stop before protected 2026. copy_rates_range is inclusive.
+                b=pd.Timestamp("2025-12-31 23:59:00",tz="UTC")
+            elif m==12:
                 b=pd.Timestamp(year=y+1,month=1,day=1,tz="UTC")
             else:
                 b=pd.Timestamp(year=y,month=m+1,day=1,tz="UTC")
