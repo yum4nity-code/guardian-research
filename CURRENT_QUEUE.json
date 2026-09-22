@@ -1,7 +1,7 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V102-STANDALONE-RATES",
+  "active_primary": "GEF-V103-RATES-PREOOS-FORENSIC",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -21,34 +21,42 @@
       "status": "CLOSED_VALIDATION_FAIL",
       "type": "closed_lineage",
       "reference_run": "GEF101-20260922-142601",
-      "result": "17417 attempted triples -> 150 frozen -> 2 replication survivors -> 0 validation survivors.",
+      "result": "17417 attempted -> 150 frozen -> 2 replicated -> 0 validated."
+    },
+    {
+      "id": "GEF-V102-STANDALONE-RATES",
+      "priority": 0,
+      "status": "VALIDATED_PREOOS_AWAITING_FORENSIC",
+      "type": "validated_preoos_lineage",
+      "reference_run": "GEF102-20260922-143744",
+      "result": "10902 finite tests -> 200 frozen -> 34 replicated -> 27 robust -> 5 validation survivors.",
+      "final_survivors_sha256": "f6aa7d91488a5e52eeb1d5fa3c614dcff918ac3f1e4dd680ec3e3cac7060b865",
       "2023_2025_accessed": false,
       "2026_accessed": false
     },
     {
-      "id": "GEF-V102-STANDALONE-RATES",
+      "id": "GEF-V103-RATES-PREOOS-FORENSIC",
       "priority": 1,
       "status": "READY_TO_RUN",
-      "type": "new_family",
-      "goal": "Test standalone nominal rates, real yields, breakevens and curve states without price-condition interactions.",
-      "preregistration": "research/campaigns/GEF_V102_STANDALONE_RATES_2026_09_22.md",
-      "runner": "automation/Run-GuardianEdgeFactoryV102.ps1",
-      "engine": "scripts/gef_v102_standalone_rates.py"
+      "type": "final_preoos_forensic",
+      "goal": "Audit exact five V102 survivors for concentration, repeated-regime dependence, timing robustness, uncertainty and dependency before any locked OOS.",
+      "preregistration": "research/campaigns/GEF_V103_RATES_PREOOS_FORENSIC_2026_09_22.md",
+      "runner": "automation/Run-GuardianEdgeFactoryV103.ps1",
+      "engine": "scripts/gef_v103_rates_preoos_forensic.py"
     },
     {
-      "id": "V102-FIREWALL-2023-2025",
-      "priority": 98,
+      "id": "LOCKED-OOS-2023-2025",
+      "priority": 99,
       "status": "BLOCKED",
-      "type": "protected_from_reuse",
-      "goal": "V102 must stop after 2018-2022 validation."
+      "type": "protected_data",
+      "goal": "Do not open automatically after V103. Requires separate frozen V104 protocol and human decision."
     },
     {
       "id": "PROTECTED-2026",
       "priority": 100,
       "status": "BLOCKED",
       "type": "protected_final_holdout",
-      "goal": "V102 never reads 2026."
+      "goal": "Remain protected."
     }
-  ],
-  "notes": "V101 is closed without rescue. V102 tests standalone rates information, which is scientifically distinct from the failed price-price-rates triple family."
+  ]
 }
