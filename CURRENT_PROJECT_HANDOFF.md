@@ -5,58 +5,47 @@
 ## V100
 Frozen forward/shadow package. Ranks 7/9. 2026 protected.
 
-## Rates lineage
-V101 interactions closed at validation.
-V102 produced five validated standalone-rate candidates.
-V103 final pre-OOS forensic passed 0/5.
-Rates locked OOS was not opened.
+## Rates lineage — CLOSED
+V102 produced five validation survivors; V103 final pre-OOS forensic passed 0/5.
+Locked OOS not opened.
 
-## V104 — CFTC VALIDATED PRE-OOS
+## CFTC lineage — CLOSED
+V104 run GEF104-20260922-145941:
+- 5,872 finite tests
+- 200 discovery frozen
+- 65 replication survivors
+- 39 robustness survivors
+- 7 validation survivors
 
-Run: GEF104-20260922-145941
-- engine: V104.1
-- finite CFTC tests: 5,872
-- discovery frozen: 200
-- replication survivors: 65
-- robustness survivors: 39
-- validation survivors: 7
-- final SHA256: 428ce6c9f5bd5b4acaaf4fbc619b1d07fd0c6abd5ec716403d6b2b4e01a9b68e
+V105 run GEF105-20260922-151045:
+- 7 candidates audited
+- 5 unique information families
+- 0 final pre-OOS passes
+- several large intraday means collapsed to only 1-4 distinct CFTC reports
 - 2023-2025 not accessed
 - 2026 not accessed
 
-Seven frozen survivors include repeated information sources:
-- USDCAD commercial z52 LO -> USDJPY SHORT and AUDUSD SHORT
-- WTI commercial level HI -> NSXUSD LONG and SPXUSD LONG
-- USDCHF commercial z52 HI -> USDCHF SHORT
-- USDCAD commercial level LO -> AUDUSD SHORT
-- EURUSD commercial level HI -> USDCHF SHORT
+Decision: close standalone CFTC lineage before locked OOS.
 
-## V105 — ACTIVE
+Canonical closure:
+research/results/GEF105_CFTC_CLOSURE_2026_09_22.json
 
-Final pre-OOS forensic of exactly those seven V104 survivors.
+## V106 — ACTIVE SOURCE AUDIT
 
-Key difference from earlier intraday forensics:
-CFTC is weekly information. V105 explicitly maps every eligible target observation back to the latest distinct CFTC report AVAILABLE_AT and evaluates one signal per report, in addition to the original frozen intraday semantics.
+Do not jump blindly to another alpha scan.
 
-Diagnostics/gates include:
-- tail removal;
-- best month and leave-one-year-out;
-- horizon non-overlap;
-- first signal per distinct CFTC report;
-- remove best 3/5 reports;
-- first-per-report year stability;
-- first-per-report month-block bootstrap;
-- first signal per contiguous state episode;
-- z0.9/z1.1;
-- source availability delayed +1/+2 calendar days;
-- 1/2/3/5 bp diagnostics;
-- signal overlap and return correlation.
+V106 inventories the remaining local causal sources and existing V85 taxonomy for:
+- financial conditions / stress
+- Treasury auctions
+- FOMC/Fed event material
+- ALFRED/vintage macro
+- CFE volume/open interest
+- remaining Cboe volatility provenance
 
-No portfolio optimization.
-No 2023-2025.
-No 2026.
+V106 runs ZERO edge trials.
+It does not read 2023+ market returns.
+
+It outputs FAMILY_READINESS.csv and recommends the next family only when source coverage and causal timing are defensible.
 
 Run:
-powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV105.ps1 -Root D:\MT5_Backtests
-
-Regardless of result, STOP after V105.
+powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV106.ps1 -Root D:\MT5_Backtests
