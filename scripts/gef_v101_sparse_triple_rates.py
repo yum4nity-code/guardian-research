@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 from scipy.special import ndtr
 
-ENGINE_VERSION = "V101.1"
+ENGINE_VERSION = "V101.2"
 FAST_MIN_PERIODS = 5000
 SLOW_MIN_PERIODS = 500
 STATE_Z = 1.0
@@ -708,6 +708,19 @@ def main():
         slow_grid = pd.date_range(S.index.min(), f"{end_year}-12-31 23:00", freq=slow_freq)
         RF = build_rates_frame(root, end_year)
         Rj = asof_selected(slow_grid, RF, rate_features)
+
+        # V83B is the canonical repaired source actually consumed by V85.
+        # Recomputing 2009-2013 Treasury XML is useful for extension, but it must
+        # never replace the exact frozen feature values used in discovery.
+        # Anchor every selected rates feature to V83B through its final timestamp,
+        # then use the causally rebuilt series only for later observations.
+        anchor_end = S.index.max()
+        if not S.index.equals(slow_grid[:len(S.index)]):
+            raise RuntimeError("V101 slow-grid prefix does not exactly match canonical V83B index")
+        for f in rate_features:
+            if f not in S.columns:
+                raise RuntimeError(f"Selected rates feature missing from canonical V83B matrix: {f}")
+            Rj.loc[S.index, f] = pd.to_numeric(S[f], errors="coerce").to_numpy()
 
         slow_state = {}
         for f in rate_features:
