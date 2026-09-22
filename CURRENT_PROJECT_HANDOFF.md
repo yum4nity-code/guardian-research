@@ -119,3 +119,34 @@ AUDUSD H21 120m SHORT is locked-OOS confirmed.
 No post-OOS optimization.
 No automatic trading activation.
 2026 remains protected.
+
+
+## Research direction reset — crossed economic phenomena
+
+On 2026-09-22 the owner explicitly redirected Guardian back to the original multi-source causal vision.
+
+Canonical design artifact:
+research/campaigns/GUARDIAN_CROSSED_PHENOMENA_MATRIX_V1_2026_09_22.md
+
+Inventory result:
+- 16 historical crossed phenomena are testable now from already-owned data;
+- 3 crypto phenomena are testable only as forward/replay studies with the External Intelligence Bus;
+- generic V85-style cross-family LO/HI conjunction mining must NOT be repeated.
+
+Recommended first batch:
+- P01 real-yield + USD pressure on gold
+- P04 oil -> CAD residual transmission
+- P06 Nasdaq/SPX divergence x rates
+- P08 synthetic USD breadth vs UDX divergence
+- P11 XAU/XAG relative-value dislocation
+- P12 CFTC crowding x own-price shock
+
+Blocked from immediate use:
+CBOE/CFE until causal availability provenance is repaired; financial conditions; ALFRED without architecture rewrite; FOMC without exact publication table; EIA without AVAILABLE_AT; macro-surprise without verified consensus expectations; true FX carry without foreign-rate curves.
+
+Scientific rule:
+start from an economic phenomenon and derived object (residual/spread/decomposition/catalyst interaction), not from random parameter combinations.
+
+2023-2025 is not available for design of these new lineages.
+2026 remains protected.
+AUDUSD H21 120m SHORT remains frozen and is not to be optimized further.
