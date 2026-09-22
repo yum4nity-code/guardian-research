@@ -42,13 +42,14 @@
         "AUDUSD|H21",
         "USDCHF|H23"
       ],
-      "2023_2025_accessed": false,
-      "2026_accessed": false
+      "2023_2025_accessed": true,
+      "scoring_completed": false,
+      "2026_raw_accessed": false
     },
     {
       "id": "GEF-V112-LOCKED-OOS-2023-2025",
       "priority": 1,
-      "status": "HUMAN_APPROVED_READY_TO_RUN",
+      "status": "LOCKED_OOS_OPENED_SCORING_PENDING",
       "frozen_candidates": [
         "AUDUSD H21 120m SHORT",
         "USDCHF H23 120m LONG",
@@ -58,6 +59,7 @@
       "unlock_string": "OPEN_LOCKED_OOS_2023_2025",
       "runner": "automation/Run-GuardianEdgeFactoryV112.ps1",
       "engine": "scripts/gef_v112_calendar_locked_oos.py",
+      "engine_version": "V112.1",
       "human_approval": "APPROVED_2026-09-22",
       "2023_2025_accessed": false,
       "2026_accessed": false
