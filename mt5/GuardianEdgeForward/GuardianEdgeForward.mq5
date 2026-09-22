@@ -448,7 +448,7 @@ bool ProcessDecision(const datetime t,const datetime latest_decision)
    ProcessFeatureAtDecision(FS_GBPUSD_RET30,SYM_GBPUSD,FK_RET30,t);
 
    bool allow_signal=(t>=ACTIVATION_NOT_BEFORE);
-   bool replayed=(t<latest_decision);
+   bool replayed=((long)(TimeCurrent()-t)>60);
    EvaluateSignalsAtDecision(t,allow_signal,replayed);
 
    g_last_decision_time=t;
