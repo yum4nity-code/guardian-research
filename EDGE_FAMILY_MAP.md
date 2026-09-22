@@ -22,7 +22,7 @@ A broad family is not called exhausted merely because one implementation failed.
 | 14 | Macro releases / surprises | CLOSED_SPECIFIC_LINEAGE | ALFRED V107 closed operationally after repeated source/target bridge failure; no alpha conclusion. |
 | 15 | FOMC events | UNTOUCHED | Fed/FOMC corpus available. |
 | 16 | Fed communication | UNTOUCHED | Separate publication timing from revisions. |
-| 17 | Treasury auctions | EXPLORING | V108 source forensic active; zero edge trials until auction schema/availability is verified. |
+| 17 | Treasury auctions | EXPLORING | V108 verified the source (9,496 auctions, 1979–2022); V109 event-level standalone research active. |
 | 18 | Energy fundamentals | UNTOUCHED | Blocked until EIA AVAILABLE_AT is causally built. |
 | 19 | Macro × market interactions | UNTOUCHED | Later, after standalone components. |
 | 20 | Macro regime × technical | UNTOUCHED | Later interaction family. |
