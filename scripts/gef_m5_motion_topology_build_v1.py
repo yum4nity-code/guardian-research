@@ -3,7 +3,7 @@ import argparse, hashlib, json, math, time
 import numpy as np
 import pandas as pd
 
-ENGINE_VERSION="M5-MOTION-TOPOLOGY-BUILD-1.0"
+ENGINE_VERSION="M5-MOTION-TOPOLOGY-BUILD-1.0.1"
 START_YEAR=2011
 END_YEAR=2014
 DISCOVERY_START=pd.Timestamp("2012-01-01")
@@ -219,13 +219,22 @@ def build_endpoint_targets(bars,state,tradable):
             A=np.column_stack(path)
             d=direction.to_numpy(dtype=float)
             signed=A*d[:,None]
-            cont=np.nanmax(signed,axis=1)
-            rev=np.nanmax(-signed,axis=1)
             scale=(prior_rv.to_numpy(dtype=float)*math.sqrt(kH))
-            score=(rev-cont)/scale
             future_ok=continuous_window_mask(tradable,back_steps=0,fwd_steps=kH)
             eligible=back_ok&future_ok&np.isfinite(d)&(d!=0)&np.isfinite(scale)&(scale>0)
-            cont[~eligible]=np.nan;rev[~eligible]=np.nan;score[~eligible]=np.nan
+
+            # Evaluate excursions only on rows that can actually become eligible.
+            # This avoids noisy All-NaN/divide-by-zero warnings on boundary/gap rows
+            # without changing any target semantics.
+            cont=np.full(len(c),np.nan,dtype=float)
+            rev=np.full(len(c),np.nan,dtype=float)
+            score=np.full(len(c),np.nan,dtype=float)
+            eval_mask=eligible&np.all(np.isfinite(A),axis=1)
+            if np.any(eval_mask):
+                cont[eval_mask]=np.max(signed[eval_mask],axis=1)
+                rev[eval_mask]=np.max(-signed[eval_mask],axis=1)
+                score[eval_mask]=(rev[eval_mask]-cont[eval_mask])/scale[eval_mask]
+            eligible=eligible&eval_mask
             T[f"cont_exc_{L}m_{H}m"]=cont.astype("float32")
             T[f"rev_exc_{L}m_{H}m"]=rev.astype("float32")
             T[f"endpoint_score_{L}m_{H}m"]=score.astype("float32")
