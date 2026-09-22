@@ -641,3 +641,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - BH-FDR q<=0.05 is applied separately inside each economic lineage; only discoveries see the 2013 holdout. Holdout requires same frozen coefficient sign and one-sided cluster-robust p<=0.10.
 - Added scripts/gef_crossed_batch_a_discovery.py plus run/watch PowerShell wrappers.
 - No Batch-A edge computation has yet been run; no 2014+, 2023-2025 or 2026 market return was accessed by this implementation step.
+
+
+### 2026-09-22 — Batch A V2 coverage-based temporal reset
+
+- Source-only 2009-2022 coverage audit showed that 2010 was partial for UDX/index/oil-crossed phenomena while stable common coverage begins in 2011.
+- V1 had already exposed invalid 2010-2012 coefficients/p-values, so V2 was defined as a fresh lineage without reusing those years for fitting.
+- Coverage-only window rule selected warm-up 2012, discovery 2013-2016 and untouched 2017 holdout; future 2018-2019 replication and 2020-2022 validation were preregistered but are not opened by V2 discovery.
+- Implemented V2 raw reconstruction from HistData M1, Treasury real-yield XML and CFTC Futures Only archives.
+- Added mandatory 2013 parity against frozen V83/V83B price features and forward targets.
+- V2 physically loads only 2012-2016 before discovery; 2017 is opened only after a BH discovery freeze; 2018+ is hard-forbidden.
+- Same 66 economic variants and same thresholds/gates are retained. No V1 sign/result is inherited.
