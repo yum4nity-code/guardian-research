@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import t as student_t
 
-ENGINE_VERSION="BATCH-A-V2-DISCOVERY-1.0"
+ENGINE_VERSION="BATCH-A-V2-DISCOVERY-1.1"
 DISCOVERY_START=pd.Timestamp("2013-01-01")
 DISCOVERY_END=pd.Timestamp("2017-01-01")
 HOLD_START=pd.Timestamp("2017-01-01")
@@ -83,7 +83,9 @@ def cooldown_mask(times,z,threshold=EVENT_Z,cooldown_min=COOLDOWN_MIN):
     return out
 
 def aligned_mask(times,h):
-    minute=(times.view("int64")//60_000_000_000).astype(np.int64)
+    # Pandas DatetimeIndex internal int64 resolution is not guaranteed to be ns
+    # on every runtime. Convert explicitly to datetime64[m] before integer modulo.
+    minute=pd.DatetimeIndex(times).to_numpy(dtype="datetime64[m]").astype(np.int64)
     return (minute%int(h))==0
 
 def period_mask(times,start,end,h):
