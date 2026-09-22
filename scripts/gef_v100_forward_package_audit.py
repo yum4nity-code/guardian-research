@@ -71,7 +71,7 @@ status(OUT,1,7,"V97E/V99 lineage verified; no 2026 market file opened",source_v9
 
 src=MQ5.read_text(encoding="utf-8")
 required_literals=[
-    "#define ACTIVATION_NOT_BEFORE D'2027.01.01 00:00'",
+    "#define ACTIVATION_NOT_BEFORE D'2027.01.02 00:00'",
     'const string SYM_DXY="DXY.cash";',
     'const string SYM_USDJPY="USDJPY";',
     'const string SYM_USDCHF="USDCHF";',
@@ -93,7 +93,7 @@ for forbidden in ("OrderSend(","CTrade","PositionOpen(","trade.Buy(","trade.Sell
 if "return INIT_FAILED;" not in src or "TimeCurrent()<ACTIVATION_NOT_BEFORE" not in src:
     raise RuntimeError("Hard activation lock missing")
 
-status(OUT,2,7,"MQL5 static contract verified",shadow_only=True,activation_not_before="2027-01-01")
+status(OUT,2,7,"MQL5 static contract verified",shadow_only=True,activation_not_before="2027-01-02")
 
 contracts={
     "7":{
@@ -111,7 +111,7 @@ write_json(OUT/"FROZEN_FORWARD_CONTRACT.json",contracts)
 status(OUT,3,7,"rank 7/9 forward contract frozen in deployment receipt")
 
 template=TEMPLATE.read_text(encoding="utf-8")
-if template.count("REPLACE_AFTER_2026")!=12:
+if template.count("REPLACE_AFTER_2026")!=16:
     raise RuntimeError("Seed template no longer visibly protected")
 status(OUT,4,7,"post-2026 seed requirement verified; no usable seed shipped")
 
@@ -152,7 +152,7 @@ manifest={
     "seed_template_sha256":sha256(TEMPLATE),
     "compile_status":compile_status,
     "compile_log_tail":compile_tail,
-    "activation_not_before":"2027-01-01 00:00",
+    "activation_not_before":"2027-01-02 00:00",
     "shadow_only":True,
     "real_seed_included":False,
     "order_sending_code_present":False,
