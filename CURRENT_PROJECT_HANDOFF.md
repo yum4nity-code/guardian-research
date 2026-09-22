@@ -27,7 +27,7 @@ Run GEF106-20260922-152746:
   - coverage 2000-2022
   - 39 tables with causal vintage semantics
 
-## V107.2 — ACTIVE
+## V107.3 — ACTIVE
 
 Standalone ALFRED first-vintage event-level research.
 
@@ -61,3 +61,8 @@ No 2026.
 
 Run:
 powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV107.ps1 -Root D:\MT5_Backtests
+
+
+### V107.3 correction
+Earlier V107.0-2 runs produced zero finite discovery tests.
+V107.3 now audits all ALFRED pre-2023 tables, measures event support before reading returns, uses all-release symmetric directional scoring rather than sparse state buckets, and exits with a valid receipt instead of raising if support is insufficient.
