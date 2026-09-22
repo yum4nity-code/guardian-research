@@ -1,0 +1,15 @@
+{
+  "run_id": "GEF110-20260922-162255",
+  "status": "COMPLETE_V110_UTC_CALENDAR",
+  "engine_version": "V110.0",
+  "calendar_cells": 240,
+  "finite_discovery_tests": 10265,
+  "discovery_frozen": 76,
+  "replication_survivors": 33,
+  "robustness_survivors": 19,
+  "validation_survivors": 8,
+  "final_survivors_sha256": "3d89751fa6533b5f5290be3b9704480aea9455d4e3b069b10bb2728bd67a2bbc",
+  "2023_2025_accessed": false,
+  "2026_accessed": false,
+  "next": "FINAL_PREOOS_FORENSIC_REQUIRED"
+}
