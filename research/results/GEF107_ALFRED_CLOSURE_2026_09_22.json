@@ -1,0 +1,15 @@
+{
+  "run_id": "GEF107-20260922-155712",
+  "status": "COMPLETE_V107_NO_DISCOVERY_SUPPORT",
+  "engine_version": "V107.4",
+  "causal_features": 104,
+  "markets": 15,
+  "max_feature_events_2010_2013": 209,
+  "reason": "FEATURE_SUPPORT_EXISTS_BUT_NO_TRADABLE_DISCOVERY_SAMPLES",
+  "scientific_alpha_result": false,
+  "2014_plus_market_returns_accessed": false,
+  "2023_2025_accessed": false,
+  "2026_accessed": false,
+  "decision": "CLOSE_ALFRED_LINEAGE_WITHOUT_ALPHA_CONCLUSION",
+  "note": "After four infrastructure/design iterations, ALFRED is closed operationally. Do not reopen without a separate source/target architecture rewrite."
+}
