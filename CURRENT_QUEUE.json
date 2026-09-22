@@ -1,7 +1,7 @@
 {
-  "schema_version": 14,
+  "schema_version": 15,
   "updated_at": "2026-09-22",
-  "active_primary": "POST-V112-HUMAN-REVIEW",
+  "active_primary": "CROSSED-ECONOMIC-PHENOMENA-BATCH-A-DESIGN",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -78,6 +78,25 @@
       "structural_family_passes": 1,
       "confirmed_family": "AUDUSD|H21",
       "failed_family": "USDCHF|H23"
+    },
+    {
+      "2026": "BLOCKED",
+      "id": "CROSSED-ECONOMIC-PHENOMENA-V1",
+      "priority": 1,
+      "status": "DESIGN_COMPLETE_AWAITING_PREREGISTRATION",
+      "matrix": "research/campaigns/GUARDIAN_CROSSED_PHENOMENA_MATRIX_V1_2026_09_22.md",
+      "historical_ready_count": 16,
+      "forward_only_count": 3,
+      "recommended_batch_a": [
+        "P01",
+        "P04",
+        "P06",
+        "P08",
+        "P11",
+        "P12"
+      ],
+      "rule": "Economically defined crossed phenomena only; do not rerun generic V85 LO/HI Cartesian conjunction mining.",
+      "2023_2025_for_new_lineage_design": "BLOCKED"
     },
     {
       "id": "PROTECTED-2026",
