@@ -335,3 +335,31 @@ Temporal firewall:
 First engine must stop at 2014.
 Historical tradability mask excludes recurring close/reopen windows with 30m buffer.
 Batch B remains parked, not discarded.
+
+
+### M5 Motion Topology V1 cache builder READY
+Implemented:
+- scripts/gef_m5_motion_topology_build_v1.py
+- automation/Run-M5MotionTopologyCacheV1.ps1
+- automation/Watch-M5MotionTopologyCacheV1.ps1
+
+Build scope:
+- raw HistData M1 2011-2014 only;
+- M5 OHLC per market;
+- if true M1 OHLC is unavailable, M5 OHLC is explicitly marked close-path proxy;
+- recurring minute-of-week tradability mask learned only from 2012-2014 source availability;
+- recurring slot threshold 95%;
+- 30-minute exclusion buffer at recurring close/reopen boundaries;
+- endpoint-score targets for L=15/30/60 and H=15/30/60;
+- intra-asset M5 state primitives;
+- frozen 13-edge economic graph;
+- cross-market breadth, dispersion, residual, beta, correlation-break and lag-state cache.
+
+Hard firewall:
+- no 2015+ source/outcome read;
+- zero edge trials;
+- zero alpha tests.
+
+After run:
+audit coverage/support/provenance first.
+Do NOT start M01-M12 outcome testing until discovery tests are separately preregistered.
