@@ -1,7 +1,7 @@
 {
   "schema_version": 14,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V112-LOCKED-OOS-OPENED-SCORING-PENDING",
+  "active_primary": "POST-V112-HUMAN-REVIEW",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -37,7 +37,7 @@
     {
       "id": "GEF-V110-V111-UTC-CALENDAR",
       "priority": 0,
-      "status": "PREOOS_FORENSIC_PASS",
+      "status": "LOCKED_OOS_PARTIAL_CONFIRMATION",
       "reference_run_v110": "GEF110-20260922-162255",
       "reference_run_v111": "GEF111-20260922-163321",
       "candidate_preoos_passes": 3,
@@ -45,13 +45,20 @@
         "AUDUSD|H21",
         "USDCHF|H23"
       ],
-      "2023_2025_accessed": false,
-      "2026_accessed": false
+      "2023_2025_accessed": true,
+      "2026_accessed": false,
+      "locked_oos_reference_run": "GEF112-20260922-164607",
+      "confirmed_structural_families": [
+        "AUDUSD|H21"
+      ],
+      "failed_structural_families": [
+        "USDCHF|H23"
+      ]
     },
     {
       "id": "GEF-V112-LOCKED-OOS-2023-2025",
       "priority": 1,
-      "status": "LOCKED_OOS_OPENED_SCORING_PENDING",
+      "status": "COMPLETE",
       "frozen_candidates": [
         "AUDUSD H21 120m SHORT",
         "USDCHF H23 120m LONG",
@@ -64,8 +71,13 @@
       "engine_version": "V112.1",
       "human_approval": "APPROVED_2026-09-22",
       "2023_2025_accessed": true,
-      "scoring_completed": false,
-      "2026_raw_accessed": false
+      "scoring_completed": true,
+      "2026_raw_accessed": false,
+      "reference_run": "GEF112-20260922-164607",
+      "candidate_passes": 1,
+      "structural_family_passes": 1,
+      "confirmed_family": "AUDUSD|H21",
+      "failed_family": "USDCHF|H23"
     },
     {
       "id": "PROTECTED-2026",
