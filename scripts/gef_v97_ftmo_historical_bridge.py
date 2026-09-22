@@ -7,6 +7,7 @@ import math
 import re
 import hashlib
 import time
+import subprocess
 
 ROOT=Path(r"D:\MT5_Backtests")
 BASE=ROOT/"Research"/"Autonomous"/"guardian_edge_factory_v97"
@@ -18,20 +19,29 @@ OOS_START=pd.Timestamp("2023-01-01 00:00")
 OOS_END=pd.Timestamp("2025-12-31 23:55")
 HIST_PRE_END=pd.Timestamp("2022-12-31 23:55")
 
-# Exact, predeclared bridge. No symbol shopping after seeing results.
-SYMBOL_MAP={
+# Semantic bridge is frozen before any historical MT5 values are requested.
+# Broker symbol spelling/suffix is discovered from the connected FTMO terminal itself.
+SYMBOL_EXPECTED={
     "BCOUSD":"UKOIL.cash",
     "USDCHF":"USDCHF",
     "USDCAD":"USDCAD",
     "GBPUSD":"GBPUSD",
     "XAUUSD":"XAUUSD",
 }
+SYMBOL_ALIASES={
+    "BCOUSD":["UKOIL.cash","UKOIL","BRENT.cash","BRENT","BRN.cash","BRN"],
+    "USDCHF":["USDCHF"],
+    "USDCAD":["USDCAD"],
+    "GBPUSD":["GBPUSD"],
+    "XAUUSD":["XAUUSD"],
+}
 
 BRIDGE_SPEC={
     "window":"2023-01-01 through 2025-12-31 only",
     "mt5_timeframe":"M1 fetched in UTC-bounded monthly chunks",
     "no_2026_market_values_requested":True,
-    "exact_symbol_map":SYMBOL_MAP,
+    "semantic_symbol_expectation":SYMBOL_EXPECTED,
+    "symbol_resolution":"verify FTMO terminal/account first, then resolve broker symbol name/suffix from symbols_get before requesting any history",
     "candidate_set":"exact V94 frozen 3",
     "checks":[
         "5m coverage and return concordance HistData vs FTMO MT5",
@@ -154,9 +164,190 @@ def month_starts(start_year,end_year_inclusive):
             out.append((a,b))
     return out
 
+def _identity(mt5):
+    ai=mt5.account_info()
+    ti=mt5.terminal_info()
+    return {
+        "login":int(ai.login) if ai is not None else None,
+        "server":str(ai.server) if ai is not None else None,
+        "account_company":str(ai.company) if ai is not None else None,
+        "terminal_company":str(ti.company) if ti is not None else None,
+        "terminal_name":str(ti.name) if ti is not None else None,
+        "terminal_path":str(ti.path) if ti is not None else None,
+        "connected":bool(ti.connected) if ti is not None else False,
+    }
+
+def _looks_ftmo(identity):
+    txt=" ".join(str(identity.get(k) or "") for k in (
+        "server","account_company","terminal_company","terminal_name","terminal_path"
+    )).upper()
+    return "FTMO" in txt
+
+def _running_terminal_paths():
+    cmd=[
+        "powershell","-NoProfile","-Command",
+        "(Get-Process terminal64 -ErrorAction SilentlyContinue | "
+        "Select-Object -ExpandProperty Path | Sort-Object -Unique) -join [Environment]::NewLine"
+    ]
+    try:
+        p=subprocess.run(cmd,capture_output=True,text=True,timeout=20)
+        if p.returncode!=0:
+            return []
+        return [x.strip() for x in p.stdout.splitlines() if x.strip()]
+    except Exception:
+        return []
+
+def connect_ftmo_terminal(mt5,out):
+    attempts=[]
+    # First inspect whatever MetaTrader5.initialize() chooses by default.
+    if mt5.initialize():
+        ident=_identity(mt5)
+        attempts.append({"mode":"default","path":None,**ident})
+        if ident["connected"] and _looks_ftmo(ident):
+            write_json(out/"MT5_TERMINAL_RESOLUTION.json",{
+                "status":"FTMO_TERMINAL_RESOLVED",
+                "selected":attempts[-1],
+                "attempts":attempts,
+            })
+            return ident
+        mt5.shutdown()
+
+    # Known prior resolution: bind the Python API to the actual running broker terminal,
+    # rather than assuming the default terminal process is the right one.
+    for path in _running_terminal_paths():
+        try:
+            ok=mt5.initialize(path=path)
+        except TypeError:
+            ok=mt5.initialize(path)
+        if not ok:
+            attempts.append({"mode":"explicit_path","path":path,"initialize":False,"last_error":str(mt5.last_error())})
+            mt5.shutdown()
+            continue
+        ident=_identity(mt5)
+        attempts.append({"mode":"explicit_path","path":path,**ident})
+        if ident["connected"] and _looks_ftmo(ident):
+            write_json(out/"MT5_TERMINAL_RESOLUTION.json",{
+                "status":"FTMO_TERMINAL_RESOLVED",
+                "selected":attempts[-1],
+                "attempts":attempts,
+            })
+            return ident
+        mt5.shutdown()
+
+    write_json(out/"MT5_TERMINAL_RESOLUTION.json",{
+        "status":"FTMO_TERMINAL_NOT_FOUND",
+        "selected":None,
+        "attempts":attempts,
+    })
+    raise RuntimeError(
+        "No connected FTMO MT5 terminal was found. Open/log in to the FTMO terminal and rerun. "
+        "See MT5_TERMINAL_RESOLUTION.json for every terminal/account that was probed."
+    )
+
+def _norm_symbol(s):
+    return re.sub(r"[^A-Z0-9]","",str(s).upper())
+
+def resolve_broker_symbols(mt5,needed_source_markets,out):
+    syms=mt5.symbols_get()
+    if syms is None:
+        raise RuntimeError(f"MT5 symbols_get() failed: {mt5.last_error()}")
+    all_rows=[]
+    by_name={}
+    for s in syms:
+        row={
+            "name":str(s.name),
+            "description":str(getattr(s,"description","") or ""),
+            "path":str(getattr(s,"path","") or ""),
+            "visible":bool(getattr(s,"visible",False)),
+            "select":bool(getattr(s,"select",False)),
+        }
+        all_rows.append(row)
+        by_name[row["name"]]=row
+
+    resolved={}
+    evidence={}
+    for src in sorted(needed_source_markets):
+        aliases=SYMBOL_ALIASES[src]
+        # 1) Frozen exact aliases, ordered.
+        exact=[a for a in aliases if a in by_name]
+
+        # 2) Same semantic root with broker suffix/prefix punctuation.
+        candidates=[]
+        for row in all_rows:
+            name=row["name"]
+            norm=_norm_symbol(name)
+            desc=(row["description"]+" "+row["path"]).upper()
+            if src=="BCOUSD":
+                ok=(
+                    "UKOIL" in norm
+                    or "BRENT" in norm
+                    or "BRN"==norm
+                    or "BRENT" in desc
+                    or "UK OIL" in desc
+                )
+                bad=("WTI" in norm or "USOIL" in norm or "WTI" in desc or "WEST TEXAS" in desc)
+                if ok and not bad:
+                    candidates.append(row)
+            else:
+                root=_norm_symbol(aliases[0])
+                if norm.startswith(root) or norm.endswith(root):
+                    candidates.append(row)
+
+        # De-duplicate while retaining deterministic name order.
+        uniq={r["name"]:r for r in candidates}
+        candidates=[uniq[k] for k in sorted(uniq)]
+
+        if exact:
+            chosen=exact[0]
+            method="frozen_exact_alias"
+        else:
+            visible=[r["name"] for r in candidates if r["visible"]]
+            selected=[r["name"] for r in candidates if r["select"]]
+            names=[r["name"] for r in candidates]
+            if len(selected)==1:
+                chosen=selected[0]; method="unique_selected_semantic_match"
+            elif len(visible)==1:
+                chosen=visible[0]; method="unique_visible_semantic_match"
+            elif len(names)==1:
+                chosen=names[0]; method="unique_semantic_match"
+            else:
+                evidence[src]={
+                    "expected":SYMBOL_EXPECTED[src],
+                    "aliases":aliases,
+                    "candidates":candidates,
+                    "status":"AMBIGUOUS_OR_MISSING",
+                }
+                write_json(out/"MT5_SYMBOL_RESOLUTION.json",{
+                    "status":"FAILED",
+                    "resolved":resolved,
+                    "evidence":evidence,
+                })
+                raise RuntimeError(
+                    f"Cannot resolve broker symbol for {src}. "
+                    f"Candidates={[r['name'] for r in candidates]}. "
+                    "See MT5_SYMBOL_RESOLUTION.json; no history was requested."
+                )
+
+        if not mt5.symbol_select(chosen,True):
+            raise RuntimeError(f"MT5 resolved symbol exists but symbol_select failed: {src}->{chosen}; last_error={mt5.last_error()}")
+        resolved[src]=chosen
+        evidence[src]={
+            "expected":SYMBOL_EXPECTED[src],
+            "aliases":aliases,
+            "chosen":chosen,
+            "method":method,
+            "candidates":candidates,
+            "status":"RESOLVED",
+        }
+
+    write_json(out/"MT5_SYMBOL_RESOLUTION.json",{
+        "status":"RESOLVED_BEFORE_HISTORY",
+        "resolved":resolved,
+        "evidence":evidence,
+    })
+    return resolved
+
 def fetch_mt5_m1(mt5,symbol):
-    if not mt5.symbol_select(symbol,True):
-        raise RuntimeError(f"MT5 exact symbol unavailable/select failed: {symbol}")
     chunks=[]
     for i,(a,b) in enumerate(month_starts(2023,2025),1):
         rates=mt5.copy_rates_range(
@@ -257,9 +448,9 @@ freeze={
     "2026_values_accessed":False,
 }
 write_json(OUT/"V97_BRIDGE_FREEZE.json",freeze)
-status(OUT,2,12,"FTMO bridge mapping and diagnostics physically frozen",symbols=SYMBOL_MAP)
+status(OUT,2,12,"FTMO semantic mapping and diagnostics physically frozen",symbols=SYMBOL_EXPECTED)
 
-# ---------- import/init MT5; request historical 2023-2025 only ----------
+# ---------- resolve FTMO terminal + broker symbols BEFORE any historical values ----------
 try:
     import MetaTrader5 as mt5
 except Exception as e:
@@ -267,9 +458,6 @@ except Exception as e:
         "Python package MetaTrader5 is unavailable. Install/use the same Python environment as the MT5 terminal. "
         f"Import error: {e!r}"
     )
-if not mt5.initialize():
-    raise RuntimeError(f"MetaTrader5 initialize() failed: {mt5.last_error()}")
-status(OUT,3,12,"MT5 initialized; no current tick/symbol_info/account_info read")
 
 needed_source_markets=set()
 for r in panel.itertuples(index=False):
@@ -277,15 +465,25 @@ for r in panel.itertuples(index=False):
     needed_source_markets.add(feature_market(r.feature_j))
     needed_source_markets.add(target_market(r.target))
 needed_source_markets.discard(None)
-missing_map=sorted(needed_source_markets-set(SYMBOL_MAP))
+missing_map=sorted(needed_source_markets-set(SYMBOL_EXPECTED))
 if missing_map:
-    mt5.shutdown()
-    raise RuntimeError(f"No frozen FTMO symbol mapping for {missing_map}")
+    raise RuntimeError(f"No frozen FTMO semantic mapping for {missing_map}")
+
+identity=connect_ftmo_terminal(mt5,OUT)
+resolved_symbols=resolve_broker_symbols(mt5,needed_source_markets,OUT)
+status(
+    OUT,3,12,
+    "correct FTMO terminal/account verified and broker symbols resolved before history",
+    server=identity.get("server"),
+    login=identity.get("login"),
+    terminal_path=identity.get("terminal_path"),
+    symbols=resolved_symbols,
+)
 
 ftmo_raw={}
 try:
     for i,src in enumerate(sorted(needed_source_markets),1):
-        ft=SYMBOL_MAP[src]
+        ft=resolved_symbols[src]
         d=fetch_mt5_m1(mt5,ft)
         ftmo_raw[src]=d
         d.to_parquet(OUT/f"FTMO_{ft.replace('.','_')}_M1_2023_2025.parquet",index=False)
@@ -320,7 +518,7 @@ for src in sorted(needed_source_markets):
 
     rec={
         "source_market":src,
-        "ftmo_symbol":SYMBOL_MAP[src],
+        "ftmo_symbol":resolved_symbols[src],
         "hist_5m_nonnull":int(h5.notna().sum()),
         "ftmo_5m_nonnull":int(f5.notna().sum()),
         "overlap_5m":int(len(overlap)),
@@ -492,7 +690,7 @@ receipt={
     "engine_version":ENGINE_VERSION,
     "source_v94":V94.name,
     "frozen_2026_panel_sha256":frz94["panel_sha256"],
-    "ftmo_symbols":SYMBOL_MAP,
+    "ftmo_symbols":resolved_symbols,
     "markets_bridged":len(M),
     "features_bridged":len(needed_features),
     "candidates_bridged":len(C),
