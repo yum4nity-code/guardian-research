@@ -9,8 +9,8 @@ Frozen forward-shadow implementation for corrected Guardian ranks 7 and 9.
 
 ## What the EA does
 
-- Reproduces the frozen feature definitions on completed M5 bars.
-- Evaluates causal state using PRIOR expanding mean/std statistics, then appends the current feature value.
+- Reproduces the frozen feature definitions on the exact 5-minute research grid, including the original missing-bar semantics: ret30 only needs its two endpoints, while rv60/zret60 use up to the last 12 5-minute returns with min_periods=6 and sample std.
+- Evaluates causal state using PRIOR expanding mean/std statistics, then appends the current feature value with Welford n/mean/M2 updates for numerical stability.
 - Samples rank 7 every 15 minutes and rank 9 every 30 minutes.
 - Writes shadow signals only.
 - Contains no live order-sending code.
@@ -32,7 +32,7 @@ GuardianEdgeForward\state_seed_v100.csv
 
 CSV format:
 
-feature,n,sum,sumsq,last_decision_time
+feature,n,mean,m2,last_decision_time
 
 Required feature rows:
 
