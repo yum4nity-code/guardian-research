@@ -207,9 +207,9 @@ def main():
     pd.DataFrame(provenance).to_csv(out/"FEATURE_PROVENANCE.csv",index=False)
     status(2,12,"causal ALFRED release features built",features=len(features))
 
-    grid,P,markets=build_prices(root,2022)
-    if not markets:raise RuntimeError("No price markets")
-    status(3,12,"price targets available through 2022",markets=len(markets))
+    grid13,P13,markets=build_prices(root,2013)
+    if not markets:raise RuntimeError("No discovery price markets")
+    status(3,12,"discovery price targets loaded through 2013 only",markets=len(markets))
 
     rows=[]; total=len(features)*2*len(markets)*len(HORIZONS); done=0
     for fname,ev in features.items():
@@ -217,7 +217,7 @@ def main():
        for sym in markets:
         for h in HORIZONS:
             done+=1
-            dtimes,raw=event_sample(ev,P[sym],grid,h,state,1,"2010-01-01","2014-01-01")
+            dtimes,raw=event_sample(ev,P13[sym],grid13,h,state,1,"2010-01-01","2014-01-01")
             raw=raw[np.isfinite(raw)]
             if len(raw)<MIN_DISC:continue
             disc_years=int(pd.DatetimeIndex(dtimes).year.nunique())
@@ -250,10 +250,14 @@ def main():
       "2014_plus_accessed_at_freeze":False,"2023_2025_accessed":False,"2026_accessed":False})
     status(5,12,"2010-2013 discovery candidates frozen before 2014+",frozen=len(frozen))
 
+    grid17,P17,markets17=build_prices(root,2017)
+    missing17=sorted(set(frozen["target_market"].astype(str))-set(markets17))
+    if missing17: raise RuntimeError(f"Replication markets missing through 2017: {missing17}")
+
     rep=[]
     for r in frozen.itertuples(index=False):
         ev=features[r.feature]
-        times,vals=event_sample(ev,P[r.target_market],grid,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01")
+        times,vals=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01")
         pyf,yearly=positive_year_fraction(times,vals)
         passed=(len(vals)>=MIN_REP and mean_bp(vals)>0 and mean_bp(vals)-1>0 and pyf>=.50 and remove_best(vals,2)>0)
         rep.append({**r._asdict(),"rep_n":len(vals),"rep_mean_bp":mean_bp(vals),"rep_net1bp":mean_bp(vals)-1,
@@ -271,11 +275,11 @@ def main():
     robust=[]
     for r in rp.itertuples(index=False):
         ev=features[r.feature]
-        times,vals=event_sample(ev,P[r.target_market],grid,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01")
+        times,vals=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01")
         rm,bm=remove_best_month(times,vals);loo,looj=leave_one_year_out(times,vals)
-        _,v09=event_sample(ev,P[r.target_market],grid,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",0,.9)
-        _,v11=event_sample(ev,P[r.target_market],grid,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",0,1.1)
-        _,vlag=event_sample(ev,P[r.target_market],grid,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",1,1.0)
+        _,v09=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",0,.9)
+        _,v11=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",0,1.1)
+        _,vlag=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",1,1.0)
         passed=(remove_best(vals,3)>0 and rm>0 and loo>0 and mean_bp(v09)>0 and mean_bp(v11)>0 and mean_bp(vlag)>0)
         robust.append({**r._asdict(),"robust_remove_best3_bp":remove_best(vals,3),"robust_remove_best_month_bp":rm,
                        "robust_best_month":bm,"robust_loo_min_bp":loo,"robust_loo_json":json.dumps(looj,sort_keys=True),
@@ -295,10 +299,14 @@ def main():
       "2018_plus_accessed_at_freeze":False,"2023_2025_accessed":False,"2026_accessed":False})
     status(8,12,"survivors frozen before 2018+",survivors=len(rb))
 
+    grid22,P22,markets22=build_prices(root,2022)
+    missing22=sorted(set(rb["target_market"].astype(str))-set(markets22))
+    if missing22: raise RuntimeError(f"Validation markets missing through 2022: {missing22}")
+
     valsout=[]
     for r in rb.itertuples(index=False):
         ev=features[r.feature]
-        times,vals=event_sample(ev,P[r.target_market],grid,int(r.horizon_min),r.state,int(r.direction_sign),"2018-01-01","2023-01-01")
+        times,vals=event_sample(ev,P22[r.target_market],grid22,int(r.horizon_min),r.state,int(r.direction_sign),"2018-01-01","2023-01-01")
         pyf,yearly=positive_year_fraction(times,vals)
         rm,bm=remove_best_month(times,vals);loo,looj=leave_one_year_out(times,vals)
         passed=(len(vals)>=MIN_VAL and mean_bp(vals)>0 and mean_bp(vals)-1>0 and pyf>=.60 and
