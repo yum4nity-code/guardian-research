@@ -679,7 +679,7 @@ def main():
         P = pd.DataFrame(index=grid)
 
         for j, sym in enumerate(markets, 1):
-            raw = load_m1(root, sym, 2010, end_year)
+            raw = load_m1(root, sym, 2009, end_year)
             P[sym] = raw.resample("5min", label="right", closed="left").last().reindex(grid).astype("float64")
             print(f"[GEF101] price rebuild {j}/{len(markets)} {sym} through {end_year}", flush=True)
 
