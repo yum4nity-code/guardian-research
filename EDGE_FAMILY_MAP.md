@@ -19,10 +19,10 @@ A broad family is not called exhausted merely because one implementation failed.
 | 11 | Nominal rates | CLOSED_SPECIFIC_LINEAGE | V102 validated candidates but V103 final pre-OOS forensic passed 0/5; locked OOS not opened. |
 | 12 | Real yields / breakevens | CLOSED_SPECIFIC_LINEAGE | V102/V103 standalone lineage closed before OOS; REAL 7Y survivors were concentrated in one month/year. |
 | 13 | Financial conditions / stress | UNTOUCHED | V106 found 2010-2022 tables but no causal release field; hold until provenance is repaired. |
-| 14 | Macro releases / surprises | EXPLORING | V107 tests ALFRED first-vintage/first-value event-level signals; one observation per release. |
+| 14 | Macro releases / surprises | CLOSED_SPECIFIC_LINEAGE | ALFRED V107 closed operationally after repeated source/target bridge failure; no alpha conclusion. |
 | 15 | FOMC events | UNTOUCHED | Fed/FOMC corpus available. |
 | 16 | Fed communication | UNTOUCHED | Separate publication timing from revisions. |
-| 17 | Treasury auctions | UNTOUCHED | Auction dataset available. |
+| 17 | Treasury auctions | EXPLORING | V108 source forensic active; zero edge trials until auction schema/availability is verified. |
 | 18 | Energy fundamentals | UNTOUCHED | Blocked until EIA AVAILABLE_AT is causally built. |
 | 19 | Macro × market interactions | UNTOUCHED | Later, after standalone components. |
 | 20 | Macro regime × technical | UNTOUCHED | Later interaction family. |
