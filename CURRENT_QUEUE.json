@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "CACHE_BUILDER_READY_TO_RUN",
+      "status": "CACHE_COMPLETE_PENDING_INTEGRITY_AUDIT",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -231,7 +231,18 @@
         "alpha_tests": 0,
         "edge_trials": 0
       },
-      "next_after_cache": "Audit cache support/provenance, then preregister M01-M08 tests before any outcome association."
+      "next_after_cache": "Run integrity/session/support audit. Only then freeze M01-M08 discovery tests.",
+      "latest_cache_run": "GEFM5T-20260922-200657",
+      "latest_cache_engine": "M5-MOTION-TOPOLOGY-BUILD-1.0",
+      "cache_receipt": {
+        "markets": 13,
+        "graph_edges": 13,
+        "cross_features": 199,
+        "endpoint_objects": 117,
+        "edge_trials": 0,
+        "alpha_tests": 0
+      },
+      "cache_audit_runner": "automation/Audit-M5MotionTopologyCacheV1.ps1"
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
