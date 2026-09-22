@@ -5,48 +5,58 @@
 ## V100
 Frozen forward/shadow package. Ranks 7/9. 2026 protected.
 
-## V101 — CLOSED
-Sparse price × price × rates:
-17,417 attempted -> 150 frozen -> 2 replicated -> 0 validated.
+## Rates lineage
+V101 interactions closed at validation.
+V102 produced five validated standalone-rate candidates.
+V103 final pre-OOS forensic passed 0/5.
+Rates locked OOS was not opened.
 
-## V102/V103 — RATES CLOSED BEFORE OOS
+## V104 — CFTC VALIDATED PRE-OOS
 
-V102 run GEF102-20260922-143744:
-10,902 finite tests -> 200 frozen -> 34 replicated -> 27 robust -> 5 validated.
-
-V103 run GEF103-20260922-145228:
-- five candidates audited
-- three unique signal families
-- **0 final pre-OOS passes**
+Run: GEF104-20260922-145941
+- engine: V104.1
+- finite CFTC tests: 5,872
+- discovery frozen: 200
+- replication survivors: 65
+- robustness survivors: 39
+- validation survivors: 7
+- final SHA256: 428ce6c9f5bd5b4acaaf4fbc619b1d07fd0c6abd5ec716403d6b2b4e01a9b68e
 - 2023-2025 not accessed
 - 2026 not accessed
 
-Important interpretation:
-- REAL 7Y d1 LO -> GBPUSD/AUDUSD/EURUSD signals were concentrated in a single validation month/year, so month-removal / leave-one-year-out / month bootstrap became undefined because no independent sample remained.
-- NOM 1M -> USDJPY failed independent concentration/repeated-signal gates.
-- NOM 3M d5 -> USDCHF failed trim-5% and daily-first stress.
-- Therefore no lag diagnostic can rescue the lineage; rates standalone is closed before locked OOS.
+Seven frozen survivors include repeated information sources:
+- USDCAD commercial z52 LO -> USDJPY SHORT and AUDUSD SHORT
+- WTI commercial level HI -> NSXUSD LONG and SPXUSD LONG
+- USDCHF commercial z52 HI -> USDCHF SHORT
+- USDCAD commercial level LO -> AUDUSD SHORT
+- EURUSD commercial level HI -> USDCHF SHORT
 
-Canonical closure:
-research/results/GEF103_RATES_CLOSURE_2026_09_22.json
+## V105 — ACTIVE
 
-## V104 — ACTIVE NEXT FAMILY
+Final pre-OOS forensic of exactly those seven V104 survivors.
 
-Standalone CFTC Futures Only positioning.
+Key difference from earlier intraday forensics:
+CFTC is weekly information. V105 explicitly maps every eligible target observation back to the latest distinct CFTC report AVAILABLE_AT and evaluates one signal per report, in addition to the original frozen intraday semantics.
 
-Causal rule:
-- report/as-of date parsed using V82D logic
-- AVAILABLE_AT = next Monday 00:00 UTC after report date
-- exact V83 market mappings
-- exact V83 feature definitions
-- 2010-2013 values anchored to canonical V83B
-- exact V85 state parity required before replication
+Diagnostics/gates include:
+- tail removal;
+- best month and leave-one-year-out;
+- horizon non-overlap;
+- first signal per distinct CFTC report;
+- remove best 3/5 reports;
+- first-per-report year stability;
+- first-per-report month-block bootstrap;
+- first signal per contiguous state episode;
+- z0.9/z1.1;
+- source availability delayed +1/+2 calendar days;
+- 1/2/3/5 bp diagnostics;
+- signal overlap and return correlation.
 
-Protocol:
-2010-2012 discovery -> 2013 confirmation -> freeze -> 2014-2017 replication -> robustness -> freeze -> 2018-2022 validation -> STOP.
-
+No portfolio optimization.
 No 2023-2025.
 No 2026.
 
 Run:
-powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV104.ps1 -Root D:\MT5_Backtests
+powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV105.ps1 -Root D:\MT5_Backtests
+
+Regardless of result, STOP after V105.
