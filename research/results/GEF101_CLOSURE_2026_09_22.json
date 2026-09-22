@@ -1,0 +1,20 @@
+{
+  "run_id": "GEF101-20260922-142601",
+  "status": "COMPLETE_V101_SPARSE_TRIPLE_RATES",
+  "engine_version": "V101.2",
+  "source_v85": "GEF85-20260921-102546",
+  "source_v83b": "GEF83B-20260921-095306",
+  "atomic_shortlist": 3641,
+  "attempted_triples": 17417,
+  "finite_discovery_triples": 187,
+  "discovery_frozen": 150,
+  "replication_survivors": 2,
+  "validation_survivors": 0,
+  "discovery_freeze_sha256": "45a4610f30ab86926a7135ebb3bd1d290d988a20cd60e13220ba52d84a5e26a3",
+  "pre_validation_freeze_sha256": "876b663ffb9b7717107c3c4e2484f5c6eb3dcd520e9020e77a7728d58ccb90c1",
+  "final_survivors_sha256": "cc007d45d1f8627c70be012d4744261daeb1b698aafc0174e4b7bb438836ba79",
+  "v100_frozen_ranks_used_for_selection": false,
+  "2023_2025_accessed": false,
+  "2026_accessed": false,
+  "next": "CLOSED_NO_VALIDATION_SURVIVORS"
+}
