@@ -79,8 +79,8 @@ required_literals=[
     'const string SYM_GBPUSD="GBPUSD";',
     "WriteSignal(7",
     "WriteSignal(9",
-    "a.lo && b.hi",
-    "a.hi && b.hi",
+    "a7.lo && b7.hi",
+    "a9.hi && b9.hi",
 ]
 missing=[x for x in required_literals if x not in src]
 if missing:
