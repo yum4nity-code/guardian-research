@@ -7,53 +7,62 @@
 - Rates standalone closed after V103 forensic 0/5.
 - CFTC standalone closed after V105 report-level forensic 0/7.
 - ALFRED V107 closed operationally without alpha conclusion.
-- Treasury V109 closed at discovery: 15,870 finite tests, 0 frozen after BH.
+- Treasury V109 closed at discovery.
 
-## V110 — VALIDATED PRE-OOS
+## V110 / V111 — PRE-OOS FORENSIC PASS
 
-Run: GEF110-20260922-162255
-- 240 frozen calendar cells
-- 10,265 finite discovery tests
-- 76 discovery survivors
-- 33 replication survivors
-- 19 robustness survivors
-- 8 validation survivors
-- final SHA256: 3d89751fa6533b5f5290be3b9704480aea9455d4e3b069b10bb2728bd67a2bbc
-- 2023-2025 not accessed
-- 2026 not accessed
+V110 run:
+GEF110-20260922-162255
 
-Eight survivors include obvious structural clusters:
-- AUDUSD H21: 120m and 240m
-- USDCHF H23: 120m and 240m
-- USDCHF H22: 240m
-- USDJPY H22 Thursday: 120m
-- XAGUSD H11: 60m
-- EURUSD H11: 120m
+V111 run:
+GEF111-20260922-163321
 
-Do not treat all eight as independent edges.
+V111 passed exactly 3 of the 8 validated V110 candidates:
 
-## V111 — ACTIVE
+1. C3 — AUDUSD H21, 120m, SHORT
+2. C4 — USDCHF H23, 240m, LONG
+3. C6 — USDCHF H23, 120m, LONG
 
-Final pre-OOS forensic of exactly those eight V110 survivors.
+These correspond to 2 structural information families:
+- AUDUSD|H21
+- USDCHF|H23
 
-2018-2022 only.
+Do not count the two USDCHF horizons as independent edges.
 
-Tests:
-- baseline candidate mean and matched-control effect
-- net 1/2/3/5 bp
-- trim best 1/2/5%
-- remove best 10/20 events
-- remove best calendar month
-- leave-one-year-out
-- timing shifts -10/-5/+5/+10 minutes around the frozen hour
-- deterministic 2,000-draw month-block bootstrap
-- event-set Jaccard
-- common-timestamp return correlation
-- structural family key = target_market + calendar cell
+Failed V111 candidates:
+- XAGUSD H11 60m
+- USDJPY H22 Thursday 120m
+- USDCHF H22 240m
+- AUDUSD H21 240m
+- EURUSD H11 120m
 
-Pass requires:
-baseline >0; control effect >0; net1 >0; trim5 >0; remove-best20 >0; remove-best-month >0; LOO >0; -5m >0; +5m >0; +10m >0; bootstrap q2.5 >0.
+## V112 — PREREGISTERED, LOCKED, HUMAN APPROVAL REQUIRED
 
-STOP after V111.
-Do not open 2023-2025 automatically.
-Do not open 2026.
+V112 protocol is frozen before any 2023-2025 market return is opened.
+
+Frozen OOS candidates:
+- AUDUSD H21 120m SHORT
+- USDCHF H23 120m LONG
+- USDCHF H23 240m LONG
+
+Candidate OOS gate requires all:
+- N >= 500
+- directional mean > 0
+- matched-control effect > 0
+- net 1 bp > 0
+- trim best 2% > 0
+- leave-one-year-out minimum > 0
+- month-block bootstrap q2.5 > 0
+
+Family rule:
+- AUDUSD|H21 passes if its frozen candidate passes.
+- USDCHF|H23 passes only if BOTH 120m and 240m frozen candidates pass.
+
+The runner will not open any 2023-2025 market file unless invoked with:
+OPEN_LOCKED_OOS_2023_2025
+
+2026 remains forbidden.
+
+No automatic execution.
+No optimization after OOS.
+No portfolio construction in V112.
