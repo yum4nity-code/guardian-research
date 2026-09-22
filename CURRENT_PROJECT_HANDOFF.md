@@ -150,3 +150,42 @@ start from an economic phenomenon and derived object (residual/spread/decomposit
 2023-2025 is not available for design of these new lineages.
 2026 remains protected.
 AUDUSD H21 120m SHORT remains frozen and is not to be optimized further.
+
+
+## Crossed economic phenomena Batch A — PREREGISTERED / READY TO RUN
+
+Frozen common protocol:
+research/campaigns/GEF_BATCH_A_COMMON_PROTOCOL_2026_09_22.md
+
+Frozen machine spec:
+research/campaigns/GEF_BATCH_A_FROZEN_SPEC_2026_09_22.json
+
+Separate preregistrations:
+- P01 real-yield + USD pressure on gold
+- P04 oil -> CAD residual transmission
+- P06 Nasdaq/SPX relative-value divergence x real rates
+- P08 synthetic USD breadth vs UDX divergence
+- P11 XAU/XAG relative-value dislocation
+- P12 CFTC crowding x own-price shock
+
+Discovery engine:
+scripts/gef_crossed_batch_a_discovery.py
+
+Runner:
+automation/Run-CrossedPhenomenaBatchA.ps1
+
+Exact predeclared variant count: 66.
+
+Temporal firewall in this engine:
+- 2010-2012 discovery
+- 2013 temporal holdout
+- 2014+ not read
+- 2023-2025 unavailable for new-lineage design/selection
+- 2026 forbidden
+
+Important:
+this is NOT a rerun of V85's generic LO/HI cross-family Cartesian mining.
+The new objects are rolling-beta residuals, economic breadth, real-yield interactions and CFTC crowding x distinct price-shock events.
+
+If a lineage has no BH+2013 survivor, close it without retuning.
+If survivors exist, freeze them and separately preregister 2014-2017 replication.
