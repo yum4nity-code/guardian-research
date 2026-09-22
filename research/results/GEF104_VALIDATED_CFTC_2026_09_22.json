@@ -1,0 +1,16 @@
+{
+  "run_id": "GEF104-20260922-145941",
+  "status": "COMPLETE_V104_STANDALONE_CFTC",
+  "engine_version": "V104.1",
+  "source_v85": "GEF85-20260921-102546",
+  "source_v83b": "GEF83B-20260921-095306",
+  "finite_cftc_tests": 5872,
+  "discovery_frozen": 200,
+  "replication_survivors": 65,
+  "robustness_survivors": 39,
+  "validation_survivors": 7,
+  "final_survivors_sha256": "428ce6c9f5bd5b4acaaf4fbc619b1d07fd0c6abd5ec716403d6b2b4e01a9b68e",
+  "2023_2025_accessed": false,
+  "2026_accessed": false,
+  "next": "FINAL_PREOOS_FORENSIC_REQUIRED"
+}
