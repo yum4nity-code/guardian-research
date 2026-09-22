@@ -83,7 +83,7 @@
       "2026": "BLOCKED",
       "id": "CROSSED-ECONOMIC-PHENOMENA-V1",
       "priority": 1,
-      "status": "BATCH_A_V2_PREREGISTERED_READY_TO_RUN",
+      "status": "BATCH_A_V2_OBJECT_SUPPORT_AUDIT_REQUIRED",
       "matrix": "research/campaigns/GUARDIAN_CROSSED_PHENOMENA_MATRIX_V1_2026_09_22.md",
       "historical_ready_count": 16,
       "forward_only_count": 3,
@@ -123,7 +123,10 @@
         "validation_future": "2020-2022"
       },
       "2017_access": "BLOCKED_UNTIL_DISCOVERY_FREEZE",
-      "2018_plus_access": "BLOCKED_IN_V2_ENGINE"
+      "2018_plus_access": "BLOCKED_IN_V2_ENGINE",
+      "v2_latest_run": "GEFBA2-20260922-183722",
+      "v2_failure_fact": "66/66 n<120 and clusters<80; do not interpret as alpha rejection",
+      "v2_object_diagnostic": "automation/Diagnose-CrossedPhenomenaBatchAV2Objects.ps1"
     },
     {
       "id": "PROTECTED-2026",
