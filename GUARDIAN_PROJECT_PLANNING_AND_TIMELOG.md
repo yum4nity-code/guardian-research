@@ -703,3 +703,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Endpoint support is large (minimum 22,129 observations across L/H objects).
 - Added a read-only integrity audit before M01-M08 preregistration, focused on recurring session-mask shape, OHLC integrity, target marginal distributions, joint graph support and cross-feature finite support.
 - Special attention: SPXUSD, UDXUSD and BCOUSD masks are materially narrower than FX masks and must be verified as source/session structure rather than accidental overfiltering.
+
+
+### 2026-09-22 — M5 topology V1 cache audit and V1.1 session-mask amendment
+- V1 cache audit passed OHLC integrity, endpoint distributions, joint graph support and cross-feature support.
+- V1 recurring UTC-slot tradability mask failed session-shape plausibility: SPX/UDX/NSX/BCO were heavily fragmented.
+- Since zero alpha/edge tests had been run, replaced only the session eligibility infrastructure before research.
+- V1.1 uses date-specific observed continuity with 30m boundary buffers around gaps/closures and reopens/recoveries.
+- All scientific target/state definitions and temporal firewall remain unchanged.
+- Added V1.1 builder and integrity audit. M01-M08 remain blocked until V1.1 cache audit passes.
