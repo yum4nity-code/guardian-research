@@ -18,8 +18,8 @@ A broad family is not called exhausted merely because one implementation failed.
 | 10 | CFTC positioning | CLOSED_SPECIFIC_LINEAGE | V104 validated 7 candidates, but V105 report-level pre-OOS forensic passed 0/7; locked OOS not opened. |
 | 11 | Nominal rates | CLOSED_SPECIFIC_LINEAGE | V102 validated candidates but V103 final pre-OOS forensic passed 0/5; locked OOS not opened. |
 | 12 | Real yields / breakevens | CLOSED_SPECIFIC_LINEAGE | V102/V103 standalone lineage closed before OOS; REAL 7Y survivors were concentrated in one month/year. |
-| 13 | Financial conditions / stress | UNTOUCHED | Vintage correctness where revisions matter. |
-| 14 | Macro releases / surprises | UNTOUCHED | Requires exact causal release timestamps. |
+| 13 | Financial conditions / stress | UNTOUCHED | V106 found 2010-2022 tables but no causal release field; hold until provenance is repaired. |
+| 14 | Macro releases / surprises | EXPLORING | V107 tests ALFRED first-vintage/first-value event-level signals; one observation per release. |
 | 15 | FOMC events | UNTOUCHED | Fed/FOMC corpus available. |
 | 16 | Fed communication | UNTOUCHED | Separate publication timing from revisions. |
 | 17 | Treasury auctions | UNTOUCHED | Auction dataset available. |
