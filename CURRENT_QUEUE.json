@@ -1,7 +1,7 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V106-REMAINING-SOURCE-AUDIT",
+  "active_primary": "GEF-V107-ALFRED-EVENT-LEVEL",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -15,27 +15,30 @@
     {
       "id": "GEF-V102-V103-RATES",
       "priority": 0,
-      "status": "CLOSED_PREOOS_FORENSIC_FAIL",
-      "reference_run": "GEF103-20260922-145228"
+      "status": "CLOSED_PREOOS_FORENSIC_FAIL"
     },
     {
       "id": "GEF-V104-V105-CFTC",
       "priority": 0,
-      "status": "CLOSED_PREOOS_FORENSIC_FAIL",
-      "reference_run": "GEF105-20260922-151045",
-      "result": "V104 validated 7 candidates / 5 information families; V105 final report-level forensic passed 0/7.",
-      "2023_2025_accessed": false,
-      "2026_accessed": false
+      "status": "CLOSED_PREOOS_FORENSIC_FAIL"
     },
     {
       "id": "GEF-V106-REMAINING-SOURCE-AUDIT",
+      "priority": 0,
+      "status": "COMPLETE",
+      "reference_run": "GEF106-20260922-152746",
+      "recommended_next_family": "alfred_vintage",
+      "edge_trials": 0
+    },
+    {
+      "id": "GEF-V107-ALFRED-EVENT-LEVEL",
       "priority": 1,
       "status": "READY_TO_RUN",
-      "type": "source_audit_only",
-      "goal": "Inventory real local causal sources before selecting the next untouched family.",
-      "runner": "automation/Run-GuardianEdgeFactoryV106.ps1",
-      "engine": "scripts/gef_v106_remaining_source_audit.py",
-      "edge_trials": 0
+      "type": "new_family",
+      "goal": "Test ALFRED first-vintage first-value macro information using one independent observation per release event.",
+      "preregistration": "research/campaigns/GEF_V107_ALFRED_EVENT_LEVEL_2026_09_22.md",
+      "runner": "automation/Run-GuardianEdgeFactoryV107.ps1",
+      "engine": "scripts/gef_v107_alfred_event_level.py"
     },
     {
       "id": "LOCKED-OOS-2023-2025",
