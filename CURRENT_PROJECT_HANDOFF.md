@@ -363,3 +363,17 @@ Hard firewall:
 After run:
 audit coverage/support/provenance first.
 Do NOT start M01-M12 outcome testing until discovery tests are separately preregistered.
+
+
+### M5 Motion Topology cache build completed
+Run GEFM5T-20260922-200657 completed with:
+- 13 markets
+- 13 graph edges
+- 199 cross features
+- 117 endpoint objects
+- 0 edge trials / 0 alpha tests
+- no 2015+ outcomes accessed
+
+Support is large: all endpoint objects have at least 22,129 finite observations.
+
+Before preregistering M01-M08, run cache integrity audit because historical tradability masking is materially tighter for SPXUSD, UDXUSD and BCOUSD than for FX. Audit will inspect recurring session shapes, OHLC integrity, endpoint target distributions, pairwise joint support and finite cross-feature support. No feature/outcome association is computed.
