@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-22",
-  "active_primary": "M5-MOTION-TOPOLOGY-V1",
+  "active_primary": "M5-MOTION-TOPOLOGY-V1-CACHE-BUILD",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "DESIGN_FROZEN_READY_FOR_ENGINE_BUILD",
+      "status": "CACHE_BUILDER_READY_TO_RUN",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -219,7 +219,19 @@
         "locked_oos": "2023-2025",
         "protected": "2026"
       },
-      "first_engine_rule": "DO_NOT_OPEN_2015_PLUS_OUTCOMES_BEFORE_DISCOVERY_FREEZE"
+      "first_engine_rule": "DO_NOT_OPEN_2015_PLUS_OUTCOMES_BEFORE_DISCOVERY_FREEZE",
+      "cache_engine": "scripts/gef_m5_motion_topology_build_v1.py",
+      "cache_runner": "automation/Run-M5MotionTopologyCacheV1.ps1",
+      "cache_watcher": "automation/Watch-M5MotionTopologyCacheV1.ps1",
+      "cache_engine_version": "M5-MOTION-TOPOLOGY-BUILD-1.0",
+      "cache_scope": {
+        "source_years": "2011-2014",
+        "discovery_targets": "2012-2014",
+        "max_outcome_year": 2014,
+        "alpha_tests": 0,
+        "edge_trials": 0
+      },
+      "next_after_cache": "Audit cache support/provenance, then preregister M01-M08 tests before any outcome association."
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
