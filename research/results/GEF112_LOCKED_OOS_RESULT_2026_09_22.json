@@ -1,0 +1,50 @@
+{
+  "run_id": "GEF112-20260922-164607",
+  "status": "COMPLETE_V112_LOCKED_OOS_2023_2025",
+  "engine_version": "V112.1",
+  "candidate_count": 3,
+  "candidate_passes": 1,
+  "structural_family_count": 2,
+  "structural_family_passes": 1,
+  "confirmed_structural_family": "AUDUSD|H21",
+  "confirmed_candidate": {
+    "candidate_id": "C3",
+    "market": "AUDUSD",
+    "hour_utc": 21,
+    "horizon_min": 120,
+    "orientation": "SHORT",
+    "n": 556,
+    "mean_bp": 1.455235,
+    "control_mean_bp": -0.020038,
+    "effect_bp": 1.475273,
+    "net1bp_mean_bp": 0.455235,
+    "trim2_mean_bp": 0.978983,
+    "leave_one_year_out_min_mean_bp": 1.062776,
+    "bootstrap_month_q025_bp": 0.811083
+  },
+  "failed_structural_family": "USDCHF|H23",
+  "failed_candidates": [
+    {
+      "candidate_id": "C4",
+      "market": "USDCHF",
+      "hour_utc": 23,
+      "horizon_min": 240,
+      "mean_bp": -2.980058,
+      "effect_bp": -2.814866,
+      "locked_oos_candidate_pass": false
+    },
+    {
+      "candidate_id": "C6",
+      "market": "USDCHF",
+      "hour_utc": 23,
+      "horizon_min": 120,
+      "mean_bp": -0.279127,
+      "effect_bp": -0.122149,
+      "locked_oos_candidate_pass": false
+    }
+  ],
+  "2023_2025_accessed": true,
+  "2026_accessed": false,
+  "decision": "AUDUSD_H21_120_SHORT_OOS_CONFIRMED; USDCHF_H23_LINEAGE_CLOSED",
+  "next": "HUMAN_REVIEW_ONLY; KEEP_2026_PROTECTED; NO_POST_OOS_OPTIMIZATION"
+}
