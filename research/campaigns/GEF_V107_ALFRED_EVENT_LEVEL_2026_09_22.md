@@ -118,3 +118,25 @@ The temporal market-return firewall remains physical:
 - 2023-2025 and 2026 forbidden.
 
 No return-based result from V107.0, V107.1 or V107.2 was available or used to choose this redesign because all three stopped before a finite discovery test existed.
+
+
+## V107.4 target-bridge correction
+
+V107.3 proved that ALFRED source support exists:
+- 104 causal features;
+- all 104 eligible on support before reading returns;
+- maximum 209 events in 2010-2013;
+- 15 price markets loaded through 2013.
+
+Yet it reported zero tradable discovery samples. Given the measured support, this is an infrastructure/target-bridge failure, not scientific negative evidence.
+
+V107.4 replaces event-by-event raw-price scanning with the canonical Guardian target construction:
+- precompute sparse forward returns for 60/120/240 minutes on the 5-minute grid;
+- apply the same epoch-minute thinning used by prior validated campaigns;
+- retain only finite target timestamps;
+- map every ALFRED AVAILABLE_AT to the first finite sparse target timestamp within seven calendar days;
+- write DISCOVERY_TARGET_DIAGNOSTICS.csv before discovery scoring.
+
+No alpha threshold, multiplicity rule, support gate, temporal split, or candidate feature definition changes.
+
+V107.3 receipt COMPLETE_V107_NO_DISCOVERY_SUPPORT with reason FEATURE_SUPPORT_EXISTS_BUT_NO_TRADABLE_DISCOVERY_SAMPLES is reclassified as infrastructure-only, because the same run directly proved event support existed.
