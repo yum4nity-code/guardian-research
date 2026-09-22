@@ -218,11 +218,22 @@ def subset_first_per_day(times, vals):
 
 
 def subset_first_per_episode(full_mask, grid, target_vals):
-    starts = full_mask & ~np.r_[False, full_mask[:-1]]
-    idx = np.flatnonzero(starts)
-    vals = target_vals[idx]
-    ok = np.isfinite(vals)
-    return vals[ok], grid[idx[ok]]
+    # One observation per contiguous TRUE state episode, using the first
+    # timestamp inside that episode where the frozen target is actually eligible.
+    m = np.asarray(full_mask, dtype=bool)
+    y = np.asarray(target_vals, dtype=float)
+    starts = np.flatnonzero(m & ~np.r_[False, m[:-1]])
+    ends = np.flatnonzero(m & ~np.r_[m[1:], False]) + 1
+    vals = []
+    times = []
+    for start, end in zip(starts, ends):
+        eligible = np.flatnonzero(np.isfinite(y[start:end]))
+        if not len(eligible):
+            continue
+        i = start + int(eligible[0])
+        vals.append(float(y[i]))
+        times.append(grid[i])
+    return np.asarray(vals, dtype=float), pd.DatetimeIndex(times)
 
 
 def nonoverlap(times, vals, horizon_min):
@@ -386,7 +397,8 @@ def main():
         finite=np.isfinite(vals)
         vals=vals[finite]; times=times[finite]
         series_by_candidate[cid]=pd.Series(vals,index=times)
-        masks_by_candidate[cid]=base_mask.copy()
+        eligible_mask = base_mask & np.isfinite(T[target])
+        masks_by_candidate[cid]=eligible_mask
 
         nonv,nont=nonoverlap(times,vals,horizon)
         dailyv,dailyt=subset_first_per_day(times,vals)
