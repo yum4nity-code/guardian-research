@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "CACHE_COMPLETE_PENDING_INTEGRITY_AUDIT",
+      "status": "CACHE_AUDIT_PARTIAL_PASS_WAITING_FINAL_BLOCKS",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -242,7 +242,20 @@
         "edge_trials": 0,
         "alpha_tests": 0
       },
-      "cache_audit_runner": "automation/Audit-M5MotionTopologyCacheV1.ps1"
+      "cache_audit_runner": "automation/Audit-M5MotionTopologyCacheV1.ps1",
+      "audit_partial": {
+        "joint_graph_support_min_rows": 52446,
+        "joint_graph_support_min_days": 773,
+        "cross_feature_min_finite": 164870,
+        "cross_feature_min_days": 772,
+        "cross_feature_median_finite": 207227,
+        "cross_feature_max_finite": 315648
+      },
+      "awaiting_blocks": [
+        "TRADABILITY SESSION SHAPES",
+        "OHLC INTEGRITY",
+        "ENDPOINT TARGET DISTRIBUTION"
+      ]
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
