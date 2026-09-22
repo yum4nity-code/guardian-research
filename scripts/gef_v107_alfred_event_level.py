@@ -7,14 +7,14 @@ try:
 except Exception:
     ttest_1samp=None
 
-ENGINE_VERSION="V107.1"
+ENGINE_VERSION="V107.2"
 FORBIDDEN_YEAR=2023
 HORIZONS=[60,120,240]
 DISCOVERY_Q=.10
 MAX_FROZEN=150
-MIN_DISC=8
-MIN_REP=8
-MIN_VAL=10
+MIN_DISC=12
+MIN_REP=12
+MIN_VAL=15
 
 def write_json(path,obj):
     path.write_text(json.dumps(obj,indent=2,default=str),encoding="utf-8")
@@ -162,17 +162,33 @@ def feature_events(path):
     feats["z24"]=(v-mu)/sd
     out={}; stem=re.sub(r"[^A-Za-z0-9_]+","_",path.stem)
     for name,x in feats.items():
+        x=pd.Series(x,dtype=float)
+        if name in ("d1","d3"):
+            # Macro release changes: directional sign is the natural high-support event state.
+            state_score=np.sign(x.to_numpy(dtype=float))
+            mode="directional_change"
+        else:
+            # Level-like series: compare current value only with the prior expanding median.
+            med=x.expanding(min_periods=12).median().shift(1)
+            state_score=(x-med).to_numpy(dtype=float)
+            mode="causal_median_side"
         out[f"alfred_{stem}_{name}"]=pd.DataFrame({
           "AVAILABLE_AT":q["AVAILABLE_AT"].to_numpy(),
           "value":x.to_numpy(),
-          "z":causal_z(x,12)
+          "state_score":state_score,
+          "state_mode":mode
         })
     return out
 
-def event_sample(ev,market_series,grid,horizon,state,direction=1,start=None,end=None,delay_days=0,threshold=1.0):
+def event_sample(ev,market_series,grid,horizon,state,direction=1,start=None,end=None,delay_days=0):
     times=pd.to_datetime(ev["AVAILABLE_AT"])+pd.Timedelta(days=int(delay_days))
-    zz=pd.to_numeric(ev["z"],errors="coerce").to_numpy()
-    mask=np.isfinite(zz)&((zz<=-float(threshold)) if state=="LO" else (zz>=float(threshold)))
+    score=pd.to_numeric(ev["state_score"],errors="coerce").to_numpy()
+    if state=="NEG":
+        mask=np.isfinite(score)&(score<0)
+    elif state=="POS":
+        mask=np.isfinite(score)&(score>0)
+    else:
+        raise RuntimeError(f"Unsupported V107.2 state {state}")
     rows=[]
     for t in times[mask]:
         if start is not None and t<pd.Timestamp(start):continue
@@ -202,7 +218,7 @@ def main():
     features={}; provenance=[]
     for p in files:
         for k,v in feature_events(p).items():
-            features[k]=v;provenance.append({"feature":k,"source":str(p),"events":int(len(v))})
+            features[k]=v;provenance.append({"feature":k,"source":str(p),"events":int(len(v)),"state_mode":str(v["state_mode"].iloc[0]) if len(v) else ""})
     if not features:raise RuntimeError("No usable ALFRED causal features")
     pd.DataFrame(provenance).to_csv(out/"FEATURE_PROVENANCE.csv",index=False)
     status(2,12,"causal ALFRED release features built",features=len(features))
@@ -213,7 +229,7 @@ def main():
 
     rows=[]; total=len(features)*2*len(markets)*len(HORIZONS); done=0
     for fname,ev in features.items():
-      for state in ["LO","HI"]:
+      for state in ["NEG","POS"]:
        for sym in markets:
         for h in HORIZONS:
             done+=1
@@ -277,13 +293,12 @@ def main():
         ev=features[r.feature]
         times,vals=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01")
         rm,bm=remove_best_month(times,vals);loo,looj=leave_one_year_out(times,vals)
-        _,v09=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",0,.9)
-        _,v11=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",0,1.1)
-        _,vlag=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",1,1.0)
-        passed=(remove_best(vals,3)>0 and rm>0 and loo>0 and mean_bp(v09)>0 and mean_bp(v11)>0 and mean_bp(vlag)>0)
+        _,vlag1=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",1)
+        _,vlag2=event_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),r.state,int(r.direction_sign),"2014-01-01","2018-01-01",2)
+        passed=(remove_best(vals,3)>0 and rm>0 and loo>0 and mean_bp(vlag1)>0 and mean_bp(vlag2)>0)
         robust.append({**r._asdict(),"robust_remove_best3_bp":remove_best(vals,3),"robust_remove_best_month_bp":rm,
                        "robust_best_month":bm,"robust_loo_min_bp":loo,"robust_loo_json":json.dumps(looj,sort_keys=True),
-                       "robust_z09_bp":mean_bp(v09),"robust_z11_bp":mean_bp(v11),"robust_delay1d_bp":mean_bp(vlag),
+                       "robust_delay1d_bp":mean_bp(vlag1),"robust_delay2d_bp":mean_bp(vlag2),
                        "robustness_pass":bool(passed)})
     B=pd.DataFrame(robust);B.to_csv(out/"ROBUSTNESS_RESULTS.csv",index=False)
     rb=B[B["robustness_pass"].astype(bool)].copy()
@@ -324,7 +339,7 @@ def main():
       "source_files":len(files),"causal_features":len(features),"finite_discovery_tests":len(A),
       "discovery_frozen":len(frozen),"replication_survivors":len(rp),"robustness_survivors":len(rb),
       "validation_survivors":len(final),"final_survivors_sha256":sha256(out/"FINAL_SURVIVORS.csv"),
-      "statistical_unit":"one ALFRED first-vintage release event","future_revision_fields_used":False,
+      "statistical_unit":"one ALFRED first-vintage release event","state_design":"directional change for d1/d3; causal prior-median side for level/z24","future_revision_fields_used":False,
       "2023_2025_accessed":False,"2026_accessed":False,
       "next":"HUMAN_REVIEW_V107; IF SURVIVORS, RUN SEPARATE PREOOS FORENSIC"}
     write_json(out/"RUN_RECEIPT.json",receipt)
