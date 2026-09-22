@@ -1,7 +1,7 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V111-CALENDAR-PREOOS-FORENSIC",
+  "active_primary": "GEF-V112-LOCKED-OOS-HUMAN-GATE",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -29,32 +29,37 @@
     {
       "id": "GEF-V109-TREASURY",
       "priority": 0,
-      "status": "CLOSED_AT_DISCOVERY",
-      "reference_run": "GEF109-20260922-161442"
+      "status": "CLOSED_AT_DISCOVERY"
     },
     {
-      "id": "GEF-V110-UTC-CALENDAR",
+      "id": "GEF-V110-V111-UTC-CALENDAR",
       "priority": 0,
-      "status": "VALIDATED_PREOOS_AWAITING_FORENSIC",
-      "reference_run": "GEF110-20260922-162255",
-      "result": "10,265 finite tests -> 76 frozen -> 33 replicated -> 19 robust -> 8 validated.",
-      "final_survivors_sha256": "3d89751fa6533b5f5290be3b9704480aea9455d4e3b069b10bb2728bd67a2bbc",
+      "status": "PREOOS_FORENSIC_PASS",
+      "reference_run_v110": "GEF110-20260922-162255",
+      "reference_run_v111": "GEF111-20260922-163321",
+      "candidate_preoos_passes": 3,
+      "passing_structural_families": [
+        "AUDUSD|H21",
+        "USDCHF|H23"
+      ],
       "2023_2025_accessed": false,
       "2026_accessed": false
     },
     {
-      "id": "GEF-V111-CALENDAR-PREOOS-FORENSIC",
+      "id": "GEF-V112-LOCKED-OOS-2023-2025",
       "priority": 1,
-      "status": "READY_TO_RUN",
-      "goal": "Audit exact eight V110 survivors for concentration, timing stability, costs, month-block bootstrap and structural dependency before any locked OOS.",
-      "preregistration": "research/campaigns/GEF_V111_CALENDAR_PREOOS_FORENSIC_2026_09_22.md",
-      "runner": "automation/Run-GuardianEdgeFactoryV111.ps1",
-      "engine": "scripts/gef_v111_calendar_preoos_forensic.py"
-    },
-    {
-      "id": "LOCKED-OOS-2023-2025",
-      "priority": 99,
-      "status": "BLOCKED"
+      "status": "HUMAN_APPROVAL_REQUIRED",
+      "frozen_candidates": [
+        "AUDUSD H21 120m SHORT",
+        "USDCHF H23 120m LONG",
+        "USDCHF H23 240m LONG"
+      ],
+      "family_rule": "AUDUSD requires its single candidate; USDCHF H23 requires both horizons.",
+      "unlock_string": "OPEN_LOCKED_OOS_2023_2025",
+      "runner": "automation/Run-GuardianEdgeFactoryV112.ps1",
+      "engine": "scripts/gef_v112_calendar_locked_oos.py",
+      "2023_2025_accessed": false,
+      "2026_accessed": false
     },
     {
       "id": "PROTECTED-2026",
