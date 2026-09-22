@@ -261,6 +261,66 @@ r92=json.loads((V92/"RUN_RECEIPT.json").read_text(encoding="utf-8"))
 if r92.get("2023_plus_values_accessed") or r92.get("protected_2026_accessed"):
     raise RuntimeError("V92 access assertion violated")
 
+# V94's FROZEN_2026_FORWARD_PANEL.csv intentionally contains only the exact
+# hypothesis identity columns. Development-era parity references live in the
+# immutable V92 development ledger and MUST be joined explicitly.
+dev_path=V92/"V92_CLEAN_DEVELOPMENT_ALL.csv"
+if not dev_path.exists():
+    raise RuntimeError(f"Missing V92 development ledger: {dev_path}")
+dev=pd.read_csv(dev_path)
+
+identity_cols=[
+    "development_rank","trial_index","feature_i","state_i",
+    "feature_j","state_j","target","direction",
+]
+dev_parity_cols=[
+    "development_rank",
+    "e2_2014_2017_n","e2_2014_2017_mean_bp",
+    "e3_2018_2022_n","e3_2018_2022_mean_bp",
+]
+required_old_v93_cols=[
+    "development_rank","n","mean_bp","economic_oos_pass",
+]
+
+missing_panel=[x for x in identity_cols if x not in panel.columns]
+missing_dev=[x for x in dev_parity_cols if x not in dev.columns]
+missing_old=[x for x in required_old_v93_cols if x not in old_v93.columns]
+if missing_panel or missing_dev or missing_old:
+    raise RuntimeError(
+        "V97C schema preflight failed before any reconstruction: "
+        f"panel_missing={missing_panel} dev_missing={missing_dev} old_v93_missing={missing_old}"
+    )
+if panel["development_rank"].duplicated().any():
+    raise RuntimeError("V94 frozen panel has duplicate development_rank")
+if dev["development_rank"].duplicated().any():
+    raise RuntimeError("V92 development ledger has duplicate development_rank")
+if old_v93["development_rank"].duplicated().any():
+    raise RuntimeError("V93 scored ledger has duplicate development_rank")
+
+panel=panel.merge(
+    dev[dev_parity_cols],
+    on="development_rank",
+    how="left",
+    validate="one_to_one",
+)
+if panel[dev_parity_cols[1:]].isna().any().any():
+    bad=panel.loc[
+        panel[dev_parity_cols[1:]].isna().any(axis=1),
+        "development_rank",
+    ].astype(int).tolist()
+    raise RuntimeError(f"V92 parity reference missing after merge for ranks {bad}")
+
+# Static contract: all attributes later read from panel.itertuples() are now
+# guaranteed to exist before the expensive market reconstruction begins.
+later_panel_attrs={
+    "development_rank","feature_i","state_i","feature_j","state_j","target","direction",
+    "e2_2014_2017_n","e2_2014_2017_mean_bp",
+    "e3_2018_2022_n","e3_2018_2022_mean_bp",
+}
+missing_later=sorted(later_panel_attrs-set(panel.columns))
+if missing_later:
+    raise RuntimeError(f"V97C internal panel contract incomplete: {missing_later}")
+
 RID="GEF97C-"+pd.Timestamp.now("UTC").strftime("%Y%m%d-%H%M%S")
 OUT=BASE/RID
 OUT.mkdir(parents=True,exist_ok=False)
