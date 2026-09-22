@@ -1,14 +1,17 @@
 {
   "schema_version": 14,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V112-LOCKED-OOS-HUMAN-GATE",
+  "active_primary": "GEF-V112-LOCKED-OOS-OPENED-SCORING-PENDING",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
       "priority": 0,
       "status": "FROZEN_WAITING_FINAL_2026_RELEASE",
       "reference_run": "GEF100-20260922-094644",
-      "frozen_ranks": [7, 9],
+      "frozen_ranks": [
+        7,
+        9
+      ],
       "activation_not_before": "2027-01-02 00:00"
     },
     {
@@ -42,9 +45,8 @@
         "AUDUSD|H21",
         "USDCHF|H23"
       ],
-      "2023_2025_accessed": true,
-      "scoring_completed": false,
-      "2026_raw_accessed": false
+      "2023_2025_accessed": false,
+      "2026_accessed": false
     },
     {
       "id": "GEF-V112-LOCKED-OOS-2023-2025",
@@ -61,8 +63,9 @@
       "engine": "scripts/gef_v112_calendar_locked_oos.py",
       "engine_version": "V112.1",
       "human_approval": "APPROVED_2026-09-22",
-      "2023_2025_accessed": false,
-      "2026_accessed": false
+      "2023_2025_accessed": true,
+      "scoring_completed": false,
+      "2026_raw_accessed": false
     },
     {
       "id": "PROTECTED-2026",
