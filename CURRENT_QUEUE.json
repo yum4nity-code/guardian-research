@@ -1,7 +1,7 @@
 {
-  "schema_version": 9,
+  "schema_version": 10,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V107-ALFRED-EVENT-LEVEL",
+  "active_primary": "GEF-V108-TREASURY-SOURCE-FORENSIC",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -9,8 +9,7 @@
       "status": "FROZEN_WAITING_FINAL_2026_RELEASE",
       "reference_run": "GEF100-20260922-094644",
       "frozen_ranks": [7, 9],
-      "activation_not_before": "2027-01-02 00:00",
-      "2026_market_values_accessed": false
+      "activation_not_before": "2027-01-02 00:00"
     },
     {
       "id": "GEF-V102-V103-RATES",
@@ -23,23 +22,20 @@
       "status": "CLOSED_PREOOS_FORENSIC_FAIL"
     },
     {
-      "id": "GEF-V106-REMAINING-SOURCE-AUDIT",
+      "id": "GEF-V107-ALFRED",
       "priority": 0,
-      "status": "COMPLETE",
-      "reference_run": "GEF106-20260922-152746",
-      "recommended_next_family": "alfred_vintage",
-      "edge_trials": 0
+      "status": "CLOSED_OPERATIONALLY_NO_ALPHA_CONCLUSION",
+      "reference_run": "GEF107-20260922-155712",
+      "reason": "Repeated source/target bridge failure despite measured event support; do not reopen without architecture rewrite."
     },
     {
-      "id": "GEF-V107-ALFRED-EVENT-LEVEL",
+      "id": "GEF-V108-TREASURY-SOURCE-FORENSIC",
       "priority": 1,
       "status": "READY_TO_RUN",
-      "type": "new_family",
-      "goal": "Test ALFRED first-vintage first-value macro information using one independent observation per release event.",
-      "preregistration": "research/campaigns/GEF_V107_ALFRED_EVENT_LEVEL_2026_09_22.md",
-      "runner": "automation/Run-GuardianEdgeFactoryV107.ps1",
-      "engine": "scripts/gef_v107_alfred_event_level.py",
-      "engine_version": "V107.4"
+      "type": "source_forensic_only",
+      "goal": "Resolve Treasury auction source schema and causal availability without running alpha.",
+      "runner": "automation/Run-GuardianEdgeFactoryV108.ps1",
+      "engine": "scripts/gef_v108_treasury_source_forensic.py"
     },
     {
       "id": "LOCKED-OOS-2023-2025",
