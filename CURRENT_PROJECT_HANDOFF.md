@@ -7,37 +7,53 @@
 - Rates standalone closed after V103 forensic 0/5.
 - CFTC standalone closed after V105 report-level forensic 0/7.
 - ALFRED V107 closed operationally without alpha conclusion.
-- Treasury V109 closed at discovery: 15,870 finite tests, 0 frozen after BH q<=0.05. No 2014+ market returns spent.
+- Treasury V109 closed at discovery: 15,870 finite tests, 0 frozen after BH.
 
-## V110 — ACTIVE
+## V110 — VALIDATED PRE-OOS
 
-Pure UTC intraday/calendar structure. No external source provenance.
+Run: GEF110-20260922-162255
+- 240 frozen calendar cells
+- 10,265 finite discovery tests
+- 76 discovery survivors
+- 33 replication survivors
+- 19 robustness survivors
+- 8 validation survivors
+- final SHA256: 3d89751fa6533b5f5290be3b9704480aea9455d4e3b069b10bb2728bd67a2bbc
+- 2023-2025 not accessed
+- 2026 not accessed
 
-Statistical unit:
-- one exact top-of-hour event.
+Eight survivors include obvious structural clusters:
+- AUDUSD H21: 120m and 240m
+- USDCHF H23: 120m and 240m
+- USDCHF H22: 240m
+- USDJPY H22 Thursday: 120m
+- XAGUSD H11: 60m
+- EURUSD H11: 120m
 
-Frozen cell universe:
-- UTC hour;
-- UTC hour × weekday;
-- UTC hour × month position START/MID/END;
-- UTC hour × quarter-end window.
+Do not treat all eight as independent edges.
 
-Matched controls:
-- hour vs all other hours;
-- hour×weekday vs same hour other weekdays;
-- hour×month-position vs same hour other month-position buckets;
-- hour×quarter-end vs same hour outside quarter-end.
+## V111 — ACTIVE
 
-Discovery tests candidate-minus-control effect and requires the oriented candidate trade itself to be profitable.
+Final pre-OOS forensic of exactly those eight V110 survivors.
 
-Targets:
-30 / 60 / 120 / 240 minutes.
+2018-2022 only.
 
-Temporal firewall:
-2010-2013 discovery -> freeze -> 2014-2017 replication -> robustness -> freeze -> 2018-2022 validation -> STOP.
+Tests:
+- baseline candidate mean and matched-control effect
+- net 1/2/3/5 bp
+- trim best 1/2/5%
+- remove best 10/20 events
+- remove best calendar month
+- leave-one-year-out
+- timing shifts -10/-5/+5/+10 minutes around the frozen hour
+- deterministic 2,000-draw month-block bootstrap
+- event-set Jaccard
+- common-timestamp return correlation
+- structural family key = target_market + calendar cell
 
-No 2023-2025.
-No 2026.
+Pass requires:
+baseline >0; control effect >0; net1 >0; trim5 >0; remove-best20 >0; remove-best-month >0; LOO >0; -5m >0; +5m >0; +10m >0; bootstrap q2.5 >0.
 
-Run:
-powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV110.ps1 -Root D:\MT5_Backtests
+STOP after V111.
+Do not open 2023-2025 automatically.
+Do not open 2026.
