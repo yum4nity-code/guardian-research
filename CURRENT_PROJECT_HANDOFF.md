@@ -72,3 +72,10 @@ No portfolio construction in V112.
 On 2026-09-22 the user explicitly approved opening locked OOS 2023-2025.
 The protocol, candidates and gates remain unchanged.
 2026 remains forbidden.
+
+
+### V112.1 boundary correction
+The first unlocked V112 run opened 2023-2025 raw files but stopped before candidate scoring because right-labelled 5-minute resampling produced a synthetic 2026-01-01 00:00 output label from late-2025 raw rows.
+2023-2025 is therefore now consumed.
+No 2026 raw file was opened.
+V112.1 clips the resampled output back to <2026-01-01 and leaves the frozen scientific protocol unchanged.
