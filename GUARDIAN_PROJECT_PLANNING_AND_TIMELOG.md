@@ -695,3 +695,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Cross state includes breadth, dispersion, shock breadth, rolling-beta residuals, residual z, short-vs-long correlation break and 5/10/15m lagged pair returns.
 - No edge trial or outcome association is performed.
 - First builder hard-stops at 2014; 2015+ remains unopened.
+
+
+### 2026-09-22 — M5 topology cache completed, integrity audit gate
+- Cache run GEFM5T-20260922-200657 completed with 13 markets, 13 graph edges, 199 cross features and 117 endpoint objects.
+- No alpha/edge trials were performed and no 2015+ outcomes were opened.
+- Endpoint support is large (minimum 22,129 observations across L/H objects).
+- Added a read-only integrity audit before M01-M08 preregistration, focused on recurring session-mask shape, OHLC integrity, target marginal distributions, joint graph support and cross-feature finite support.
+- Special attention: SPXUSD, UDXUSD and BCOUSD masks are materially narrower than FX masks and must be verified as source/session structure rather than accidental overfiltering.
