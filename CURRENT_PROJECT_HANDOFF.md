@@ -377,3 +377,39 @@ Run GEFM5T-20260922-200657 completed with:
 Support is large: all endpoint objects have at least 22,129 finite observations.
 
 Before preregistering M01-M08, run cache integrity audit because historical tradability masking is materially tighter for SPXUSD, UDXUSD and BCOUSD than for FX. Audit will inspect recurring session shapes, OHLC integrity, endpoint target distributions, pairwise joint support and finite cross-feature support. No feature/outcome association is computed.
+
+
+## M5 Motion Topology V1.1 — SESSION MASK INFRASTRUCTURE AMENDMENT
+
+V1 cache GEFM5T-20260922-200657 passed:
+- OHLC integrity;
+- endpoint-target sanity;
+- endpoint support;
+- joint graph support;
+- cross-feature support.
+
+V1 failed the tradability-session-shape audit:
+- fixed UTC minute-of-week >=95% mask fragmented UDX/SPX/NSX/BCO into implausible session blocks.
+- No alpha/edge test had been run.
+
+V1.1 therefore replaces ONLY the eligibility/session mask:
+- source-present = finite M5 close at that historical timestamp;
+- missing rows are non-tradable;
+- remove 30m before each observed close/gap boundary;
+- remove 30m after each observed reopen/recovery boundary;
+- targets require the full past and future window to remain tradable;
+- pairs/groups require joint tradability.
+
+This absorbs DST/session changes date-by-date and conservatively treats unexplained source gaps as non-tradable.
+
+Unchanged:
+universe, M5 bars, endpoint target, graph, state primitives, M01-M12 definitions, temporal firewall and all future statistical gates.
+
+V1.1 builder:
+scripts/gef_m5_motion_topology_build_v1_1.py
+
+Runner:
+automation/Run-M5MotionTopologyCacheV1_1.ps1
+
+Audit:
+automation/Audit-M5MotionTopologyCacheV1_1.ps1
