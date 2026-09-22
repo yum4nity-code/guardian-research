@@ -79,3 +79,43 @@ The first unlocked V112 run opened 2023-2025 raw files but stopped before candid
 2023-2025 is therefore now consumed.
 No 2026 raw file was opened.
 V112.1 clips the resampled output back to <2026-01-01 and leaves the frozen scientific protocol unchanged.
+
+
+## V112 — LOCKED OOS COMPLETE
+
+Run:
+GEF112-20260922-164607
+
+Result:
+- 3 frozen candidates tested
+- 1 candidate passed
+- 2 structural families tested
+- 1 structural family passed
+- 2023-2025 consumed
+- 2026 untouched
+
+### OOS-confirmed family
+AUDUSD|H21
+- exact UTC hour: 21
+- horizon: 120 minutes
+- orientation: SHORT
+- N = 556
+- mean = +1.455235 bp
+- matched-control effect = +1.475273 bp
+- net 1 bp = +0.455235 bp
+- trim best 2% = +0.978983 bp
+- leave-one-year-out minimum = +1.062776 bp
+- month-block bootstrap q2.5 = +0.811083 bp
+
+### Failed family
+USDCHF|H23
+- 240m: mean -2.980058 bp, effect -2.814866 bp
+- 120m: mean -0.279127 bp, effect -0.122149 bp
+- both failed the locked-OOS gate
+- lineage closed; no rescue or alternate horizon selection
+
+## Current decision
+AUDUSD H21 120m SHORT is locked-OOS confirmed.
+No post-OOS optimization.
+No automatic trading activation.
+2026 remains protected.
