@@ -144,7 +144,8 @@
         "nsx_spx_cooldown_events": 1060,
         "real5y_finite_hours": 35064,
         "real10y_finite_hours": 35064
-      }
+      },
+      "support_recheck_summary": "Targets and intersections restored to thousands of observations; read-only support audit passed."
     },
     {
       "id": "PROTECTED-2026",
