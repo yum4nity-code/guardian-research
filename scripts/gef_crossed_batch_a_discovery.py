@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import t as student_t
 
-ENGINE_VERSION="BATCH-A-DISCOVERY-1.0"
+ENGINE_VERSION="BATCH-A-DISCOVERY-1.1"
 EXPECTED_VARIANTS=66
 HORIZONS=[60,120,240]
 TRAIN_START=pd.Timestamp("2010-01-01")
@@ -182,20 +182,45 @@ def causal_daily_release_z(hour_series,release_mask,hour_times):
     vals=z.reindex(hour_times.normalize()).to_numpy(dtype=float)
     return pd.Series(vals,index=hour_times)
 
-def cftc_report_cluster(root,sym,hour_times):
+def load_cftc_market(root,sym):
     p=root/"DataLake"/"normalized"/"cftc_pre2023"/"CFTC_FUTURES_ONLY_2009_2013_CAUSAL_V82D.parquet"
     if not p.exists():
         raise RuntimeError(f"Missing CFTC causal file {p}")
-    d=pd.read_parquet(p,columns=["market","report_date","AVAILABLE_AT"])
+    cols=["market","report_date","AVAILABLE_AT","noncomm_net_pct_oi"]
+    d=pd.read_parquet(p,columns=cols)
     q=d[d["market"].astype(str)==CFTC_MAP[sym]].copy()
     if q.empty:
         raise RuntimeError(f"No CFTC rows for {sym}")
     q["AVAILABLE_AT"]=normalize_dt(q["AVAILABLE_AT"])
     q["report_date"]=normalize_dt(q["report_date"])
-    q=q.dropna(subset=["AVAILABLE_AT","report_date"]).sort_values("AVAILABLE_AT").drop_duplicates("AVAILABLE_AT",keep="last")
+    q["noncomm_net_pct_oi"]=pd.to_numeric(q["noncomm_net_pct_oi"],errors="coerce")
+    q=q.dropna(subset=["AVAILABLE_AT","report_date"]).sort_values("report_date").drop_duplicates("report_date",keep="last")
+    # Exact V83 transform: current report is known at AVAILABLE_AT, so the
+    # 52-report rolling standardization legitimately includes the current report.
+    s=q["noncomm_net_pct_oi"]
+    mu=s.rolling(52,min_periods=26).mean()
+    sd=s.rolling(52,min_periods=26).std().replace(0,np.nan)
+    q["noncomm_net_pct_oi_z52"]=(s-mu)/sd
+    q=q.sort_values("AVAILABLE_AT").drop_duplicates("AVAILABLE_AT",keep="last")
+    return q
+
+def cftc_crowding_and_cluster(root,sym,hour_times):
+    q=load_cftc_market(root,sym)
     base=pd.DataFrame({"decision_time":hour_times})
-    z=pd.merge_asof(base,q[["AVAILABLE_AT","report_date"]],left_on="decision_time",right_on="AVAILABLE_AT",direction="backward")
-    return z["report_date"].dt.strftime("%Y-%m-%d").to_numpy(dtype=object)
+    z=pd.merge_asof(
+        base,
+        q[["AVAILABLE_AT","report_date","noncomm_net_pct_oi_z52"]],
+        left_on="decision_time",
+        right_on="AVAILABLE_AT",
+        direction="backward",
+    )
+    crowd=pd.Series(
+        pd.to_numeric(z["noncomm_net_pct_oi_z52"],errors="coerce").to_numpy(dtype=float),
+        index=hour_times,
+        name=f"cftc_{sym}_noncomm_net_pct_oi_z52",
+    )
+    clusters=z["report_date"].dt.strftime("%Y-%m-%d").to_numpy(dtype=object)
+    return crowd,clusters
 
 class Variant:
     def __init__(self,lineage,variant,horizon,y,X,primary_idx,event_mask,clusters,meta):
@@ -358,16 +383,16 @@ def main():
         variants.append(Variant("P11","XAU_RESID_XAG",h,y,Xx,1,ev_xau_xag,day_clusters,{}))
 
     # P12: CFTC crowding x own-price shock.
+    # Reconstruct the exact V83 z52 transform directly from the canonical V82D
+    # CFTC source. V83 dedup_vectors() may legitimately remove an equivalent
+    # carried state column from the final slow parquet; source semantics remain intact.
     for sym in CFTC_MAP:
         ccol=f"cftc_{sym}_noncomm_net_pct_oi_z52"
-        if ccol not in S.columns:
-            raise RuntimeError(f"Missing frozen CFTC feature {ccol}")
-        crowd=slow_to_hour(S,bridge,hour_pos,ccol,times)
+        crowd,report_clusters=cftc_crowding_and_cluster(root,sym,times)
         shock=rz[sym]
         ev=cooldown_mask(times,shock.to_numpy(),EVENT_Z,COOLDOWN_MIN)
         X=np.column_stack([np.ones(len(times)),crowd.to_numpy(dtype=float),shock.to_numpy(dtype=float),
                            crowd.to_numpy(dtype=float)*shock.to_numpy(dtype=float)])
-        report_clusters=cftc_report_cluster(root,sym,times)
         for h in HORIZONS:
             y=pd.to_numeric(YH[f"{sym}_fwd_{h}m"],errors="coerce").to_numpy(dtype=float)
             variants.append(Variant("P12",sym,h,y,X,3,ev,report_clusters,{"market":sym,"cftc_feature":ccol}))
