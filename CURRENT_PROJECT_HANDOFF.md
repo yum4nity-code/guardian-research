@@ -196,3 +196,12 @@ First run stopped before any regression because P12 expected a CFTC z52 column i
 Scientific result: NONE.
 2014+ / 2023-2025 / 2026 remained unopened.
 Engine v1.1 reconstructs the exact frozen CFTC noncommercial z52 transform directly from the canonical V82D causal source and changes no scientific rule.
+
+
+### Batch A run GEFBA-20260922-181339 — validity audit required
+The engine materialized all 66 preregistered variants but reported 0 valid discovery tests across every lineage.
+Do NOT interpret this as six scientific negatives.
+Because continuous and event lineages all failed the common validity gate, audit N/clusters/design-rank/robust-SE inputs first.
+No candidate reached 2013 holdout, so no holdout result was consumed.
+2014+ / 2023-2025 / 2026 remain unopened.
+Read-only diagnostic: automation/Diagnose-CrossedPhenomenaBatchA.ps1
