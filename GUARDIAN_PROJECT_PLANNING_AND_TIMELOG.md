@@ -652,3 +652,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Added mandatory 2013 parity against frozen V83/V83B price features and forward targets.
 - V2 physically loads only 2012-2016 before discovery; 2017 is opened only after a BH discovery freeze; 2018+ is hard-forbidden.
 - Same 66 economic variants and same thresholds/gates are retained. No V1 sign/result is inherited.
+
+
+### 2026-09-22 — Batch A V2 support-collapse diagnosis
+
+- Diagnosed GEFBA2-20260922-183722 after 0/66 valid tests.
+- Confirmed the underlying crossed-state objects were healthy, while aligned forward targets collapsed to roughly 417/205/105 observations at 60/120/240m.
+- Root cause 1: aligned_mask assumed nanosecond DatetimeIndex integer representation. Fixed by explicit conversion to numpy datetime64[m] before modulo.
+- Root cause 2: REAL-rate as-of retained NaN z rows. Fixed to drop NaN z rows before merge_asof, matching V102/V103 semantics.
+- No economic hypothesis, parameter, threshold, window, horizon or statistical gate was changed.
+- 2017 and all later protected windows remained unopened by the failed run.
+- Next step is read-only support revalidation before any new alpha scoring.
