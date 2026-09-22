@@ -1,7 +1,7 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V105-CFTC-PREOOS-FORENSIC",
+  "active_primary": "GEF-V106-REMAINING-SOURCE-AUDIT",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -16,34 +16,31 @@
       "id": "GEF-V102-V103-RATES",
       "priority": 0,
       "status": "CLOSED_PREOOS_FORENSIC_FAIL",
-      "reference_run": "GEF103-20260922-145228",
-      "2023_2025_accessed": false,
-      "2026_accessed": false
+      "reference_run": "GEF103-20260922-145228"
     },
     {
-      "id": "GEF-V104-STANDALONE-CFTC",
+      "id": "GEF-V104-V105-CFTC",
       "priority": 0,
-      "status": "VALIDATED_PREOOS_AWAITING_FORENSIC",
-      "reference_run": "GEF104-20260922-145941",
-      "result": "5872 finite tests -> 200 frozen -> 65 replicated -> 39 robust -> 7 validated.",
-      "final_survivors_sha256": "428ce6c9f5bd5b4acaaf4fbc619b1d07fd0c6abd5ec716403d6b2b4e01a9b68e",
+      "status": "CLOSED_PREOOS_FORENSIC_FAIL",
+      "reference_run": "GEF105-20260922-151045",
+      "result": "V104 validated 7 candidates / 5 information families; V105 final report-level forensic passed 0/7.",
       "2023_2025_accessed": false,
       "2026_accessed": false
     },
     {
-      "id": "GEF-V105-CFTC-PREOOS-FORENSIC",
+      "id": "GEF-V106-REMAINING-SOURCE-AUDIT",
       "priority": 1,
       "status": "READY_TO_RUN",
-      "goal": "Audit exact seven V104 survivors using information-event de-duplication by distinct CFTC report availability plus concentration, persistence, delay and dependency tests.",
-      "preregistration": "research/campaigns/GEF_V105_CFTC_PREOOS_FORENSIC_2026_09_22.md",
-      "runner": "automation/Run-GuardianEdgeFactoryV105.ps1",
-      "engine": "scripts/gef_v105_cftc_preoos_forensic.py"
+      "type": "source_audit_only",
+      "goal": "Inventory real local causal sources before selecting the next untouched family.",
+      "runner": "automation/Run-GuardianEdgeFactoryV106.ps1",
+      "engine": "scripts/gef_v106_remaining_source_audit.py",
+      "edge_trials": 0
     },
     {
       "id": "LOCKED-OOS-2023-2025",
       "priority": 99,
-      "status": "BLOCKED",
-      "goal": "Requires V105 pass plus separate preregistered protocol and human decision."
+      "status": "BLOCKED"
     },
     {
       "id": "PROTECTED-2026",
