@@ -1,7 +1,7 @@
 {
-  "schema_version": 17,
+  "schema_version": 18,
   "updated_at": "2026-09-22",
-  "active_primary": "CROSSED-PHENOMENA-BATCH-A-V2",
+  "active_primary": "CROSSED-PHENOMENA-BATCH-A-V2-RERUN",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -83,7 +83,7 @@
       "2026": "BLOCKED",
       "id": "CROSSED-ECONOMIC-PHENOMENA-V1",
       "priority": 1,
-      "status": "BATCH_A_V2_INFRA_FIXED_PENDING_SUPPORT_RECHECK",
+      "status": "BATCH_A_V2_SUPPORT_REVALIDATED_READY_TO_RERUN",
       "matrix": "research/campaigns/GUARDIAN_CROSSED_PHENOMENA_MATRIX_V1_2026_09_22.md",
       "historical_ready_count": 16,
       "forward_only_count": 3,
@@ -132,7 +132,19 @@
         "aligned_mask explicit datetime64[m] conversion; remove int64-nanoseconds assumption",
         "rate as-of drops NaN z rows before merge, matching V102/V103 semantics"
       ],
-      "v2_rerun_block": "Run read-only object support diagnostic first; do not score alpha until support confirmed"
+      "v2_rerun_block": null,
+      "support_recheck": {
+        "p01_max_intersection_n": 20903,
+        "p01_max_distinct_days": 1019,
+        "xau_target_60m": 22551,
+        "xau_target_120m": 12046,
+        "xau_target_240m": 5916,
+        "usd_breadth_cooldown_events": 1343,
+        "xau_xag_cooldown_events": 1595,
+        "nsx_spx_cooldown_events": 1060,
+        "real5y_finite_hours": 35064,
+        "real10y_finite_hours": 35064
+      }
     },
     {
       "id": "PROTECTED-2026",
