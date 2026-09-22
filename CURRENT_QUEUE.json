@@ -1,7 +1,7 @@
 {
-  "schema_version": 10,
+  "schema_version": 11,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V108-TREASURY-SOURCE-FORENSIC",
+  "active_primary": "GEF-V109-TREASURY-EVENT-LEVEL",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -24,18 +24,24 @@
     {
       "id": "GEF-V107-ALFRED",
       "priority": 0,
-      "status": "CLOSED_OPERATIONALLY_NO_ALPHA_CONCLUSION",
-      "reference_run": "GEF107-20260922-155712",
-      "reason": "Repeated source/target bridge failure despite measured event support; do not reopen without architecture rewrite."
+      "status": "CLOSED_OPERATIONALLY_NO_ALPHA_CONCLUSION"
     },
     {
       "id": "GEF-V108-TREASURY-SOURCE-FORENSIC",
+      "priority": 0,
+      "status": "COMPLETE_READY_AFTER_AUDIT_CORRECTION",
+      "reference_run": "GEF108-20260922-160137",
+      "correction": "V108 preview used head(500) before coverage computation; schema itself proved 9496 auctions from 1979-10-31 through 2022-12-29."
+    },
+    {
+      "id": "GEF-V109-TREASURY-EVENT-LEVEL",
       "priority": 1,
       "status": "READY_TO_RUN",
-      "type": "source_forensic_only",
-      "goal": "Resolve Treasury auction source schema and causal availability without running alpha.",
-      "runner": "automation/Run-GuardianEdgeFactoryV108.ps1",
-      "engine": "scripts/gef_v108_treasury_source_forensic.py"
+      "type": "new_family",
+      "goal": "Test Treasury auction information at one-auction-per-observation granularity with maturity/type-specific normalization.",
+      "preregistration": "research/campaigns/GEF_V109_TREASURY_EVENT_LEVEL_2026_09_22.md",
+      "runner": "automation/Run-GuardianEdgeFactoryV109.ps1",
+      "engine": "scripts/gef_v109_treasury_event_level.py"
     },
     {
       "id": "LOCKED-OOS-2023-2025",
