@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import t as student_t
 
-ENGINE_VERSION="BATCH-A-V2-DISCOVERY-1.1"
+ENGINE_VERSION="BATCH-A-V2-DISCOVERY-1.2"
 DISCOVERY_START=pd.Timestamp("2013-01-01")
 DISCOVERY_END=pd.Timestamp("2017-01-01")
 HOLD_START=pd.Timestamp("2017-01-01")
@@ -205,7 +205,7 @@ def build_rate_objects(root,end_year,times):
         sd=d1.expanding(min_periods=RATE_Z_MIN).std().shift(1).replace(0,np.nan)
         z=(d1-mu)/sd
         src=pd.DataFrame({"AVAILABLE_AT":pd.DatetimeIndex(real.index)+pd.Timedelta(days=1),
-                          "d1":d1.to_numpy(),"z":z.to_numpy()}).dropna(subset=["AVAILABLE_AT"]).sort_values("AVAILABLE_AT")
+                          "d1":d1.to_numpy(),"z":z.to_numpy()}).dropna(subset=["AVAILABLE_AT","z"]).sort_values("AVAILABLE_AT")
         base=pd.DataFrame({"decision_time":times})
         j=pd.merge_asof(base,src,left_on="decision_time",right_on="AVAILABLE_AT",direction="backward")
         out[ten]=pd.Series(pd.to_numeric(j["z"],errors="coerce").to_numpy(dtype=float),index=times)
