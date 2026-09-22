@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-22",
+  "status": "FROZEN_BEFORE_COMPUTE",
+  "common_protocol": "research/campaigns/GEF_BATCH_A_COMMON_PROTOCOL_2026_09_22.md",
+  "discovery": "2010-2012",
+  "holdout": "2013",
+  "forbidden_2014_plus": true,
+  "protected_2026": true,
+  "fast_z_min_periods": 250,
+  "slow_daily_z_min_periods": 126,
+  "beta_lookback_hours": 480,
+  "beta_min_periods": 240,
+  "event_abs_z": 1.5,
+  "event_cooldown_minutes": 240,
+  "horizons_min": [
+    60,
+    120,
+    240
+  ],
+  "bh_q_by_lineage": 0.05,
+  "holdout_one_sided_p": 0.1,
+  "minimum_discovery_n": 120,
+  "minimum_discovery_clusters": 80,
+  "minimum_holdout_n": 40,
+  "minimum_holdout_clusters": 20,
+  "lineages": {
+    "P01": {
+      "tests": 9,
+      "primary": "interaction",
+      "real_tenors": [
+        "5Y",
+        "10Y",
+        "30Y"
+      ],
+      "targets": [
+        "XAUUSD"
+      ],
+      "horizons": [
+        60,
+        120,
+        240
+      ]
+    },
+    "P04": {
+      "tests": 6,
+      "primary": "oil_coef",
+      "leaders": [
+        "WTIUSD",
+        "BCOUSD"
+      ],
+      "targets": [
+        "USDCAD_resid_UDX"
+      ],
+      "horizons": [
+        60,
+        120,
+        240
+      ]
+    },
+    "P06": {
+      "tests": 9,
+      "primary": "interaction",
+      "real_tenors": [
+        "5Y",
+        "10Y",
+        "30Y"
+      ],
+      "targets": [
+        "NSX_resid_SPX"
+      ],
+      "horizons": [
+        60,
+        120,
+        240
+      ]
+    },
+    "P08": {
+      "tests": 6,
+      "primary": "divergence_coef",
+      "targets": [
+        "UDXUSD",
+        "XAUUSD",
+        "XAGUSD"
+      ],
+      "horizons": [
+        60,
+        120
+      ]
+    },
+    "P11": {
+      "tests": 3,
+      "primary": "residual_coef",
+      "targets": [
+        "XAU_resid_XAG"
+      ],
+      "horizons": [
+        60,
+        120,
+        240
+      ]
+    },
+    "P12": {
+      "tests": 33,
+      "primary": "interaction",
+      "markets": [
+        "XAUUSD",
+        "XAGUSD",
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY",
+        "AUDUSD",
+        "USDCAD",
+        "USDCHF",
+        "SPXUSD",
+        "NSXUSD",
+        "WTIUSD"
+      ],
+      "horizons": [
+        60,
+        120,
+        240
+      ]
+    }
+  }
+}
