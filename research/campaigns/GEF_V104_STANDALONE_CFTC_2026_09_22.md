@@ -14,7 +14,7 @@ Rates lineage is closed before locked OOS.
 Do standalone CFTC positioning states carry reproducible predictive information for the frozen Guardian target universe?
 
 Eligible family:
-- family == cftc in the frozen V85 catalog only.
+- frozen V85 family starts with `cftc_` (for example `cftc_EURUSD`, `cftc_XAUUSD`); V84C intentionally partitions CFTC by mapped market.
 
 No rates, price, implied-volatility or interaction condition is allowed in a V104 candidate definition.
 
