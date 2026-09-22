@@ -1,0 +1,17 @@
+{
+  "run_id": "GEF103-20260922-145228",
+  "status": "COMPLETE_V103_RATES_PREOOS_FORENSIC",
+  "engine_version": "V103.0",
+  "source_v102": "GEF102-20260922-143744",
+  "source_final_sha256": "f6aa7d91488a5e52eeb1d5fa3c614dcff918ac3f1e4dd680ec3e3cac7060b865",
+  "candidates_audited": 5,
+  "candidate_preoos_passes": 0,
+  "unique_signal_families_all": 3,
+  "unique_signal_families_passing": 0,
+  "forensic_results_sha256": "9dfb56ca7762b7568803a8b90fa5cc1c6f20917bbecae006a9c0a458ed821301",
+  "final_preoos_survivors_sha256": "0333d7269ac9351df96314b5ad5da7df695a67bfa6dffa2cc88d8f025af2d7b0",
+  "2023_2025_accessed": false,
+  "2026_accessed": false,
+  "decision": "CLOSE_V102_RATES_LINEAGE_BEFORE_LOCKED_OOS",
+  "reason": "0/5 candidates passed the preregistered final pre-OOS forensic. REAL 7Y trio is concentrated in one calendar month/year; C1 and C5 fail independent concentration/repeated-signal gates."
+}
