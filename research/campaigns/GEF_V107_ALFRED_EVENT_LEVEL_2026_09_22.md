@@ -87,3 +87,34 @@ V107.2 replaces extreme z states with predeclared high-support event states:
 Support gates are increased to 12 discovery events, 12 replication events and 15 validation events.
 
 Because V107.0 and V107.1 produced no finite discovery tests, no return-based result was used to choose this redesign.
+
+
+## V107.3 final redesign after zero-support V107.2
+
+V107.2 again produced zero finite discovery tests before any p-value table or candidate freeze.
+
+Root causes identified:
+1. V106 found 39 safely inspectable ALFRED tables, but V107.0-2 consumed only 13 revision-summary parquet files.
+2. Splitting already sparse macro releases into discrete state buckets destroyed support.
+
+V107.3 therefore:
+- audits every parquet/csv table under DataLake/normalized/alfred_pre2023;
+- accepts only causally defensible first-release representations:
+  - first_vintage + first_value; or
+  - earliest realtime_start/vintage per observation with the corresponding first value;
+- writes ALFRED_SOURCE_DIAGNOSTICS.csv before alpha work;
+- writes EVENT_SUPPORT_2010_2013.csv before reading discovery returns;
+- if no feature has >=12 causal release-events spanning >=3 discovery years, exits cleanly with COMPLETE_V107_NO_DISCOVERY_SUPPORT;
+- uses a symmetric event strategy instead of splitting states:
+  position sign = sign(causal feature score) × one discovery-frozen orientation;
+- d1/d3 causal score = sign(change);
+- level/z24 causal score = sign(current value minus prior expanding median);
+- all candidate observations remain one distinct ALFRED first-release event.
+
+The temporal market-return firewall remains physical:
+- discovery prices <=2013 only;
+- 2014-2017 prices loaded only after discovery freeze;
+- 2018-2022 prices loaded only after pre-validation freeze;
+- 2023-2025 and 2026 forbidden.
+
+No return-based result from V107.0, V107.1 or V107.2 was available or used to choose this redesign because all three stopped before a finite discovery test existed.
