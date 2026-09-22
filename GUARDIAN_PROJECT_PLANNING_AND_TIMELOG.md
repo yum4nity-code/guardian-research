@@ -685,3 +685,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Added recurring tradability mask with close/reopen buffer to avoid session-gap artifacts.
 - Frozen 2012-2014 discovery, 2015-2017 replication, 2018-2022 validation, 2023-2025 locked OOS, 2026 protected.
 - Batch B macro parked, not discarded.
+
+
+### 2026-09-22 — M5 Motion Topology V1 cache builder implemented
+- Added a no-alpha phase-1 builder using only 2011-2014 HistData.
+- Builder writes per-market M5 OHLC, intra-asset states, endpoint-score targets, recurring tradability masks and cross-market state cache.
+- Tradability is inferred from recurring 5-minute slot availability in 2012-2014 with a 95% requirement and 30-minute close/reopen buffer.
+- Endpoint target compares normalized reversal excursion vs continuation excursion for 15/30/60m established moves and 15/30/60m forward paths.
+- Cross state includes breadth, dispersion, shock breadth, rolling-beta residuals, residual z, short-vs-long correlation break and 5/10/15m lagged pair returns.
+- No edge trial or outcome association is performed.
+- First builder hard-stops at 2014; 2015+ remains unopened.
