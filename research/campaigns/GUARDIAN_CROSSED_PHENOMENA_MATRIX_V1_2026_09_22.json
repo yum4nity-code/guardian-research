@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-22",
+  "status": "DESIGN_COMPLETE_NO_TRIALS",
+  "immediate_historical": [
+    "P01",
+    "P02",
+    "P03",
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08",
+    "P09",
+    "P10",
+    "P11",
+    "P12",
+    "P13",
+    "P14",
+    "P15",
+    "P16"
+  ],
+  "forward_only": [
+    "P17",
+    "P18",
+    "P19"
+  ],
+  "recommended_batch_a": [
+    "P01",
+    "P04",
+    "P06",
+    "P08",
+    "P11",
+    "P12"
+  ],
+  "blocked_sources": {
+    "cboe_cfe": "causal availability/provenance not frozen",
+    "financial_conditions": "causal release semantics not ready",
+    "alfred": "operational architecture closed; rewrite required",
+    "fomc": "exact publication/event table not audited",
+    "eia": "AVAILABLE_AT not built",
+    "macro_consensus": "verified expectations dataset absent",
+    "fx_carry": "foreign rate curves not verified/available"
+  },
+  "guardrails": {
+    "v85_duplicate_rule": "Do not rerun generic cross-family LO/HI state conjunction search.",
+    "locked_oos_2023_2025": "Do not use for new-lineage design/selection.",
+    "protected_2026": "forbidden",
+    "audusd_h21": "OOS-confirmed lineage frozen; no post-OOS optimization."
+  }
+}
