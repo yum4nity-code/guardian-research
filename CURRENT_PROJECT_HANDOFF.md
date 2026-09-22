@@ -36,7 +36,7 @@ Failed V111 candidates:
 - AUDUSD H21 240m
 - EURUSD H11 120m
 
-## V112 — PREREGISTERED, LOCKED, HUMAN APPROVAL REQUIRED
+## V112 — PREREGISTERED, HUMAN APPROVED, READY TO RUN
 
 V112 protocol is frozen before any 2023-2025 market return is opened.
 
@@ -66,3 +66,9 @@ OPEN_LOCKED_OOS_2023_2025
 No automatic execution.
 No optimization after OOS.
 No portfolio construction in V112.
+
+
+### Human gate opened
+On 2026-09-22 the user explicitly approved opening locked OOS 2023-2025.
+The protocol, candidates and gates remain unchanged.
+2026 remains forbidden.
