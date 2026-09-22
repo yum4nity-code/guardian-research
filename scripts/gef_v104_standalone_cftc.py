@@ -12,7 +12,7 @@ import zipfile
 import numpy as np
 import pandas as pd
 
-ENGINE_VERSION="V104.0"
+ENGINE_VERSION="V104.1"
 STATE_Z=1.0
 SLOW_MIN_PERIODS=500
 GENERIC_COST_BP=1.0
@@ -307,8 +307,8 @@ def main():
         YT[(tm%h)!=0,ti]=np.nan; YH[(hm%h)!=0,ti]=np.nan
     pmap=np.memmap(v85/"TRAIN_PVALUES.float32.dat",mode="r",dtype=np.float32,shape=(int(design["predeclared_trial_slots"]),))
     singleton_slots=int(design["singleton_slots"])
-    cftc_idx=catalog.index[catalog["family"].astype(str).eq("cftc")].tolist()
-    if not cftc_idx: raise RuntimeError("No cftc family in frozen V85 catalog")
+    cftc_idx=catalog.index[catalog["family"].astype(str).str.startswith("cftc_")].tolist()
+    if not cftc_idx: raise RuntimeError("No cftc_* market families in frozen V85 catalog")
     status(2,12,"frozen discovery data loaded",cftc_features=len(cftc_idx),targets=nt)
 
     rows=[]
