@@ -84,6 +84,10 @@ required_literals=[
     'input string RuntimeStateFile="GuardianEdgeForward\\\\runtime_state_v100.csv";',
     "CatchUpToLatest()",
     "SaveRuntimeState()",
+    '#property version   "100.20"',
+    "MeanStdFinite12",
+    "nfinite<6",
+    "double mean=prior.mean;",
 ]
 missing=[x for x in required_literals if x not in src]
 if missing:
