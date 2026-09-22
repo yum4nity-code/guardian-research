@@ -1,7 +1,7 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V109-TREASURY-EVENT-LEVEL",
+  "active_primary": "GEF-V110-UTC-CALENDAR",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -27,21 +27,21 @@
       "status": "CLOSED_OPERATIONALLY_NO_ALPHA_CONCLUSION"
     },
     {
-      "id": "GEF-V108-TREASURY-SOURCE-FORENSIC",
+      "id": "GEF-V109-TREASURY",
       "priority": 0,
-      "status": "COMPLETE_READY_AFTER_AUDIT_CORRECTION",
-      "reference_run": "GEF108-20260922-160137",
-      "correction": "V108 preview used head(500) before coverage computation; schema itself proved 9496 auctions from 1979-10-31 through 2022-12-29."
+      "status": "CLOSED_AT_DISCOVERY",
+      "reference_run": "GEF109-20260922-161442",
+      "result": "15,870 finite tests; 0 discovery survivors after BH q<=0.05; no 2014+ market returns accessed."
     },
     {
-      "id": "GEF-V109-TREASURY-EVENT-LEVEL",
+      "id": "GEF-V110-UTC-CALENDAR",
       "priority": 1,
       "status": "READY_TO_RUN",
       "type": "new_family",
-      "goal": "Test Treasury auction information at one-auction-per-observation granularity with maturity/type-specific normalization.",
-      "preregistration": "research/campaigns/GEF_V109_TREASURY_EVENT_LEVEL_2026_09_22.md",
-      "runner": "automation/Run-GuardianEdgeFactoryV109.ps1",
-      "engine": "scripts/gef_v109_treasury_event_level.py"
+      "goal": "Test UTC hour/calendar structure using one top-of-hour event per candidate occurrence and matched controls.",
+      "preregistration": "research/campaigns/GEF_V110_UTC_CALENDAR_2026_09_22.md",
+      "runner": "automation/Run-GuardianEdgeFactoryV110.ps1",
+      "engine": "scripts/gef_v110_utc_calendar_structure.py"
     },
     {
       "id": "LOCKED-OOS-2023-2025",
