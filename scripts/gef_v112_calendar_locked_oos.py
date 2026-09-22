@@ -3,7 +3,7 @@ import argparse, hashlib, json, math, time
 import numpy as np
 import pandas as pd
 
-ENGINE_VERSION="V112.0"
+ENGINE_VERSION="V112.1"
 UNLOCK="OPEN_LOCKED_OOS_2023_2025"
 START=pd.Timestamp("2023-01-01 00:00")
 END=pd.Timestamp("2026-01-01 00:00")
@@ -73,9 +73,15 @@ def load_market(root,sym):
         q=q[(q["utc"]>=START)&(q["utc"]<END)]
         parts.append(q)
     q=pd.concat(parts,ignore_index=True).sort_values("utc").drop_duplicates("utc",keep="last")
+    if len(q) and q["utc"].max()>=END:
+        raise RuntimeError("V112 raw input contains 2026+ data")
     s=q.set_index("utc")["px"].resample("5min",label="right",closed="left").last().dropna().astype(float)
+    # right-labelled resampling can emit a synthetic 2026-01-01 00:00 label
+    # from the final minutes of 2025. This is not 2026 raw data; clip the
+    # resampled index back to the locked OOS window.
+    s=s[(s.index>=START)&(s.index<END)]
     if len(s.index) and s.index.max()>=END:
-        raise RuntimeError("V112 loaded 2026+ data")
+        raise RuntimeError("V112 resampled series escaped locked OOS boundary")
     return s
 
 def hourly_returns(series,horizon):
