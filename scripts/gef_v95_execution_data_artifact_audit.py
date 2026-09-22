@@ -472,7 +472,9 @@ for idx,r in enumerate(panel.itertuples(index=False),1):
 
     ser=pd.Series(np.where(mask,raw,np.nan),index=all_times)
     sparse_series[int(r.development_rank)]=ser
-    signal_masks[int(r.development_rank)]=pd.Series(mask,index=all_times)
+    # Overlap means actual sampled trades, not merely simultaneous state membership.
+    trade_mask=mask&np.isfinite(raw)
+    signal_masks[int(r.development_rank)]=pd.Series(trade_mask,index=all_times)
     print(
         f"[GEF95] audit {idx}/{len(panel)} rank={int(r.development_rank)} "
         f"mean={core['mean_bp']:.3f}bp oos={moos['mean_bp']:.3f}bp "
