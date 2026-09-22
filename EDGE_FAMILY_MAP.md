@@ -9,7 +9,7 @@ A broad family is not called exhausted merely because one implementation failed.
 | 1 | Price momentum / continuation | DEEP_TESTED_NO_SURVIVOR | Multiple simple price-only campaigns produced no robust survivor. Revisit only with a genuinely new mechanism/information source. |
 | 2 | Price mean reversion | DEEP_TESTED_NO_SURVIVOR | GBP lookahead lineage dead; XAG V19 tail fail; clean XAG V29–31 produced 0/7 robust. |
 | 3 | Volatility regime × price shock | CLOSED_SPECIFIC_LINEAGE | V32→V37. 192 discovery cells → 16 frozen → 9 replicated → 1 robust → XAG normal/reversal H240 validated 2018–22, then **failed V37 pre-OOS forensic** because trim-best-2% = -1.339 bp. 2023–25 never opened. Do not rescue this specification. |
-| 4 | Intraday / calendar structure | UNTOUCHED | Open/close, overlap, hour, weekday, month-end. |
+| 4 | Intraday / calendar structure | EXPLORING | V110 UTC hour/weekday/month-position/quarter-end standalone research active. |
 | 5 | Cross-asset lead/lag | PARTIAL | V20–28 price-only XAU/XAG lineage closed; does not exhaust economically directed lead/lag. |
 | 6 | Relative value / spreads | UNTOUCHED | Genuine spread/stat-arb family not tested. |
 | 7 | Implied volatility -> spot | UNTOUCHED | **NEXT PRIMARY FAMILY.** Cboe VIX/VIX9D/VVIX/GVZ/OVX + spot. |
@@ -22,7 +22,7 @@ A broad family is not called exhausted merely because one implementation failed.
 | 14 | Macro releases / surprises | CLOSED_SPECIFIC_LINEAGE | ALFRED V107 closed operationally after repeated source/target bridge failure; no alpha conclusion. |
 | 15 | FOMC events | UNTOUCHED | Fed/FOMC corpus available. |
 | 16 | Fed communication | UNTOUCHED | Separate publication timing from revisions. |
-| 17 | Treasury auctions | EXPLORING | V108 verified the source (9,496 auctions, 1979–2022); V109 event-level standalone research active. |
+| 17 | Treasury auctions | CLOSED_SPECIFIC_LINEAGE | V109: 15,870 finite event-level discovery tests, 0 survivors after BH; no 2014+ returns opened. |
 | 18 | Energy fundamentals | UNTOUCHED | Blocked until EIA AVAILABLE_AT is causally built. |
 | 19 | Macro × market interactions | UNTOUCHED | Later, after standalone components. |
 | 20 | Macro regime × technical | UNTOUCHED | Later interaction family. |
