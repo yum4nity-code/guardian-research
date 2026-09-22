@@ -676,3 +676,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Batch A V2 is therefore scientifically closed with no rescue or retuning.
 - 2018+ / 2023-2025 / 2026 remained unopened.
 - Next research wave: Batch B P02/P03/P05/P07/P09/P10/P13/P14.
+
+
+### 2026-09-22 — Pivot to M5 Motion Topology Factory V1
+- User reframed the target around M5 movement endings, local highs/lows, simultaneous movement, inter/intra-asset co-movement, repeated motifs and crossings.
+- Existing Guardian families 5, 6, 21 and 22 plus P09/P10 overlap materially but had not been organized around execution-time M5 endpoint prediction.
+- Frozen a new 12-family M5 topology campaign before compute.
+- Added recurring tradability mask with close/reopen buffer to avoid session-gap artifacts.
+- Frozen 2012-2014 discovery, 2015-2017 replication, 2018-2022 validation, 2023-2025 locked OOS, 2026 protected.
+- Batch B macro parked, not discarded.
