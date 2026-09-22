@@ -1,7 +1,7 @@
 {
-  "schema_version": 12,
+  "schema_version": 13,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V110-UTC-CALENDAR",
+  "active_primary": "GEF-V111-CALENDAR-PREOOS-FORENSIC",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -30,18 +30,26 @@
       "id": "GEF-V109-TREASURY",
       "priority": 0,
       "status": "CLOSED_AT_DISCOVERY",
-      "reference_run": "GEF109-20260922-161442",
-      "result": "15,870 finite tests; 0 discovery survivors after BH q<=0.05; no 2014+ market returns accessed."
+      "reference_run": "GEF109-20260922-161442"
     },
     {
       "id": "GEF-V110-UTC-CALENDAR",
+      "priority": 0,
+      "status": "VALIDATED_PREOOS_AWAITING_FORENSIC",
+      "reference_run": "GEF110-20260922-162255",
+      "result": "10,265 finite tests -> 76 frozen -> 33 replicated -> 19 robust -> 8 validated.",
+      "final_survivors_sha256": "3d89751fa6533b5f5290be3b9704480aea9455d4e3b069b10bb2728bd67a2bbc",
+      "2023_2025_accessed": false,
+      "2026_accessed": false
+    },
+    {
+      "id": "GEF-V111-CALENDAR-PREOOS-FORENSIC",
       "priority": 1,
       "status": "READY_TO_RUN",
-      "type": "new_family",
-      "goal": "Test UTC hour/calendar structure using one top-of-hour event per candidate occurrence and matched controls.",
-      "preregistration": "research/campaigns/GEF_V110_UTC_CALENDAR_2026_09_22.md",
-      "runner": "automation/Run-GuardianEdgeFactoryV110.ps1",
-      "engine": "scripts/gef_v110_utc_calendar_structure.py"
+      "goal": "Audit exact eight V110 survivors for concentration, timing stability, costs, month-block bootstrap and structural dependency before any locked OOS.",
+      "preregistration": "research/campaigns/GEF_V111_CALENDAR_PREOOS_FORENSIC_2026_09_22.md",
+      "runner": "automation/Run-GuardianEdgeFactoryV111.ps1",
+      "engine": "scripts/gef_v111_calendar_preoos_forensic.py"
     },
     {
       "id": "LOCKED-OOS-2023-2025",
