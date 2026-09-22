@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-22",
-  "active_primary": "M5-MOTION-TOPOLOGY-V1-CACHE-BUILD",
+  "active_primary": "M5-MOTION-TOPOLOGY-V1.1-CACHE-REBUILD",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "CACHE_AUDIT_PARTIAL_PASS_WAITING_FINAL_BLOCKS",
+      "status": "V1_CACHE_REJECTED_SESSION_MASK_V1_1_READY",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -255,7 +255,16 @@
         "TRADABILITY SESSION SHAPES",
         "OHLC INTEGRITY",
         "ENDPOINT TARGET DISTRIBUTION"
-      ]
+      ],
+      "v1_cache_run": "GEFM5T-20260922-200657",
+      "v1_cache_rejection_reason": "Recurring UTC slot mask fragmented UDX/SPX/NSX/BCO sessions; no alpha tests were run.",
+      "v1_1_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_1_2026_09_22.json",
+      "v1_1_amendment": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_1_TRADABILITY_AMENDMENT_2026_09_22.md",
+      "v1_1_engine": "scripts/gef_m5_motion_topology_build_v1_1.py",
+      "v1_1_runner": "automation/Run-M5MotionTopologyCacheV1_1.ps1",
+      "v1_1_audit": "automation/Audit-M5MotionTopologyCacheV1_1.ps1",
+      "v1_1_status": "READY_TO_BUILD",
+      "next_after_v1_1": "If cache audit passes, freeze M01-M08 discovery tests before any outcome association."
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
