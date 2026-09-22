@@ -1,7 +1,7 @@
 {
-  "schema_version": 16,
+  "schema_version": 17,
   "updated_at": "2026-09-22",
-  "active_primary": "CROSSED-PHENOMENA-BATCH-A-DISCOVERY",
+  "active_primary": "CROSSED-PHENOMENA-BATCH-A-V2",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -83,7 +83,7 @@
       "2026": "BLOCKED",
       "id": "CROSSED-ECONOMIC-PHENOMENA-V1",
       "priority": 1,
-      "status": "BATCH_A_VALIDITY_AUDIT_REQUIRED",
+      "status": "BATCH_A_V2_PREREGISTERED_READY_TO_RUN",
       "matrix": "research/campaigns/GUARDIAN_CROSSED_PHENOMENA_MATRIX_V1_2026_09_22.md",
       "historical_ready_count": 16,
       "forward_only_count": 3,
@@ -109,7 +109,21 @@
       "latest_run": "GEFBA-20260922-181339",
       "latest_run_valid_discovery_tests": 0,
       "latest_run_interpretation": "DO_NOT_CLOSE_LINEAGES; audit common validity failure before scientific interpretation",
-      "diagnostic": "automation/Diagnose-CrossedPhenomenaBatchA.ps1"
+      "diagnostic": "automation/Diagnose-CrossedPhenomenaBatchA.ps1",
+      "v1_run": "GEFBA-20260922-181339",
+      "v1_interpretation": "INVALID_SUPPORT_NOT_SCIENTIFIC_CLOSURE",
+      "v2_protocol": "research/campaigns/GEF_BATCH_A_V2_TEMPORAL_PREREGISTRATION_2026_09_22.md",
+      "v2_engine": "scripts/gef_crossed_batch_a_v2.py",
+      "v2_runner": "automation/Run-CrossedPhenomenaBatchAV2.ps1",
+      "v2_windows": {
+        "warmup": "2012",
+        "discovery": "2013-2016",
+        "holdout": "2017",
+        "replication_future": "2018-2019",
+        "validation_future": "2020-2022"
+      },
+      "2017_access": "BLOCKED_UNTIL_DISCOVERY_FREEZE",
+      "2018_plus_access": "BLOCKED_IN_V2_ENGINE"
     },
     {
       "id": "PROTECTED-2026",
