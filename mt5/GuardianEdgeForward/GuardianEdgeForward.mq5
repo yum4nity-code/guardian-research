@@ -1,5 +1,5 @@
 #property strict
-#property version   "100.10"
+#property version   "100.20"
 #property description "Guardian Edge Forward - frozen rank 7/9 SHADOW logger"
 #property description "No order-sending code. Hard-disabled until post-2026 release window."
 #property description "Requires an exact post-2026 state seed before initialization."
@@ -41,8 +41,8 @@ enum FeatureSlot
 struct RunningStat
   {
    long n;
-   double sum;
-   double sumsq;
+   double mean;
+   double m2;
   };
 
 struct FeatureSnapshot
@@ -83,18 +83,18 @@ bool IsFiniteNumber(const double x)
 
 double SampleStd(const RunningStat &s)
   {
-   if(s.n<2) return 0.0;
-   double numerator=s.sumsq-(s.sum*s.sum)/(double)s.n;
-   if(numerator<0.0 && MathAbs(numerator)<1e-18) numerator=0.0;
-   if(numerator<=0.0) return 0.0;
-   return MathSqrt(numerator/(double)(s.n-1));
+   if(s.n<2 || !IsFiniteNumber(s.m2) || s.m2<=0.0) return 0.0;
+   return MathSqrt(s.m2/(double)(s.n-1));
   }
 
 void UpdateStat(RunningStat &s,const double x)
   {
-   s.n++;
-   s.sum+=x;
-   s.sumsq+=x*x;
+   long n1=s.n+1;
+   double delta=x-s.mean;
+   s.mean+=delta/(double)n1;
+   double delta2=x-s.mean;
+   s.m2+=delta*delta2;
+   s.n=n1;
   }
 
 bool EnsureSymbol(const string sym)
@@ -107,80 +107,80 @@ bool EnsureSymbol(const string sym)
    return true;
   }
 
-int ExactBarShiftForDecision(const string sym,const datetime decision_time)
+bool GridCloseAt(const string sym,const datetime grid_time,double &out)
   {
-   datetime bar_open=decision_time-300;
+   // Research P[t] is the close of the exact M5 bin [t-5m,t).
+   datetime bar_open=grid_time-300;
    int shift=iBarShift(sym,PERIOD_M5,bar_open,true);
-   if(shift<0) return -1;
-   if(iTime(sym,PERIOD_M5,shift)!=bar_open) return -1;
-   return shift;
-  }
-
-bool ContinuousM5WindowAtShift(const string sym,const int newest_shift,const int intervals)
-  {
-   datetime newest=iTime(sym,PERIOD_M5,newest_shift);
-   if(newest<=0) return false;
-   for(int j=1;j<=intervals;j++)
-     {
-      datetime older=iTime(sym,PERIOD_M5,newest_shift+j);
-      if(older<=0) return false;
-      if(older!=(newest-j*300)) return false;
-     }
+   if(shift<0 || iTime(sym,PERIOD_M5,shift)!=bar_open) return false;
+   double c=iClose(sym,PERIOD_M5,shift);
+   if(c<=0.0 || !IsFiniteNumber(c)) return false;
+   out=c;
    return true;
   }
 
 bool ComputeRet30At(const string sym,const datetime decision_time,double &out)
   {
-   int sh=ExactBarShiftForDecision(sym,decision_time);
-   if(sh<0 || !ContinuousM5WindowAtShift(sym,sh,6)) return false;
-   double c0=iClose(sym,PERIOD_M5,sh);
-   double c6=iClose(sym,PERIOD_M5,sh+6);
-   if(c0<=0.0 || c6<=0.0) return false;
+   // Exact pandas research semantics: P[t] / P[t-30m] - 1.
+   // Intermediate missing M5 bins do NOT invalidate the feature.
+   double c0=0.0,c6=0.0;
+   if(!GridCloseAt(sym,decision_time,c0)) return false;
+   if(!GridCloseAt(sym,decision_time-1800,c6)) return false;
    out=c0/c6-1.0;
    return IsFiniteNumber(out);
   }
 
-bool Build12R5At(const string sym,const datetime decision_time,double &r[])
+bool BuildRollingR5At(const string sym,const datetime decision_time,double &r[],bool &current_finite)
   {
-   int sh0=ExactBarShiftForDecision(sym,decision_time);
-   if(sh0<0 || !ContinuousM5WindowAtShift(sym,sh0,12)) return false;
+   // Exact research semantics for pct_change(fill_method=None) followed by
+   // rolling(12,min_periods=6). Missing individual returns remain NaN/missing.
    ArrayResize(r,12);
+   current_finite=false;
    for(int i=0;i<12;i++)
      {
-      int sh=sh0+i;
-      double c0=iClose(sym,PERIOD_M5,sh);
-      double c1=iClose(sym,PERIOD_M5,sh+1);
-      if(c0<=0.0 || c1<=0.0) return false;
-      r[i]=c0/c1-1.0;
-      if(!IsFiniteNumber(r[i])) return false;
+      r[i]=DBL_MAX; // sentinel for missing
+      datetime t=decision_time-i*300;
+      double c0=0.0,c1=0.0;
+      if(!GridCloseAt(sym,t,c0)) continue;
+      if(!GridCloseAt(sym,t-300,c1)) continue;
+      double x=c0/c1-1.0;
+      if(!IsFiniteNumber(x)) continue;
+      r[i]=x;
+      if(i==0) current_finite=true;
      }
    return true;
   }
 
-bool MeanStd12(const double &r[],double &mean,double &sd)
+bool MeanStdFinite12(const double &r[],double &mean,double &sd,int &nfinite)
   {
    if(ArraySize(r)!=12) return false;
-   double sum=0.0;
-   double ss=0.0;
+   nfinite=0;
+   mean=0.0;
+   double m2=0.0;
    for(int i=0;i<12;i++)
      {
-      sum+=r[i];
-      ss+=r[i]*r[i];
+      if(r[i]==DBL_MAX || !IsFiniteNumber(r[i])) continue;
+      nfinite++;
+      double delta=r[i]-mean;
+      mean+=delta/(double)nfinite;
+      double delta2=r[i]-mean;
+      m2+=delta*delta2;
      }
-   mean=sum/12.0;
-   double numerator=ss-(sum*sum)/12.0;
-   if(numerator<0.0 && MathAbs(numerator)<1e-18) numerator=0.0;
-   if(numerator<=0.0) return false;
-   sd=MathSqrt(numerator/11.0);
+   // pandas research uses min_periods=max(3,k//2)=6 and sample std ddof=1.
+   if(nfinite<6 || m2<=0.0) return false;
+   sd=MathSqrt(m2/(double)(nfinite-1));
    return IsFiniteNumber(mean) && IsFiniteNumber(sd) && sd>0.0;
   }
 
 bool ComputeRv60At(const string sym,const datetime decision_time,double &out)
   {
    double r[];
-   if(!Build12R5At(sym,decision_time,r)) return false;
+   bool current_finite=false;
+   if(!BuildRollingR5At(sym,decision_time,r,current_finite)) return false;
    double mean=0.0,sd=0.0;
-   if(!MeanStd12(r,mean,sd)) return false;
+   int nfinite=0;
+   if(!MeanStdFinite12(r,mean,sd,nfinite)) return false;
+   // Rolling std may be finite even when current r5 is missing; this matches pandas.
    out=sd;
    return IsFiniteNumber(out);
   }
@@ -188,9 +188,12 @@ bool ComputeRv60At(const string sym,const datetime decision_time,double &out)
 bool ComputeZret60At(const string sym,const datetime decision_time,double &out)
   {
    double r[];
-   if(!Build12R5At(sym,decision_time,r)) return false;
+   bool current_finite=false;
+   if(!BuildRollingR5At(sym,decision_time,r,current_finite)) return false;
+   if(!current_finite || r[0]==DBL_MAX) return false;
    double mean=0.0,sd=0.0;
-   if(!MeanStd12(r,mean,sd)) return false;
+   int nfinite=0;
+   if(!MeanStdFinite12(r,mean,sd,nfinite)) return false;
    out=(r[0]-mean)/sd;
    return IsFiniteNumber(out);
   }
@@ -217,8 +220,8 @@ bool LoadStateFile(const string filename,const bool seed_file)
       string name=FileReadString(h);
       if(name=="") continue;
       string ns=FileReadString(h);
-      string sums=FileReadString(h);
-      string sss=FileReadString(h);
+      string means=FileReadString(h);
+      string m2s=FileReadString(h);
       string times=FileReadString(h);
       if(name=="feature" || name=="FEATURE") continue;
 
@@ -231,10 +234,10 @@ bool LoadStateFile(const string filename,const bool seed_file)
         }
 
       long n=(long)StringToInteger(ns);
-      double sum=StringToDouble(sums);
-      double sumsq=StringToDouble(sss);
+      double mean=StringToDouble(means);
+      double m2=StringToDouble(m2s);
       datetime last_time=StringToTime(times);
-      if(n<MIN_SEED_N || !IsFiniteNumber(sum) || !IsFiniteNumber(sumsq) || sumsq<=0.0 || last_time<=0)
+      if(n<MIN_SEED_N || !IsFiniteNumber(mean) || !IsFiniteNumber(m2) || m2<=0.0 || last_time<=0)
         {
          Print(EA_NAME,": invalid state row ",name," in ",filename);
          FileClose(h);
@@ -249,8 +252,8 @@ bool LoadStateFile(const string filename,const bool seed_file)
         }
 
       g_stats[slot].n=n;
-      g_stats[slot].sum=sum;
-      g_stats[slot].sumsq=sumsq;
+      g_stats[slot].mean=mean;
+      g_stats[slot].m2=m2;
       seen[slot]=true;
      }
    FileClose(h);
@@ -281,13 +284,13 @@ bool SaveRuntimeState()
       Print(EA_NAME,": cannot persist runtime state error=",GetLastError());
       return false;
      }
-   FileWrite(h,"feature","n","sum","sumsq","last_decision_time");
+   FileWrite(h,"feature","n","mean","m2","last_decision_time");
    for(int i=0;i<FS_COUNT;i++)
       FileWrite(h,
                 FeatureName(i),
                 g_stats[i].n,
-                DoubleToString(g_stats[i].sum,16),
-                DoubleToString(g_stats[i].sumsq,16),
+                DoubleToString(g_stats[i].mean,16),
+                DoubleToString(g_stats[i].m2,16),
                 TimeToString(g_last_decision_time,TIME_DATE|TIME_MINUTES|TIME_SECONDS));
    FileFlush(h);
    FileClose(h);
@@ -345,7 +348,7 @@ void ProcessFeatureAtDecision(const int slot,const string sym,const FeatureKind 
 
    RunningStat prior=g_stats[slot];
    if(prior.n<MIN_SEED_N) return;
-   double mean=prior.sum/(double)prior.n;
+   double mean=prior.mean;
    double sd=SampleStd(prior);
    if(!IsFiniteNumber(mean) || !IsFiniteNumber(sd) || sd<=0.0) return;
 
@@ -408,7 +411,7 @@ void WriteSignal(const int rank,
    string fb=(rank==7 ? FeatureName(FS_USDCHF_RV60) : FeatureName(FS_GBPUSD_RET30));
 
    FileWrite(h,
-             "V100.10",
+             "V100.20",
              rank,
              TimeToString(decision_time,TIME_DATE|TIME_MINUTES|TIME_SECONDS),
              target,
