@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 from scipy.special import ndtr
 
-ENGINE_VERSION = "V101.0"
+ENGINE_VERSION = "V101.1"
 FAST_MIN_PERIODS = 5000
 SLOW_MIN_PERIODS = 500
 STATE_Z = 1.0
@@ -225,12 +225,18 @@ def load_m1(root, sym, start_year, end_year):
     if end_year >= FORBIDDEN_YEAR:
         raise RuntimeError(f"V101 refuses year >= {FORBIDDEN_YEAR}")
     parts = []
+    skipped_legacy_warmup = []
     for year in range(start_year, end_year + 1):
         if year >= FORBIDDEN_YEAR:
             raise RuntimeError(f"Forbidden year requested: {year}")
         p = root / "DataLake" / "raw" / "histdata" / sym / "M1" / f"{sym}_M1_{year}.parquet"
         if not p.exists():
-            raise RuntimeError(f"Missing {p}")
+            # Match the frozen V83 discovery builder: legacy pre-2013 files were optional
+            # and missing years were skipped. From 2013 onward, match V92 and fail closed.
+            if year <= 2012:
+                skipped_legacy_warmup.append(year)
+                continue
+            raise RuntimeError(f"Missing required replication/validation file {p}")
         d = pd.read_parquet(p)
         dc = next((c for c in d.columns if str(c).lower() in ["datetime", "timestamp", "time", "date"]), None)
         pc = next((c for c in d.columns if str(c).lower() == "close"), None)
@@ -243,6 +249,10 @@ def load_m1(root, sym, start_year, end_year):
         q = pd.DataFrame({"utc": utc, "px": pd.to_numeric(d[pc], errors="coerce")}).dropna()
         q = q[q["utc"].dt.year.between(start_year, end_year)]
         parts.append(q)
+    if not parts:
+        raise RuntimeError(f"No usable M1 files for {sym} in {start_year}-{end_year}")
+    if skipped_legacy_warmup:
+        print(f"[GEF101] {sym} skipped legacy warmup years {skipped_legacy_warmup} (V83-compatible)", flush=True)
     q = pd.concat(parts, ignore_index=True).sort_values("utc").drop_duplicates("utc", keep="last")
     return q.set_index("utc")["px"]
 
