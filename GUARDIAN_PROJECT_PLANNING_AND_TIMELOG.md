@@ -629,3 +629,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - No new edge trial was run and no 2026 data was accessed.
 - Next safe action: preregister Batch A as separate economic-phenomenon lineages using the common causal infrastructure, before any computation.
 - Human active time: NOT QUANTIFIED. No autonomous research compute is counted as human time.
+
+
+### 2026-09-22 — Crossed phenomena Batch A preregistration
+
+- Preregistered six economically defined lineages P01/P04/P06/P08/P11/P12 before compute.
+- Frozen one common protocol: causal rolling beta 480 hourly observations / min 240; fast causal z min 250; slow daily-rate z min 126; event threshold |z|>=1.5; fixed 240m event cooldown; horizons 60/120/240m except P08 fixed 60/120m.
+- Defined discovery 2010-2012 and untouched temporal holdout 2013. Batch-A discovery engine is physically restricted to V83B 2010-2013 artifacts and stops before any 2014+ read.
+- Predeclared exactly 66 variants: P01 9, P04 6, P06 9, P08 6, P11 3, P12 33.
+- Statistical inference uses cluster-robust OLS: UTC day clusters for continuous/event price phenomena, exact CFTC report-date clusters for P12.
+- BH-FDR q<=0.05 is applied separately inside each economic lineage; only discoveries see the 2013 holdout. Holdout requires same frozen coefficient sign and one-sided cluster-robust p<=0.10.
+- Added scripts/gef_crossed_batch_a_discovery.py plus run/watch PowerShell wrappers.
+- No Batch-A edge computation has yet been run; no 2014+, 2023-2025 or 2026 market return was accessed by this implementation step.
