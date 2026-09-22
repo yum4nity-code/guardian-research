@@ -1,7 +1,7 @@
 {
-  "schema_version": 18,
+  "schema_version": 19,
   "updated_at": "2026-09-22",
-  "active_primary": "CROSSED-PHENOMENA-BATCH-A-V2-RERUN",
+  "active_primary": "CROSSED-PHENOMENA-BATCH-B-DESIGN",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -83,7 +83,7 @@
       "2026": "BLOCKED",
       "id": "CROSSED-ECONOMIC-PHENOMENA-V1",
       "priority": 1,
-      "status": "BATCH_A_V2_SUPPORT_REVALIDATED_READY_TO_RERUN",
+      "status": "BATCH_A_V2_CLOSED_AT_TEMPORAL_HOLDOUT",
       "matrix": "research/campaigns/GUARDIAN_CROSSED_PHENOMENA_MATRIX_V1_2026_09_22.md",
       "historical_ready_count": 16,
       "forward_only_count": 3,
@@ -145,7 +145,46 @@
         "real5y_finite_hours": 35064,
         "real10y_finite_hours": 35064
       },
-      "support_recheck_summary": "Targets and intersections restored to thousands of observations; read-only support audit passed."
+      "support_recheck_summary": "Targets and intersections restored to thousands of observations; read-only support audit passed.",
+      "v2_final_run": "GEFBA2-20260922-193022",
+      "v2_final_result": {
+        "valid_discovery_tests": 66,
+        "bh_discoveries": 2,
+        "holdout_tested": 2,
+        "temporal_survivors": 0,
+        "only_discovery_lineage": "P11",
+        "survivors_by_lineage": {
+          "P01": 0,
+          "P04": 0,
+          "P06": 0,
+          "P08": 0,
+          "P11": 0,
+          "P12": 0
+        },
+        "accessed_2017": true,
+        "accessed_2018_plus": false,
+        "accessed_2023_2025": false,
+        "accessed_2026": false
+      },
+      "batch_a_v2_lineages_closed": [
+        "P01",
+        "P04",
+        "P06",
+        "P08",
+        "P11",
+        "P12"
+      ],
+      "next_batch": [
+        "P02",
+        "P03",
+        "P05",
+        "P07",
+        "P09",
+        "P10",
+        "P13",
+        "P14"
+      ],
+      "rule_after_close": "No rescue, threshold change, alternate horizon, or retuning of Batch A V2 after 2017 holdout failure."
     },
     {
       "id": "PROTECTED-2026",
