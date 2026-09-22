@@ -189,3 +189,10 @@ The new objects are rolling-beta residuals, economic breadth, real-yield interac
 
 If a lineage has no BH+2013 survivor, close it without retuning.
 If survivors exist, freeze them and separately preregister 2014-2017 replication.
+
+
+### Batch A first-run infrastructure patch
+First run stopped before any regression because P12 expected a CFTC z52 column in the V83B slow parquet. V83 had constructed it but may remove it via global dedup_vectors().
+Scientific result: NONE.
+2014+ / 2023-2025 / 2026 remained unopened.
+Engine v1.1 reconstructs the exact frozen CFTC noncommercial z52 transform directly from the canonical V82D causal source and changes no scientific rule.
