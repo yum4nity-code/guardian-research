@@ -239,3 +239,24 @@ Hard safeguards:
 - only 2012-2016 is opened for discovery;
 - discovery BH freeze is physically written before any 2017 source is opened;
 - 2018+ cannot be read by this engine.
+
+
+### Batch A V2 support-collapse root cause found
+Run GEFBA2-20260922-183722 is NOT a scientific negative.
+
+Read-only support diagnostics showed healthy upstream state objects:
+- beta support ~32k-35k hours;
+- NSX/SPX residual-z 18,520 finite / 1,060 cooldown events;
+- XAU/XAG residual-z 22,433 finite / 1,595 cooldown events;
+- USD breadth-z 22,290 finite / 1,343 cooldown events.
+
+Two infrastructure bugs were identified:
+1. aligned_mask assumed DatetimeIndex int64 was nanoseconds. On the runtime this caused an effective 1/60, 1/120, 1/240 thinning of 60/120/240m targets.
+2. REAL-rate as-of retained NaN z rows, allowing later empty Treasury rows to blank previously valid causal state. V102/V103 semantics drop NaN feature rows before as-of.
+
+Engine fixed to BATCH-A-V2-DISCOVERY-1.2.
+No scientific parameter changed.
+2017 / 2018+ / 2023-2025 / 2026 remained unopened in the failed V2 run.
+
+Next action:
+rerun ONLY automation/Diagnose-CrossedPhenomenaBatchAV2Objects.ps1 and confirm support recovery before any alpha rerun.
