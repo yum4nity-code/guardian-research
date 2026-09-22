@@ -1,51 +1,45 @@
 {
-  "schema_version": 2,
-  "updated_at": "2026-09-20",
-  "active_primary": "EDGE-FAMILY-07-08-IMPLIED-VOL",
+  "schema_version": 3,
+  "updated_at": "2026-09-22",
+  "active_primary": "GEF-V101-SPARSE-TRIPLE-RATES",
   "items": [
     {
-      "id": "GEF-V32-V37-REGIME-SHOCK",
+      "id": "GEF-V100-FORWARD-SHADOW",
       "priority": 0,
-      "status": "CLOSED_PREOOS",
-      "type": "closed_lineage",
-      "goal": "Preserve evidence. Do not rescue or open locked OOS.",
-      "result": "V36 validation PASS; V37 forensic FAIL because best-2% trim = -1.339 bp/trade."
+      "status": "FROZEN_WAITING_FINAL_2026_RELEASE",
+      "type": "frozen_validated_lineage",
+      "goal": "Preserve ranks 7 and 9 exactly. Do not retune. Do not activate before the intentional 2026 holdout release.",
+      "reference_run": "GEF100-20260922-094644",
+      "frozen_ranks": [7, 9],
+      "frozen_panel_sha256": "0dd255ce02f1ac528ecc8b38293213d779d0647a79b2a9f065eee5ee550810f4",
+      "activation_not_before": "2027-01-02 00:00",
+      "shadow_only": true,
+      "2026_market_values_accessed": false
     },
     {
-      "id": "EDGE-FAMILY-07-08-IMPLIED-VOL",
+      "id": "GEF-V101-SPARSE-TRIPLE-RATES",
       "priority": 1,
-      "status": "READY",
-      "type": "new_family",
-      "goal": "Design and run causal 2010-2013 discovery for implied-volatility state and volatility term structure using Cboe/CFE plus spot. Audit timestamp semantics first."
+      "status": "READY_TO_RUN",
+      "type": "new_discovery_family",
+      "goal": "Test bounded price x price x rates interactions using 2010-2013 discovery, 2014-2017 replication and 2018-2022 validation only.",
+      "preregistration": "research/campaigns/GEF_V101_SPARSE_TRIPLE_RATES_2026_09_22.md",
+      "runner": "automation/Run-GuardianEdgeFactoryV101.ps1",
+      "engine": "scripts/gef_v101_sparse_triple_rates.py"
     },
     {
-      "id": "EDGE-FAMILY-11-12-RATES",
-      "priority": 2,
-      "status": "QUEUED",
-      "type": "new_family",
-      "goal": "Nominal rates, real yields and breakevens."
-    },
-    {
-      "id": "EDGE-FAMILY-10-CFTC",
-      "priority": 3,
-      "status": "QUEUED",
-      "type": "new_family",
-      "goal": "Positioning/crowding with publication lag."
-    },
-    {
-      "id": "LOCKED-OOS-2023-2025",
-      "priority": 99,
+      "id": "V101-FIREWALL-2023-2025",
+      "priority": 98,
       "status": "BLOCKED",
-      "type": "protected_data",
-      "goal": "Remain unopened until a future lineage passes all pre-OOS gates."
+      "type": "protected_from_reuse",
+      "goal": "The V100 lineage has historical 2023-2025 evidence. V101 must not use 2023-2025 for feature, threshold, candidate or model selection."
     },
     {
       "id": "PROTECTED-2026",
       "priority": 100,
       "status": "BLOCKED",
-      "type": "protected_data",
-      "goal": "Remain protected final OOS."
+      "type": "protected_final_holdout",
+      "goal": "Remain unopened until intentional release of the frozen V100 ranks 7/9 lineage. V101 never reads 2026."
     }
   ],
-  "notes": "V32-V37 closed without spending locked OOS. Current work moves to an external-information family rather than retuning the failed price-only lineage."
+  "notes": "V100 is deployment preparation, not a fresh discovery test. V101 deliberately searches a new bounded three-condition class and cannot use V100 ranks 7/9 as selection ingredients."
 }
