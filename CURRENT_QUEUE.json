@@ -1,7 +1,7 @@
 {
-  "schema_version": 15,
+  "schema_version": 16,
   "updated_at": "2026-09-22",
-  "active_primary": "CROSSED-ECONOMIC-PHENOMENA-BATCH-A-DESIGN",
+  "active_primary": "CROSSED-PHENOMENA-BATCH-A-DISCOVERY",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -83,7 +83,7 @@
       "2026": "BLOCKED",
       "id": "CROSSED-ECONOMIC-PHENOMENA-V1",
       "priority": 1,
-      "status": "DESIGN_COMPLETE_AWAITING_PREREGISTRATION",
+      "status": "BATCH_A_PREREGISTERED_READY_TO_RUN",
       "matrix": "research/campaigns/GUARDIAN_CROSSED_PHENOMENA_MATRIX_V1_2026_09_22.md",
       "historical_ready_count": 16,
       "forward_only_count": 3,
@@ -96,7 +96,13 @@
         "P12"
       ],
       "rule": "Economically defined crossed phenomena only; do not rerun generic V85 LO/HI Cartesian conjunction mining.",
-      "2023_2025_for_new_lineage_design": "BLOCKED"
+      "2023_2025_for_new_lineage_design": "BLOCKED",
+      "batch_a_engine": "scripts/gef_crossed_batch_a_discovery.py",
+      "batch_a_runner": "automation/Run-CrossedPhenomenaBatchA.ps1",
+      "predeclared_tests": 66,
+      "discovery": "2010-2012",
+      "temporal_holdout": "2013",
+      "2014_plus_access": "BLOCKED_IN_ENGINE"
     },
     {
       "id": "PROTECTED-2026",
