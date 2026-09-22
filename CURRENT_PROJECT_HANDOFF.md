@@ -205,3 +205,37 @@ Because continuous and event lineages all failed the common validity gate, audit
 No candidate reached 2013 holdout, so no holdout result was consumed.
 2014+ / 2023-2025 / 2026 remain unopened.
 Read-only diagnostic: automation/Diagnose-CrossedPhenomenaBatchA.ps1
+
+
+## Batch A V2 — COVERAGE-BASED TEMPORAL RESET
+
+Source-only coverage audit invalidated the usefulness of the original 2010-2012 common window for crossed phenomena.
+
+V1 GEFBA-20260922-181339 is NOT a scientific negative:
+- coefficients/p-values existed but all 66 failed support/cluster validity;
+- 2013 holdout was never scored;
+- 2014+ remained unopened.
+
+Because V1 exposed 2010-2012 invalid statistics, V2 is a new lineage and does not reuse those years for fitting.
+
+Frozen V2 windows:
+- warm-up 2012
+- discovery 2013-2016
+- holdout 2017
+- future replication 2018-2019
+- future validation 2020-2022
+- locked OOS 2023-2025 only after later human gate
+- 2026 protected
+
+V2 engine:
+scripts/gef_crossed_batch_a_v2.py
+
+Runner:
+automation/Run-CrossedPhenomenaBatchAV2.ps1
+
+Hard safeguards:
+- reconstruct raw HistData/Treasury/CFTC rather than extending V83B;
+- exact 2013 price-feature/target parity check against V83/V83B before scoring;
+- only 2012-2016 is opened for discovery;
+- discovery BH freeze is physically written before any 2017 source is opened;
+- 2018+ cannot be read by this engine.
