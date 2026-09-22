@@ -6,53 +6,47 @@
 Frozen forward/shadow package. Ranks 7/9. 2026 protected.
 
 ## V101 — CLOSED
-GEF101-20260922-142601:
-- 17,417 sparse triples attempted
-- 150 frozen
-- 2 replication survivors
-- 0 validation survivors
-Decision: closed, no rescue.
+Sparse price × price × rates:
+17,417 attempted -> 150 frozen -> 2 replicated -> 0 validated.
 
-## V102 — VALIDATED PRE-OOS
-GEF102-20260922-143744:
-- 10,902 finite standalone-rate tests
-- 200 discovery candidates frozen
-- 34 replication survivors
-- 27 robustness survivors
-- 5 validation survivors
-- final survivor SHA256: f6aa7d91488a5e52eeb1d5fa3c614dcff918ac3f1e4dd680ec3e3cac7060b865
+## V102/V103 — RATES CLOSED BEFORE OOS
+
+V102 run GEF102-20260922-143744:
+10,902 finite tests -> 200 frozen -> 34 replicated -> 27 robust -> 5 validated.
+
+V103 run GEF103-20260922-145228:
+- five candidates audited
+- three unique signal families
+- **0 final pre-OOS passes**
 - 2023-2025 not accessed
 - 2026 not accessed
 
-Five survivors:
-1. NOM 1M level HI -> USDJPY 240m SHORT
-2. REAL 7Y d1 LO -> GBPUSD 120m LONG
-3. REAL 7Y d1 LO -> AUDUSD 120m LONG
-4. REAL 7Y d1 LO -> EURUSD 120m LONG
-5. NOM 3M d5 HI -> USDCHF 120m SHORT
+Important interpretation:
+- REAL 7Y d1 LO -> GBPUSD/AUDUSD/EURUSD signals were concentrated in a single validation month/year, so month-removal / leave-one-year-out / month bootstrap became undefined because no independent sample remained.
+- NOM 1M -> USDJPY failed independent concentration/repeated-signal gates.
+- NOM 3M d5 -> USDCHF failed trim-5% and daily-first stress.
+- Therefore no lag diagnostic can rescue the lineage; rates standalone is closed before locked OOS.
 
-The three REAL 7Y candidates share the same signal definition and count as one economic signal family for independence analysis.
+Canonical closure:
+research/results/GEF103_RATES_CLOSURE_2026_09_22.json
 
-## V103 — ACTIVE NEXT
-Final <=2022 forensic of the exact five V102 survivors.
+## V104 — ACTIVE NEXT FAMILY
 
-Tests include:
-- tail concentration;
-- remove best 10 events;
-- remove best calendar month;
-- leave-one-year-out;
-- horizon non-overlap;
-- one signal per day;
-- one signal per contiguous state episode;
-- z 0.9 / 1.1;
-- +1d / +2d information delay;
-- 1/2/3/5 bp cost diagnostics;
-- month-block bootstrap;
-- signal overlap and common-timestamp return correlations.
+Standalone CFTC Futures Only positioning.
 
-V103 does not optimize a portfolio and does not open 2023-2025 or 2026.
+Causal rule:
+- report/as-of date parsed using V82D logic
+- AVAILABLE_AT = next Monday 00:00 UTC after report date
+- exact V83 market mappings
+- exact V83 feature definitions
+- 2010-2013 values anchored to canonical V83B
+- exact V85 state parity required before replication
+
+Protocol:
+2010-2012 discovery -> 2013 confirmation -> freeze -> 2014-2017 replication -> robustness -> freeze -> 2018-2022 validation -> STOP.
+
+No 2023-2025.
+No 2026.
 
 Run:
-powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV103.ps1 -Root D:\MT5_Backtests
-
-Regardless of result, STOP after V103. A separate preregistered V104 plus human decision is required before any 2023-2025 access.
+powershell -ExecutionPolicy Bypass -File D:\MT5_Backtests\guardian-research\automation\Run-GuardianEdgeFactoryV104.ps1 -Root D:\MT5_Backtests
