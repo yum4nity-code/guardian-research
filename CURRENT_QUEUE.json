@@ -1,14 +1,13 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "updated_at": "2026-09-22",
-  "active_primary": "GEF-V101-SPARSE-TRIPLE-RATES",
+  "active_primary": "GEF-V102-STANDALONE-RATES",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
       "priority": 0,
       "status": "FROZEN_WAITING_FINAL_2026_RELEASE",
       "type": "frozen_validated_lineage",
-      "goal": "Preserve ranks 7 and 9 exactly. Do not retune. Do not activate before the intentional 2026 holdout release.",
       "reference_run": "GEF100-20260922-094644",
       "frozen_ranks": [7, 9],
       "frozen_panel_sha256": "0dd255ce02f1ac528ecc8b38293213d779d0647a79b2a9f065eee5ee550810f4",
@@ -18,28 +17,38 @@
     },
     {
       "id": "GEF-V101-SPARSE-TRIPLE-RATES",
-      "priority": 1,
-      "status": "READY_TO_RUN",
-      "type": "new_discovery_family",
-      "goal": "Test bounded price x price x rates interactions using 2010-2013 discovery, 2014-2017 replication and 2018-2022 validation only.",
-      "preregistration": "research/campaigns/GEF_V101_SPARSE_TRIPLE_RATES_2026_09_22.md",
-      "runner": "automation/Run-GuardianEdgeFactoryV101.ps1",
-      "engine": "scripts/gef_v101_sparse_triple_rates.py"
+      "priority": 0,
+      "status": "CLOSED_VALIDATION_FAIL",
+      "type": "closed_lineage",
+      "reference_run": "GEF101-20260922-142601",
+      "result": "17417 attempted triples -> 150 frozen -> 2 replication survivors -> 0 validation survivors.",
+      "2023_2025_accessed": false,
+      "2026_accessed": false
     },
     {
-      "id": "V101-FIREWALL-2023-2025",
+      "id": "GEF-V102-STANDALONE-RATES",
+      "priority": 1,
+      "status": "READY_TO_RUN",
+      "type": "new_family",
+      "goal": "Test standalone nominal rates, real yields, breakevens and curve states without price-condition interactions.",
+      "preregistration": "research/campaigns/GEF_V102_STANDALONE_RATES_2026_09_22.md",
+      "runner": "automation/Run-GuardianEdgeFactoryV102.ps1",
+      "engine": "scripts/gef_v102_standalone_rates.py"
+    },
+    {
+      "id": "V102-FIREWALL-2023-2025",
       "priority": 98,
       "status": "BLOCKED",
       "type": "protected_from_reuse",
-      "goal": "The V100 lineage has historical 2023-2025 evidence. V101 must not use 2023-2025 for feature, threshold, candidate or model selection."
+      "goal": "V102 must stop after 2018-2022 validation."
     },
     {
       "id": "PROTECTED-2026",
       "priority": 100,
       "status": "BLOCKED",
       "type": "protected_final_holdout",
-      "goal": "Remain unopened until intentional release of the frozen V100 ranks 7/9 lineage. V101 never reads 2026."
+      "goal": "V102 never reads 2026."
     }
   ],
-  "notes": "V100 is deployment preparation, not a fresh discovery test. V101 deliberately searches a new bounded three-condition class and cannot use V100 ranks 7/9 as selection ingredients."
+  "notes": "V101 is closed without rescue. V102 tests standalone rates information, which is scientifically distinct from the failed price-price-rates triple family."
 }
