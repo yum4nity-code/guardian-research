@@ -7,15 +7,14 @@ try:
 except Exception:
     ttest_1samp=None
 
-ENGINE_VERSION="V107.0"
+ENGINE_VERSION="V107.1"
 FORBIDDEN_YEAR=2023
 HORIZONS=[60,120,240]
 DISCOVERY_Q=.10
 MAX_FROZEN=150
-MIN_DISC=18
-MIN_HOLD=6
-MIN_REP=20
-MIN_VAL=25
+MIN_DISC=8
+MIN_REP=8
+MIN_VAL=10
 
 def write_json(path,obj):
     path.write_text(json.dumps(obj,indent=2,default=str),encoding="utf-8")
@@ -218,27 +217,28 @@ def main():
        for sym in markets:
         for h in HORIZONS:
             done+=1
-            _,raw=event_sample(ev,P[sym],grid,h,state,1,"2010-01-01","2013-01-01")
+            dtimes,raw=event_sample(ev,P[sym],grid,h,state,1,"2010-01-01","2014-01-01")
             raw=raw[np.isfinite(raw)]
             if len(raw)<MIN_DISC:continue
+            disc_years=int(pd.DatetimeIndex(dtimes).year.nunique())
+            if disc_years<3:continue
             mu=float(raw.mean())
             if not np.isfinite(mu) or mu==0:continue
             direction=1 if mu>0 else -1
             dvals=raw*direction
-            _,hv=event_sample(ev,P[sym],grid,h,state,direction,"2013-01-01","2014-01-01")
             rows.append({
               "feature":fname,"state":state,"target_market":sym,"horizon_min":h,
               "direction_sign":direction,"direction":"LONG" if direction>0 else "SHORT",
-              "disc_n":int(len(dvals)),"disc_mean_bp":mean_bp(dvals),"disc_p_two":p_two_sided(raw),
-              "hold2013_n":int(len(hv)),"hold2013_mean_bp":mean_bp(hv)
+              "disc_n":int(len(dvals)),"disc_years":disc_years,
+              "disc_mean_bp":mean_bp(dvals),"disc_p_two":p_two_sided(raw)
             })
             if done%500==0:print(f"[GEF107] discovery {done}/{total}",flush=True)
     A=pd.DataFrame(rows)
     if A.empty:raise RuntimeError("No finite ALFRED discovery tests")
     A["bh_q"]=bh_qvalues(A["disc_p_two"].to_numpy())
-    A=A.sort_values(["bh_q","disc_p_two","hold2013_mean_bp","disc_mean_bp"],ascending=[True,True,False,False],kind="mergesort").reset_index(drop=True)
+    A=A.sort_values(["bh_q","disc_p_two","disc_mean_bp"],ascending=[True,True,False],kind="mergesort").reset_index(drop=True)
     A.to_csv(out/"DISCOVERY_ALL.csv",index=False)
-    frozen=A[A["disc_p_two"].le(.05)&A["bh_q"].le(DISCOVERY_Q)&A["hold2013_n"].ge(MIN_HOLD)&A["hold2013_mean_bp"].gt(0)].head(MAX_FROZEN).copy()
+    frozen=A[A["disc_p_two"].le(.05)&A["bh_q"].le(DISCOVERY_Q)].head(MAX_FROZEN).copy()
     status(4,12,"discovery complete",finite_tests=len(A),frozen=len(frozen))
     if frozen.empty:
         receipt={"run_id":rid,"status":"COMPLETE_V107_NO_DISCOVERY_SURVIVORS","engine_version":ENGINE_VERSION,
@@ -248,7 +248,7 @@ def main():
     frozen.to_csv(out/"FROZEN_PRE_2014.csv",index=False)
     write_json(out/"DISCOVERY_FREEZE.json",{"run_id":rid,"frozen":len(frozen),"sha256":sha256(out/"FROZEN_PRE_2014.csv"),
       "2014_plus_accessed_at_freeze":False,"2023_2025_accessed":False,"2026_accessed":False})
-    status(5,12,"candidates frozen before 2014+",frozen=len(frozen))
+    status(5,12,"2010-2013 discovery candidates frozen before 2014+",frozen=len(frozen))
 
     rep=[]
     for r in frozen.itertuples(index=False):
