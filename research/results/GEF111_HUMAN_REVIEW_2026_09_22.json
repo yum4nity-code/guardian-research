@@ -1,0 +1,17 @@
+{
+  "run_id": "GEF111-20260922-163321",
+  "status": "HUMAN_REVIEW_V111",
+  "candidates_audited": 8,
+  "candidate_preoos_passes": 3,
+  "unique_structural_families_all": 6,
+  "unique_structural_families_passing": 2,
+  "passing_candidates": [
+    {"candidate_id":"C3","cell_id":"H21","target_market":"AUDUSD","horizon_min":120,"orientation":-1},
+    {"candidate_id":"C4","cell_id":"H23","target_market":"USDCHF","horizon_min":240,"orientation":1},
+    {"candidate_id":"C6","cell_id":"H23","target_market":"USDCHF","horizon_min":120,"orientation":1}
+  ],
+  "passing_structural_families": ["AUDUSD|H21","USDCHF|H23"],
+  "2023_2025_accessed": false,
+  "2026_accessed": false,
+  "decision": "ELIGIBLE_FOR_SEPARATELY_PREDECLARED_LOCKED_OOS; DO_NOT AUTO_OPEN"
+}
