@@ -7,7 +7,7 @@ try:
 except Exception:
     ttest_1samp=None
 
-ENGINE_VERSION="V107.3"
+ENGINE_VERSION="V107.4"
 FORBIDDEN_YEAR=2023
 HORIZONS=[60,120,240]
 DISCOVERY_Q=.10
@@ -124,19 +124,28 @@ def build_prices(root,end_year,required=None):
             print(f"[GEF107] skip market {sym}: {e}",flush=True)
     return grid,P,valid
 
-def target_at_event(series,grid,event_time,horizon):
-    ns=grid.view("int64")
-    start=int(np.searchsorted(ns,pd.Timestamp(event_time).value,side="left"))
-    if start>=len(grid):return np.nan,None
-    k=horizon//5
-    max_i=min(len(grid)-k,start+7*24*12)
-    for i in range(start,max_i+1):
-        minute=int(grid[i].value//60_000_000_000)
-        if minute%horizon!=0:continue
-        a=series.iloc[i]; b=series.iloc[i+k]
-        if np.isfinite(a) and np.isfinite(b) and a!=0:
-            return float(b/a-1),grid[i]
-    return np.nan,None
+def build_sparse_target(series,grid,horizon):
+    k=int(horizon)//5
+    y=series.shift(-k)/series-1.0
+    minute=(grid.view("int64")//60_000_000_000).astype(np.int64)
+    vals=y.to_numpy(dtype=float,copy=True)
+    vals[(minute%int(horizon))!=0]=np.nan
+    ok=np.isfinite(vals)
+    return {
+        "times":grid[ok],
+        "times_ns":grid[ok].view("int64"),
+        "values":vals[ok]
+    }
+
+def target_at_event(target,event_time):
+    ns=target["times_ns"]
+    if not len(ns):return np.nan,None
+    t=pd.Timestamp(event_time)
+    pos=int(np.searchsorted(ns,t.value,side="left"))
+    if pos>=len(ns):return np.nan,None
+    entry=target["times"][pos]
+    if entry>t+pd.Timedelta(days=7):return np.nan,None
+    return float(target["values"][pos]),entry
 
 def first_existing(cols,names):
     low={str(c).lower():c for c in cols}
@@ -241,7 +250,7 @@ def support_table(features,start,end):
         })
     return pd.DataFrame(rows)
 
-def strategy_sample(ev,market_series,grid,horizon,orientation=1,start=None,end=None,delay_days=0):
+def strategy_sample(ev,target,orientation=1,start=None,end=None,delay_days=0):
     times=pd.to_datetime(ev["AVAILABLE_AT"])+pd.Timedelta(days=int(delay_days))
     score=pd.to_numeric(ev["score"],errors="coerce").to_numpy()
     rows=[]
@@ -249,7 +258,7 @@ def strategy_sample(ev,market_series,grid,horizon,orientation=1,start=None,end=N
         if not np.isfinite(s) or s==0:continue
         if start is not None and t<pd.Timestamp(start):continue
         if end is not None and t>=pd.Timestamp(end):continue
-        r,entry=target_at_event(market_series,grid,t,horizon)
+        r,entry=target_at_event(target,t)
         if entry is not None and np.isfinite(r):
             rows.append((entry,r*np.sign(s)*orientation))
     if not rows:return pd.DatetimeIndex([]),np.asarray([],dtype=float)
@@ -310,13 +319,22 @@ def main():
         finish_no_support(out,rid,features,support,[],"NO_DISCOVERY_PRICE_MARKETS")
         status(12,12,"DONE - no discovery price markets");return
     status(4,12,"discovery prices loaded through 2013 only",markets=len(markets))
+    T13={(sym,h):build_sparse_target(P13[sym],grid13,h) for sym in markets for h in HORIZONS}
+    target_diag=[]
+    for sym in markets:
+        for h in HORIZONS:
+            z=T13[(sym,h)]
+            target_diag.append({"market":sym,"horizon_min":h,"finite_targets":int(len(z["values"])),
+                                "first_target":str(z["times"][0]) if len(z["times"]) else None,
+                                "last_target":str(z["times"][-1]) if len(z["times"]) else None})
+    pd.DataFrame(target_diag).to_csv(out/"DISCOVERY_TARGET_DIAGNOSTICS.csv",index=False)
 
     rows=[];total=len(features)*len(markets)*len(HORIZONS);done=0
     for fname,ev in features.items():
         for sym in markets:
             for h in HORIZONS:
                 done+=1
-                dt,raw=strategy_sample(ev,P13[sym],grid13,h,1,"2010-01-01","2014-01-01")
+                dt,raw=strategy_sample(ev,T13[(sym,h)],1,"2010-01-01","2014-01-01")
                 if len(raw)<MIN_DISC:continue
                 years=int(dt.year.nunique())
                 if years<3:continue
@@ -358,11 +376,12 @@ def main():
     grid17,P17,markets17=build_prices(root,2017,req)
     missing17=sorted(set(req)-set(markets17))
     if missing17:raise RuntimeError(f"Replication markets missing through 2017: {missing17}")
+    T17={(sym,h):build_sparse_target(P17[sym],grid17,h) for sym in markets17 for h in HORIZONS}
 
     rep=[]
     for r in frozen.itertuples(index=False):
         ev=features[r.feature]
-        times,vals=strategy_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),int(r.orientation),"2014-01-01","2018-01-01")
+        times,vals=strategy_sample(ev,T17[(r.target_market,int(r.horizon_min))],int(r.orientation),"2014-01-01","2018-01-01")
         pyf,yearly=positive_year_fraction(times,vals)
         passed=(len(vals)>=MIN_REP and mean_bp(vals)>0 and mean_bp(vals)-1>0 and pyf>=.50 and remove_best(vals,2)>0)
         rep.append({**r._asdict(),"rep_n":len(vals),"rep_mean_bp":mean_bp(vals),"rep_net1bp":mean_bp(vals)-1,
@@ -381,10 +400,10 @@ def main():
     robust=[]
     for r in rp.itertuples(index=False):
         ev=features[r.feature]
-        times,vals=strategy_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),int(r.orientation),"2014-01-01","2018-01-01")
+        times,vals=strategy_sample(ev,T17[(r.target_market,int(r.horizon_min))],int(r.orientation),"2014-01-01","2018-01-01")
         rm,bm=remove_best_month(times,vals);loo,looj=leave_one_year_out(times,vals)
-        _,lag1=strategy_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),int(r.orientation),"2014-01-01","2018-01-01",1)
-        _,lag2=strategy_sample(ev,P17[r.target_market],grid17,int(r.horizon_min),int(r.orientation),"2014-01-01","2018-01-01",2)
+        _,lag1=strategy_sample(ev,T17[(r.target_market,int(r.horizon_min))],int(r.orientation),"2014-01-01","2018-01-01",1)
+        _,lag2=strategy_sample(ev,T17[(r.target_market,int(r.horizon_min))],int(r.orientation),"2014-01-01","2018-01-01",2)
         passed=(remove_best(vals,3)>0 and rm>0 and loo>0 and mean_bp(lag1)>0 and mean_bp(lag2)>0)
         robust.append({**r._asdict(),"robust_remove_best3_bp":remove_best(vals,3),"robust_remove_best_month_bp":rm,
                        "robust_best_month":bm,"robust_loo_min_bp":loo,"robust_loo_json":json.dumps(looj,sort_keys=True),
@@ -408,11 +427,12 @@ def main():
     grid22,P22,markets22=build_prices(root,2022,req22)
     missing22=sorted(set(req22)-set(markets22))
     if missing22:raise RuntimeError(f"Validation markets missing through 2022: {missing22}")
+    T22={(sym,h):build_sparse_target(P22[sym],grid22,h) for sym in markets22 for h in HORIZONS}
 
     valsout=[]
     for r in rb.itertuples(index=False):
         ev=features[r.feature]
-        times,vals=strategy_sample(ev,P22[r.target_market],grid22,int(r.horizon_min),int(r.orientation),"2018-01-01","2023-01-01")
+        times,vals=strategy_sample(ev,T22[(r.target_market,int(r.horizon_min))],int(r.orientation),"2018-01-01","2023-01-01")
         pyf,yearly=positive_year_fraction(times,vals)
         rm,bm=remove_best_month(times,vals);loo,looj=leave_one_year_out(times,vals)
         passed=(len(vals)>=MIN_VAL and mean_bp(vals)>0 and mean_bp(vals)-1>0 and pyf>=.60 and
