@@ -1,0 +1,12 @@
+{
+  "run_id": "GEF109-20260922-161442",
+  "status": "COMPLETE_V109_NO_DISCOVERY_SURVIVORS",
+  "engine_version": "V109.0",
+  "finite_tests": 15870,
+  "discovery_frozen": 0,
+  "2014_plus_market_returns_accessed": false,
+  "2023_2025_accessed": false,
+  "2026_accessed": false,
+  "decision": "CLOSE_TREASURY_STANDALONE_LINEAGE_AT_DISCOVERY",
+  "interpretation": "15,870 finite event-level tests completed and none passed the preregistered discovery/FDR gate. No later market-return window was spent."
+}
