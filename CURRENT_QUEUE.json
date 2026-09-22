@@ -39,7 +39,7 @@
       "preregistration": "research/campaigns/GEF_V107_ALFRED_EVENT_LEVEL_2026_09_22.md",
       "runner": "automation/Run-GuardianEdgeFactoryV107.ps1",
       "engine": "scripts/gef_v107_alfred_event_level.py",
-      "engine_version": "V107.1"
+      "engine_version": "V107.2"
     },
     {
       "id": "LOCKED-OOS-2023-2025",
