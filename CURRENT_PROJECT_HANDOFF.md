@@ -300,3 +300,38 @@ Data firewall:
 
 Next program:
 Batch B design for P02/P03/P05/P07/P09/P10/P13/P14.
+
+
+## M5 MOTION TOPOLOGY FACTORY V1 — PRIMARY
+
+Decision:
+park Batch B macro and prioritize an execution-oriented M5 topology campaign.
+
+Objective:
+find repeatable intra/inter-asset structures that precede the end of an established M5 move: tops, bottoms, exhaustion, failed extension, simultaneous turns, leader/follower chains, residual/correlation recrosses and recurrent motifs.
+
+Frozen families:
+M01 synchronized exhaustion
+M02 leader stall / follower extension
+M03 residual extreme + recross
+M04 correlation break + recoupling
+M05 breadth divergence
+M06 turn cluster
+M07 lead-lag turn sequence
+M08 volatility exhaustion
+M09 repeated state / motif
+M10 recurrent sequence
+M11 crossing topology
+M12 asymmetric top vs bottom
+
+Temporal firewall:
+2011 warm-up
+2012-2014 discovery
+2015-2017 replication
+2018-2022 validation
+2023-2025 locked OOS
+2026 protected
+
+First engine must stop at 2014.
+Historical tradability mask excludes recurring close/reopen windows with 30m buffer.
+Batch B remains parked, not discarded.
