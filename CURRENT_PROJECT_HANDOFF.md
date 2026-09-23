@@ -989,3 +989,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - V111 EURUSD H11 SHORT 120m remains the only V111 execution-surviving mini-edge.
 - Next active candidate: D032 Bullish Doji Star H1, whose entry edge was already confirmed on independent pre-2024 CFD data. The next question is FTMO feed/execution transport, not alpha re-optimization.
 - Active launcher: `tools/RUN_D032_FTMO_TRANSPORT.cmd`. Frozen immediate LONG entry at signal close, exact +24h exit, BTC/ETH/DOG core where available, 2026 blocked.
+
+
+## D025 ETH RETEST next — 2026-09-23
+- D032 FTMO transport remains prepared/pending if not yet run.
+- Next additional candidate prepared: D025 ETHUSD RETEST +2R using the exact frozen V0 state machine on FTMO.
+- FTMO 2023 is treated as fresh temporal evidence; 2024-2025 is transport only. 2026 blocked.
+- Active launcher: `tools/RUN_D025_ETH_RETEST_FTMO.cmd`. If it survives, follow with exact real-tick BID/ASK + commission audit; no retuning.
