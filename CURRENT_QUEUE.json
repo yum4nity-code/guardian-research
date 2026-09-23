@@ -478,14 +478,35 @@
       "json": "research/campaigns/GUARDIAN_VALIDATION_DOCTRINE_V2_2026_09_23.json"
     },
     "ea01_existing_oos_v2_audit": {
-      "status": "READY_TO_RUN_READ_ONLY",
+      "status": "COMPLETE",
       "candidate": "EA01-XR-RSI-LONG-V1",
-      "source_window": "2023-2025 already opened",
-      "protected_2026": "BLOCKED",
-      "runner": "automation/Audit-EA01ExistingOOSV2.ps1",
-      "no_market_rerun": true,
-      "no_parameter_search": true,
-      "purpose": "classify existence/economic size under V2 while preserving historical KILL"
+      "historical_verdict": "KILL_PRESERVED",
+      "hash_parity": true,
+      "aggregate_parity": true,
+      "oos": {
+        "raw_signals": 944,
+        "non_overlap": 654,
+        "cost010_mean_R": 0.06216246499009129,
+        "cost010_pf": 1.0868273589119206,
+        "cost020_mean_R": 0.01576173506412814,
+        "cost020_pf": 1.0213334511927052,
+        "bootstrap_q10": -0.021961792188014324,
+        "bootstrap_p_le_zero": 0.1703,
+        "trim_best_1pct_mean_R": -0.018163452498935116,
+        "trim_best_2pct_mean_R": -0.07621776727135536,
+        "max_drawdown_R": -34.99282473414083,
+        "positive_month_fraction": 0.6666666666666666
+      },
+      "v2_classification": {
+        "existence": "POSITIVE_UNCERTAIN",
+        "economic_size": "MINI_EDGE",
+        "stress": "STRESS_POSITIVE",
+        "ensemble_status": "NOT_TESTED",
+        "production_status": "NOT_PRODUCTION_READY"
+      },
+      "interpretation": "Fresh OOS point estimate is positive and remains positive at the predeclared stress cost, but month-cluster uncertainty includes zero and the mean turns negative after removing the best 1-2% trades. Retain as mini-edge/ensemble candidate, not standalone edge.",
+      "protected_2026": false,
+      "new_research_runs_authorized": false
     }
   }
 }
