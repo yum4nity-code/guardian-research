@@ -767,3 +767,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - EURUSD is robust to trim-best 1%/2%; AUDUSD is not and is tail-sensitive.
 - +/-60m diagnostics show the effect is not narrowly localized to the exact recoupling timestamp, especially at -60m.
 - No 2023-2025 or 2026 data opened. Campaign is at the human gate before locked OOS.
+
+
+### 2026-09-23 — M04 locked OOS 2023-2025 prepared after human approval
+- Owner approved proceeding to the locked OOS stage.
+- Frozen exactly two validation survivors: EURUSD/UDX L15 and AUDUSD/UDX L15.
+- Preregistered unchanged M04 signal/target and simple locked-OOS gates.
+- Added a pre-2023 reference freeze using only 2011-2022 to reproduce validation before opening 2023.
+- Added locked OOS engine restricted to 2011-2025 with 2026 hard-forbidden.
+- No 2023-2025 or 2026 result has been opened by this implementation step.
