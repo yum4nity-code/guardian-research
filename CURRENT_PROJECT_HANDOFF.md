@@ -885,3 +885,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - V112: expected n=556 / +1.455235 bps gross; reconstructed n=622 / -0.069812 bps gross.
 - Therefore the negative executable numbers from v1.02 are not valid strategy-rejection evidence. The reconstruction/session/data semantics are mismatched.
 - Next safe action: exact source/eligibility/timestamp forensic and gross-parity reproduction before any cost verdict.
+
+
+## V69/V112 engine-source forensic — 2026-09-23
+- Source artifacts show V69 only as `USDCHF weekday bucket=4 LONG`; Friday-close-to-Monday-close semantics are unproven and likely incorrect.
+- V112 C3 exact candidate is AUDUSD H21 SHORT 120m, locked-OOS n=556; FTMO reconstruction n=622 proves missing eligibility/data semantics.
+- Active forensic tool: `tools/RUN_COLLECT_V69_V112_ENGINE_SOURCE_SCAN.cmd`.
+- Do not use v1.02 execution negatives as rejection evidence until original gross parity is reproduced.
