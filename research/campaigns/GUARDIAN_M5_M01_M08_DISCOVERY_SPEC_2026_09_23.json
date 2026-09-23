@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-23",
+  "status": "FROZEN_BEFORE_OUTCOME_ASSOCIATION",
+  "campaign": "M5_MOTION_TOPOLOGY_M01_M08_DISCOVERY_V1",
+  "cache_lineage": "M5 Motion Topology V1.1",
+  "temporal": {
+    "warmup": [
+      2011
+    ],
+    "discovery": [
+      2012,
+      2013,
+      2014
+    ],
+    "replication_future": [
+      2015,
+      2016,
+      2017
+    ],
+    "validation_future": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "locked_oos": [
+      2023,
+      2024,
+      2025
+    ],
+    "protected": [
+      2026
+    ]
+  },
+  "first_engine_max_outcome_year": 2014,
+  "scales": [
+    {
+      "lookback_min": 15,
+      "horizon_min": 15
+    },
+    {
+      "lookback_min": 30,
+      "horizon_min": 30
+    },
+    {
+      "lookback_min": 60,
+      "horizon_min": 60
+    }
+  ],
+  "causal_z_min_prior": 250,
+  "event_cooldown_min": 30,
+  "discovery_min_episodes": 200,
+  "discovery_min_days": 120,
+  "bh_q": 0.05,
+  "alternative": "positive endpoint_score",
+  "expected_variants": 291,
+  "families": {
+    "M01": 39,
+    "M02": 39,
+    "M03": 39,
+    "M04": 39,
+    "M05": 39,
+    "M06": 18,
+    "M07": 39,
+    "M08": 39
+  },
+  "directed_edges": [
+    {
+      "target": "XAUUSD",
+      "peer": "XAGUSD",
+      "relation": 1
+    },
+    {
+      "target": "XAUUSD",
+      "peer": "UDXUSD",
+      "relation": -1
+    },
+    {
+      "target": "XAGUSD",
+      "peer": "UDXUSD",
+      "relation": -1
+    },
+    {
+      "target": "USDCAD",
+      "peer": "WTIUSD",
+      "relation": -1
+    },
+    {
+      "target": "USDCAD",
+      "peer": "BCOUSD",
+      "relation": -1
+    },
+    {
+      "target": "WTIUSD",
+      "peer": "BCOUSD",
+      "relation": 1
+    },
+    {
+      "target": "NSXUSD",
+      "peer": "SPXUSD",
+      "relation": 1
+    },
+    {
+      "target": "EURUSD",
+      "peer": "UDXUSD",
+      "relation": -1
+    },
+    {
+      "target": "GBPUSD",
+      "peer": "UDXUSD",
+      "relation": -1
+    },
+    {
+      "target": "AUDUSD",
+      "peer": "UDXUSD",
+      "relation": -1
+    },
+    {
+      "target": "USDJPY",
+      "peer": "UDXUSD",
+      "relation": 1
+    },
+    {
+      "target": "USDCHF",
+      "peer": "UDXUSD",
+      "relation": 1
+    },
+    {
+      "target": "USDCAD",
+      "peer": "UDXUSD",
+      "relation": 1
+    }
+  ],
+  "turn_cluster_targets": [
+    "XAUUSD",
+    "XAGUSD",
+    "UDXUSD",
+    "USDCAD",
+    "WTIUSD",
+    "BCOUSD"
+  ]
+}
