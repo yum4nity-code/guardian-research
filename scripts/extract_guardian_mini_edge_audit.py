@@ -5,7 +5,7 @@ from collections import defaultdict
 import pandas as pd
 import numpy as np
 
-VERSION="GUARDIAN-MINI-EDGE-EXTRACTOR-1.0"
+VERSION="GUARDIAN-MINI-EDGE-EXTRACTOR-1.1"
 
 TEXT_EXT={".json",".csv",".md",".txt",".log"}
 RESULT_NAME_RE=re.compile(r"(result|results|summary|verdict|receipt|decision|validation|replication|holdout|oos|out[-_ ]?of[-_ ]?sample|score|metric|stats|audit|report)",re.I)
@@ -95,35 +95,116 @@ def inspect_json(p,source):
     return rows,candidates
 
 def inspect_csv(p,source):
+    """
+    Fast audit path:
+    - read header first;
+    - skip large raw trade ledgers that have no verdict/status column;
+    - for verdict-style CSVs, read only useful columns in chunks;
+    - vectorize rejection filtering before iterating the small rejected subset.
+    """
     metrics=[]; candidates=[]
     size_mb=p.stat().st_size/1024/1024
     if size_mb>MAX_CSV_MB:
         return metrics,candidates
+
+    sep=","
     try:
-        df=pd.read_csv(p,nrows=MAX_ROWS_PER_CSV,low_memory=False)
+        head=pd.read_csv(p,nrows=0)
+        cols=[str(c) for c in head.columns]
+        if len(cols)<=1:
+            head=pd.read_csv(p,nrows=0,sep=";")
+            cols=[str(c) for c in head.columns]
+            sep=";"
     except Exception:
-        try: df=pd.read_csv(p,nrows=MAX_ROWS_PER_CSV,sep=";",low_memory=False)
-        except Exception: return metrics,candidates
-    if df.empty:return metrics,candidates
-    cols=[str(c) for c in df.columns]
+        return metrics,candidates
+
     metric_cols=[c for c in cols if METRIC_NAME_RE.search(c)]
     status_cols=[c for c in cols if re.search(r"(status|verdict|decision|pass|fail|result)",c,re.I)]
     id_cols=[c for c in cols if re.search(r"(^id$|variant|candidate|strategy|symbol|market|family|target|name)",c,re.I)]
-    for i,row in df.iterrows():
-        rec=" | ".join(f"{c}={row[c]}" for c in id_cols[:5] if pd.notna(row[c]))[:1000]
-        status=" | ".join(f"{c}={row[c]}" for c in status_cols[:5] if pd.notna(row[c]))[:2000]
-        positives=[]
-        for c in metric_cols:
-            nv=num(row[c])
-            if nv is None: continue
-            metrics.append({"source":source,"format":"csv","record":rec or str(i),"metric":c,"value":nv,"status":status})
-            if POSITIVE_HINT_RE.search(c) and nv>0:
-                positives.append((c,nv))
-        rejected=bool(re.search(r"(false|reject|fail|closed|close|do_not_advance|not_confirmed|unconfirmed)",status,re.I))
-        if rejected and positives:
-            candidates.append({"source":source,"record":rec or str(i),"status":status,
-                               "positive_metrics":"; ".join(f"{k}={v:.8g}" for k,v in positives[:20]),
-                               "reason":"row rejected/status-negative while one or more effect metrics are positive"})
+
+    if not metric_cols:
+        return metrics,candidates
+
+    # Raw trade/outcome ledgers can contain hundreds of thousands of rows and
+    # positive/negative trade metrics but no decision. They do not answer the
+    # audit question "positive yet rejected", so do not scan them row-by-row.
+    if not status_cols and size_mb>2:
+        return metrics,candidates
+
+    usecols=[]
+    for x in id_cols[:5]+status_cols[:5]+metric_cols:
+        if x not in usecols:
+            usecols.append(x)
+
+    total_seen=0
+    try:
+        reader=pd.read_csv(
+            p,sep=sep,usecols=usecols,chunksize=20000,
+            low_memory=False
+        )
+        for chunk in reader:
+            if total_seen>=MAX_ROWS_PER_CSV:
+                break
+            if total_seen+len(chunk)>MAX_ROWS_PER_CSV:
+                chunk=chunk.iloc[:MAX_ROWS_PER_CSV-total_seen]
+            base_index=total_seen
+            total_seen+=len(chunk)
+            if chunk.empty:
+                continue
+
+            if status_cols:
+                s=chunk[status_cols[:5]].fillna("").astype(str).agg(" | ".join,axis=1)
+                rejected_mask=s.str.contains(
+                    r"(false|reject|fail|closed|close|do_not_advance|not_confirmed|unconfirmed)",
+                    case=False,regex=True,na=False
+                )
+            else:
+                s=pd.Series("",index=chunk.index)
+                rejected_mask=pd.Series(False,index=chunk.index)
+
+            # Keep metric observations from small summary tables. For larger
+            # verdict tables, rejected rows are the audit-relevant population.
+            rows_for_metrics = chunk.index if total_seen<=50000 else chunk.index[rejected_mask]
+
+            for c in metric_cols:
+                vals=pd.to_numeric(chunk.loc[rows_for_metrics,c],errors="coerce")
+                good=vals.notna() & np.isfinite(vals)
+                for idx,v in vals[good].items():
+                    rec=" | ".join(
+                        f"{ic}={chunk.at[idx,ic]}" for ic in id_cols[:5]
+                        if ic in chunk.columns and pd.notna(chunk.at[idx,ic])
+                    )[:1000]
+                    metrics.append({
+                        "source":source,"format":"csv",
+                        "record":rec or str(base_index+int(idx)),
+                        "metric":c,"value":float(v),
+                        "status":str(s.loc[idx])[:2000]
+                    })
+
+            if rejected_mask.any():
+                rej=chunk.loc[rejected_mask]
+                for idx,row in rej.iterrows():
+                    positives=[]
+                    for mc in metric_cols:
+                        nv=num(row[mc])
+                        if nv is not None and POSITIVE_HINT_RE.search(mc) and nv>0:
+                            positives.append((mc,nv))
+                    if not positives:
+                        continue
+                    rec=" | ".join(
+                        f"{ic}={row[ic]}" for ic in id_cols[:5]
+                        if ic in rej.columns and pd.notna(row[ic])
+                    )[:1000]
+                    candidates.append({
+                        "source":source,
+                        "record":rec or str(base_index+int(idx)),
+                        "status":str(s.loc[idx])[:2000],
+                        "positive_metrics":"; ".join(f"{k}={v:.8g}" for k,v in positives[:20]),
+                        "reason":"row rejected/status-negative while one or more effect metrics are positive"
+                    })
+    except Exception:
+        return metrics,candidates
+
     return metrics,candidates
 
 def inspect_markdown(p,source):
