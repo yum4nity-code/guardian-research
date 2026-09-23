@@ -950,3 +950,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Historical swap/financing is not inferred from OHLC; it remains an explicit additional-cost stress item after observed spread.
 - Next safe action: run `tools\RUN_V69_V112_EXECUTION_AUDIT.cmd` with MT5 open and broker-connected, then audit the resulting ZIP before any promotion decision.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — V69/V112 execution audit runner v1.02 hotfix
+- v1.01 failed before the substantive audit because the inline Python dependency check was mangled by PowerShell quoting and a pandas UserWarning on stderr was promoted to a terminating PowerShell error.
+- Added versioned v1.02 files without reusing the v1.01 filenames: Python engine, PowerShell runner and one-click CMD launcher.
+- v1.02 replaces the inline `python -c` dependency check with a temporary Python file, prevents benign native stderr warnings from aborting the runner, suppresses the specific pandas timezone warning, and adds an FTMO account guard so the audit fails if Python attaches to a non-FTMO MT5/account.
+- 2026 remains hard-blocked. No strategy logic or thresholds were retuned.
+- Next safe action: `git pull` then run `tools\RUN_V69_V112_EXECUTION_AUDIT_v1_02.cmd` with only the FTMO MT5 terminal open and connected.
+- Human active time: NOT QUANTIFIED.
