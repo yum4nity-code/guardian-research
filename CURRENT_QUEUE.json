@@ -1306,5 +1306,36 @@
     },
     "conclusion": "Exact frozen D032 entry phenomenon does not transport to FTMO core feed. Preserve historical confirmation as feed-specific research phenomenon; do not deploy or retune for FTMO.",
     "next": "Proceed to D035-F1 FTMO XLM 2026-H1 fresh target-outcome transport confirmation under existing explicit authorization."
+  },
+  "interesting_edges_shortlist": {
+    "status": "PERSISTED",
+    "file": "research/results/GUARDIAN_INTERESTING_EDGES_SHORTLIST_2026_09_23.md",
+    "primary_keep": [
+      "V111 C8 EURUSD H11 SHORT 120m",
+      "D035-E1/F1 XLMUSD causal dual-shock",
+      "EA01-XR-RSI-LONG-V1 XAU ensemble candidate"
+    ],
+    "historical_closed": [
+      "D032-C1 Bullish Doji Star H1",
+      "V111 C1 XAGUSD H11 SHORT 60m",
+      "V69 USDCHF Friday LONG",
+      "V112 AUDUSD H21 SHORT 120m"
+    ]
+  },
+  "d035_f1_ftmo_2026h1": {
+    "status": "AUTHORIZED_READY_ONECLICK",
+    "oneclick_runner": "tools/GUARDIAN_D035_F1_FTMO_ONECLICK_v1_00.ps1",
+    "oneclick_launcher": "tools/RUN_D035_F1_FTMO_ONECLICK.cmd",
+    "behavior": "Automatically exports FTMO BTCUSD and XLMUSD M1 for authorized 2026-H1 scope using frozen exporter, verifies FTMO/coverage, then runs frozen D035-F1 analyzer and zips receipt.",
+    "guards": {
+      "target": "XLMUSD only",
+      "direction": "SHORT",
+      "primary_horizon_min": 15,
+      "diagnostic_horizon_min": 30,
+      "jul_dec_2026": "BLOCKED",
+      "other_targets": "BLOCKED",
+      "retuning": "BLOCKED",
+      "live_deployment": "BLOCKED"
+    }
   }
 }
