@@ -502,3 +502,56 @@ scripts/gef_m5_motion_topology_m04_replication.py
 
 Runner:
 automation/Run-M5MotionTopologyM04Replication.ps1
+
+
+## M04 2015-2017 REPLICATION RESULT
+
+Run:
+GEFM5R-20260923-053206
+
+Parity:
+exact pre-2015 corr_break and corr_break_z parity PASS for EURUSD/GBPUSD/AUDUSD/USDCHF.
+
+Replication:
+5 of 6 frozen discovery variants PASS.
+
+PASS:
+- EURUSD <- UDXUSD rel -1 L15/H15
+- GBPUSD <- UDXUSD rel -1 L15/H15
+- GBPUSD <- UDXUSD rel -1 L30/H30
+- AUDUSD <- UDXUSD rel -1 L15/H15
+- USDCHF <- UDXUSD rel +1 L15/H15
+
+CLOSED:
+- AUDUSD <- UDXUSD rel -1 L30/H30
+  replication mean endpoint = -0.039066; no rescue.
+
+Frozen replication survivor SHA256:
+942eeda155a39446adecacba0171a04552d0c99fe86ac1cfb50fab30dce3b371
+
+Interpretation:
+five correlated manifestations of one UDX/FX M04 correlation-break -> recoupling phenomenon; not five independent edges.
+
+### 2018-2022 independent validation frozen
+
+Five exact survivors only.
+Build causal state continuously from 2011.
+Before validation, freeze a 2011-2017 parity reference that must reproduce the published replication results.
+Validation engine then requires exact pre-2018 corr_break/corr_break_z parity.
+
+Per-variant validation gates:
+- >=250 episodes
+- >=150 UTC days
+- mean endpoint > 0
+- one-sided cluster p <= 0.05
+- >=4/5 positive calendar years
+- leave-one-year-out minimum mean > 0
+- trim-best-1% mean > 0
+- trim-best-2% mean > 0
+
+Family validates only if >=3 of 5 variants pass all gates.
+Negative-control shifts +/-60m are diagnostic only.
+No TP/SL/session/cost optimization.
+
+2023-2025 remains locked.
+2026 remains protected.
