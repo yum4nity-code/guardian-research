@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-23",
+  "status": "FROZEN",
+  "source_v111_run": "GEF111-20260922-163321",
+  "candidate": {
+    "market": "AUDUSD",
+    "cell_type": "hour",
+    "hour": 21,
+    "horizon_min": 240,
+    "orientation": -1,
+    "direction": "SHORT",
+    "expected_preoos_n": 1033
+  },
+  "scientific_caveat": "AUDUSD H21 family 120m endpoint already opened in V112 2023-2025; 240m endpoint unconsumed, so positive evidence is endpoint-extension rather than fully independent family confirmation.",
+  "oos": {
+    "start": "2023-01-01T00:00:00",
+    "end_exclusive": "2026-01-01T00:00:00"
+  },
+  "ftmo_if_positive": {
+    "offsets_hours": [
+      -8,
+      -7,
+      -6,
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "selection": ">=90% coverage then minimum median absolute source-vs-FTMO two-leg price difference",
+    "execution": "first tick at/after mapped H21/H01 boundaries; SHORT bid->ask"
+  },
+  "blocked": [
+    "2026 raw data",
+    "retuning",
+    "alternate hour",
+    "alternate horizon",
+    "alternate market",
+    "alternate direction",
+    "PnL-based alignment",
+    "rescue filtering"
+  ]
+}
