@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-23",
-  "active_primary": "M5-MOTION-TOPOLOGY-NEXT-LINEAGE",
+  "active_primary": "PAUSED_BY_OWNER_METHOD_REVIEW",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -408,5 +408,11 @@
       "closed_reason": "No frozen candidate passed the preregistered 2023-2025 locked OOS gates. No rescue or retuning."
     }
   ],
-  "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
+  "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED",
+  "research_pause": {
+    "status": "PAUSED_BY_OWNER",
+    "reason": "Methodology review after concern that stacked significance gates may create excessive false negatives after large search universe.",
+    "new_research_runs_authorized": false,
+    "protected_2026": false
+  }
 }
