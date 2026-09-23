@@ -776,3 +776,10 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Added a pre-2023 reference freeze using only 2011-2022 to reproduce validation before opening 2023.
 - Added locked OOS engine restricted to 2011-2025 with 2026 hard-forbidden.
 - No 2023-2025 or 2026 result has been opened by this implementation step.
+
+
+### 2026-09-23 — M04 pre-2023 reference frozen
+- Frozen reference run GEFM5LREF-20260923-061953 with 1,262,304 rows and SHA256 c5d64fa7d7e375fa1434a4989317c7b2eff92d0239e7a6c48709bd42d6c90c23.
+- Reproduced the published 2018-2022 validation aggregates for EURUSD L15 and AUDUSD L15 with parity PASS; differences were floating-point epsilon only.
+- No 2023-2025 or 2026 outcomes were accessed.
+- Locked OOS 2023-2025 is now ready.
