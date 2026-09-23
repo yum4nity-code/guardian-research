@@ -1009,3 +1009,9 @@ Execution economics remain unresolved because the historical gate used gross clo
 - D017 BTCUSD SELL Momentum +2.5R fails fresh FTMO 2023: n=74, EV -0.0541R, q10 -0.2692R. 2024-2025 FTMO transport is only +0.0317R pooled with q10 <0. Close without rescue or exact execution follow-up.
 - Next active test: D032 Bullish Doji Star H1 FTMO transport. Entry edge was already independently confirmed pre-2024; now test the frozen immediate LONG -> exact +24h outcome on FTMO BTC/ETH/DOG where available.
 - Launcher: `tools/RUN_D032_FTMO_TRANSPORT.cmd`. 2026 blocked; no pattern/trend/horizon retuning.
+
+
+## D032 exact FTMO parity pending — 2026-09-23
+- Direct Python FTMO transport was negative overall (307 executable events, -57.56 bp/event; pre-2024 -58.76 bp; 2024-2025 -52.81 bp), but this is provisional rather than the final canonical verdict.
+- Exact original D032 C1 scanner source has been recovered and committed. The direct reconstruction matches its frozen pattern/trend logic, but the Python transport omitted the original clean feed-gap/missing-horizon gate.
+- Final transport decision must come from the recovered scanner itself on FTMO. Active launcher: `tools/RUN_D032_EXACT_FTMO_PARITY.cmd`; BTC/ETH/DOG core, 1-minute OHLC, pre-2024 confirmation window, 2026 blocked.
