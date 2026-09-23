@@ -418,6 +418,18 @@
       "file": "research/results/GUARDIAN_FILTER_SEVERITY_AUDIT_2026_09_23.md",
       "conclusion": "Large-edge production hurdles and repeated hard gates likely discarded several positive mini-edge candidates; genuine negative failures also exist.",
       "next": "Redesign validation doctrine before resuming research."
+    },
+    "local_mini_edge_extraction": {
+      "status": "COMPLETE",
+      "version": "GUARDIAN-MINI-EDGE-EXTRACTOR-1.2",
+      "output_dir": "D:\\MT5_Backtests\\Research\\Exports\\GUARDIAN_MINI_EDGE_AUDIT_20260923-073103",
+      "files_inspected": 2149,
+      "metric_observations": 8654240,
+      "auto_flagged_positive_but_rejected": 924,
+      "errors": 0,
+      "research_rerun": false,
+      "market_data_modified": false,
+      "next": "Upload ZIP to ChatGPT for exhaustive candidate deduplication and review."
     }
   }
 }
