@@ -1229,3 +1229,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Diagnostics: exact per-event $5/lot round-trip commission normalization, monthly/yearly stability, month-block bootstrap, trim 1/2/5%, remove-best 10/20, cumulative max drawdown in bps, losing streak, extra-friction break-even, and diagnostic Volume-Band stresses based only on FTMO's published illustrative EURUSD example.
 - No timing, direction, horizon, news filter or subgroup optimization is allowed.
 - Launcher: `tools\RUN_V111_C8_EURUSD_PRODUCTION_READINESS.cmd`.
+
+
+### 2026-09-23 — V111 C8 production-readiness complete; forward shadow prepared
+- Analyze-only audit completed from the existing 717-row 2023-2025 FTMO execution ledger; no 2026 historical market data opened.
+- After observed spread + exact $5/lot round-trip Forex commission: mean +0.550043 bp, median +0.541379 bp, win rate 52.02%.
+- Yearly net: 2023 +1.423109 bp; 2024 -0.176102 bp; 2025 +0.611551 bp.
+- Month-block bootstrap q10 -0.101934 bp, p(mean<=0)=0.13945. Trim best 1% +0.110826 bp; trim 2% -0.153618; trim 5% -0.796166. Remove best 10 still +0.026269; remove best 20 -0.323483.
+- Cumulative max DD -247.866337 bp; max losing streak 8. Extra-friction break-even only +0.550043 bp / ~0.604539 pip at mean EURUSD price.
+- Classification: FRAGILE_FORWARD_SHADOW. Positive after current spread+commission but too thin / unstable for production.
+- Prepared true forward-only paper monitor starting next UTC day: `tools\RUN_V111_C8_EURUSD_FORWARD_SHADOW.cmd`. It refuses historical backfill, sends no orders, and records fixed EURUSD SHORT H11->H13 FTMO-aligned BID/ASK execution plus commission.
