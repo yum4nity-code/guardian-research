@@ -1133,3 +1133,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Next frozen candidate is V111 AUDUSD H21 SHORT 240m, pre-OOS n=1033. Scientific caveat: the AUDUSD H21 120m endpoint was already opened in V112 on 2023-2025, so this 240m test is endpoint-extension evidence rather than fully independent family confirmation.
 - Added combined Stage A 2023-2025 source endpoint test and conditional Stage B FTMO price-alignment/execution audit. No retuning; 2026 blocked.
 - Active launcher: `tools\RUN_V111_AUDUSD_H21_240M_OOS_FTMO.cmd`.
+
+
+### 2026-09-23 — AUDUSD H21 240m closed; D032 FTMO transport next
+- Reviewed `GUARDIAN_V111_AUDUSD_H21_240M_OOS_FTMO_20260923-180112.zip`. Provenance passed and 2026_accessed=false.
+- Frozen V111 C7 AUDUSD H21 SHORT 240m fresh endpoint result: n=560, mean -0.240293 bp, control +0.091356 bp, differential -0.331649 bp, median -0.614610 bp, win rate 47.14%. 2023 -1.385958, 2024 +0.424095, 2025 -0.072797 bp. LOO minimum -0.623955 bp. Month bootstrap q10 -1.003983 bp. All trims negative. Stage B FTMO execution correctly did not run. Close with no rescue.
+- With V111 USDCHF H22 and AUDUSD H21 240m now closed, EURUSD H11 SHORT 120m remains the only V111 candidate that survived fresh OOS and FTMO execution/cost review.
+- Next priority moved outside V111 to D032 Bullish Doji Star H1, already independently confirmed under its frozen pre-2024 core gate. Added a dedicated FTMO feed/execution transport audit with no pattern/trend/horizon retuning.
+- D032 transport runner reconstructs the frozen TA-Lib-default-equivalent Bullish Doji Star + strict falling SMA144 signal directly on FTMO H1 bars, tries BTCUSD/ETHUSD/DOGUSD aliases, executes LONG first ASK at signal close to first BID exactly +24h, reports PRE2024 and 2024-2025 transport separately, and hard-blocks 2026.
+- Active launcher: `tools\RUN_D032_FTMO_TRANSPORT.cmd`.
