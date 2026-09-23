@@ -906,3 +906,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - v1.01 fixes V69 row timestamp access and a second latent V112 double-mask bug found before rerun.
 - Active launcher: `tools/RUN_V69_V112_EXACT_SOURCE_FTMO_AUDIT_v1_01.cmd`.
 - 2026 remains closed; no strategy logic changed.
+
+
+## Exact-source parity PASS; FTMO history forensic — 2026-09-23
+- V69 exact parity: n=155, +4.639075481195655 bps, absolute difference 0.0.
+- V112 C3 exact parity: n=556, +1.4552352492311669 bps, absolute difference 0.0.
+- v1.01 then failed only because FTMO execution rows were unavailable and the cost-grid code assumed a priced column existed. This is not a strategy rejection.
+- Active hardened runner: `tools/RUN_V69_V112_EXACT_SOURCE_FTMO_AUDIT_v1_02.cmd`. It adds UTC-safe MT5 queries and explicit 2023/2024/2025 history-availability diagnostics while keeping source parity mandatory and 2026 closed.
