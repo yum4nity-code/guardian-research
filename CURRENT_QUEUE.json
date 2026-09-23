@@ -530,6 +530,40 @@
       "ex_best_positive_net": -74.46720370272479,
       "verdict": "FAIL",
       "interpretation": "Protected OOS shows regime reversal and failure after stress/best-trade removal. Do not revive."
+    },
+    "d035_e1_v2": {
+      "status": "RECLASSIFIED_AND_FRESH_TEST_PREREG_FROZEN",
+      "historical_status": "E1_DO_NOT_ADVANCE / EXPLORATORY_SAME_SAMPLE_NOT_CONFIRMATION",
+      "existing_2024_2025": {
+        "causal_dual_events": 973,
+        "xlm_rows": 870,
+        "mean_exec_15m_bps": 6.705,
+        "median_exec_15m_bps": 0,
+        "mean_control_15m_bps": -6.786,
+        "differential_15m_bps": 13.49,
+        "bootstrap_raw95": [
+          1.996,
+          11.549
+        ],
+        "bootstrap_diff95": [
+          8.793,
+          18.302
+        ],
+        "mean_exec_30m_bps": 3.697,
+        "year_2024_bps": 4.104,
+        "year_2025_bps": 9.935
+      },
+      "v2_classification": {
+        "discovery_causal_credibility": "SUPPORTED",
+        "fresh_existence": "NOT_YET_FRESHLY_TESTED",
+        "economic_size": "MINI_EDGE_CANDIDATE",
+        "ensemble_status": "NOT_TESTED",
+        "production_status": "NOT_PRODUCTION_READY"
+      },
+      "fresh_2026h1_prereg": "research/campaigns/D035_C1_2026H1_FRESH_CONFIRMATION_PREREG_V2_2026_09_23.md",
+      "human_gate_required": true,
+      "accessed_2026h1": false,
+      "next": "Owner explicitly authorizes opening 2026-H1 under frozen D035-C1 V2 preregistration, or keep reserved."
     }
   }
 }
