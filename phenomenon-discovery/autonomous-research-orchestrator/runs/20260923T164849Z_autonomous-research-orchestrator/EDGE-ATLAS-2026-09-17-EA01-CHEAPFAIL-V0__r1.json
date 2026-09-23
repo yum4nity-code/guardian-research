@@ -1,0 +1,18 @@
+{
+  "adaptive_hard_limit_seconds": 300.0,
+  "class_key": "EDGE_ATLAS_CHEAP_FAIL_XAU_M5",
+  "duration_seconds": 2.015175399996224,
+  "exit_code": 1,
+  "finished_at_utc": "2026-09-23T16:48:49.025755+00:00",
+  "job_id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
+  "main_commit": "4fc3ee63e907c5123a5578fb31af2f70b25b6585",
+  "orchestrator_version": "1.03",
+  "protected_2026_untouched": true,
+  "reason": "executor exit 1",
+  "revision": 1,
+  "schema": 1,
+  "started_at_utc": "2026-09-23T16:48:46.991231+00:00",
+  "status": "FAIL",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\campaigns\\EDGE_ATLAS_2026_09_17\\edge_atlas_cheap_fail_adapter_v1.py\", line 231, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"D:\\MT5_Backtests\\guardian-autonomous-main\\research\\campaigns\\EDGE_ATLAS_2026_09_17\\edge_atlas_cheap_fail_adapter_v1.py\", line 212, in main\n    raise AdmissionError(\"RUNNING marker requires offline recovery; BLOCKED\")\ndata_loader_v1.AdmissionError: RUNNING marker requires offline recovery; BLOCKED",
+  "stdout_tail": ""
+}
