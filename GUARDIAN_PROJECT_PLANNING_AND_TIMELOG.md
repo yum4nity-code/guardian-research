@@ -1038,3 +1038,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Added tools/guardian_v69_v112_session_aligned_execution_audit_v1_00.py plus PowerShell/CMD launchers. V69 maps FTMO entry to the last M1 before the >=24h weekend no-quote gap and exit to the same number of minutes after FTMO reopen as in the source. V112 uses the forensic +2h clock alignment. Both are then priced bid/ask with tick-first, M1-spread fallback. 2026 remains blocked.
 - Historical swap is still not invented; current FTMO symbol swap metadata is captured for context only.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — Session-aligned FTMO audit v1.02 pandas hardening
+- v1.00 failed before MT5 pricing because `after.iloc[0].dt` was parsed as the pandas datetime accessor instead of the row's `dt` field.
+- A full audit of pandas row/column access was performed. All material row-field access is now explicit bracket indexing (for example `row["dt"]`, `row["px"]`, `row["time"]`, `row["bid"]`, `row["ask"]`) to avoid attribute-name collisions.
+- An intermediate v1.01 was not used because inspection found an accidental literal `\\n` insertion in the generated Python source. v1.02 corrects that syntax issue and completes the pandas hardening.
+- New active launcher: `tools\RUN_V69_V112_SESSION_ALIGNED_EXECUTION_AUDIT_v1_02.cmd`.
+- No strategy logic, sample, alignment rule or cost assumption changed. 2026 remains hard-blocked.
+- Human active time: NOT QUANTIFIED.
