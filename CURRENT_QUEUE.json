@@ -1099,5 +1099,27 @@
     "execution": "LONG first ASK at/after H1 signal close -> first BID at/after +24h",
     "protected_2026": "BLOCKED",
     "retuning": "BLOCKED"
+  },
+  "d025_eth_retest_ftmo": {
+    "status": "READY_TO_RUN",
+    "preregistration": "research/campaigns/D025_ETH_RETEST_FTMO_FRESH2023_TRANSPORT_PREREG_2026_09_23.md",
+    "source_ea": "research/ea/D025_LER_VirtualPath_1_03.mq5",
+    "analyzer": "tools/analyze_d025_eth_retest_ftmo_v1_00.py",
+    "runner": "tools/GUARDIAN_D025_ETH_RETEST_FTMO_v1_00.ps1",
+    "launcher": "tools/RUN_D025_ETH_RETEST_FTMO.cmd",
+    "frozen_candidate": {
+      "market": "ETHUSD",
+      "path": "RETEST",
+      "target_R": 2,
+      "stop_R": -1
+    },
+    "evidence_plan": {
+      "2023": "fresh temporal test on FTMO feed",
+      "2024_2025": "feed-transport/replication only"
+    },
+    "tester_model": "1 minute OHLC",
+    "exact_real_tick_followup": "ONLY_IF_SURVIVES",
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED"
   }
 }
