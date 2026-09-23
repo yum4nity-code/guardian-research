@@ -614,3 +614,33 @@ Diagnostics:
 
 No 2023-2025 or 2026 access.
 Human gate required before any locked OOS.
+
+
+## M04 locked OOS 2023-2025 — human gate approved
+
+Owner approved proceeding after 2018-2022 validation.
+
+Frozen candidates:
+- EURUSD <- UDXUSD rel -1 L15/H15
+- AUDUSD <- UDXUSD rel -1 L15/H15
+
+No other candidate is eligible.
+
+Locked OOS hard gates per variant:
+- >=100 episodes
+- >=60 UTC days
+- mean endpoint > 0
+- one-sided cluster p <= 0.05
+
+Yearly, LOO, trim-best and +/-60m outputs are diagnostics only.
+
+Before OOS:
+freeze a 2011-2022 pre-2023 reference and reproduce published validation aggregates.
+
+2026 remains forbidden.
+
+Reference runner:
+automation/Freeze-M04Pre2023Reference.ps1
+
+Locked OOS runner:
+automation/Run-M5MotionTopologyM04LockedOOS.ps1
