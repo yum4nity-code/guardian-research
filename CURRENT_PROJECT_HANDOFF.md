@@ -681,3 +681,52 @@ Diagnostics:
 - EURUSD is unstable across 2023-2025 and its +60m placebo is stronger than the frozen event timestamp.
 - AUDUSD remains positive overall and in leave-one-year-out diagnostics, but loses significance and turns negative in 2025; it is also tail-sensitive.
 These diagnostics do not override the locked-OOS failure.
+
+
+## 2026-09-23 — Full mini-edge severity audit completed
+
+Local extraction reviewed:
+- 2,149 result files
+- 8,654,240 metric observations
+- 924 automatic positive-but-rejected flags
+- 0 extraction errors
+- no research rerun or market-data modification
+
+Main conclusion:
+Guardian repeatedly conflated edge existence with standalone production readiness. Several positive and repeatable effects were under-classified because they missed large-edge magnitude, PF, trade-count, robustness or repeated-significance gates. This does not invalidate the many genuine rejects that later turned negative or failed timing/event-unit repairs.
+
+Already confirmed phenomena that remain important:
+- V112 AUDUSD H21 120m SHORT — locked OOS 2023-2025 confirmed.
+- D032-C1 Bullish Doji Star H1 entry — primary confirmation passed; management remains unresolved.
+
+Highest-interest retrospective mini-edge candidates:
+- EA01-XR-RSI-LONG-V1 XAU OOS 2023-2025: n654, +0.0622R at cost 0.10, PF 1.087; killed by PF>=1.10 hurdle while stress mean stayed positive.
+- R5E-023 XAU M5: 2024/2025 and stress positive; historical FAIL came only from <100 trades/year.
+- D035-E1 causal dual-source response: +6.705 bps executable at +15m, bootstrap lower >0, both 2024/2025 positive; old +15bp standalone hurdle blocked advancement.
+- D017 BTC SELL Momentum, D025 ETH RETEST, D025 EURUSD SHORT +2R: recurring positive effects below the old large-edge standard.
+- ATLAS-IV A4_02: positive internal holdout/control-relative information at ordinary cost; fails standalone stress/tail gates and is better treated as ensemble/covariate material.
+- V111 C1/C5/C7/C8: positive pre-OOS calendar candidates rejected by one or two additional forensic robustness diagnostics; not retroactive OOS passes.
+
+Weak covariate clues only:
+- M04 AUDUSD/UDX L15
+- M04 GBPUSD/UDX L15
+- D030 ETH H4 Engulfing
+- D034 XAU abnormal return
+
+Do not revive:
+- V102/V103 rates carried-row lineages without a genuinely new event-level design
+- V104/V105 CFTC carried-row lineages
+- V93 BCO candidate invalidated by corrected time semantics
+- F14-V2 after negative 2023-2025 OOS
+- R13 low-power/FDR-noise family
+- phase IF/IJ candidates with strong 2026 half-year sign flips
+
+Canonical audit:
+research/results/GUARDIAN_MINI_EDGE_FULL_AUDIT_2026_09_23.md
+
+Research remains PAUSED. Next step is to freeze a new doctrine separating:
+1. edge existence,
+2. economic size,
+3. ensemble/incremental value,
+4. production readiness.
+No historical verdict is retroactively changed and no protected-2026 opening is authorized.
