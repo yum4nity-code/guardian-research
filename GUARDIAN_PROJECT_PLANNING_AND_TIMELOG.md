@@ -859,3 +859,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Confirmed no existing D035-C1 2026 output on backtest-results.
 - No 2026-H1 access occurred. Human gate still required.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — D035-C1 fresh 2026-H1 execution staged
+- Owner authorized consumption of the frozen D035-C1 2026-H1 fresh sample.
+- Added authorization record, locked engine and runner.
+- Scope restricted to BTC/ETH source data plus BTCUSD calibration and XLMUSD target quotes.
+- Primary test remains XLMUSD SHORT +15m after causal second BTC/ETH shock; +30m is diagnostic only.
+- Jul-Dec 2026, all other target CFDs, retuning and live deployment remain blocked.
+- Execution has not yet been reported complete in this control-plane update.
+- Human active time: NOT QUANTIFIED.
