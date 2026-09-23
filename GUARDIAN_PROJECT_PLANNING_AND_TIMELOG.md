@@ -744,3 +744,10 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Family validation requires at least three of five exact variants to pass all gates.
 - Added a separate pre-2018 reference freeze step so the validation engine must match the 2011-2017 replicated objects before scoring 2018-2022.
 - 2023-2025 and 2026 remain unopened.
+
+
+### 2026-09-23 — M04 validation gates simplified before 2018-2022 access
+- Removed additional hard rejection gates introduced after replication.
+- Restored validation to simple pre-outcome hard gates: support, positive mean endpoint and one-sided cluster significance.
+- Year consistency, LOO, trim-best and placebo outputs remain diagnostics, not automatic rejection criteria.
+- No 2018-2022 outcome had been accessed before this amendment.
