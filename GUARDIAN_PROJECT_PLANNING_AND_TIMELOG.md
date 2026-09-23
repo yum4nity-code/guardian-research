@@ -939,3 +939,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Main missing work is execution economics: actual spread, weekend swap/carry, slippage, DD and portfolio correlation.
 - Protected 2026 remained unopened.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — V69/V112 execution audit tooling v1.01
+- Added broker-feed execution audit tooling under `tools/`: `guardian_v69_v112_execution_audit_v1_01.py`, `GUARDIAN_V69_V112_EXECUTION_AUDIT_v1_01.ps1`, and one-click `RUN_V69_V112_EXECUTION_AUDIT.cmd`.
+- Purpose: independent execution-economics audit of V69 USDCHF Friday LONG and V112 AUDUSD H21 SHORT 120m using MT5 broker history, observed tick spread when available, M1 fallback otherwise, trade ledgers, MAE/MFE, cumulative DD, tail trims, monthly bootstrap lower bound and extra-cost grids.
+- 2026 is hard-capped and must not be requested or opened.
+- V112 reconstruction corrected to Monday-Thursday H21 sessions, consistent with the pre-OOS sample-size structure; Friday is excluded.
+- The tooling does not retune either strategy and does not promote anything to production.
+- Historical swap/financing is not inferred from OHLC; it remains an explicit additional-cost stress item after observed spread.
+- Next safe action: run `tools\RUN_V69_V112_EXECUTION_AUDIT.cmd` with MT5 open and broker-connected, then audit the resulting ZIP before any promotion decision.
+- Human active time: NOT QUANTIFIED.
