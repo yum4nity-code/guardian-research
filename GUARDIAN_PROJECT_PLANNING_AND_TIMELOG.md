@@ -997,3 +997,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - New audit first reproduces exact source parity against V69 n=155/+4.639075 bps and V112 C3 n=556/+1.455235 bps. MT5/FTMO execution pricing is aborted unless both parity checks pass. Only then are original frozen events priced on FTMO BID/ASK. 2026 remains hard-blocked.
 - Historical swap is deliberately not invented. V69 is explicitly marked as a weekend-hold strategy requiring separate carry/swap economics after spread. Current FTMO symbol metadata is captured for context.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — Exact-source FTMO audit v1.01 hotfix
+- v1.00 failed before source parity due to a pandas row-indexing bug in V69: `e.dt/x.dt` was incorrectly interpreted as the Series datetime accessor instead of the `dt` column.
+- Pre-relaunch inspection also found and fixed a second latent V112 bug: returns had already been filtered by C3 H21, then were accidentally indexed a second time with the old boolean mask.
+- Added versioned v1.01 engine, PowerShell runner and one-click launcher. V69 now uses `e["dt"]` / `x["dt"]`; V112 uses the already-filtered return vector directly.
+- Source-parity tolerance is technical-only and remains effectively exact at 0.0001 bp; no strategy selection, signal definition or threshold was retuned.
+- v1.00 did not reach MT5 pricing and did not access 2026.
+- Next safe action: run `tools\RUN_V69_V112_EXACT_SOURCE_FTMO_AUDIT_v1_01.cmd` with only FTMO MT5 open.
+- Human active time: NOT QUANTIFIED.
