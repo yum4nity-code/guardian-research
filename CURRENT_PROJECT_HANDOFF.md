@@ -730,3 +730,27 @@ Research remains PAUSED. Next step is to freeze a new doctrine separating:
 3. ensemble/incremental value,
 4. production readiness.
 No historical verdict is retroactively changed and no protected-2026 opening is authorized.
+
+
+## 2026-09-23 — EA01 XAU RSI LONG V2 read-only OOS audit
+
+Existing 2023-2025 OOS ledger verified by exact file hashes and aggregate parity. No strategy rerun and no 2026 access.
+
+EA01-XR-RSI-LONG-V1:
+- n=654 non-overlap trades
+- cost 0.10 mean +0.06216R/trade, PF 1.08683
+- cost 0.20 mean +0.01576R/trade, PF 1.02133
+- all three leave-one-year-out means remain positive
+- 66.7% of months positive
+- month-cluster one-sided 90% lower bound = -0.02196R; bootstrap P(mean<=0)=0.1703
+- trimming best 1% flips mean to -0.01816R; trimming best 2% -> -0.07622R
+- cumulative max drawdown at cost 0.10 = -34.99R
+
+Doctrine V2 classification:
+- existence: POSITIVE_UNCERTAIN
+- economic size: MINI_EDGE
+- stress: STRESS_POSITIVE
+- ensemble: NOT TESTED
+- production: NOT PRODUCTION READY
+
+Historical KILL remains preserved. New interpretation: the old PF>=1.10 threshold was too binary for edge-existence taxonomy, but later read-only robustness shows the signal is materially tail-dependent. Keep as an ensemble candidate; do not promote as standalone alpha.
