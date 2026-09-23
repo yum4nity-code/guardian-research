@@ -1,0 +1,14 @@
+{
+  "active_job": {
+    "id": "EDGE-ATLAS-2026-09-17-EA01-CHEAPFAIL-V0",
+    "revision": 1
+  },
+  "main_commit": "1175971e833ee29ac7c69c98f7da0e325092be67",
+  "pid": 7108,
+  "protected_2026": true,
+  "queue_generation": 115,
+  "schema": 1,
+  "status": "RUNNING",
+  "updated_at_utc": "2026-09-23T17:24:38.197676+00:00",
+  "version": "1.03"
+}
