@@ -899,3 +899,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - V112 C3 exact code confirms HistData M1 + fixed +5h UTC mapping -> 5m right-labelled resample -> H21 SHORT 120m. No Mon-Thu filter; n=556 is source-availability-driven.
 - v1.02 FTMO negatives are invalid as strategy verdicts because they regenerated populations from FTMO bars.
 - Correct next tool: `tools/RUN_V69_V112_EXACT_SOURCE_FTMO_AUDIT.cmd`. It requires exact source parity before any FTMO execution pricing and keeps 2026 closed.
+
+
+## Exact-source FTMO audit v1.01 hotfix — 2026-09-23
+- v1.00 failed before parity on pandas row access and did not reach MT5 pricing.
+- v1.01 fixes V69 row timestamp access and a second latent V112 double-mask bug found before rerun.
+- Active launcher: `tools/RUN_V69_V112_EXACT_SOURCE_FTMO_AUDIT_v1_01.cmd`.
+- 2026 remains closed; no strategy logic changed.
