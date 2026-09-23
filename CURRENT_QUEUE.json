@@ -1003,7 +1003,7 @@
     "next": "Freeze exact EURUSD H11->H13 SHORT as a live/forward-shadow candidate. Before any production use, audit FTMO Standard news-window compatibility and actual Volume Band for intended order size; do not retime or rescue."
   },
   "v111_usdchf_h22_240m_oos_ftmo": {
-    "status": "READY_TO_RUN",
+    "status": "CLOSED_FRESH_OOS_NEGATIVE",
     "preregistration": "research/campaigns/V111_USDCHF_H22_240M_OOS_FTMO_PREREG_2026_09_23.md",
     "spec": "research/campaigns/V111_USDCHF_H22_240M_OOS_FTMO_SPEC_2026_09_23.json",
     "engine": "tools/guardian_v111_usdchf_h22_240m_oos_ftmo_v1_00.py",
@@ -1018,6 +1018,30 @@
       "expected_preoos_n": 1047
     },
     "behavior": "Stage A 2023-2025 fresh source OOS. If mean >0, Stage B performs FTMO alignment by price proximity only and first-tick LONG ask->bid execution audit. No retuning.",
-    "protected_2026": "BLOCKED"
+    "protected_2026": "BLOCKED",
+    "result": {
+      "candidate_id": "C5",
+      "n": 694,
+      "mean_bp": -0.15926686553862673,
+      "control_mean_bp": -0.2856106708428821,
+      "effect_bp": 0.12634380530425537,
+      "median_bp": -0.5615745764137037,
+      "win_rate": 0.4769452449567723,
+      "net1bp_mean_bp": -1.1592668655386267,
+      "trim1_mean_bp": -0.9404993312519168,
+      "trim2_mean_bp": -1.3795905966966244,
+      "trim5_mean_bp": -2.426737752045077,
+      "yearly_mean_bp": {
+        "2023": 0.7599159731400615,
+        "2024": -1.4335822053222345,
+        "2025": 0.4893855009645771
+      },
+      "loo_min_bp": -0.543102440212541,
+      "bootstrap_q10_bp": -0.9503164503537888,
+      "v2_existence": "NEGATIVE",
+      "ftmo_execution": "NOT_RUN_SOURCE_MEAN_NONPOSITIVE",
+      "protected_2026_accessed": false
+    },
+    "conclusion": "CLOSE_NO_RESCUE"
   }
 }
