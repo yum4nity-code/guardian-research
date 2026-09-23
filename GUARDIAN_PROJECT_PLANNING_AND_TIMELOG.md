@@ -1210,3 +1210,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Added versioned `research/ea/D035_FTMO_CFD_M1_Exporter_v1_01.mq5`: copy `_Symbol`, company and server into mutable strings, then call `StringToUpper` in place. No research logic changed.
 - Added `tools/GUARDIAN_D035_F1_FTMO_ONECLICK_v1_01.ps1` and `tools/RUN_D035_F1_FTMO_ONECLICK_v1_01.cmd`. Compile monitoring now fails immediately on compiler errors rather than waiting the full timeout.
 - Scientific scope unchanged: XLMUSD only, SHORT, +15m primary, +30m diagnostic, 2026-H1 only, Jul-Dec blocked, no retuning.
+
+
+### 2026-09-23 — D035-F1 FTMO 2026-H1 complete: positive-uncertain mini-edge
+- Frozen one-click campaign completed successfully: 254 causal BTC+ETH source events, 245 executable XLMUSD SHORT +15m FTMO outcomes. Jul-Dec 2026 not opened; no other targets; no retuning.
+- Mean gross executable +15m = +6.6387 bp. Mean net after frozen FTMO crypto commission = +0.1408 bp; median -0.0505 bp. Mean +30m diagnostic = -8.7690 bp.
+- Matched-control net +15m = -11.8798 bp, giving event-minus-control differential +12.4164 bp. This is the strongest reason to preserve the phenomenon as conditional information even though the standalone economics are nearly flat.
+- Day-cluster bootstrap q10 = -5.8561 bp, p(mean<=0)=0.48335. Removing the best 1% (3 trades) gives -2.6404 bp. Monthly net means: Jan +4.5723, Feb +0.5213, Mar +8.2641, Apr -13.8928, May -8.1729, Jun +5.3559 bp.
+- Doctrine V2: POSITIVE_UNCERTAIN / ADEQUATE support / MINI_EDGE / NOT_PRODUCTION_READY.
+- Decision: preserve D035 on the interesting-edge shortlist and for future ensemble/incremental-value work; do not deploy the exact XLMUSD +15m branch standalone and do not rescue via post-hoc threshold/session/horizon/target retuning.
+- Deployment-oriented next priority returns to V111 C8 EURUSD H11 SHORT 120m, the only current FTMO execution survivor, unless the owner explicitly prioritizes ensemble diagnostics instead.
