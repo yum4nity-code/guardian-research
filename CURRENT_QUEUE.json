@@ -566,7 +566,7 @@
       "next": "Owner explicitly authorizes opening 2026-H1 under frozen D035-C1 V2 preregistration, or keep reserved."
     },
     "d035_c1_2026h1": {
-      "status": "READY_TO_RERUN_AFTER_ANALYZER_RECOVERY",
+      "status": "CLOSED_ENVIRONMENT_PIVOT",
       "authorization": "research/campaigns/D035_C1_2026H1_HUMAN_AUTHORIZATION_2026_09_23.json",
       "preregistration": "research/campaigns/D035_C1_2026H1_FRESH_CONFIRMATION_PREREG_V2_2026_09_23.md",
       "engine": "scripts/run_d035_c1_fresh_2026h1_v2.py",
@@ -620,7 +620,34 @@
         "commit": "ce4832a18df1be19fc6bc788e8e0fcc4cfcc44e5",
         "behavior": "Select MT5 exports by actual CSV coverage and reject files not covering 2026-H1.",
         "next": "Export BTCUSD and XLMUSD with D035_CFD_M1_Exporter_v1_01.mq5 for 2026-01-01 through 2026-07-01 using M1 / 1 minute OHLC, then rerun."
-      }
+      },
+      "interpretation": "FundedNext branch not pursued further because it is not the intended deployment feed and historical crypto CFD spreads were materially large. No C1 outcome was computed."
+    },
+    "d035_f1_ftmo_2026h1": {
+      "status": "AUTHORIZED_READY_FOR_FTMO_EXPORT",
+      "preregistration": "research/campaigns/D035_F1_FTMO_TRANSPORT_CONFIRMATION_2026H1_PREREG_2026_09_23.md",
+      "authorization": "research/campaigns/D035_F1_FTMO_2026H1_HUMAN_AUTHORIZATION_2026_09_23.json",
+      "exporter": "research/ea/D035_FTMO_CFD_M1_Exporter_v1_00.mq5",
+      "engine": "scripts/run_d035_f1_ftmo_transport_2026h1_v1.py",
+      "runner": "automation/Run-D035F1FTMO2026H1.ps1",
+      "frozen": {
+        "target": "XLMUSD",
+        "calibration_symbol": "BTCUSD",
+        "direction": "SHORT",
+        "primary_horizon_minutes": 15,
+        "diagnostic_horizon_minutes": [
+          30
+        ],
+        "commission_rate_per_side": 0.000325,
+        "window": "2026-01-01 through 2026-06-30"
+      },
+      "scientific_status": "FRESH_TARGET_OUTCOME_TRANSPORT_CONFIRMATION",
+      "source_event_count_2026h1_already_seen": 254,
+      "ftmo_target_outcomes_opened": false,
+      "other_targets_blocked": true,
+      "jul_dec_2026_blocked": true,
+      "retuning_blocked": true,
+      "live_deployment_authorized": false
     }
   }
 }
