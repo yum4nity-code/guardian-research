@@ -829,5 +829,27 @@
         "note": "Gross phenomenon transfers, but both causal boundary conventions are negative after observed BID/ASK."
       }
     }
+  },
+  "v111_c1_xagusd_locked_oos_v2": {
+    "status": "AUTHORIZED_READY_TO_RUN",
+    "human_authorization": "owner_go_2026-09-23",
+    "preregistration": "research/campaigns/V111_C1_XAGUSD_H11_60M_LOCKED_OOS_V2_PREREG_2026_09_23.md",
+    "spec": "research/campaigns/V111_C1_XAGUSD_H11_60M_LOCKED_OOS_V2_SPEC_2026_09_23.json",
+    "engine": "scripts/gef_v111_c1_xagusd_locked_oos_v2.py",
+    "runner": "automation/Run-V111C1XAGUSDLockedOOSV2.ps1",
+    "launcher": "tools/RUN_V111_C1_XAGUSD_LOCKED_OOS_V2.cmd",
+    "frozen_candidate": {
+      "source_v111_run": "GEF111-20260922-163321",
+      "candidate_id": "C1",
+      "market": "XAGUSD",
+      "hour": 11,
+      "horizon_min": 60,
+      "direction": "SHORT",
+      "orientation": -1
+    },
+    "locked_oos_window": "2023-01-01 through 2025-12-31",
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED",
+    "next": "Run exactly once; if fresh mean is positive, proceed to separate FTMO BID/ASK alignment and execution audit without retuning."
   }
 }
