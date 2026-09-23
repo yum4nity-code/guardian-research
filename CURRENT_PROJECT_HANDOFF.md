@@ -933,3 +933,12 @@ Execution economics remain unresolved because the historical gate used gross clo
 - V112: 554/556 FTMO executions, BID gross ~+1.840 bp with source-vs-FTMO return correlation ~0.941, but exit-side spread averages ~4.742 bp and executable mean = -2.901 bp/trade. Gross phenomenon survives; exact frozen execution does not.
 - One final non-optimized execution forensic is justified for V112 only: first tick at/after the mapped bar boundary instead of last tick before it. Do not retime based on PnL. If this remains negative, close V112 as non-executable on FTMO.
 - 2026 remains closed.
+
+
+## V112 final execution verdict — 2026-09-23
+- Source parity locked: n=556, +1.455235 bp.
+- Last-before execution: mean -2.902032 bp/trade after observed FTMO BID/ASK.
+- First-at-or-after execution: mean -2.535524 bp/trade after observed FTMO BID/ASK; 2023/2024/2025 all negative.
+- Therefore exact frozen V112 C3 is execution-rejected on FTMO. Gross edge transfers, but executable economics do not.
+- V69 exact frozen implementation is also execution-rejected. Do not continue retiming either frozen rule; any follow-up must be a new predeclared research hypothesis.
+- 2026 remains closed.
