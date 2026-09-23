@@ -413,3 +413,44 @@ automation/Run-M5MotionTopologyCacheV1_1.ps1
 
 Audit:
 automation/Audit-M5MotionTopologyCacheV1_1.ps1
+
+
+## M5 Motion Topology M01-M08 — DISCOVERY READY
+
+V1.1 cache audit PASSED:
+- observed-run tradability support adequate across all 13 markets;
+- OHLC integrity clean;
+- endpoint support minimum 89,380 observations;
+- joint graph support minimum 132,104 rows / 849 days;
+- cross-feature finite support minimum 164,870 / 772 days.
+
+Discovery preregistration frozen before outcome association:
+- 291 exact variants
+- matched scales only: 15->15, 30->30, 60->60
+- event cooldown 30m
+- min 200 independent episodes
+- min 120 UTC days
+- primary test: positive endpoint_score
+- cluster-robust by UTC day
+- BH q<=0.05 separately within M01-M08
+- no rescue/retuning
+
+Families:
+M01 synchronized exhaustion
+M02 leader stall / follower extension
+M03 residual extreme + recross
+M04 correlation break + recoupling
+M05 breadth divergence
+M06 turn cluster
+M07 lead-lag turn sequence
+M08 volatility exhaustion
+
+Engine:
+scripts/gef_m5_motion_topology_m01_m08_discovery.py
+
+Runner:
+automation/Run-M5MotionTopologyM01M08Discovery.ps1
+
+Hard firewall:
+2012-2014 outcomes only.
+2015+ inaccessible in discovery engine.
