@@ -1022,3 +1022,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Pooled same-trend control is -39.973 bp, so Doji-minus-control is -22.235 bp. BTC and DOGE are strongly negative; ETH is negative absolute but positive relative to an even worse control.
 - Historical D032 confirmation is preserved as feed-specific research evidence, but exact FTMO transport is CLOSED / REJECTED. No rescue or retuning.
 - Next: D035-F1 FTMO XLMUSD 2026-H1 under existing explicit authorization; primary +15m SHORT after frozen causal BTC+ETH dual shock, Jul-Dec 2026 blocked.
+
+
+## Bedtime handoff — shortlist + D035 ready
+- Persistent interesting-edge shortlist: `research/results/GUARDIAN_INTERESTING_EDGES_SHORTLIST_2026_09_23.md`.
+- Keep active: EURUSD H11 SHORT 120m; D035-E1/F1 XLMUSD causal dual-shock; EA01 XAU RSI long for ensemble research only.
+- D035-F1 is now one-click ready: `tools/RUN_D035_F1_FTMO_ONECLICK.cmd`.
+- One-click flow automatically exports authorized 2026-H1 FTMO BTCUSD/XLMUSD M1 data, verifies coverage, runs the frozen XLMUSD SHORT +15m analyzer, and creates a ZIP. Jul-Dec 2026, other targets, retuning and live deployment remain blocked.
