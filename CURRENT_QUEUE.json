@@ -1323,9 +1323,9 @@
     ]
   },
   "d035_f1_ftmo_2026h1": {
-    "status": "AUTHORIZED_READY_ONECLICK",
-    "oneclick_runner": "tools/GUARDIAN_D035_F1_FTMO_ONECLICK_v1_00.ps1",
-    "oneclick_launcher": "tools/RUN_D035_F1_FTMO_ONECLICK.cmd",
+    "status": "AUTHORIZED_READY_ONECLICK_V1_01",
+    "oneclick_runner": "tools/GUARDIAN_D035_F1_FTMO_ONECLICK_v1_01.ps1",
+    "oneclick_launcher": "tools/RUN_D035_F1_FTMO_ONECLICK_v1_01.cmd",
     "behavior": "Automatically exports FTMO BTCUSD and XLMUSD M1 for authorized 2026-H1 scope using frozen exporter, verifies FTMO/coverage, then runs frozen D035-F1 analyzer and zips receipt.",
     "guards": {
       "target": "XLMUSD only",
@@ -1336,6 +1336,12 @@
       "other_targets": "BLOCKED",
       "retuning": "BLOCKED",
       "live_deployment": "BLOCKED"
+    },
+    "exporter": "research/ea/D035_FTMO_CFD_M1_Exporter_v1_01.mq5",
+    "hotfix": {
+      "issue": "MQL5 StringToUpper takes a mutable string by reference; v1_00 incorrectly passed _Symbol directly and treated the bool return value as a string for company/server.",
+      "scientific_impact": "NONE — compile-only/runtime identity normalization fix; signal, market, horizon, costs and 2026 scope unchanged.",
+      "market_outcome_accessed_before_failure": false
     }
   }
 }
