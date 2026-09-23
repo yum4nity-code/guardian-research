@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
-  "updated_at": "2026-09-22",
-  "active_primary": "M5-MOTION-TOPOLOGY-V1.1-CACHE-REBUILD",
+  "updated_at": "2026-09-23",
+  "active_primary": "M5-MOTION-TOPOLOGY-V1.1-CACHE-AUDIT",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "V1_CACHE_REJECTED_SESSION_MASK_V1_1_READY",
+      "status": "V1_1_CACHE_COMPLETE_PENDING_AUDIT",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -264,7 +264,24 @@
       "v1_1_runner": "automation/Run-M5MotionTopologyCacheV1_1.ps1",
       "v1_1_audit": "automation/Audit-M5MotionTopologyCacheV1_1.ps1",
       "v1_1_status": "READY_TO_BUILD",
-      "next_after_v1_1": "If cache audit passes, freeze M01-M08 discovery tests before any outcome association."
+      "next_after_v1_1": "Run Audit-M5MotionTopologyCacheV1_1.ps1. If pass, freeze M01-M08 before any outcome association.",
+      "v1_1_latest_run": "GEFM5T-20260923-050308",
+      "v1_1_engine_version": "M5-MOTION-TOPOLOGY-BUILD-1.1.0",
+      "v1_1_receipt": {
+        "markets": 13,
+        "graph_edges": 13,
+        "cross_features": 199,
+        "endpoint_objects": 117,
+        "edge_trials": 0,
+        "alpha_tests": 0,
+        "accessed_2015_plus": false,
+        "accessed_2026": false
+      },
+      "v1_1_endpoint_support": {
+        "min": 89380,
+        "median_max": 198269,
+        "max": 217798
+      }
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
