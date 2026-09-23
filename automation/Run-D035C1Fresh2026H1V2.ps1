@@ -54,24 +54,78 @@ if($LASTEXITCODE -ne 0){ throw "Recovered D035 analyzer compile failed" }
 Write-Host "Base analyzer recovered and verified: $baseAnalyzer"
 Write-Host "SHA256: $actualSha"
 
-# Find latest authorized MT5 exports. Exporter writes one file per tester symbol.
+# Find authorized MT5 exports by ACTUAL COVERAGE, never by file mtime alone.
 $commonRoot=Join-Path $env:APPDATA "MetaQuotes\Terminal\Common\Files\GuardianResearch\SETUP_SCANS\D035_CFD_M1_EXPORT"
-$btc=Get-ChildItem (Join-Path $commonRoot "BTCUSD") -Recurse -File -Filter "D035_CFD_M1_BTCUSD.csv" -ErrorAction SilentlyContinue |
-  Sort-Object LastWriteTime -Descending | Select-Object -First 1
-$xlm=Get-ChildItem (Join-Path $commonRoot "XLMUSD") -Recurse -File -Filter "D035_CFD_M1_XLMUSD.csv" -ErrorAction SilentlyContinue |
-  Sort-Object LastWriteTime -Descending | Select-Object -First 1
+
+function Get-D035CsvCoverage([System.IO.FileInfo]$File){
+  try {
+    $firstData = Get-Content $File.FullName -TotalCount 2 | Select-Object -Last 1
+    $lastData = Get-Content $File.FullName -Tail 1
+    if(-not $firstData -or -not $lastData){ return $null }
+
+    $a=$firstData -split ';'
+    $b=$lastData -split ';'
+    if($a.Count -lt 19 -or $b.Count -lt 19){ return $null }
+
+    # Frozen exporter fields: server_year/month/day at indices 13/14/15.
+    $start=Get-Date -Year ([int]$a[13]) -Month ([int]$a[14]) -Day ([int]$a[15]) -Hour 0 -Minute 0 -Second 0
+    $end=Get-Date -Year ([int]$b[13]) -Month ([int]$b[14]) -Day ([int]$b[15]) -Hour 0 -Minute 0 -Second 0
+
+    [pscustomobject]@{
+      File=$File
+      Start=$start
+      End=$end
+      CoversH1=($start -le [datetime]"2026-01-07" -and $end -ge [datetime]"2026-06-25")
+    }
+  } catch {
+    return $null
+  }
+}
+
+function Find-D035H1Export([string]$Symbol){
+  $dir=Join-Path $commonRoot $Symbol
+  if(!(Test-Path $dir)){ return $null }
+
+  $all=Get-ChildItem $dir -Recurse -File -Filter "D035_CFD_M1_$Symbol.csv" -ErrorAction SilentlyContinue
+  $cov=@()
+  foreach($f in $all){
+    $x=Get-D035CsvCoverage $f
+    if($null -ne $x){ $cov += $x }
+  }
+
+  $valid=$cov | Where-Object { $_.CoversH1 } | Sort-Object { $_.File.LastWriteTime } -Descending
+  if($valid){ return ($valid | Select-Object -First 1) }
+
+  if($cov){
+    Write-Host ""
+    Write-Host "$Symbol exports found but NONE covers 2026-H1:"
+    $cov | Sort-Object Start | ForEach-Object {
+      Write-Host ("  {0}  coverage={1:yyyy-MM-dd} -> {2:yyyy-MM-dd}" -f $_.File.FullName,$_.Start,$_.End)
+    }
+  }
+  return $null
+}
+
+$btcCov=Find-D035H1Export "BTCUSD"
+$xlmCov=Find-D035H1Export "XLMUSD"
+$btc=if($btcCov){$btcCov.File}else{$null}
+$xlm=if($xlmCov){$xlmCov.File}else{$null}
 
 if(-not $btc -or -not $xlm){
   Write-Host ""
   Write-Host "NEEDS_CFD_EXPORT"
+  Write-Host "The old 2023-2025 exports are intentionally rejected."
   Write-Host "Run research\ea\D035_CFD_M1_Exporter_v1_01.mq5 in FundedNext MT5 Strategy Tester:"
   Write-Host "  Model: 1 minute OHLC (frozen D035 export protocol)"
   Write-Host "  Period: 2026-01-01 -> 2026-07-01"
   Write-Host "  1) BTCUSD, M1"
   Write-Host "  2) XLMUSD, M1"
-  Write-Host "Then rerun this exact PowerShell command. The runner will find the files automatically."
+  Write-Host "Then rerun this exact PowerShell command."
   exit 2
 }
+
+Write-Host ("BTC coverage: {0:yyyy-MM-dd} -> {1:yyyy-MM-dd}" -f $btcCov.Start,$btcCov.End)
+Write-Host ("XLM coverage: {0:yyyy-MM-dd} -> {1:yyyy-MM-dd}" -f $xlmCov.Start,$xlmCov.End)
 
 $cfd=Join-Path $work "cfd_inputs"
 $out=Join-Path $work "result"
