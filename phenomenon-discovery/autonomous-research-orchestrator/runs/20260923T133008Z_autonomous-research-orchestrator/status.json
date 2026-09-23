@@ -13,7 +13,6 @@
   ],
   "generated_at_utc": "2026-09-23T13:30:08.437576+00:00",
   "phase": "autonomous-research-orchestrator",
-  "published_run_path": "phenomenon-discovery/autonomous-research-orchestrator/runs/20260923T133008Z_autonomous-research-orchestrator",
   "schema": 1,
   "source_commit": "078b42ad2e83fa77fb457f267c05c97433ff7c2b",
   "status": "FAIL",
