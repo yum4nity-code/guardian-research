@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "M04_LOCKED_OOS_PREREGISTERED_READY",
+      "status": "M04_PRE2023_REFERENCE_FROZEN_LOCKED_OOS_READY",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -380,7 +380,12 @@
       "locked_oos_engine": "scripts/gef_m5_motion_topology_m04_locked_oos.py",
       "locked_oos_runner": "automation/Run-M5MotionTopologyM04LockedOOS.ps1",
       "locked_oos_window": "2023-2025",
-      "locked_oos_2026": "BLOCKED"
+      "locked_oos_2026": "BLOCKED",
+      "pre2023_reference_run": "GEFM5LREF-20260923-061953",
+      "pre2023_reference_sha256": "c5d64fa7d7e375fa1434a4989317c7b2eff92d0239e7a6c48709bd42d6c90c23",
+      "pre2023_reference_rows": 1262304,
+      "pre2023_validation_parity_pass": true,
+      "locked_oos_status": "READY_TO_RUN"
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
