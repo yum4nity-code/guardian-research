@@ -721,3 +721,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Frozen 30m event cooldown, >=200 independent episodes, >=120 days, cluster-robust one-sided positive endpoint-score test and BH q<=0.05 within each family.
 - Implemented discovery engine using V1.1 cache only through 2014; 2015+ remains inaccessible.
 - No TP/SL or execution optimization is part of this stage.
+
+
+### 2026-09-23 — M01-M08 discovery completed; M04 replication frozen
+- Discovery run GEFM5D-20260923-052315 materialized all 291 preregistered variants; 262 met support validity.
+- Six BH discoveries survived, all in M04 correlation break + recoupling and all involving UDX with EURUSD/GBPUSD/AUDUSD/USDCHF.
+- Other M01-M08 families produced zero BH discoveries.
+- 2015+ remained unopened during discovery.
+- Frozen the exact six M04 survivors with parent survivor hash ba4323dabdb2e43c2a86d1ff6be53297a41847e00017f2098f328998ba195bb6.
+- Preregistered exact 2015-2017 replication with no retuning: >=100 episodes, >=60 UTC days, positive endpoint effect, one-sided cluster p<=0.05.
+- Replication engine reconstructs causal history from 2011 and requires pre-2015 parity against the discovery cache before scoring.
+- 2018+ remains forbidden.
