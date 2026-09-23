@@ -1176,3 +1176,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - However, this run is not the final canonical close: Python TA-Lib parity package was unavailable and, more importantly, the direct transport tool did not reproduce the original D032 scanner's explicit clean feed-gap / missing-horizon gate. Do not conflate it with exact source parity.
 - Recovered the exact original `D032_C1_CONFIRM_DojiStar_H1_v1_00.mq5` source from Library and committed it unchanged to `research/ea/` (commit 5c721f7...). Static inspection confirms the frozen Bullish Doji Star numerical rule and 144h strict SMA downtrend match the direct reconstruction.
 - Added one-click exact canonical FTMO parity runner using the recovered scanner itself, BTC/ETH/DOG core, 2018-07-01 -> 2024-01-01 tester window, 1-minute OHLC to match the original primary +24h confirmation method, canonical clean feed-gap gate, 2026 blocked. Active launcher: `tools\RUN_D032_EXACT_FTMO_PARITY.cmd`.
+
+
+### 2026-09-23 — D032 exact parity analyzer UTF-16 parser hotfix
+- Exact MT5 runs for BTCUSD/ETHUSD/DOGEUSD completed successfully and outputs were collected. Failure occurred only in Stage 6 analysis.
+- Root cause: recovered MQL5 scanner writes FILE_CSV in default Unicode format (UTF-16LE because FILE_ANSI is not specified); v1.00 Python analyzer assumed UTF-8 and aborted on read.
+- No market rerun is required and no scientific protocol changed.
+- Added `tools/analyze_d032_exact_ftmo_parity_v1_01.py` with UTF-16-aware CSV decoding and diagnostics, plus analyze-only recovery runner/launcher that locates the latest completed `D032_EXACT_FTMO_*` run and reuses its collected BTC/ETH/DOG files.
+- Recovery launcher: `tools\RUN_D032_EXACT_FTMO_ANALYZE_ONLY_v1_01.cmd`.
