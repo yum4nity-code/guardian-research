@@ -1007,3 +1007,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - v1.00 did not reach MT5 pricing and did not access 2026.
 - Next safe action: run `tools\RUN_V69_V112_EXACT_SOURCE_FTMO_AUDIT_v1_01.cmd` with only FTMO MT5 open.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — Exact-source FTMO audit v1.02 history-availability hardening
+- v1.01 achieved exact source parity for both frozen candidates before failing in the downstream FTMO cost-grid step: V69 n=155 and +4.639075481195655 bps exactly; V112 C3 n=556 and +1.4552352492311669 bps exactly.
+- Therefore original event semantics are now fully reproduced. The remaining issue is FTMO historical execution-data availability/mapping, not signal parity.
+- v1.01 wrote the FTMO ledgers before crashing, but all priced-execution columns were absent because no complete execution rows were produced.
+- Added versioned v1.02 engine and launcher. It: uses timezone-aware UTC datetimes at the MT5 API boundary; guarantees execution columns even when a leg is unavailable; records entry/exit availability and missing-leg reason per event; probes FTMO M1 availability in 2023/2024/2025 for USDCHF/AUDUSD; writes FTMO_AVAILABILITY_DIAGNOSTIC.json; and never crashes merely because execution coverage is zero.
+- Source parity remains mandatory before any FTMO pricing. No strategy logic, event definition, cost threshold or OOS population changed. 2026 remains hard-blocked.
+- Do not interpret missing FTMO history as negative strategy expectancy.
+- Human active time: NOT QUANTIFIED.
