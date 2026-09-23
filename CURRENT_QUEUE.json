@@ -1152,7 +1152,7 @@
     "conclusion": "Fresh 2023 negative. 2024-2025 transport replicates the old positive branch, but this does not generalize backward to the fresh block. Close without rescue."
   },
   "d017_btc_sell_2p5r_ftmo": {
-    "status": "READY_TO_RUN",
+    "status": "CLOSED_FRESH_2023_NEGATIVE",
     "preregistration": "research/campaigns/D017_BTC_SELL_2P5R_FTMO_FRESH2023_PREREG_2026_09_23.md",
     "source_ea": "research/ea/D017_Momentum_VirtualDiagnostic_1_01_STATIC_CONFORMANCE.mq5",
     "analyzer": "tools/analyze_d017_btc_sell_2p5r_ftmo_v1_00.py",
@@ -1171,6 +1171,39 @@
     "tester_model": "1 minute OHLC",
     "exact_real_tick_followup": "ONLY_IF_SURVIVES",
     "protected_2026": "BLOCKED",
-    "retuning": "BLOCKED"
+    "retuning": "BLOCKED",
+    "result": {
+      "fresh_2023": {
+        "n_sell": 74,
+        "resolved": 74,
+        "ev_2p5R": -0.05405405405405406,
+        "target_first_rate": 0.2702702702702703,
+        "bootstrap_q10": -0.2692307692307692,
+        "bootstrap_p_le_zero": 0.5964,
+        "mean_spread_pct_sl_at_signal": 9.04937837837838,
+        "mean_spread_R_at_signal": 0.09049378378378378
+      },
+      "transport_2024_2025": {
+        "n_sell": 996,
+        "resolved": 994,
+        "ev_2p5R": 0.03169014084507042,
+        "target_first_rate": 0.2947686116700201,
+        "bootstrap_q10": -0.026754708123929972,
+        "bootstrap_p_le_zero": 0.2308
+      },
+      "yearly": {
+        "2023": -0.05405405405405406,
+        "2024": 0.05610972568578554,
+        "2025": 0.01517706576728499
+      },
+      "all_2023_2025": {
+        "n_sell": 1070,
+        "resolved": 1068,
+        "ev_2p5R": 0.025749063670411985,
+        "bootstrap_q10": -0.03115475714645231
+      },
+      "protected_2026_accessed": false
+    },
+    "conclusion": "Fresh 2023 is negative. 2024-2025 FTMO transport is only weakly positive and not robust. Close branch; no exact execution follow-up and no rescue."
   }
 }
