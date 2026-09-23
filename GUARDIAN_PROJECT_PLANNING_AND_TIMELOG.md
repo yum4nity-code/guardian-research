@@ -1047,3 +1047,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - New active launcher: `tools\RUN_V69_V112_SESSION_ALIGNED_EXECUTION_AUDIT_v1_02.cmd`.
 - No strategy logic, sample, alignment rule or cost assumption changed. 2026 remains hard-blocked.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — Session-aligned FTMO execution result
+- Reviewed GUARDIAN_V69_V112_SESSION_ALIGNED_20260923-153933.zip. Run completed successfully with 2026 closed.
+- Source parity remained exact: V69 n=155 / +4.639075481195655 bps; V112 C3 n=556 / +1.4552352492311669 bps.
+- V69 session mapping achieved 154/155 executable events (99.35%). Source-vs-FTMO BID-return correlation on executable events is ~0.935, but mean FTMO BID gross collapses to only ~+0.309 bp versus source ~+4.702 bp on the same 154 events. Observed FTMO entry spread averages ~2.491 bp, producing ask->bid executable mean -2.180 bp/trade. 2023 -4.277 bp, 2024 +0.223 bp, 2025 -2.568 bp. Trim-best-1% -2.686 bp; remove-best-5 -3.283 bp. Original V69 is not economically executable on this FTMO feed under the frozen session-close semantics even before any extra slippage/swap assumption.
+- V112 aligned mapping achieved 554/556 executable events (99.64%). Source-vs-FTMO BID-return correlation is ~0.941 and mean FTMO BID gross remains positive at ~+1.840 bp on executable events, confirming the gross phenomenon transfers to FTMO. However observed entry spread averages ~0.730 bp and observed exit spread averages ~4.742 bp, producing executable mean -2.901 bp/trade. 2023 -2.291 bp, 2024 -2.701 bp, 2025 -3.530 bp. Exact frozen V112 is therefore not economically executable with the current last-tick-at-bar-boundary convention.
+- V112 cost failure is concentrated at the exit-side spread rather than disappearance of the underlying gross edge. A single causal execution-boundary forensic is justified before closing the branch: execute at the first tick at/after the mapped H21/H23 bar boundary, rather than the last tick immediately before the boundary. This changes execution convention only, not the frozen signal times or price-alignment offset; it must be evaluated without PnL-based timing selection.
+- Current FTMO metadata captured by run: USDCHF swap_long +2.55 points, AUDUSD swap_short -5.46 points; historical swap is not reconstructed. Swap is not needed to reject the frozen V69/V112 implementations because both are already negative after observed BID/ASK.
+- Human active time: NOT QUANTIFIED.
