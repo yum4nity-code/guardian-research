@@ -1168,3 +1168,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - FTMO 2024-2025 transport is only weakly positive: 996 SELL, 994 resolved, EV2.5 +0.031690R, q10 -0.026755R. 2024 +0.056110R; 2025 +0.015177R. This is materially weaker than the original seen FundedNext-style 2024/2025 clue and is not robust.
 - Close D017 BTC SELL +2.5R with no exact real-tick execution follow-up and no rescue tuning.
 - Next active test returns to D032 Bullish Doji Star H1 FTMO transport, already independently confirmed on pre-2024 CFD data. The question is feed/execution transport only; pattern/trend/horizon remain frozen. Active launcher: `tools\RUN_D032_FTMO_TRANSPORT.cmd`.
+
+
+### 2026-09-23 — D032 direct FTMO transport looks negative; exact canonical parity rerun required
+- Reviewed `GUARDIAN_D032_FTMO_TRANSPORT_20260923-191155.zip`. Direct Python FTMO transport: pooled 344 signals / 307 executable, mean -57.56 bp and -1.006R; pre-2024 mean -58.76 bp; 2024-2025 mean -52.81 bp. 2026_accessed=false.
+- Yearly executable means: 2018 -337.66 bp, 2019 -298.93, 2020 +119.93, 2021 +138.90, 2022 +6.98, 2023 -57.15, 2024 +65.39, 2025 -187.33. This is not a stable FTMO transport profile.
+- However, this run is not the final canonical close: Python TA-Lib parity package was unavailable and, more importantly, the direct transport tool did not reproduce the original D032 scanner's explicit clean feed-gap / missing-horizon gate. Do not conflate it with exact source parity.
+- Recovered the exact original `D032_C1_CONFIRM_DojiStar_H1_v1_00.mq5` source from Library and committed it unchanged to `research/ea/` (commit 5c721f7...). Static inspection confirms the frozen Bullish Doji Star numerical rule and 144h strict SMA downtrend match the direct reconstruction.
+- Added one-click exact canonical FTMO parity runner using the recovered scanner itself, BTC/ETH/DOG core, 2018-07-01 -> 2024-01-01 tester window, 1-minute OHLC to match the original primary +24h confirmation method, canonical clean feed-gap gate, 2026 blocked. Active launcher: `tools\RUN_D032_EXACT_FTMO_PARITY.cmd`.
