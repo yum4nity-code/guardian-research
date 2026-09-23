@@ -804,3 +804,26 @@ A fresh 2026-H1 confirmation protocol is frozen at:
 research/campaigns/D035_C1_2026H1_FRESH_CONFIRMATION_PREREG_V2_2026_09_23.md
 
 No D035 2026 result exists on the backtest-results branch. No 2026-H1 data was opened in this step. Human gate remains required before execution.
+
+
+## 2026-09-23 — D035-C1 2026-H1 fresh confirmation authorized
+
+Owner explicitly approved opening the frozen 2026-H1 sample after reviewing the V2 preregistration.
+
+Frozen scope:
+- Binance BTCUSDT + ETHUSDT source shocks only
+- both shocks within <=5m
+- signal timestamp = later/second shock
+- XLMUSD only as target
+- SHORT
+- +15m primary, +30m diagnostic
+- 2026-01-01 through 2026-06-30 only
+
+Added:
+- human authorization JSON
+- locked Python confirmation engine
+- PowerShell runner
+
+Runner hard-limits the CFD input directory to BTCUSD (timezone calibration only) and XLMUSD. It refuses extra target exports and does not access Jul-Dec 2026.
+
+No live deployment is authorized.
