@@ -920,3 +920,9 @@ Execution economics remain unresolved because the historical gate used gross clo
 - V69 0/155 FTMO coverage was caused by an incorrect +5h mapping that moved Friday-close events into Saturday closed-market time.
 - V112 had 556/556 FTMO quotes, but source-vs-FTMO return correlation at the naive label was only ~0.053; the vendor time label and actual FTMO market time are misaligned, so the negative FTMO mean is not a valid rejection result.
 - Active next tool: `tools/RUN_V69_V112_FTMO_TIME_ALIGNMENT_FORENSIC.cmd`. It selects timezone offset only by price-series alignment, not by strategy PnL, and keeps 2026 closed.
+
+
+## Session-aligned execution audit — 2026-09-23
+- V112 clock mapping: +2h into FTMO clock; 540/556 coverage, median two-leg source/FTMO price diff 0.579 bp, return correlation 0.938, BID gross +2.034 bp. Ready for bid/ask execution test.
+- V69 must not use a fixed offset. Original exits are 150/155 Sunday and 5/155 Monday; it is a weekend-close/reopen edge, not a Monday-close hold. Map by FTMO weekend session boundary instead.
+- Active next tool: tools/RUN_V69_V112_SESSION_ALIGNED_EXECUTION_AUDIT.cmd. V69 uses last M1 before weekend gap -> same source minutes after reopen; V112 uses fixed +2h forensic alignment. 2026 remains closed.
