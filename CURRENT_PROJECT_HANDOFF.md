@@ -962,3 +962,11 @@ Execution economics remain unresolved because the historical gate used gross clo
 - XAGUSD C1: alignment +2h, 705/705 coverage, source-vs-FTMO gross correlation 0.943, FTMO BID gross +1.201 bp but bid/ask executable -4.965 bp/trade. 2023/2024/2025 all negative. Exact frozen implementation is EXECUTION_REJECTED_FTMO.
 - Next frozen candidate: V111 EURUSD H11 SHORT 120m. Active launcher: `tools/RUN_V111_EURUSD_H11_120M_OOS_FTMO.cmd`.
 - Pipeline opens only 2023-2025 source OOS first. If fresh mean >0, it automatically proceeds to a separate fixed FTMO alignment/execution stage without retuning. 2026 remains blocked.
+
+
+## EURUSD H11 execution survivor — 2026-09-23
+- V111 C8 = EURUSD H11 SHORT 120m. Fresh 2023-2025 source OOS: n=717, +1.507838 bp, q10 +0.836784, q2.5 +0.511265, all years positive => POSITIVE_CONFIRMED existence.
+- FTMO +2h alignment: 717/717, 0.0917 bp median source-price mismatch, return corr 0.926.
+- First-tick FTMO bid/ask execution remains positive: +1.005565 bp/trade after observed spread, with 2023/2024/2025 all positive.
+- Applying current official FTMO Forex commission $2.50/lot/side gives ~+0.550 bp/trade average, but 2024 turns slightly negative and trim2 turns negative. Extra friction budget is only ~0.55 bp (~0.60 pip), so status is MINI_EDGE / NOT_PRODUCTION_READY.
+- Next: audit FTMO Standard news-window compatibility and actual Volume Band for intended lot size, then forward shadow exact H11->H13. No retiming/rescue.
