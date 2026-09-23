@@ -840,3 +840,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Max cumulative drawdown at cost0.10 is -34.99R.
 - V2 labels: MINI_EDGE / STRESS_POSITIVE / NOT_PRODUCTION_READY.
 - Historical KILL is preserved. No parameter change, strategy rerun or protected-2026 access occurred.
+
+
+### 2026-09-23 — R5E-023 removed after existing protected 2026 OOS review
+- Located the already completed preregistered Jan-Aug 2026 protected OOS on backtest-results; no new run/data opening occurred.
+- Full E1 remains barely positive (PF1.0255), but stress turns negative (PF0.8598).
+- Jan-Apr positive regime flips sharply negative in May-Aug.
+- Removing the best positive trade makes full E1 net negative; bootstrap p05 is negative.
+- Frozen verdict was FAIL. R5E-023 is therefore not a viable revival candidate and is removed from the high-interest mini-edge shortlist.
