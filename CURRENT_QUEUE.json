@@ -1043,5 +1043,24 @@
       "protected_2026_accessed": false
     },
     "conclusion": "CLOSE_NO_RESCUE"
+  },
+  "v111_audusd_h21_240m_oos_ftmo": {
+    "status": "READY_TO_RUN_ENDPOINT_EXTENSION",
+    "preregistration": "research/campaigns/V111_AUDUSD_H21_240M_OOS_FTMO_PREREG_2026_09_23.md",
+    "spec": "research/campaigns/V111_AUDUSD_H21_240M_OOS_FTMO_SPEC_2026_09_23.json",
+    "engine": "tools/guardian_v111_audusd_h21_240m_oos_ftmo_v1_00.py",
+    "runner": "tools/GUARDIAN_V111_AUDUSD_H21_240M_OOS_FTMO_v1_00.ps1",
+    "launcher": "tools/RUN_V111_AUDUSD_H21_240M_OOS_FTMO.cmd",
+    "frozen_candidate": {
+      "market": "AUDUSD",
+      "hour": 21,
+      "horizon_min": 240,
+      "direction": "SHORT",
+      "orientation": -1,
+      "expected_preoos_n": 1033
+    },
+    "scientific_caveat": "AUDUSD H21 family 120m endpoint was already opened in V112; 240m is endpoint-extension evidence, not fully independent family confirmation.",
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED"
   }
 }
