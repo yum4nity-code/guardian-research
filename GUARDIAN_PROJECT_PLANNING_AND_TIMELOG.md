@@ -915,3 +915,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - At 0.50x total gross exposure, historical compounded max DD is about -4.47% for BTC+ETH and -4.56% for BTC+ETH+XLM.
 - Scientific caveat: BTC/ETH were same-sample diagnostics, so this is portfolio discovery/prioritization, not fresh confirmation.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — D035 parked; mini-edge ZIP extraction batch 2
+- Parked D035 BTC+ETH portfolio for later expansion testing on non-crypto targets and portfolio-DD analysis. No source-event retuning authorized.
+- Continued read-only extraction from GUARDIAN_MINI_EDGE_AUDIT_20260923-073103.zip.
+- Preserved D017 BTC SELL Momentum: pooled n=761, EV2.5 +0.131R / EV3 +0.125R; descriptive native manager ~+0.109R, positive in both 2024 and 2025.
+- Preserved D025 ETH RETEST: pooled 704 trades, EV2 +0.133R, positive 2024/2025 and small Jun-Jul 2026 segment.
+- Preserved D025 EURUSD SHORT +2R: pooled 2024-2025 EV2 +0.136R; both yearly point estimates positive, uncertainty still crosses zero.
+- Reclassified unconsumed V111 near-misses as V2 mini-edge candidates: XAG H11 60m SHORT, USDCHF H22 240m LONG, AUD H21 240m SHORT, EUR H11 120m SHORT.
+- Explicitly did not promote D030 ETH H4 engulfing because its independent PRE2024 confirmation failed; broad D025 XAU/USDJPY and broad D017 remain rejected.
+- No new market/OOS sample opened.
+- Human active time: NOT QUANTIFIED.
