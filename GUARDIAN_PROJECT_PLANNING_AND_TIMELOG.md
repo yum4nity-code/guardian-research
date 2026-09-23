@@ -792,3 +792,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Therefore 0/2 candidates pass the frozen locked-OOS gates.
 - M04 is scientifically closed with no rescue or retuning.
 - 2026 remained unopened.
+
+
+### 2026-09-23 — Local mini-edge extraction completed
+- Extractor version: GUARDIAN-MINI-EDGE-EXTRACTOR-1.2.
+- Output: D:\MT5_Backtests\Research\Exports\GUARDIAN_MINI_EDGE_AUDIT_20260923-073103.
+- Files inspected: 2,149.
+- Metric observations extracted: 8,654,240.
+- Automatically flagged positive-but-rejected cases: 924.
+- Extraction errors: 0.
+- No research rerun and no market-data modification.
+- Next step: offline/manual deduplication and scientific audit of the exported ZIP; automatic flags are leads, not validated edges.
