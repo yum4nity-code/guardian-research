@@ -848,3 +848,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Jan-Apr positive regime flips sharply negative in May-Aug.
 - Removing the best positive trade makes full E1 net negative; bootstrap p05 is negative.
 - Frozen verdict was FAIL. R5E-023 is therefore not a viable revival candidate and is removed from the high-interest mini-edge shortlist.
+
+
+### 2026-09-23 — D035-E1 V2 reclassification and fresh-test preregistration
+- Reviewed the existing causal dual-source E1 artifacts; no new market run.
+- The causal second-shock timing correction leaves a positive XLMUSD response: +6.705 bps executable at +15m, raw bootstrap lower +1.996 bps, differential +13.490 bps with lower +8.793 bps, and both 2024/2025 positive.
+- Because E1 was explicitly same-sample exploratory on already inspected 2024-2025, it is not fresh confirmation under Doctrine V2.
+- Reclassified as MINI_EDGE_CANDIDATE / NOT_YET_FRESHLY_TESTED / NOT_PRODUCTION_READY.
+- Frozen a new D035-C1 2026-H1 preregistration using exact XLM target, SHORT direction, <=5m BTC+ETH dual-shock rule, signal at second shock, +15m primary horizon and no rescue.
+- Confirmed no existing D035-C1 2026 output on backtest-results.
+- No 2026-H1 access occurred. Human gate still required.
+- Human active time: NOT QUANTIFIED.
