@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-23",
-  "active_primary": "M5-MOTION-TOPOLOGY-M01-M08-DISCOVERY",
+  "active_primary": "M5-MOTION-TOPOLOGY-M04-REPLICATION-2015-2017",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "M01_M08_DISCOVERY_PREREGISTERED_READY_TO_RUN",
+      "status": "M04_DISCOVERY_SURVIVORS_FROZEN_REPLICATION_READY",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -290,7 +290,33 @@
       "discovery_expected_variants": 291,
       "discovery_window": "2012-2014",
       "discovery_2015_plus": "BLOCKED",
-      "discovery_gate": ">=200 independent episodes, >=120 UTC days, one-sided positive endpoint score, BH q<=0.05 within family"
+      "discovery_gate": ">=200 independent episodes, >=120 UTC days, one-sided positive endpoint score, BH q<=0.05 within family",
+      "discovery_run": "GEFM5D-20260923-052315",
+      "discovery_result": {
+        "predeclared_variants": 291,
+        "materialized_variants": 291,
+        "valid_tests": 262,
+        "bh_discoveries": 6,
+        "discoveries_by_family": {
+          "M01": 0,
+          "M02": 0,
+          "M03": 0,
+          "M04": 6,
+          "M05": 0,
+          "M06": 0,
+          "M07": 0,
+          "M08": 0
+        },
+        "frozen_survivor_sha256": "ba4323dabdb2e43c2a86d1ff6be53297a41847e00017f2098f328998ba195bb6",
+        "accessed_2015_plus": false
+      },
+      "m04_replication_prereg": "research/campaigns/GUARDIAN_M5_M04_REPLICATION_PREREG_2026_09_23.md",
+      "m04_replication_spec": "research/campaigns/GUARDIAN_M5_M04_REPLICATION_SPEC_2026_09_23.json",
+      "m04_replication_engine": "scripts/gef_m5_motion_topology_m04_replication.py",
+      "m04_replication_runner": "automation/Run-M5MotionTopologyM04Replication.ps1",
+      "replication_window": "2015-2017",
+      "replication_2018_plus": "BLOCKED",
+      "replication_gate": ">=100 episodes, >=60 UTC days, positive mean endpoint, one-sided cluster p<=0.05, exact frozen M04 definition"
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
