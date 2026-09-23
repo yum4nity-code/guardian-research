@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-23",
+  "status": "FROZEN_HUMAN_AUTHORIZED",
+  "authorization": "owner_go_after_explicit_V111_C1_selection",
+  "source_v111_run": "GEF111-20260922-163321",
+  "candidate": {
+    "candidate_id": "C1",
+    "market": "XAGUSD",
+    "cell_type": "hour",
+    "hour": 11,
+    "horizon_min": 60,
+    "orientation": -1,
+    "direction": "SHORT"
+  },
+  "source_semantics": {
+    "raw": "HistData M1",
+    "vendor_to_pseudo_utc_offset_hours": 5,
+    "resample": "5min label=right closed=left",
+    "event": "top-of-hour H11"
+  },
+  "locked_oos": {
+    "start": "2023-01-01T00:00:00",
+    "end_exclusive": "2026-01-01T00:00:00"
+  },
+  "v2": {
+    "negative": "mean_bp <= 0",
+    "positive_confirmed": "mean_bp > 0 and month_bootstrap_q10_bp > 0",
+    "positive_uncertain": "mean_bp > 0 and month_bootstrap_q10_bp <= 0"
+  },
+  "prohibited": [
+    "2026 raw data",
+    "hour search",
+    "horizon search",
+    "market search",
+    "direction search",
+    "rescue filtering",
+    "PnL-based retiming"
+  ]
+}
