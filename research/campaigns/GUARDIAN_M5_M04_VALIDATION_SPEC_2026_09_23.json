@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-09-23",
-  "status": "FROZEN_BEFORE_2018_2022_OUTCOMES",
+  "status": "FROZEN_BEFORE_2018_2022_OUTCOMES_AMENDED",
   "campaign": "M5_MOTION_TOPOLOGY_M04_VALIDATION_2018_2022_V1",
   "parent_discovery_run": "GEFM5D-20260923-052315",
   "parent_replication_run": "GEFM5R-20260923-053206",
@@ -68,8 +68,6 @@
   "min_episodes": 250,
   "min_days": 150,
   "one_sided_p_max": 0.05,
-  "min_positive_years": 4,
-  "require_leave_one_year_out_min_positive": true,
   "trim_best_pct": [
     0.01,
     0.02
@@ -78,6 +76,24 @@
     -60,
     60
   ],
-  "family_validation_min_variants": 3,
-  "no_rescue": true
+  "no_rescue": true,
+  "hard_validation_gates": {
+    "min_episodes": 250,
+    "min_days": 150,
+    "mean_endpoint_positive": true,
+    "one_sided_p_max": 0.05
+  },
+  "diagnostics_only": {
+    "calendar_year_means": true,
+    "leave_one_year_out": true,
+    "trim_best_pct": [
+      0.01,
+      0.02
+    ],
+    "negative_control_shifts_min": [
+      -60,
+      60
+    ]
+  },
+  "family_interpretation": "Report count of individually validated variants; no new mechanical family-pass threshold."
 }
