@@ -1126,3 +1126,10 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Frozen combined pipeline added. Stage A opens only 2023-2025 source OOS; if fresh mean >0, Stage B automatically performs FTMO clock alignment by price proximity only and causal first-tick LONG ask->bid execution. No alternate timing/horizon/direction is allowed.
 - Because the 240m hold may cross rollover depending on the empirical FTMO offset, current swap metadata is recorded but is not substituted for historical swap. If observed-spread economics are already negative, the candidate is rejected without inventing further costs.
 - 2026 remains blocked. Active launcher: `tools\RUN_V111_USDCHF_H22_240M_OOS_FTMO.cmd`.
+
+
+### 2026-09-23 — USDCHF H22 closed; AUDUSD H21 240m endpoint-extension queued
+- USDCHF H22 LONG 240m fresh 2023-2025 OOS is negative: n=694, mean -0.159267 bp, median -0.561575 bp, 2024 -1.433582 bp, LOO minimum -0.543102 bp, bootstrap q10 -0.950316 bp. FTMO stage correctly did not run; 2026 untouched. Close with no rescue.
+- Next frozen candidate is V111 AUDUSD H21 SHORT 240m, pre-OOS n=1033. Scientific caveat: the AUDUSD H21 120m endpoint was already opened in V112 on 2023-2025, so this 240m test is endpoint-extension evidence rather than fully independent family confirmation.
+- Added combined Stage A 2023-2025 source endpoint test and conditional Stage B FTMO price-alignment/execution audit. No retuning; 2026 blocked.
+- Active launcher: `tools\RUN_V111_AUDUSD_H21_240M_OOS_FTMO.cmd`.
