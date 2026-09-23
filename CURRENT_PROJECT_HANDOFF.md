@@ -892,3 +892,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - V112 C3 exact candidate is AUDUSD H21 SHORT 120m, locked-OOS n=556; FTMO reconstruction n=622 proves missing eligibility/data semantics.
 - Active forensic tool: `tools/RUN_COLLECT_V69_V112_ENGINE_SOURCE_SCAN.cmd`.
 - Do not use v1.02 execution negatives as rejection evidence until original gross parity is reproduced.
+
+
+## Exact V69/V112 source semantics — 2026-09-23
+- V69 exact code confirms Friday daily close -> next available daily close, LONG, on HistData M1 daily-last resampling. Weekend hold/carry is genuinely part of the strategy.
+- V112 C3 exact code confirms HistData M1 + fixed +5h UTC mapping -> 5m right-labelled resample -> H21 SHORT 120m. No Mon-Thu filter; n=556 is source-availability-driven.
+- v1.02 FTMO negatives are invalid as strategy verdicts because they regenerated populations from FTMO bars.
+- Correct next tool: `tools/RUN_V69_V112_EXACT_SOURCE_FTMO_AUDIT.cmd`. It requires exact source parity before any FTMO execution pricing and keeps 2026 closed.
