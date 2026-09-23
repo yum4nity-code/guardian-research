@@ -1151,3 +1151,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Uses the existing D025_LER_VirtualPath_1_03 signal/path engine, ETHUSD only, RETEST only, target +2R, structural stop -1R, 48h first-touch convention. No threshold/path/side/target rescue is allowed.
 - First stage uses 1-minute OHLC for speed because D025 is closed-bar M15/H1/H4 logic with M1 path telemetry; if the branch survives, exact real-tick BID/ASK + commission is a separate production-readiness stage.
 - Active launcher: `tools\RUN_D025_ETH_RETEST_FTMO.cmd`.
+
+
+### 2026-09-23 — D025 ETH RETEST fails fresh 2023; D017 BTC SELL next
+- Reviewed `GUARDIAN_D025_ETH_RETEST_FTMO_20260923-181447.zip`. FTMO-Demo ETHUSD, 2023-2025, 1-minute OHLC, protected_2026_accessed=false.
+- Frozen D025 ETH RETEST +2R branch fails the fresh 2023 block: 322 RETEST events, 316 resolved, EV2 -0.088608R, target-first rate 30.38%, month-block q10 -0.262799R, p<=0 0.7385. LONG -0.132530R and SHORT -0.040000R. One-spread SHORT-payoff stress is -0.170220R. Close with no rescue.
+- FTMO 2024-2025 transport does reproduce the old positive branch: 651 RETEST, 617 resolved, EV2 +0.098865R, q10 +0.007958R. This is transport/seen-sample evidence only and cannot override the negative fresh 2023 result.
+- Next preserved candidate frozen before outcome: D017 BTCUSD SELL Momentum, fixed +2.5R versus structural -1R. Existing seen evidence: 2024 EV2.5 ~+0.150R, 2025 ~+0.114R, pooled ~+0.131R pre-cost.
+- FTMO 2023 is the fresh temporal test; 2024-2025 transport only. Exact D017 v11.16 signal thresholds remain frozen. First stage uses 1-minute OHLC and M1 first-touch telemetry; if it survives, run exact historical BID/ASK + commission/slippage audit. 2026 blocked.
+- Active launcher: `tools\RUN_D017_BTC_SELL_2P5R_FTMO.cmd`.
