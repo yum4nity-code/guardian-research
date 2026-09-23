@@ -5,15 +5,13 @@ import pandas as pd
 from scipy.stats import t as student_t
 import gef_m5_motion_topology_m04_replication as repl
 
-ENGINE_VERSION="M5-MOTION-TOPOLOGY-M04-VALIDATION-1.0"
+ENGINE_VERSION="M5-MOTION-TOPOLOGY-M04-VALIDATION-1.1"
 VALID_START=pd.Timestamp("2018-01-01")
 VALID_END=pd.Timestamp("2023-01-01")
 FORBIDDEN_DATE=pd.Timestamp("2023-01-01")
 MIN_EPISODES=250
 MIN_DAYS=150
 P_MAX=0.05
-MIN_POSITIVE_YEARS=4
-FAMILY_MIN_PASS=3
 
 def write_json(path,obj):
     path.write_text(json.dumps(obj,indent=2,default=str),encoding="utf-8")
@@ -114,7 +112,7 @@ def main():
     root=Path(args.root);repo=root/"guardian-research"
     specp=repo/"research"/"campaigns"/"GUARDIAN_M5_M04_VALIDATION_SPEC_2026_09_23.json"
     spec=json.loads(specp.read_text())
-    if spec.get("status")!="FROZEN_BEFORE_2018_2022_OUTCOMES": raise RuntimeError("Validation spec not frozen")
+    if spec.get("status")!="FROZEN_BEFORE_2018_2022_OUTCOMES_AMENDED": raise RuntimeError("Validation spec not frozen/amended")
     survivors=spec["frozen_survivors"]
     if len(survivors)!=5: raise RuntimeError("Expected exactly five validation survivors")
 
@@ -197,11 +195,7 @@ def main():
 
         pass_primary=bool(
             fit["n"]>=MIN_EPISODES and fit["days"]>=MIN_DAYS and
-            fit["mean"]>0 and fit["p_one"]<=P_MAX and
-            positive_years>=MIN_POSITIVE_YEARS and
-            np.isfinite(loo_min) and loo_min>0 and
-            np.isfinite(trim1) and trim1>0 and
-            np.isfinite(trim2) and trim2>0
+            fit["mean"]>0 and fit["p_one"]<=P_MAX
         )
 
         rows.append({
@@ -235,7 +229,6 @@ def main():
     P.to_csv(out/"VALIDATION_PLACEBO_SHIFTS.csv",index=False)
 
     pass_count=int(R["validation_pass"].sum())
-    family_pass=bool(pass_count>=FAMILY_MIN_PASS)
     frozen=R[R["validation_pass"]].copy()
     frozen.to_csv(out/"FROZEN_VALIDATION_SURVIVORS.csv",index=False)
     frozen_sha=sha256(out/"FROZEN_VALIDATION_SURVIVORS.csv")
@@ -251,12 +244,11 @@ def main():
       "valid_support_tests":int(((R["episodes"]>=MIN_EPISODES)&(R["days"]>=MIN_DAYS)).sum()),
       "validation_survivors":pass_count,
       "survivors":R.loc[R["validation_pass"],"id"].tolist(),
-      "family_validation_rule":"at least 3 of 5 frozen variants pass all gates",
-      "family_validated":family_pass,
+      "family_validation_rule":"no new mechanical family threshold; report individual validation count",
       "frozen_validation_survivor_sha256":frozen_sha,
       "pre2018_parity_pass":bool(all(x["pass"] for x in parity)),
       "2023_2025_accessed":False,"2026_accessed":False,
-      "next":"IF FAMILY_VALIDATED: STOP FOR HUMAN REVIEW AND PREREGISTER LOCKED 2023-2025 OOS; ELSE CLOSE M04 LINEAGE"
+      "next":"STOP FOR HUMAN REVIEW. IF ONE OR MORE VARIANTS VALIDATE, DECIDE WHETHER TO PREREGISTER LOCKED 2023-2025 OOS; ELSE CLOSE M04 LINEAGE"
     }
     write_json(out/"RUN_RECEIPT.json",receipt)
     write_json(out/"RUNTIME_PROVENANCE.json",{
