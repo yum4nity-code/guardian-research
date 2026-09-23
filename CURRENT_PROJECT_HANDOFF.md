@@ -754,3 +754,21 @@ Doctrine V2 classification:
 - production: NOT PRODUCTION READY
 
 Historical KILL remains preserved. New interpretation: the old PF>=1.10 threshold was too binary for edge-existence taxonomy, but later read-only robustness shows the signal is materially tail-dependent. Keep as an ensemble candidate; do not promote as standalone alpha.
+
+
+## 2026-09-23 — R5E-023 existing protected 2026 OOS reviewed
+
+A previously completed, preregistered protected Jan-Aug 2026 OOS exists on the backtest-results branch. No rerun was performed.
+
+R5E-023 frozen candidate:
+- full OOS n=89
+- E1 expectancy +0.3328 engine units, PF 1.0255, net +29.62
+- STRESS expectancy -2.0017, PF 0.8598, net -178.16
+- Jan-Apr E1 expectancy +6.6509
+- May-Aug E1 expectancy -5.8449
+- E1 best-trade-removed net -74.47
+- day-bootstrap p05 -5.6973
+- frozen verdict FAIL
+
+Interpretation:
+The earlier 2024/2025 positive robustness was not enough. Protected 2026 shows a strong regime reversal, stress failure and tail dependence. R5E-023 is CLOSED and removed from the active mini-edge shortlist.
