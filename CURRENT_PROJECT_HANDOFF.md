@@ -926,3 +926,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - V112 clock mapping: +2h into FTMO clock; 540/556 coverage, median two-leg source/FTMO price diff 0.579 bp, return correlation 0.938, BID gross +2.034 bp. Ready for bid/ask execution test.
 - V69 must not use a fixed offset. Original exits are 150/155 Sunday and 5/155 Monday; it is a weekend-close/reopen edge, not a Monday-close hold. Map by FTMO weekend session boundary instead.
 - Active next tool: tools/RUN_V69_V112_SESSION_ALIGNED_EXECUTION_AUDIT.cmd. V69 uses last M1 before weekend gap -> same source minutes after reopen; V112 uses fixed +2h forensic alignment. 2026 remains closed.
+
+
+## V69/V112 FTMO execution verdict — 2026-09-23
+- V69: 154/155 FTMO executions, BID gross ~+0.309 bp but after observed entry spread mean executable = -2.180 bp/trade. Original frozen implementation is execution-rejected; swap is not needed for the verdict.
+- V112: 554/556 FTMO executions, BID gross ~+1.840 bp with source-vs-FTMO return correlation ~0.941, but exit-side spread averages ~4.742 bp and executable mean = -2.901 bp/trade. Gross phenomenon survives; exact frozen execution does not.
+- One final non-optimized execution forensic is justified for V112 only: first tick at/after the mapped bar boundary instead of last tick before it. Do not retime based on PnL. If this remains negative, close V112 as non-executable on FTMO.
+- 2026 remains closed.
