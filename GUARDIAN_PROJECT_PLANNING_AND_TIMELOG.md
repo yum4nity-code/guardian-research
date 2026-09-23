@@ -712,3 +712,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - V1.1 uses date-specific observed continuity with 30m boundary buffers around gaps/closures and reopens/recoveries.
 - All scientific target/state definitions and temporal firewall remain unchanged.
 - Added V1.1 builder and integrity audit. M01-M08 remain blocked until V1.1 cache audit passes.
+
+
+### 2026-09-23 — M01-M08 M5 topology discovery preregistered and implemented
+- V1.1 cache audit passed session continuity, OHLC integrity, endpoint support, joint graph support and cross-feature support.
+- Frozen 291 exact M01-M08 discovery variants before any outcome association.
+- Restricted scales to 15->15, 30->30 and 60->60.
+- Frozen 30m event cooldown, >=200 independent episodes, >=120 days, cluster-robust one-sided positive endpoint-score test and BH q<=0.05 within each family.
+- Implemented discovery engine using V1.1 cache only through 2014; 2015+ remains inaccessible.
+- No TP/SL or execution optimization is part of this stage.
