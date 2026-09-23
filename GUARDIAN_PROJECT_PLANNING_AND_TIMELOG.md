@@ -1220,3 +1220,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Doctrine V2: POSITIVE_UNCERTAIN / ADEQUATE support / MINI_EDGE / NOT_PRODUCTION_READY.
 - Decision: preserve D035 on the interesting-edge shortlist and for future ensemble/incremental-value work; do not deploy the exact XLMUSD +15m branch standalone and do not rescue via post-hoc threshold/session/horizon/target retuning.
 - Deployment-oriented next priority returns to V111 C8 EURUSD H11 SHORT 120m, the only current FTMO execution survivor, unless the owner explicitly prioritizes ensemble diagnostics instead.
+
+
+### 2026-09-23 — V111 C8 EURUSD production-readiness audit prepared
+- Continued with the strongest current FTMO execution survivor: EURUSD H11 SHORT 120m.
+- Current official FTMO operating facts checked before freezing the audit: Forex commission $2.50/lot/side; Volume Bands extended to all accounts from 20 Apr 2026; selected-news restriction does not apply during Evaluation, but Standard FTMO Accounts cannot open/close targeted instruments from 2 minutes before through 2 minutes after selected releases; Swing accounts are exempt.
+- Frozen analyze-only audit reuses the existing 717-row 2023-2025 FTMO execution ledger. No 2026 market data will be opened.
+- Diagnostics: exact per-event $5/lot round-trip commission normalization, monthly/yearly stability, month-block bootstrap, trim 1/2/5%, remove-best 10/20, cumulative max drawdown in bps, losing streak, extra-friction break-even, and diagnostic Volume-Band stresses based only on FTMO's published illustrative EURUSD example.
+- No timing, direction, horizon, news filter or subgroup optimization is allowed.
+- Launcher: `tools\RUN_V111_C8_EURUSD_PRODUCTION_READINESS.cmd`.
