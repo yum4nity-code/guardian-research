@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-23",
-  "active_primary": "M5-MOTION-TOPOLOGY-M04-REPLICATION-2015-2017",
+  "active_primary": "M5-MOTION-TOPOLOGY-M04-VALIDATION-2018-2022",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "M04_DISCOVERY_SURVIVORS_FROZEN_REPLICATION_READY",
+      "status": "M04_REPLICATION_5_OF_6_VALIDATION_READY",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -316,7 +316,27 @@
       "m04_replication_runner": "automation/Run-M5MotionTopologyM04Replication.ps1",
       "replication_window": "2015-2017",
       "replication_2018_plus": "BLOCKED",
-      "replication_gate": ">=100 episodes, >=60 UTC days, positive mean endpoint, one-sided cluster p<=0.05, exact frozen M04 definition"
+      "replication_gate": ">=100 episodes, >=60 UTC days, positive mean endpoint, one-sided cluster p<=0.05, exact frozen M04 definition",
+      "replication_run": "GEFM5R-20260923-053206",
+      "replication_result": {
+        "frozen_variants_tested": 6,
+        "valid_tests": 6,
+        "survivors": 5,
+        "frozen_survivor_sha256": "942eeda155a39446adecacba0171a04552d0c99fe86ac1cfb50fab30dce3b371",
+        "pre2015_parity_pass": true,
+        "accessed_2018_plus": false
+      },
+      "closed_after_replication": [
+        "M04_AUDUSD_UDXUSD_RELN1_L30"
+      ],
+      "validation_prereg": "research/campaigns/GUARDIAN_M5_M04_VALIDATION_PREREG_2026_09_23.md",
+      "validation_spec": "research/campaigns/GUARDIAN_M5_M04_VALIDATION_SPEC_2026_09_23.json",
+      "validation_reference_runner": "automation/Freeze-M04Pre2018Reference.ps1",
+      "validation_engine": "scripts/gef_m5_motion_topology_m04_validation.py",
+      "validation_runner": "automation/Run-M5MotionTopologyM04Validation.ps1",
+      "validation_window": "2018-2022",
+      "validation_2023_plus": "BLOCKED",
+      "validation_family_gate": "at least 3 of 5 frozen variants pass all primary + robustness gates"
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
