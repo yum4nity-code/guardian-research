@@ -959,3 +959,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - 2026 remains hard-blocked. No strategy logic or thresholds were retuned.
 - Next safe action: `git pull` then run `tools\RUN_V69_V112_EXECUTION_AUDIT_v1_02.cmd` with only the FTMO MT5 terminal open and connected.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — V69/V112 FTMO execution audit v1.02 completed; parity FAILED
+- User ran `tools\RUN_V69_V112_EXECUTION_AUDIT_v1_02.cmd` with FTMO MT5 open. Run completed successfully and explicitly reported `2026 accessed: FALSE`.
+- V69 reconstruction parity failed before cost interpretation: expected locked-OOS n=155 and +4.639075 bps gross, but FTMO/MT5 reconstruction produced n=156 and -2.033943 bps gross. The executable ask->bid series was -4.491162 bps/trade. Because the gross source-level parity is already broken, this is NOT evidence that the original V69 edge is invalid; it shows the reconstruction/data/session semantics do not match the original V69 engine.
+- V112 reconstruction parity also failed before cost interpretation: expected n=556 and +1.455235 bps gross, but reconstruction produced n=622 and -0.069812 bps gross. Executable bid->ask was -0.879273 bps/trade. The 66-event count mismatch proves the local reconstruction does not match the original candidate eligibility/timestamp semantics.
+- Scientific decision: DO NOT reject or promote V69/V112 from v1.02. Treat v1.02 as a failed replication / forensic trigger, not an execution verdict.
+- Next safe action: inspect the exact original V69 and V112 engine/source-data semantics on the local machine and build a parity-forensic run that reproduces the original gross sample first. Only after gross parity passes may spread/swap/slippage conclusions be used.
+- Human active time: NOT QUANTIFIED.
