@@ -1079,3 +1079,10 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Engine verifies exact local V111 C1 provenance before reading XAGUSD 2023-2025 and writes an event-level source ledger for a later FTMO BID/ASK execution audit if the fresh mean is positive.
 - Active launcher: `tools\RUN_V111_C1_XAGUSD_LOCKED_OOS_V2.cmd`.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — V111-C1 XAGUSD runner v1.01 ASCII hotfix
+- Initial PowerShell runner failed at parse time before Python execution because Windows PowerShell 5.1 misdecoded a non-ASCII em dash in a UTF-8-without-BOM script.
+- No locked OOS market data was opened and no result was computed.
+- Added ASCII-only versioned runner `automation/Run-V111C1XAGUSDLockedOOSV2_v1_01.ps1` and launcher `tools/RUN_V111_C1_XAGUSD_LOCKED_OOS_V2_v1_01.cmd`.
+- Scientific protocol is unchanged: exact frozen V111 C1, XAGUSD H11 SHORT 60m, 2023-2025 only, 2026 blocked, no retuning.
