@@ -1003,3 +1003,9 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Next frozen branch: D017 BTCUSD SELL Momentum, +2.5R target versus original structural -1R stop.
 - FTMO 2023 = fresh temporal test; 2024-2025 = transport only; 2026 blocked. No threshold/target/side rescue.
 - Active launcher: `tools/RUN_D017_BTC_SELL_2P5R_FTMO.cmd`. If positive, follow with exact real-tick BID/ASK + commission audit.
+
+
+## D017 BTC SELL closed; D032 next — 2026-09-23
+- D017 BTCUSD SELL Momentum +2.5R fails fresh FTMO 2023: n=74, EV -0.0541R, q10 -0.2692R. 2024-2025 FTMO transport is only +0.0317R pooled with q10 <0. Close without rescue or exact execution follow-up.
+- Next active test: D032 Bullish Doji Star H1 FTMO transport. Entry edge was already independently confirmed pre-2024; now test the frozen immediate LONG -> exact +24h outcome on FTMO BTC/ETH/DOG where available.
+- Launcher: `tools/RUN_D032_FTMO_TRANSPORT.cmd`. 2026 blocked; no pattern/trend/horizon retuning.
