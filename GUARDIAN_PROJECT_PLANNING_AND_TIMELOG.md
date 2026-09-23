@@ -1184,3 +1184,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - No market rerun is required and no scientific protocol changed.
 - Added `tools/analyze_d032_exact_ftmo_parity_v1_01.py` with UTF-16-aware CSV decoding and diagnostics, plus analyze-only recovery runner/launcher that locates the latest completed `D032_EXACT_FTMO_*` run and reuses its collected BTC/ETH/DOG files.
 - Recovery launcher: `tools\RUN_D032_EXACT_FTMO_ANALYZE_ONLY_v1_01.cmd`.
+
+
+### 2026-09-23 — D032 canonical FTMO transport definitively rejected
+- Analyze-only recovery succeeded on the completed exact-scanner FTMO runs. No MT5 rerun was needed; 2026_accessed=false.
+- Canonical exact-scanner clean sample: pooled n=226, mean executable +24h = -62.207989 bp, median -22.938545 bp, win rate 44.25%, mean -1.212524R. Month-block q10 = -111.319124 bp, p<=0 = 0.9368.
+- Same-trend control pooled mean = -39.973091 bp, so Doji-minus-control = -22.234898 bp. Thus even relative to the canonical control pool, the FTMO pattern is negative overall.
+- Symbol results: BTC n91 -79.379469 bp (control -1.362006; differential -78.017462); ETH n80 -21.916090 bp (control -82.153466; differential +60.237376); DOGE n55 -92.403392 bp (control -32.871282; differential -59.532110).
+- Yearly pooled means: 2018 -337.662765; 2019 -299.096306; 2020 +119.710984; 2021 +109.877364; 2022 +28.116084; 2023 -58.200619 bp. Strong regime/feed instability; no stable FTMO transport.
+- Final interpretation: historical D032-C1 confirmation remains a valid historical/feed-specific phenomenon, but the exact frozen entry does not transport to FTMO. Close for FTMO with no retuning/rescue. Do not invalidate the original historical finding.
+- Next priority: D035-F1 FTMO XLMUSD 2026-H1 fresh target-outcome transport confirmation under the already-frozen explicit authorization; Jul-Dec 2026 and other targets remain blocked.
