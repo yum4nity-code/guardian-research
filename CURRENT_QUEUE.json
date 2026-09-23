@@ -566,7 +566,7 @@
       "next": "Owner explicitly authorizes opening 2026-H1 under frozen D035-C1 V2 preregistration, or keep reserved."
     },
     "d035_c1_2026h1": {
-      "status": "HUMAN_AUTHORIZED_READY_TO_RUN",
+      "status": "READY_TO_RERUN_AFTER_ANALYZER_RECOVERY",
       "authorization": "research/campaigns/D035_C1_2026H1_HUMAN_AUTHORIZATION_2026_09_23.json",
       "preregistration": "research/campaigns/D035_C1_2026H1_FRESH_CONFIRMATION_PREREG_V2_2026_09_23.md",
       "engine": "scripts/run_d035_c1_fresh_2026h1_v2.py",
@@ -592,7 +592,22 @@
         "retuning": "BLOCKED",
         "live_deployment": "BLOCKED"
       },
-      "result": null
+      "result": null,
+      "initial_attempt": {
+        "status": "STOPPED_BEFORE_MARKET_RESULT",
+        "reason": "Full historical D035 analyzer absent locally; repo contained only continuity marker.",
+        "accessed_2026h1": false,
+        "computed_result": false
+      },
+      "analyzer_recovery": {
+        "status": "EXACT_ARTIFACT_RECOVERED",
+        "source_pack": "D035_Binance_FundedNext_LeadLag_PATCH_v1_02.zip",
+        "source_sha256": "35e7579b25abebcdd32829168598f58cea4c835c30b0e02d9cdee882e4327168",
+        "archived_payload": "research/analysis/D035_Binance_Deleveraging_LeadLag_v1_01.py.gz.b64",
+        "recovery_note": "research/results/D035_ANALYZER_EXACT_RECOVERY_2026_09_23.md",
+        "runner_updated": true,
+        "export_model": "1 minute OHLC"
+      }
     }
   }
 }
