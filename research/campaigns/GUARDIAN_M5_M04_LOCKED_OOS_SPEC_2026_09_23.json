@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-23",
+  "status": "FROZEN_BEFORE_2023_2025_OUTCOMES",
+  "campaign": "M5_MOTION_TOPOLOGY_M04_LOCKED_OOS_2023_2025_V1",
+  "human_gate_approved": true,
+  "parent_discovery_run": "GEFM5D-20260923-052315",
+  "parent_replication_run": "GEFM5R-20260923-053206",
+  "parent_validation_run": "GEFM5V-20260923-055623",
+  "frozen_candidates": [
+    {
+      "id": "M04_EURUSD_UDXUSD_RELN1_L15",
+      "target": "EURUSD",
+      "peer": "UDXUSD",
+      "relation": -1,
+      "lookback_min": 15,
+      "horizon_min": 15
+    },
+    {
+      "id": "M04_AUDUSD_UDXUSD_RELN1_L15",
+      "target": "AUDUSD",
+      "peer": "UDXUSD",
+      "relation": -1,
+      "lookback_min": 15,
+      "horizon_min": 15
+    }
+  ],
+  "history_start_year": 2011,
+  "locked_oos_start": "2023-01-01",
+  "locked_oos_end_exclusive": "2026-01-01",
+  "max_source_year": 2025,
+  "forbidden_from": "2026-01-01",
+  "corr_short_bars": 12,
+  "corr_short_min": 8,
+  "corr_long_bars": 72,
+  "corr_long_min": 36,
+  "causal_z_min_prior": 250,
+  "prior_extreme_window_bars": 3,
+  "extreme_abs_z": 1.5,
+  "recoupled_abs_z_lt": 1,
+  "cooldown_min": 30,
+  "min_episodes": 100,
+  "min_days": 60,
+  "one_sided_p_max": 0.05,
+  "target": "endpoint_score_15m_15m",
+  "diagnostics_only": [
+    "yearly_means",
+    "leave_one_year_out",
+    "trim_best_1pct",
+    "trim_best_2pct",
+    "placebo_minus60",
+    "placebo_plus60"
+  ],
+  "no_rescue": true,
+  "protected_year": 2026
+}
