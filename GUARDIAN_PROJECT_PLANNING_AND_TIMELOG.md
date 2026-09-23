@@ -816,3 +816,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Canonical report: research/results/GUARDIAN_MINI_EDGE_FULL_AUDIT_2026_09_23.md.
 - Research remains paused pending a prospectively frozen four-layer doctrine: existence -> economic size -> ensemble value -> production readiness.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — Validation Doctrine V2 frozen; EA01 existing-OOS audit prepared
+- Frozen Guardian Validation Doctrine V2 separating discovery credibility, edge existence, economic size, ensemble value and production readiness.
+- Historical verdicts remain immutable; V2 adds classifications rather than rewriting PASS/FAIL/KILL.
+- Repeated p<0.05 is no longer a universal death gate. Positive fresh effects may be POSITIVE_UNCERTAIN and retained.
+- MINI_EDGE now means positive expectancy after baseline realistic costs; PF>=1.10 and +0.15R are not universal existence criteria.
+- Prepared read-only audit for EA01-XR-RSI-LONG-V1 using only the already-opened 2023-2025 OOS signal ledger.
+- Frozen exact source hashes and published aggregate parity before diagnostics.
+- Audit may compute month-cluster uncertainty, LOO, trims, concentration, rolling windows and cumulative drawdown; it may not change any parameter/subgroup/horizon/cost or open 2026.
+- Runner: automation/Audit-EA01ExistingOOSV2.ps1.
+- No new alpha search or market-data run authorized.
