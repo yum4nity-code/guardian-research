@@ -913,3 +913,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - V112 C3 exact parity: n=556, +1.4552352492311669 bps, absolute difference 0.0.
 - v1.01 then failed only because FTMO execution rows were unavailable and the cost-grid code assumed a priced column existed. This is not a strategy rejection.
 - Active hardened runner: `tools/RUN_V69_V112_EXACT_SOURCE_FTMO_AUDIT_v1_02.cmd`. It adds UTC-safe MT5 queries and explicit 2023/2024/2025 history-availability diagnostics while keeping source parity mandatory and 2026 closed.
+
+
+## FTMO time-alignment forensic — 2026-09-23
+- Exact parity remains PASS for V69 and V112.
+- V69 0/155 FTMO coverage was caused by an incorrect +5h mapping that moved Friday-close events into Saturday closed-market time.
+- V112 had 556/556 FTMO quotes, but source-vs-FTMO return correlation at the naive label was only ~0.053; the vendor time label and actual FTMO market time are misaligned, so the negative FTMO mean is not a valid rejection result.
+- Active next tool: `tools/RUN_V69_V112_FTMO_TIME_ALIGNMENT_FORENSIC.cmd`. It selects timezone offset only by price-series alignment, not by strategy PnL, and keeps 2026 closed.
