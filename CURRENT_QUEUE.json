@@ -906,5 +906,24 @@
     },
     "conclusion": "EXECUTION_REJECTED_FTMO",
     "interpretation": "Gross signal transfers almost one-for-one to FTMO, but observed exit ask spread overwhelms the 60m short edge. No extra commission/slippage assumption is needed to reject the exact frozen implementation."
+  },
+  "v111_eurusd_h11_120m_oos_ftmo": {
+    "status": "READY_TO_RUN",
+    "preregistration": "research/campaigns/V111_EURUSD_H11_120M_OOS_FTMO_PREREG_2026_09_23.md",
+    "spec": "research/campaigns/V111_EURUSD_H11_120M_OOS_FTMO_SPEC_2026_09_23.json",
+    "engine": "tools/guardian_v111_eurusd_h11_120m_oos_ftmo_v1_00.py",
+    "runner": "tools/GUARDIAN_V111_EURUSD_H11_120M_OOS_FTMO_v1_00.ps1",
+    "launcher": "tools/RUN_V111_EURUSD_H11_120M_OOS_FTMO.cmd",
+    "frozen_candidate": {
+      "market": "EURUSD",
+      "hour": 11,
+      "horizon_min": 120,
+      "direction": "SHORT",
+      "orientation": -1,
+      "expected_preoos_n": 1295
+    },
+    "behavior": "Stage A opens only 2023-2025 source OOS. If mean >0, Stage B automatically performs FTMO price-alignment and first-tick bid/ask execution audit with no retuning.",
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED"
   }
 }
