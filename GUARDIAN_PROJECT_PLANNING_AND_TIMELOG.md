@@ -881,3 +881,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - No alpha rule, target, horizon, time window or gate changed.
 - No 2026-H1 result was computed during the failed invocation.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — D035-C1 blocked by stale CFD exports; runner coverage guard added
+- C1 source-side Binance logic found 254 causal dual-source events in 2026-H1.
+- UTC alignment then failed at 9/114 usable weeks because the selected MT5 BTCUSD/XLMUSD files were old D035 exports from the 2023-2025 campaign (paths under RUN_20231101...).
+- No D035-C1 result was computed and no interpretation of the signal is permitted from this failed attempt.
+- Updated the PowerShell runner to inspect actual CSV coverage and reject any export that does not span approximately Jan-Jun 2026.
+- Runner no longer chooses CFD files by modification time alone.
+- Next required action: export BTCUSD and XLMUSD for 2026-01-01 through 2026-07-01 with D035_CFD_M1_Exporter_v1_01.mq5, timeframe M1, model 1 minute OHLC, then rerun.
+- Human active time: NOT QUANTIFIED.
