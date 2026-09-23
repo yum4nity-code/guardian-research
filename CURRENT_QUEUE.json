@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-23",
-  "active_primary": "M5-MOTION-TOPOLOGY-M04-VALIDATION-2018-2022-READY",
+  "active_primary": "M5-MOTION-TOPOLOGY-M04-HUMAN-GATE-BEFORE-LOCKED-OOS",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "M04_PRE2018_REFERENCE_FROZEN_VALIDATION_READY",
+      "status": "M04_VALIDATION_2_OF_5_PASS_HUMAN_GATE",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -350,7 +350,26 @@
       "pre2018_reference_sha256": "49eb9c029247ee2418cc06cac3cacd44c1a692e46b537e982c00b3ef0b016c84",
       "pre2018_reference_rows": 736416,
       "pre2018_replication_parity_pass": true,
-      "validation_status": "READY_TO_RUN"
+      "validation_status": "READY_TO_RUN",
+      "validation_run": "GEFM5V-20260923-055623",
+      "validation_result": {
+        "tested": 5,
+        "passed": 2,
+        "survivors": [
+          "M04_EURUSD_UDXUSD_RELN1_L15",
+          "M04_AUDUSD_UDXUSD_RELN1_L15"
+        ],
+        "accessed_2023_2025": false,
+        "accessed_2026": false
+      },
+      "validation_notes": {
+        "eurusd": "strong primary pass; trim 1%/2% remains positive; exact timing not sharp because -60m placebo also positive",
+        "audusd": "primary pass but tail-sensitive; trim best 1% and 2% turn negative; -60m placebo also positive",
+        "gbpusd_l15": "positive mean but misses p<=0.05 at p=0.053625",
+        "gbpusd_l30": "fails significance",
+        "usdchf_l15": "fails significance"
+      },
+      "next": "Human decision whether to preregister locked 2023-2025 OOS for exact EURUSD L15 and AUDUSD L15 only."
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
