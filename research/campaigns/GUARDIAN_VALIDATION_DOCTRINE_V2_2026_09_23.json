@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "id": "GUARDIAN_VALIDATION_DOCTRINE_V2",
+  "date": "2026-09-23",
+  "status": "FROZEN_BEFORE_NEW_RESEARCH_RESUMES",
+  "layers": {
+    "discovery": {
+      "purpose": "control data snooping and causal validity",
+      "survival": "selection-aware"
+    },
+    "existence": {
+      "classes": [
+        "NEGATIVE",
+        "POSITIVE_UNCERTAIN",
+        "POSITIVE_CONFIRMED",
+        "SPARSE_POSITIVE"
+      ],
+      "positive_uncertain": "fresh point estimate > 0, uncertainty includes 0; retain",
+      "positive_confirmed": "fresh point estimate > 0 and one-sided 90% lower CI > 0 or equivalent one-sided cluster p <= 0.10",
+      "note": "confidence labels are not universal production gates"
+    },
+    "economics": {
+      "classes": [
+        "COVARIATE_ONLY",
+        "MINI_EDGE",
+        "STANDALONE_CANDIDATE"
+      ],
+      "mini_edge": "positive expectancy after baseline realistic costs; no universal PF 1.10 or +0.15R requirement",
+      "stress_labels": [
+        "STRESS_POSITIVE",
+        "STRESS_FRAGILE"
+      ]
+    },
+    "ensemble": {
+      "classes": [
+        "REDUNDANT",
+        "DIVERSIFYING",
+        "INCREMENTAL_POSITIVE",
+        "INCREMENTAL_CONFIRMED"
+      ]
+    },
+    "production": {
+      "hard_gates_here_only": true
+    }
+  },
+  "prohibitions": [
+    "no historical verdict rewrite",
+    "no rescue retuning",
+    "no new threshold sweep on opened data",
+    "no protected 2026 access without separate human gate"
+  ],
+  "research_pause": {
+    "new_alpha_search": false,
+    "read_only_existing_data_audits": true
+  }
+}
