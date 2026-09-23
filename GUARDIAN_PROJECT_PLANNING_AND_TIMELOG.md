@@ -968,3 +968,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Scientific decision: DO NOT reject or promote V69/V112 from v1.02. Treat v1.02 as a failed replication / forensic trigger, not an execution verdict.
 - Next safe action: inspect the exact original V69 and V112 engine/source-data semantics on the local machine and build a parity-forensic run that reproduces the original gross sample first. Only after gross parity passes may spread/swap/slippage conclusions be used.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — V69/V112 source forensic interpretation + engine source scan
+- Reviewed the returned source-forensic ZIP. It contained run artifacts for V66-V69 and V110-V112 but not the actual engine source code.
+- V69 original artifact definition is only `USDCHF, mechanism=weekday, bucket=4, mode=long`; the earlier ChatGPT interpretation “Friday close -> Monday close” is not proven and is likely wrong. A plausible alternative is a return bucket ending on Friday (e.g. Thursday close -> Friday close), which would explain the failed FTMO reconstruction.
+- V112 exact frozen candidate is C3 AUDUSD H21, 120m, SHORT. Original locked OOS has n=556; the FTMO approximation produced n=622, proving additional original data-availability/eligibility semantics were omitted.
+- Added `tools/collect_v69_v112_engine_source_scan_v1_00.py` and `tools/RUN_COLLECT_V69_V112_ENGINE_SOURCE_SCAN.cmd` to scan source/config/docs only across D:\MT5_Backtests and recover the exact V69/V110-V112 engine definitions without opening market parquet/tick/MT5 history.
+- Next safe action: run the engine-source scanner, return its ZIP, then reconstruct gross parity exactly before any execution-cost verdict.
+- Human active time: NOT QUANTIFIED.
