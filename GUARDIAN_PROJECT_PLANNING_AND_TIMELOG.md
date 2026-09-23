@@ -891,3 +891,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Runner no longer chooses CFD files by modification time alone.
 - Next required action: export BTCUSD and XLMUSD for 2026-01-01 through 2026-07-01 with D035_CFD_M1_Exporter_v1_01.mq5, timeframe M1, model 1 minute OHLC, then rerun.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — D035 execution-feed pivot to FTMO
+- Closed the unfinished FundedNext C1 branch as an environment pivot, not as a signal failure; no C1 target outcome had been computed.
+- FTMO currently provides XLMUSD, so the exact historical D035-E1 primary target can be preserved without post-hoc substitution.
+- Frozen D035-F1 as a fresh FTMO target-feed transport confirmation on 2026-H1.
+- Preserved source rule, XLMUSD target, SHORT direction, causal second-shock timing and +15m primary horizon.
+- FTMO transaction costs are frozen at 0.0325% commission per side plus observed BID/ASK spread; the engine computes exact commission-adjusted bps.
+- Added FTMO-only BTCUSD/XLMUSD quote exporter, locked engine and runner.
+- Scientific caveat recorded: 254 2026-H1 source events were already counted operationally; FTMO XLM target outcomes remain unopened.
+- No other target, Jul-Dec 2026, retuning or live deployment is authorized.
+- Human active time: NOT QUANTIFIED.
