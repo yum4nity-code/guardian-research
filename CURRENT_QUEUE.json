@@ -471,6 +471,21 @@
       ],
       "next": "Freeze a new doctrine separating edge existence, economic size, ensemble value and production gates before any research resumes.",
       "new_research_runs_authorized": false
+    },
+    "validation_doctrine_v2": {
+      "status": "FROZEN",
+      "md": "research/campaigns/GUARDIAN_VALIDATION_DOCTRINE_V2_2026_09_23.md",
+      "json": "research/campaigns/GUARDIAN_VALIDATION_DOCTRINE_V2_2026_09_23.json"
+    },
+    "ea01_existing_oos_v2_audit": {
+      "status": "READY_TO_RUN_READ_ONLY",
+      "candidate": "EA01-XR-RSI-LONG-V1",
+      "source_window": "2023-2025 already opened",
+      "protected_2026": "BLOCKED",
+      "runner": "automation/Audit-EA01ExistingOOSV2.ps1",
+      "no_market_rerun": true,
+      "no_parameter_search": true,
+      "purpose": "classify existence/economic size under V2 while preserving historical KILL"
     }
   }
 }
