@@ -908,7 +908,7 @@
     "interpretation": "Gross signal transfers almost one-for-one to FTMO, but observed exit ask spread overwhelms the 60m short edge. No extra commission/slippage assumption is needed to reject the exact frozen implementation."
   },
   "v111_eurusd_h11_120m_oos_ftmo": {
-    "status": "READY_TO_RUN",
+    "status": "COMPLETE_EXECUTION_SURVIVES_SPREAD_CURRENT_COMMISSION_FRAGILE",
     "preregistration": "research/campaigns/V111_EURUSD_H11_120M_OOS_FTMO_PREREG_2026_09_23.md",
     "spec": "research/campaigns/V111_EURUSD_H11_120M_OOS_FTMO_SPEC_2026_09_23.json",
     "engine": "tools/guardian_v111_eurusd_h11_120m_oos_ftmo_v1_00.py",
@@ -924,6 +924,82 @@
     },
     "behavior": "Stage A opens only 2023-2025 source OOS. If mean >0, Stage B automatically performs FTMO price-alignment and first-tick bid/ask execution audit with no retuning.",
     "protected_2026": "BLOCKED",
-    "retuning": "BLOCKED"
+    "retuning": "BLOCKED",
+    "result": {
+      "source_oos": {
+        "candidate_id": "C8",
+        "n": 717,
+        "mean_bp": 1.507838298457706,
+        "control_mean_bp": -0.18891418683346617,
+        "effect_bp": 1.6967524852911722,
+        "median_bp": 1.4634057109397247,
+        "win_rate": 0.5523012552301255,
+        "net1bp_mean_bp": 0.5078382984577059,
+        "trim1_mean_bp": 1.0447772084361635,
+        "trim2_mean_bp": 0.7629469574932474,
+        "trim5_mean_bp": 0.07987733407971047,
+        "yearly_mean_bp": {
+          "2023": 1.8774593177537864,
+          "2024": 0.7752851437455982,
+          "2025": 1.9606524235716982
+        },
+        "loo_min_bp": 1.251770922028614,
+        "bootstrap_q025_bp": 0.5112653540707174,
+        "bootstrap_q10_bp": 0.8367839973672266,
+        "v2_existence": "POSITIVE_CONFIRMED",
+        "protected_2026_accessed": false
+      },
+      "alignment": {
+        "offset_hours": 2,
+        "coverage": 1,
+        "median_two_leg_price_diff_bp": 0.09167247508601317,
+        "source_vs_ftmo_corr": 0.9263525226207271
+      },
+      "ftmo_execution_after_observed_spread": {
+        "coverage": "717/717",
+        "bid_gross_mean_bp": 1.2579796322125636,
+        "source_vs_ftmo_bid_corr": 0.9267247228599703,
+        "mean_entry_spread_bp": 0.24342886656554474,
+        "mean_exit_spread_bp": 0.2524462667784501,
+        "mean_exec_bp": 1.0055649632915244,
+        "median_exec_bp": 0.9925289637982502,
+        "win_rate": 0.5341701534170153,
+        "trim1_exec_bp": 0.5663063508130725,
+        "trim2_exec_bp": 0.30187397062761956,
+        "trim5_exec_bp": -0.3408025783868649,
+        "yearly_exec_bp": {
+          "2023": 1.8860694749094682,
+          "2024": 0.28607346413993345,
+          "2025": 1.0547074207396363
+        }
+      },
+      "current_ftmo_forex_commission_assumption": {
+        "rate_usd_per_lot_per_side": 2.5,
+        "round_trip_usd_per_lot": 5,
+        "mean_cost_bp_on_historical_entry_prices": 0.4555219102783286,
+        "mean_after_spread_and_current_commission_bp": 0.5500430530131959,
+        "median_after_spread_and_current_commission_bp": 0.5413794347983585,
+        "yearly_mean_bp": {
+          "2023": 1.423109,
+          "2024": -0.176102,
+          "2025": 0.611551
+        },
+        "trim1_mean_bp": 0.1108257139963179,
+        "trim2_mean_bp": -0.1536180528341688,
+        "trim5_mean_bp": -0.7961661350651483,
+        "month_block_q10_bp_approx": -0.10253906,
+        "month_block_p_le_zero_approx": 0.1415,
+        "extra_round_trip_break_even_bp_approx": 0.5500430530131959,
+        "extra_round_trip_break_even_pips_at_mean_price_approx": 0.6045387717839358
+      },
+      "protected_2026_accessed": false
+    },
+    "v2_interpretation": {
+      "existence": "POSITIVE_CONFIRMED_SOURCE_OOS",
+      "economics_after_observed_spread": "MINI_EDGE_POSITIVE",
+      "economics_after_current_commission": "POSITIVE_UNCERTAIN_FRAGILE",
+      "production": "NOT_PRODUCTION_READY"
+    },
+    "next": "Freeze exact EURUSD H11->H13 SHORT as a live/forward-shadow candidate. Before any production use, audit FTMO Standard news-window compatibility and actual Volume Band for intended order size; do not retime or rescue."
   }
 }
