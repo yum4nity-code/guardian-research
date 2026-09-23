@@ -1049,3 +1049,9 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Next active deployment-oriented task is analyze-only `tools/RUN_V111_C8_EURUSD_PRODUCTION_READINESS.cmd`.
 - It reuses the existing 2023-2025 FTMO execution ledger; 2026 remains blocked.
 - Applies exact current FTMO Forex commission ($2.50/lot/side), robust stability diagnostics and extra-friction / illustrative Volume-Band stress. No retiming or rescue filters.
+
+
+## V111 C8 forward shadow prepared — 2026-09-23
+- Production-readiness audit classification: FRAGILE_FORWARD_SHADOW. Net after observed spread + $5/lot round-trip commission is +0.550 bp/trade, but month-bootstrap q10 is -0.102 bp and trim-best-2% turns negative.
+- No 2026 historical data was opened.
+- Use `tools/RUN_V111_C8_EURUSD_FORWARD_SHADOW.cmd` for a true forward-only paper shadow from the next UTC day. No live orders; no historical backfill; exact timing remains frozen.
