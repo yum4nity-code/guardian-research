@@ -1068,3 +1068,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Combined branch status: V69 exact frozen implementation execution-rejected; V112 exact frozen implementation execution-rejected. Preserve both as research phenomena only, not production candidates.
 - Next research should move to a new predeclared hypothesis family rather than retiming these frozen rules based on observed PnL.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — V111-C1 XAGUSD H11 60m SHORT selected for fresh OOS
+- Owner explicitly authorized proceeding ("go") after review of remaining Guardian candidates.
+- Candidate frozen from V111 run GEF111-20260922-163321: C1, XAGUSD, hour-only H11, 60m horizon, SHORT orientation -1. Historical 2018-2022 evidence is provenance only; no parameter change is allowed.
+- Added frozen V2 preregistration/spec, locked-OOS engine, PowerShell runner and one-click CMD launcher.
+- Fresh window authorized: 2023-2025 only. 2026 remains hard-blocked. No alternate hour/horizon/market/direction or rescue filter is permitted.
+- V2 existence classification is frozen before opening outcomes: NEGATIVE if mean<=0; POSITIVE_CONFIRMED if mean>0 and month-block one-sided 90% lower bound q10>0; otherwise POSITIVE_UNCERTAIN. Old trim/LOO/year diagnostics are reported but are not automatic death gates under Doctrine V2.
+- Engine verifies exact local V111 C1 provenance before reading XAGUSD 2023-2025 and writes an event-level source ledger for a later FTMO BID/ASK execution audit if the fresh mean is positive.
+- Active launcher: `tools\RUN_V111_C1_XAGUSD_LOCKED_OOS_V2.cmd`.
+- Human active time: NOT QUANTIFIED.
