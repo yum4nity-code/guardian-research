@@ -661,3 +661,23 @@ GEFM5LREF-20260923-061953
 Locked OOS 2023-2025 is cleared to run for:
 - EURUSD <- UDXUSD L15/H15
 - AUDUSD <- UDXUSD L15/H15
+
+
+## M04 LOCKED OOS 2023-2025 — FINAL RESULT
+
+Locked OOS candidates tested:
+- EURUSD <- UDXUSD L15/H15
+- AUDUSD <- UDXUSD L15/H15
+
+Result:
+- EURUSD: N=135 / 116 days, mean endpoint -0.045687, p_one=1.000000 -> FAIL
+- AUDUSD: N=1,467 / 612 days, mean endpoint +0.069732, p_one=0.103388 -> FAIL
+
+No candidate passes the frozen locked-OOS gate.
+M04 lineage is CLOSED.
+No rescue, retuning, alternate timing, pair substitution or 2026 access.
+
+Diagnostics:
+- EURUSD is unstable across 2023-2025 and its +60m placebo is stronger than the frozen event timestamp.
+- AUDUSD remains positive overall and in leave-one-year-out diagnostics, but loses significance and turns negative in 2025; it is also tail-sensitive.
+These diagnostics do not override the locked-OOS failure.
