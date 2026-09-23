@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-23",
-  "active_primary": "M5-MOTION-TOPOLOGY-V1.1-CACHE-AUDIT",
+  "active_primary": "M5-MOTION-TOPOLOGY-M01-M08-DISCOVERY",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "V1_1_CACHE_COMPLETE_PENDING_AUDIT",
+      "status": "M01_M08_DISCOVERY_PREREGISTERED_READY_TO_RUN",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -281,7 +281,16 @@
         "min": 89380,
         "median_max": 198269,
         "max": 217798
-      }
+      },
+      "v1_1_audit_result": "PASS",
+      "discovery_prereg": "research/campaigns/GUARDIAN_M5_M01_M08_DISCOVERY_PREREG_2026_09_23.md",
+      "discovery_spec": "research/campaigns/GUARDIAN_M5_M01_M08_DISCOVERY_SPEC_2026_09_23.json",
+      "discovery_engine": "scripts/gef_m5_motion_topology_m01_m08_discovery.py",
+      "discovery_runner": "automation/Run-M5MotionTopologyM01M08Discovery.ps1",
+      "discovery_expected_variants": 291,
+      "discovery_window": "2012-2014",
+      "discovery_2015_plus": "BLOCKED",
+      "discovery_gate": ">=200 independent episodes, >=120 UTC days, one-sided positive endpoint score, BH q<=0.05 within family"
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
