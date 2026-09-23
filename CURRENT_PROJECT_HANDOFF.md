@@ -1034,3 +1034,12 @@ Execution economics remain unresolved because the historical gate used gross clo
 ## D035-F1 compile hotfix v1.01
 - Initial v1.00 one-click stopped before market export because the MQL5 exporter misused `StringToUpper` on const/bool-return values. No D035 market result was opened.
 - Use `tools/RUN_D035_F1_FTMO_ONECLICK_v1_01.cmd` only. It uses `D035_FTMO_CFD_M1_Exporter_v1_01.mq5`; research logic/scope unchanged.
+
+
+## D035-F1 FTMO result — 2026-09-23
+- Frozen FTMO XLMUSD SHORT +15m transport completed: n=245 executable from 254 source events.
+- Gross executable +6.639 bp; net after frozen crypto commission +0.141 bp; median -0.050 bp; +30m -8.769 bp.
+- Matched control -11.880 bp; event-minus-control +12.416 bp. Bootstrap q10 -5.856 bp, p<=0 0.483; trim-best-1% -2.640 bp.
+- Classification: POSITIVE_UNCERTAIN / MINI_EDGE / NOT_PRODUCTION_READY. Preserve for ensemble/incremental-value research; no standalone deployment and no post-hoc rescue retuning.
+- Jul-Dec 2026 not opened; other targets not opened; no retuning performed.
+- Next deployment-oriented candidate: V111 C8 EURUSD H11 SHORT 120m.
