@@ -568,3 +568,19 @@ Hard pass/fail now only requires:
 
 Annual means, leave-one-year-out, trim-best 1%/2% and +/-60m placebos remain mandatory diagnostics only.
 No new family-level mechanical threshold.
+
+
+### M04 pre-2018 reference frozen — validation ready
+Reference run:
+GEFM5P-20260923-055333
+
+- 736,416 rows
+- corr_break and corr_break_z for EURUSD/GBPUSD/AUDUSD/USDCHF versus UDXUSD
+- SHA256: 49eb9c029247ee2418cc06cac3cacd44c1a692e46b537e982c00b3ef0b016c84
+- replication aggregate parity PASS for all six original replication variants
+- numerical differences are floating-point epsilon only
+- no 2018+ access
+
+2018-2022 validation engine v1.1 is now cleared to run.
+2023-2025 remains locked.
+2026 remains protected.
