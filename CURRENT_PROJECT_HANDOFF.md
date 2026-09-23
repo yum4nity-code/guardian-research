@@ -827,3 +827,30 @@ Added:
 Runner hard-limits the CFD input directory to BTCUSD (timezone calibration only) and XLMUSD. It refuses extra target exports and does not access Jul-Dec 2026.
 
 No live deployment is authorized.
+
+
+## 2026-09-23 — D035 pivoted from FundedNext to FTMO
+
+FundedNext C1 is closed as an execution-environment pivot, not a statistical failure. No FundedNext 2026 target result was produced.
+
+FTMO supports XLMUSD, allowing the exact D035-E1 primary target to remain frozen.
+
+New branch: D035-F1 FTMO transport confirmation.
+- source rule unchanged: causal BTC+ETH deleveraging shocks within <=5m
+- signal timestamp unchanged: later/second shock
+- target unchanged: XLMUSD
+- direction unchanged: SHORT
+- primary horizon unchanged: +15m
+- diagnostic: +30m
+- window: 2026-H1 only
+- BTCUSD used only for FTMO server->UTC calibration
+- observed FTMO BID/ASK spread embedded
+- FTMO crypto commission: 0.0325% per side, deducted exactly from entry/exit notional
+
+Scientific caveat: the frozen source engine has already revealed 254 source events in 2026-H1, but no FTMO XLM target outcome has been inspected. F1 is therefore fresh target-outcome/feed transport confirmation.
+
+Artifacts:
+- research/campaigns/D035_F1_FTMO_TRANSPORT_CONFIRMATION_2026H1_PREREG_2026_09_23.md
+- research/ea/D035_FTMO_CFD_M1_Exporter_v1_00.mq5
+- scripts/run_d035_f1_ftmo_transport_2026h1_v1.py
+- automation/Run-D035F1FTMO2026H1.ps1
