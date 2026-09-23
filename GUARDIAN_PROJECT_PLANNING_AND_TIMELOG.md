@@ -927,3 +927,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Explicitly did not promote D030 ETH H4 engulfing because its independent PRE2024 confirmation failed; broad D025 XAU/USDJPY and broad D017 remain rejected.
 - No new market/OOS sample opened.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — ZIP extraction: V69 USDCHF Friday LONG recovered
+- Recovered a stronger candidate from the mini-edge audit archive: calendar-family USDCHF weekday bucket 4 LONG (Friday daily close -> next available daily close).
+- Independent validation 2018-2022: n=259, +5.554 bps/event gross, 66.8% hit, 5/5 positive years, trim1 +4.944, trim2 +4.449, remove-best5 +4.606; PASS.
+- Locked OOS 2023-2025 under a predeclared gate: n=155, +4.639 bps/event gross, 69.68% hit, 3/3 positive years, trim1 +4.069, trim2 +3.653, remove-best5 +3.467; PASS.
+- OOS yearly means: 2023 +1.429 bps, 2024 +5.946, 2025 +6.481.
+- Companion NSXUSD validation survivor failed locked-OOS tail robustness, leaving USDCHF as the sole V69 pass.
+- Doctrine V2: FRESH_OOS_CONFIRMED / MINI_EDGE_CANDIDATE / NOT_PRODUCTION_READY.
+- Main missing work is execution economics: actual spread, weekend swap/carry, slippage, DD and portfolio correlation.
+- Protected 2026 remained unopened.
+- Human active time: NOT QUANTIFIED.
