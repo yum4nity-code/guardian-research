@@ -1101,7 +1101,7 @@
     "retuning": "BLOCKED"
   },
   "d025_eth_retest_ftmo": {
-    "status": "READY_TO_RUN",
+    "status": "CLOSED_FRESH_2023_NEGATIVE",
     "preregistration": "research/campaigns/D025_ETH_RETEST_FTMO_FRESH2023_TRANSPORT_PREREG_2026_09_23.md",
     "source_ea": "research/ea/D025_LER_VirtualPath_1_03.mq5",
     "analyzer": "tools/analyze_d025_eth_retest_ftmo_v1_00.py",
@@ -1116,6 +1116,57 @@
     "evidence_plan": {
       "2023": "fresh temporal test on FTMO feed",
       "2024_2025": "feed-transport/replication only"
+    },
+    "tester_model": "1 minute OHLC",
+    "exact_real_tick_followup": "ONLY_IF_SURVIVES",
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED",
+    "result": {
+      "fresh_2023": {
+        "n_retest": 322,
+        "resolved": 316,
+        "ev2_R": -0.08860759493670886,
+        "target_first_rate": 0.3037974683544304,
+        "bootstrap_q10": -0.2627986348122867,
+        "bootstrap_p_le_zero": 0.7385,
+        "long_ev2_R": -0.13253012048192772,
+        "short_ev2_R": -0.04,
+        "payoff_one_spread_stress_ev_R": -0.1702203642721519
+      },
+      "transport_2024_2025": {
+        "n_retest": 651,
+        "resolved": 617,
+        "ev2_R": 0.09886547811993517,
+        "target_first_rate": 0.36628849270664504,
+        "bootstrap_q10": 0.007957998122482768,
+        "payoff_one_spread_stress_ev_R": 0.030527562706645063
+      },
+      "all_2023_2025": {
+        "n_retest": 973,
+        "resolved": 933,
+        "ev2_R": 0.03536977491961415,
+        "bootstrap_q10": -0.0521075135240544
+      },
+      "protected_2026_accessed": false
+    },
+    "conclusion": "Fresh 2023 negative. 2024-2025 transport replicates the old positive branch, but this does not generalize backward to the fresh block. Close without rescue."
+  },
+  "d017_btc_sell_2p5r_ftmo": {
+    "status": "READY_TO_RUN",
+    "preregistration": "research/campaigns/D017_BTC_SELL_2P5R_FTMO_FRESH2023_PREREG_2026_09_23.md",
+    "source_ea": "research/ea/D017_Momentum_VirtualDiagnostic_1_01_STATIC_CONFORMANCE.mq5",
+    "analyzer": "tools/analyze_d017_btc_sell_2p5r_ftmo_v1_00.py",
+    "runner": "tools/GUARDIAN_D017_BTC_SELL_2P5R_FTMO_v1_00.ps1",
+    "launcher": "tools/RUN_D017_BTC_SELL_2P5R_FTMO.cmd",
+    "frozen_candidate": {
+      "market": "BTCUSD",
+      "side": "SELL",
+      "target_R": 2.5,
+      "stop_R": -1
+    },
+    "evidence_plan": {
+      "2023": "fresh temporal test",
+      "2024_2025": "FTMO feed transport/replication only"
     },
     "tester_model": "1 minute OHLC",
     "exact_real_tick_followup": "ONLY_IF_SURVIVES",
