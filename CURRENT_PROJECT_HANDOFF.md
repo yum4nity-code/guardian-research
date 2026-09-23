@@ -854,3 +854,18 @@ Artifacts:
 - research/ea/D035_FTMO_CFD_M1_Exporter_v1_00.mq5
 - scripts/run_d035_f1_ftmo_transport_2026h1_v1.py
 - automation/Run-D035F1FTMO2026H1.ps1
+
+
+## 2026-09-23 — New recovered candidate: V69 USDCHF Friday LONG
+
+Mini-edge ZIP extraction recovered a genuinely locked-OOS-passing calendar edge:
+USDCHF LONG from Friday daily close to next available daily close.
+
+Evidence:
+- 2018-2022 independent validation: n259, +5.554 bps gross, 66.8% hit, all 5 years positive, robust after trimming best 1/2% and best 5 events.
+- 2023-2025 locked OOS: n155, +4.639 bps gross, 69.68% hit, all 3 years positive, trim1 +4.069, trim2 +3.653, remove-best5 +3.467.
+- 2026 untouched.
+
+Doctrine V2: fresh-OOS-confirmed mini-edge candidate, not production ready.
+
+Execution economics remain unresolved because the historical gate used gross close-to-close returns and did not deduct weekend swap/carry, real bid/ask or slippage.
