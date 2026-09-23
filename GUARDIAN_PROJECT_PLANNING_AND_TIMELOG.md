@@ -1160,3 +1160,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Next preserved candidate frozen before outcome: D017 BTCUSD SELL Momentum, fixed +2.5R versus structural -1R. Existing seen evidence: 2024 EV2.5 ~+0.150R, 2025 ~+0.114R, pooled ~+0.131R pre-cost.
 - FTMO 2023 is the fresh temporal test; 2024-2025 transport only. Exact D017 v11.16 signal thresholds remain frozen. First stage uses 1-minute OHLC and M1 first-touch telemetry; if it survives, run exact historical BID/ASK + commission/slippage audit. 2026 blocked.
 - Active launcher: `tools\RUN_D017_BTC_SELL_2P5R_FTMO.cmd`.
+
+
+### 2026-09-23 — D017 BTC SELL +2.5R fails fresh 2023
+- Reviewed `GUARDIAN_D017_BTC_SELL_2P5R_FTMO_20260923-185749.zip`. FTMO-Demo BTCUSD, 2023-2025, 1-minute OHLC, protected_2026_accessed=false.
+- Frozen D017 BTC SELL Momentum +2.5R branch fails the fresh 2023 block: 74 SELL events, all 74 resolved, EV2.5 = -0.054054R, target-first rate 27.03%, month-block q10 = -0.269231R, p<=0 = 0.5964. Mean signal-time spread was ~9.05% of structural SL distance (~0.0905R), so there is no execution-cost cushion to rescue the already-negative path result.
+- FTMO 2024-2025 transport is only weakly positive: 996 SELL, 994 resolved, EV2.5 +0.031690R, q10 -0.026755R. 2024 +0.056110R; 2025 +0.015177R. This is materially weaker than the original seen FundedNext-style 2024/2025 clue and is not robust.
+- Close D017 BTC SELL +2.5R with no exact real-tick execution follow-up and no rescue tuning.
+- Next active test returns to D032 Bullish Doji Star H1 FTMO transport, already independently confirmed on pre-2024 CFD data. The question is feed/execution transport only; pattern/trend/horizon remain frozen. Active launcher: `tools\RUN_D032_FTMO_TRANSPORT.cmd`.
