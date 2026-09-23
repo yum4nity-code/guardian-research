@@ -869,3 +869,11 @@ Evidence:
 Doctrine V2: fresh-OOS-confirmed mini-edge candidate, not production ready.
 
 Execution economics remain unresolved because the historical gate used gross close-to-close returns and did not deduct weekend swap/carry, real bid/ask or slippage.
+
+
+## ChatGPT execution-audit note — 2026-09-23
+- Active auxiliary audit runner: `tools/RUN_V69_V112_EXECUTION_AUDIT_v1_02.cmd`.
+- Scope: V69 USDCHF Friday LONG and V112 AUDUSD H21 SHORT 120m execution economics on FTMO broker history, capped at 2025-12-31.
+- v1.02 fixes PowerShell/Python bootstrap failure from v1.01 and enforces an FTMO account guard.
+- No 2026 access, no retuning, no production promotion.
+- Next safe action for this audit: run v1.02 with only FTMO MT5 open, then review the resulting ZIP.
