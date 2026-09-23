@@ -447,7 +447,6 @@
       ],
       "highest_interest_reclassifications": [
         "EA01-XR-RSI-LONG-V1 XAU OOS 2023-2025",
-        "R5E-023 XAU M5",
         "D035-E1 causal BTC+ETH dual-source response",
         "D017 BTC SELL Momentum",
         "D025 ETH RETEST",
@@ -467,7 +466,8 @@
         "V93 BCO old timing-bug candidate",
         "F14-V2 after negative 2023-2025 OOS",
         "R13 failed-breakout noise",
-        "phase IF/IJ regime-flip candidates"
+        "phase IF/IJ regime-flip candidates",
+        "R5E-023 after protected Jan-Aug 2026 OOS FAIL / strong half-year regime reversal"
       ],
       "next": "Freeze a new doctrine separating edge existence, economic size, ensemble value and production gates before any research resumes.",
       "new_research_runs_authorized": false
@@ -507,6 +507,29 @@
       "interpretation": "Fresh OOS point estimate is positive and remains positive at the predeclared stress cost, but month-cluster uncertainty includes zero and the mean turns negative after removing the best 1-2% trades. Retain as mini-edge/ensemble candidate, not standalone edge.",
       "protected_2026": false,
       "new_research_runs_authorized": false
+    },
+    "r5e023_existing_protected_oos_review": {
+      "status": "CLOSED",
+      "source_branch": "backtest-results",
+      "protected_2026_already_opened_historically": true,
+      "oos_window": "2026-01-01 through 2026-08-31",
+      "trades": 89,
+      "full_E1": {
+        "expectancy": 0.3327940978175136,
+        "pf": 1.0255438570431983,
+        "net": 29.618674705758714
+      },
+      "full_STRESS": {
+        "expectancy": -2.001749161787509,
+        "pf": 0.8597568441860591,
+        "net": -178.1556753990883
+      },
+      "half1_E1_expectancy": 6.650916143230828,
+      "half2_E1_expectancy": -5.844925235475506,
+      "bootstrap_p05": -5.697311856885895,
+      "ex_best_positive_net": -74.46720370272479,
+      "verdict": "FAIL",
+      "interpretation": "Protected OOS shows regime reversal and failure after stress/best-trade removal. Do not revive."
     }
   }
 }
