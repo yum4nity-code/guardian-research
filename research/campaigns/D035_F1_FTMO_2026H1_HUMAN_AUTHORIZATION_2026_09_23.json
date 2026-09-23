@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "campaign": "D035-F1-FTMO-TRANSPORT-2026H1",
+  "date": "2026-09-23",
+  "authorized_by_owner": true,
+  "authorization_context": "User agreed to pivot D035 from FundedNext to FTMO after noting FundedNext crypto CFD spreads are very large.",
+  "scientific_status": "FRESH_TARGET_OUTCOME_TRANSPORT_CONFIRMATION",
+  "source_h1_event_count_already_seen": 254,
+  "ftmo_target_outcomes_seen": false,
+  "frozen": {
+    "target": "XLMUSD",
+    "calibration_symbol": "BTCUSD",
+    "direction": "SHORT",
+    "primary_horizon_minutes": 15,
+    "diagnostic_horizon_minutes": [
+      30
+    ],
+    "commission_rate_per_side": 0.000325,
+    "source_dual_window_minutes": 5,
+    "signal_time": "later/second BTC-or-ETH shock",
+    "window_start": "2026-01-01T00:00:00Z",
+    "window_end_exclusive": "2026-07-01T00:00:00Z"
+  },
+  "forbidden": [
+    "other targets",
+    "retuning",
+    "Jul-Dec 2026",
+    "live deployment"
+  ]
+}
