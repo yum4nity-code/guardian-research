@@ -413,6 +413,11 @@
     "status": "PAUSED_BY_OWNER",
     "reason": "Methodology review after concern that stacked significance gates may create excessive false negatives after large search universe.",
     "new_research_runs_authorized": false,
-    "protected_2026": false
+    "protected_2026": false,
+    "audit_result": {
+      "file": "research/results/GUARDIAN_FILTER_SEVERITY_AUDIT_2026_09_23.md",
+      "conclusion": "Large-edge production hurdles and repeated hard gates likely discarded several positive mini-edge candidates; genuine negative failures also exist.",
+      "next": "Redesign validation doctrine before resuming research."
+    }
   }
 }
