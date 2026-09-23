@@ -1015,3 +1015,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Direct Python FTMO transport was negative overall (307 executable events, -57.56 bp/event; pre-2024 -58.76 bp; 2024-2025 -52.81 bp), but this is provisional rather than the final canonical verdict.
 - Exact original D032 C1 scanner source has been recovered and committed. The direct reconstruction matches its frozen pattern/trend logic, but the Python transport omitted the original clean feed-gap/missing-horizon gate.
 - Final transport decision must come from the recovered scanner itself on FTMO. Active launcher: `tools/RUN_D032_EXACT_FTMO_PARITY.cmd`; BTC/ETH/DOG core, 1-minute OHLC, pre-2024 confirmation window, 2026 blocked.
+
+
+## D032 canonical FTMO rejection — 2026-09-23
+- Exact recovered D032 C1 scanner + canonical clean feed-gap gate on FTMO core gives pooled n=226, -62.208 bp/event, median -22.939 bp, -1.213R, q10 -111.319 bp, p<=0 0.9368.
+- Pooled same-trend control is -39.973 bp, so Doji-minus-control is -22.235 bp. BTC and DOGE are strongly negative; ETH is negative absolute but positive relative to an even worse control.
+- Historical D032 confirmation is preserved as feed-specific research evidence, but exact FTMO transport is CLOSED / REJECTED. No rescue or retuning.
+- Next: D035-F1 FTMO XLMUSD 2026-H1 under existing explicit authorization; primary +15m SHORT after frozen causal BTC+ETH dual shock, Jul-Dec 2026 blocked.
