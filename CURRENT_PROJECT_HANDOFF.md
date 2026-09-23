@@ -454,3 +454,51 @@ automation/Run-M5MotionTopologyM01M08Discovery.ps1
 Hard firewall:
 2012-2014 outcomes only.
 2015+ inaccessible in discovery engine.
+
+
+## M5 Motion Topology M01-M08 — DISCOVERY RESULT
+
+Run:
+GEFM5D-20260923-052315
+
+Result:
+- 291/291 variants materialized
+- 262 valid tests
+- 6 BH discoveries
+- all six discoveries are M04 correlation-break + recoupling
+- M01/M02/M03/M05/M06/M07/M08: zero BH discoveries
+- 2015+ remained unopened
+
+Frozen M04 survivors:
+- EURUSD <- UDXUSD rel -1 L15/H15
+- GBPUSD <- UDXUSD rel -1 L15/H15
+- GBPUSD <- UDXUSD rel -1 L30/H30
+- AUDUSD <- UDXUSD rel -1 L15/H15
+- AUDUSD <- UDXUSD rel -1 L30/H30
+- USDCHF <- UDXUSD rel +1 L15/H15
+
+Interpretation:
+these are six candidate manifestations of one shared UDX/FX correlation-break/recoupling family, not six independent economic discoveries.
+
+Parent survivor SHA256:
+ba4323dabdb2e43c2a86d1ff6be53297a41847e00017f2098f328998ba195bb6
+
+### 2015-2017 replication frozen before outcomes
+
+Exact six variants only.
+No retuning.
+Replication engine reconstructs 2011-2017 causal history for UDX/EUR/GBP/AUD/CHF, requires pre-2015 parity against the frozen discovery cache, and scores only 2015-2017.
+
+Replication gates:
+- >=100 events
+- >=60 UTC days
+- positive mean endpoint
+- one-sided cluster p <= 0.05
+- same exact M04 object
+- 2018+ hard forbidden
+
+Engine:
+scripts/gef_m5_motion_topology_m04_replication.py
+
+Runner:
+automation/Run-M5MotionTopologyM04Replication.ps1
