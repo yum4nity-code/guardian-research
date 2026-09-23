@@ -828,3 +828,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Audit may compute month-cluster uncertainty, LOO, trims, concentration, rolling windows and cumulative drawdown; it may not change any parameter/subgroup/horizon/cost or open 2026.
 - Runner: automation/Audit-EA01ExistingOOSV2.ps1.
 - No new alpha search or market-data run authorized.
+
+
+### 2026-09-23 — EA01 XAU RSI LONG V2 OOS audit completed
+- Exact hash and aggregate parity PASS on the existing 2023-2025 OOS ledger.
+- 654 non-overlap trades.
+- Cost0.10: +0.06216R/trade, PF1.08683; Cost0.20: +0.01576R/trade, PF1.02133.
+- All leave-one-year-out means positive; 66.7% positive months.
+- Month-cluster q10 lower bound remains negative (-0.02196R), so existence is POSITIVE_UNCERTAIN rather than confirmed.
+- Best-1% trim turns the mean negative; best-2% trim worsens it. Tail dependence is material.
+- Max cumulative drawdown at cost0.10 is -34.99R.
+- V2 labels: MINI_EDGE / STRESS_POSITIVE / NOT_PRODUCTION_READY.
+- Historical KILL is preserved. No parameter change, strategy rerun or protected-2026 access occurred.
