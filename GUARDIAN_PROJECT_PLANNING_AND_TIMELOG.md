@@ -869,3 +869,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Jul-Dec 2026, all other target CFDs, retuning and live deployment remain blocked.
 - Execution has not yet been reported complete in this control-plane update.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — D035-C1 initial run stopped; exact analyzer recovered
+- Initial C1 invocation stopped before any 2026-H1 result because the full historical D035 analyzer was absent locally and the repo path held only a continuity marker.
+- Recovered the original 2026-09-05 D035 PATCH v1.02 artifact from the user's prior file library.
+- Exact recovered v1.01 analyzer SHA256: 35e7579b25abebcdd32829168598f58cea4c835c30b0e02d9cdee882e4327168; syntax compile PASS.
+- Historical v1.00 SHA matched the previously recorded fa22fa6a7fe735436b381ef2ec7a58f7aed8e71d526e2b679073a6981dfad133.
+- Archived the exact v1.01 analyzer losslessly as gzip+base64 and changed the C1 runner to restore + hash-check it automatically.
+- Corrected exporter instructions to the frozen D035 Strategy Tester model: M1 / 1 minute OHLC.
+- No alpha rule, target, horizon, time window or gate changed.
+- No 2026-H1 result was computed during the failed invocation.
+- Human active time: NOT QUANTIFIED.
