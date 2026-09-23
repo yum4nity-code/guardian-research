@@ -986,3 +986,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Scope remains source/config/docs only; no parquet, market CSV, tick databases, MT5 history or protected 2026 market data are opened.
 - Next safe action: run `tools\RUN_COLLECT_V69_V112_ENGINE_SOURCE_SCAN_v1_01.cmd` and return the generated ZIP.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — Exact V69/V112 source semantics recovered; corrected FTMO audit prepared
+- Engine-source ZIP exposed the exact original code paths.
+- V69 semantics confirmed from `Run-GuardianEdgeFactoryV69.ps1`: canonical HistData M1 -> `resample("1D").last()` -> forward return to next available daily close -> filter `index.dayofweek == 4` (Friday) -> LONG. Therefore V69 is genuinely a Friday daily-close to next available daily-close trade, normally spanning the weekend. The prior temporary hypothesis that bucket 4 might mean Thursday->Friday is rejected.
+- V112 semantics confirmed from `gef_v112_calendar_locked_oos.py`: canonical HistData M1, raw timestamps shifted +5h to a fixed UTC timeline, 5-minute right-labelled/left-closed resampling, exact top-of-hour events, C3 = AUDUSD H21, 120m, SHORT. No Mon-Thu eligibility rule exists; n=556 comes from actual source timestamp availability.
+- Root cause of v1.02 parity failure identified: it regenerated candidate populations from FTMO bars instead of preserving the original HistData event population/timestamp semantics.
+- Added exact-source audit tooling: `tools/guardian_v69_v112_exact_source_ftmo_audit_v1_00.py`, `tools/GUARDIAN_V69_V112_EXACT_SOURCE_FTMO_AUDIT_v1_00.ps1`, and `tools/RUN_V69_V112_EXACT_SOURCE_FTMO_AUDIT.cmd`.
+- New audit first reproduces exact source parity against V69 n=155/+4.639075 bps and V112 C3 n=556/+1.455235 bps. MT5/FTMO execution pricing is aborted unless both parity checks pass. Only then are original frozen events priced on FTMO BID/ASK. 2026 remains hard-blocked.
+- Historical swap is deliberately not invented. V69 is explicitly marked as a weekend-hold strategy requiring separate carry/swap economics after spread. Current FTMO symbol metadata is captured for context.
+- Human active time: NOT QUANTIFIED.
