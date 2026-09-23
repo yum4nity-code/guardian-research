@@ -650,7 +650,7 @@
       "live_deployment_authorized": false
     },
     "d035_e1_multi_asset_dd": {
-      "status": "COMPLETE_READ_ONLY_AUDIT",
+      "status": "PARKED_FOR_EXPANSION_TESTS",
       "source": "D35 CASUAL.zip / D035_E1_EVENT_TARGET_RETURNS.csv",
       "n_common_events": 870,
       "correlations": {
@@ -673,7 +673,70 @@
         "worst_prague_day_bps": -349.588447265872
       },
       "historical_portfolio_preference": "BTC+ETH equal-weight",
-      "caveat": "Retrospective same-sample portfolio built from diagnostic BTC/ETH rows; prioritize forward/fresh testing rather than claim independent confirmation."
+      "caveat": "Retrospective same-sample portfolio built from diagnostic BTC/ETH rows; prioritize forward/fresh testing rather than claim independent confirmation.",
+      "next_tests": [
+        "Apply the frozen D035 causal BTC+ETH event to non-crypto targets (XAUUSD, major equity indices, FX) without changing event definition.",
+        "Measure target response horizons and cross-target PnL correlations.",
+        "Recompute portfolio max drawdown and sizing after adding only genuinely diversifying positive targets."
+      ],
+      "do_not_do": [
+        "Do not retune the BTC+ETH source event on 2024-2025.",
+        "Do not treat the historical BTC+ETH portfolio audit as fresh confirmation.",
+        "Do not add XLM automatically; historical same-event portfolio audit showed it worsened the basket."
+      ]
+    },
+    "mini_edge_extraction_batch_2": {
+      "status": "EXTRACTED_FROM_20260923_ZIP",
+      "source_archive": "GUARDIAN_MINI_EDGE_AUDIT_20260923-073103.zip",
+      "candidates": [
+        {
+          "id": "D017_BTC_SELL_MOMENTUM",
+          "evidence": "2024 n359 EV2.5 +0.150R / EV3 +0.170R; 2025 n402 EV2.5 +0.114R / EV3 +0.085R; pooled n761 EV2.5 +0.131R / EV3 +0.125R; native descriptive manager +0.109R pooled with 2024 +0.112R and 2025 +0.106R.",
+          "status": "PRESERVE_FOR_PROSPECTIVE_VALIDATION",
+          "caveat": "Pre-cost; broad D017 failed. Only predeclared BTC SELL branch is retained."
+        },
+        {
+          "id": "D025_ETH_RETEST",
+          "evidence": "EV2 2024 +0.084R; 2025 +0.109R; Jun-Jul 2026 +0.588R; pooled 704 trades EV2 +0.133R; resolved +2R hit rate 37.78%, Wilson 95% approx 34.18%-41.52% above 33.33% pre-cost break-even.",
+          "status": "PRESERVE_FOR_PROSPECTIVE_VALIDATION",
+          "caveat": "Pre-cost path signal; 2026 segment is small/partial."
+        },
+        {
+          "id": "D025_EURUSD_SHORT_2R",
+          "evidence": "2024 SHORT n179 EV2 +0.146R; 2025 n158 EV2 +0.122R; pooled 337 total, 280 resolved, EV2 +0.136R; tiny Jun-Jul 2026 SHORT n22 EV2 +0.263R.",
+          "status": "PRESERVE_FOR_PROSPECTIVE_VALIDATION",
+          "caveat": "Monthly cluster interval crosses zero and costs not deducted."
+        },
+        {
+          "id": "V111_XAGUSD_H11_60M_SHORT",
+          "evidence": "n1289 mean +3.126bp, net1bp +2.126, LOO min +2.707, month bootstrap q2.5 +1.164; failed only trim5 gate under old strict pre-OOS doctrine.",
+          "status": "V2_MINI_EDGE_CANDIDATE_UNCONSUMED",
+          "caveat": "Pre-OOS 2018-2022 only; protected 2023-2025/2026 not opened by V111."
+        },
+        {
+          "id": "V111_USDCHF_H22_240M_LONG",
+          "evidence": "n1047 mean +1.693bp, net1bp +0.693, trim5 +0.463, LOO min +1.080, bootstrap q2.5 +0.956; failed one -5m timing-shift gate.",
+          "status": "V2_MINI_EDGE_CANDIDATE_UNCONSUMED",
+          "caveat": "Timing-shift fragility; pre-OOS only."
+        },
+        {
+          "id": "V111_AUDUSD_H21_240M_SHORT",
+          "evidence": "n1033 mean +1.304bp, net1bp +0.304, LOO min +1.033, bootstrap q2.5 +0.542; failed trim5 gate.",
+          "status": "V2_MINI_EDGE_CANDIDATE_UNCONSUMED",
+          "caveat": "Tail sensitivity; pre-OOS only."
+        },
+        {
+          "id": "V111_EURUSD_H11_120M_SHORT",
+          "evidence": "n1295 mean +1.628bp, net1bp +0.628, LOO min +1.180, bootstrap q2.5 +0.759; failed trim5 gate.",
+          "status": "V2_MINI_EDGE_CANDIDATE_UNCONSUMED",
+          "caveat": "Tail sensitivity; pre-OOS only."
+        }
+      ],
+      "explicitly_not_promoted": [
+        "D030 ETH H4 engulfing: independent PRE2024 confirmation failed 2/6 gates, mean +0.0396R, bootstrap lower <0, clean no-gap subset ~+0.0127R.",
+        "D025 XAU and USDJPY broad branches: replication negative/flat.",
+        "D017 broad BTC+ETH Momentum: fails large-edge standard; only BTC SELL branch retained."
+      ]
     }
   }
 }
