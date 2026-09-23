@@ -430,6 +430,47 @@
       "research_rerun": false,
       "market_data_modified": false,
       "next": "Upload ZIP to ChatGPT for exhaustive candidate deduplication and review."
+    },
+    "full_mini_edge_audit": {
+      "status": "COMPLETE",
+      "file": "research/results/GUARDIAN_MINI_EDGE_FULL_AUDIT_2026_09_23.md",
+      "extraction": {
+        "files_inspected": 2149,
+        "metric_observations": 8654240,
+        "auto_flags": 924,
+        "errors": 0
+      },
+      "conclusion": "Guardian repeatedly conflated standalone-production hurdles with edge existence. Archive contains confirmed phenomena plus several positive mini-edge candidates that were killed/under-classified by PF, magnitude, trade-count, robustness or repeated-significance gates. Many other families remain genuine rejects after timing/event-unit/fresh-OOS repairs.",
+      "already_confirmed": [
+        "V112 AUDUSD H21 120m SHORT",
+        "D032-C1 Bullish Doji Star H1 entry"
+      ],
+      "highest_interest_reclassifications": [
+        "EA01-XR-RSI-LONG-V1 XAU OOS 2023-2025",
+        "R5E-023 XAU M5",
+        "D035-E1 causal BTC+ETH dual-source response",
+        "D017 BTC SELL Momentum",
+        "D025 ETH RETEST",
+        "D025 EURUSD SHORT +2R",
+        "ATLAS-IV A4_02_REALIZED_SKEW_REVERSAL covariate",
+        "V111 C1/C5/C7/C8 pre-OOS calendar candidates"
+      ],
+      "weak_covariate_only": [
+        "M04 AUDUSD/UDX L15",
+        "M04 GBPUSD/UDX L15",
+        "D030 ETH H4 Engulfing",
+        "D034 XAU abnormal return"
+      ],
+      "do_not_revive": [
+        "V102/V103 rates carried-row lineages without new event-level design",
+        "V104/V105 CFTC carried-row lineages",
+        "V93 BCO old timing-bug candidate",
+        "F14-V2 after negative 2023-2025 OOS",
+        "R13 failed-breakout noise",
+        "phase IF/IJ regime-flip candidates"
+      ],
+      "next": "Freeze a new doctrine separating edge existence, economic size, ensemble value and production gates before any research resumes.",
+      "new_research_runs_authorized": false
     }
   }
 }
