@@ -564,6 +564,35 @@
       "human_gate_required": true,
       "accessed_2026h1": false,
       "next": "Owner explicitly authorizes opening 2026-H1 under frozen D035-C1 V2 preregistration, or keep reserved."
+    },
+    "d035_c1_2026h1": {
+      "status": "HUMAN_AUTHORIZED_READY_TO_RUN",
+      "authorization": "research/campaigns/D035_C1_2026H1_HUMAN_AUTHORIZATION_2026_09_23.json",
+      "preregistration": "research/campaigns/D035_C1_2026H1_FRESH_CONFIRMATION_PREREG_V2_2026_09_23.md",
+      "engine": "scripts/run_d035_c1_fresh_2026h1_v2.py",
+      "runner": "automation/Run-D035C1Fresh2026H1V2.ps1",
+      "frozen": {
+        "sources": [
+          "BTCUSDT",
+          "ETHUSDT"
+        ],
+        "dual_window_minutes": 5,
+        "signal_time": "later/second source shock",
+        "target": "XLMUSD",
+        "direction": "SHORT",
+        "primary_horizon_minutes": 15,
+        "diagnostic_horizon_minutes": [
+          30
+        ],
+        "window": "2026-01-01 through 2026-06-30"
+      },
+      "scope_guards": {
+        "jul_dec_2026": "BLOCKED",
+        "other_target_cfds": "BLOCKED",
+        "retuning": "BLOCKED",
+        "live_deployment": "BLOCKED"
+      },
+      "result": null
     }
   }
 }
