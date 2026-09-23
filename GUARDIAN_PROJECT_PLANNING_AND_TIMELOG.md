@@ -1142,3 +1142,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Next priority moved outside V111 to D032 Bullish Doji Star H1, already independently confirmed under its frozen pre-2024 core gate. Added a dedicated FTMO feed/execution transport audit with no pattern/trend/horizon retuning.
 - D032 transport runner reconstructs the frozen TA-Lib-default-equivalent Bullish Doji Star + strict falling SMA144 signal directly on FTMO H1 bars, tries BTCUSD/ETHUSD/DOGUSD aliases, executes LONG first ASK at signal close to first BID exactly +24h, reports PRE2024 and 2024-2025 transport separately, and hard-blocks 2026.
 - Active launcher: `tools\RUN_D032_FTMO_TRANSPORT.cmd`.
+
+
+### 2026-09-23 — D025 ETH RETEST queued after D032
+- Next preserved mini-edge candidate prepared: D025 ETHUSD RETEST, fixed +2R versus original structural -1R stop. Historical descriptive evidence was ~+0.084R in 2024, +0.109R in 2025 and +0.588R in the small Jun-Jul 2026 block; pooled descriptive EV2 ~+0.133R before full execution costs.
+- Because the original FundedNext D025 lineage had unresolved historical tick-volume/feed provenance, the new test does not force population parity. It reruns the exact frozen D025 V0 state machine on the currently connected FTMO feed.
+- Evidence split is frozen before outcome: FTMO 2023 is the fresh temporal test; 2024-2025 is transport/replication only because those years informed branch selection. 2026 is blocked.
+- Uses the existing D025_LER_VirtualPath_1_03 signal/path engine, ETHUSD only, RETEST only, target +2R, structural stop -1R, 48h first-touch convention. No threshold/path/side/target rescue is allowed.
+- First stage uses 1-minute OHLC for speed because D025 is closed-bar M15/H1/H4 logic with M1 path telemetry; if the branch survives, exact real-tick BID/ASK + commission is a separate production-readiness stage.
+- Active launcher: `tools\RUN_D025_ETH_RETEST_FTMO.cmd`.
