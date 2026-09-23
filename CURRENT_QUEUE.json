@@ -1371,5 +1371,23 @@
     },
     "decision": "PRESERVE_AS_INTERESTING_CONDITIONAL_PHENOMENON_AND_ENSEMBLE_CANDIDATE; DO_NOT_DEPLOY_STANDALONE; NO_RESCUE_RETUNING",
     "next": "Return deployment-oriented priority to V111 C8 EURUSD H11 SHORT 120m production-readiness / forward-shadow work unless owner chooses ensemble diagnostics first."
+  },
+  "v111_c8_eurusd_production_readiness": {
+    "status": "READY_ANALYZE_ONLY",
+    "preregistration": "research/campaigns/V111_C8_EURUSD_H11_120M_PRODUCTION_READINESS_PREREG_2026_09_23.md",
+    "analyzer": "tools/analyze_v111_c8_eurusd_production_readiness_v1_00.py",
+    "runner": "tools/GUARDIAN_V111_C8_EURUSD_PRODUCTION_READINESS_v1_00.ps1",
+    "launcher": "tools/RUN_V111_C8_EURUSD_PRODUCTION_READINESS.cmd",
+    "reuse_existing_2023_2025_execution_ledger": true,
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED",
+    "official_current_facts": {
+      "forex_commission_usd_per_lot_per_side": 2.5,
+      "volume_bands_all_accounts_since": "2026-04-20",
+      "evaluation_news_restriction": "NONE_FOR_SELECTED_NEWS",
+      "standard_ftmo_account_news_restriction": "-2m to +2m around selected targeted releases",
+      "swing_news_restriction": "NONE"
+    },
+    "next": "Run analyze-only production-readiness audit. If FRAGILE_FORWARD_SHADOW or better, preserve exact rule for forward shadow; do not open 2026 historical data."
   }
 }
