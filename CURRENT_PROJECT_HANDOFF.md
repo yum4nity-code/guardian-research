@@ -644,3 +644,20 @@ automation/Freeze-M04Pre2023Reference.ps1
 
 Locked OOS runner:
 automation/Run-M5MotionTopologyM04LockedOOS.ps1
+
+
+### M04 pre-2023 reference frozen — locked OOS ready
+Reference run:
+GEFM5LREF-20260923-061953
+
+- 1,262,304 rows
+- EURUSD/AUDUSD corr_break and corr_break_z vs UDXUSD
+- SHA256: c5d64fa7d7e375fa1434a4989317c7b2eff92d0239e7a6c48709bd42d6c90c23
+- validation aggregate parity PASS for both locked candidates
+- floating-point differences only
+- no 2023-2025 access
+- no 2026 access
+
+Locked OOS 2023-2025 is cleared to run for:
+- EURUSD <- UDXUSD L15/H15
+- AUDUSD <- UDXUSD L15/H15
