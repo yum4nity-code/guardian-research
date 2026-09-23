@@ -555,3 +555,16 @@ No TP/SL/session/cost optimization.
 
 2023-2025 remains locked.
 2026 remains protected.
+
+
+### M04 validation gate correction before 2018-2022 access
+The initially added hard validation gates (4/5 positive years, LOO positivity, trim-best positivity and 3/5 family threshold) were removed before any 2018-2022 outcome access because they were stricter than the original M5 validation philosophy and would move the rejection threshold after replication.
+
+Hard pass/fail now only requires:
+- >=250 episodes
+- >=150 UTC days
+- mean endpoint_score > 0
+- one-sided cluster-robust p <= 0.05
+
+Annual means, leave-one-year-out, trim-best 1%/2% and +/-60m placebos remain mandatory diagnostics only.
+No new family-level mechanical threshold.
