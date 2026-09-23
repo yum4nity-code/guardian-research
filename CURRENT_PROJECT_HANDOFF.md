@@ -956,3 +956,9 @@ Execution economics remain unresolved because the historical gate used gross clo
 - V2 existence = POSITIVE_UNCERTAIN because month-bootstrap q10 = -0.209773 bp. Tail dependence is strong: trim-best-1% turns negative (-0.305509 bp).
 - Source proxy remains barely positive after nominal 1 bp (+0.189686 bp) and negative after 2 bp.
 - Next active tool: `tools/RUN_V111_C1_XAGUSD_FTMO_EXECUTION_AUDIT.cmd`. It first aligns XAGUSD FTMO clock by price proximity only, then executes first tick at/after mapped H11/H12, SHORT bid->ask. 2026 remains blocked and no retuning is allowed.
+
+
+## XAGUSD C1 execution rejected; EURUSD next — 2026-09-23
+- XAGUSD C1: alignment +2h, 705/705 coverage, source-vs-FTMO gross correlation 0.943, FTMO BID gross +1.201 bp but bid/ask executable -4.965 bp/trade. 2023/2024/2025 all negative. Exact frozen implementation is EXECUTION_REJECTED_FTMO.
+- Next frozen candidate: V111 EURUSD H11 SHORT 120m. Active launcher: `tools/RUN_V111_EURUSD_H11_120M_OOS_FTMO.cmd`.
+- Pipeline opens only 2023-2025 source OOS first. If fresh mean >0, it automatically proceeds to a separate fixed FTMO alignment/execution stage without retuning. 2026 remains blocked.
