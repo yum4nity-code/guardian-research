@@ -903,3 +903,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Scientific caveat recorded: 254 2026-H1 source events were already counted operationally; FTMO XLM target outcomes remain unopened.
 - No other target, Jul-Dec 2026, retuning or live deployment is authorized.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — D035-E1 multi-asset portfolio DD audit
+- Recovered the original returned D35 CASUAL.zip and audited the event-level 2024-2025 D035-E1 ledger.
+- 870 common BTCUSD/ETHUSD/XLMUSD executable +15m events.
+- Event correlations are high: BTC/ETH 0.840, BTC/XLM 0.752, ETH/XLM 0.797.
+- BTC+ETH equal-weight: +12.694 bps/event, max cumulative DD -908.18 bps, worst event -403.62 bps, worst Prague day -277.10 bps, max losing run 7.
+- BTC+ETH+XLM equal-weight: +10.698 bps/event, max cumulative DD -924.55 bps, worst event -450.72 bps, worst Prague day -349.59 bps, max losing run 11.
+- XLM is individually positive but does not improve this same-event portfolio; historically BTC+ETH is the cleaner basket.
+- At 0.50x total gross exposure, historical compounded max DD is about -4.47% for BTC+ETH and -4.56% for BTC+ETH+XLM.
+- Scientific caveat: BTC/ETH were same-sample diagnostics, so this is portfolio discovery/prioritization, not fresh confirmation.
+- Human active time: NOT QUANTIFIED.
