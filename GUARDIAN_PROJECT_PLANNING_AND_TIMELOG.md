@@ -1028,3 +1028,13 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - 2026 remains hard-blocked. No strategy definition, sample, signal, or cost threshold is changed.
 - Next safe action: run `tools\RUN_V69_V112_FTMO_TIME_ALIGNMENT_FORENSIC.cmd`, return its ZIP, then price the exact frozen events at the empirically aligned timestamps.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — Time-alignment forensic result; session-aligned execution audit prepared
+- Reviewed GUARDIAN_V69_V112_TIME_ALIGNMENT_20260923-152606.zip.
+- V112 alignment is now strong and unambiguous: fixed +2h FTMO-clock offset selected by source-vs-FTMO price proximity only; 540/556 coverage (97.12%), median absolute two-leg price difference 0.5789 bp, source-vs-FTMO return correlation 0.9376, and FTMO BID gross mean +2.0337 bp versus source +1.4552 bp. This validates the clock mapping sufficiently for a spread-aware execution test.
+- V69 fixed-hour alignment is not appropriate. +1h gives 145/155 coverage but only 0.675 return correlation and 6.83 bp median two-leg price mismatch; +2h gives much tighter price match but only 22/155 coverage. Event-level inspection shows the source Friday close timestamp itself varies (mostly 21:59, sometimes 20:59/19:59/18:59), while the matched FTMO structural entry clusters around the same weekly close boundary. Therefore V69 must be mapped structurally by weekend market closure/reopen, not a fixed timezone offset.
+- Important semantic correction: V69's next available daily close is overwhelmingly Sunday in the source, not Monday: 150/155 exits are Sunday and 5/155 Monday. The strategy is effectively last Friday quote -> roughly the first 1-2 hours after Sunday reopen, not Friday -> Monday daily close.
+- Added tools/guardian_v69_v112_session_aligned_execution_audit_v1_00.py plus PowerShell/CMD launchers. V69 maps FTMO entry to the last M1 before the >=24h weekend no-quote gap and exit to the same number of minutes after FTMO reopen as in the source. V112 uses the forensic +2h clock alignment. Both are then priced bid/ask with tick-first, M1-spread fallback. 2026 remains blocked.
+- Historical swap is still not invented; current FTMO symbol swap metadata is captured for context only.
+- Human active time: NOT QUANTIFIED.
