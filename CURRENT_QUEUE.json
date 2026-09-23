@@ -607,6 +607,19 @@
         "recovery_note": "research/results/D035_ANALYZER_EXACT_RECOVERY_2026_09_23.md",
         "runner_updated": true,
         "export_model": "1 minute OHLC"
+      },
+      "last_attempt": {
+        "status": "BLOCKED_BY_STALE_CFD_EXPORTS",
+        "source_events_detected": 254,
+        "utc_alignment_usable_weeks": 9,
+        "utc_alignment_total_weeks": 114,
+        "result_computed": false,
+        "interpretation": "Runner selected historical 2023-2025 BTCUSD/XLMUSD exports. UTC calibration correctly failed because overlap with 2026-H1 source window was insufficient. No C1 result exists."
+      },
+      "runner_fix": {
+        "commit": "ce4832a18df1be19fc6bc788e8e0fcc4cfcc44e5",
+        "behavior": "Select MT5 exports by actual CSV coverage and reject files not covering 2026-H1.",
+        "next": "Export BTCUSD and XLMUSD with D035_CFD_M1_Exporter_v1_01.mq5 for 2026-01-01 through 2026-07-01 using M1 / 1 minute OHLC, then rerun."
       }
     }
   }
