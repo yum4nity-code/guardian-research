@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-23",
+  "status": "FROZEN",
+  "source_v111_run": "GEF111-20260922-163321",
+  "candidate": {
+    "market": "USDCHF",
+    "cell_type": "hour",
+    "hour": 22,
+    "horizon_min": 240,
+    "orientation": 1,
+    "direction": "LONG",
+    "expected_preoos_n": 1047
+  },
+  "source_semantics": {
+    "raw": "HistData M1",
+    "vendor_to_pseudo_utc_offset_hours": 5,
+    "resample": "5min label=right closed=left"
+  },
+  "oos": {
+    "start": "2023-01-01T00:00:00",
+    "end_exclusive": "2026-01-01T00:00:00"
+  },
+  "ftmo_if_positive": {
+    "offsets_hours": [
+      -8,
+      -7,
+      -6,
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "selection": ">=90% two-leg M1 coverage then minimum median absolute source-vs-FTMO price difference",
+    "execution": "first tick at/after mapped entry/exit boundaries; LONG ask->bid"
+  },
+  "blocked": [
+    "2026 raw data",
+    "retuning",
+    "alternate hour",
+    "alternate horizon",
+    "alternate market",
+    "alternate direction",
+    "PnL-based alignment",
+    "rescue filtering"
+  ]
+}
