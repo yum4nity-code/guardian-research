@@ -976,3 +976,9 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Next frozen candidate: USDCHF H22 LONG 240m (V111, expected pre-OOS n=1047).
 - Active launcher: `tools/RUN_V111_USDCHF_H22_240M_OOS_FTMO.cmd`.
 - Pipeline: exact 2023-2025 OOS first; if mean >0, automatic FTMO price-alignment + first-tick LONG ask->bid execution audit. 2026 blocked; no retuning.
+
+
+## AUDUSD H21 240m endpoint next — 2026-09-23
+- USDCHF H22 LONG 240m closed after negative fresh OOS; FTMO stage not run.
+- Next: V111 AUDUSD H21 SHORT 240m. This is an endpoint-extension test because the H21 120m family endpoint was already opened in V112.
+- Active launcher: `tools/RUN_V111_AUDUSD_H21_240M_OOS_FTMO.cmd`. 2026 blocked; no retuning.
