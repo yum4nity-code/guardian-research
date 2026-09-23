@@ -32,7 +32,7 @@ Interpretation:
 - preserve exact timing; do not retune
 
 ### 2) D035-E1 / D035-F1 — causal BTC+ETH dual shock -> XLMUSD SHORT
-Status: **HIGH-INTEREST PENDING FRESH FTMO TARGET OUTCOME**
+Status: **KEEP — FTMO FRESH RESULT POSITIVE_UNCERTAIN / MINI-EDGE**
 
 Frozen rule:
 - causal BTCUSDT + ETHUSDT downside/OI shock within <=5m
@@ -51,11 +51,21 @@ Historical evidence:
 - differential bootstrap roughly [+8.793,+18.302] bp
 - 2024 +4.104 bp; 2025 +9.935 bp
 
-Next:
-- D035-F1 FTMO 2026-H1 fresh target-outcome transport confirmation
-- already explicitly authorized and preregistered
-- XLMUSD target outcomes still unopened before this test
-- no retuning; Jul-Dec 2026 and other targets blocked
+Fresh FTMO 2026-H1 result:
+- 254 source events; 245 executable +15m target events
+- gross executable +15m +6.639 bp
+- net after FTMO commission +0.141 bp
+- matched control -11.880 bp
+- event-control differential +12.416 bp
+- bootstrap q10 -5.856 bp; P(mean<=0) 0.483
+- trim best 1% -> -2.640 bp
+- +30m diagnostic -8.769 bp
+
+Interpretation:
+- conditional/relative phenomenon remains interesting
+- current exact FTMO implementation is economically too thin standalone
+- retain for ensemble/incremental-value research
+- no retuning; Jul-Dec 2026 and other targets remain blocked
 
 ### 3) EA01-XR-RSI-LONG-V1 — XAU RSI long
 Status: **PRESERVE FOR ENSEMBLE / MINI-EDGE RESEARCH**
