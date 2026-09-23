@@ -1045,7 +1045,7 @@
     "conclusion": "CLOSE_NO_RESCUE"
   },
   "v111_audusd_h21_240m_oos_ftmo": {
-    "status": "READY_TO_RUN_ENDPOINT_EXTENSION",
+    "status": "CLOSED_ENDPOINT_NEGATIVE",
     "preregistration": "research/campaigns/V111_AUDUSD_H21_240M_OOS_FTMO_PREREG_2026_09_23.md",
     "spec": "research/campaigns/V111_AUDUSD_H21_240M_OOS_FTMO_SPEC_2026_09_23.json",
     "engine": "tools/guardian_v111_audusd_h21_240m_oos_ftmo_v1_00.py",
@@ -1060,6 +1060,43 @@
       "expected_preoos_n": 1033
     },
     "scientific_caveat": "AUDUSD H21 family 120m endpoint was already opened in V112; 240m is endpoint-extension evidence, not fully independent family confirmation.",
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED",
+    "result": {
+      "candidate_id": "C7",
+      "n": 560,
+      "mean_bp": -0.24029335370937385,
+      "control_mean_bp": 0.09135602641083383,
+      "effect_bp": -0.33164938012020767,
+      "median_bp": -0.6146104441207001,
+      "win_rate": 0.4714285714285714,
+      "trim1_mean_bp": -0.95643142967943,
+      "trim2_mean_bp": -1.3737120756980308,
+      "trim5_mean_bp": -2.0932098505094356,
+      "yearly_mean_bp": {
+        "2023": -1.3859580446413264,
+        "2024": 0.4240954708300074,
+        "2025": -0.07279660653321966
+      },
+      "loo_min_bp": -0.6239545059081716,
+      "bootstrap_q10_bp": -1.003983246090983,
+      "v2_endpoint_label": "NEGATIVE",
+      "ftmo_execution": "NOT_RUN_SOURCE_MEAN_NONPOSITIVE",
+      "protected_2026_accessed": false
+    },
+    "conclusion": "CLOSE_NO_RESCUE"
+  },
+  "d032_ftmo_transport_24h": {
+    "status": "READY_TO_RUN",
+    "purpose": "Transport already-confirmed D032 Bullish Doji Star H1 entry to FTMO feed/execution without retuning.",
+    "window": "2019-01-01 through 2025-12-31, split PRE2024 vs 2024-2025; 2026 blocked",
+    "core_symbols": [
+      "BTCUSD",
+      "ETHUSD",
+      "DOGUSD/DOGEUSD if available"
+    ],
+    "frozen_signal": "TA-Lib-default-equivalent Bullish Doji Star H1 + strict falling SMA144 over 7 consecutive values",
+    "execution": "LONG first ASK at/after H1 signal close -> first BID at/after +24h",
     "protected_2026": "BLOCKED",
     "retuning": "BLOCKED"
   }
