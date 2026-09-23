@@ -1086,3 +1086,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - No locked OOS market data was opened and no result was computed.
 - Added ASCII-only versioned runner `automation/Run-V111C1XAGUSDLockedOOSV2_v1_01.ps1` and launcher `tools/RUN_V111_C1_XAGUSD_LOCKED_OOS_V2_v1_01.cmd`.
 - Scientific protocol is unchanged: exact frozen V111 C1, XAGUSD H11 SHORT 60m, 2023-2025 only, 2026 blocked, no retuning.
+
+
+### 2026-09-23 — V111-C1 XAGUSD fresh 2023-2025 OOS result
+- Reviewed `GUARDIAN_V111_C1_XAGUSD_LOCKED_OOS_V2_20260923-164322.zip`. Provenance checks all passed and 2026_accessed=false.
+- Frozen candidate: V111 C1, XAGUSD H11 SHORT, 60m horizon.
+- Fresh OOS 2023-2025: n=705, mean +1.189686 bp/event, median +0.438770 bp, win rate 50.50%. Control mean -0.435613 bp, candidate-control effect +1.625299 bp.
+- Yearly means: 2023 +1.709969 bp; 2024 +0.327783 bp; 2025 +1.675807 bp. Leave-one-year-out minimum +0.909105 bp.
+- Nominal source-cost sensitivity: after 1 bp +0.189686 bp; after 2 bp -0.810314 bp; after 3 bp -1.810314 bp.
+- Tail dependence is material: trim-best-1% = -0.305509 bp; trim-best-2% = -1.050874 bp; trim-best-5% = -2.802826 bp; remove best 10 = -0.541646 bp; remove best 20 = -1.496369 bp. In the emitted ledger, the top 1% (8 events) contribute more than the total cumulative gross PnL.
+- Month-block bootstrap q10 = -0.209773 bp and q2.5 = -0.962029 bp. Doctrine V2 existence label = POSITIVE_UNCERTAIN, not POSITIVE_CONFIRMED.
+- Per frozen protocol, because the fresh mean is positive, next step is execution audit without signal retuning. Added frozen XAGUSD FTMO alignment/execution audit. Alignment offset is selected solely by source-vs-FTMO price proximity with >=90% coverage, never by PnL; causal execution is first tick at/after mapped H11/H12 boundaries, SHORT bid->ask.
+- Active launcher: `tools\RUN_V111_C1_XAGUSD_FTMO_EXECUTION_AUDIT.cmd`.
