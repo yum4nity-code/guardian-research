@@ -584,3 +584,33 @@ GEFM5P-20260923-055333
 2018-2022 validation engine v1.1 is now cleared to run.
 2023-2025 remains locked.
 2026 remains protected.
+
+
+## M04 2018-2022 VALIDATION RESULT
+
+Run:
+GEFM5V-20260923-055623
+
+Primary validation passes under the amended simple gates:
+- EURUSD <- UDXUSD rel -1 L15/H15
+  - N 1,718 / 409 days
+  - mean endpoint +0.148072
+  - p_one 0.001598
+- AUDUSD <- UDXUSD rel -1 L15/H15
+  - N 3,395 / 1,109 days
+  - mean endpoint +0.067403
+  - p_one 0.046833
+
+Failed:
+- GBPUSD L15: positive mean but p=0.053625
+- GBPUSD L30: p=0.192687
+- USDCHF L15: p=0.389629
+
+Diagnostics:
+- EURUSD remains positive after trimming the best 1% and 2% of endpoint events.
+- AUDUSD becomes negative after trim-best 1% and 2%, indicating tail sensitivity.
+- -60m placebo is also positive for EURUSD and AUDUSD, so the effect appears broader than a razor-thin event timestamp.
+- EURUSD validation event counts are highly concentrated in 2018; later years are sparse. This is a diagnostic caveat, not a post-hoc hard fail.
+
+No 2023-2025 or 2026 access.
+Human gate required before any locked OOS.
