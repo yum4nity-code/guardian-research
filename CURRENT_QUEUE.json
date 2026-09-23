@@ -737,6 +737,63 @@
         "D025 XAU and USDJPY broad branches: replication negative/flat.",
         "D017 broad BTC+ETH Momentum: fails large-edge standard; only BTC SELL branch retained."
       ]
+    },
+    "v69_usdchf_friday_long": {
+      "status": "CONFIRMED_FRESH_OOS_MINI_EDGE_CANDIDATE",
+      "canonical_report": "research/results/V69_USDCHF_FRIDAY_LONG_V2_RECLASSIFICATION_2026_09_23.md",
+      "family": "04_INTRADAY_CALENDAR_STRUCTURE",
+      "candidate": {
+        "market": "USDCHF",
+        "mechanism": "weekday",
+        "weekday_bucket": 4,
+        "weekday": "Friday",
+        "direction": "LONG",
+        "entry_reference": "Friday daily close",
+        "exit_reference": "next available daily close"
+      },
+      "evidence": {
+        "validation_2018_2022": {
+          "n": 259,
+          "mean_gross_bps": 5.554354623286896,
+          "hit_rate_pct": 66.795,
+          "positive_year_fraction": 1,
+          "trim_best_1pct_bps": 4.944184056316819,
+          "trim_best_2pct_bps": 4.449186477586461,
+          "remove_best_5_events_bps": 4.605759763813159,
+          "pass": true
+        },
+        "locked_oos_2023_2025": {
+          "n": 155,
+          "mean_gross_bps": 4.639075481195655,
+          "hit_rate_pct": 69.6774193548387,
+          "positive_year_fraction": 1,
+          "trim_best_1pct_bps": 4.069423944243488,
+          "trim_best_2pct_bps": 3.652713912442217,
+          "remove_best_5_events_bps": 3.4669865589828244,
+          "yearly_bps": {
+            "y2023": 1.4293421155293071,
+            "y2024": 5.945546605026455,
+            "y2025": 6.480612081383772
+          },
+          "pass": true
+        }
+      },
+      "doctrine_v2": {
+        "existence": "FRESH_OOS_CONFIRMED",
+        "economics": "MINI_EDGE_CANDIDATE",
+        "ensemble": "NOT_TESTED",
+        "production": "NOT_PRODUCTION_READY"
+      },
+      "caveats": [
+        "Gross close-to-close returns; realistic spread/slippage/swap/commission not yet deducted.",
+        "Weekend holding/roll economics are material.",
+        "2026 remains unopened."
+      ],
+      "next": [
+        "Audit drawdown and loss clustering from existing 2023-2025 OOS ledger.",
+        "Reconstruct execution-correct FTMO Friday-close to next-close returns including spread and weekend carry.",
+        "Measure portfolio correlation/incremental value against existing edges."
+      ]
     }
   }
 }
