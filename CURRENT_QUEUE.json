@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-23",
-  "active_primary": "M5-MOTION-TOPOLOGY-M04-LOCKED-OOS-2023-2025-READY",
+  "active_primary": "M5-MOTION-TOPOLOGY-NEXT-LINEAGE",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -193,7 +193,7 @@
     },
     {
       "id": "M5-MOTION-TOPOLOGY-V1",
-      "status": "M04_PRE2023_REFERENCE_FROZEN_LOCKED_OOS_READY",
+      "status": "M04_CLOSED_AFTER_LOCKED_OOS",
       "design": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.md",
       "machine_spec": "research/campaigns/GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_2026_09_22.json",
       "objective": "Find repeatable M5 pre-end-of-move topology intra/inter asset under tradable-session mask",
@@ -369,7 +369,7 @@
         "gbpusd_l30": "fails significance",
         "usdchf_l15": "fails significance"
       },
-      "next": "Human decision whether to preregister locked 2023-2025 OOS for exact EURUSD L15 and AUDUSD L15 only.",
+      "next": "Close M04 lineage; return to remaining preregistered M5 topology families / new lineage only.",
       "locked_oos_candidates": [
         "M04_EURUSD_UDXUSD_RELN1_L15",
         "M04_AUDUSD_UDXUSD_RELN1_L15"
@@ -385,7 +385,27 @@
       "pre2023_reference_sha256": "c5d64fa7d7e375fa1434a4989317c7b2eff92d0239e7a6c48709bd42d6c90c23",
       "pre2023_reference_rows": 1262304,
       "pre2023_validation_parity_pass": true,
-      "locked_oos_status": "READY_TO_RUN"
+      "locked_oos_status": "READY_TO_RUN",
+      "locked_oos_result": {
+        "tested": 2,
+        "survivors": 0,
+        "eurusd": {
+          "episodes": 135,
+          "days": 116,
+          "mean_endpoint": -0.045687,
+          "p_one": 1,
+          "pass": false
+        },
+        "audusd": {
+          "episodes": 1467,
+          "days": 612,
+          "mean_endpoint": 0.069732,
+          "p_one": 0.103388,
+          "pass": false
+        },
+        "accessed_2026": false
+      },
+      "closed_reason": "No frozen candidate passed the preregistered 2023-2025 locked OOS gates. No rescue or retuning."
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
