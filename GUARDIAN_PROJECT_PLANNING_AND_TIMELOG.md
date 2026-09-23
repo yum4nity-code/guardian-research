@@ -751,3 +751,10 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Restored validation to simple pre-outcome hard gates: support, positive mean endpoint and one-sided cluster significance.
 - Year consistency, LOO, trim-best and placebo outputs remain diagnostics, not automatic rejection criteria.
 - No 2018-2022 outcome had been accessed before this amendment.
+
+
+### 2026-09-23 — M04 pre-2018 reference frozen
+- Frozen reference run GEFM5P-20260923-055333 with 736,416 rows and SHA256 49eb9c029247ee2418cc06cac3cacd44c1a692e46b537e982c00b3ef0b016c84.
+- Recomputed all published 2015-2017 replication aggregates with parity PASS; differences were floating-point epsilon only.
+- No 2018+ outcome was accessed.
+- M04 validation 2018-2022 is now ready under engine v1.1 and the simplified hard gates.
