@@ -1373,7 +1373,7 @@
     "next": "Return deployment-oriented priority to V111 C8 EURUSD H11 SHORT 120m production-readiness / forward-shadow work unless owner chooses ensemble diagnostics first."
   },
   "v111_c8_eurusd_production_readiness": {
-    "status": "READY_ANALYZE_ONLY",
+    "status": "COMPLETE_FRAGILE_FORWARD_SHADOW",
     "preregistration": "research/campaigns/V111_C8_EURUSD_H11_120M_PRODUCTION_READINESS_PREREG_2026_09_23.md",
     "analyzer": "tools/analyze_v111_c8_eurusd_production_readiness_v1_00.py",
     "runner": "tools/GUARDIAN_V111_C8_EURUSD_PRODUCTION_READINESS_v1_00.ps1",
@@ -1388,6 +1388,38 @@
       "standard_ftmo_account_news_restriction": "-2m to +2m around selected targeted releases",
       "swing_news_restriction": "NONE"
     },
-    "next": "Run analyze-only production-readiness audit. If FRAGILE_FORWARD_SHADOW or better, preserve exact rule for forward shadow; do not open 2026 historical data."
+    "next": "Run analyze-only production-readiness audit. If FRAGILE_FORWARD_SHADOW or better, preserve exact rule for forward shadow; do not open 2026 historical data.",
+    "result_file": "research/results/V111_C8_EURUSD_PRODUCTION_READINESS_RESULT_2026_09_23.md",
+    "result": {
+      "n": 717,
+      "mean_after_spread_commission_bp": 0.550043053013196,
+      "median_bp": 0.5413794347983585,
+      "win_rate": 0.5202231520223152,
+      "yearly_bp": {
+        "2023": 1.4231094279530145,
+        "2024": -0.1761015647166032,
+        "2025": 0.611550614293751
+      },
+      "bootstrap_q10_bp": -0.10193442086268598,
+      "bootstrap_p_le_zero": 0.13945,
+      "trim1_bp": 0.1108257139963179,
+      "trim2_bp": -0.1536180528341688,
+      "trim5_bp": -0.7961661350651483,
+      "remove_best10_bp": 0.02626903928926837,
+      "remove_best20_bp": -0.3234825998518245,
+      "max_drawdown_cumulative_bp": -247.86633727587795,
+      "max_consecutive_losses": 8,
+      "break_even_extra_bp": 0.550043053013196,
+      "break_even_extra_pips": 0.6045387717839359,
+      "protected_2026_accessed": false
+    },
+    "classification": "FRAGILE_FORWARD_SHADOW",
+    "next_forward_shadow": {
+      "status": "READY_TO_START",
+      "monitor": "tools/v111_c8_eurusd_forward_shadow_v1_00.py",
+      "runner": "tools/GUARDIAN_V111_C8_EURUSD_FORWARD_SHADOW_v1_00.ps1",
+      "launcher": "tools/RUN_V111_C8_EURUSD_FORWARD_SHADOW.cmd",
+      "behavior": "Forward-only paper shadow from next UTC day; fixed FTMO-aligned entry/exit; no live orders; refuses historical backfill."
+    }
   }
 }
