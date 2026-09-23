@@ -783,3 +783,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Reproduced the published 2018-2022 validation aggregates for EURUSD L15 and AUDUSD L15 with parity PASS; differences were floating-point epsilon only.
 - No 2023-2025 or 2026 outcomes were accessed.
 - Locked OOS 2023-2025 is now ready.
+
+
+### 2026-09-23 — M04 lineage closed after locked OOS
+- Locked OOS 2023-2025 tested the only two frozen validation survivors.
+- EURUSD L15 failed with mean endpoint -0.045687 and p_one=1.0.
+- AUDUSD L15 retained a positive mean endpoint +0.069732 but failed significance at p_one=0.103388.
+- Therefore 0/2 candidates pass the frozen locked-OOS gates.
+- M04 is scientifically closed with no rescue or retuning.
+- 2026 remained unopened.
