@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "id": "EA01-XR-RSI-LONG-V1-V2-EXISTING-OOS-AUDIT",
+  "date": "2026-09-23",
+  "status": "FROZEN_BEFORE_READ_ONLY_DIAGNOSTIC",
+  "candidate_id": "EA01-XR-RSI-LONG-V1",
+  "parent_verdict": "KILL_PRESERVED",
+  "oos": [
+    "2023-01-01",
+    "2026-01-01"
+  ],
+  "protected_2026_opened": false,
+  "expected_hashes": {
+    "signals_csv": "35ab88bb139a9b8c23f0ad28287718af9c1906af1eae6cfe78087464a255c3ac",
+    "result_json": "b052f49ae30b54169a5e11fdd424d5c5e8c3281937474557a324dad402a44713",
+    "verdict_json": "3d7075fea4dd800cc3562707dadf139c14e45f289c9339ff35481a0c288dcc12"
+  },
+  "expected": {
+    "raw_signals": 944,
+    "non_overlap": 654,
+    "cost010_mean": 0.06216246499009125,
+    "cost010_pf": 1.0868273589119208,
+    "cost020_mean": 0.01576173506412815,
+    "cost020_pf": 1.0213334511927052
+  },
+  "allowed": [
+    "hash parity",
+    "schema parity",
+    "monthly quarterly yearly summaries",
+    "leave-one-year-out",
+    "month-cluster bootstrap",
+    "trim best 1/2 percent",
+    "remove best 1/3/5/10",
+    "concentration",
+    "rolling 100-trade",
+    "cumulative R/max drawdown",
+    "published cost 0.10/0.20 only"
+  ],
+  "forbidden": [
+    "parameter changes",
+    "subgroup selection",
+    "new thresholds",
+    "new horizon",
+    "new cost grid",
+    "raw market reread",
+    "strategy rerun",
+    "2026 access"
+  ]
+}
