@@ -758,3 +758,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Recomputed all published 2015-2017 replication aggregates with parity PASS; differences were floating-point epsilon only.
 - No 2018+ outcome was accessed.
 - M04 validation 2018-2022 is now ready under engine v1.1 and the simplified hard gates.
+
+
+### 2026-09-23 — M04 validation: 2/5 primary passes
+- Validation run GEFM5V-20260923-055623 tested the five frozen replication survivors on 2018-2022.
+- EURUSD/UDX L15 and AUDUSD/UDX L15 pass the amended hard gates.
+- GBPUSD L15 narrowly misses significance at p=0.053625; GBPUSD L30 and USDCHF L15 fail.
+- EURUSD is robust to trim-best 1%/2%; AUDUSD is not and is tail-sensitive.
+- +/-60m diagnostics show the effect is not narrowly localized to the exact recoupling timestamp, especially at -60m.
+- No 2023-2025 or 2026 data opened. Campaign is at the human gate before locked OOS.
