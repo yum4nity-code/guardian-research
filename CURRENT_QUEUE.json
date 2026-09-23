@@ -850,7 +850,7 @@
     "locked_oos_window": "2023-01-01 through 2025-12-31",
     "protected_2026": "BLOCKED",
     "retuning": "BLOCKED",
-    "next": "Run frozen FTMO XAGUSD time-alignment/execution audit; no retuning.",
+    "next": "Preserve as research phenomenon only; do not retime or rescue exact frozen implementation.",
     "result": {
       "n": 705,
       "mean_bp": 1.1896855761203053,
@@ -873,10 +873,11 @@
       "source_economic_proxy": "MINI_EDGE_SOURCE_PROXY",
       "protected_2026_accessed": false
     },
-    "interpretation": "Fresh 2023-2025 mean remains positive across all three years and versus control, but month-block q10 includes zero and removing the best 1% turns mean negative. Tail-dependent positive evidence, not confirmed."
+    "interpretation": "Fresh 2023-2025 mean remains positive across all three years and versus control, but month-block q10 includes zero and removing the best 1% turns mean negative. Tail-dependent positive evidence, not confirmed.",
+    "production_status": "EXECUTION_REJECTED_FTMO"
   },
   "v111_c1_xagusd_ftmo_execution_audit": {
-    "status": "READY_TO_RUN",
+    "status": "COMPLETE_EXECUTION_REJECTED_FTMO",
     "preregistration": "research/campaigns/V111_C1_XAGUSD_FTMO_EXECUTION_PREREG_2026_09_23.md",
     "engine": "tools/guardian_v111_c1_xagusd_ftmo_execution_audit_v1_00.py",
     "runner": "tools/GUARDIAN_V111_C1_XAGUSD_FTMO_EXECUTION_AUDIT_v1_00.ps1",
@@ -884,6 +885,26 @@
     "alignment": "integer offsets -8h..+8h; choose by >=90% coverage then source-vs-FTMO price proximity only",
     "execution": "first tick at/after mapped H11 and H12 boundaries; SHORT bid->ask",
     "protected_2026": "BLOCKED",
-    "retuning": "BLOCKED"
+    "retuning": "BLOCKED",
+    "result": {
+      "best_alignment_offset_hours": 2,
+      "alignment_coverage": 1,
+      "median_two_leg_price_diff_bp": 1.8496267322232196,
+      "alignment_source_vs_ftmo_corr": 0.9432181655961254,
+      "execution_coverage": "705/705",
+      "ftmo_bid_gross_mean_bp": 1.201320244849732,
+      "source_vs_ftmo_bid_return_corr": 0.9429618084137134,
+      "mean_entry_spread_bp": 5.547761878786793,
+      "mean_exit_spread_bp": 6.169007639926683,
+      "mean_exec_bp": -4.965440805230301,
+      "yearly_exec_bp": {
+        "2023": -5.186468172851654,
+        "2024": -5.7494799051542245,
+        "2025": -4.01730409207871
+      },
+      "protected_2026_accessed": false
+    },
+    "conclusion": "EXECUTION_REJECTED_FTMO",
+    "interpretation": "Gross signal transfers almost one-for-one to FTMO, but observed exit ask spread overwhelms the 60m short edge. No extra commission/slippage assumption is needed to reject the exact frozen implementation."
   }
 }
