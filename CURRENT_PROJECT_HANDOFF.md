@@ -942,3 +942,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Therefore exact frozen V112 C3 is execution-rejected on FTMO. Gross edge transfers, but executable economics do not.
 - V69 exact frozen implementation is also execution-rejected. Do not continue retiming either frozen rule; any follow-up must be a new predeclared research hypothesis.
 - 2026 remains closed.
+
+
+## V111-C1 XAGUSD fresh OOS — 2026-09-23
+- Owner authorized the next candidate: frozen V111 C1 = XAGUSD H11 SHORT 60m.
+- Fresh OOS window: 2023-2025 only; 2026 blocked; no retuning/rescue.
+- Active launcher: `tools/RUN_V111_C1_XAGUSD_LOCKED_OOS_V2.cmd`.
+- If fresh mean >0, next step is separate FTMO BID/ASK time-alignment/execution audit using the emitted event ledger; do not optimize between stages.
