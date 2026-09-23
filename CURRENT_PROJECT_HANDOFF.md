@@ -970,3 +970,9 @@ Execution economics remain unresolved because the historical gate used gross clo
 - First-tick FTMO bid/ask execution remains positive: +1.005565 bp/trade after observed spread, with 2023/2024/2025 all positive.
 - Applying current official FTMO Forex commission $2.50/lot/side gives ~+0.550 bp/trade average, but 2024 turns slightly negative and trim2 turns negative. Extra friction budget is only ~0.55 bp (~0.60 pip), so status is MINI_EDGE / NOT_PRODUCTION_READY.
 - Next: audit FTMO Standard news-window compatibility and actual Volume Band for intended lot size, then forward shadow exact H11->H13. No retiming/rescue.
+
+
+## V111 USDCHF H22 next — 2026-09-23
+- Next frozen candidate: USDCHF H22 LONG 240m (V111, expected pre-OOS n=1047).
+- Active launcher: `tools/RUN_V111_USDCHF_H22_240M_OOS_FTMO.cmd`.
+- Pipeline: exact 2023-2025 OOS first; if mean >0, automatic FTMO price-alignment + first-tick LONG ask->bid execution audit. 2026 blocked; no retuning.
