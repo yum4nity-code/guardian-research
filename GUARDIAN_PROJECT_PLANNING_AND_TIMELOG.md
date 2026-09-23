@@ -977,3 +977,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Added `tools/collect_v69_v112_engine_source_scan_v1_00.py` and `tools/RUN_COLLECT_V69_V112_ENGINE_SOURCE_SCAN.cmd` to scan source/config/docs only across D:\MT5_Backtests and recover the exact V69/V110-V112 engine definitions without opening market parquet/tick/MT5 history.
 - Next safe action: run the engine-source scanner, return its ZIP, then reconstruct gross parity exactly before any execution-cost verdict.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — V69/V112 engine-source scanner v1.01 hotfix
+- v1.00 source scan failed during artifact copy with WinError 3 on a deep/unstable Windows path.
+- Added versioned v1.01 scanner and launcher. Matched files are now written to a flat short-name directory with SHA256 + exact original path mapping in SOURCE_HITS.csv, so Windows path-depth issues cannot abort the scan.
+- Per-file read/write failures are recorded and skipped instead of terminating the whole forensic run.
+- Scope remains source/config/docs only; no parquet, market CSV, tick databases, MT5 history or protected 2026 market data are opened.
+- Next safe action: run `tools\RUN_COLLECT_V69_V112_ENGINE_SOURCE_SCAN_v1_01.cmd` and return the generated ZIP.
+- Human active time: NOT QUANTIFIED.
