@@ -1205,5 +1205,61 @@
       "protected_2026_accessed": false
     },
     "conclusion": "Fresh 2023 is negative. 2024-2025 FTMO transport is only weakly positive and not robust. Close branch; no exact execution follow-up and no rescue."
+  },
+  "d032_ftmo_transport": {
+    "status": "PROVISIONAL_TRANSPORT_FAIL_PENDING_EXACT_CANONICAL_PARITY",
+    "result": {
+      "direct_python_transport": {
+        "pooled_all": {
+          "signals": 344,
+          "executable": 307,
+          "mean_exec_bp": -57.55661652420258,
+          "mean_exec_R": -1.0060399920983958
+        },
+        "pre2024": {
+          "signals": 276,
+          "executable": 245,
+          "mean_exec_bp": -58.75654447339002,
+          "mean_exec_R": -1.15242462218141
+        },
+        "post2024_2025": {
+          "signals": 68,
+          "executable": 62,
+          "mean_exec_bp": -52.81496575725223,
+          "mean_exec_R": -0.42758459902841994
+        },
+        "yearly_bp": {
+          "2018": -337.66276475046664,
+          "2019": -298.93456762450654,
+          "2020": 119.93226041487306,
+          "2021": 138.90135984293138,
+          "2022": 6.975552181560291,
+          "2023": -57.15214503030518,
+          "2024": 65.39320001651203,
+          "2025": -187.3277061205012
+        },
+        "protected_2026_accessed": false
+      },
+      "exact_source_recovery": {
+        "source": "research/ea/D032_C1_CONFIRM_DojiStar_H1_v1_00.mq5",
+        "source_commit": "5c721f7b0e0b9e940f21ee4eaad19a31bee03b5b",
+        "note": "Recovered exact original canonical C1 scanner from Library. Signal pattern/trend logic matches the direct Python reconstruction, but the direct Python transport did not reproduce the canonical scanner's clean feed-gap/missing-horizon gate and TA-Lib package parity was unavailable."
+      }
+    },
+    "next_exact_parity": {
+      "status": "READY_TO_RUN",
+      "launcher": "tools/RUN_D032_EXACT_FTMO_PARITY.cmd",
+      "runner": "tools/GUARDIAN_D032_EXACT_FTMO_PARITY_v1_00.ps1",
+      "analyzer": "tools/analyze_d032_exact_ftmo_parity_v1_00.py",
+      "model": "1 minute OHLC",
+      "window": "2018-07-01 through 2023-12-30 signal window, tester through 2024-01-01",
+      "symbols": [
+        "BTCUSD",
+        "ETHUSD",
+        "DOGEUSD/DOGUSD"
+      ],
+      "protected_2026": "BLOCKED",
+      "signal_logic_modified": false
+    }
   }
 }
