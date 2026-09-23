@@ -772,3 +772,35 @@ R5E-023 frozen candidate:
 
 Interpretation:
 The earlier 2024/2025 positive robustness was not enough. Protected 2026 shows a strong regime reversal, stress failure and tail dependence. R5E-023 is CLOSED and removed from the active mini-edge shortlist.
+
+
+## 2026-09-23 — D035-E1 reclassified under Validation Doctrine V2
+
+Existing E1 remains explicitly exploratory same-sample, not confirmation.
+
+Causal correction:
+- BTC and ETH frozen D035 shocks both required within <=5m.
+- Tradable signal timestamp moved to the later/second shock.
+- XLMUSD remained the frozen primary target.
+
+Existing 2024-2025 XLM result:
+- causal dual events 973; executable +15m rows 870
+- mean executable SHORT +15m +6.705 bps
+- median 0.000 bps
+- control mean -6.786 bps
+- event-control differential +13.490 bps
+- raw day-cluster 95% interval [+1.996,+11.549] bps
+- differential 95% interval [+8.793,+18.302] bps
+- +30m mean +3.697 bps
+- 2024 +4.104 bps; 2025 +9.935 bps
+
+V2 interpretation:
+- causal discovery credibility SUPPORTED
+- fresh existence NOT_YET_FRESHLY_TESTED
+- economic size MINI_EDGE_CANDIDATE
+- not production ready
+
+A fresh 2026-H1 confirmation protocol is frozen at:
+research/campaigns/D035_C1_2026H1_FRESH_CONFIRMATION_PREREG_V2_2026_09_23.md
+
+No D035 2026 result exists on the backtest-results branch. No 2026-H1 data was opened in this step. Human gate remains required before execution.
