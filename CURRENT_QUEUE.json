@@ -1207,7 +1207,7 @@
     "conclusion": "Fresh 2023 is negative. 2024-2025 FTMO transport is only weakly positive and not robust. Close branch; no exact execution follow-up and no rescue."
   },
   "d032_ftmo_transport": {
-    "status": "PROVISIONAL_TRANSPORT_FAIL_PENDING_EXACT_CANONICAL_PARITY",
+    "status": "CLOSED_FTMO_TRANSPORT_REJECTED_CANONICAL",
     "result": {
       "direct_python_transport": {
         "pooled_all": {
@@ -1260,6 +1260,51 @@
       ],
       "protected_2026": "BLOCKED",
       "signal_logic_modified": false
-    }
+    },
+    "final_exact_parity": {
+      "method": "Recovered original D032_C1_CONFIRM_DojiStar_H1_v1_00.mq5, canonical clean feed-gap/missing-horizon gate, FTMO core BTC/ETH/DOGE, primary 1-minute-OHLC confirmation method",
+      "pooled": {
+        "n": 226,
+        "mean_exec24_bp": -62.20798876991151,
+        "median_exec24_bp": -22.938545,
+        "win_rate": 0.4424778761061947,
+        "mean_exec24_R": -1.2125243451327434,
+        "bootstrap_q10_bp": -111.31912423099548,
+        "bootstrap_p_le_zero": 0.9368,
+        "control_mean_bp": -39.97309055415168,
+        "doji_minus_control_bp": -22.234898215759827
+      },
+      "by_symbol": {
+        "BTCUSD": {
+          "n": 91,
+          "mean_exec24_bp": -79.37946870329672,
+          "control_mean_bp": -1.362006323840459,
+          "diff_bp": -78.01746237945626
+        },
+        "ETHUSD": {
+          "n": 80,
+          "mean_exec24_bp": -21.91609047500001,
+          "control_mean_bp": -82.15346616428943,
+          "diff_bp": 60.237375689289415
+        },
+        "DOGEUSD": {
+          "n": 55,
+          "mean_exec24_bp": -92.40339221818182,
+          "control_mean_bp": -32.871281938111615,
+          "diff_bp": -59.532110280070206
+        }
+      },
+      "yearly_bp": {
+        "2018": -337.6627645789473,
+        "2019": -299.0963059,
+        "2020": 119.71098400000001,
+        "2021": 109.87736371428574,
+        "2022": 28.11608396923078,
+        "2023": -58.20061857142859
+      },
+      "protected_2026_accessed": false
+    },
+    "conclusion": "Exact frozen D032 entry phenomenon does not transport to FTMO core feed. Preserve historical confirmation as feed-specific research phenomenon; do not deploy or retune for FTMO.",
+    "next": "Proceed to D035-F1 FTMO XLM 2026-H1 fresh target-outcome transport confirmation under existing explicit authorization."
   }
 }
