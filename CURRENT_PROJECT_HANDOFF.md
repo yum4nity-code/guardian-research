@@ -1029,3 +1029,8 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Keep active: EURUSD H11 SHORT 120m; D035-E1/F1 XLMUSD causal dual-shock; EA01 XAU RSI long for ensemble research only.
 - D035-F1 is now one-click ready: `tools/RUN_D035_F1_FTMO_ONECLICK.cmd`.
 - One-click flow automatically exports authorized 2026-H1 FTMO BTCUSD/XLMUSD M1 data, verifies coverage, runs the frozen XLMUSD SHORT +15m analyzer, and creates a ZIP. Jul-Dec 2026, other targets, retuning and live deployment remain blocked.
+
+
+## D035-F1 compile hotfix v1.01
+- Initial v1.00 one-click stopped before market export because the MQL5 exporter misused `StringToUpper` on const/bool-return values. No D035 market result was opened.
+- Use `tools/RUN_D035_F1_FTMO_ONECLICK_v1_01.cmd` only. It uses `D035_FTMO_CFD_M1_Exporter_v1_01.mq5`; research logic/scope unchanged.
