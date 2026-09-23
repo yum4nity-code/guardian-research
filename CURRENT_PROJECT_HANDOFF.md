@@ -982,3 +982,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - USDCHF H22 LONG 240m closed after negative fresh OOS; FTMO stage not run.
 - Next: V111 AUDUSD H21 SHORT 240m. This is an endpoint-extension test because the H21 120m family endpoint was already opened in V112.
 - Active launcher: `tools/RUN_V111_AUDUSD_H21_240M_OOS_FTMO.cmd`. 2026 blocked; no retuning.
+
+
+## D032 FTMO transport next — 2026-09-23
+- V111 C7 AUDUSD H21 SHORT 240m endpoint is negative on 2023-2025 (mean -0.240293 bp); FTMO stage not run. Close without rescue.
+- V111 EURUSD H11 SHORT 120m remains the only V111 execution-surviving mini-edge.
+- Next active candidate: D032 Bullish Doji Star H1, whose entry edge was already confirmed on independent pre-2024 CFD data. The next question is FTMO feed/execution transport, not alpha re-optimization.
+- Active launcher: `tools/RUN_D032_FTMO_TRANSPORT.cmd`. Frozen immediate LONG entry at signal close, exact +24h exit, BTC/ETH/DOG core where available, 2026 blocked.
