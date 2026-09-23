@@ -1098,3 +1098,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Month-block bootstrap q10 = -0.209773 bp and q2.5 = -0.962029 bp. Doctrine V2 existence label = POSITIVE_UNCERTAIN, not POSITIVE_CONFIRMED.
 - Per frozen protocol, because the fresh mean is positive, next step is execution audit without signal retuning. Added frozen XAGUSD FTMO alignment/execution audit. Alignment offset is selected solely by source-vs-FTMO price proximity with >=90% coverage, never by PnL; causal execution is first tick at/after mapped H11/H12 boundaries, SHORT bid->ask.
 - Active launcher: `tools\RUN_V111_C1_XAGUSD_FTMO_EXECUTION_AUDIT.cmd`.
+
+
+### 2026-09-23 — XAGUSD C1 FTMO execution verdict; EURUSD H11 next
+- Reviewed `GUARDIAN_V111_C1_XAGUSD_FTMO_EXECUTION_20260923-165723.zip`.
+- XAG alignment is unambiguous: +2h, 705/705 two-leg coverage, median absolute source-vs-FTMO two-leg price difference 1.849627 bp, alignment return correlation 0.943218.
+- Gross signal transfers: FTMO BID gross +1.201320 bp/trade versus source +1.189686 bp, source-vs-FTMO BID-return correlation 0.942962.
+- Observed FTMO spreads overwhelm the signal: entry spread mean 5.547762 bp, exit spread mean 6.169008 bp. SHORT bid->ask executable mean = -4.965441 bp/trade; median -6.052632 bp; 2023 -5.186468, 2024 -5.749480, 2025 -4.017304 bp. Exact frozen XAG C1 is EXECUTION_REJECTED_FTMO. No extra commission/slippage assumption is needed.
+- Next candidate frozen before outcomes: V111 EURUSD H11 SHORT 120m, expected V111 pre-OOS n=1295. Added a combined pipeline: Stage A exact 2023-2025 fresh OOS; only if fresh mean >0, Stage B automatically aligns EURUSD FTMO by price proximity only and performs first-tick H11->H13 SHORT bid->ask execution audit. 2026 blocked; no retuning.
+- Active launcher: `tools\RUN_V111_EURUSD_H11_120M_OOS_FTMO.cmd`.
