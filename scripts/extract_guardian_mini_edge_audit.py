@@ -5,7 +5,7 @@ from collections import defaultdict
 import pandas as pd
 import numpy as np
 
-VERSION="GUARDIAN-MINI-EDGE-EXTRACTOR-1.1"
+VERSION="GUARDIAN-MINI-EDGE-EXTRACTOR-1.2"
 
 TEXT_EXT={".json",".csv",".md",".txt",".log"}
 RESULT_NAME_RE=re.compile(r"(result|results|summary|verdict|receipt|decision|validation|replication|holdout|oos|out[-_ ]?of[-_ ]?sample|score|metric|stats|audit|report)",re.I)
@@ -155,7 +155,7 @@ def inspect_csv(p,source):
             if status_cols:
                 s=chunk[status_cols[:5]].fillna("").astype(str).agg(" | ".join,axis=1)
                 rejected_mask=s.str.contains(
-                    r"(false|reject|fail|closed|close|do_not_advance|not_confirmed|unconfirmed)",
+                    r"(?:false|reject|fail|closed|close|do_not_advance|not_confirmed|unconfirmed)",
                     case=False,regex=True,na=False
                 )
             else:
@@ -234,7 +234,7 @@ def inspect_markdown(p,source):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument("--root",default=r"D:\MT5_Backtests")
+    ap.add_argument("--root",default=r"D:\\MT5_Backtests")
     ap.add_argument("--output",default="")
     args=ap.parse_args()
     root=Path(args.root)
@@ -257,9 +257,17 @@ def main():
     out.mkdir(parents=True,exist_ok=False)
     artifacts=out/"artifacts";artifacts.mkdir()
 
-    inventory=[]; metric_rows=[]; candidate_rows=[]; errors=[]
-    seen=set()
-    files=[]
+    inv_path=out/"FILE_INVENTORY.csv"
+    met_path=out/"EXTRACTED_METRICS.csv"
+    cand_path=out/"POSITIVE_BUT_REJECTED_CANDIDATES.csv"
+    err_path=out/"EXTRACTION_ERRORS.csv"
+
+    inv_fields=["source","path","extension","bytes","sha256","copied","notes"]
+    met_fields=["source","format","record","metric","value","status"]
+    cand_fields=["source","record","status","positive_metrics","reason"]
+    err_fields=["source","path","error"]
+
+    seen=set(); files=[]
     for label,r in roots:
         for p in r.rglob("*"):
             if not p.is_file() or not is_candidate_file(p): continue
@@ -269,62 +277,106 @@ def main():
             seen.add(key);files.append(p)
 
     print(f"[EXTRACT] candidate files: {len(files)}",flush=True)
-    for n,p in enumerate(files,1):
-        source=safe_rel(p,roots)
-        try:
-            size=p.stat().st_size
-            inv={"source":source,"path":str(p),"extension":p.suffix.lower(),"bytes":size,"sha256":sha256(p),"copied":False,"notes":""}
-            ext=p.suffix.lower()
-            if ext==".json": m,c=inspect_json(p,source)
-            elif ext==".csv": m,c=inspect_csv(p,source)
-            elif ext in {".md",".txt",".log"}: m,c=inspect_markdown(p,source)
-            else:m,c=[],[]
-            metric_rows.extend(m);candidate_rows.extend(c)
-            if size<=MAX_COPY_MB*1024*1024:
-                dst=artifacts/source
-                dst.parent.mkdir(parents=True,exist_ok=True)
-                shutil.copy2(p,dst);inv["copied"]=True
-            else:
-                inv["notes"]=f"not copied: >{MAX_COPY_MB} MB; metrics inspected when supported"
-            inventory.append(inv)
-        except Exception as e:
-            errors.append({"source":source,"path":str(p),"error":repr(e)})
-        if n%250==0: print(f"[EXTRACT] {n}/{len(files)}",flush=True)
 
-    invdf=pd.DataFrame(inventory)
-    metdf=pd.DataFrame(metric_rows)
-    candf=pd.DataFrame(candidate_rows).drop_duplicates() if candidate_rows else pd.DataFrame(columns=["source","record","status","positive_metrics","reason"])
-    errdf=pd.DataFrame(errors)
+    files_inspected=0
+    metric_count=0
+    candidate_count=0
+    error_count=0
+    candidate_preview=[]
+    candidate_seen=set()
 
-    invdf.to_csv(out/"FILE_INVENTORY.csv",index=False)
-    metdf.to_csv(out/"EXTRACTED_METRICS.csv",index=False)
-    candf.to_csv(out/"POSITIVE_BUT_REJECTED_CANDIDATES.csv",index=False)
-    errdf.to_csv(out/"EXTRACTION_ERRORS.csv",index=False)
+    with inv_path.open("w",newline="",encoding="utf-8-sig") as invf, \
+         met_path.open("w",newline="",encoding="utf-8-sig") as metf, \
+         cand_path.open("w",newline="",encoding="utf-8-sig") as candf, \
+         err_path.open("w",newline="",encoding="utf-8-sig") as errf:
 
-    # Human-readable shortlist: ranked only by source/record, NOT by performance.
+        invw=csv.DictWriter(invf,fieldnames=inv_fields); invw.writeheader()
+        metw=csv.DictWriter(metf,fieldnames=met_fields); metw.writeheader()
+        candw=csv.DictWriter(candf,fieldnames=cand_fields); candw.writeheader()
+        errw=csv.DictWriter(errf,fieldnames=err_fields); errw.writeheader()
+
+        for n,p in enumerate(files,1):
+            source=safe_rel(p,roots)
+            try:
+                size=p.stat().st_size
+                inv={"source":source,"path":str(p),"extension":p.suffix.lower(),
+                     "bytes":size,"sha256":sha256(p),"copied":False,"notes":""}
+                ext=p.suffix.lower()
+
+                if ext==".json":
+                    m,cands=inspect_json(p,source)
+                elif ext==".csv":
+                    m,cands=inspect_csv(p,source)
+                elif ext in {".md",".txt",".log"}:
+                    m,cands=inspect_markdown(p,source)
+                else:
+                    m,cands=[],[]
+
+                for row in m:
+                    metw.writerow({k:row.get(k,"") for k in met_fields})
+                    metric_count+=1
+
+                unique_cands=[]
+                for row in cands:
+                    key=tuple(str(row.get(k,"")) for k in cand_fields)
+                    if key in candidate_seen:
+                        continue
+                    candidate_seen.add(key)
+                    unique_cands.append(row)
+                    candw.writerow({k:row.get(k,"") for k in cand_fields})
+                    candidate_count+=1
+                    if len(candidate_preview)<300:
+                        candidate_preview.append(row)
+
+                should_copy=bool(unique_cands)
+                if ext in {".md",".json"} and RESULT_NAME_RE.search(p.name) and size<=2*1024*1024:
+                    should_copy=True
+
+                if should_copy and size<=5*1024*1024:
+                    dst=artifacts/source
+                    dst.parent.mkdir(parents=True,exist_ok=True)
+                    shutil.copy2(p,dst)
+                    inv["copied"]=True
+                elif should_copy:
+                    inv["notes"]="candidate artifact not copied: >5 MB; source path retained in inventory"
+                else:
+                    inv["notes"]="not copied: no candidate flag / nonessential raw artifact"
+
+                invw.writerow(inv)
+                files_inspected+=1
+
+            except Exception as e:
+                errw.writerow({"source":source,"path":str(p),"error":repr(e)})
+                error_count+=1
+
+            if n%250==0:
+                print(f"[EXTRACT] {n}/{len(files)} | metrics={metric_count} | flagged={candidate_count}",flush=True)
+
     report=[
       "# GUARDIAN Mini-Edge Local Extraction",
       "",
       f"Version: {VERSION}",
       f"Generated UTC: {pd.Timestamp.now('UTC')}",
       f"Roots scanned: {len(roots)}",
-      f"Candidate files inspected: {len(inventory)}",
-      f"Metric observations extracted: {len(metric_rows)}",
-      f"Automatically flagged positive-but-rejected rows/docs: {len(candf)}",
-      f"Extraction errors: {len(errors)}",
+      f"Candidate files inspected: {files_inspected}",
+      f"Metric observations extracted: {metric_count}",
+      f"Automatically flagged positive-but-rejected rows/docs: {candidate_count}",
+      f"Extraction errors: {error_count}",
       "",
       "## Important",
       "This extractor does not rerun any backtest and does not change any result.",
       "Automatic flags are leads for manual audit, not proof of an edge.",
       "A positive metric can refer to a diagnostic or subgroup, so every candidate must be checked against its source artifact.",
+      "Version 1.2 streams output directly to disk and does not build giant DataFrames in RAM.",
       "",
       "## Roots",
     ]
     report += [f"- {label}: {path}" for label,path in roots]
     report += ["","## Flagged candidates"]
-    for _,r in candf.head(300).iterrows():
-        report.append(f"- {r['source']} :: {r.get('record','')} :: {r.get('positive_metrics','')}")
-    if len(candf)>300:report.append(f"- ... {len(candf)-300} more in POSITIVE_BUT_REJECTED_CANDIDATES.csv")
+    for r in candidate_preview:
+        report.append(f"- {r.get('source','')} :: {r.get('record','')} :: {r.get('positive_metrics','')}")
+    if candidate_count>len(candidate_preview):
+        report.append(f"- ... {candidate_count-len(candidate_preview)} more in POSITIVE_BUT_REJECTED_CANDIDATES.csv")
     (out/"README_AUDIT.md").write_text("\n".join(report),encoding="utf-8")
 
     receipt={
@@ -332,19 +384,22 @@ def main():
       "status":"COMPLETE_LOCAL_RESULT_EXTRACTION",
       "output_dir":str(out),
       "roots":[{"label":l,"path":str(p)} for l,p in roots],
-      "files_inspected":len(inventory),
-      "metric_observations":len(metric_rows),
-      "auto_flagged_positive_but_rejected":len(candf),
-      "errors":len(errors),
+      "files_inspected":files_inspected,
+      "metric_observations":metric_count,
+      "auto_flagged_positive_but_rejected":candidate_count,
+      "errors":error_count,
       "research_rerun":False,
-      "market_data_modified":False
+      "market_data_modified":False,
+      "streaming_mode":True
     }
     (out/"RUN_RECEIPT.json").write_text(json.dumps(receipt,indent=2),encoding="utf-8")
 
     zip_path=out.with_suffix(".zip")
     with zipfile.ZipFile(zip_path,"w",compression=zipfile.ZIP_DEFLATED,allowZip64=True) as z:
         for p in out.rglob("*"):
-            if p.is_file(): z.write(p,p.relative_to(out.parent))
+            if p.is_file():
+                z.write(p,p.relative_to(out.parent))
+
     print("\n=== MINI-EDGE EXTRACTION RECEIPT ===")
     print(json.dumps(receipt,indent=2))
     print("\nZIP:",zip_path)
