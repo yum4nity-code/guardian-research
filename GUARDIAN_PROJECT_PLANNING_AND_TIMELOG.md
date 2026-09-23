@@ -1057,3 +1057,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - V112 cost failure is concentrated at the exit-side spread rather than disappearance of the underlying gross edge. A single causal execution-boundary forensic is justified before closing the branch: execute at the first tick at/after the mapped H21/H23 bar boundary, rather than the last tick immediately before the boundary. This changes execution convention only, not the frozen signal times or price-alignment offset; it must be evaluated without PnL-based timing selection.
 - Current FTMO metadata captured by run: USDCHF swap_long +2.55 points, AUDUSD swap_short -5.46 points; historical swap is not reconstructed. Swap is not needed to reject the frozen V69/V112 implementations because both are already negative after observed BID/ASK.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — V112 boundary execution forensic final verdict
+- Reviewed `GUARDIAN_V112_BOUNDARY_FORENSIC_20260923-154709.zip`. Run completed successfully with 2026 closed.
+- Exact source parity remained locked: n=556, mean +1.4552352492311669 bp.
+- Baseline last-before boundary convention: 554/556 executions, BID gross +1.837963 bp, source-vs-FTMO correlation 0.941001, mean entry spread 0.730045 bp, mean exit spread 4.741162 bp, executable mean -2.902032 bp/trade; all 2023/2024/2025 yearly means negative.
+- Causal first-at-or-after boundary convention: 554/556 executions, BID gross +1.466616 bp, source-vs-FTMO correlation 0.941856, mean entry spread 0.800781 bp, mean exit spread 4.003050 bp, executable mean -2.535524 bp/trade; 2023 -1.903539 bp, 2024 -2.266914 bp, 2025 -3.249838 bp. Win rate 32.49%.
+- Decision: close exact frozen V112 C3 as FTMO execution-rejected. The gross phenomenon is real/transferrable, but both causal boundary conventions are economically negative after observed BID/ASK. No swap assumption is needed for this decision.
+- Combined branch status: V69 exact frozen implementation execution-rejected; V112 exact frozen implementation execution-rejected. Preserve both as research phenomena only, not production candidates.
+- Next research should move to a new predeclared hypothesis family rather than retiming these frozen rules based on observed PnL.
+- Human active time: NOT QUANTIFIED.
