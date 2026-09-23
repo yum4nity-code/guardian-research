@@ -803,3 +803,16 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Extraction errors: 0.
 - No research rerun and no market-data modification.
 - Next step: offline/manual deduplication and scientific audit of the exported ZIP; automatic flags are leads, not validated edges.
+
+
+### 2026-09-23 — Full mini-edge audit from local extraction
+- Reviewed the completed local extraction covering 2,149 files and 8,654,240 metric observations; 924 automatic positive-but-rejected flags were deduplicated/interpreted as leads, not as 924 edges.
+- Confirmed the methodological issue: Guardian often used large standalone-production thresholds as if they were edge-existence thresholds.
+- Identified already-confirmed phenomena that remain active evidence: V112 AUDUSD H21 120m SHORT and D032-C1 Bullish Doji Star H1 entry.
+- Identified strongest retrospective mini-edge candidates: EA01 XAU RSI LONG OOS 2023-2025, R5E-023 XAU M5, D035-E1 causal dual-source response, D017 BTC SELL, D025 ETH RETEST, D025 EURUSD SHORT +2R, ATLAS-IV A4_02, and several V111 pre-OOS calendar candidates.
+- Preserved weak/covariate-only status for M04 AUDUSD/GBPUSD and similar small positive clues.
+- Explicitly did NOT revive lineages invalidated by corrected timing/statistical unit/fresh OOS, including rates/CFTC carried-row effects, V93 BCO, and F14-V2.
+- No historical pass/fail verdict was rewritten. No new market-data computation was run and no protected-2026 sample was opened.
+- Canonical report: research/results/GUARDIAN_MINI_EDGE_FULL_AUDIT_2026_09_23.md.
+- Research remains paused pending a prospectively frozen four-layer doctrine: existence -> economic size -> ensemble value -> production readiness.
+- Human active time: NOT QUANTIFIED.
