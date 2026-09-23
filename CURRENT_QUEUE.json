@@ -77,7 +77,14 @@
       "candidate_passes": 1,
       "structural_family_passes": 1,
       "confirmed_family": "AUDUSD|H21",
-      "failed_family": "USDCHF|H23"
+      "failed_family": "USDCHF|H23",
+      "production_status": "EXECUTION_REJECTED_FTMO",
+      "execution_audit_2026_09_23": {
+        "last_before_mean_bp": -2.902032,
+        "first_after_mean_bp": -2.535524,
+        "coverage": "554/556",
+        "protected_2026_accessed": false
+      }
     },
     {
       "2026": "BLOCKED",
@@ -739,7 +746,7 @@
       ]
     },
     "v69_usdchf_friday_long": {
-      "status": "CONFIRMED_FRESH_OOS_MINI_EDGE_CANDIDATE",
+      "status": "CONFIRMED_PHENOMENON_EXECUTION_REJECTED_FTMO",
       "canonical_report": "research/results/V69_USDCHF_FRIDAY_LONG_V2_RECLASSIFICATION_2026_09_23.md",
       "family": "04_INTRADAY_CALENDAR_STRUCTURE",
       "candidate": {
@@ -782,7 +789,7 @@
         "existence": "FRESH_OOS_CONFIRMED",
         "economics": "MINI_EDGE_CANDIDATE",
         "ensemble": "NOT_TESTED",
-        "production": "NOT_PRODUCTION_READY"
+        "production": "EXECUTION_REJECTED_FTMO"
       },
       "caveats": [
         "Gross close-to-close returns; realistic spread/slippage/swap/commission not yet deducted.",
@@ -790,10 +797,37 @@
         "2026 remains unopened."
       ],
       "next": [
-        "Audit drawdown and loss clustering from existing 2023-2025 OOS ledger.",
-        "Reconstruct execution-correct FTMO Friday-close to next-close returns including spread and weekend carry.",
-        "Measure portfolio correlation/incremental value against existing edges."
-      ]
+        "Preserve as research phenomenon only; do not deploy exact frozen implementation on FTMO."
+      ],
+      "execution_audit_2026_09_23": {
+        "coverage": "154/155",
+        "bid_gross_mean_bp": 0.309,
+        "executable_mean_bp": -2.18,
+        "protected_2026_accessed": false
+      }
+    }
+  },
+  "latest_execution_audits": {
+    "2026-09-23_V69_V112_FTMO": {
+      "status": "COMPLETE",
+      "protected_2026_accessed": false,
+      "V69": {
+        "scientific_existence": "FRESH_OOS_CONFIRMED_PHENOMENON",
+        "execution_coverage": "154/155",
+        "ftmo_bid_gross_mean_bp": 0.309,
+        "ftmo_executable_mean_bp": -2.18,
+        "conclusion": "EXECUTION_REJECTED_FTMO",
+        "note": "Negative after observed BID/ASK before any extra swap/slippage assumption."
+      },
+      "V112": {
+        "scientific_existence": "FRESH_OOS_CONFIRMED_PHENOMENON",
+        "execution_coverage": "554/556",
+        "last_before_exec_mean_bp": -2.902032,
+        "first_after_exec_mean_bp": -2.535524,
+        "first_after_source_vs_ftmo_corr": 0.941856,
+        "conclusion": "EXECUTION_REJECTED_FTMO",
+        "note": "Gross phenomenon transfers, but both causal boundary conventions are negative after observed BID/ASK."
+      }
     }
   }
 }
