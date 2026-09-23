@@ -1043,3 +1043,9 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Classification: POSITIVE_UNCERTAIN / MINI_EDGE / NOT_PRODUCTION_READY. Preserve for ensemble/incremental-value research; no standalone deployment and no post-hoc rescue retuning.
 - Jul-Dec 2026 not opened; other targets not opened; no retuning performed.
 - Next deployment-oriented candidate: V111 C8 EURUSD H11 SHORT 120m.
+
+
+## V111 C8 EURUSD production-readiness ready
+- Next active deployment-oriented task is analyze-only `tools/RUN_V111_C8_EURUSD_PRODUCTION_READINESS.cmd`.
+- It reuses the existing 2023-2025 FTMO execution ledger; 2026 remains blocked.
+- Applies exact current FTMO Forex commission ($2.50/lot/side), robust stability diagnostics and extra-friction / illustrative Volume-Band stress. No retiming or rescue filters.
