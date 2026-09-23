@@ -996,3 +996,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Next additional candidate prepared: D025 ETHUSD RETEST +2R using the exact frozen V0 state machine on FTMO.
 - FTMO 2023 is treated as fresh temporal evidence; 2024-2025 is transport only. 2026 blocked.
 - Active launcher: `tools/RUN_D025_ETH_RETEST_FTMO.cmd`. If it survives, follow with exact real-tick BID/ASK + commission audit; no retuning.
+
+
+## D017 BTC SELL +2.5R next — 2026-09-23
+- D025 ETH RETEST +2R is closed after negative fresh FTMO 2023 EV2 (-0.0886R). 2024-2025 transport remained positive (~+0.099R) but cannot rescue the fresh failure.
+- Next frozen branch: D017 BTCUSD SELL Momentum, +2.5R target versus original structural -1R stop.
+- FTMO 2023 = fresh temporal test; 2024-2025 = transport only; 2026 blocked. No threshold/target/side rescue.
+- Active launcher: `tools/RUN_D017_BTC_SELL_2P5R_FTMO.cmd`. If positive, follow with exact real-tick BID/ASK + commission audit.
