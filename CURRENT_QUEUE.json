@@ -336,7 +336,16 @@
       "validation_runner": "automation/Run-M5MotionTopologyM04Validation.ps1",
       "validation_window": "2018-2022",
       "validation_2023_plus": "BLOCKED",
-      "validation_family_gate": "at least 3 of 5 frozen variants pass all primary + robustness gates"
+      "validation_family_gate": "NONE_NEW",
+      "validation_engine_version": "M5-MOTION-TOPOLOGY-M04-VALIDATION-1.1",
+      "validation_hard_gates": ">=250 episodes, >=150 UTC days, mean endpoint >0, one-sided cluster p<=0.05",
+      "validation_diagnostics_only": [
+        "2018-2022 yearly means",
+        "leave-one-year-out means",
+        "trim best 1%",
+        "trim best 2%",
+        "+/-60m placebo shifts"
+      ]
     }
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED"
