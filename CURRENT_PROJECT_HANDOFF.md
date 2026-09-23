@@ -877,3 +877,11 @@ Execution economics remain unresolved because the historical gate used gross clo
 - v1.02 fixes PowerShell/Python bootstrap failure from v1.01 and enforces an FTMO account guard.
 - No 2026 access, no retuning, no production promotion.
 - Next safe action for this audit: run v1.02 with only FTMO MT5 open, then review the resulting ZIP.
+
+
+## ChatGPT execution-audit parity result — 2026-09-23
+- FTMO v1.02 audit completed with 2026 closed, but both V69 and V112 failed source-level gross parity against the original locked-OOS results.
+- V69: expected n=155 / +4.639075 bps gross; reconstructed n=156 / -2.033943 bps gross.
+- V112: expected n=556 / +1.455235 bps gross; reconstructed n=622 / -0.069812 bps gross.
+- Therefore the negative executable numbers from v1.02 are not valid strategy-rejection evidence. The reconstruction/session/data semantics are mismatched.
+- Next safe action: exact source/eligibility/timestamp forensic and gross-parity reproduction before any cost verdict.
