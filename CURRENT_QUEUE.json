@@ -1001,5 +1001,23 @@
       "production": "NOT_PRODUCTION_READY"
     },
     "next": "Freeze exact EURUSD H11->H13 SHORT as a live/forward-shadow candidate. Before any production use, audit FTMO Standard news-window compatibility and actual Volume Band for intended order size; do not retime or rescue."
+  },
+  "v111_usdchf_h22_240m_oos_ftmo": {
+    "status": "READY_TO_RUN",
+    "preregistration": "research/campaigns/V111_USDCHF_H22_240M_OOS_FTMO_PREREG_2026_09_23.md",
+    "spec": "research/campaigns/V111_USDCHF_H22_240M_OOS_FTMO_SPEC_2026_09_23.json",
+    "engine": "tools/guardian_v111_usdchf_h22_240m_oos_ftmo_v1_00.py",
+    "runner": "tools/GUARDIAN_V111_USDCHF_H22_240M_OOS_FTMO_v1_00.ps1",
+    "launcher": "tools/RUN_V111_USDCHF_H22_240M_OOS_FTMO.cmd",
+    "frozen_candidate": {
+      "market": "USDCHF",
+      "hour": 22,
+      "horizon_min": 240,
+      "direction": "LONG",
+      "orientation": 1,
+      "expected_preoos_n": 1047
+    },
+    "behavior": "Stage A 2023-2025 fresh source OOS. If mean >0, Stage B performs FTMO alignment by price proximity only and first-tick LONG ask->bid execution audit. No retuning.",
+    "protected_2026": "BLOCKED"
   }
 }
