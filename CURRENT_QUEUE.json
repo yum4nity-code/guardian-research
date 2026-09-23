@@ -648,6 +648,32 @@
       "jul_dec_2026_blocked": true,
       "retuning_blocked": true,
       "live_deployment_authorized": false
+    },
+    "d035_e1_multi_asset_dd": {
+      "status": "COMPLETE_READ_ONLY_AUDIT",
+      "source": "D35 CASUAL.zip / D035_E1_EVENT_TARGET_RETURNS.csv",
+      "n_common_events": 870,
+      "correlations": {
+        "BTC_ETH": 0.840027,
+        "BTC_XLM": 0.751954,
+        "ETH_XLM": 0.796952
+      },
+      "btc_eth_equal_weight": {
+        "mean_bps": 12.694323309198143,
+        "maxdd_bps": -908.1815896480712,
+        "worst_event_bps": -403.61830681418553,
+        "max_consecutive_losses": 7,
+        "worst_prague_day_bps": -277.1012307847441
+      },
+      "btc_eth_xlm_equal_weight": {
+        "mean_bps": 10.697793421158131,
+        "maxdd_bps": -924.5462660330982,
+        "worst_event_bps": -450.72112832341264,
+        "max_consecutive_losses": 11,
+        "worst_prague_day_bps": -349.588447265872
+      },
+      "historical_portfolio_preference": "BTC+ETH equal-weight",
+      "caveat": "Retrospective same-sample portfolio built from diagnostic BTC/ETH rows; prioritize forward/fresh testing rather than claim independent confirmation."
     }
   }
 }
