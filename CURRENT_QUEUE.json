@@ -831,7 +831,7 @@
     }
   },
   "v111_c1_xagusd_locked_oos_v2": {
-    "status": "AUTHORIZED_READY_TO_RUN",
+    "status": "COMPLETE_POSITIVE_UNCERTAIN",
     "human_authorization": "owner_go_2026-09-23",
     "preregistration": "research/campaigns/V111_C1_XAGUSD_H11_60M_LOCKED_OOS_V2_PREREG_2026_09_23.md",
     "spec": "research/campaigns/V111_C1_XAGUSD_H11_60M_LOCKED_OOS_V2_SPEC_2026_09_23.json",
@@ -850,6 +850,40 @@
     "locked_oos_window": "2023-01-01 through 2025-12-31",
     "protected_2026": "BLOCKED",
     "retuning": "BLOCKED",
-    "next": "Run exactly once; if fresh mean is positive, proceed to separate FTMO BID/ASK alignment and execution audit without retuning."
+    "next": "Run frozen FTMO XAGUSD time-alignment/execution audit; no retuning.",
+    "result": {
+      "n": 705,
+      "mean_bp": 1.1896855761203053,
+      "control_mean_bp": -0.43561343446040623,
+      "effect_bp": 1.6252990105807115,
+      "median_bp": 0.4387696897900639,
+      "net1bp_mean_bp": 0.18968557612030534,
+      "net2bp_mean_bp": -0.8103144238796947,
+      "trim1_mean_bp": -0.3055091928950135,
+      "trim2_mean_bp": -1.0508736681070145,
+      "trim5_mean_bp": -2.802826108980665,
+      "yearly_mean_bp": {
+        "2023": 1.7099691770102283,
+        "2024": 0.3277832719503676,
+        "2025": 1.6758072033013456
+      },
+      "loo_min_bp": 0.9091053080829264,
+      "bootstrap_q10_bp": -0.20977257079049552,
+      "v2_existence": "POSITIVE_UNCERTAIN",
+      "source_economic_proxy": "MINI_EDGE_SOURCE_PROXY",
+      "protected_2026_accessed": false
+    },
+    "interpretation": "Fresh 2023-2025 mean remains positive across all three years and versus control, but month-block q10 includes zero and removing the best 1% turns mean negative. Tail-dependent positive evidence, not confirmed."
+  },
+  "v111_c1_xagusd_ftmo_execution_audit": {
+    "status": "READY_TO_RUN",
+    "preregistration": "research/campaigns/V111_C1_XAGUSD_FTMO_EXECUTION_PREREG_2026_09_23.md",
+    "engine": "tools/guardian_v111_c1_xagusd_ftmo_execution_audit_v1_00.py",
+    "runner": "tools/GUARDIAN_V111_C1_XAGUSD_FTMO_EXECUTION_AUDIT_v1_00.ps1",
+    "launcher": "tools/RUN_V111_C1_XAGUSD_FTMO_EXECUTION_AUDIT.cmd",
+    "alignment": "integer offsets -8h..+8h; choose by >=90% coverage then source-vs-FTMO price proximity only",
+    "execution": "first tick at/after mapped H11 and H12 boundaries; SHORT bid->ask",
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED"
   }
 }
