@@ -949,3 +949,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Fresh OOS window: 2023-2025 only; 2026 blocked; no retuning/rescue.
 - Active launcher: `tools/RUN_V111_C1_XAGUSD_LOCKED_OOS_V2.cmd`.
 - If fresh mean >0, next step is separate FTMO BID/ASK time-alignment/execution audit using the emitted event ledger; do not optimize between stages.
+
+
+## V111-C1 XAGUSD OOS result — 2026-09-23
+- Fresh 2023-2025 result: n=705, mean +1.189686 bp, control -0.435613 bp, differential +1.625299 bp. All three years positive; LOO minimum +0.909105 bp.
+- V2 existence = POSITIVE_UNCERTAIN because month-bootstrap q10 = -0.209773 bp. Tail dependence is strong: trim-best-1% turns negative (-0.305509 bp).
+- Source proxy remains barely positive after nominal 1 bp (+0.189686 bp) and negative after 2 bp.
+- Next active tool: `tools/RUN_V111_C1_XAGUSD_FTMO_EXECUTION_AUDIT.cmd`. It first aligns XAGUSD FTMO clock by price proximity only, then executes first tick at/after mapped H11/H12, SHORT bid->ask. 2026 remains blocked and no retuning is allowed.
