@@ -1118,3 +1118,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Current FTMO official Forex commission is $2.50/lot/side (round trip $5/lot). Applied uniformly to the historical EURUSD entry prices, mean commission cost is ~0.455522 bp and mean expectancy after observed spread + current commission becomes ~+0.550043 bp/trade. Current-commission yearly means: 2023 +1.423109, 2024 -0.176102, 2025 +0.611551 bp. Trim1 remains +0.110826 but trim2 becomes -0.153618. Approx month-block q10 after current commission is -0.102539 bp (10k bootstrap diagnostic), so economic persistence after current commission is POSITIVE_UNCERTAIN / fragile rather than confirmed.
 - Extra round-trip friction break-even after observed spread + current commission is only ~0.55 bp, about 0.60 pip at the sample mean EURUSD price. Volume Bands and live latency/slippage therefore matter materially.
 - Do not retime or rescue. Preserve exact H11->H13 SHORT as the first FTMO execution-surviving mini-edge candidate and move to production-readiness checks: Standard-account news restriction compatibility, actual Volume Band for intended size, then forward shadow.
+
+
+### 2026-09-23 — Next candidate: V111 USDCHF H22 LONG 240m
+- After validating EURUSD H11 SHORT 120m as an FTMO execution-surviving mini-edge, the next unconsumed V111 candidate selected is USDCHF H22 LONG 240m.
+- Historical V111 evidence before locked OOS: n=1047, mean ~+1.693 bp, net after nominal 1 bp ~+0.693 bp, trim-best-5% ~+0.463 bp, LOO minimum ~+1.080 bp, month-bootstrap q2.5 ~+0.956 bp. The old rejection was one -5m timing-shift diagnostic.
+- Frozen combined pipeline added. Stage A opens only 2023-2025 source OOS; if fresh mean >0, Stage B automatically performs FTMO clock alignment by price proximity only and causal first-tick LONG ask->bid execution. No alternate timing/horizon/direction is allowed.
+- Because the 240m hold may cross rollover depending on the empirical FTMO offset, current swap metadata is recorded but is not substituted for historical swap. If observed-spread economics are already negative, the candidate is rejected without inventing further costs.
+- 2026 remains blocked. Active launcher: `tools\RUN_V111_USDCHF_H22_240M_OOS_FTMO.cmd`.
