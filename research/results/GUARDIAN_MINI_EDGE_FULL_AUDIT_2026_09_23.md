@@ -401,3 +401,19 @@ Already confirmed and should not be forgotten:
 Remain PAUSED until the new validation taxonomy/gates are written and frozen.
 Do not rerun or rescue any historical candidate under ad-hoc thresholds.
 No protected-2026 opening is authorized by this audit.
+
+
+## Addendum — R5E-023 protected 2026 OOS located after audit
+
+A preregistered protected Jan-Aug 2026 OOS already existed on the backtest-results branch and materially changes the retrospective interpretation.
+
+- n=89
+- full E1 PF 1.0255, net +29.62
+- full STRESS PF 0.8598, net -178.16
+- Jan-Apr E1 expectancy +6.6509
+- May-Aug E1 expectancy -5.8449
+- full E1 ex-best positive net -74.47
+- bootstrap p05 -5.6973
+- historical protected-OOS verdict FAIL
+
+Updated classification: GENUINE LATER OOS CONTRADICTION / DO NOT REVIVE.
