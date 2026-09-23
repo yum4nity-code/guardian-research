@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-23",
+  "status": "FROZEN_BEFORE_2018_2022_OUTCOMES",
+  "campaign": "M5_MOTION_TOPOLOGY_M04_VALIDATION_2018_2022_V1",
+  "parent_discovery_run": "GEFM5D-20260923-052315",
+  "parent_replication_run": "GEFM5R-20260923-053206",
+  "parent_replication_survivor_sha256": "942eeda155a39446adecacba0171a04552d0c99fe86ac1cfb50fab30dce3b371",
+  "frozen_survivors": [
+    {
+      "id": "M04_EURUSD_UDXUSD_RELN1_L15",
+      "target": "EURUSD",
+      "peer": "UDXUSD",
+      "relation": -1,
+      "lookback_min": 15,
+      "horizon_min": 15
+    },
+    {
+      "id": "M04_GBPUSD_UDXUSD_RELN1_L15",
+      "target": "GBPUSD",
+      "peer": "UDXUSD",
+      "relation": -1,
+      "lookback_min": 15,
+      "horizon_min": 15
+    },
+    {
+      "id": "M04_GBPUSD_UDXUSD_RELN1_L30",
+      "target": "GBPUSD",
+      "peer": "UDXUSD",
+      "relation": -1,
+      "lookback_min": 30,
+      "horizon_min": 30
+    },
+    {
+      "id": "M04_AUDUSD_UDXUSD_RELN1_L15",
+      "target": "AUDUSD",
+      "peer": "UDXUSD",
+      "relation": -1,
+      "lookback_min": 15,
+      "horizon_min": 15
+    },
+    {
+      "id": "M04_USDCHF_UDXUSD_RELP1_L15",
+      "target": "USDCHF",
+      "peer": "UDXUSD",
+      "relation": 1,
+      "lookback_min": 15,
+      "horizon_min": 15
+    }
+  ],
+  "closed_after_replication": [
+    "M04_AUDUSD_UDXUSD_RELN1_L30"
+  ],
+  "history_start_year": 2011,
+  "validation_start": "2018-01-01",
+  "validation_end_exclusive": "2023-01-01",
+  "max_source_year": 2022,
+  "forbidden_from": "2023-01-01",
+  "corr_short_bars": 12,
+  "corr_short_min": 8,
+  "corr_long_bars": 72,
+  "corr_long_min": 36,
+  "causal_z_min_prior": 250,
+  "prior_extreme_window_bars": 3,
+  "extreme_abs_z": 1.5,
+  "recoupled_abs_z_lt": 1,
+  "cooldown_min": 30,
+  "min_episodes": 250,
+  "min_days": 150,
+  "one_sided_p_max": 0.05,
+  "min_positive_years": 4,
+  "require_leave_one_year_out_min_positive": true,
+  "trim_best_pct": [
+    0.01,
+    0.02
+  ],
+  "negative_control_shifts_min": [
+    -60,
+    60
+  ],
+  "family_validation_min_variants": 3,
+  "no_rescue": true
+}
