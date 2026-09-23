@@ -732,3 +732,15 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Preregistered exact 2015-2017 replication with no retuning: >=100 episodes, >=60 UTC days, positive endpoint effect, one-sided cluster p<=0.05.
 - Replication engine reconstructs causal history from 2011 and requires pre-2015 parity against the discovery cache before scoring.
 - 2018+ remains forbidden.
+
+
+### 2026-09-23 — M04 replication 5/6; independent validation preregistered
+- Exact 2015-2017 replication run GEFM5R-20260923-053206 passed pre-2015 parity for all four UDX/FX objects.
+- Five of six frozen M04 discovery variants passed replication.
+- AUDUSD/UDX L30 failed with negative mean endpoint and is closed without rescue.
+- Remaining five variants are treated as correlated manifestations of one M04 UDX/FX recoupling family.
+- Frozen independent 2018-2022 validation before access.
+- Added stricter validation gates: year consistency, leave-one-year-out positivity and trim-best 1%/2% positivity, plus primary cluster significance.
+- Family validation requires at least three of five exact variants to pass all gates.
+- Added a separate pre-2018 reference freeze step so the validation engine must match the 2011-2017 replicated objects before scoring 2018-2022.
+- 2023-2025 and 2026 remain unopened.
