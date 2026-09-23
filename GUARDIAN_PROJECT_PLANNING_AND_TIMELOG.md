@@ -1202,3 +1202,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Historical but FTMO-closed phenomena are retained separately: D032-C1, XAGUSD C1 H11 60m, V69 USDCHF Friday long, V112 AUDUSD H21 120m.
 - Prepared `tools\RUN_D035_F1_FTMO_ONECLICK.cmd`. It validates the existing owner authorization, finds the current FTMO terminal, requires exact BTCUSD and XLMUSD, builds an isolated portable tester, exports the frozen 2026-H1 BTCUSD/XLMUSD M1 feed with the existing D035 exporter, verifies FTMO identity and coverage, runs the frozen D035-F1 analyzer, and writes a desktop ZIP receipt.
 - D035 guards remain unchanged: XLMUSD only, SHORT, +15m primary, +30m diagnostic, commission 0.0325%/side, Jul-Dec 2026 blocked, other targets blocked, no retuning, no live deployment.
+
+
+### 2026-09-23 — D035-F1 exporter compile hotfix v1.01
+- First one-click attempt stopped at exporter compilation before any BTCUSD/XLMUSD 2026-H1 export or target outcome access.
+- MQL5 error 202 root cause: `StringToUpper` mutates a non-const string by reference and returns bool. v1.00 passed `_Symbol` directly and assigned the bool return to strings for account company/server normalization.
+- Added versioned `research/ea/D035_FTMO_CFD_M1_Exporter_v1_01.mq5`: copy `_Symbol`, company and server into mutable strings, then call `StringToUpper` in place. No research logic changed.
+- Added `tools/GUARDIAN_D035_F1_FTMO_ONECLICK_v1_01.ps1` and `tools/RUN_D035_F1_FTMO_ONECLICK_v1_01.cmd`. Compile monitoring now fails immediately on compiler errors rather than waiting the full timeout.
+- Scientific scope unchanged: XLMUSD only, SHORT, +15m primary, +30m diagnostic, 2026-H1 only, Jul-Dec blocked, no retuning.
