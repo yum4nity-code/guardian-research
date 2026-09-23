@@ -1194,3 +1194,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Yearly pooled means: 2018 -337.662765; 2019 -299.096306; 2020 +119.710984; 2021 +109.877364; 2022 +28.116084; 2023 -58.200619 bp. Strong regime/feed instability; no stable FTMO transport.
 - Final interpretation: historical D032-C1 confirmation remains a valid historical/feed-specific phenomenon, but the exact frozen entry does not transport to FTMO. Close for FTMO with no retuning/rescue. Do not invalidate the original historical finding.
 - Next priority: D035-F1 FTMO XLMUSD 2026-H1 fresh target-outcome transport confirmation under the already-frozen explicit authorization; Jul-Dec 2026 and other targets remain blocked.
+
+
+### 2026-09-23 — bedtime handoff: persist interesting edges + prepare D035-F1 one-click
+- Persisted a cross-session shortlist in `research/results/GUARDIAN_INTERESTING_EDGES_SHORTLIST_2026_09_23.md` so the project does not depend on conversational memory alone.
+- Primary keep set: EURUSD H11 SHORT 120m (first FTMO execution survivor), D035-E1/F1 causal BTC+ETH -> XLMUSD SHORT (high-interest fresh FTMO test pending), and EA01 XAU RSI long as ensemble-only positive-uncertain mini-edge.
+- Historical but FTMO-closed phenomena are retained separately: D032-C1, XAGUSD C1 H11 60m, V69 USDCHF Friday long, V112 AUDUSD H21 120m.
+- Prepared `tools\RUN_D035_F1_FTMO_ONECLICK.cmd`. It validates the existing owner authorization, finds the current FTMO terminal, requires exact BTCUSD and XLMUSD, builds an isolated portable tester, exports the frozen 2026-H1 BTCUSD/XLMUSD M1 feed with the existing D035 exporter, verifies FTMO identity and coverage, runs the frozen D035-F1 analyzer, and writes a desktop ZIP receipt.
+- D035 guards remain unchanged: XLMUSD only, SHORT, +15m primary, +30m diagnostic, commission 0.0325%/side, Jul-Dec 2026 blocked, other targets blocked, no retuning, no live deployment.
