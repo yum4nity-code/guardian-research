@@ -1017,3 +1017,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Source parity remains mandatory before any FTMO pricing. No strategy logic, event definition, cost threshold or OOS population changed. 2026 remains hard-blocked.
 - Do not interpret missing FTMO history as negative strategy expectancy.
 - Human active time: NOT QUANTIFIED.
+
+
+### 2026-09-23 — FTMO execution ZIP reviewed; time-alignment forensic prepared
+- Reviewed `GUARDIAN_V69_V112_EXACT_SOURCE_FTMO_20260923-150540.zip`.
+- Exact source parity is confirmed and unchanged: V69 n=155 / +4.639075481195655 bps; V112 C3 n=556 / +1.4552352492311669 bps.
+- V69 FTMO ledger had 0/155 executions because the audit incorrectly reused V112's +5h vendor-time mapping. This shifted typical V69 source entry timestamps from Friday ~21:59 to Saturday ~02:59 UTC, when FX is closed. Original V69 source events are mostly Friday ~21:59 raw -> Sunday ~23:59 raw, so the previous FTMO availability failure is purely a mapping error.
+- V112 FTMO ledger had full 556/556 execution coverage. At the naively labelled H21/H23 timestamps, mean executable return was -1.6155 bps after observed spread versus +1.4552 bps in source. However source-vs-FTMO return correlation was only about 0.053, showing that those labels do not map to the same underlying market instants. Therefore this is not valid rejection evidence.
+- Added `tools/guardian_v69_v112_ftmo_time_alignment_forensic_v1_00.py`, its PowerShell runner, and one-click CMD launcher. The forensic scans integer offsets -8h..+8h and selects alignment solely by source-vs-FTMO price proximity with >=90% coverage; PnL is explicitly excluded from offset selection to avoid optimization leakage.
+- 2026 remains hard-blocked. No strategy definition, sample, signal, or cost threshold is changed.
+- Next safe action: run `tools\RUN_V69_V112_FTMO_TIME_ALIGNMENT_FORENSIC.cmd`, return its ZIP, then price the exact frozen events at the empirically aligned timestamps.
+- Human active time: NOT QUANTIFIED.
