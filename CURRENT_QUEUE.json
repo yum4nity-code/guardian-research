@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
-  "updated_at": "2026-09-23",
-  "active_primary": "UNSET_AFTER_D025_FRESH_FAIL",
+  "updated_at": "2026-09-24",
+  "active_primary": "EA01_XR_RSI_LONG_V1_FTMO_TRANSPORT",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -417,9 +417,9 @@
   ],
   "active_secondary": "CROSSED-PHENOMENA-BATCH-B-PARKED",
   "research_pause": {
-    "status": "PAUSED_BY_OWNER",
+    "status": "RESUMED_BY_OWNER_2026_09_24",
     "reason": "Methodology review after concern that stacked significance gates may create excessive false negatives after large search universe.",
-    "new_research_runs_authorized": false,
+    "new_research_runs_authorized": true,
     "protected_2026": false,
     "audit_result": {
       "file": "research/results/GUARDIAN_FILTER_SEVERITY_AUDIT_2026_09_23.md",
@@ -805,7 +805,8 @@
         "executable_mean_bp": -2.18,
         "protected_2026_accessed": false
       }
-    }
+    },
+    "resume_note": "Owner explicitly said go after shortlist review; continue active edge hunt under Validation Doctrine V2 while protected 2026 remains blocked unless separately authorized."
   },
   "latest_execution_audits": {
     "2026-09-23_V69_V112_FTMO": {
@@ -1474,5 +1475,39 @@
     "exact_tick_followup_permitted": false,
     "lineage_caveat": "Current FTMO 2024-2025 population/metrics do not exactly reproduce the preserved older EURUSD SHORT +2R summary; do not claim exact historical lineage falsification.",
     "decision": "CLOSE_EXACT_TESTED_BRANCH_NO_RESCUE"
+  },
+  "ea01_xr_rsi_long_v1_ftmo_transport": {
+    "status": "READY_TO_RUN",
+    "preregistration": "research/campaigns/EA01_XR_RSI_LONG_V1_FTMO_TRANSPORT_PREREG_2026_09_24.md",
+    "analyzer": "tools/analyze_ea01_xr_rsi_long_ftmo_transport_v1_00.py",
+    "runner": "tools/GUARDIAN_EA01_XAU_FTMO_TRANSPORT_v1_00.ps1",
+    "launcher": "tools/RUN_EA01_XAU_FTMO_TRANSPORT.cmd",
+    "canonical_oos": {
+      "path": "Research/Autonomous/edge_atlas/EA01-XR-RSI-LONG-V1-OOS-2023-2025/signals.csv",
+      "sha256": "35ab88bb139a9b8c23f0ad28287718af9c1906af1eae6cfe78087464a255c3ac",
+      "raw_n": 944,
+      "non_overlap_n": 654,
+      "hold_minutes": 60,
+      "direction": "LONG",
+      "raw_mean_R": 0.10856319491605436,
+      "cost010_mean_R": 0.06216246499009125,
+      "cost020_mean_R": 0.01576173506412815
+    },
+    "purpose": "Execution/economic transport only; reuse existing frozen OOS signals, no signal regeneration.",
+    "ftmo_execution": "LONG first ASK at/after entry timestamp -> first BID at/after +60m",
+    "commission_model": "Metals CFD 0.0007% notional per side, normalized to canonical 1R using actual FTMO contract size",
+    "alignment": "integer offsets -4h..+4h selected by source-vs-FTMO price proximity only",
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED",
+    "fail_closed_on": [
+      "ledger SHA mismatch",
+      "schema mismatch",
+      "raw N mismatch",
+      "non-overlap N mismatch",
+      "source aggregate parity mismatch",
+      "FTMO identity mismatch",
+      "<90% alignment/execution coverage"
+    ],
+    "next": "Run one-click FTMO transport and inspect ZIP. Do not reinterpret as independent OOS; this is economic/execution validation of the already-seen 2023-2025 signals."
   }
 }
