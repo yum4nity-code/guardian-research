@@ -1248,3 +1248,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Frozen fresh test: all original D025 LER SHORT signals on EURUSD (RETEST + ACCEPTANCE; no post-hoc path/level/session selection), +2R first-touch vs structural -1R, 48h max. 2023 is fresh; 2024-2025 are transport only; 2026 blocked.
 - Added conservative screening economics: contemporaneous entry spread normalized to R plus exact $5/lot round-trip Forex commission normalized by structural 1R. Exact Ask-side real-tick follow-up is permitted only if fresh-2023 raw EV and stressed EV are both positive.
 - One-click launcher: `tools\RUN_D025_EURUSD_SHORT_2R_FTMO.cmd`.
+
+
+### 2026-09-24 — D025 EURUSD SHORT +2R fresh-2023 FTMO result
+- Run completed cleanly: 0 compile errors/warnings, EURUSD FTMO-Demo, 2023-2025 only, protected 2026 untouched.
+- Fresh 2023: 235 SHORT signals / 215 resolved, +2R hit 33.95%, raw EV +0.018605R but predeclared spread+commission screen -0.035605R. Stressed month-block q10 -0.184538R, p(mean<=0)=0.627.
+- Frozen classification: SIGNAL_POSITIVE_ECONOMIC_NEGATIVE. Exact-tick follow-up not permitted; exact tested branch closed without rescue.
+- 2024-2025 FTMO transport: 372 signals / 303 resolved, raw +0.099010R, stressed +0.029083R; 2024 stressed negative and 2025 positive.
+- Important audit caveat: current FTMO 2024-2025 support/metrics do not exactly reproduce the previously preserved historical EURUSD SHORT summary (~337 total / 280 resolved, ~+0.136R pooled). Treat this as a lineage/population mismatch; do not claim this run exactly falsifies the older artifact, and do not use the opened 2023 sample to select a rescue subgroup.
