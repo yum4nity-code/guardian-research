@@ -1070,3 +1070,9 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Execution: first ASK at entry -> first BID at +60m; Metals CFD commission 0.0007% notional per side; alignment by price proximity only.
 - Launcher: `tools/RUN_EA01_XAU_FTMO_TRANSPORT.cmd`.
 - Protected 2026 blocked; no retuning or subgroup rescue.
+
+
+## EA01 FTMO v1_00 invalid — 2026-09-24
+- Do NOT use the v1_00 economic rejection. Constant +3h alignment across 2023-2025 ignored FTMO GMT+2/GMT+3 DST changes.
+- Winter source-vs-FTMO price mismatch is large while most Mar-Oct months align tightly, proving the mapping defect in the artifact itself.
+- EA01 FTMO execution transport remains unresolved. Protected 2026 untouched. No automatic patch/rescue.
