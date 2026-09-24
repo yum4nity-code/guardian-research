@@ -1256,3 +1256,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Frozen classification: SIGNAL_POSITIVE_ECONOMIC_NEGATIVE. Exact-tick follow-up not permitted; exact tested branch closed without rescue.
 - 2024-2025 FTMO transport: 372 signals / 303 resolved, raw +0.099010R, stressed +0.029083R; 2024 stressed negative and 2025 positive.
 - Important audit caveat: current FTMO 2024-2025 support/metrics do not exactly reproduce the previously preserved historical EURUSD SHORT summary (~337 total / 280 resolved, ~+0.136R pooled). Treat this as a lineage/population mismatch; do not claim this run exactly falsifies the older artifact, and do not use the opened 2023 sample to select a rescue subgroup.
+
+
+### 2026-09-24 — EA01 XAU FTMO execution transport frozen and prepared
+- Owner explicitly resumed active edge hunting after shortlist review. Primary candidate: EA01-XR-RSI-LONG-V1.
+- This is deliberately NOT a new discovery or subgroup search. It reuses the exact canonical 2023-2025 OOS signal ledger (SHA256 35ab88...c3ac), expected 944 raw signals and deterministic 654 non-overlap 60m trades.
+- Source parity gates before any interpretation: raw mean/PF and published cost-0.10 mean/PF must reproduce exactly; LONG-only schema must match. Any mismatch fails closed.
+- FTMO transport: XAUUSD, alignment -4h..+4h chosen only by source-vs-FTMO price proximity; LONG first ASK at entry -> first BID at +60m. Observed spread embedded.
+- Current FTMO Metals CFD commission model frozen at 0.0007% notional per side, normalized using actual XAU contract size and canonical source 1R.
+- Diagnostics: coverage, return correlation, net R, PF, yearly means, month-block bootstrap, trim 1/2%. No stop/TP is invented because the frozen EA01 candidate is a 60m endpoint signal.
+- 2026 remains blocked. No retuning, no alternate horizon, no subgroup selection, no live deployment.
+- One-click launcher: `tools\RUN_EA01_XAU_FTMO_TRANSPORT.cmd`.
