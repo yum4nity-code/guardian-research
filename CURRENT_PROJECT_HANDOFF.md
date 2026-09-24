@@ -1055,3 +1055,10 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Production-readiness audit classification: FRAGILE_FORWARD_SHADOW. Net after observed spread + $5/lot round-trip commission is +0.550 bp/trade, but month-bootstrap q10 is -0.102 bp and trim-best-2% turns negative.
 - No 2026 historical data was opened.
 - Use `tools/RUN_V111_C8_EURUSD_FORWARD_SHADOW.cmd` for a true forward-only paper shadow from the next UTC day. No live orders; no historical backfill; exact timing remains frozen.
+
+
+## Active edge hunt resumed — D025 EURUSD
+- Owner priority is now explicit: find an economically tradable edge; forward monitoring is secondary only.
+- Active next test: `tools/RUN_D025_EURUSD_SHORT_2R_FTMO.cmd`.
+- Frozen candidate: EURUSD SHORT, all original D025 LER paths, +2R vs structural -1R, 48h. Fresh test = 2023; 2024-2025 transport only; 2026 blocked.
+- Cost screen includes contemporaneous entry spread R + $5/lot round-trip commission. Exact tick follow-up only if fresh 2023 remains positive after this screen.
