@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-23",
-  "active_primary": "PAUSED_BY_OWNER_METHOD_REVIEW",
+  "active_primary": "D025_EURUSD_SHORT_2R_FTMO_FRESH2023",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -1421,5 +1421,35 @@
       "launcher": "tools/RUN_V111_C8_EURUSD_FORWARD_SHADOW.cmd",
       "behavior": "Forward-only paper shadow from next UTC day; fixed FTMO-aligned entry/exit; no live orders; refuses historical backfill."
     }
+  },
+  "owner_research_resume_2026_09_24": {
+    "status": "RESUMED",
+    "objective": "Find an economically tradable edge; stop spending primary research time on passive monitoring.",
+    "protected_2026": "REMAINS_BLOCKED except separately authorized frozen campaigns",
+    "doctrine": "GUARDIAN Validation Doctrine V2 remains frozen and active"
+  },
+  "d025_eurusd_short_2r_ftmo": {
+    "status": "READY_TO_RUN",
+    "preregistration": "research/campaigns/D025_EURUSD_SHORT_2R_FTMO_FRESH2023_PREREG_2026_09_24.md",
+    "source_ea": "research/ea/D025_LER_VirtualPath_1_03.mq5",
+    "analyzer": "tools/analyze_d025_eurusd_short_2r_ftmo_v1_00.py",
+    "runner": "tools/GUARDIAN_D025_EURUSD_SHORT_2R_FTMO_v1_00.ps1",
+    "launcher": "tools/RUN_D025_EURUSD_SHORT_2R_FTMO.cmd",
+    "candidate": {
+      "market": "EURUSD",
+      "side": "SHORT",
+      "paths": "ALL_FROZEN_LER_PATHS",
+      "target_R": 2,
+      "stop_R": -1,
+      "max_hold_h": 48
+    },
+    "evidence_plan": {
+      "fresh_2023": "fresh temporal test on FTMO feed",
+      "transport_2024_2025": "replication/transport only because those years informed branch selection"
+    },
+    "cost_screen": "entry spread R + exact normalized $5/lot round-trip Forex commission",
+    "exact_tick_followup": "ONLY_IF_FRESH_2023_RAW_AND_STRESSED_EV_POSITIVE",
+    "protected_2026": "BLOCKED",
+    "retuning": "BLOCKED"
   }
 }
