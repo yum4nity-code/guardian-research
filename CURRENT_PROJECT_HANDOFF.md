@@ -1062,3 +1062,11 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Active next test: `tools/RUN_D025_EURUSD_SHORT_2R_FTMO.cmd`.
 - Frozen candidate: EURUSD SHORT, all original D025 LER paths, +2R vs structural -1R, 48h. Fresh test = 2023; 2024-2025 transport only; 2026 blocked.
 - Cost screen includes contemporaneous entry spread R + $5/lot round-trip commission. Exact tick follow-up only if fresh 2023 remains positive after this screen.
+
+
+## EA01 XAU FTMO transport ready — 2026-09-24
+- Active primary: EA01-XR-RSI-LONG-V1 execution/economic transport on FTMO XAUUSD.
+- Reuses exact canonical 2023-2025 OOS ledger only; expected 944 raw / 654 non-overlap 60m LONG trades and exact source hash/aggregate parity before FTMO access is interpreted.
+- Execution: first ASK at entry -> first BID at +60m; Metals CFD commission 0.0007% notional per side; alignment by price proximity only.
+- Launcher: `tools/RUN_EA01_XAU_FTMO_TRANSPORT.cmd`.
+- Protected 2026 blocked; no retuning or subgroup rescue.
