@@ -1267,3 +1267,11 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Diagnostics: coverage, return correlation, net R, PF, yearly means, month-block bootstrap, trim 1/2%. No stop/TP is invented because the frozen EA01 candidate is a 60m endpoint signal.
 - 2026 remains blocked. No retuning, no alternate horizon, no subgroup selection, no live deployment.
 - One-click launcher: `tools\RUN_EA01_XAU_FTMO_TRANSPORT.cmd`.
+
+
+### 2026-09-24 — EA01 FTMO v1_00 INVALID: DST clock-mapping error
+- Artifact completed technically, canonical 944/654 source gates passed, and protected 2026 remained untouched.
+- Fatal design error found during post-run audit: v1_00 chose one constant +3h offset for all 2023-2025 FTMO events. FTMO MetaTrader platform time is GMT+2 with DST and changes between GMT+2 and GMT+3.
+- Artifact diagnostics expose the error directly: chosen +3h has median abs source-vs-FTMO entry price differences around 10-14 bp in Jan/Feb/Nov/Dec versus roughly 0.4-0.7 bp across most Mar-Oct months; monthly source-vs-FTMO return correlation similarly collapses in winter.
+- Therefore the generated ECONOMICALLY_REJECTED_FTMO classification and all PnL/bootstraps from this run are VOID. This is an infrastructure/scientific mapping failure, not an EA01 edge failure.
+- EA01 FTMO execution status returns to UNRESOLVED. No patch/reinterpretation has been authorized or performed in this session.
