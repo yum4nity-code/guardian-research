@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-23",
-  "active_primary": "D025_EURUSD_SHORT_2R_FTMO_FRESH2023",
+  "active_primary": "UNSET_AFTER_D025_FRESH_FAIL",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -1429,7 +1429,7 @@
     "doctrine": "GUARDIAN Validation Doctrine V2 remains frozen and active"
   },
   "d025_eurusd_short_2r_ftmo": {
-    "status": "READY_TO_RUN",
+    "status": "CLOSED_FRESH_2023_ECONOMIC_NEGATIVE_LINEAGE_TRANSPORT_MISMATCH",
     "preregistration": "research/campaigns/D025_EURUSD_SHORT_2R_FTMO_FRESH2023_PREREG_2026_09_24.md",
     "source_ea": "research/ea/D025_LER_VirtualPath_1_03.mq5",
     "analyzer": "tools/analyze_d025_eurusd_short_2r_ftmo_v1_00.py",
@@ -1450,6 +1450,29 @@
     "cost_screen": "entry spread R + exact normalized $5/lot round-trip Forex commission",
     "exact_tick_followup": "ONLY_IF_FRESH_2023_RAW_AND_STRESSED_EV_POSITIVE",
     "protected_2026": "BLOCKED",
-    "retuning": "BLOCKED"
+    "retuning": "BLOCKED",
+    "result_file": "research/results/D025_EURUSD_SHORT_2R_FTMO_FRESH2023_RESULT_2026_09_24.md",
+    "result": {
+      "fresh_2023": {
+        "signals": 235,
+        "resolved": 215,
+        "target_first_rate": 0.3395348837209302,
+        "raw_ev_R": 0.018604651162790697,
+        "stressed_ev_R": -0.03560540238446432,
+        "raw_q10_R": -0.13,
+        "stressed_q10_R": -0.1845380721087397
+      },
+      "transport_2024_2025": {
+        "signals": 372,
+        "resolved": 303,
+        "raw_ev_R": 0.09900990099009901,
+        "stressed_ev_R": 0.029083070673003825
+      },
+      "protected_2026_accessed": false
+    },
+    "classification": "SIGNAL_POSITIVE_ECONOMIC_NEGATIVE",
+    "exact_tick_followup_permitted": false,
+    "lineage_caveat": "Current FTMO 2024-2025 population/metrics do not exactly reproduce the preserved older EURUSD SHORT +2R summary; do not claim exact historical lineage falsification.",
+    "decision": "CLOSE_EXACT_TESTED_BRANCH_NO_RESCUE"
   }
 }
