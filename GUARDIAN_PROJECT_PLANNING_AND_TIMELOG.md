@@ -1239,3 +1239,12 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Cumulative max DD -247.866337 bp; max losing streak 8. Extra-friction break-even only +0.550043 bp / ~0.604539 pip at mean EURUSD price.
 - Classification: FRAGILE_FORWARD_SHADOW. Positive after current spread+commission but too thin / unstable for production.
 - Prepared true forward-only paper monitor starting next UTC day: `tools\RUN_V111_C8_EURUSD_FORWARD_SHADOW.cmd`. It refuses historical backfill, sends no orders, and records fixed EURUSD SHORT H11->H13 FTMO-aligned BID/ASK execution plus commission.
+
+
+### 2026-09-24 — Owner refocus: find a tradable edge, not monitoring
+- Owner explicitly rejected spending primary research effort on passive forward monitoring and resumed active edge research.
+- Validation Doctrine V2 remains active. Protected 2026 remains closed except separately authorized frozen campaigns.
+- Chosen next candidate from the preserved archive: D025 EURUSD SHORT -> +2R vs structural -1R. Rationale: repeat positive 2024/2025 point estimates (~+0.146R / +0.122R pre-cost historically), low-cost FX execution environment, and an available untouched/fresh 2023 temporal block.
+- Frozen fresh test: all original D025 LER SHORT signals on EURUSD (RETEST + ACCEPTANCE; no post-hoc path/level/session selection), +2R first-touch vs structural -1R, 48h max. 2023 is fresh; 2024-2025 are transport only; 2026 blocked.
+- Added conservative screening economics: contemporaneous entry spread normalized to R plus exact $5/lot round-trip Forex commission normalized by structural 1R. Exact Ask-side real-tick follow-up is permitted only if fresh-2023 raw EV and stressed EV are both positive.
+- One-click launcher: `tools\RUN_D025_EURUSD_SHORT_2R_FTMO.cmd`.
