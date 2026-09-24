@@ -1,7 +1,7 @@
 {
   "schema_version": 20,
   "updated_at": "2026-09-24",
-  "active_primary": "EA01_XR_RSI_LONG_V1_FTMO_TRANSPORT",
+  "active_primary": "NONE_AFTER_EA01_V1_00_INVALID",
   "items": [
     {
       "id": "GEF-V100-FORWARD-SHADOW",
@@ -1477,7 +1477,7 @@
     "decision": "CLOSE_EXACT_TESTED_BRANCH_NO_RESCUE"
   },
   "ea01_xr_rsi_long_v1_ftmo_transport": {
-    "status": "READY_TO_RUN",
+    "status": "INVALID_INFRA_DST_ALIGNMENT_BUG",
     "preregistration": "research/campaigns/EA01_XR_RSI_LONG_V1_FTMO_TRANSPORT_PREREG_2026_09_24.md",
     "analyzer": "tools/analyze_ea01_xr_rsi_long_ftmo_transport_v1_00.py",
     "runner": "tools/GUARDIAN_EA01_XAU_FTMO_TRANSPORT_v1_00.ps1",
@@ -1497,7 +1497,7 @@
     "ftmo_execution": "LONG first ASK at/after entry timestamp -> first BID at/after +60m",
     "commission_model": "Metals CFD 0.0007% notional per side, normalized to canonical 1R using actual FTMO contract size",
     "alignment": "integer offsets -4h..+4h selected by source-vs-FTMO price proximity only",
-    "protected_2026": "BLOCKED",
+    "protected_2026": "UNTOUCHED",
     "retuning": "BLOCKED",
     "fail_closed_on": [
       "ledger SHA mismatch",
@@ -1508,6 +1508,31 @@
       "FTMO identity mismatch",
       "<90% alignment/execution coverage"
     ],
-    "next": "Run one-click FTMO transport and inspect ZIP. Do not reinterpret as independent OOS; this is economic/execution validation of the already-seen 2023-2025 signals."
+    "next": "Run one-click FTMO transport and inspect ZIP. Do not reinterpret as independent OOS; this is economic/execution validation of the already-seen 2023-2025 signals.",
+    "invalid_result_file": "research/results/EA01_XAU_FTMO_TRANSPORT_V1_00_INVALID_2026_09_24.md",
+    "invalid_artifact": "GUARDIAN_EA01_XAU_FTMO_TRANSPORT_20260924-053553.zip",
+    "invalid_reason": "v1_00 chose one constant +3h offset over 2023-2025 although FTMO MetaTrader platform time changes GMT+2/GMT+3 with DST; winter events were shifted by one hour.",
+    "artifact_diagnostic": {
+      "chosen_offset_hours": 3,
+      "source_signals": 944,
+      "non_overlap_n": 654,
+      "execution_n": 636,
+      "reported_classification_void": "ECONOMICALLY_REJECTED_FTMO",
+      "median_abs_entry_diff_bp_by_month": {
+        "1": 10.182,
+        "2": 12.345,
+        "3": 0.557,
+        "4": 0.422,
+        "5": 0.466,
+        "6": 0.451,
+        "7": 0.41,
+        "8": 0.421,
+        "9": 0.395,
+        "10": 0.399,
+        "11": 8.152,
+        "12": 13.592
+      }
+    },
+    "scientific_consequence": "NO_VALID_EA01_FTMO_VERDICT_FROM_V1_00"
   }
 }
