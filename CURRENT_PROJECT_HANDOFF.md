@@ -1076,3 +1076,15 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Do NOT use the v1_00 economic rejection. Constant +3h alignment across 2023-2025 ignored FTMO GMT+2/GMT+3 DST changes.
 - Winter source-vs-FTMO price mismatch is large while most Mar-Oct months align tightly, proving the mapping defect in the artifact itself.
 - EA01 FTMO execution transport remains unresolved. Protected 2026 untouched. No automatic patch/rescue.
+
+
+## EA01 FTMO DST-aware transport v1.01 ready — 2026-09-25
+- The v1.00 rejection remains invalid and must not be used.
+- Root cause: constant +3h mapping ignored FTMO GMT+2/GMT+3 DST.
+- Corrected analyzer: `tools/analyze_ea01_xr_rsi_long_ftmo_transport_v1_01.py`.
+- Corrected runner: `tools/GUARDIAN_EA01_XAU_FTMO_TRANSPORT_v1_01.ps1`.
+- One-click entrypoint `tools/RUN_EA01_XAU_FTMO_TRANSPORT.cmd` now routes to v1.01.
+- Mapping is deterministic Europe/Athens offset (+2 winter, +3 summer), separately at entry and exit; fixed offsets are diagnostics only.
+- Python syntax compilation passed.
+- 2026 remains blocked; no retuning or subgroup rescue.
+- Next safe action: run the one-click launcher and audit the returned ZIP before any EA01 decision.
