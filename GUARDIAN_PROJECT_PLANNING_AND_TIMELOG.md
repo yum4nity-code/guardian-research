@@ -1275,3 +1275,14 @@ Evidence: `research/results/issue_3_economic_preflight_v1/COLD_AUDIT.md` and `da
 - Artifact diagnostics expose the error directly: chosen +3h has median abs source-vs-FTMO entry price differences around 10-14 bp in Jan/Feb/Nov/Dec versus roughly 0.4-0.7 bp across most Mar-Oct months; monthly source-vs-FTMO return correlation similarly collapses in winter.
 - Therefore the generated ECONOMICALLY_REJECTED_FTMO classification and all PnL/bootstraps from this run are VOID. This is an infrastructure/scientific mapping failure, not an EA01 edge failure.
 - EA01 FTMO execution status returns to UNRESOLVED. No patch/reinterpretation has been authorized or performed in this session.
+
+
+## 2026-09-25 — EA01 FTMO transport DST repair
+
+- Work performed: independently reviewed the EA01 transport ZIP, reconciled it against the canonical repository state, and identified that the apparent economic rejection came from the already-documented invalid v1.00 constant +3h mapping.
+- Code: added DST-aware analyzer v1.01 and PowerShell runner; redirected the stable one-click launcher to v1.01.
+- Verification: Python syntax compilation passed. Mapping is deterministic FTMO GMT+2/GMT+3 via Europe/Athens, independently applied at entry and exit. Fixed-offset scan remains diagnostic only.
+- Decision: no scientific verdict on EA01 may use v1.00. EA01 remains unresolved until v1.01 output is audited.
+- Safety: 2026 remains blocked; no retuning, rescue filter, or production activation.
+- Next safe action: run `tools/RUN_EA01_XAU_FTMO_TRANSPORT.cmd`, return the generated ZIP, then audit alignment and economics.
+- Human time: NOT QUANTIFIED. Autonomous calculations do not count as human time.
