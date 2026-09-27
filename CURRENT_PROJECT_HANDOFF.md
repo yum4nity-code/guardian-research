@@ -1130,3 +1130,47 @@ Do NOT evaluate endpoint outcomes until the census dictionaries and hashes are w
 
 Next action:
 run automation/Run-M5MotionTopologyM09M10Census.ps1, review RUN_RECEIPT.json + frozen dictionary counts/hashes, then build the separate outcome-discovery engine. Do not combine census and outcome association retroactively.
+
+
+## 2026-09-27 — M09/M10 census COMPLETE; outcome discovery FROZEN / READY
+
+Predictor-only census completed locally:
+Run: GEFM5MC-20260927-100900
+
+Results:
+- M09 census rows: 6,527
+- M10 census rows: 14,822
+- frozen M09 motifs: 6,393
+- frozen M10 sequences: 14,662
+- no outcome files accessed
+- 2015+ state/outcomes untouched
+- 2023-2025 untouched
+- 2026 untouched
+
+Frozen dictionary hashes:
+- M09: f4b16ed02534ada03aee9acbbcfb42c9450524c54cd17065a281aacb5b3d0e80
+- M10: 5df682a7a81d02ca9e72439e8e86434ccdf6579c0f16958316853c38729e1893
+
+Outcome-discovery protocol is now frozen BEFORE opening outcomes:
+- research/campaigns/GUARDIAN_M5_M09_M10_OUTCOME_DISCOVERY_PREREG_2026_09_27.md
+- research/campaigns/GUARDIAN_M5_M09_M10_OUTCOME_DISCOVERY_SPEC_2026_09_27.json
+- scripts/gef_m5_motion_topology_m09_m10_outcome_discovery.py
+- automation/Run-M5MotionTopologyM09M10OutcomeDiscovery.ps1
+
+Hard discovery gate:
+- exact frozen dictionaries only
+- matched L15/H15, L30/H30, L60/H60
+- discovery outcomes 2012-2014 only
+- >=200 independent 30m-cooldown episodes
+- >=120 UTC days
+- mean endpoint > 0
+- one-sided day-cluster-robust inference
+- BH-FDR q<=0.05 separately within M09 and M10
+- trim-best 1%/2% and yearly means are diagnostics only, not post-hoc hard gates
+
+No dictionary/state-bit/threshold/sequence edits after outcome opening.
+If survivors exist, freeze exact survivors and separately preregister 2015-2017 replication.
+2015+ remains unopened until that point. 2023-2025 locked. 2026 protected.
+
+Next action:
+run automation/Run-M5MotionTopologyM09M10OutcomeDiscovery.ps1 and inspect RUN_RECEIPT + FAMILY_SUMMARY + frozen survivors. No rescue if discovery is null.
