@@ -1201,3 +1201,33 @@ The diagnostic reads only the already-produced DISCOVERY_ALL.csv from GEFM5MD-20
 Next action:
 run automation/Diagnose-M09M10ValiditySupport.ps1.
 Review episodes>=200, days>=120, finite-p counts, census-to-outcome support retention and max support before deciding whether this is a true low-support design or an engine/gate defect.
+
+
+## 2026-09-27 — M09/M10 v1.0 outcome run INVALID; cooldown resolution bug confirmed
+
+Invalid run:
+GEFM5MD-20260927-104939
+
+Diagnostic evidence:
+- top census motifs had roughly 9k-11k independent 30-minute episodes;
+- outcome engine collapsed all top objects to exactly 53 episodes / 53 days;
+- this caused valid_tests=0 before BH-FDR.
+
+Root cause:
+the v1.0 outcome engine used DatetimeIndex.view("i8") and compared it to a Timedelta.value nanosecond gap. On the local pandas/parquet runtime the DatetimeIndex integer resolution was not guaranteed to be nanoseconds. The 30-minute cooldown therefore became approximately 20.8 days, producing about 53 retained episodes across 2012-2014.
+
+Scientific verdict for GEFM5MD-20260927-104939:
+INVALID_INFRASTRUCTURE_BUG. It is not a negative M09/M10 result.
+
+Fix:
+- engine bumped to M5-MOTION-TOPOLOGY-M09-M10-OUTCOME-DISCOVERY-1.1;
+- timestamps explicitly converted to datetime64[ns] before integer cooldown arithmetic;
+- a support-retention sanity guard now aborts instead of emitting a scientific result if the top census objects collapse by orders of magnitude.
+
+No scientific object, dictionary hash, threshold, outcome definition, support gate, BH gate or temporal split changed.
+Rerunning 2012-2014 is a computational correction of the same frozen experiment, not a retune.
+2015+ / 2023-2025 / 2026 remain unopened.
+
+Next action:
+pull main and rerun automation/Run-M5MotionTopologyM09M10OutcomeDiscovery.ps1.
+Do not use the v1.0 result in any lineage conclusion.
