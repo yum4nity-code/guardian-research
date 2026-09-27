@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import t as student_t
 
-ENGINE_VERSION = "M5-MOTION-TOPOLOGY-M09-M10-OUTCOME-DISCOVERY-1.0"
+ENGINE_VERSION = "M5-MOTION-TOPOLOGY-M09-M10-OUTCOME-DISCOVERY-1.1"
 DISCOVERY_START = pd.Timestamp("2012-01-01")
 FORBIDDEN_DATE = pd.Timestamp("2015-01-01")
 EXPECTED_CENSUS_RUN = "GEFM5MC-20260927-100900"
@@ -153,8 +153,14 @@ def cooldown_indices(times, minutes=COOLDOWN_MIN):
     t = pd.DatetimeIndex(times)
     if len(t) == 0:
         return np.empty(0, dtype=np.int64)
-    ns = t.view("i8")
-    gap = int(pd.Timedelta(minutes=minutes).value)
+
+    # IMPORTANT: never assume DatetimeIndex.view("i8") is nanoseconds.
+    # Parquet/pandas can preserve microsecond resolution, while Timedelta.value
+    # is nanoseconds. That mismatch inflated a 30-minute cooldown to ~20.8 days
+    # and collapsed high-support motifs to ~53 episodes over 2012-2014.
+    ns = t.to_numpy(dtype="datetime64[ns]").astype(np.int64)
+    gap = int(pd.Timedelta(minutes=minutes).to_timedelta64().astype("timedelta64[ns]").astype(np.int64))
+
     keep = []
     last = None
     for i, v in enumerate(ns):
