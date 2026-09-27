@@ -1088,3 +1088,45 @@ Execution economics remain unresolved because the historical gate used gross clo
 - Python syntax compilation passed.
 - 2026 remains blocked; no retuning or subgroup rescue.
 - Next safe action: run the one-click launcher and audit the returned ZIP before any EA01 decision.
+
+
+## 2026-09-27 — M09/M10 configuration-state research resumed
+
+Owner requested restarting GUARDIAN tests with the newly installed quantitative-research skills.
+
+Chosen next line is the still-untested configuration-based portion of the frozen M5 Motion Topology Factory:
+- M09 repeated compact market state / motif
+- M10 recurrent length-2 / length-3 state sequence
+
+This is preferred over another fixed-hour search because it directly tests recurring market configurations and preserves the original factory design.
+
+A predictor-only census is now preregistered and ready:
+- research/campaigns/GUARDIAN_M5_M09_M10_MOTIF_CENSUS_PREREG_2026_09_27.md
+- research/campaigns/GUARDIAN_M5_M09_M10_MOTIF_CENSUS_SPEC_2026_09_27.json
+- scripts/gef_m5_motion_topology_m09_m10_census.py
+- automation/Run-M5MotionTopologyM09M10Census.ps1
+
+Hard firewall:
+- state/motif census uses 2012-2014 only, with 2011 causal warmup already present in the frozen V1.1 cache;
+- target/outcome files are deliberately not opened in this stage;
+- 2015+ state/outcomes remain unopened;
+- 2023-2025 locked OOS untouched;
+- 2026 protected.
+
+Frozen compact state bits:
+1. own move direction;
+2. causal move-strength bucket;
+3. acceleration sign relative to the established move;
+4. shock flag;
+5. cross-market breadth bucket;
+6. causal dispersion bucket;
+7. incident residual-extreme flag;
+8. incident correlation-break flag.
+
+M09 freezes single states with >=100 independent 30-minute-cooldown occurrences.
+M10 freezes length-2 and length-3 sequences with >=100 independent occurrences.
+
+Do NOT evaluate endpoint outcomes until the census dictionaries and hashes are written and reviewed. The later discovery engine must use only the frozen dictionary, require >=200 independent episodes and >=120 UTC days, and apply BH-FDR separately within M09 and M10.
+
+Next action:
+run automation/Run-M5MotionTopologyM09M10Census.ps1, review RUN_RECEIPT.json + frozen dictionary counts/hashes, then build the separate outcome-discovery engine. Do not combine census and outcome association retroactively.
