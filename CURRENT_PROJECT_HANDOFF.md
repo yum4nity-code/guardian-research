@@ -1174,3 +1174,30 @@ If survivors exist, freeze exact survivors and separately preregister 2015-2017 
 
 Next action:
 run automation/Run-M5MotionTopologyM09M10OutcomeDiscovery.ps1 and inspect RUN_RECEIPT + FAMILY_SUMMARY + frozen survivors. No rescue if discovery is null.
+
+
+## 2026-09-27 — M09/M10 discovery returned 0 valid tests; validity audit required
+
+Outcome discovery run:
+GEFM5MD-20260927-104939
+
+Observed:
+- 21,055 frozen objects scored
+- reported valid_tests = 0
+- BH discoveries = 0
+- 2015+ / 2023-2025 / 2026 remained unopened
+
+Do NOT classify this as a scientific negative yet.
+
+Reason:
+the predictor-only census had 6,393 M09 motifs and 14,662 M10 sequences with >=100 independent occurrences, while outcome discovery reported zero objects even satisfying the pre-BH validity gate (>=200 episodes, >=120 UTC days, finite p). A total validity collapse across both families requires a support/gate audit before closing the lineage.
+
+Read-only diagnostic added:
+- scripts/diagnose_m09_m10_validity_support.py
+- automation/Diagnose-M09M10ValiditySupport.ps1
+
+The diagnostic reads only the already-produced DISCOVERY_ALL.csv from GEFM5MD-20260927-104939 and writes support/reason tables. It does not read new market data or any new temporal window.
+
+Next action:
+run automation/Diagnose-M09M10ValiditySupport.ps1.
+Review episodes>=200, days>=120, finite-p counts, census-to-outcome support retention and max support before deciding whether this is a true low-support design or an engine/gate defect.
