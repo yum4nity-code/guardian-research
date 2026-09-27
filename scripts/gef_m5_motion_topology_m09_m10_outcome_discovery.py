@@ -431,6 +431,20 @@ def main():
     if len(D) != expected_total:
         raise RuntimeError(f"Scored {len(D)} tests != frozen total {expected_total}")
 
+    # Infrastructure sanity check: outcome eligibility can reduce support, but it
+    # must not silently collapse every very-common census object by orders of
+    # magnitude. The v1.0 datetime-resolution bug would have failed here.
+    top_support = D.nlargest(min(100, len(D)), "census_episodes_30m").copy()
+    retention = (
+        pd.to_numeric(top_support["episodes"], errors="coerce")
+        / pd.to_numeric(top_support["census_episodes_30m"], errors="coerce").replace(0, np.nan)
+    )
+    if len(retention.dropna()) and float(retention.median()) < 0.10:
+        raise RuntimeError(
+            f"Support retention sanity FAIL: top-100 median={float(retention.median()):.4f}. "
+            "Treat as infrastructure error; do not interpret scientific result."
+        )
+
     D["bh_q"] = np.nan
     D["bh_pass"] = False
     for family in ["M09", "M10"]:
