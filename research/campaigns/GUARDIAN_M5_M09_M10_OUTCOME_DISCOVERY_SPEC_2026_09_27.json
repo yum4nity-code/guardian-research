@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-09-27",
+  "status": "FROZEN_BEFORE_OUTCOME_ASSOCIATION",
+  "campaign": "GUARDIAN_M5_M09_M10_OUTCOME_DISCOVERY",
+  "parent_census_run": "GEFM5MC-20260927-100900",
+  "parent_cache_run": "GEFM5T-20260923-050308",
+  "frozen_dictionary": {
+    "m09_rows": 6393,
+    "m09_sha256": "f4b16ed02534ada03aee9acbbcfb42c9450524c54cd17065a281aacb5b3d0e80",
+    "m10_rows": 14662,
+    "m10_sha256": "5df682a7a81d02ca9e72439e8e86434ccdf6579c0f16958316853c38729e1893"
+  },
+  "temporal": {
+    "warmup_state": [2011],
+    "discovery_outcomes": [2012, 2013, 2014],
+    "replication_future": [2015, 2016, 2017],
+    "validation_future": [2018, 2019, 2020, 2021, 2022],
+    "locked_oos": [2023, 2024, 2025],
+    "protected": [2026]
+  },
+  "matched_scales_only": [15, 30, 60],
+  "target": "endpoint_score_Lm_Lm",
+  "episode_cooldown_min": 30,
+  "hard_discovery_gate": {
+    "minimum_independent_episodes": 200,
+    "minimum_utc_days": 120,
+    "effect_direction": "mean_endpoint_score > 0",
+    "test": "one_sided_cluster_robust_intercept_by_utc_day",
+    "multiple_testing": "BH-FDR separately within M09 and M10",
+    "bh_q_max": 0.05
+  },
+  "diagnostics_not_hard_gates": [
+    "median_endpoint",
+    "positive_fraction",
+    "trim_best_1pct_mean",
+    "trim_best_2pct_mean",
+    "calendar_year_means_2012_2014"
+  ],
+  "hard_assertions": {
+    "no_dictionary_edit_after_outcomes": true,
+    "2015_plus_state_or_outcomes_forbidden": true,
+    "2023_2025_forbidden": true,
+    "2026_forbidden": true,
+    "no_threshold_rescue": true,
+    "no_scale_rescue": true,
+    "no_sequence_edit": true
+  }
+}
