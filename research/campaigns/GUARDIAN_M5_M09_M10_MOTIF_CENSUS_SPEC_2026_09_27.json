@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-09-27",
+  "status": "FROZEN_BEFORE_MOTIF_CENSUS",
+  "campaign": "GUARDIAN_M5_M09_M10_MOTIF_CENSUS",
+  "parent": "GUARDIAN_M5_MOTION_TOPOLOGY_FACTORY_V1_1",
+  "stage": "predictor_only_dictionary_census",
+  "outcome_association_permitted": false,
+  "temporal": {
+    "warmup": [2011],
+    "motif_census": [2012, 2013, 2014],
+    "replication_future": [2015, 2016, 2017],
+    "validation_future": [2018, 2019, 2020, 2021, 2022],
+    "locked_oos": [2023, 2024, 2025],
+    "protected": [2026]
+  },
+  "scales_min": [15, 30, 60],
+  "state_vector": {
+    "own_move_direction": "sign(ret_L)",
+    "own_move_strength": {"weak_abs_z_lt": 0.75, "medium_abs_z_lt": 1.5, "strong_abs_z_gte": 1.5},
+    "acceleration_relative_to_move": "sign(sign(ret_L) * accel_5_vs_15)",
+    "shock_flag": "abs(causal shock_z_5m) >= 1.5",
+    "breadth_bucket": {"negative_lt": 0.4, "neutral_range": [0.4, 0.6], "positive_gt": 0.6},
+    "dispersion_bucket": {"causal_z_low_lt": -0.75, "normal_range": [-0.75, 0.75], "high_gt": 0.75},
+    "residual_extreme_flag": "any frozen incident economic-graph residual_z abs >= 1.5",
+    "correlation_break_flag": "any frozen incident economic-graph causal corr_break_z abs >= 1.5"
+  },
+  "m09": {"object": "single compact state", "minimum_occurrences_before_outcome_test": 100, "episode_cooldown_min": 30},
+  "m10": {"objects": ["length_2_state_sequence", "length_3_state_sequence"], "bar_step_min": 5, "minimum_occurrences_before_outcome_test": 100, "episode_cooldown_min": 30},
+  "future_discovery_gate_not_executed_here": {"minimum_independent_episodes": 200, "minimum_utc_days": 120, "bh_fdr_q": 0.05, "direction": "positive endpoint_score only"},
+  "hard_assertions": {
+    "target_files_must_not_be_opened": true,
+    "2015_plus_state_must_not_be_opened": true,
+    "2015_plus_outcomes_must_not_be_opened": true,
+    "2023_2025_must_not_be_opened": true,
+    "2026_must_not_be_opened": true
+  }
+}
